@@ -1,0 +1,749 @@
+<title>iRisePro · Unit Economics Estimator</title>
+<style>
+  /* ============================================================
+     TOKENS — warm-neutral + emerald (honors the design repo's
+     globals.css system), plus semantic margin-health colors.
+     ============================================================ */
+  :root {
+    --n-50:#faf9f7; --n-100:#f3f1ed; --n-200:#e7e3dc; --n-300:#d3cdc2;
+    --n-400:#a39c8e; --n-500:#78715f; --n-600:#5b5547; --n-700:#433f35;
+    --n-800:#2a2823; --n-900:#1a1916; --n-950:#0f0e0c;
+    --accent:#0c8b5b; --accent-strong:#0a6e48; --accent-soft:#e3f5ec; --accent-bright:#2bd58a;
+    --good:#0c8b5b; --warn:#b9741a; --crit:#c0392b;
+    --good-soft:#e3f5ec; --warn-soft:#f7ecd9; --crit-soft:#f7e0dc;
+
+    --bg:var(--n-50); --surface:#ffffff; --surface-2:var(--n-100);
+    --ink:var(--n-900); --muted:var(--n-500); --faint:var(--n-400);
+    --border:var(--n-200); --border-strong:var(--n-300);
+    --fixed:#7a6a52; --variable:#0c8b5b; --eval:#c0392b; --margin:#c9c2b4;
+
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 1px 2px rgb(0 0 0/.04),0 12px 32px -12px rgb(0 0 0/.12);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0f0e0c; --surface:#1a1916; --surface-2:#221f1a;
+      --ink:#f3f1ed; --muted:#a39c8e; --faint:#78715f;
+      --border:#2a2823; --border-strong:#3a352d;
+      --accent:#2bd58a; --accent-strong:#25c07d; --accent-soft:#0f2a20;
+      --good:#2bd58a; --warn:#e0a54e; --crit:#e8695a;
+      --good-soft:#0f2a20; --warn-soft:#2c2314; --crit-soft:#2e1815;
+      --fixed:#b8a888; --variable:#2bd58a; --eval:#e8695a; --margin:#4a4438;
+      --shadow:0 1px 2px rgb(0 0 0/.3),0 16px 40px -16px rgb(0 0 0/.6);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:var(--n-50); --surface:#ffffff; --surface-2:var(--n-100);
+    --ink:var(--n-900); --muted:var(--n-500); --faint:var(--n-400);
+    --border:var(--n-200); --border-strong:var(--n-300);
+    --accent:#0c8b5b; --accent-strong:#0a6e48; --accent-soft:#e3f5ec; --accent-bright:#2bd58a;
+    --good:#0c8b5b; --warn:#b9741a; --crit:#c0392b;
+    --good-soft:#e3f5ec; --warn-soft:#f7ecd9; --crit-soft:#f7e0dc;
+    --fixed:#7a6a52; --variable:#0c8b5b; --eval:#c0392b; --margin:#c9c2b4;
+    --shadow:0 1px 2px rgb(0 0 0/.04),0 12px 32px -12px rgb(0 0 0/.12);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f0e0c; --surface:#1a1916; --surface-2:#221f1a;
+    --ink:#f3f1ed; --muted:#a39c8e; --faint:#78715f;
+    --border:#2a2823; --border-strong:#3a352d;
+    --accent:#2bd58a; --accent-strong:#25c07d; --accent-soft:#0f2a20;
+    --good:#2bd58a; --warn:#e0a54e; --crit:#e8695a;
+    --good-soft:#0f2a20; --warn-soft:#2c2314; --crit-soft:#2e1815;
+    --fixed:#b8a888; --variable:#2bd58a; --eval:#e8695a; --margin:#4a4438;
+    --shadow:0 1px 2px rgb(0 0 0/.3),0 16px 40px -16px rgb(0 0 0/.6);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:28px 22px 80px;}
+
+  /* ---- header ---- */
+  header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+    gap:18px;padding-bottom:22px;border-bottom:1px solid var(--border);margin-bottom:26px;}
+  .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+    font-weight:600;margin:0 0 8px;}
+  h1{font-size:27px;line-height:1.1;margin:0;letter-spacing:-.02em;font-weight:650;text-wrap:balance;}
+  .sub{color:var(--muted);font-size:14px;margin:8px 0 0;max-width:56ch;}
+  .price-chip{display:inline-flex;align-items:baseline;gap:7px;background:var(--surface);
+    border:1px solid var(--border);border-radius:12px;padding:12px 16px;box-shadow:var(--shadow);}
+  .price-chip .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+  .price-chip .val{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink);}
+  .price-chip .per{font-size:12px;color:var(--faint);}
+
+  /* ---- KPI row ---- */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;}
+  .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:.85;}
+  .kpi.k-health::before{background:var(--kpi-stripe,var(--accent));}
+  .kpi .klbl{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:9px;
+    display:flex;align-items:center;gap:6px;}
+  .kpi .kval{font-family:var(--mono);font-size:30px;font-weight:650;line-height:1;letter-spacing:-.01em;}
+  .kpi .kfoot{font-size:12px;color:var(--faint);margin-top:7px;}
+  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;
+    letter-spacing:.02em;}
+  .pill.good{background:var(--good-soft);color:var(--good);}
+  .pill.warn{background:var(--warn-soft);color:var(--warn);}
+  .pill.crit{background:var(--crit-soft);color:var(--crit);}
+
+  /* ---- main grid ---- */
+  .grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:start;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+    box-shadow:var(--shadow);overflow:hidden;}
+  .panel + .panel{margin-top:18px;}
+  .results{position:sticky;top:16px;}
+  .phead{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;
+    justify-content:space-between;gap:10px;}
+  .phead h2{font-size:14px;margin:0;font-weight:650;letter-spacing:-.01em;}
+  .phead .hint{font-size:11.5px;color:var(--faint);}
+  .pbody{padding:16px 18px;}
+
+  /* ---- input groups (collapsible) ---- */
+  details.grp{border-bottom:1px solid var(--border);}
+  details.grp:last-child{border-bottom:0;}
+  details.grp > summary{list-style:none;cursor:pointer;padding:13px 18px;display:flex;align-items:center;
+    justify-content:space-between;gap:10px;user-select:none;}
+  details.grp > summary::-webkit-details-marker{display:none;}
+  details.grp > summary:hover{background:var(--surface-2);}
+  .gtitle{font-size:12.5px;font-weight:650;letter-spacing:.01em;display:flex;align-items:center;gap:9px;}
+  .gtag{width:9px;height:9px;border-radius:3px;flex:none;}
+  .gsum{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .chev{width:15px;height:15px;color:var(--faint);transition:transform .18s;flex:none;}
+  details[open] > summary .chev{transform:rotate(90deg);}
+  .gcontent{padding:4px 18px 18px;}
+
+  .field{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 14px;
+    padding:7px 0;border-top:1px dashed var(--border);}
+  .field:first-child{border-top:0;}
+  .field label{font-size:13px;color:var(--ink);}
+  .field .flh{font-size:11.5px;color:var(--faint);display:block;margin-top:1px;}
+  .field input[type="number"]{width:96px;text-align:right;font-family:var(--mono);
+    font-variant-numeric:tabular-nums;font-size:13.5px;padding:6px 8px;background:var(--bg);
+    color:var(--ink);border:1px solid var(--border-strong);border-radius:8px;}
+  .field input[type="number"]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent;}
+  .field .unit{font-size:11px;color:var(--faint);margin-left:-8px;min-width:34px;}
+
+  /* sliders */
+  .slider-field{padding:10px 0;border-top:1px dashed var(--border);}
+  .slider-field:first-child{border-top:0;}
+  .slider-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;}
+  .slider-top .sl-lbl{font-size:13px;font-weight:550;}
+  .slider-top .sl-val{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--accent);}
+  input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:99px;
+    background:var(--surface-2);outline:none;}
+  input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+    background:var(--accent);border:3px solid var(--surface);box-shadow:0 1px 4px rgb(0 0 0/.25);cursor:pointer;}
+  input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);
+    border:3px solid var(--surface);cursor:pointer;}
+  input[type="range"]:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  /* segmented */
+  .seg{display:inline-flex;background:var(--surface-2);border-radius:9px;padding:3px;gap:3px;}
+  .seg button{font-family:var(--mono);font-size:12.5px;font-weight:600;border:0;background:transparent;
+    color:var(--muted);padding:6px 12px;border-radius:6px;cursor:pointer;}
+  .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgb(0 0 0/.12);}
+  .seg-field{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;
+    border-top:1px dashed var(--border);}
+
+  /* ---- results: allocation bar ---- */
+  .alloc{margin-bottom:6px;}
+  .alloc-bar{display:flex;height:38px;border-radius:9px;overflow:hidden;border:1px solid var(--border);}
+  .alloc-bar > span{display:block;transition:width .3s ease;min-width:0;}
+  .alloc-legend{display:grid;grid-template-columns:repeat(2,1fr);gap:7px 16px;margin-top:14px;}
+  .leg{display:flex;align-items:center;gap:8px;font-size:12.5px;}
+  .leg .dot{width:10px;height:10px;border-radius:3px;flex:none;}
+  .leg .lname{color:var(--muted);}
+  .leg .lval{margin-left:auto;font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;}
+
+  /* ---- breakdown tables ---- */
+  table.bd{width:100%;border-collapse:collapse;font-size:13px;}
+  table.bd th,table.bd td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--border);}
+  table.bd th{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:600;}
+  table.bd td.n,table.bd th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;}
+  table.bd tr:last-child td{border-bottom:0;}
+  table.bd tr.total td{border-top:2px solid var(--border-strong);font-weight:650;padding-top:9px;}
+  table.bd .cat{display:inline-flex;align-items:center;gap:8px;}
+  table.bd .cat .dot{width:8px;height:8px;border-radius:2px;flex:none;}
+  .muted-row td{color:var(--muted);}
+
+  /* chart */
+  .chartwrap{position:relative;width:100%;}
+  canvas{display:block;width:100%;height:auto;}
+  .chart-cap{font-size:11.5px;color:var(--faint);margin-top:8px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .chart-legend{display:flex;gap:14px;flex-wrap:wrap;}
+  .chart-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .chart-legend i{width:14px;height:3px;border-radius:2px;display:inline-block;}
+
+  .callout{margin-top:18px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;
+    padding:14px 16px;font-size:13px;color:var(--ink);}
+  .callout b{color:var(--ink);}
+  .callout .k{font-family:var(--mono);color:var(--accent);font-weight:600;}
+
+  /* sources */
+  .src{font-size:12.5px;color:var(--muted);line-height:1.7;}
+  .src code{font-family:var(--mono);font-size:11.5px;background:var(--surface-2);padding:1px 5px;border-radius:5px;color:var(--ink);}
+  .src ul{margin:6px 0 0;padding-left:18px;}
+  .footnote{margin-top:26px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--faint);}
+
+  .warnbox{background:var(--crit-soft);border:1px solid color-mix(in srgb,var(--crit) 35%,transparent);
+    border-radius:10px;padding:11px 14px;font-size:12.5px;color:var(--ink);margin-top:12px;display:none;}
+  .warnbox.show{display:block;}
+  .warnbox b{color:var(--crit);}
+
+  @media (max-width:980px){
+    .kpis{grid-template-columns:repeat(2,1fr);}
+    .grid{grid-template-columns:1fr;}
+    .results{position:static;}
+  }
+  @media (max-width:520px){
+    .wrap{padding:20px 14px 60px;}
+    h1{font-size:22px;}
+    .kpi .kval{font-size:25px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="eyebrow">iRisePro · Tech + Infra Cost Model</p>
+      <h1>Unit Economics Estimator</h1>
+      <p class="sub">How much of a student's recurring fee is eaten by cloud + tooling — modelled on the ₹4,999 onboarding plus daily strengthening at your configured media ceilings. Fixed infra is anchored to the live Mumbai AWS run-rate. Every number below is editable.</p>
+    </div>
+    <div class="price-chip">
+      <span class="lbl">Recurring fee</span>
+      <span class="val num" id="feeChip">₹800</span>
+      <span class="per">/ student / mo</span>
+    </div>
+  </header>
+
+  <!-- KPI SUMMARY -->
+  <section class="kpis" aria-label="Headline results">
+    <div class="kpi">
+      <div class="klbl">Tech + Infra COGS</div>
+      <div class="kval num" id="kTech">₹—</div>
+      <div class="kfoot">per student / month</div>
+    </div>
+    <div class="kpi k-health" id="kPctCard">
+      <div class="klbl">Share of fee <span class="pill" id="kPctPill">—</span></div>
+      <div class="kval num" id="kPct">—%</div>
+      <div class="kfoot">tech + infra only</div>
+    </div>
+    <div class="kpi">
+      <div class="klbl">Infra break-even</div>
+      <div class="kval num" id="kBreak">—</div>
+      <div class="kfoot">students to cover fixed cost</div>
+    </div>
+    <div class="kpi k-health" id="kMarginCard">
+      <div class="klbl">Gross margin <span class="pill" id="kMarginPill">—</span></div>
+      <div class="kval num" id="kMargin">₹—</div>
+      <div class="kfoot">after infra <em>and</em> eval labour</div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <!-- ============ INPUTS ============ -->
+    <div>
+      <div class="panel">
+        <div class="phead"><h2>Assumptions</h2><span class="hint">drag / type — updates live</span></div>
+
+        <!-- SCALE -->
+        <details class="grp" open>
+          <summary>
+            <span class="gtitle"><span class="gtag" style="background:var(--accent)"></span>Scale &amp; fee</span>
+            <span style="display:flex;align-items:center;gap:12px"><span class="gsum" id="sumScale"></span>
+            <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l4 4-4 4"/></svg></span>
+          </summary>
+          <div class="gcontent">
+            <div class="slider-field">
+              <div class="slider-top"><span class="sl-lbl">Active students</span><span class="sl-val num" id="vStudents">500</span></div>
+              <input type="range" id="students" min="10" max="5000" step="10" value="500">
+            </div>
+            <div class="slider-field">
+              <div class="slider-top"><span class="sl-lbl">Tasks per day / student</span><span class="sl-val num" id="vTasks">1</span></div>
+              <input type="range" id="tasksPerDay" min="0" max="3" step="0.25" value="1">
+            </div>
+            <div class="field">
+              <label>Recurring fee <span class="flh">what the student pays / month</span></label>
+              <span><input type="number" id="fee" value="800" min="0" step="10"><span class="unit">₹</span></span>
+            </div>
+            <div class="field">
+              <label>₹ per USD <span class="flh">FX for pricing the AWS/SaaS bill</span></label>
+              <span><input type="number" id="fx" value="86" min="1" step="0.5"><span class="unit">₹</span></span>
+            </div>
+          </div>
+        </details>
+
+        <!-- MEDIA MIX -->
+        <details class="grp">
+          <summary>
+            <span class="gtitle"><span class="gtag" style="background:var(--variable)"></span>Media mix &amp; sizes</span>
+            <span style="display:flex;align-items:center;gap:12px"><span class="gsum" id="sumMedia"></span>
+            <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l4 4-4 4"/></svg></span>
+          </summary>
+          <div class="gcontent">
+            <p style="font-size:11.5px;color:var(--faint);margin:2px 0 4px">Monthly ceilings for daily strengthening (your policy: 1 video / 3 days). "Rest" auto-fills as image/PDF up to tasks-per-month.</p>
+            <div class="field"><label>Videos / month <span class="flh">max ~10 (1 per 3 days)</span></label><span><input type="number" id="vidPerMo" value="10" min="0" step="1"><span class="unit">#</span></span></div>
+            <div class="field"><label>Audios / month</label><span><input type="number" id="audPerMo" value="20" min="0" step="1"><span class="unit">#</span></span></div>
+            <div class="field"><label>Image/PDF / month <span class="flh" id="imgAuto"></span></label><span><input type="number" id="imgPerMo" value="0" min="0" step="1"><span class="unit">#</span></span></div>
+            <p style="font-size:11.5px;color:var(--faint);margin:12px 0 2px;font-weight:600;letter-spacing:.02em;text-transform:uppercase">Stored sizes — MEASURED from prod</p>
+            <p style="font-size:11.5px;color:var(--faint);margin:0 0 4px">Averages across <b>4,843 real objects</b> in <code style="font-family:var(--mono)">irisepro-uploads-in</code> (28-Jul-2026). Each upload keeps original + optimized sibling; video original is deleted post-eval, audio &amp; image originals persist the 90-day window. <b>Video ≈ 98% of stored bytes.</b></p>
+            <div class="field"><label>Video — original <span class="flh">measured avg of 788; deleted post-eval</span></label><span><input type="number" id="vidOrigMB" value="34" min="0" step="1"><span class="unit">MB</span></span></div>
+            <div class="field"><label>Video — served <span class="flh">measured avg of 779 (720p)</span></label><span><input type="number" id="vidOptMB" value="18" min="0" step="1"><span class="unit">MB</span></span></div>
+            <div class="field"><label>Audio — original <span class="flh">measured (n=8; WAV→20MB cap possible)</span></label><span><input type="number" id="audOrigMB" value="2" min="0" step="0.5"><span class="unit">MB</span></span></div>
+            <div class="field"><label>Audio — served <span class="flh">measured (AAC 128k)</span></label><span><input type="number" id="audOptMB" value="2" min="0" step="0.5"><span class="unit">MB</span></span></div>
+            <div class="field"><label>Image/PDF — original <span class="flh">measured avg of 2,690</span></label><span><input type="number" id="imgOrigMB" value="0.4" min="0" step="0.5"><span class="unit">MB</span></span></div>
+            <div class="field"><label>Image/PDF — served <span class="flh">measured (most images not transcoded)</span></label><span><input type="number" id="imgOptMB" value="0.25" min="0" step="0.25"><span class="unit">MB</span></span></div>
+            <div class="field"><label>Media views each <span class="flh">evaluator + re-views → egress</span></label><span><input type="number" id="views" value="1.5" min="0" step="0.5"><span class="unit">×</span></span></div>
+          </div>
+        </details>
+
+        <!-- STORAGE / PIPELINE PRICES -->
+        <details class="grp">
+          <summary>
+            <span class="gtitle"><span class="gtag" style="background:var(--variable)"></span>Per-student pipeline prices</span>
+            <span style="display:flex;align-items:center;gap:12px"><span class="gsum" id="sumPipe"></span>
+            <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l4 4-4 4"/></svg></span>
+          </summary>
+          <div class="gcontent">
+            <p style="font-size:11.5px;color:var(--faint);margin:2px 0 4px">S3 lifecycle (verified in <code style="font-family:var(--mono)">s3.tf</code>): everything under <code style="font-family:var(--mono)">task_responses/</code> hard-expires at 90 days; objects &gt;2 MB tier to STANDARD_IA at 30 days. Storage is <b>bounded by this window</b> — it does not grow with tenure.</p>
+            <div class="field"><label>Retention window <span class="flh">submission_retention_days = 90</span></label><span><input type="number" id="retDays" value="90" min="1" step="5"><span class="unit">d</span></span></div>
+            <div class="field"><label>IA transition <span class="flh">&gt;2 MB → STANDARD_IA</span></label><span><input type="number" id="iaDays" value="30" min="0" step="5"><span class="unit">d</span></span></div>
+            <div class="field"><label>Eval SLA <span class="flh">video original deleted after this (₹4999=12h)</span></label><span><input type="number" id="evalHrs" value="12" min="0" step="6"><span class="unit">h</span></span></div>
+            <div class="field"><label>S3 Standard <span class="flh">Mumbai $/GB-mo</span></label><span><input type="number" id="s3Rate" value="0.025" min="0" step="0.001"><span class="unit">$</span></span></div>
+            <div class="field"><label>S3 Standard-IA <span class="flh">$/GB-mo, cold tier for &gt;2 MB</span></label><span><input type="number" id="iaRate" value="0.0138" min="0" step="0.0005"><span class="unit">$</span></span></div>
+            <div class="field"><label>CloudFront egress <span class="flh">$/GB, India edges</span></label><span><input type="number" id="cfRate" value="0.085" min="0" step="0.005"><span class="unit">$</span></span></div>
+            <div class="field"><label>Transcode / video <span class="flh">Lambda ffmpeg → 720p</span></label><span><input type="number" id="txVideo" value="0.0023" min="0" step="0.0001"><span class="unit">$</span></span></div>
+            <div class="field"><label>Transcode / audio</label><span><input type="number" id="txAudio" value="0.0004" min="0" step="0.0001"><span class="unit">$</span></span></div>
+            <div class="field"><label>Scorecard renders / mo <span class="flh">trickle feedback</span></label><span><input type="number" id="cards" value="4" min="0" step="1"><span class="unit">#</span></span></div>
+            <div class="field"><label>Emails / student / mo <span class="flh">SES nudges + OTP</span></label><span><input type="number" id="emails" value="34" min="0" step="1"><span class="unit">#</span></span></div>
+          </div>
+        </details>
+
+        <!-- FIXED AWS -->
+        <details class="grp">
+          <summary>
+            <span class="gtitle"><span class="gtag" style="background:var(--fixed)"></span>Fixed AWS infra</span>
+            <span style="display:flex;align-items:center;gap:12px"><span class="gsum" id="sumAws"></span>
+            <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l4 4-4 4"/></svg></span>
+          </summary>
+          <div class="gcontent">
+            <p style="font-size:11.5px;color:var(--faint);margin:2px 0 4px">$/month, from the live ap-south-1 run-rate (~$8.25/day since go-live). EU stack excluded.</p>
+            <div class="field"><label>RDS (db.t4g.medium, Multi-AZ)</label><span><input type="number" id="awsRds" value="130" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>EC2 compute (app box)</label><span><input type="number" id="awsEc2" value="44" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>ElastiCache Redis</label><span><input type="number" id="awsCache" value="28" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>ALB load balancer</label><span><input type="number" id="awsAlb" value="17" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>VPC / NAT</label><span><input type="number" id="awsVpc" value="15" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>WAF</label><span><input type="number" id="awsWaf" value="9" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>EBS + KMS + CW + Secrets + S3 base</label><span><input type="number" id="awsOther" value="13" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>Business Support</label><span><input type="number" id="awsSupport" value="29" min="0" step="1"><span class="unit">$</span></span></div>
+          </div>
+        </details>
+
+        <!-- SAAS -->
+        <details class="grp">
+          <summary>
+            <span class="gtitle"><span class="gtag" style="background:var(--fixed)"></span>Fixed SaaS tooling</span>
+            <span style="display:flex;align-items:center;gap:12px"><span class="gsum" id="sumSaas"></span>
+            <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l4 4-4 4"/></svg></span>
+          </summary>
+          <div class="gcontent">
+            <div class="field"><label>Vercel Pro <span class="flh">$/seat</span></label><span><input type="number" id="vercel" value="20" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>Sentry Team</label><span><input type="number" id="sentry" value="26" min="0" step="1"><span class="unit">$</span></span></div>
+            <div class="field"><label>Slack Pro <span class="flh">$8.75 × seats</span></label><span><input type="number" id="slackSeats" value="5" min="0" step="1"><span class="unit">ppl</span></span></div>
+            <div class="field"><label>GitHub Team <span class="flh">$4 × seats</span></label><span><input type="number" id="ghSeats" value="4" min="0" step="1"><span class="unit">ppl</span></span></div>
+            <div class="field"><label>Domains + misc <span class="flh">₹/month</span></label><span><input type="number" id="domain" value="100" min="0" step="10"><span class="unit">₹</span></span></div>
+            <div class="seg-field"><span style="font-size:13px">Add 18% GST <span class="flh" style="display:block">off if ITC-reclaimable</span></span>
+              <span class="seg" id="gstSeg" role="group" aria-label="GST">
+                <button data-gst="0" aria-pressed="true">No</button>
+                <button data-gst="1">+18%</button>
+              </span>
+            </div>
+          </div>
+        </details>
+
+        <!-- EVAL -->
+        <details class="grp">
+          <summary>
+            <span class="gtitle"><span class="gtag" style="background:var(--eval)"></span>Human evaluation <span style="font-weight:400;color:var(--faint)">· outside tech+infra</span></span>
+            <span style="display:flex;align-items:center;gap:12px"><span class="gsum" id="sumEval"></span>
+            <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4l4 4-4 4"/></svg></span>
+          </summary>
+          <div class="gcontent">
+            <p style="font-size:11.5px;color:var(--faint);margin:2px 0 4px">Yashodarshi labour — your real biggest per-student cost. Shown separately so the ₹800 picture isn't misleading.</p>
+            <div class="slider-field">
+              <div class="slider-top"><span class="sl-lbl">Cost per task evaluated</span><span class="sl-val num" id="vEval">₹20</span></div>
+              <input type="range" id="evalPerTask" min="0" max="60" step="1" value="20">
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- ============ RESULTS ============ -->
+    <div class="results">
+      <div class="panel">
+        <div class="phead"><h2>Where the fee goes</h2><span class="hint" id="allocHint"></span></div>
+        <div class="pbody">
+          <div class="alloc">
+            <div class="alloc-bar" id="allocBar">
+              <span style="background:var(--fixed);width:8%"></span>
+              <span style="background:var(--variable);width:2%"></span>
+              <span style="background:var(--eval);width:70%"></span>
+              <span style="background:var(--margin);width:20%"></span>
+            </div>
+            <div class="alloc-legend">
+              <div class="leg"><span class="dot" style="background:var(--fixed)"></span><span class="lname">Fixed infra ÷ N</span><span class="lval num" id="lgFixed">₹—</span></div>
+              <div class="leg"><span class="dot" style="background:var(--variable)"></span><span class="lname">Variable / student</span><span class="lval num" id="lgVar">₹—</span></div>
+              <div class="leg"><span class="dot" style="background:var(--eval)"></span><span class="lname">Human eval</span><span class="lval num" id="lgEval">₹—</span></div>
+              <div class="leg"><span class="dot" style="background:var(--margin)"></span><span class="lname">Gross margin</span><span class="lval num" id="lgMargin">₹—</span></div>
+            </div>
+          </div>
+          <div class="warnbox" id="lossBox"><b>Below break-even.</b> <span id="lossTxt"></span></div>
+          <div class="callout" id="insight"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="phead"><h2>COGS vs student count</h2><span class="hint">fixed cost amortises as you scale</span></div>
+        <div class="pbody">
+          <div class="chartwrap"><canvas id="chart" width="560" height="300"></canvas></div>
+          <div class="chart-cap">
+            <div class="chart-legend">
+              <span><i style="background:var(--variable)"></i>Tech + infra</span>
+              <span><i style="background:var(--eval)"></i>+ eval (true COGS)</span>
+              <span><i style="background:var(--faint)"></i>₹800 fee</span>
+            </div>
+            <span id="chartNote"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="phead"><h2>Cost breakdown</h2><span class="hint" id="atN"></span></div>
+        <div class="pbody" style="display:grid;grid-template-columns:1fr;gap:20px">
+          <div>
+            <table class="bd">
+              <thead><tr><th>Fixed infra / month</th><th class="n">$/mo</th><th class="n">₹/mo</th></tr></thead>
+              <tbody id="fixedTbl"></tbody>
+            </table>
+          </div>
+          <div>
+            <table class="bd">
+              <thead><tr><th>Variable / student / month</th><th class="n">detail</th><th class="n">₹/mo</th></tr></thead>
+              <tbody id="varTbl"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="phead"><h2>One-time onboarding (₹4,999)</h2><span class="hint">21-task benchmark, per student</span></div>
+        <div class="pbody">
+          <p style="font-size:13px;color:var(--muted);margin:0 0 6px">3 videos + 7 audios + 11 image/PDF + 1 master scorecard. This lands once, at enrolment — kept out of the monthly recurring figure.</p>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span class="num" id="onboardCost" style="font-size:22px;font-weight:650;color:var(--accent)">₹—</span>
+            <span style="font-size:12.5px;color:var(--faint)">one-time infra cost / student — negligible vs the fee</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="phead"><h2>Model &amp; sources</h2><span class="hint">auditable</span></div>
+        <div class="pbody src">
+          <p style="margin:0 0 8px"><b>Fixed cost</b> is the live <b>Mumbai (ap-south-1)</b> AWS run-rate — a flat ~$8.25/day since go-live mid-July 2026, pulled from Cost Explorer (daily granularity, tax excluded). The retiring EU (eu-north-1, ~$250/mo) stack is <b>excluded</b>.</p>
+          <p style="margin:0 0 8px"><b>Media caps</b> from <code>Backend-laravel/config/tasks.php</code>: video 25 MB / 90 s @ 720p, audio 20 MB cap (~2 MB stored @ AAC 128k), image/PDF 25 MB cap (~1 MB stored). Transcode: <code>infra/transcode-lambda/handler.py</code> (ffmpeg → 1280px H.264 CRF 28). The per-task media <em>mix</em> is your product policy, not a code constant — hence editable.</p>
+          <p style="margin:0 0 8px"><b>Storage model (measured + verified 28-Jul-2026):</b> every upload stores <b>both</b> the original and an optimized sibling under <code>task_responses/</code>. A single S3 lifecycle (<code>s3.tf</code>) <b>hard-expires all of it at 90 days</b> — confirmed live on the bucket (oldest object = 14 days), so storage is bounded by this window and does <b>not</b> accumulate over tenure. Objects &gt;2 MB tier to STANDARD_IA at 30 days. Video &amp; audio originals are inline-deleted after evaluation; <b>image originals persist</b> for legibility/appeal. Sizes above are measured across 4,843 real objects (video ≈ 98% of bytes). Egress via CloudFront; uploads are free.</p>
+          <ul>
+            <li>Variable/student = storage (both copies, 90d cap) + transcode + egress + SES + scorecard render.</li>
+            <li>Tech COGS/student = variable + (fixed total ÷ active students).</li>
+            <li>Human eval is labour, not infra — separate line, editable ₹/task.</li>
+          </ul>
+          <div class="warnbox" style="display:block;background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 35%,transparent);margin-top:10px">
+            <b style="color:var(--warn)">Caveat:</b> August 2026 is the first clean full month of Mumbai-only billing — re-check the fixed lines against that actual before quoting externally.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="footnote">Private working model · figures are editable estimates, not booked costs · AWS figures from live Cost Explorer read (read-only <code style="font-family:var(--mono)">irisepro</code> profile), acct 963627011000, ap-south-1.</p>
+</div>
+
+<script>
+(function(){
+  var INR = new Intl.NumberFormat('en-IN',{maximumFractionDigits:0});
+  var INR1 = new Intl.NumberFormat('en-IN',{maximumFractionDigits:1});
+  function rup(v){return '₹'+INR.format(Math.round(v));}
+  function rup1(v){return '₹'+INR1.format(v);}
+  function $(id){return document.getElementById(id);}
+  function val(id){return parseFloat($(id).value)||0;}
+
+  var els = ['students','tasksPerDay','fee','fx','vidPerMo','audPerMo','imgPerMo',
+    'vidOrigMB','vidOptMB','audOrigMB','audOptMB','imgOrigMB','imgOptMB',
+    'views','retDays','iaDays','evalHrs','s3Rate','iaRate','cfRate','txVideo','txAudio','cards','emails',
+    'awsRds','awsEc2','awsCache','awsAlb','awsVpc','awsWaf','awsOther','awsSupport',
+    'vercel','sentry','slackSeats','ghSeats','domain','evalPerTask'];
+
+  var gst = 0;
+
+  // segmented controls
+  function bindSeg(segId, cb){
+    var seg=$(segId);
+    seg.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click',function(){
+        seg.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false');});
+        b.setAttribute('aria-pressed','true'); cb(b); compute();
+      });
+    });
+  }
+  bindSeg('gstSeg', function(b){ gst = parseInt(b.dataset.gst,10); });
+
+  function health(pct){ // pct of fee for a cost — lower is better
+    if(pct<0.10) return 'good'; if(pct<0.20) return 'warn'; return 'crit';
+  }
+  function stripe(cls){ return cls==='good'?'var(--good)':cls==='warn'?'var(--warn)':'var(--crit)'; }
+
+  function compute(){
+    var N=Math.max(1,val('students'));
+    var fee=val('fee'), fx=val('fx');
+    var tpd=val('tasksPerDay'), tasksMo=tpd*30;
+
+    // media mix
+    var vid=val('vidPerMo'), aud=val('audPerMo');
+    var imgAuto=Math.max(0, Math.round(tasksMo-vid-aud));
+    $('imgAuto').textContent='auto ≈ '+imgAuto+' (tasks − video − audio)';
+    var img=val('imgPerMo');
+    var vOrig=val('vidOrigMB'), vOpt=val('vidOptMB'),
+        aOrig=val('audOrigMB'), aOpt=val('audOptMB'),
+        iOrig=val('imgOrigMB'), iOpt=val('imgOptMB');
+    // served (optimized) footprint drives egress; ingest/upload is free
+    var servedMB = vid*vOpt + aud*aOpt + img*iOpt;
+    var newGB = servedMB/1024;
+
+    // storage: flat retention window; >2MB objects tier to IA at iaDays; video ORIGINAL deleted at eval SLA,
+    // audio+image originals persist the full window (verified: SubmissionMedia::deleteReplacedOriginals)
+    var ret=val('retDays'), iaD=val('iaDays'), s3=val('s3Rate'), iaR=val('iaRate');
+    var vidLifeD=Math.min(val('evalHrs')/24, ret);
+    function objCost(cnt,sizeMB,lifeD){
+      if(cnt<=0||sizeMB<=0||lifeD<=0) return 0;
+      var gb = cnt*(sizeMB/1024)*(lifeD/30);            // steady-state stored GB (rolling window)
+      if(sizeMB>2){ var stdF=Math.min(lifeD,iaD)/lifeD; return gb*(stdF*s3+(1-stdF)*iaR); }
+      return gb*s3;
+    }
+    var storage$ = objCost(vid,vOrig,vidLifeD)   // video original (short — deleted at eval)
+                 + objCost(vid,vOpt,ret)          // video served (full window)
+                 + objCost(aud,aOrig,ret)         // audio original (KEPT 90d)
+                 + objCost(aud,aOpt,ret)          // audio served
+                 + objCost(img,iOrig,ret)         // image original (KEPT 90d)
+                 + objCost(img,iOpt,ret);         // image served
+
+    var transcode$ = vid*val('txVideo') + aud*val('txAudio');
+    var egress$ = newGB*val('views')*val('cfRate');
+    var ses$ = val('emails')*0.10/1000;
+    var cards$ = val('cards')*0.0002;
+    var variable$ = storage$+transcode$+egress$+ses$+cards$;
+    var variableINR = variable$*fx;
+
+    // fixed
+    var aws$ = val('awsRds')+val('awsEc2')+val('awsCache')+val('awsAlb')+val('awsVpc')+val('awsWaf')+val('awsOther')+val('awsSupport');
+    var saas$ = val('vercel')+val('sentry')+val('slackSeats')*8.75+val('ghSeats')*4;
+    var fixed$ = aws$+saas$;
+    var fixedINR = fixed$*fx*(1+0.18*gst) + val('domain');
+
+    var fixedPer = fixedINR/N;
+    var techCOGS = variableINR + fixedPer;
+    var evalINR = val('evalPerTask')*tasksMo;
+    var trueCOGS = techCOGS + evalINR;
+    var margin = fee - trueCOGS;
+
+    var pctTech = fee>0?techCOGS/fee:0;
+    var pctEval = fee>0?evalINR/fee:0;
+
+    // ---- KPIs ----
+    $('kTech').textContent = rup(techCOGS);
+    $('kPct').textContent = (pctTech*100).toFixed(1)+'%';
+    var hc=health(pctTech);
+    $('kPctPill').className='pill '+hc; $('kPctPill').textContent = hc==='good'?'lean':hc==='warn'?'watch':'heavy';
+    $('kPctCard').style.setProperty('--kpi-stripe', stripe(hc));
+
+    var breakN = techCOGS>0 && (fee-variableINR)>0 ? Math.ceil(fixedINR/(fee-variableINR)) : Infinity;
+    $('kBreak').textContent = isFinite(breakN)? INR.format(breakN) : '—';
+
+    $('kMargin').textContent = rup(margin);
+    var mc = margin<=0?'crit':(margin/fee<0.15?'warn':'good');
+    $('kMarginPill').className='pill '+mc; $('kMarginPill').textContent = margin<=0?'loss':(margin/fee<0.15?'thin':'ok');
+    $('kMarginCard').style.setProperty('--kpi-stripe', stripe(mc));
+    $('kMargin').style.color = margin<0?'var(--crit)':'var(--ink)';
+
+    $('feeChip').textContent = rup(fee);
+
+    // ---- allocation bar ----
+    var segFixed=fixedPer, segVar=variableINR, segEval=evalINR, segMargin=Math.max(0,margin);
+    var denom = Math.max(fee, segFixed+segVar+segEval); // if over fee, scale to total cost
+    function pctw(x){return (x/denom*100);}
+    var bar=$('allocBar');
+    bar.children[0].style.width=pctw(segFixed)+'%';
+    bar.children[1].style.width=pctw(segVar)+'%';
+    bar.children[2].style.width=pctw(segEval)+'%';
+    bar.children[3].style.width=pctw(segMargin)+'%';
+    bar.children[3].style.background = margin<0? 'repeating-linear-gradient(45deg,var(--crit-soft),var(--crit-soft) 5px,transparent 5px,transparent 10px)' : 'var(--margin)';
+    $('lgFixed').textContent=rup(segFixed);
+    $('lgVar').textContent=rup1(segVar);
+    $('lgEval').textContent=rup(segEval);
+    $('lgMargin').textContent=(margin<0?'−':'')+rup(Math.abs(margin));
+    $('lgMargin').style.color = margin<0?'var(--crit)':'var(--ink)';
+    $('allocHint').textContent = 'at '+INR.format(Math.round(N))+' students · '+rup(fee)+' fee';
+
+    // loss box
+    if(margin<0){ $('lossBox').classList.add('show');
+      $('lossTxt').textContent = 'At '+INR.format(Math.round(N))+' students the true COGS ('+rup(trueCOGS)+') exceeds the '+rup(fee)+' fee by '+rup(-margin)+'/student. Scale past '+(isFinite(breakN)?INR.format(breakN):'—')+' students, cut eval ₹/task, or raise the fee.';
+    } else { $('lossBox').classList.remove('show'); }
+
+    // ---- insight callout ----
+    var ins;
+    if(margin<0){
+      ins='<b>Underwater at this scale.</b> Human eval alone is <span class="k">'+rup(evalINR)+'</span> ('+(pctEval*100).toFixed(0)+'% of fee). Tech+infra is the small part — <span class="k">'+rup(techCOGS)+'</span>. Growth and eval-cost are the levers, not cloud.';
+    } else {
+      ins='<b>Tech + infra = <span class="k">'+(pctTech*100).toFixed(1)+'%</span> of the fee</b> ('+rup(techCOGS)+'/student). Of that, fixed infra ÷ '+INR.format(Math.round(N))+' students is <span class="k">'+rup(fixedPer)+'</span> and variable media is just <span class="k">'+rup1(variableINR)+'</span>. Human eval ('+rup(evalINR)+') is '+(evalINR>techCOGS?'the dominant':'a larger')+' cost — leaving <span class="k">'+rup(margin)+'</span> gross margin.';
+    }
+    $('insight').innerHTML=ins;
+
+    // ---- breakdown tables ----
+    var ft=[
+      ['RDS (Multi-AZ)','awsRds',val('awsRds')],['EC2 compute','awsEc2',val('awsEc2')],
+      ['ElastiCache','awsCache',val('awsCache')],['ALB','awsAlb',val('awsAlb')],
+      ['VPC / NAT','awsVpc',val('awsVpc')],['WAF','awsWaf',val('awsWaf')],
+      ['EBS/KMS/CW/Secrets/S3','awsOther',val('awsOther')],['Business Support','awsSupport',val('awsSupport')],
+      ['Vercel Pro',null,val('vercel')],['Sentry Team',null,val('sentry')],
+      ['Slack Pro ×'+val('slackSeats'),null,val('slackSeats')*8.75],['GitHub Team ×'+val('ghSeats'),null,val('ghSeats')*4]
+    ];
+    var mult=fx*(1+0.18*gst);
+    var rows='';
+    ft.forEach(function(r){
+      rows+='<tr><td><span class="cat"><span class="dot" style="background:var(--fixed)"></span>'+r[0]+'</span></td><td class="n">$'+INR1.format(r[2])+'</td><td class="n">'+rup(r[2]*mult)+'</td></tr>';
+    });
+    rows+='<tr class="muted-row"><td>Domains + misc</td><td class="n">—</td><td class="n">'+rup(val('domain'))+'</td></tr>';
+    rows+='<tr class="total"><td>Fixed total'+(gst?' (incl GST)':'')+'</td><td class="n">$'+INR.format(fixed$)+'</td><td class="n">'+rup(fixedINR)+'</td></tr>';
+    rows+='<tr class="total" style="border-top:0"><td style="font-weight:550;color:var(--muted)">÷ '+INR.format(Math.round(N))+' students</td><td></td><td class="n" style="color:var(--fixed)">'+rup(fixedPer)+'</td></tr>';
+    $('fixedTbl').innerHTML=rows;
+
+    var vt=[
+      ['Storage · orig+served, '+ret+'d cap', INR1.format(servedMB)+' MB served', storage$*fx],
+      ['Video transcode', vid+' vids', transcode$*fx],
+      ['CloudFront egress', INR1.format(newGB*val('views'))+' GB', egress$*fx],
+      ['SES email', val('emails')+' mails', ses$*fx],
+      ['Scorecard render', val('cards')+' cards', cards$*fx]
+    ];
+    var vrows='';
+    vt.forEach(function(r){
+      vrows+='<tr><td><span class="cat"><span class="dot" style="background:var(--variable)"></span>'+r[0]+'</span></td><td class="n" style="color:var(--faint);font-size:11.5px">'+r[1]+'</td><td class="n">'+rup1(r[2])+'</td></tr>';
+    });
+    vrows+='<tr class="total"><td>Variable / student</td><td></td><td class="n" style="color:var(--variable)">'+rup1(variableINR)+'</td></tr>';
+    $('varTbl').innerHTML=vrows;
+    $('atN').textContent='at '+INR.format(Math.round(N))+' students';
+
+    // one-time onboarding batch (3 video + 7 audio + 11 image), stored over its 90d life + transcode
+    var onb$ = objCost(3,vOrig,vidLifeD)+objCost(3,vOpt,ret)
+             + objCost(7,aOrig,ret)+objCost(7,aOpt,ret)
+             + objCost(11,iOrig,ret)+objCost(11,iOpt,ret)
+             + 3*val('txVideo')+7*val('txAudio') + 0.0002;
+    $('onboardCost').textContent = rup1(onb$*fx);
+
+    // summaries in group headers
+    $('sumScale').textContent = INR.format(Math.round(N))+' · '+ (tpd)+'/day';
+    $('sumMedia').textContent = INR1.format(servedMB)+' MB served';
+    $('sumPipe').textContent = rup1(variableINR)+'/stu';
+    $('sumAws').textContent = '$'+INR.format(aws$);
+    $('sumSaas').textContent = '$'+INR.format(saas$);
+    $('sumEval').textContent = rup(evalINR)+'/mo';
+
+    drawChart(fixedINR, variableINR, evalINR, fee, N);
+  }
+
+  // ---- chart ----
+  function drawChart(fixedINR, variableINR, evalINR, fee, curN){
+    var cv=$('chart'), dpr=window.devicePixelRatio||1;
+    var cssW=cv.clientWidth||560, cssH=300;
+    cv.width=cssW*dpr; cv.height=cssH*dpr;
+    var ctx=cv.getContext('2d'); ctx.scale(dpr,dpr);
+    ctx.clearRect(0,0,cssW,cssH);
+    var css=getComputedStyle(document.documentElement);
+    var cVar=css.getPropertyValue('--variable').trim(), cEval=css.getPropertyValue('--eval').trim(),
+        cGrid=css.getPropertyValue('--border').trim(), cFaint=css.getPropertyValue('--faint').trim(),
+        cInk=css.getPropertyValue('--ink').trim(), cSurf=css.getPropertyValue('--surface').trim();
+
+    var padL=44,padR=14,padT=16,padB=30;
+    var W=cssW-padL-padR, H=cssH-padT-padB;
+    var Nmax=Math.max(2000, curN*1.4);
+    var yMax=Math.max(fee*1.15, (variableINR+fixedINR/Math.max(50,20))*0.6, evalINR+variableINR+fixedINR/50);
+    yMax=Math.min(yMax, fee*3); // cap so the interesting zone is visible
+    yMax=Math.max(yMax, fee*1.1);
+
+    function X(n){return padL + (n/Nmax)*W;}
+    function Y(v){return padT + H - Math.min(v,yMax)/yMax*H;}
+
+    // grid + y labels
+    ctx.font='10px '+css.getPropertyValue('--mono');
+    ctx.textBaseline='middle';
+    for(var i=0;i<=4;i++){
+      var yv=yMax*i/4, y=Y(yv);
+      ctx.strokeStyle=cGrid; ctx.lineWidth=1; ctx.beginPath();
+      ctx.moveTo(padL,y); ctx.lineTo(cssW-padR,y); ctx.stroke();
+      ctx.fillStyle=cFaint; ctx.textAlign='right';
+      ctx.fillText('₹'+INR.format(Math.round(yv)), padL-6, y);
+    }
+    // x labels
+    ctx.textAlign='center'; ctx.textBaseline='top';
+    [0,500,1000,1500,2000].forEach(function(n){ if(n<=Nmax){ ctx.fillStyle=cFaint; ctx.fillText(INR.format(n), X(n), padT+H+7);} });
+
+    // fee reference line
+    ctx.strokeStyle=cFaint; ctx.setLineDash([4,4]); ctx.lineWidth=1.2;
+    ctx.beginPath(); ctx.moveTo(padL,Y(fee)); ctx.lineTo(cssW-padR,Y(fee)); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle=cFaint; ctx.textAlign='left'; ctx.textBaseline='bottom';
+    ctx.fillText('₹'+INR.format(fee)+' fee', padL+4, Y(fee)-3);
+
+    function curve(fn,color,fill){
+      ctx.strokeStyle=color; ctx.lineWidth=2.2; ctx.beginPath();
+      var started=false;
+      for(var n=20;n<=Nmax;n+=Math.max(10,Nmax/280)){
+        var v=fn(n); var x=X(n),y=Y(v);
+        if(!started){ctx.moveTo(x,y);started=true;} else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    var techFn=function(n){return variableINR+fixedINR/n;};
+    var trueFn=function(n){return variableINR+fixedINR/n+evalINR;};
+    curve(trueFn,cEval);
+    curve(techFn,cVar);
+
+    // current-N marker
+    var xN=X(curN);
+    ctx.strokeStyle=cGrid; ctx.setLineDash([2,3]); ctx.lineWidth=1; ctx.beginPath();
+    ctx.moveTo(xN,padT); ctx.lineTo(xN,padT+H); ctx.stroke(); ctx.setLineDash([]);
+    function dot(v,color){var y=Y(v); ctx.fillStyle=cSurf; ctx.beginPath();ctx.arc(xN,y,4.5,0,7);ctx.fill();
+      ctx.strokeStyle=color;ctx.lineWidth=2.2;ctx.beginPath();ctx.arc(xN,y,4.5,0,7);ctx.stroke();}
+    dot(trueFn(curN),cEval); dot(techFn(curN),cVar);
+
+    $('chartNote').textContent='● at '+INR.format(Math.round(curN))+' students';
+  }
+
+  // ---- live labels for sliders ----
+  function syncLabels(){
+    $('vStudents').textContent=INR.format(val('students'));
+    $('vTasks').textContent=val('tasksPerDay');
+    $('vEval').textContent=rup(val('evalPerTask'));
+  }
+
+  els.forEach(function(id){
+    $(id).addEventListener('input',function(){syncLabels();compute();});
+  });
+  window.addEventListener('resize',compute);
+  syncLabels(); compute();
+})();
+</script>
