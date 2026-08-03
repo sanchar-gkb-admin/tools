@@ -1,0 +1,168 @@
+<title>Instant demo result — how, cheaply</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1626; --forest:#081325; --panel:#10223c; --panel2:#112644; --line:#1d3354; --line2:#264066;
+    --ink:#eaf1f9; --mut:#8ea3bd; --dim:#5e708a;
+    --accent:#f5821f; --accent2:#ff9b3d; --accentfg:#1a0e02; --accent-soft:#1d2f4d;
+    --leaf:#3f93e0; --wa:#25d366; --good:#4ade80; --gold:#ffb259;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:40px 20px 80px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(26px,5vw,40px);line-height:1.03;margin:.3em 0 .2em;font-weight:900;letter-spacing:-.02em;text-transform:uppercase}
+  .lede{font-size:16px;color:var(--mut);max-width:70ch}.lede b{color:var(--ink)}
+  h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:48px 0 14px;font-weight:800;border-top:1px solid var(--line);padding-top:15px}
+  code{font-family:var(--mono);font-size:.85em;background:#0b1526;border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--accent2)}
+
+  .tension{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
+  @media(max-width:640px){.tension{grid-template-columns:1fr}}
+  .tcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .tcard h3{margin:0 0 5px;font-size:15px}.tcard p{margin:0;font-size:13px;color:var(--mut)}
+  .tcard.want{border-left:3px solid var(--good)} .tcard.have{border-left:3px solid var(--accent)}
+  .vs{font-family:var(--mono);font-weight:800;color:var(--dim);text-align:center}
+  .callout{background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:15px 17px;font-size:14.5px;color:var(--accent2);margin-top:14px}.callout b{color:#fff}
+
+  /* the flow */
+  .flow{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:6px 2px 14px}
+  .node{flex:none;width:172px;background:var(--panel);border:1px solid var(--line2);border-radius:14px;padding:14px}
+  .node .ic{font-size:22px}.node .t{font-weight:800;font-size:13.5px;margin:6px 0 4px}
+  .node .d{font-size:11.5px;color:var(--mut)}
+  .node .cost{font-family:var(--mono);font-size:11px;margin-top:9px;padding:3px 8px;border-radius:20px;display:inline-block}
+  .cost.free{background:#0c2417;color:var(--good)} .cost.cheap{background:var(--accent-soft);color:var(--accent2)} .cost.wa{background:#0f2a1a;color:var(--wa)}
+  .arw{flex:none;width:30px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:20px}
+  .split{flex:none;width:190px;display:flex;flex-direction:column;gap:8px}
+  .split .node{width:100%}
+
+  .snap{max-width:280px;margin-top:10px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:16px;padding:16px}
+  .snap .k{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .snap h4{margin:4px 0 12px;font-size:17px;font-weight:800}
+  .abrow{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:12px}
+  .abrow .lab{width:78px;color:var(--mut)}
+  .abrow .bar{flex:1;height:7px;background:#0b1526;border-radius:4px;overflow:hidden}
+  .abrow .bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .abrow .v{font-family:var(--mono);font-weight:700;color:var(--ink);width:30px;text-align:right}
+  .snap .ins{font-size:11.5px;color:var(--leaf);border-top:1px dashed var(--line2);padding-top:10px;margin-top:6px}
+  .snap .mwa{background:var(--wa);color:#04210f;font-weight:800;text-align:center;padding:9px;border-radius:10px;font-size:12px;margin-top:11px}
+
+  .costtbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+  .costtbl td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--mut)}.costtbl td b{color:var(--ink)}
+  .costtbl td:last-child{text-align:right;font-family:var(--mono);color:var(--accent2)}
+  .costtbl tr.tot td{border-top:2px solid var(--line2);border-bottom:none;color:var(--ink);font-weight:800}.costtbl tr.tot td:last-child{color:var(--good)}
+
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.paths{grid-template-columns:1fr}}
+  .pcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .pcard.rec{border-color:var(--accent)}
+  .pcard .tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:20px;background:#0b1526;border:1px solid var(--line2);color:var(--mut)}
+  .pcard.rec .tag{background:var(--accent);color:var(--accentfg);border:none}
+  .pcard h3{margin:9px 0 4px;font-size:15.5px}
+  .pcard ul{margin:8px 0 0;padding-left:16px}.pcard li{font-size:12.5px;color:var(--mut);margin:5px 0}.pcard li b{color:var(--ink)}
+  .grd{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .g{font-size:12px;color:var(--mut);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 12px}.g b{color:var(--ink)}
+  .dec{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:13px 15px;margin:8px 0;font-size:13.5px;color:var(--mut)}.dec b{color:var(--ink)}
+  .foot{margin-top:46px;font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:15px}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">For KMM &amp; Sutirtha · the demo-task result · how we make it instant + cheap</div>
+  <h1>Instant demo result — without a Yashodarshi</h1>
+  <p class="lede">The demo task hooks a lead — but a lead wants a result <b>now</b>, and our real evaluation is a <b>human Yashodarshi</b> (up to 12h per task). Here's how we give an <b>honest instant result</b> for a paisa, keep the human eval as the paid product, and never put unpaid leads on our evaluators.</p>
+
+  <h2>The tension</h2>
+  <div class="tension">
+    <div class="tcard want"><h3>What a lead wants</h3><p>Instant gratification — a result the moment they finish, or they bounce.</p></div>
+    <div class="vs">vs</div>
+    <div class="tcard have"><h3>What real eval is</h3><p>A human Yashodarshi, up to <b>12h</b> per task. Our moat — but finite, and for <b>paying</b> students.</p></div>
+  </div>
+  <div class="callout">💡 <b>The unlock:</b> the demo result is <b>not</b> the product's evaluation — it's a <b>taste</b>. So we never route unpaid leads to Yashodarshis (won't scale to funnel volume, burns the moat). We give a narrow, honest, instant snapshot by machine — and the human closes on the call.</div>
+
+  <h2>Why "AI on media is expensive" is a myth here</h2>
+  <p class="lede" style="margin-bottom:14px">It's only expensive if you feed raw audio/video to a multimodal AI. Instead we <b>break the 60-sec clip into cheap parts</b> and reason over text + numbers:</p>
+  <div class="flow">
+    <div class="node"><div class="ic">🎙️</div><div class="t">60-sec audio</div><div class="d">recorded in-app (the recorder we just shipped)</div></div>
+    <div class="arw">→</div>
+    <div class="split">
+      <div class="node"><div class="t">Sound features</div><div class="d">pace · pauses · energy · fillers (ffmpeg — plain maths)</div><span class="cost free">₹0 · no AI</span></div>
+      <div class="node"><div class="t">Transcribe → read</div><div class="d">cheap speech-to-text, then a small AI scores 2–3 abilities + 1 insight</div><span class="cost cheap">≈ ₹0.03</span></div>
+    </div>
+    <div class="arw">→</div>
+    <div class="node"><div class="ic">⚡</div><div class="t">Instant snapshot</div><div class="d">shown on screen the moment they finish</div><span class="cost free">instant</span></div>
+    <div class="arw">→</div>
+    <div class="node"><div class="ic">📞</div><div class="t">Mentor calls</div><div class="d">Superfone, 2–5 min — the human close</div><span class="cost wa">the conversion</span></div>
+  </div>
+
+  <h2>What the lead sees — the snapshot</h2>
+  <div class="snap">
+    <div class="k">Your 60-second snapshot</div>
+    <h4>Communication</h4>
+    <div class="abrow"><span class="lab">Pace</span><span class="bar"><i style="width:82%"></i></span><span class="v">4.1</span></div>
+    <div class="abrow"><span class="lab">Clarity</span><span class="bar"><i style="width:74%"></i></span><span class="v">3.7</span></div>
+    <div class="abrow"><span class="lab">Confidence</span><span class="bar"><i style="width:88%"></i></span><span class="v">4.4</span></div>
+    <div class="ins">“Clear structure and a confident pace — your standout looks like Communication.”</div>
+    <div class="mwa">💬 A mentor will call you with the full picture</div>
+  </div>
+  <p class="lede" style="margin-top:12px;font-size:13.5px">Only 3 of 64 abilities — because a 60-sec clip honestly shows <b>Communication</b>, not aptitude or attitude. <b>The narrowness is the sell:</b> "this is 3 of your 64 — unlock the rest."</p>
+
+  <h2>The cost — per demo</h2>
+  <table class="costtbl">
+    <tr><td>Sound features (pace, energy, pauses)</td><td>₹0</td></tr>
+    <tr><td>Speech-to-text (self-hosted on our media Lambda)</td><td>≈ ₹0.05</td></tr>
+    <tr><td>Small AI: 2–3 ability scores + 1 insight line</td><td>≈ ₹0.03</td></tr>
+    <tr class="tot"><td>Per demo</td><td>&lt; ₹0.10</td></tr>
+  </table>
+  <div class="callout" style="margin-top:14px">📈 Even at <b>5,000 demos/month</b> that's <b>~₹3–5k/month</b> — less than the margin on a single extra enrolment. A trivial cost for a top-of-funnel lead machine.</div>
+
+  <h2>The two paths — and why we do both</h2>
+  <div class="paths">
+    <div class="pcard"><span class="tag">Path A</span><h3>Human Yashodarshi, 72h SLA</h3><ul><li>Real, deep — but <b>no instant result</b> (72h wait).</li><li><b>Doesn't scale:</b> every lead = a YD task; evaluators are for paying students.</li><li>Fine for a trickle, collapses on funnel volume.</li></ul></div>
+    <div class="pcard rec"><span class="tag">Path B — recommended</span><h3>Instant machine snapshot + human call</h3><ul><li>Machine gives the <b>instant taste</b> (a paisa, no wait).</li><li>The <b>mentor call</b> (2–5 min) is the real close.</li><li>Scales infinitely · YDs untouched · moat intact.</li></ul></div>
+  </div>
+
+  <h2>How we keep it honest (and protect the moat)</h2>
+  <div class="grd">
+    <div class="g"><b>Narrow:</b> Communication only — what a clip can truly show.</div>
+    <div class="g"><b>Framed a "snapshot,"</b> never a final score — so the deep human eval differing is expected.</div>
+    <div class="g"><b>Objective where possible:</b> pace/energy are measured, not guessed — can't be wrong.</div>
+    <div class="g"><b>Human eval stays the product</b> — the demo is a taste, not a second scoring engine.</div>
+  </div>
+
+  <h2>The bigger prize — can AI match a human evaluator?</h2>
+  <div class="callout">🎯 <b>This demo is R&amp;D disguised as marketing.</b> Evaluator labour is our single biggest cost. Every free demo quietly tests "can AI score like a Yashodarshi?" on the easiest pillar — funding itself with leads while building the proof. If it matches, it's the biggest margin lever we have.</div>
+
+  <div class="paths" style="margin-top:16px">
+    <div class="pcard rec"><span class="tag">AI already wins</span><h3>Where AI matches or beats a human</h3><ul>
+      <li><b>Consistency</b> — two humans (or the same human, tired) score differently; AI never drifts.</li>
+      <li><b>Micro-measurement</b> — it measures pace, pauses, vocabulary, structure a human only intuits.</li>
+      <li><b>Evidence</b> — cites the exact quote/moment behind every score. Auditable.</li>
+      <li><b>Scale + cost</b> — instant, a paisa, infinite.</li>
+    </ul></div>
+    <div class="pcard"><span class="tag">Human still wins</span><h3>Where the human still leads</h3><ul>
+      <li><b>Holistic judgment</b> — sincerity, the spark, a creative answer off the rubric.</li>
+      <li><b>Catching gaming</b> — a coached or memorised submission.</li>
+      <li><b>Trust</b> — "a real coach assessed my child" &gt; "an AI scored it." A perception moat.</li>
+    </ul></div>
+  </div>
+
+  <h2>How we make AI match — the method (not "trust the AI")</h2>
+  <div class="grd">
+    <div class="g"><b>1 · Calibrate against our own data.</b> We already have thousands of Yashodarshi-scored tasks. Run AI on the same, measure agreement per ability — a real number, not a hope.</div>
+    <div class="g"><b>2 · The rubric is the bridge.</b> AI eval fails on vague rubrics; ours is precise (0–5 bands, descriptors, benchmarks). The same thing that keeps YDs consistent makes AI trainable — our unfair advantage.</div>
+    <div class="g"><b>3 · Split the 64 by measurability.</b> Objective (pace, grammar, vocabulary) → AI matches/beats. Inference (confidence, empathy) → AI approaches. Deeply contextual → keep the human.</div>
+    <div class="g"><b>4 · Confidence + human spot-check.</b> AI scores + a confidence. High → automatic. Low/borderline → a YD reviews. Matches human reliability, and cuts YD time 5–10× (they check the hard 15%, not all 100%).</div>
+    <div class="g"><b>5 · The demo proves it safely.</b> Low-stakes (unpaid lead), Communication-only (most measurable) — validate "does AI match the human?" before it ever touches a paying student's score.</div>
+  </div>
+  <div class="callout" style="margin-top:14px">🛡️ <b>Augment, don't replace.</b> AI does the first pass; the human stays on the hard cases and the trust. We only expand AI's autonomy ability-by-ability as the numbers earn it — protecting the moat while transforming the cost.</div>
+
+  <h2>Decisions we'd like your call on</h2>
+  <div class="dec"><b>KMM:</b> OK with a machine-generated instant snapshot for the free demo (framed as a taste), with the human mentor as the real evaluation + close?</div>
+  <div class="dec"><b>Sutirtha:</b> comfortable that a 60-sec clip → a Communication-only snapshot is honest? And the demo-task prompt.</div>
+  <div class="dec"><b>Depth of the instant screen:</b> objective-only (pace/energy bars, ₹0, safest) or + the one AI insight line (≈₹0.03, a touch richer). We lean: start objective-only, add the AI line once we've seen it read well.</div>
+
+  <div class="foot">A design proposal for review — nothing built. Reuses the in-app recorder + our existing media Lambda + the scoring rubric. The full 64-ability evaluation remains human, deterministic, and the paid product.</div>
+</div>
