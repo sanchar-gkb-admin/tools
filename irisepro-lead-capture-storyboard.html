@@ -1,289 +1,239 @@
-<title>Lead Capture — the missing pieces (for review)</title>
+<title>Lead Capture — visual storyboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   /* Storefront theme — irisepro.in (navy #0a1626 · brand orange #f5821f · brand blue #3f93e0 · Montserrat). */
   :root{
-    --bg:#0a1626; --bg2:#0e1b30; --panel:#10223c; --panel2:#112644; --line:#1d3354;
+    --bg:#0a1626; --forest:#081325; --panel:#10223c; --panel2:#112644; --line:#1d3354; --line2:#264066;
     --ink:#eaf1f9; --mut:#8ea3bd; --dim:#5e708a;
-    --accent:#f5821f; --accent2:#ff9b3d; --accent-soft:#1d2f4d;
-    --wa:#25d366; --wa-soft:#0f2a1a; --good:#4ade80; --info:#3f93e0;
+    --accent:#f5821f; --accent2:#ff9b3d; --accent3:#ffb259; --accentfg:#1a0e02; --accent-soft:#1d2f4d;
+    --leaf:#3f93e0; --wa:#25d366; --good:#4ade80;
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    --sans:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --sans:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1a1206 0%,transparent 55%),var(--bg);
-    color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:44px 22px 80px}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-  h1{font-size:clamp(28px,5vw,44px);line-height:1.03;margin:.3em 0 .25em;letter-spacing:-.02em;text-wrap:balance;font-weight:800}
-  .lede{font-size:17px;color:var(--mut);max-width:70ch}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:40px 20px 80px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(26px,5vw,42px);line-height:1.02;margin:.3em 0 .2em;font-weight:900;letter-spacing:-.02em;text-transform:uppercase}
+  .lede{font-size:16px;color:var(--mut);max-width:66ch}
   .lede b{color:var(--ink)}
-  h2{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:52px 0 16px;font-weight:700;
-    border-top:1px solid var(--line);padding-top:16px}
-  code,.k{font-family:var(--mono);font-size:.86em;background:#0b0e13;border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--accent2)}
+  h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:50px 0 6px;font-weight:800;border-top:1px solid var(--line);padding-top:16px}
+  .cap{font-size:13.5px;color:var(--mut);margin:0 0 18px;max-width:70ch}
+  .cap b{color:var(--ink)}
+  code{font-family:var(--mono);font-size:.85em;background:#0b1526;border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--accent2)}
 
-  /* status ledger */
-  .ledger{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:22px}
-  @media(max-width:640px){.ledger{grid-template-columns:1fr}}
-  .lc{display:flex;align-items:center;gap:11px;font-size:13px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 13px;color:var(--mut)}
-  .lc i{color:var(--dim);font-style:normal;font-size:11.5px}
-  .lc span{font-family:var(--mono);font-size:11px;font-weight:700;width:26px;height:22px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:6px}
-  .lc.miss{border-color:#3a2016}.lc.miss span{background:#2a1410;color:#ff8a5c}
-  .lc.part span{background:#2a2410;color:#e5c14e}
-  .lc.done span{background:#12241a;color:var(--good)}
-  .lc.miss::after{content:"missing";margin-left:auto;font-family:var(--mono);font-size:10px;color:#ff8a5c}
-  .lc.part::after{content:"partial";margin-left:auto;font-family:var(--mono);font-size:10px;color:#e5c14e}
-  .lc.done::after{content:"done";margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--good)}
+  /* ── generic UI atoms (reused in every mock) ── */
+  .field{background:#0b1526;border:1px solid var(--line2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--mut);display:flex;align-items:center;justify-content:space-between}
+  .field .ph{color:var(--dim)} .field .req{color:var(--accent);font-size:16px;line-height:0}
+  .seg{display:flex;gap:8px}
+  .seg div{flex:1;text-align:center;font-size:12.5px;font-weight:600;padding:10px;border-radius:11px;border:1px solid var(--line2);color:var(--mut)}
+  .seg div.on{background:var(--accent);border-color:var(--accent);color:var(--accentfg)}
+  .chk{display:flex;gap:9px;align-items:flex-start;font-size:11.5px;color:var(--mut)}
+  .chk .b{width:16px;height:16px;border-radius:5px;background:var(--accent);flex:none;display:flex;align-items:center;justify-content:center;color:var(--accentfg);font-size:11px;font-weight:900}
+  .chk .b.o{background:transparent;border:1.5px solid var(--line2)}
+  .btn{background:linear-gradient(100deg,var(--accent),var(--accent3));color:var(--accentfg);font-weight:800;text-align:center;padding:13px;border-radius:12px;font-size:14px;letter-spacing:.01em}
+  .wbtn{background:var(--wa);color:#04210f;font-weight:800;text-align:center;padding:12px;border-radius:12px;font-size:13.5px;display:flex;align-items:center;justify-content:center;gap:7px}
+  .brand{font-weight:900;letter-spacing:-.01em}.brand b{color:var(--accent)}
 
-  /* mobile vs desktop */
-  .md{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media(max-width:680px){.md{grid-template-columns:1fr}}
-  .md .col{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
-  .md .col h3{margin:0 0 3px;font-size:15px;display:flex;align-items:center;gap:8px}
-  .md .col .plat{font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
-  .md ul{margin:12px 0 0;padding-left:16px}
-  .md ul li{font-size:13px;color:var(--mut);margin:7px 0}
-  .md ul li b{color:var(--ink)}
-  .frame{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#0b0e13;padding:10px;display:flex;gap:8px;align-items:flex-end;justify-content:center;min-height:96px}
-  .ph{border:1px solid var(--accent);border-radius:10px;background:var(--accent-soft)}
-  .ph.mob{width:64px;height:78px;position:relative}
-  .ph.mob::after{content:"sheet ↑";position:absolute;bottom:0;left:0;right:0;font-size:8px;text-align:center;color:var(--accent2);padding:2px}
-  .ph.desk{width:110px;height:66px;position:relative}
-  .ph.desk::after{content:"centered modal";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--accent2)}
+  /* ── device frames ── */
+  .stage{display:grid;grid-template-columns:1fr 300px;gap:26px;align-items:center}
+  @media(max-width:820px){.stage{grid-template-columns:1fr}}
+  .browser{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--forest);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .bchrome{background:#0c1a30;border-bottom:1px solid var(--line);padding:9px 12px;display:flex;align-items:center;gap:7px}
+  .bchrome i{width:10px;height:10px;border-radius:50%;background:#26384f;display:inline-block}
+  .bchrome .url{margin-left:10px;font-family:var(--mono);font-size:11px;color:var(--dim);background:#0a1424;border:1px solid var(--line);border-radius:20px;padding:3px 12px;flex:1;max-width:280px}
+  .viewport{position:relative;min-height:300px;padding:22px 24px}
+  /* dimmed storefront behind a modal */
+  .sf-bg{filter:blur(1px);opacity:.4}
+  .sf-hero h3{font-size:26px;font-weight:900;text-transform:uppercase;line-height:1.05;margin:0 0 8px;letter-spacing:-.01em}
+  .sf-hero h3 span{color:var(--accent)}
+  .sf-hero p{color:var(--mut);font-size:13px;margin:0 0 14px;max-width:44ch}
+  .sf-cards{display:flex;gap:10px;margin-top:8px}
+  .sf-card{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .sf-card .t{font-size:11px;color:var(--mut)}.sf-card .p{font-size:20px;font-weight:900;color:var(--accent)}
+  .overlay{position:absolute;inset:0;background:rgba(4,10,20,.72);display:flex;align-items:center;justify-content:center;padding:18px}
+  .modal{width:100%;max-width:340px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:18px;padding:20px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+  .modal .x{float:right;color:var(--dim);font-size:20px;line-height:0;margin-top:4px}
+  .modal .kick{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .modal h4{font-size:19px;font-weight:800;margin:6px 0 3px;line-height:1.1}
+  .modal .s{font-size:12.5px;color:var(--mut);margin:0 0 15px}
+  .stack{display:flex;flex-direction:column;gap:10px}
+  .fine{font-size:10px;color:var(--dim);text-align:center;margin-top:9px}
 
-  /* approval */
-  .appr{background:var(--panel);border:1px solid var(--accent);border-radius:16px;padding:18px}
-  .appr h3{margin:0 0 12px;font-size:15px;color:var(--accent2)}
-  .appr .item{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--mut);margin:10px 0}
-  .appr .item .b{width:16px;height:16px;border:1.5px solid var(--accent);border-radius:4px;flex:none;margin-top:2px}
-  .appr .item b{color:var(--ink)}
+  /* phone */
+  .phone{width:270px;margin:0 auto;background:#05101f;border:9px solid #0c1a2e;border-radius:34px;padding:0;box-shadow:0 24px 60px rgba(0,0,0,.55);position:relative;overflow:hidden}
+  .phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:20px;background:#0c1a2e;border-radius:0 0 14px 14px;z-index:5}
+  .pv{height:520px;position:relative;background:var(--bg);overflow:hidden}
+  .pv .top{padding:26px 16px 10px;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+  .pv .body{padding:0 16px}
+  .sheet{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,var(--panel2),var(--panel));border-top:1px solid var(--line2);border-radius:22px 22px 0 0;padding:18px 16px 20px;box-shadow:0 -20px 50px rgba(0,0,0,.5)}
+  .sheet .grip{width:38px;height:4px;border-radius:3px;background:var(--line2);margin:0 auto 14px}
+  .dim-behind{position:absolute;inset:0;background:rgba(4,10,20,.55)}
 
-  /* the ONE component band */
-  .core{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
-  @media(max-width:760px){.core{grid-template-columns:1fr}}
-  .device{background:linear-gradient(180deg,#1b212c,#12161e);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-  .device .brand{font-weight:800;font-size:13px;letter-spacing:.02em;margin-bottom:2px}
-  .device .brand span{color:var(--accent)}
-  .device .sub{font-size:11.5px;color:var(--mut);margin-bottom:14px}
-  .fld{background:#0c0f14;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12.5px;color:var(--mut);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
-  .fld .req{color:var(--accent);font-size:10px}
-  .seg{display:flex;gap:6px;margin-bottom:8px}
-  .seg div{flex:1;text-align:center;font-size:11.5px;padding:7px;border-radius:8px;border:1px solid var(--line);color:var(--mut)}
-  .seg div.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
-  .chk{display:flex;gap:8px;align-items:flex-start;font-size:11px;color:var(--mut);margin:8px 0}
-  .chk .box{width:15px;height:15px;border-radius:4px;background:var(--accent);flex:none;display:flex;align-items:center;justify-content:center;color:#0d0f13;font-size:10px;font-weight:900}
-  .cta{margin-top:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#151109;font-weight:800;text-align:center;padding:11px;border-radius:11px;font-size:13px}
-  .note{font-size:10.5px;color:var(--dim);text-align:center;margin-top:8px}
+  /* recorder screen */
+  .rec-task{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:16px}
+  .rec-task .lab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .rec-task .q{font-size:15px;font-weight:700;margin-top:5px;line-height:1.25}
+  .rec-stage{background:#04101f;border:1px solid var(--line);border-radius:16px;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative}
+  .rec-timer{font-family:var(--mono);font-size:28px;font-weight:800;color:var(--ink)}
+  .rec-timer small{color:var(--dim);font-size:14px}
+  .rec-btn{width:60px;height:60px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(245,130,31,.18)}
+  .rec-btn .dot{width:22px;height:22px;border-radius:6px;background:#fff}
+  .wave{display:flex;gap:3px;align-items:flex-end;height:26px}
+  .wave i{width:3px;background:var(--accent);border-radius:2px;display:inline-block}
 
-  .facts .f{border-left:2px solid var(--accent);padding:2px 0 2px 14px;margin-bottom:16px}
-  .facts .f h4{margin:0 0 3px;font-size:14px}
-  .facts .f p{margin:0;font-size:13.5px;color:var(--mut)}
-  .facts .f p b{color:var(--ink)}
+  /* success */
+  .succ{text-align:center;padding:6px 4px}
+  .succ .tick{width:56px;height:56px;border-radius:50%;background:var(--good);color:#04210f;font-size:30px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:6px auto 12px}
+  .succ h4{font-size:19px;font-weight:800;margin:0 0 5px}
+  .succ p{font-size:12.5px;color:var(--mut);margin:0 0 15px}
+  .teaser{background:#0b1526;border:1px dashed var(--line2);border-radius:12px;padding:11px;margin-top:12px;font-size:11px;color:var(--mut);text-align:left;display:flex;gap:10px;align-items:center}
+  .teaser .mini{width:42px;height:52px;border-radius:6px;background:linear-gradient(160deg,var(--accent-soft),var(--panel));border:1px solid var(--line2);flex:none;position:relative}
+  .teaser .mini::after{content:"";position:absolute;left:6px;right:6px;top:8px;height:3px;border-radius:2px;background:var(--accent);box-shadow:0 8px 0 var(--leaf),0 16px 0 var(--line2)}
 
-  /* surfaces */
-  .surf{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  @media(max-width:760px){.surf{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;overflow:hidden}
-  .card .tag{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:20px;background:#0b0e13;border:1px solid var(--line);color:var(--mut)}
-  .card h3{margin:0 0 4px;font-size:15px}
-  .card .how{font-size:12px;color:var(--dim);font-family:var(--mono);margin-bottom:10px}
-  .card p{margin:0;font-size:13px;color:var(--mut)}
-  .mini{margin:12px 0 4px;border:1px dashed var(--line);border-radius:10px;padding:10px;background:#0c0f14}
-  .mini .bar{height:6px;border-radius:3px;background:#222a36;margin:5px 0}
-  .mini .bar.a{width:70%} .mini .bar.b{width:45%}
-  .mini .pop{border:1px solid var(--accent);border-radius:8px;padding:7px;font-size:10.5px;color:var(--accent2);text-align:center;background:var(--accent-soft)}
-  .mini.beacon{display:flex;align-items:center;justify-content:center;color:var(--info);font-size:11px;font-family:var(--mono)}
-
-  /* placement map */
-  .map{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
-  @media(max-width:820px){.map{grid-template-columns:1fr}}
-  .page{background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-  .row{padding:16px 18px;border-bottom:1px solid var(--line);position:relative}
-  .row:last-child{border-bottom:none}
-  .row .lab{font-size:9.5px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
-  .row .title{font-size:15px;font-weight:700;margin-top:3px}
-  .row .desc{font-size:12px;color:var(--mut);margin-top:2px}
-  .pin{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 9px;border-radius:20px;white-space:nowrap}
-  .pin.form{background:var(--accent-soft);color:var(--accent2);border:1px solid var(--accent)}
-  .pin.wa{background:var(--wa-soft);color:var(--wa);border:1px solid var(--wa)}
-  .pin.beacon{background:#0c1830;color:var(--info);border:1px solid var(--info)}
-  .row.hero{background:linear-gradient(120deg,#1c130a,#141821)}
-  .legend{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
-  .legend h4{margin:0 0 12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-  .lg{display:flex;gap:10px;align-items:flex-start;margin-bottom:13px;font-size:12.5px;color:var(--mut)}
-  .lg .dot{width:12px;height:12px;border-radius:4px;flex:none;margin-top:3px}
-  .lg b{color:var(--ink)}
-
-  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
-  .flow .n{background:#0c0f14;border:1px solid var(--line);border-radius:8px;padding:7px 11px;white-space:nowrap}
-  .flow .n.acc{border-color:var(--accent);color:var(--accent2)}
-  .flow .n.wa{border-color:var(--wa);color:var(--wa)}
-  .flow .ar{color:var(--dim)}
-  ul.pages{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
-  ul.pages li{font-family:var(--mono);font-size:12px;background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:6px 12px;color:var(--mut)}
-  .foot{margin-top:44px;font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:16px}
-  .flag{background:var(--accent-soft);border:1px solid var(--accent);border-radius:12px;padding:13px 15px;font-size:13.5px;color:var(--accent2);margin-top:10px}
-  .flag b{color:#fff}
+  .note{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:14px}
+  .note b{color:var(--accent2)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  @media(max-width:820px){.row2{grid-template-columns:1fr}}
+  .foot{margin-top:48px;font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:15px}
+  .pillbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .pl{font-family:var(--mono);font-size:11px;padding:5px 11px;border-radius:20px;border:1px solid var(--line2);color:var(--mut)}
+  .pl.a{color:var(--accent2);border-color:var(--accent)} .pl.w{color:var(--wa);border-color:var(--wa)} .pl.l{color:var(--leaf);border-color:var(--leaf)}
 </style>
 
 <div class="wrap">
-  <div class="eyebrow">Storyboard for review · lead capture — the missing pieces · storefront LIVE 1 week → leaks active now</div>
-  <h1>Lead capture — the missing pieces</h1>
-  <p class="lede">The storefront is <b>already live</b>, so the leaks are <b>active</b>: every dismissed checkout and browse-and-bounce is captured <b>nowhere</b> server-side. This storyboard is the design to close that — <b>one reusable capture component</b>, the <b>delivery pipeline</b> that hands a hot lead to Superfone in minutes, and the <b>attribution</b> that ties it to revenue. <b>Mobile-first and desktop</b> throughout. Nothing here is built yet — review &amp; approve, then we build.</p>
+  <div class="eyebrow">Visual storyboard · storefront lead capture · live now, leaking now</div>
+  <h1>What the visitor actually sees</h1>
+  <p class="lede">One reusable <b>capture form</b>, surfaced as they're about to leave, then a <b>demo task → success → the call</b>. Same component everywhere; below is every screen, rendered. <b>Mobile-first and desktop.</b></p>
+  <div class="pillbar"><span class="pl a">■ capture form</span><span class="pl w">■ WhatsApp CTA</span><span class="pl l">■ demo task</span><span class="pl">■ anonymous beacon</span></div>
 
-  <div class="ledger">
-    <div class="lc miss"><span>1b</span> Storefront capture widgets — form, modal, beacon</div>
-    <div class="lc miss"><span>2</span> Syndication (SyndicateLead + LeadSink) + SLA watchdog</div>
-    <div class="lc part"><span>1a</span> Backend Lead spine (Enquiry/CheckoutAttempt) — <i>WIP, reconciled</i></div>
-    <div class="lc part"><span>3</span> Attribution persistence (first/last-touch)</div>
-    <div class="lc done"><span>4</span> Campaign link builder + /go — <i>committed</i></div>
-    <div class="lc done"><span>—</span> Failed-payment recovery — <i>live</i></div>
-  </div>
-
-  <h2>1 · The one component — <code>&lt;LeadCaptureForm/&gt;</code></h2>
-  <div class="core">
-    <div class="device">
-      <div class="brand">iRise<span>Pro</span></div>
-      <div class="sub">Talk to us — we'll call you back in minutes.</div>
-      <div class="fld">Mobile number <span class="req">● required</span></div>
-      <div class="seg"><div class="on">I'm the aspirant</div><div>I'm a parent</div></div>
-      <div class="chk"><span class="box">✓</span><span>I agree to be contacted about iRisePro <b style="color:var(--accent)">(required)</b></span></div>
-      <div class="chk"><span class="box">✓</span><span>WhatsApp me updates on this number</span></div>
-      <div class="cta">Get a callback →</div>
-      <div class="note">consent ✓ = a lawful, callable lead · fires the moment they submit</div>
-    </div>
-    <div class="facts">
-      <div class="f"><h4>Phone is king</h4><p>Superfone <b>calls</b> it — Indian mobile, normalised to canonical E.164 (<code>PhoneNumber::e164</code>) so a lead here dedups with the same person on any other page. Email is secondary/optional.</p></div>
-      <div class="f"><h4>Role selector = the DPDPA gate</h4><p><b>aspirant / parent</b> — school streams are framed "a parent's number." Consent + role decide who Superfone lawfully calls. No role, no consent → not a callable lead.</p></div>
-      <div class="f"><h4>Required consent checkbox</h4><p>A lead only <i>exists</i> once consent is ticked — the lawful basis to call. A pre-consent keystroke is at most an anonymous PostHog event, never a lead.</p></div>
-      <div class="f"><h4>WhatsApp opt-in, logged like consent</h4><p>Stored with timestamp + source; gates any WhatsApp send. Defaults to the same number.</p></div>
-    </div>
-  </div>
-
-  <h2>2 · How the same component surfaces (the triggers)</h2>
-  <div class="surf">
-    <div class="card">
-      <span class="tag">inline</span>
-      <h3>Inline embed</h3>
-      <div class="how">always visible in-page</div>
-      <div class="mini"><div class="bar a"></div><div class="bar b"></div><div style="margin-top:8px"><div class="pop">▸ LeadCaptureForm</div></div></div>
-      <p>Dropped straight into a section (after pricing, in the hero). No trigger — it's just there.</p>
-    </div>
-    <div class="card">
-      <span class="tag">modal</span>
-      <h3>Engagement modal</h3>
-      <div class="how">exit-intent · scroll ≥50% · dwell ≥35s · pricing-viewed</div>
-      <div class="mini"><div class="bar a"></div><div class="pop" style="margin-top:6px">⤴ same form, in an overlay</div><div class="bar b" style="margin-top:6px"></div></div>
-      <p>Surfaces the <i>same</i> form to an engaged visitor who hasn't filled it. Once/session, respects dismissal, thresholds A/B-tested in PostHog.</p>
-    </div>
-    <div class="card">
-      <span class="tag">beacon · no form</span>
-      <h3>Pagehide beacon</h3>
-      <div class="how">visibilitychange / pagehide → sendBeacon</div>
-      <div class="mini beacon">📡 anonymous snapshot → PostHog</div>
-      <p><b>Not a lead</b> (no consent) — an anonymous "which sections they saw" ping on leave. Last-ditch measurement, feeds the modal thresholds.</p>
+  <h2>01 · Desktop — exit-intent modal over the storefront</h2>
+  <p class="cap">Cursor heads for the tab bar → the <b>same capture form</b> surfaces as a centered modal over the (dimmed) page. Phone + role + consent. Submit = a callable lead.</p>
+  <div class="browser">
+    <div class="bchrome"><i></i><i></i><i></i><span class="url">irisepro.in/?utm_campaign=neet-reel</span></div>
+    <div class="viewport">
+      <div class="sf-bg sf-hero">
+        <h3>Find your <span>hidden strengths</span>.<br>Rank higher.</h3>
+        <p>The 64 abilities top rankers share — measured, scored, and coached. Not another mock test.</p>
+        <div class="sf-cards"><div class="sf-card"><div class="t">Foundation</div><div class="p">₹999</div></div><div class="sf-card"><div class="t">Booster</div><div class="p">₹1999</div></div><div class="sf-card"><div class="t">Ultimate 64</div><div class="p">₹4999</div></div></div>
+      </div>
+      <div class="overlay">
+        <div class="modal">
+          <span class="x">✕</span>
+          <div class="kick">Before you go —</div>
+          <h4>See your standout ability, free.</h4>
+          <p class="s">Try a 60-second demo. We'll call you with your result.</p>
+          <div class="stack">
+            <div class="field"><span class="ph">📱 Your mobile number</span><span class="req">●</span></div>
+            <div class="seg"><div class="on">I'm the aspirant</div><div>I'm a parent</div></div>
+            <div class="chk"><span class="b">✓</span><span>I agree to be contacted about iRisePro <b style="color:var(--accent)">(required)</b></span></div>
+            <div class="chk"><span class="b">✓</span><span>WhatsApp me updates on this number</span></div>
+            <div class="btn">Start my free demo →</div>
+          </div>
+          <div class="fine">Takes 60 seconds · a mentor calls you back in minutes</div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="note">Trigger (desktop): <b>exit-intent</b> · scroll ≥50% · dwell ≥35s · pricing-viewed. Once/session, respects dismissal.</div>
 
-  <h2>3 · Where we insert them — one page, mapped</h2>
-  <div class="map">
-    <div class="page">
-      <div class="row hero"><div class="lab">Hero</div><div class="title">Primary CTA → form</div><div class="desc">"Get a callback" opens <code>&lt;LeadCaptureForm/&gt;</code> (inline on mobile, sheet on desktop)</div><span class="pin form">FORM</span></div>
-      <div class="row"><div class="lab">Mid-content</div><div class="title">Outcomes / how-it-works</div><div class="desc">no widget — but scroll-depth + <code>pricing_viewed</code> feed the modal trigger</div><span class="pin beacon">signals</span></div>
-      <div class="row"><div class="lab">After pricing</div><div class="title">Inline embed</div><div class="desc">the form sits right under the plan cards — peak intent, no trigger needed</div><span class="pin form">FORM</span></div>
-      <div class="row"><div class="lab">On engagement</div><div class="title">Exit-intent / dwell modal</div><div class="desc">overlay surfaces the same form to an engaged non-filler (once/session)</div><span class="pin form">FORM</span></div>
-      <div class="row"><div class="lab">Global · floating</div><div class="title">WhatsApp button → <code>/go/wa</code></div><div class="desc">always-available, for the minority who refuse a form (number-deferred)</div><span class="pin wa">WA CTA</span></div>
-      <div class="row"><div class="lab">On leave</div><div class="title">Pagehide beacon</div><div class="desc"><code>sendBeacon</code> anonymous snapshot → PostHog</div><span class="pin beacon">beacon</span></div>
-      <div class="row"><div class="lab">Post-capture / payment-success</div><div class="title">Success-state WhatsApp CTA</div><div class="desc">"You're in! Prefer to talk now? → Chat on WhatsApp" — enrichment, we already hold the number + consent (the strongest WA moment)</div><span class="pin wa">WA CTA</span></div>
+  <h2>02 · Mobile — the capture form as a bottom sheet</h2>
+  <p class="cap">No cursor on touch, so the trigger is <b>back-button / fast scroll-up / tab-switch</b>. The form slides up as a thumb-reachable sheet — one field at a glance, sticky CTA.</p>
+  <div class="row2">
+    <div class="phone"><div class="notch"></div><div class="pv">
+      <div class="top"><span class="brand">iRise<b>Pro</b></span><span style="color:var(--mut)">☰</span></div>
+      <div class="body sf-bg"><div class="sf-hero"><h3 style="font-size:20px">Find your <span>hidden strengths</span>.</h3><p style="font-size:11px">64 abilities, measured + coached.</p></div></div>
+      <div class="dim-behind"></div>
+      <div class="sheet">
+        <div class="grip"></div>
+        <div class="kick" style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Before you go —</div>
+        <h4 style="font-size:17px;font-weight:800;margin:5px 0 12px">Your standout ability, free.</h4>
+        <div class="stack">
+          <div class="field"><span class="ph">📱 Mobile number</span><span class="req">●</span></div>
+          <div class="seg"><div class="on">Aspirant</div><div>Parent</div></div>
+          <div class="chk"><span class="b">✓</span><span>I agree to be contacted <b style="color:var(--accent)">(required)</b></span></div>
+          <div class="btn">Start free demo →</div>
+        </div>
+      </div>
+    </div></div>
+    <div>
+      <p class="cap" style="margin-top:6px"><b>Why bottom-sheet:</b> it lands in the thumb zone, doesn't cover the whole screen, and the numeric keypad opens straight onto the phone field. WhatsApp opt-in appears on the success step to keep this first step to one decision.</p>
+      <div class="note"><b>Same</b> <code>&lt;LeadCaptureForm/&gt;</code> component as desktop — only the container (sheet vs centered modal) and trigger differ.</div>
     </div>
-    <div class="legend">
-      <h4>Legend</h4>
-      <div class="lg"><span class="dot" style="background:var(--accent)"></span><span><b>FORM</b> — the one reusable <code>LeadCaptureForm</code>. Same component every time.</span></div>
-      <div class="lg"><span class="dot" style="background:var(--wa)"></span><span><b>WA CTA</b> — WhatsApp, via <code>/go/wa</code> interstitial. Never inside the form (it cannibalises structured capture).</span></div>
-      <div class="lg"><span class="dot" style="background:var(--info)"></span><span><b>beacon / signals</b> — anonymous PostHog events. Measurement + modal-trigger inputs, not leads.</span></div>
-      <div style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px;font-size:12px;color:var(--mut)">
-        <b style="color:var(--ink)">3 form insertions</b> (hero, post-pricing, modal) all render the <i>same</i> component. Build once, place thrice.
+  </div>
+
+  <h2>03 · The magnet — a 60-second demo task</h2>
+  <p class="cap">The gate paid, they land in a one-task <code>lead_magnet_demo</code> challenge. A <b>real</b> iRisePro task — but 60 seconds, using the in-app recorder we just shipped (auto-stops, works on any phone).</p>
+  <div class="row2">
+    <div class="phone"><div class="notch"></div><div class="pv" style="background:var(--bg)">
+      <div class="top"><span style="color:var(--mut);font-size:12px">← Demo</span><span class="brand" style="font-size:13px">iRise<b>Pro</b></span></div>
+      <div class="body" style="padding-top:8px">
+        <div class="rec-task"><div class="lab">Your demo task · 1 of 1</div><div class="q">In 60 seconds — tell us why you want to succeed.</div></div>
+        <div class="rec-stage">
+          <div class="wave"><i style="height:8px"></i><i style="height:18px"></i><i style="height:12px"></i><i style="height:24px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:10px"></i><i style="height:20px"></i><i style="height:14px"></i></div>
+          <div class="rec-timer">0:42 <small>/ 1:00</small></div>
+          <div class="rec-btn"><span class="dot"></span></div>
+        </div>
+        <div class="note" style="text-align:center;margin-top:14px">Recording stops automatically at the limit.</div>
+      </div>
+    </div></div>
+    <div>
+      <p class="cap" style="margin-top:6px">This is the whole reason the demo beats a gimmick quiz: they've <b>done a real task</b>. The lead is self-qualified and warm. <b>Open decision for Sutirtha:</b> the prompt, and whether a Yashodarshi scores it or the mentor just follows up.</p>
+      <div class="pillbar"><span class="pl l">reuses: in-app recorder</span><span class="pl">reuses: is_demo challenge</span></div>
+    </div>
+  </div>
+
+  <h2>04 · Success — the payoff + the hand-off</h2>
+  <p class="cap">On submit: instant reassurance, a <b>sample of the full report</b> (we already have it), and the WhatsApp option — because the <b>call</b> is the real close.</p>
+  <div class="row2">
+    <div class="phone"><div class="notch"></div><div class="pv" style="background:var(--bg)">
+      <div class="top"><span></span><span class="brand" style="font-size:13px">iRise<b>Pro</b></span></div>
+      <div class="body" style="padding-top:26px">
+        <div class="succ">
+          <div class="tick">✓</div>
+          <h4>You're in! 🎉</h4>
+          <p>A mentor will call you in the next few minutes with your result.</p>
+          <div class="wbtn">💬 Prefer to talk now? Chat on WhatsApp</div>
+          <div class="teaser"><div class="mini"></div><div>Here's what your full <b style="color:var(--ink)">64-ability Success Path Chart</b> looks like →</div></div>
+        </div>
+      </div>
+    </div></div>
+    <div>
+      <p class="cap" style="margin-top:6px">Three payoffs in one screen: <b>reassurance</b> (a human will call), <b>WhatsApp</b> for the eager (we already hold their number + consent — pure enrichment), and the <b>sample profile</b> so they see the value even before the call.</p>
+      <div class="note">WhatsApp is here (post-capture) and floating — <b>never inside the form</b>, so it can't cannibalise the structured capture.</div>
+    </div>
+  </div>
+
+  <h2>05 · Always-on — floating WhatsApp + inline embed</h2>
+  <div class="row2">
+    <div>
+      <p class="cap"><b>Floating WhatsApp</b> (bottom-right, all pages) → <code>/go/wa</code> for the minority who refuse any form.</p>
+      <div class="browser"><div class="bchrome"><i></i><i></i><i></i><span class="url">irisepro.in</span></div>
+        <div class="viewport" style="min-height:150px">
+          <div class="sf-bg sf-hero"><h3 style="font-size:18px">Real abilities. Real ranks.</h3><p style="font-size:11px">Measured across 64 abilities.</p></div>
+          <div style="position:absolute;right:16px;bottom:16px" class="wbtn" style2="">💬</div>
+          <div style="position:absolute;right:14px;bottom:14px;width:46px;height:46px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 24px rgba(37,211,102,.4)">💬</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="cap"><b>Inline embed</b> — the same form, dropped right under the pricing cards at peak intent (no trigger needed).</p>
+      <div class="browser"><div class="bchrome"><i></i><i></i><i></i><span class="url">irisepro.in/enroll</span></div>
+        <div class="viewport" style="min-height:150px;padding:16px">
+          <div class="sf-cards" style="margin-bottom:12px"><div class="sf-card"><div class="t">₹999</div></div><div class="sf-card" style="border-color:var(--accent)"><div class="t">₹1999</div></div><div class="sf-card"><div class="t">₹4999</div></div></div>
+          <div style="background:var(--panel);border:1px solid var(--line2);border-radius:12px;padding:12px">
+            <div style="font-size:12px;font-weight:700;margin-bottom:9px">Not sure yet? Try the 60-sec demo →</div>
+            <div style="display:flex;gap:8px"><div class="field" style="flex:1;padding:9px 12px"><span class="ph">📱 Number</span></div><div class="btn" style="padding:9px 16px;font-size:12px">Start</div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <h2>3b · Mobile-first &amp; desktop — same component, different feel</h2>
-  <div class="md">
-    <div class="col">
-      <h3>📱 Mobile <span class="plat">primary</span></h3>
-      <ul>
-        <li><b>Form = bottom sheet.</b> Thumb-reachable, slides up from the bottom; single column; big tap targets; numeric keypad on the phone field.</li>
-        <li><b>Modal triggers:</b> back-button intercept · fast scroll-up · <code>visibilitychange</code> (tab/app switch). <b>No</b> exit-intent (no cursor on touch).</li>
-        <li><b>Floating WhatsApp</b> pinned bottom-right, above the fold of the thumb zone.</li>
-        <li>One field per glance; consent + WA opt-in stacked; sticky submit.</li>
-      </ul>
-      <div class="frame"><div class="ph mob"></div></div>
-    </div>
-    <div class="col">
-      <h3>🖥 Desktop <span class="plat">secondary</span></h3>
-      <ul>
-        <li><b>Form = centered sheet</b> (modal) or inline card in the section; two-up layout where space allows.</li>
-        <li><b>Modal triggers:</b> exit-intent (cursor to browser chrome) · scroll ≥50% · dwell ≥35s · pricing-viewed.</li>
-        <li><b>WhatsApp</b> as a corner pill / inline in the success state — less dominant than on mobile.</li>
-        <li>Hover states, keyboard nav + visible focus rings; wider inline embeds.</li>
-      </ul>
-      <div class="frame"><div class="ph desk"></div></div>
-    </div>
-  </div>
+  <h2>Where each sits — one page</h2>
+  <p class="cap"><b>Hero:</b> primary CTA opens the form · <b>after pricing:</b> inline embed · <b>on engagement/exit:</b> the modal · <b>global:</b> floating WhatsApp + anonymous pagehide beacon · <b>post-capture:</b> success + WhatsApp. Three form placements, <b>one component</b>.</p>
 
-  <h2>4 · Reused across which pages</h2>
-  <ul class="pages">
-    <li>/ (home)</li><li>/kas/en</li><li>/kas/kn</li><li>stream pages (neet/ias/…)</li><li>/enroll · pricing</li><li>checkout-dismissed</li><li>/institutional</li><li>/godparent</li>
-  </ul>
-
-  <h2>5 · The delivery pipeline (Phase 2) — capture → hand off → prove it</h2>
-  <div class="flow">
-    <span class="n acc">LeadCaptureForm</span><span class="ar">→</span>
-    <span class="n">POST /api/lead</span><span class="ar">→</span>
-    <span class="n">Lead spine (Enquiry / CheckoutAttempt — one record)</span><span class="ar">→</span>
-    <span class="n">SyndicateLead job · queued · seconds</span><span class="ar">→</span>
-    <span class="n">LeadSink port</span><span class="ar">→</span>
-    <span class="n wa">Superfone · calls in 2–5 min</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px" class="md">
-    <div class="col">
-      <h3 style="margin:0 0 6px;font-size:14px">🔌 LeadSink — swappable driver</h3>
-      <p style="font-size:13px;color:var(--mut);margin:0">One port <code>push(Lead):Ack</code>. Drivers: <code>Null/Log</code> (works today, no dep) → <code>Pabbly</code> (reuse) → <code>Superfone</code> (drop-in when their API + ack lands). Upstream never changes.</p>
-    </div>
-    <div class="col" style="border-color:var(--accent)">
-      <h3 style="margin:0 0 6px;font-size:14px">⏱ SLA watchdog</h3>
-      <p style="font-size:13px;color:var(--mut);margin:0">Scheduled: any <b style="color:var(--ink)">hot lead not acked in ~3 min</b> → <code>OpsAlert::critical</code> to Slack. Turns "2–5 min" from a hope into a <b style="color:var(--accent2)">guarantee</b>. We never build calling — Superfone owns it.</p>
-    </div>
-  </div>
-  <div style="font-size:12.5px;color:var(--dim);margin-top:10px;font-family:var(--mono)">＋ every capture fires PostHog <code>contact_entered</code> + Meta Pixel <code>Lead</code>. Idempotent · retry+backoff · <code>::failed → OpsAlert</code>.</div>
-
-  <h2>6 · Attribution (Phase 3) — tie a lead to campaign → revenue</h2>
-  <div class="flow" style="justify-content:space-between">
-    <span class="n">first-touch UTM <span style="color:var(--dim)">(set-once)</span></span>
-    <span class="n">last-touch UTM <span style="color:var(--dim)">(each session)</span></span>
-    <span class="ar">persisted on →</span>
-    <span class="n acc">Lead + payment row + PostHog person</span>
-    <span class="ar">→</span>
-    <span class="n wa">campaign → ₹ revenue ROI</span>
-  </div>
-  <div style="font-size:12.5px;color:var(--dim);margin-top:10px">Both models stored so the dashboard attributes revenue by first-touch (awareness) <i>and</i> last-touch (closing) with no re-instrumenting. The campaign link (<code>/go/{slug}</code>, already built) embeds <code>?exam=&amp;plan=</code> so a lead auto-tags stream/plan — Superfone opens with the right pitch.</div>
-
-  <h2>7 · What you're approving</h2>
-  <div class="appr">
-    <h3>Sign-off checklist</h3>
-    <div class="item"><span class="b"></span><span><b>One reusable <code>LeadCaptureForm</code></b> (phone · role · required consent · WA opt-in), built from the KAS pattern — placed at hero, post-pricing, and in the engagement modal.</span></div>
-    <div class="item"><span class="b"></span><span><b>Mobile-first + desktop</b> — bottom-sheet + back-button/scroll-up triggers on mobile; centered sheet + exit-intent/scroll/dwell on desktop.</span></div>
-    <div class="item"><span class="b"></span><span><b>Anonymous beacon</b> (PostHog, no consent) + <b>WhatsApp CTA</b> via <code>/go/wa</code> (success-state + floating) — never inside the form.</span></div>
-    <div class="item"><span class="b"></span><span><b>Delivery pipeline</b> — SyndicateLead → LeadSink (Null/Pabbly now, Superfone later) + the SLA watchdog.</span></div>
-    <div class="item"><span class="b"></span><span><b>Attribution</b> — first + last-touch UTM on Lead + payment.</span></div>
-    <div class="item"><span class="b"></span><span><b>Open for you:</b> exact consent wording (legal, §3.5) · whether minor-stream leads syndicate pre- or post-guardian-consent · WhatsApp copy.</span></div>
-  </div>
-
-  <div class="flag">🔴 <b>Live now, leaking now.</b> The storefront has been live ~1 week with <b>no server-side capture-on-contact</b> — every dismissed checkout and browse-bounce is lost. This isn't pre-launch prep; it's an <b>active revenue leak to close</b>. Priority order: capture widgets + Lead spine (stops the bleed) → syndication + SLA (hot-lead calls) → attribution.</div>
-
-  <div class="foot">
-    Source: <code>Backend-laravel/docs/lead-capture-attribution-design.md</code> §3 (capture-on-contact), §3.4 (WhatsApp CTA), §4 (Lead spine), §9 (/go). Storefront repo: <code>~/dev/web/irisepro</code> — <code>kas-register-form.tsx</code> is the pattern to generalise. This storyboard is a design proposal for review — nothing here is built yet.
-  </div>
+  <div class="foot">Every screen above is a design mock in the live storefront theme (navy · orange · Montserrat) — nothing built yet, for review. Reuses: the in-app recorder (shipped), the <code>is_demo</code> demo-challenge, the sample success profile, and the <code>/go</code> + lead-capture plumbing. Companion: the lead-magnet proposal (which magnet, content plan, funnel).</div>
 </div>
