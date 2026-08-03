@@ -1,0 +1,289 @@
+<title>Lead Capture — the missing pieces (for review)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Storefront theme — irisepro.in (navy #0a1626 · brand orange #f5821f · brand blue #3f93e0 · Montserrat). */
+  :root{
+    --bg:#0a1626; --bg2:#0e1b30; --panel:#10223c; --panel2:#112644; --line:#1d3354;
+    --ink:#eaf1f9; --mut:#8ea3bd; --dim:#5e708a;
+    --accent:#f5821f; --accent2:#ff9b3d; --accent-soft:#1d2f4d;
+    --wa:#25d366; --wa-soft:#0f2a1a; --good:#4ade80; --info:#3f93e0;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1a1206 0%,transparent 55%),var(--bg);
+    color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:44px 22px 80px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(28px,5vw,44px);line-height:1.03;margin:.3em 0 .25em;letter-spacing:-.02em;text-wrap:balance;font-weight:800}
+  .lede{font-size:17px;color:var(--mut);max-width:70ch}
+  .lede b{color:var(--ink)}
+  h2{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:52px 0 16px;font-weight:700;
+    border-top:1px solid var(--line);padding-top:16px}
+  code,.k{font-family:var(--mono);font-size:.86em;background:#0b0e13;border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--accent2)}
+
+  /* status ledger */
+  .ledger{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:22px}
+  @media(max-width:640px){.ledger{grid-template-columns:1fr}}
+  .lc{display:flex;align-items:center;gap:11px;font-size:13px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 13px;color:var(--mut)}
+  .lc i{color:var(--dim);font-style:normal;font-size:11.5px}
+  .lc span{font-family:var(--mono);font-size:11px;font-weight:700;width:26px;height:22px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:6px}
+  .lc.miss{border-color:#3a2016}.lc.miss span{background:#2a1410;color:#ff8a5c}
+  .lc.part span{background:#2a2410;color:#e5c14e}
+  .lc.done span{background:#12241a;color:var(--good)}
+  .lc.miss::after{content:"missing";margin-left:auto;font-family:var(--mono);font-size:10px;color:#ff8a5c}
+  .lc.part::after{content:"partial";margin-left:auto;font-family:var(--mono);font-size:10px;color:#e5c14e}
+  .lc.done::after{content:"done";margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--good)}
+
+  /* mobile vs desktop */
+  .md{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:680px){.md{grid-template-columns:1fr}}
+  .md .col{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .md .col h3{margin:0 0 3px;font-size:15px;display:flex;align-items:center;gap:8px}
+  .md .col .plat{font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+  .md ul{margin:12px 0 0;padding-left:16px}
+  .md ul li{font-size:13px;color:var(--mut);margin:7px 0}
+  .md ul li b{color:var(--ink)}
+  .frame{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#0b0e13;padding:10px;display:flex;gap:8px;align-items:flex-end;justify-content:center;min-height:96px}
+  .ph{border:1px solid var(--accent);border-radius:10px;background:var(--accent-soft)}
+  .ph.mob{width:64px;height:78px;position:relative}
+  .ph.mob::after{content:"sheet ↑";position:absolute;bottom:0;left:0;right:0;font-size:8px;text-align:center;color:var(--accent2);padding:2px}
+  .ph.desk{width:110px;height:66px;position:relative}
+  .ph.desk::after{content:"centered modal";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--accent2)}
+
+  /* approval */
+  .appr{background:var(--panel);border:1px solid var(--accent);border-radius:16px;padding:18px}
+  .appr h3{margin:0 0 12px;font-size:15px;color:var(--accent2)}
+  .appr .item{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--mut);margin:10px 0}
+  .appr .item .b{width:16px;height:16px;border:1.5px solid var(--accent);border-radius:4px;flex:none;margin-top:2px}
+  .appr .item b{color:var(--ink)}
+
+  /* the ONE component band */
+  .core{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.core{grid-template-columns:1fr}}
+  .device{background:linear-gradient(180deg,#1b212c,#12161e);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+  .device .brand{font-weight:800;font-size:13px;letter-spacing:.02em;margin-bottom:2px}
+  .device .brand span{color:var(--accent)}
+  .device .sub{font-size:11.5px;color:var(--mut);margin-bottom:14px}
+  .fld{background:#0c0f14;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12.5px;color:var(--mut);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .fld .req{color:var(--accent);font-size:10px}
+  .seg{display:flex;gap:6px;margin-bottom:8px}
+  .seg div{flex:1;text-align:center;font-size:11.5px;padding:7px;border-radius:8px;border:1px solid var(--line);color:var(--mut)}
+  .seg div.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent2)}
+  .chk{display:flex;gap:8px;align-items:flex-start;font-size:11px;color:var(--mut);margin:8px 0}
+  .chk .box{width:15px;height:15px;border-radius:4px;background:var(--accent);flex:none;display:flex;align-items:center;justify-content:center;color:#0d0f13;font-size:10px;font-weight:900}
+  .cta{margin-top:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#151109;font-weight:800;text-align:center;padding:11px;border-radius:11px;font-size:13px}
+  .note{font-size:10.5px;color:var(--dim);text-align:center;margin-top:8px}
+
+  .facts .f{border-left:2px solid var(--accent);padding:2px 0 2px 14px;margin-bottom:16px}
+  .facts .f h4{margin:0 0 3px;font-size:14px}
+  .facts .f p{margin:0;font-size:13.5px;color:var(--mut)}
+  .facts .f p b{color:var(--ink)}
+
+  /* surfaces */
+  .surf{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:760px){.surf{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;overflow:hidden}
+  .card .tag{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:20px;background:#0b0e13;border:1px solid var(--line);color:var(--mut)}
+  .card h3{margin:0 0 4px;font-size:15px}
+  .card .how{font-size:12px;color:var(--dim);font-family:var(--mono);margin-bottom:10px}
+  .card p{margin:0;font-size:13px;color:var(--mut)}
+  .mini{margin:12px 0 4px;border:1px dashed var(--line);border-radius:10px;padding:10px;background:#0c0f14}
+  .mini .bar{height:6px;border-radius:3px;background:#222a36;margin:5px 0}
+  .mini .bar.a{width:70%} .mini .bar.b{width:45%}
+  .mini .pop{border:1px solid var(--accent);border-radius:8px;padding:7px;font-size:10.5px;color:var(--accent2);text-align:center;background:var(--accent-soft)}
+  .mini.beacon{display:flex;align-items:center;justify-content:center;color:var(--info);font-size:11px;font-family:var(--mono)}
+
+  /* placement map */
+  .map{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+  @media(max-width:820px){.map{grid-template-columns:1fr}}
+  .page{background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .row{padding:16px 18px;border-bottom:1px solid var(--line);position:relative}
+  .row:last-child{border-bottom:none}
+  .row .lab{font-size:9.5px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .row .title{font-size:15px;font-weight:700;margin-top:3px}
+  .row .desc{font-size:12px;color:var(--mut);margin-top:2px}
+  .pin{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 9px;border-radius:20px;white-space:nowrap}
+  .pin.form{background:var(--accent-soft);color:var(--accent2);border:1px solid var(--accent)}
+  .pin.wa{background:var(--wa-soft);color:var(--wa);border:1px solid var(--wa)}
+  .pin.beacon{background:#0c1830;color:var(--info);border:1px solid var(--info)}
+  .row.hero{background:linear-gradient(120deg,#1c130a,#141821)}
+  .legend{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .legend h4{margin:0 0 12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .lg{display:flex;gap:10px;align-items:flex-start;margin-bottom:13px;font-size:12.5px;color:var(--mut)}
+  .lg .dot{width:12px;height:12px;border-radius:4px;flex:none;margin-top:3px}
+  .lg b{color:var(--ink)}
+
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .flow .n{background:#0c0f14;border:1px solid var(--line);border-radius:8px;padding:7px 11px;white-space:nowrap}
+  .flow .n.acc{border-color:var(--accent);color:var(--accent2)}
+  .flow .n.wa{border-color:var(--wa);color:var(--wa)}
+  .flow .ar{color:var(--dim)}
+  ul.pages{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+  ul.pages li{font-family:var(--mono);font-size:12px;background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:6px 12px;color:var(--mut)}
+  .foot{margin-top:44px;font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:16px}
+  .flag{background:var(--accent-soft);border:1px solid var(--accent);border-radius:12px;padding:13px 15px;font-size:13.5px;color:var(--accent2);margin-top:10px}
+  .flag b{color:#fff}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Storyboard for review · lead capture — the missing pieces · storefront LIVE 1 week → leaks active now</div>
+  <h1>Lead capture — the missing pieces</h1>
+  <p class="lede">The storefront is <b>already live</b>, so the leaks are <b>active</b>: every dismissed checkout and browse-and-bounce is captured <b>nowhere</b> server-side. This storyboard is the design to close that — <b>one reusable capture component</b>, the <b>delivery pipeline</b> that hands a hot lead to Superfone in minutes, and the <b>attribution</b> that ties it to revenue. <b>Mobile-first and desktop</b> throughout. Nothing here is built yet — review &amp; approve, then we build.</p>
+
+  <div class="ledger">
+    <div class="lc miss"><span>1b</span> Storefront capture widgets — form, modal, beacon</div>
+    <div class="lc miss"><span>2</span> Syndication (SyndicateLead + LeadSink) + SLA watchdog</div>
+    <div class="lc part"><span>1a</span> Backend Lead spine (Enquiry/CheckoutAttempt) — <i>WIP, reconciled</i></div>
+    <div class="lc part"><span>3</span> Attribution persistence (first/last-touch)</div>
+    <div class="lc done"><span>4</span> Campaign link builder + /go — <i>committed</i></div>
+    <div class="lc done"><span>—</span> Failed-payment recovery — <i>live</i></div>
+  </div>
+
+  <h2>1 · The one component — <code>&lt;LeadCaptureForm/&gt;</code></h2>
+  <div class="core">
+    <div class="device">
+      <div class="brand">iRise<span>Pro</span></div>
+      <div class="sub">Talk to us — we'll call you back in minutes.</div>
+      <div class="fld">Mobile number <span class="req">● required</span></div>
+      <div class="seg"><div class="on">I'm the aspirant</div><div>I'm a parent</div></div>
+      <div class="chk"><span class="box">✓</span><span>I agree to be contacted about iRisePro <b style="color:var(--accent)">(required)</b></span></div>
+      <div class="chk"><span class="box">✓</span><span>WhatsApp me updates on this number</span></div>
+      <div class="cta">Get a callback →</div>
+      <div class="note">consent ✓ = a lawful, callable lead · fires the moment they submit</div>
+    </div>
+    <div class="facts">
+      <div class="f"><h4>Phone is king</h4><p>Superfone <b>calls</b> it — Indian mobile, normalised to canonical E.164 (<code>PhoneNumber::e164</code>) so a lead here dedups with the same person on any other page. Email is secondary/optional.</p></div>
+      <div class="f"><h4>Role selector = the DPDPA gate</h4><p><b>aspirant / parent</b> — school streams are framed "a parent's number." Consent + role decide who Superfone lawfully calls. No role, no consent → not a callable lead.</p></div>
+      <div class="f"><h4>Required consent checkbox</h4><p>A lead only <i>exists</i> once consent is ticked — the lawful basis to call. A pre-consent keystroke is at most an anonymous PostHog event, never a lead.</p></div>
+      <div class="f"><h4>WhatsApp opt-in, logged like consent</h4><p>Stored with timestamp + source; gates any WhatsApp send. Defaults to the same number.</p></div>
+    </div>
+  </div>
+
+  <h2>2 · How the same component surfaces (the triggers)</h2>
+  <div class="surf">
+    <div class="card">
+      <span class="tag">inline</span>
+      <h3>Inline embed</h3>
+      <div class="how">always visible in-page</div>
+      <div class="mini"><div class="bar a"></div><div class="bar b"></div><div style="margin-top:8px"><div class="pop">▸ LeadCaptureForm</div></div></div>
+      <p>Dropped straight into a section (after pricing, in the hero). No trigger — it's just there.</p>
+    </div>
+    <div class="card">
+      <span class="tag">modal</span>
+      <h3>Engagement modal</h3>
+      <div class="how">exit-intent · scroll ≥50% · dwell ≥35s · pricing-viewed</div>
+      <div class="mini"><div class="bar a"></div><div class="pop" style="margin-top:6px">⤴ same form, in an overlay</div><div class="bar b" style="margin-top:6px"></div></div>
+      <p>Surfaces the <i>same</i> form to an engaged visitor who hasn't filled it. Once/session, respects dismissal, thresholds A/B-tested in PostHog.</p>
+    </div>
+    <div class="card">
+      <span class="tag">beacon · no form</span>
+      <h3>Pagehide beacon</h3>
+      <div class="how">visibilitychange / pagehide → sendBeacon</div>
+      <div class="mini beacon">📡 anonymous snapshot → PostHog</div>
+      <p><b>Not a lead</b> (no consent) — an anonymous "which sections they saw" ping on leave. Last-ditch measurement, feeds the modal thresholds.</p>
+    </div>
+  </div>
+
+  <h2>3 · Where we insert them — one page, mapped</h2>
+  <div class="map">
+    <div class="page">
+      <div class="row hero"><div class="lab">Hero</div><div class="title">Primary CTA → form</div><div class="desc">"Get a callback" opens <code>&lt;LeadCaptureForm/&gt;</code> (inline on mobile, sheet on desktop)</div><span class="pin form">FORM</span></div>
+      <div class="row"><div class="lab">Mid-content</div><div class="title">Outcomes / how-it-works</div><div class="desc">no widget — but scroll-depth + <code>pricing_viewed</code> feed the modal trigger</div><span class="pin beacon">signals</span></div>
+      <div class="row"><div class="lab">After pricing</div><div class="title">Inline embed</div><div class="desc">the form sits right under the plan cards — peak intent, no trigger needed</div><span class="pin form">FORM</span></div>
+      <div class="row"><div class="lab">On engagement</div><div class="title">Exit-intent / dwell modal</div><div class="desc">overlay surfaces the same form to an engaged non-filler (once/session)</div><span class="pin form">FORM</span></div>
+      <div class="row"><div class="lab">Global · floating</div><div class="title">WhatsApp button → <code>/go/wa</code></div><div class="desc">always-available, for the minority who refuse a form (number-deferred)</div><span class="pin wa">WA CTA</span></div>
+      <div class="row"><div class="lab">On leave</div><div class="title">Pagehide beacon</div><div class="desc"><code>sendBeacon</code> anonymous snapshot → PostHog</div><span class="pin beacon">beacon</span></div>
+      <div class="row"><div class="lab">Post-capture / payment-success</div><div class="title">Success-state WhatsApp CTA</div><div class="desc">"You're in! Prefer to talk now? → Chat on WhatsApp" — enrichment, we already hold the number + consent (the strongest WA moment)</div><span class="pin wa">WA CTA</span></div>
+    </div>
+    <div class="legend">
+      <h4>Legend</h4>
+      <div class="lg"><span class="dot" style="background:var(--accent)"></span><span><b>FORM</b> — the one reusable <code>LeadCaptureForm</code>. Same component every time.</span></div>
+      <div class="lg"><span class="dot" style="background:var(--wa)"></span><span><b>WA CTA</b> — WhatsApp, via <code>/go/wa</code> interstitial. Never inside the form (it cannibalises structured capture).</span></div>
+      <div class="lg"><span class="dot" style="background:var(--info)"></span><span><b>beacon / signals</b> — anonymous PostHog events. Measurement + modal-trigger inputs, not leads.</span></div>
+      <div style="border-top:1px solid var(--line);margin-top:6px;padding-top:12px;font-size:12px;color:var(--mut)">
+        <b style="color:var(--ink)">3 form insertions</b> (hero, post-pricing, modal) all render the <i>same</i> component. Build once, place thrice.
+      </div>
+    </div>
+  </div>
+
+  <h2>3b · Mobile-first &amp; desktop — same component, different feel</h2>
+  <div class="md">
+    <div class="col">
+      <h3>📱 Mobile <span class="plat">primary</span></h3>
+      <ul>
+        <li><b>Form = bottom sheet.</b> Thumb-reachable, slides up from the bottom; single column; big tap targets; numeric keypad on the phone field.</li>
+        <li><b>Modal triggers:</b> back-button intercept · fast scroll-up · <code>visibilitychange</code> (tab/app switch). <b>No</b> exit-intent (no cursor on touch).</li>
+        <li><b>Floating WhatsApp</b> pinned bottom-right, above the fold of the thumb zone.</li>
+        <li>One field per glance; consent + WA opt-in stacked; sticky submit.</li>
+      </ul>
+      <div class="frame"><div class="ph mob"></div></div>
+    </div>
+    <div class="col">
+      <h3>🖥 Desktop <span class="plat">secondary</span></h3>
+      <ul>
+        <li><b>Form = centered sheet</b> (modal) or inline card in the section; two-up layout where space allows.</li>
+        <li><b>Modal triggers:</b> exit-intent (cursor to browser chrome) · scroll ≥50% · dwell ≥35s · pricing-viewed.</li>
+        <li><b>WhatsApp</b> as a corner pill / inline in the success state — less dominant than on mobile.</li>
+        <li>Hover states, keyboard nav + visible focus rings; wider inline embeds.</li>
+      </ul>
+      <div class="frame"><div class="ph desk"></div></div>
+    </div>
+  </div>
+
+  <h2>4 · Reused across which pages</h2>
+  <ul class="pages">
+    <li>/ (home)</li><li>/kas/en</li><li>/kas/kn</li><li>stream pages (neet/ias/…)</li><li>/enroll · pricing</li><li>checkout-dismissed</li><li>/institutional</li><li>/godparent</li>
+  </ul>
+
+  <h2>5 · The delivery pipeline (Phase 2) — capture → hand off → prove it</h2>
+  <div class="flow">
+    <span class="n acc">LeadCaptureForm</span><span class="ar">→</span>
+    <span class="n">POST /api/lead</span><span class="ar">→</span>
+    <span class="n">Lead spine (Enquiry / CheckoutAttempt — one record)</span><span class="ar">→</span>
+    <span class="n">SyndicateLead job · queued · seconds</span><span class="ar">→</span>
+    <span class="n">LeadSink port</span><span class="ar">→</span>
+    <span class="n wa">Superfone · calls in 2–5 min</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px" class="md">
+    <div class="col">
+      <h3 style="margin:0 0 6px;font-size:14px">🔌 LeadSink — swappable driver</h3>
+      <p style="font-size:13px;color:var(--mut);margin:0">One port <code>push(Lead):Ack</code>. Drivers: <code>Null/Log</code> (works today, no dep) → <code>Pabbly</code> (reuse) → <code>Superfone</code> (drop-in when their API + ack lands). Upstream never changes.</p>
+    </div>
+    <div class="col" style="border-color:var(--accent)">
+      <h3 style="margin:0 0 6px;font-size:14px">⏱ SLA watchdog</h3>
+      <p style="font-size:13px;color:var(--mut);margin:0">Scheduled: any <b style="color:var(--ink)">hot lead not acked in ~3 min</b> → <code>OpsAlert::critical</code> to Slack. Turns "2–5 min" from a hope into a <b style="color:var(--accent2)">guarantee</b>. We never build calling — Superfone owns it.</p>
+    </div>
+  </div>
+  <div style="font-size:12.5px;color:var(--dim);margin-top:10px;font-family:var(--mono)">＋ every capture fires PostHog <code>contact_entered</code> + Meta Pixel <code>Lead</code>. Idempotent · retry+backoff · <code>::failed → OpsAlert</code>.</div>
+
+  <h2>6 · Attribution (Phase 3) — tie a lead to campaign → revenue</h2>
+  <div class="flow" style="justify-content:space-between">
+    <span class="n">first-touch UTM <span style="color:var(--dim)">(set-once)</span></span>
+    <span class="n">last-touch UTM <span style="color:var(--dim)">(each session)</span></span>
+    <span class="ar">persisted on →</span>
+    <span class="n acc">Lead + payment row + PostHog person</span>
+    <span class="ar">→</span>
+    <span class="n wa">campaign → ₹ revenue ROI</span>
+  </div>
+  <div style="font-size:12.5px;color:var(--dim);margin-top:10px">Both models stored so the dashboard attributes revenue by first-touch (awareness) <i>and</i> last-touch (closing) with no re-instrumenting. The campaign link (<code>/go/{slug}</code>, already built) embeds <code>?exam=&amp;plan=</code> so a lead auto-tags stream/plan — Superfone opens with the right pitch.</div>
+
+  <h2>7 · What you're approving</h2>
+  <div class="appr">
+    <h3>Sign-off checklist</h3>
+    <div class="item"><span class="b"></span><span><b>One reusable <code>LeadCaptureForm</code></b> (phone · role · required consent · WA opt-in), built from the KAS pattern — placed at hero, post-pricing, and in the engagement modal.</span></div>
+    <div class="item"><span class="b"></span><span><b>Mobile-first + desktop</b> — bottom-sheet + back-button/scroll-up triggers on mobile; centered sheet + exit-intent/scroll/dwell on desktop.</span></div>
+    <div class="item"><span class="b"></span><span><b>Anonymous beacon</b> (PostHog, no consent) + <b>WhatsApp CTA</b> via <code>/go/wa</code> (success-state + floating) — never inside the form.</span></div>
+    <div class="item"><span class="b"></span><span><b>Delivery pipeline</b> — SyndicateLead → LeadSink (Null/Pabbly now, Superfone later) + the SLA watchdog.</span></div>
+    <div class="item"><span class="b"></span><span><b>Attribution</b> — first + last-touch UTM on Lead + payment.</span></div>
+    <div class="item"><span class="b"></span><span><b>Open for you:</b> exact consent wording (legal, §3.5) · whether minor-stream leads syndicate pre- or post-guardian-consent · WhatsApp copy.</span></div>
+  </div>
+
+  <div class="flag">🔴 <b>Live now, leaking now.</b> The storefront has been live ~1 week with <b>no server-side capture-on-contact</b> — every dismissed checkout and browse-bounce is lost. This isn't pre-launch prep; it's an <b>active revenue leak to close</b>. Priority order: capture widgets + Lead spine (stops the bleed) → syndication + SLA (hot-lead calls) → attribution.</div>
+
+  <div class="foot">
+    Source: <code>Backend-laravel/docs/lead-capture-attribution-design.md</code> §3 (capture-on-contact), §3.4 (WhatsApp CTA), §4 (Lead spine), §9 (/go). Storefront repo: <code>~/dev/web/irisepro</code> — <code>kas-register-form.tsx</code> is the pattern to generalise. This storyboard is a design proposal for review — nothing here is built yet.
+  </div>
+</div>
