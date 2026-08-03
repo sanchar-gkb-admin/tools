@@ -1,0 +1,206 @@
+<title>Lead Magnets — Proposal & Content Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Storefront theme — irisepro.in (navy #0a1626 · brand orange #f5821f · brand blue #3f93e0 · Montserrat).
+     KAS maroon/gold variant to be applied later. */
+  :root{
+    --bg:#0a1626; --panel:#10223c; --panel2:#112644; --line:#1d3354;
+    --ink:#eaf1f9; --mut:#8ea3bd; --dim:#5e708a;
+    --accent:#f5821f; --accent2:#ff9b3d; --accent-soft:#1d2f4d;
+    --good:#4ade80; --wa:#25d366; --info:#3f93e0; --gold:#ffb259;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1100px 560px at 82% -8%,#1a1206 0%,transparent 55%),var(--bg);
+    color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 80px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(27px,5vw,42px);line-height:1.05;margin:.3em 0 .25em;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+  .lede{font-size:16.5px;color:var(--mut);max-width:72ch}
+  .lede b{color:var(--ink)}
+  code{font-family:var(--mono);font-size:.85em;background:#0b0e13;border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--accent2)}
+  h2{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin:48px 0 14px;font-weight:700;border-top:1px solid var(--line);padding-top:15px}
+  .who{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 4px}
+  .who span{font-family:var(--mono);font-size:11px;padding:5px 11px;border-radius:20px;border:1px solid var(--line);color:var(--mut);background:var(--panel)}
+  .who .k{border-color:var(--accent);color:var(--accent2)} .who .s{border-color:var(--info);color:var(--info)} .who .e{border-color:var(--good);color:var(--good)}
+
+  .call{background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:15px 17px;font-size:14.5px;color:var(--accent2);margin-top:6px}
+  .call b{color:#fff}
+
+  /* magnet cards */
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px;position:relative}
+  .m.star{border-color:var(--accent)}
+  .m .rank{position:absolute;top:-10px;left:16px;font-family:var(--mono);font-size:11px;font-weight:800;background:var(--accent);color:#151109;padding:3px 9px;border-radius:20px}
+  .m .rank.g{background:var(--panel2);color:var(--mut);border:1px solid var(--line)}
+  .m h3{margin:6px 0 3px;font-size:17px}
+  .m .tl{font-size:13.5px;color:var(--mut);margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .box{background:#0c0f14;border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+  .box .h{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+  .box p{margin:0;font-size:13px;color:var(--ink)}
+  .box.need .h{color:var(--info)} .box.help .h{color:var(--good)}
+  .badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .bdg{font-family:var(--mono);font-size:10.5px;padding:4px 9px;border-radius:6px;background:#0b0e13;border:1px solid var(--line);color:var(--mut)}
+  .bdg.own-k{color:var(--accent2)} .bdg.own-s{color:var(--info)} .bdg.own-e{color:var(--good)}
+  .bdg.eff-lo{color:var(--good)} .bdg.eff-md{color:var(--gold)} .bdg.eff-hi{color:#ff8a5c}
+
+  /* content plan table */
+  .tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+  .tbl th{text-align:left;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .tbl td{padding:10px;border-bottom:1px solid var(--line);color:var(--mut);vertical-align:top}
+  .tbl td b{color:var(--ink)}
+  .tbl tr:hover td{background:#12161e}
+  .pill{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:5px;white-space:nowrap}
+  .pill.k{background:var(--accent-soft);color:var(--accent2)} .pill.s{background:#0c1830;color:var(--info)} .pill.e{background:#12241a;color:var(--good)}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+  .scroll .tbl td,.scroll .tbl th{padding-left:14px;padding-right:14px}
+
+  ol.rec{padding-left:20px;margin:8px 0 0} ol.rec li{margin:9px 0;font-size:14.5px;color:var(--mut)} ol.rec li b{color:var(--ink)}
+  .dec{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:14px 16px;margin:8px 0;font-size:14px;color:var(--mut)}
+  .dec b{color:var(--ink)}
+  .foot{margin-top:44px;font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:15px}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Proposal for KMM &amp; Sutirtha · lead magnets + content plan · storefront live, drop-offs uncaptured</div>
+  <h1>Turning drop-offs into leads</h1>
+  <p class="lede">The website is live but when a visitor leaves <b>without enrolling we capture nothing</b> — no name, no number, no way to follow up. A <b>lead magnet</b> is the offer we show as they leave: something valuable enough that they hand over their number to get it. This proposes <b>which magnets to run</b> and — the important part — <b>exactly what content each needs and how much of it we can draft for you</b>, so your effort is mostly <b>review &amp; approve</b>, not create-from-scratch.</p>
+
+  <div class="who">
+    <span class="k">KMM — approve + brand/offer calls</span>
+    <span class="s">Sutirtha — assessment content + YD-effort calls</span>
+    <span class="e">Eng (us) — build + draft sample content</span>
+  </div>
+
+  <div class="call">⚡ <b>The reusable insight:</b> the AACE64 framework, the ability maps, the 6 career pathways, and a sample scorecard already live in our system — so for most magnets <b>we can draft the first version ourselves</b>. You refine and bless it.</div>
+
+  <h2>The 7 magnets — what each needs, what we draft</h2>
+
+  <div class="m star">
+    <span class="rank">1 ★</span>
+    <h3>Free 60-second Demo Task</h3>
+    <p class="tl">A one-task <code>lead_magnet_demo</code> challenge. To start it they leave their number → they record a real 60-sec task on their phone → "a mentor will call you with your result + here's a sample report." A <b>real taste</b> of iRisePro, not a gimmick. Reuses the new in-app recorder + the demo-challenge (<code>is_demo</code>) setup.</p>
+    <div class="grid">
+      <div class="box need"><div class="h">Content needed from you</div><p><b>Sutirtha:</b> the ONE demo task prompt (e.g. "In 60 seconds, tell us why you want to succeed") + the decision: <b>do we YD-score it, or just call them?</b></p></div>
+      <div class="box help"><div class="h">How we help</div><p>We build the hidden challenge, the capture→demo flow, and the recorder screen. <b>We draft a sample task prompt + the result/callback copy</b> for you to tweak.</p></div>
+    </div>
+    <div class="badges"><span class="bdg own-s">owner: Sutirtha (1 prompt)</span><span class="bdg eff-md">build: medium</span><span class="bdg">lead quality: highest</span></div>
+  </div>
+
+  <div class="m star">
+    <span class="rank g">2</span>
+    <h3>Surface the Sample Success Profile (already built)</h3>
+    <p class="tl">"See a real scorecard before you decide → drop your number." We already have <code>sample-success-profile.html</code> + the email that sends it — it's just wired to the old funnel, not the live site.</p>
+    <div class="grid">
+      <div class="box need"><div class="h">Content needed from you</div><p><b>Nothing new</b> — maybe a quick look to confirm the sample profile still represents the product well.</p></div>
+      <div class="box help"><div class="h">How we help</div><p>We surface it on the storefront + reuse the existing send. <b>Fastest possible win</b> — days, not weeks.</p></div>
+    </div>
+    <div class="badges"><span class="bdg own-e">owner: Eng</span><span class="bdg eff-lo">build: low (exists)</span><span class="bdg">stopgap while #1 builds</span></div>
+  </div>
+
+  <div class="m">
+    <span class="rank g">3</span>
+    <h3>Stream "hidden abilities" guides (PDF)</h3>
+    <p class="tl">"NEET 2026: the 12 non-academic abilities that move ranks" · "IAS interview: the 5 abilities boards score" · "Mission Acharya: the teacher-effectiveness checklist." Evergreen, SEO-able, captures email.</p>
+    <div class="grid">
+      <div class="box need"><div class="h">Content needed from you</div><p><b>Sutirtha:</b> review + correct our drafts (the abilities are already in the AACE64 maps per stream).</p></div>
+      <div class="box help"><div class="h">How we help</div><p><b>We draft the full guide per stream from the existing ability maps + bible</b>, designed and ready — you edit for tone/accuracy.</p></div>
+    </div>
+    <div class="badges"><span class="bdg own-s">owner: Sutirtha (review)</span><span class="bdg eff-md">build: medium</span><span class="bdg">1 per stream</span></div>
+  </div>
+
+  <div class="m">
+    <span class="rank g">4</span>
+    <h3>"What's your child's hidden strength?" — parent quiz</h3>
+    <p class="tl">School streams. A short parent-facing quiz → a strengths teaser → captures the <b>parent's</b> number (the buyer). Fits our role/consent model.</p>
+    <div class="grid">
+      <div class="box need"><div class="h">Content needed from you</div><p><b>Sutirtha:</b> validate that the quiz questions map correctly to real abilities.</p></div>
+      <div class="box help"><div class="h">How we help</div><p><b>We draft the 5–7 questions + the teaser logic + build the quiz.</b> You sign off the mapping.</p></div>
+    </div>
+    <div class="badges"><span class="bdg own-s">owner: Sutirtha (validate)</span><span class="bdg eff-md">build: medium</span></div>
+  </div>
+
+  <div class="m">
+    <span class="rank g">5</span>
+    <h3>Career-pathway match</h3>
+    <p class="tl">"Which of the 6 pathways fits you?" → teaser → full report on enrol. Reuses the Career Pathways feature (6 pathways × 5 abilities) already in the ₹4999 scorecard.</p>
+    <div class="grid">
+      <div class="box need"><div class="h">Content needed from you</div><p><b>Sutirtha:</b> confirm the pathway descriptions we surface are accurate/current.</p></div>
+      <div class="box help"><div class="h">How we help</div><p><b>We build it from the existing 6-pathway content</b> — minimal new writing.</p></div>
+    </div>
+    <div class="badges"><span class="bdg own-s">owner: Sutirtha (confirm)</span><span class="bdg eff-md">build: medium</span></div>
+  </div>
+
+  <div class="m">
+    <span class="rank g">6</span>
+    <h3>Benchmark teaser</h3>
+    <p class="tl">"How do you compare to 10,000 aspirants on the 4 pillars?" → a few self-ratings → a benchmark snapshot. Social-proof driven.</p>
+    <div class="grid">
+      <div class="box need"><div class="h">Content needed from you</div><p><b>KMM:</b> OK to show aggregate benchmark framing publicly.</p></div>
+      <div class="box help"><div class="h">How we help</div><p><b>We build it from our own aggregate data</b> — no content authoring needed.</p></div>
+    </div>
+    <div class="badges"><span class="bdg own-k">owner: KMM (OK)</span><span class="bdg eff-md">build: medium</span></div>
+  </div>
+
+  <div class="m">
+    <span class="rank g">7</span>
+    <h3>Free masterclass seat</h3>
+    <p class="tl">"30-min: the 4 pillars of exam success" → register (captures phone). Reuses the existing webinar funnel.</p>
+    <div class="grid">
+      <div class="box need"><div class="h">Content needed from you</div><p><b>KMM/content team:</b> the session itself (speaker + deck).</p></div>
+      <div class="box help"><div class="h">How we help</div><p>We reuse the webinar registration + lead capture already built.</p></div>
+    </div>
+    <div class="badges"><span class="bdg own-k">owner: KMM (session)</span><span class="bdg eff-lo">build: low (reuse)</span></div>
+  </div>
+
+  <h2>Content-preparation plan at a glance</h2>
+  <div class="scroll">
+    <table class="tbl">
+      <tr><th>Magnet</th><th>What YOU prepare</th><th>What WE draft/build</th><th>Owner</th></tr>
+      <tr><td><b>1 · Demo task ★</b></td><td>One 60-sec task prompt + score-or-call decision</td><td>Challenge, flow, recorder screen, sample prompt + copy</td><td><span class="pill s">Sutirtha</span></td></tr>
+      <tr><td><b>2 · Sample profile</b></td><td>Quick sanity look (optional)</td><td>Wire the existing asset to the live site</td><td><span class="pill e">Eng</span></td></tr>
+      <tr><td><b>3 · Stream guides</b></td><td>Review/correct our drafts</td><td>Full designed PDF per stream from AACE64 maps</td><td><span class="pill s">Sutirtha</span></td></tr>
+      <tr><td><b>4 · Parent quiz</b></td><td>Validate ability mapping</td><td>Questions + teaser + the quiz UI</td><td><span class="pill s">Sutirtha</span></td></tr>
+      <tr><td><b>5 · Pathway match</b></td><td>Confirm pathway copy</td><td>Quiz from the existing 6-pathway content</td><td><span class="pill s">Sutirtha</span></td></tr>
+      <tr><td><b>6 · Benchmark</b></td><td>OK the public framing</td><td>Built from our aggregate data</td><td><span class="pill k">KMM</span></td></tr>
+      <tr><td><b>7 · Masterclass</b></td><td>The session (speaker + deck)</td><td>Reuse webinar capture</td><td><span class="pill k">KMM</span></td></tr>
+    </table>
+  </div>
+
+  <h2>The conversion funnel — how a magnet becomes a customer</h2>
+  <p class="lede" style="margin-bottom:14px">Every organic campaign should <b>lead with a magnet</b>, not the buy button. The magnet is the hook, the <b>number is the gate</b>, and — because our real edge is the human touch — the <b>2–5 minute call is the close</b>. Don't build a long email drip; optimise for <b>capture fast → call fast</b>.</p>
+  <div class="scroll" style="border:none;background:none">
+    <div style="display:flex;gap:6px;align-items:stretch;min-width:640px;font-family:var(--mono);font-size:11.5px">
+      <div style="flex:1.3;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:11px"><div style="color:var(--accent2);font-weight:700">1 · HOOK</div><div style="color:var(--mut);margin-top:4px">Organic post / reel / QR / WhatsApp leads with the magnet offer — not "enrol now"</div></div>
+      <div style="flex:1;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px"><div style="color:var(--info);font-weight:700">2 · LAND</div><div style="color:var(--mut);margin-top:4px">Tap → <code>/go/&lt;slug&gt;</code> campaign link (carries UTM) → focused landing</div></div>
+      <div style="flex:1;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px"><div style="color:var(--info);font-weight:700">3 · CAPTURE</div><div style="color:var(--mut);margin-top:4px">One field — phone + consent. The magnet is the reward for the number</div></div>
+      <div style="flex:1;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px"><div style="color:var(--gold);font-weight:700">4 · DELIVER</div><div style="color:var(--mut);margin-top:4px">Instant magnet (demo task / sample profile / guide) = product taste</div></div>
+      <div style="flex:1.1;background:var(--panel);border:1px solid var(--wa);border-radius:10px;padding:11px"><div style="color:var(--wa);font-weight:700">5 · CALL ★</div><div style="color:var(--mut);margin-top:4px">Superfone hot call in 2–5 min — the close. WhatsApp/email only as fallback</div></div>
+      <div style="flex:1;background:var(--panel);border:1px solid var(--good);border-radius:10px;padding:11px"><div style="color:var(--good);font-weight:700">6 · ENROL</div><div style="color:var(--mut);margin-top:4px">Convert → UTM ties revenue back to the campaign + magnet</div></div>
+    </div>
+  </div>
+  <div class="grid" style="margin-top:14px">
+    <div class="box"><div class="h" style="color:var(--accent2)">Match magnet ↔ audience</div><p style="font-size:13px;color:var(--mut)">Aspirant ads → the <b>demo task</b>. School-parent ads → the <b>parent quiz</b>. SEO/top-funnel → the <b>stream guides</b>. Same capture form + Lead spine underneath.</p></div>
+    <div class="box"><div class="h" style="color:var(--accent2)">Speed is the moat</div><p style="font-size:13px;color:var(--mut)">Capture-to-call in minutes (the SLA watchdog). A hot lead who just did a demo task, called while it's fresh, converts far better than a week-old email.</p></div>
+  </div>
+  <div class="call" style="margin-top:14px">📈 <b>Why lead with the magnet on organic:</b> a reel that ends "enrol now" converts the ~2% ready to buy and loses the other 98%. A reel that ends "try the free 60-sec demo / get your child's strength report" converts the <b>curious majority into leads</b> we can then call — turning reach into a callable pipeline, and making organic ROI measurable per campaign.</div>
+
+  <h2>Our recommendation — build order</h2>
+  <ol class="rec">
+    <li><b>Now — surface the Sample Profile (#2).</b> It exists; it stops the bleeding on the live site within days.</li>
+    <li><b>Flagship — the Demo Task (#1).</b> The warmest lead we can get; needs one prompt from Sutirtha + the score-or-call decision.</li>
+    <li><b>Fast-follows — one Stream Guide (#3) + the Parent Quiz (#4)</b>, which we can largely draft.</li>
+    <li>Pathway match, benchmark, masterclass as capacity allows.</li>
+  </ol>
+
+  <h2>Decisions we need from you</h2>
+  <div class="dec"><b>Sutirtha:</b> the single demo-task prompt for #1 — and the crux: <b>do we Yashodarshi-score the demo (adds eval load) or just have the mentor follow up?</b> (We recommend follow-up-only to start.)</div>
+  <div class="dec"><b>KMM:</b> OK to build a hidden <code>lead_magnet_demo</code> challenge and run drop-off magnets on the live storefront; and the offer/brand framing.</div>
+  <div class="dec"><b>Both:</b> which magnets to green-light for the first wave (we suggest #2 + #1).</div>
+
+  <div class="foot">Prepared by Eng for review. Everything marked "we draft/build" reuses content already in iRisePro (AACE64 maps · career pathways · sample scorecard · the new in-app recorder · the webinar + lead-capture plumbing). Companion: the lead-capture storyboard (where these magnets sit in the storefront flow).</div>
+</div>
