@@ -1,0 +1,268 @@
+<title>YASHHO — SEO &amp; AEO position (4 Aug 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a1626;
+    --surface: #10223c;
+    --surface-2: #16294a;
+    --border: #1d3354;
+    --fg: #eaf1f9;
+    --muted: #8ea3bd;
+    --accent: #f5821f;
+    --accent-strong: #ff9b3d;
+    --accent-bright: #ffb259;
+    --accent-ink: #1a0e02;
+    --accent-soft: #1d2f4d;
+    --blue: #3f93e0;
+    --crit: #ff8578;
+    --crit-bg: #2d1512;
+    --warn: #f0c15c;
+    --warn-bg: #2c2210;
+    --ok: #58c795;
+    --ok-bg: #0e2a1f;
+    --display: "Montserrat", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: var(--display); font-weight: 400; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 3rem 1.25rem 6rem; display: flex; flex-direction: column; gap: 3rem; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  h1 {
+    font-family: var(--display); font-weight: 900; text-transform: uppercase;
+    letter-spacing: -.015em; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.02;
+    margin: .6rem 0 0; text-wrap: balance;
+  }
+  h1 em { font-style: normal; color: var(--accent-strong); }
+  h2 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: .01em; font-size: clamp(1.1rem, 2.4vw, 1.45rem); line-height: 1.15;
+    margin: 0; text-wrap: balance;
+  }
+  h3 { font-family: var(--display); font-weight: 700; font-size: 1rem; margin: 0; letter-spacing: -.005em; }
+  p { margin: 0; max-width: 70ch; }
+  .lede { color: var(--muted); font-size: 1.03rem; max-width: 64ch; }
+  section { display: flex; flex-direction: column; gap: 1.2rem; }
+  code, .mono { font-family: var(--mono); font-size: .84em; color: var(--accent-bright); }
+  a { color: var(--accent-strong); }
+
+  header { border-bottom: 3px solid var(--accent); padding-bottom: 1.6rem; }
+
+  .verdict {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 5px solid var(--accent); border-radius: 6px;
+    padding: 1.3rem 1.4rem; display: flex; flex-direction: column; gap: .55rem;
+  }
+  .caveat {
+    background: var(--warn-bg); border: 1px solid rgba(240,193,92,.32);
+    border-radius: 6px; padding: 1rem 1.15rem; color: var(--muted); font-size: .92rem;
+  }
+  .caveat strong { color: var(--warn); }
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; min-width: 38rem; }
+  th, td { text-align: left; padding: .7rem .85rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th {
+    font-family: var(--mono); font-size: .64rem; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--muted); background: var(--surface-2); font-weight: 600; white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .pill {
+    display: inline-block; font-family: var(--mono); font-size: .63rem; letter-spacing: .1em;
+    text-transform: uppercase; padding: .2rem .5rem; border-radius: 3px; font-weight: 600; white-space: nowrap;
+  }
+  .pill.ok { background: var(--ok-bg); color: var(--ok); }
+  .pill.warn { background: var(--warn-bg); color: var(--warn); }
+  .pill.crit { background: var(--crit-bg); color: var(--crit); }
+
+  .gaps { display: flex; flex-direction: column; gap: .85rem; }
+  .gap {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1.1rem 1.25rem; display: grid; gap: .75rem;
+    grid-template-columns: 2.4rem 1fr; align-items: start;
+  }
+  .gap .sev {
+    border-radius: 4px; min-height: 2.2rem; display: flex; align-items: flex-start;
+    justify-content: center; padding-top: .3rem;
+    font-family: var(--mono); font-size: .75rem; font-weight: 600;
+  }
+  .gap.crit .sev { background: var(--crit-bg); color: var(--crit); }
+  .gap.warn .sev { background: var(--warn-bg); color: var(--warn); }
+  .gap .body { display: flex; flex-direction: column; gap: .5rem; }
+  .gap p { font-size: .92rem; color: var(--muted); }
+  .gap .fix { color: var(--fg); }
+  .gap .fix b { color: var(--accent-strong); font-weight: 700; }
+
+  ol.plan { list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: .95rem; padding: 0; margin: 0; }
+  ol.plan li {
+    counter-increment: step; display: grid; grid-template-columns: 2rem 1fr; gap: .9rem;
+    align-items: start; border-bottom: 1px solid var(--border); padding-bottom: .95rem;
+  }
+  ol.plan li:last-child { border-bottom: none; padding-bottom: 0; }
+  ol.plan li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--mono); font-weight: 600; font-size: .72rem;
+    color: var(--accent-ink); background: var(--accent); border-radius: 3px;
+    width: 2rem; height: 1.55rem; display: flex; align-items: center; justify-content: center;
+    font-variant-numeric: tabular-nums;
+  }
+  ol.plan .what { display: flex; flex-direction: column; gap: .3rem; }
+  ol.plan p { font-size: .92rem; color: var(--muted); }
+  .horizon { font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }
+
+  .split { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+  @media (min-width: 46rem) { .split { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.15rem 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+  .card p { font-size: .92rem; color: var(--muted); }
+  .card .vl { font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; }
+  .card.yes { border-color: rgba(88,199,149,.4); }
+  .card.yes .vl { color: var(--ok); }
+  .card.hard { border-color: rgba(255,133,120,.4); }
+  .card.hard .vl { color: var(--crit); }
+
+  footer { border-top: 1px solid var(--border); padding-top: 1.4rem; color: var(--muted); font-size: .86rem; display: flex; flex-direction: column; gap: .55rem; }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Assessment · 4 August 2026 · yashho.com</div>
+    <h1>Where we stand on <em>SEO</em> and <em>AEO</em></h1>
+    <p class="lede">The technical foundations are in better shape than most sites at this stage. The problem is not the plumbing — the brand has no index presence yet, and there is nothing on the site for a search engine to rank beyond the product pages themselves.</p>
+  </header>
+
+  <div class="verdict">
+    <div class="eyebrow">The short version</div>
+    <p><strong>Structured data, canonicals and the domain migration are all done properly.</strong> Three things hold us back: the sitemap declares fewer than half our pages, the old domain still owns the brand's search equity, and there is no content layer — so there is nothing to rank for anything except our own name.</p>
+  </div>
+
+  <div class="caveat">
+    <strong>Read this before acting on it.</strong> I verified what the site <em>serves</em> — headers, redirects, markup, sitemap — directly against live. I <em>cannot</em> see our actual rankings: the search tooling available to me indexes US results, our market is India, and I have no Search Console access. Everything about position is inference, not a rank report. Step 01 of the plan exists to close exactly that gap.
+  </div>
+
+  <section>
+    <h2>What I verified on the live site</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Check</th><th>Result</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Old domain migration</td><td><code>irisepro.in</code> → <code>yashho.com</code>, single 301 hop</td><td><span class="pill ok">Correct</span></td></tr>
+          <tr><td>Canonical tag</td><td><code>rel="canonical"</code> → <code>https://yashho.com</code></td><td><span class="pill ok">Correct</span></td></tr>
+          <tr><td>robots.txt</td><td>Allows all crawlers; declares Host + Sitemap. AI crawlers unblocked.</td><td><span class="pill ok">Correct</span></td></tr>
+          <tr><td>Structured data</td><td>EducationalOrganization, WebSite, Product, Service ×2, Offer ×4, <strong>FAQPage</strong>, ContactPoint, Audience, Person ×2</td><td><span class="pill ok">Strong</span></td></tr>
+          <tr><td>Sitemap coverage</td><td class="num">3 URLs declared · ~7 pages exist</td><td><span class="pill crit">Gap</span></td></tr>
+          <tr><td>Brand visibility</td><td><code>irisepro.in</code> still surfaces for brand queries; <code>yashho.com</code> does not appear</td><td><span class="pill crit">Gap</span></td></tr>
+          <tr><td>Review markup</td><td>AggregateRating <span class="mono">4.6 / 55</span> in markup, not shown on the page</td><td><span class="pill crit">Risk</span></td></tr>
+          <tr><td>Legacy redirects</td><td><code>/career-rise</code> → <code>yashho.com/#offerings</code> (a fragment)</td><td><span class="pill warn">Weak</span></td></tr>
+          <tr><td>llms.txt</td><td class="num">404 — not present</td><td><span class="pill warn">Missing</span></td></tr>
+          <tr><td>Editorial content</td><td>No articles, guides or glossary — product pages only</td><td><span class="pill crit">Gap</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The gaps, in the order they cost us</h2>
+    <div class="gaps">
+
+      <div class="gap crit"><div class="sev">01</div><div class="body">
+        <h3>The old domain still owns our search equity</h3>
+        <p>Searching our own brand and proposition returns <code>irisepro.in</code>, describing the old offering. <code>yashho.com</code> does not appear at all. The 301 is correct, so this is reprocessing lag — but lag nobody has asked Google to resolve, because the new domain has never been submitted.</p>
+        <p class="fix"><b>Fix:</b> Verify <code>yashho.com</code> in Search Console, submit the sitemap, run change-of-address from the <code>irisepro.in</code> property. Hours of work, then weeks of waiting. Nothing else here matters until this is done.</p>
+      </div></div>
+
+      <div class="gap crit"><div class="sev">02</div><div class="body">
+        <h3>The sitemap hides more than half the site</h3>
+        <p>It declares three URLs — home, <code>/godparent</code>, <code>/institutional</code>. Missing: <code>/kas/en</code>, <code>/kas/kn</code>, <code>/policies</code>. The Kannada page is the single most differentiated asset we have and no crawler is being told it exists.</p>
+        <p class="fix"><b>Fix:</b> Add them, and declare the EN/KN pair as <code>hreflang</code> alternates so they read as one page in two languages, not duplicates. Half a day.</p>
+      </div></div>
+
+      <div class="gap crit"><div class="sev">03</div><div class="body">
+        <h3>Review markup a visitor cannot see</h3>
+        <p>The page claims <span class="mono">4.6 from 55 reviews</span> in structured data, but that rating appears nowhere on the page. Google requires review markup to reflect what users can actually see. This is a documented cause of rich-result suppression and manual actions — and a manual action would undo everything else on this list.</p>
+        <p class="fix"><b>Fix:</b> Render the rating and reviews so the markup is true, or remove <code>aggregateRating</code> and <code>review</code>. Do not leave it as it is.</p>
+      </div></div>
+
+      <div class="gap crit"><div class="sev">04</div><div class="body">
+        <h3>Nothing to rank except the product</h3>
+        <p>Seven pages, all selling. Search engines rank pages against <em>questions</em>, and we have published no answers — nothing on how ability assessment works, what the 64 abilities are, what a parent should look for, how this differs from an aptitude test.</p>
+        <p class="fix"><b>Fix:</b> A genuine content layer. This is the long pole — see the sequence below.</p>
+      </div></div>
+
+      <div class="gap warn"><div class="sev">05</div><div class="body">
+        <h3>Legacy URLs redirect into a fragment</h3>
+        <p><code>/career-rise</code> resolves to <code>yashho.com/#offerings</code>. Crawlers discard the fragment, so this is a redirect to the homepage. Many-to-one redirects onto the homepage are commonly treated as soft-404s and pass little of the old page's value.</p>
+        <p class="fix"><b>Fix:</b> Point each retired URL at the closest real page, or give offerings its own addressable page.</p>
+      </div></div>
+
+      <div class="gap warn"><div class="sev">06</div><div class="body">
+        <h3>No AEO surface for answer engines</h3>
+        <p>The FAQ schema is genuinely good and is our strongest AEO asset. But there is no <code>llms.txt</code>, and more importantly, answer engines cite what multiple independent sources corroborate. We are one self-describing source with an inconsistent identity across profiles.</p>
+        <p class="fix"><b>Fix:</b> Publish <code>llms.txt</code>, finish the <code>sameAs</code> cleanup, pursue third-party corroboration.</p>
+      </div></div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Can we actually be #1&ndash;#3?</h2>
+    <p class="lede">It depends entirely on which query — and the honest answer differs sharply between the two kinds.</p>
+    <div class="split">
+      <div class="card yes">
+        <div class="vl">Yes — and it should already be true</div>
+        <h3>Our own name and vocabulary</h3>
+        <p>&ldquo;YASHHO&rdquo;, &ldquo;Success Scan&rdquo;, &ldquo;Yashodarshi&rdquo;, &ldquo;AACE64&rdquo;, &ldquo;Kannadiga-invented&rdquo;. Nobody competes for these — we invented them. We are not #1 today only because the new domain has not been indexed under them.</p>
+        <p>Gaps 01 and 02 fix it. Weeks, not months, and no new content required.</p>
+      </div>
+      <div class="card hard">
+        <div class="vl">Not without a content programme</div>
+        <h3>Category terms parents type</h3>
+        <p>&ldquo;career guidance for students&rdquo;, &ldquo;aptitude test for my child&rdquo;, &ldquo;NEET or JEE — which suits my child&rdquo;. Contested by sites with years of published material and inbound links.</p>
+        <p>Seven selling pages cannot win these at any budget. A 6&ndash;12 month programme of publishing and earning citations. No configuration change substitutes for it.</p>
+      </div>
+    </div>
+    <p>The useful ground is between them: <strong>long-tail questions with real intent and thin competition</strong> — &ldquo;how do I know which stream suits my child&rdquo;, &ldquo;what is an ability assessment&rdquo;, &ldquo;PU1 vs PU2 career readiness&rdquo; — and the entire <strong>Kannada-language equivalent set</strong>, where competition is close to nil and we hold a native asset nobody else has. Winning several hundred of those beats losing one head term, and it is the same work that makes us citable by answer engines.</p>
+  </section>
+
+  <section>
+    <h2>The sequence</h2>
+    <p class="lede">Ordered by dependency, not ambition. Each step is worth less if the one above it has not happened.</p>
+    <ol class="plan">
+      <li><div class="what"><div class="horizon">This week · hours</div>
+        <h3>Verify yashho.com in Search Console, submit the sitemap</h3>
+        <p>Also run change-of-address from the <code>irisepro.in</code> property. Until this exists we are guessing about position — this document included. The single highest-value hour available.</p></div></li>
+      <li><div class="what"><div class="horizon">This week · half a day</div>
+        <h3>Complete the sitemap and add hreflang</h3>
+        <p>Add <code>/kas/en</code>, <code>/kas/kn</code>, <code>/policies</code>. Declare the EN/KN pair as alternates so Kannada reads as a language variant, not a duplicate.</p></div></li>
+      <li><div class="what"><div class="horizon">This week · one hour</div>
+        <h3>Resolve the review markup</h3>
+        <p>Show the rating on the page, or take it out of the schema. An unverifiable claim in structured data risks a penalty costing more than the rich result earns.</p></div></li>
+      <li><div class="what"><div class="horizon">Next · a day</div>
+        <h3>Fix legacy redirects, publish llms.txt</h3>
+        <p>Retired URLs point at real pages rather than a homepage fragment. <code>llms.txt</code> gives answer engines a clean statement of what we are and which pages matter.</p></div></li>
+      <li><div class="what"><div class="horizon">Ongoing · the real work</div>
+        <h3>Publish answers, in both languages</h3>
+        <p>One substantial piece a week against a real parent question, English and Kannada, each carrying FAQ schema — the mechanism already built and working. This is what makes us rankable on long-tail search and quotable by answer engines; those are now largely the same job.</p></div></li>
+      <li><div class="what"><div class="horizon">Ongoing · outside the codebase</div>
+        <h3>Earn third-party corroboration</h3>
+        <p>Answer engines repeat what several independent sources agree on. Press, an accurate Wikidata entry, institutional partner pages, directory listings. A site describing itself is one source; corroboration is what turns us into a cited answer.</p></div></li>
+    </ol>
+  </section>
+
+  <footer>
+    <p><strong>What I could not check.</strong> Keyword positions on google.co.in; Search Console impressions, clicks and coverage; backlink profile; Core Web Vitals field data. All need account access — step 01 unlocks them.</p>
+    <p>Every &ldquo;verified&rdquo; row was measured against the live site on 4 August 2026: redirects followed, headers read, markup parsed. Inferences about ranking are labelled as inferences.</p>
+  </footer>
+
+</div>
