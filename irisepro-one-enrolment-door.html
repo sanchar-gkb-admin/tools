@@ -110,8 +110,8 @@
   <h1>One door.<br><em>Enrolling creates the person.</em></h1>
   <p class="lede">
     Three admin paths could create an enrolment; only the batch door is used —
-    <b>145 batches against one CSV import, ever</b>. And one path could create a person attached to
-    nothing, which is where <b>57 purposeless student records</b> came from. This is what changes on
+    <b>145 batches against one CSV import, ever</b>. And one of them lets you create a person attached to
+    nothing at all, which is a state nobody wants and the system has no use for. This is what changes on
     screen.
   </p>
 </header>
@@ -172,7 +172,8 @@ a person who is enrolled in nothing — no access, no purpose, invisible.</p>
       here — they were made in the batch door.
     </p>
     <p class="note">
-      <b>57 people</b> sit in production created through this screen and enrolled in nothing.
+      <b>A person enrolled in nothing has no access and no purpose.</b> The screen lets you make one by
+      filling half the form, and nothing warns you.
     </p>
   </div>
 </div>
@@ -297,9 +298,9 @@ typing, or by uploading a roster</b>. Existing people are reused; new ones are c
       imports; those columns are simply ignored.
     </p>
     <p class="note">
-      <b>Email is the identity.</b> Someone already in the system is reused, never duplicated and never
-      overwritten — a roster giving a shortened name doesn't rename a real student. Enforced by a unique
-      index, so two uploads at once can't create the same person twice.
+      <b>An email is an ACCOUNT, not a person.</b> One parent, one address, several children — so a
+      student is recognised by email <em>and</em> child name. Where that is still ambiguous the system
+      stops and asks rather than guessing which child you meant.
     </p>
   </div>
 </div>
@@ -345,7 +346,8 @@ typing, or by uploading a roster</b>. Existing people are reused; new ones are c
     </p>
     <p class="note">
       <b>"Already with us" is the point.</b> Ananya enrolling in a second programme gets a second
-      enrolment against the same person, which is exactly what 57 students in production already have.
+      enrolment against the same person — which is what 57 students in production already have, and what
+      the roster must never turn into a second record.
     </p>
   </div>
 </div>
