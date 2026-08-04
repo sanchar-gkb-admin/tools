@@ -1,0 +1,183 @@
+<title>Design exercise — UI/UX Designer at YASHHO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a1626;
+    --surface: #10223c;
+    --surface-2: #16294a;
+    --border: #1d3354;
+    --fg: #eaf1f9;
+    --muted: #8ea3bd;
+    --accent: #f5821f;
+    --accent-strong: #ff9b3d;
+    --accent-ink: #1a0e02;
+    --blue: #3f93e0;
+    --font: "Montserrat", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: var(--font); font-weight: 400; line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 3.5rem 1.25rem 6rem; }
+
+  .eyebrow {
+    font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent-strong); font-weight: 700;
+  }
+  h1 {
+    font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+    font-size: clamp(1.9rem, 5vw, 2.7rem); line-height: 1.06;
+    margin: .7rem 0 0; text-wrap: balance;
+  }
+  .sub { color: var(--muted); font-size: 1.05rem; margin-top: 1rem; }
+  h2 {
+    font-weight: 800; text-transform: uppercase; letter-spacing: .01em;
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem); line-height: 1.2;
+    margin: 3rem 0 .9rem; color: var(--fg);
+  }
+  h2:first-of-type { margin-top: 2.5rem; }
+  h3 { font-weight: 700; font-size: 1rem; margin: 1.6rem 0 .4rem; }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; }
+  li { margin-bottom: .5rem; }
+  strong { font-weight: 700; color: #fff; }
+  a { color: var(--accent-strong); }
+
+  header { border-bottom: 3px solid var(--accent); padding-bottom: 1.8rem; }
+
+  .callout {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent); border-radius: 5px;
+    padding: 1.15rem 1.3rem; margin: 1.6rem 0;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .panel {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 5px; padding: 1.15rem 1.3rem; margin: 1.6rem 0;
+  }
+  .panel p:last-child { margin-bottom: 0; }
+
+  .deliverable {
+    display: grid; grid-template-columns: 2rem 1fr; gap: .9rem;
+    align-items: start; margin: 1.4rem 0;
+  }
+  .deliverable .n {
+    background: var(--accent); color: var(--accent-ink); font-weight: 800;
+    width: 2rem; height: 2rem; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center; font-size: .95rem;
+  }
+  .deliverable .b p:last-child { margin-bottom: 0; }
+  .deliverable h3 { margin-top: .1rem; }
+
+  .time { font-size: 1.35rem; font-weight: 800; color: var(--accent-strong); }
+
+  footer {
+    margin-top: 3.5rem; border-top: 1px solid var(--border);
+    padding-top: 1.6rem; color: var(--muted); font-size: .92rem;
+  }
+  footer a { font-weight: 600; }
+  .placeholder {
+    color: var(--blue); font-weight: 600;
+    border-bottom: 1px dashed var(--blue);
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">UI/UX Designer · YASHHO</div>
+    <h1>A short design exercise</h1>
+    <p class="sub">Thanks for getting this far. This is the last step before we talk properly.</p>
+  </header>
+
+  <p>We want to see how you work, not how much you can polish. So this is deliberately small, and we'd
+  like you to keep it that way.</p>
+
+  <h2>The setup</h2>
+  <p>At YASHHO, ideas usually arrive as a conversation. Our founder KMM will explain something he's
+  thinking about, at length, and somewhere in there is the thing we need to build. Turning that into
+  something a developer can work from is most of the job.</p>
+  <p>So that's what we're asking you to do.</p>
+
+  <h2>What we're sending you</h2>
+  <p><strong>A voice note from KMM</strong>, sent separately with this brief. It's about three minutes
+  and we haven't edited it. It rambles a bit, which is honest, because that's how it actually reaches
+  us.</p>
+  <p><strong>A link to the page it relates to</strong>, also sent with the brief.</p>
+
+  <h2>What we'd like back</h2>
+
+  <div class="deliverable">
+    <div class="n">1</div>
+    <div class="b">
+      <h3>A short storyboard</h3>
+      <p>A sequence of screens showing what someone would see and do, on a phone and on a desktop.
+      Rough is completely fine. Hand-drawn on paper and photographed is completely fine. We care about
+      the thinking, not the finish.</p>
+    </div>
+  </div>
+
+  <div class="deliverable">
+    <div class="n">2</div>
+    <div class="b">
+      <h3>A Loom walking us through it</h3>
+      <p>Five to eight minutes, screen shared, covering:</p>
+      <ul>
+        <li>What you took KMM to mean, especially anywhere you had to interpret</li>
+        <li>What you decided, and what you were unsure about</li>
+        <li>Anything you'd have asked him if you could</li>
+        <li>Anything you deliberately left out, and why</li>
+        <li>How you used AI, if you did. We use it heavily and we're genuinely interested in how you
+        work with it</li>
+      </ul>
+      <p><strong>One take is fine. Please don't re-record it.</strong> We're not assessing polish, and
+      a slightly messy first take tells us more than a rehearsed one.</p>
+    </div>
+  </div>
+
+  <h2>Time</h2>
+  <p class="time">Ninety minutes for the work, plus however long the Loom takes you.</p>
+  <p>We know an exercise like this can quietly eat a weekend, and we don't want that. If ninety minutes
+  isn't enough to finish, send what you have and say what you'd have done next. That's a perfectly good
+  answer and we'll read it as one.</p>
+  <p>If you find yourself polishing, stop. Rough work with clear thinking beats a beautiful screen you
+  can't explain.</p>
+
+  <h2>What we do with it</h2>
+  <div class="callout">
+    <p><strong>Nothing.</strong> This is for the conversation and nothing else. We won't use your work
+    on the site, and we'll delete it once we've made a decision.</p>
+    <p>Whatever we decide, we'll give you our honest read on what you sent. That seems the least we can
+    do for your time.</p>
+  </div>
+
+  <h2>What happens next</h2>
+  <p>We watch the Loom first. If it's a fit, we'll set up a proper conversation with the core team, in
+  person if you're in Bengaluru or over Zoom if not. That's a conversation, not a presentation, and you
+  won't need to prepare anything new for it.</p>
+
+  <h2>Two things worth saying</h2>
+  <div class="panel">
+    <p><strong>You can ask us questions before you start.</strong> Please do. Just reply to the email.
+    Knowing which questions you ask is useful to us, and it's how the job actually works.</p>
+  </div>
+  <div class="panel">
+    <p><strong>We're not looking for a redesign of our site.</strong> If your answer to the voice note
+    is one striking screen with nothing around it, that's not what we need. We need someone who can
+    show a whole journey, including the boring states, and who can explain their choices.</p>
+  </div>
+
+  <footer>
+    <p>Please send it to <a href="mailto:sutirtha@irisepro.in">sutirtha@irisepro.in</a>, copying
+    <a href="mailto:kmm@irisepro.in">kmm@irisepro.in</a> and
+    <a href="mailto:goutam@irisepro.in">goutam@irisepro.in</a>, by
+    <span class="placeholder">[date]</span>.</p>
+    <p>Looking forward to seeing what you make of it.</p>
+  </footer>
+
+</div>
