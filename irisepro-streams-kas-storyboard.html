@@ -1,0 +1,299 @@
+<title>Streams &amp; KAS — screen flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1626; --surface:#10223c; --surface2:#16294a; --border:#1d3354;
+    --fg:#eaf1f9; --muted:#8ea3bd; --accent:#f5821f; --accentStrong:#ff9b3d;
+    --accentBright:#ffb259; --accentInk:#1a0e02; --leaf:#3f93e0;
+    --bad:#ff8578; --good:#58c795;
+    --f:"Montserrat",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f);line-height:1.6}
+  .wrap{max-width:76rem;margin:0 auto;padding:3rem 1.25rem 6rem}
+  .eyebrow{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accentStrong);font-weight:700}
+  h1{font-weight:900;text-transform:uppercase;font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:1.05;margin:.6rem 0 0}
+  .lede{color:var(--muted);max-width:56ch;margin-top:.9rem}
+  h2{font-weight:800;text-transform:uppercase;font-size:1.05rem;letter-spacing:.04em;margin:3.2rem 0 .3rem;
+     display:flex;align-items:center;gap:.7rem}
+  h2 .num{background:var(--accent);color:var(--accentInk);border-radius:4px;padding:.1rem .5rem;font-size:.9rem}
+  .cap{color:var(--muted);font-size:.93rem;margin:.1rem 0 1.3rem;max-width:62ch}
+  header{border-bottom:3px solid var(--accent);padding-bottom:1.7rem}
+
+  .row{display:flex;gap:1.6rem;flex-wrap:wrap;align-items:flex-start}
+  .lbl{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.5rem}
+
+  /* device frames */
+  .phone{width:278px;border:9px solid #0d1a2c;border-radius:30px;background:var(--bg);
+         box-shadow:0 14px 40px rgba(0,0,0,.5);overflow:hidden;position:relative;flex:0 0 auto}
+  .phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:16px;
+         background:#0d1a2c;border-radius:0 0 11px 11px;z-index:5}
+  .pv{height:452px;overflow:hidden;position:relative}
+  .browser{flex:1 1 30rem;min-width:20rem;border:1px solid var(--border);border-radius:9px;overflow:hidden;
+           background:var(--bg);box-shadow:0 14px 40px rgba(0,0,0,.45)}
+  .chrome{background:var(--surface2);padding:.5rem .7rem;display:flex;align-items:center;gap:.45rem;border-bottom:1px solid var(--border)}
+  .dot{width:9px;height:9px;border-radius:50%;background:#33456b}
+  .url{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:20px;
+       font-size:.66rem;color:var(--muted);padding:.2rem .7rem;margin-left:.4rem}
+
+  /* site chrome inside frames */
+  .nav{display:flex;align-items:center;gap:.42rem;padding:.6rem .7rem;background:rgba(10,22,38,.96);
+       border-bottom:1px solid var(--border);flex-wrap:wrap}
+  .logo{font-weight:900;font-size:.72rem;letter-spacing:.02em;margin-right:.3rem}
+  .logo span{color:var(--accentStrong)}
+  .nl{font-size:.58rem;color:var(--muted);white-space:nowrap;padding:.16rem .34rem;border-radius:3px}
+  .nl.on{color:var(--fg);font-weight:700}
+  .nl.kas{color:var(--accentInk);background:var(--accent);font-weight:800}
+  .nl.ghost{opacity:.35;text-decoration:line-through}
+  .burger{margin-left:auto;color:var(--muted);font-size:.8rem}
+
+  .sec{padding:.75rem .7rem}
+  .sech{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+  .secp{font-size:.56rem;color:var(--muted);margin-top:.18rem;line-height:1.45}
+
+  /* stream cards */
+  .cards{display:flex;gap:.42rem;margin-top:.55rem;overflow:hidden}
+  .card{flex:0 0 auto;width:104px;background:var(--surface);border:1px solid var(--border);
+        border-radius:7px;padding:.45rem .5rem}
+  .card.wide{width:126px}
+  .card .t{font-size:.53rem;font-weight:800;line-height:1.25}
+  .card .b{margin-top:.32rem;height:3px;border-radius:2px;background:var(--surface2)}
+  .card .b i{display:block;height:100%;border-radius:2px;background:var(--accent)}
+  .card .m{font-size:.45rem;color:var(--muted);margin-top:.26rem}
+  .card.kas{border-color:var(--accent);background:rgba(245,130,31,.11)}
+  .card.kas .t{color:var(--accentBright)}
+  .card .go{font-size:.45rem;color:var(--accentStrong);font-weight:800;margin-top:.3rem}
+  .card.dead .go{color:#5b6b85}
+  .swipe{text-align:center;font-size:.44rem;letter-spacing:.2em;color:var(--muted);margin-top:.36rem;text-transform:uppercase}
+
+  .cta{display:inline-block;background:var(--accent);color:var(--accentInk);font-weight:800;
+       font-size:.55rem;padding:.34rem .7rem;border-radius:20px;margin-top:.5rem}
+  .cta.ghost{background:transparent;color:var(--fg);border:1px solid var(--border)}
+
+  /* annotations */
+  .note{border-left:3px solid var(--accent);background:var(--surface);border:1px solid var(--border);
+        border-left-width:3px;border-radius:5px;padding:.8rem 1rem;margin:1rem 0;font-size:.9rem;flex:1 1 16rem}
+  .note.bad{border-left-color:var(--bad)}
+  .note.good{border-left-color:var(--good)}
+  .note b{color:#fff}
+  .tag{display:inline-block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;
+       padding:.14rem .42rem;border-radius:3px}
+  .tag.bad{background:#2d1512;color:var(--bad)}
+  .tag.good{background:#0e2a1f;color:var(--good)}
+
+  .arrow{align-self:center;color:var(--accent);font-size:1.6rem;font-weight:900;flex:0 0 auto}
+  footer{margin-top:4rem;border-top:1px solid var(--border);padding-top:1.4rem;color:var(--muted);font-size:.88rem}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Screen flow · 5 August 2026</div>
+  <h1>Streams &amp; where KAS goes</h1>
+  <p class="lede">Streams now sits first on the homepage. This shows what happens when someone gets
+  there, why it currently goes nowhere, and the three options for KAS in the top nav.</p>
+</header>
+
+<!-- 01 -->
+<h2><span class="num">01</span> Today — Streams is a dead end</h2>
+<p class="cap">Seven cards. KAS is last. Nothing is clickable.</p>
+<div class="row">
+  <div>
+    <div class="lbl">Mobile · today</div>
+    <div class="phone"><div class="notch"></div><div class="pv">
+      <div class="nav">
+        <div class="logo">YASH<span>HO</span></div>
+        <div class="nl">Career Paths</div><div class="nl">Streams</div><div class="nl">Plans</div>
+        <div class="burger">☰</div>
+      </div>
+      <div class="sec">
+        <div class="sech">Where you start</div>
+        <div class="secp">Swipe through each stream’s All-India ASLI Champion Benchmark™ — and see
+        where your child stands.</div>
+        <div class="cards">
+          <div class="card dead"><div class="t">Class 5–7 · Marks Booster</div>
+            <div class="b"><i style="width:62%"></i></div><div class="m">All-India benchmark</div>
+            <div class="go">not clickable</div></div>
+          <div class="card dead"><div class="t">Class 8–10 · Board Booster</div>
+            <div class="b"><i style="width:71%"></i></div><div class="m">All-India benchmark</div>
+            <div class="go">not clickable</div></div>
+          <div class="card dead"><div class="t">NEET Booster</div>
+            <div class="b"><i style="width:55%"></i></div><div class="m">All-India benchmark</div>
+            <div class="go">not clickable</div></div>
+        </div>
+        <div class="swipe">‹ swipe · KAS is card 7 of 7 ›</div>
+        <div class="cta">Start Your Success Scan</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="note bad">
+    <span class="tag bad">Measured on live</span>
+    <p style="margin:.6rem 0 0"><b>7 stream cards. 1 link in the whole section</b> — and that one link
+    is the generic Scan button at the bottom.</p>
+    <p>So a parent who swipes to KAS, reads the benchmark and wants to act has <b>nowhere to go</b>.
+    Meanwhile <code>/kas/en</code> and <code>/kas/kn</code> exist and are indexed.</p>
+    <p style="margin-bottom:0">KAS is <b>card 7 of 7</b>. Six swipes to reach the stream we are
+    betting on.</p>
+  </div>
+</div>
+
+<!-- 02 -->
+<h2><span class="num">02</span> Proposed — KAS first, every card a door</h2>
+<p class="cap">Same section, same copy. Two changes: order, and each card links somewhere.</p>
+<div class="row">
+  <div>
+    <div class="lbl">Mobile · proposed</div>
+    <div class="phone"><div class="notch"></div><div class="pv">
+      <div class="nav">
+        <div class="logo">YASH<span>HO</span></div>
+        <div class="nl on">Streams</div><div class="nl kas">KAS</div><div class="nl">Career Paths</div>
+        <div class="burger">☰</div>
+      </div>
+      <div class="sec">
+        <div class="sech">Where you start</div>
+        <div class="secp">Swipe through each stream’s All-India ASLI Champion Benchmark™ — and see
+        where your child stands.</div>
+        <div class="cards">
+          <div class="card kas wide"><div class="t">KAS Booster</div>
+            <div class="b"><i style="width:78%"></i></div><div class="m">All-India benchmark</div>
+            <div class="go">See the KAS scan →</div></div>
+          <div class="card"><div class="t">Class 5–7 · Marks Booster</div>
+            <div class="b"><i style="width:62%"></i></div><div class="m">All-India benchmark</div>
+            <div class="go">Start this scan →</div></div>
+          <div class="card"><div class="t">NEET Booster</div>
+            <div class="b"><i style="width:55%"></i></div><div class="m">All-India benchmark</div>
+            <div class="go">Start this scan →</div></div>
+        </div>
+        <div class="swipe">‹ swipe ›</div>
+        <div class="cta">Start Your Success Scan</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="note good">
+    <span class="tag good">Two changes only</span>
+    <p style="margin:.6rem 0 0"><b>1. KAS moves to first.</b> The bet leads instead of being six
+    swipes away.</p>
+    <p><b>2. Every card becomes a link.</b> KAS goes to its campaign page; the other six go to the
+    enrolment form with that stream already selected.</p>
+    <p style="margin-bottom:0">Copy is untouched. This is placement and linking, not rewriting.</p>
+  </div>
+</div>
+
+<!-- 03 -->
+<h2><span class="num">03</span> Tap KAS → the campaign page</h2>
+<p class="cap">The one stream with a real destination, in two languages, finally linked from the section meant to feed it.</p>
+<div class="row">
+  <div>
+    <div class="lbl">Mobile · /kas/en</div>
+    <div class="phone"><div class="notch"></div><div class="pv" style="background:#2a0a0c">
+      <div class="nav" style="background:rgba(42,10,12,.96);border-color:#491a1b">
+        <div class="logo">YASH<span style="color:#f8d066">HO</span></div>
+        <div class="nl" style="color:#f8d066">EN</div><div class="nl">ಕನ್ನಡ</div>
+      </div>
+      <div class="sec">
+        <div class="sech" style="color:#f8d066">World’s First. KAS-Officer Invented.</div>
+        <div class="secp" style="color:#e8d9b0">2026 Prelims Scientific Success Booster. Designed for
+        you. As per you.</div>
+        <div class="cta" style="background:#e2a52d;color:#2a0a0c">Register free</div>
+        <div class="cta ghost" style="border-color:#5c3a1e;color:#f8d066">Am I ready?</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="arrow">→</div>
+  <div>
+    <div class="lbl">Other streams · enrolment, pre-selected</div>
+    <div class="phone"><div class="notch"></div><div class="pv">
+      <div class="nav"><div class="logo">YASH<span>HO</span></div><div class="nl">Enrol</div></div>
+      <div class="sec">
+        <div class="sech">Start your scan</div>
+        <div class="secp">Which programme?</div>
+        <div style="margin-top:.4rem;background:var(--surface);border:1px solid var(--accent);
+             border-radius:6px;padding:.36rem .5rem;font-size:.55rem;font-weight:700">
+          NEET Booster <span style="float:right;color:var(--accentStrong)">✓ pre-selected</span></div>
+        <div style="margin-top:.34rem;background:var(--surface);border:1px solid var(--border);
+             border-radius:6px;padding:.36rem .5rem;font-size:.55rem;color:var(--muted)">Your name</div>
+        <div style="margin-top:.34rem;background:var(--surface);border:1px solid var(--border);
+             border-radius:6px;padding:.36rem .5rem;font-size:.55rem;color:var(--muted)">Mobile number</div>
+        <div class="cta">Continue</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="note">
+    <p style="margin:0 0 .6rem"><b>Why the stream card should pre-select.</b> The enrolment form already
+    accepts <code>?stream=</code>, and the KAS campaign links use it today. Carrying the stream from the
+    card means the parent never picks it twice.</p>
+    <p style="margin-bottom:0">It also removes the one thing that was silently losing leads yesterday:
+    a programme field left blank.</p>
+  </div>
+</div>
+
+<!-- 04 -->
+<h2><span class="num">04</span> Where KAS goes in the top nav — three options</h2>
+<p class="cap">The nav still lists Career Paths before Streams, which now contradicts the page. Worth fixing in the same pass.</p>
+
+<div style="display:flex;flex-direction:column;gap:1.1rem">
+
+  <div class="browser">
+    <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="url">yashho.com</span></div>
+    <div class="nav">
+      <div class="logo">YASH<span>HO</span></div>
+      <div class="nl">Career Paths</div><div class="nl">Streams</div><div class="nl">Plans</div>
+      <div class="nl">Success Doctor</div><div class="nl kas">KAS</div><div class="nl">Godparent</div>
+      <div class="nl">Institutions</div>
+      <div style="margin-left:auto;font-size:.55rem;color:var(--bad);font-weight:800">A · TODAY — 7 items, KAS 5th</div>
+    </div>
+  </div>
+
+  <div class="browser">
+    <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="url">yashho.com</span></div>
+    <div class="nav">
+      <div class="logo">YASH<span>HO</span></div>
+      <div class="nl on">Streams</div><div class="nl kas">KAS</div><div class="nl">Career Paths</div>
+      <div class="nl">Plans</div><div class="nl">Godparent</div><div class="nl">Institutions</div>
+      <div class="nl ghost">Success Doctor</div>
+      <div style="margin-left:auto;font-size:.55rem;color:var(--good);font-weight:800">B · RECOMMENDED — KAS beside Streams</div>
+    </div>
+  </div>
+
+  <div class="browser">
+    <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="url">yashho.com</span></div>
+    <div class="nav">
+      <div class="logo">YASH<span>HO</span></div>
+      <div class="nl kas">KAS</div><div class="nl on">Streams</div><div class="nl">Career Paths</div>
+      <div class="nl">Plans</div><div class="nl">Institutions</div>
+      <div style="margin-left:auto;font-size:.55rem;color:var(--muted);font-weight:800">C · KAS FIRST — most aggressive</div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top:1.2rem">
+  <div class="note good">
+    <span class="tag good">Recommended · B</span>
+    <p style="margin:.6rem 0 0"><b>KAS sits immediately after Streams.</b> KAS <em>is</em> a stream, so
+    adjacency reads as "here are the streams, and here is the one running now" rather than as an
+    unrelated item.</p>
+    <p style="margin-bottom:0">Nav order also matches the page order we just shipped. Success Doctor
+    moves to the footer, where it already appears.</p>
+  </div>
+  <div class="note">
+    <p style="margin:0 0 .6rem"><b>Why not C.</b> KAS first outranks the thing it belongs to, and a
+    parent whose child is in Class 8 sees a civil-services exam as the first word on the site. It also
+    dates badly — when the campaign ends, the nav is wrong.</p>
+    <p style="margin-bottom:0"><b>Why not A.</b> Seven items wrap on a phone, and KAS in fifth place
+    does not read as a bet.</p>
+  </div>
+</div>
+
+<footer>
+  <p><b>What this needs from you.</b> Confirm option B for the nav, and confirm the six non-KAS cards
+  should go to the enrolment form with the stream pre-selected rather than to /plans. Everything else
+  here is placement and linking — no copy changes.</p>
+  <p>Measured on the live site, 5 August 2026: 7 stream cards, 1 link in the section, KAS in position 7.</p>
+</footer>
+
+</div>
