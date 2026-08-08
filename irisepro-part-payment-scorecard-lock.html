@@ -1,10 +1,10 @@
-<title>Part-payment scorecard lock — storyboard</title>
+<title>Part-payment scorecard lock — storyboard v2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --orange:#F58321; --orange-strong:#F97216; --orange-soft:#fff3e8;
-    --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f3f4f6; --card:#ffffff;
+    --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --card:#ffffff;
     --green:#16a34a; --green-soft:#dcfce7; --red:#dc2626; --red-soft:#fee2e2;
     --amber:#b45309; --amber-soft:#fef3c7; --lock:#7c3aed; --lock-soft:#ede9fe;
     --cream:#fff8f0;
@@ -13,21 +13,20 @@
   body{margin:0;background:linear-gradient(180deg,#eef1f5,#e6eaf0);color:var(--ink);
     font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased;padding:40px 20px 80px}
   .wrap{max-width:1180px;margin:0 auto}
-  header.top{text-align:center;margin-bottom:34px}
+  header.top{text-align:center;margin-bottom:30px}
   .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange-strong);font-weight:800}
-  h1{font-size:34px;font-weight:900;margin:8px 0 6px;letter-spacing:-.02em}
-  .sub{color:var(--muted);font-size:15px;max-width:720px;margin:0 auto;line-height:1.5}
+  h1{font-size:33px;font-weight:900;margin:8px 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:15px;max-width:760px;margin:0 auto;line-height:1.5}
   .legend{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
   .tag{font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#fff}
   .tag.new{background:var(--orange-soft);color:var(--orange-strong);border-color:#f7c99b}
   .tag.fix{background:var(--red-soft);color:var(--red);border-color:#f6b4b4}
-
-  section.surface{margin-top:46px}
+  .tag.set{background:var(--green-soft);color:var(--green);border-color:#bbf7d0}
+  section.surface{margin-top:44px}
   .shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--line);padding-bottom:10px;margin-bottom:20px}
   .snum{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--orange-strong);font-size:14px}
   .stitle{font-size:20px;font-weight:800}
   .swhere{color:var(--muted);font-size:12.5px;margin-left:auto;font-family:'JetBrains Mono',monospace}
-
   .ba{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
   @media(max-width:900px){.ba{grid-template-columns:1fr}}
   .col .lab{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
@@ -35,8 +34,6 @@
   .col.after .lab{color:var(--orange-strong)}
   .cap{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
   .cap b{color:var(--ink)}
-
-  /* device frames */
   .browser{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(20,30,50,.08)}
   .chrome{display:flex;align-items:center;gap:8px;background:#f0f1f4;border-bottom:1px solid var(--line);padding:9px 12px}
   .dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;display:block}
@@ -45,151 +42,143 @@
   .screen{padding:16px}
   .phone{width:280px;margin:0 auto;background:#111;border-radius:34px;padding:9px;box-shadow:0 14px 34px rgba(20,30,50,.18)}
   .notch{height:20px;position:relative}.notch::after{content:"";position:absolute;left:50%;top:2px;transform:translateX(-50%);width:96px;height:16px;background:#111;border-radius:0 0 12px 12px}
-  .pv{background:var(--cream);border-radius:26px;overflow:hidden;height:520px;overflow-y:auto}
-
-  /* admin UI atoms */
+  .pv{background:var(--cream);border-radius:26px;overflow:hidden;height:534px;overflow-y:auto}
   .abar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:#fff}
   .abar .logo{font-weight:900;color:var(--orange-strong);font-size:15px}
   .abar .crumb{font-size:12px;color:var(--muted)}
   .panel{border:1px solid var(--line);border-radius:10px;padding:16px;margin:0 0 14px}
   .panel h4{margin:0 0 12px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#374151}
   label.f{display:block;font-size:12px;font-weight:600;color:#374151;margin:0 0 5px}
-  .inp{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:13px;color:var(--ink);background:#fff;font-family:inherit}
+  .inp{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:13px;color:var(--ink);background:#fff}
   .sel{position:relative}.sel::after{content:"▾";position:absolute;right:11px;top:9px;color:var(--muted);font-size:11px}
   .help{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
-  .btn{display:inline-block;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;font-size:13px;font-family:inherit;cursor:default}
+  .btn{display:inline-block;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;font-size:13px;cursor:default}
   .btn.ghost{background:#fff;color:#374151;border:1px solid var(--line)}
   .btn.sm{padding:7px 12px;font-size:12px}
   .btn.settle{background:var(--lock);color:#fff}
   .btn.dl{background:var(--orange-soft);color:var(--orange-strong);border:1px solid #f7c99b}
+  .seg{display:inline-flex;background:#f0f1f4;border-radius:9px;padding:3px;gap:3px;margin-bottom:12px}
+  .seg span{font-size:12px;font-weight:700;padding:7px 14px;border-radius:7px;color:var(--muted)}
+  .seg span.on{background:#fff;color:var(--orange-strong);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  .rowgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
   .badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px}
   .badge.paid{background:var(--green-soft);color:var(--green)}
-  .badge.unpaid{background:var(--red-soft);color:var(--red)}
   .badge.part{background:var(--amber-soft);color:var(--amber)}
   .badge.locked{background:var(--lock-soft);color:var(--lock)}
   .badge.settled{background:var(--green-soft);color:var(--green)}
   .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px}
-  .row:last-child{border-bottom:none}
-  .row .k{color:var(--muted)}
+  .row:last-child{border-bottom:none}.row .k{color:var(--muted)}
   .dead{opacity:.55;text-decoration:line-through}
   .warnpill{font-size:10.5px;color:var(--red);background:var(--red-soft);border:1px solid #f6b4b4;border-radius:6px;padding:2px 6px;margin-left:6px;font-weight:700}
   table.roster{width:100%;border-collapse:collapse;font-size:11.5px}
-  table.roster th{text-align:left;color:var(--muted);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+  table.roster th{text-align:left;color:var(--muted);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line);font-size:10px;text-transform:uppercase}
   table.roster td{padding:6px 8px;border-bottom:1px solid #f1f2f4}
-  .fund-ext{color:#374151;font-weight:700}
-  .fund-part{color:var(--amber);font-weight:800}
-  .fund-waiver{color:var(--green);font-weight:700}
+  .fund-ext{color:#374151;font-weight:700}.fund-part{color:var(--amber);font-weight:800}
   .csv{font-family:'JetBrains Mono',monospace;font-size:11px;background:#0f172a;color:#cbd5e1;border-radius:8px;padding:12px;white-space:pre;overflow-x:auto;line-height:1.7}
-  .csv .h{color:#fbbf24}.csv .n{color:#f87171}
-
-  /* student app atoms */
+  .note{font-size:11px;color:var(--muted);margin-top:9px;padding-left:10px;border-left:2px solid var(--orange);line-height:1.5}
+  /* student app */
   .sapp{padding:14px}
   .sapp .hi{font-size:13px;color:#6b5a48;font-weight:600}
   .sapp .name{font-size:19px;font-weight:900;color:#3a2b1a;margin:2px 0 12px}
   .tile{background:#fff;border-radius:16px;padding:14px;box-shadow:0 6px 16px rgba(180,120,50,.10);margin-bottom:12px}
   .tile .tt{font-size:13px;font-weight:800;color:#3a2b1a;display:flex;align-items:center;gap:7px}
-  .tile .prog{height:8px;background:#f0e6d8;border-radius:99px;margin:10px 0 6px;overflow:hidden}
-  .tile .prog i{display:block;height:100%;background:var(--orange);border-radius:99px}
-  .tile .meta{font-size:11px;color:#8a7a66}
-  .sc-tile{background:linear-gradient(135deg,#fff3e8,#ffe6cf);border:1px solid #f7c99b}
+  .prog{height:8px;background:#f0e6d8;border-radius:99px;margin:10px 0 4px;overflow:hidden}
+  .prog i{display:block;height:100%;background:var(--orange);border-radius:99px}
+  .meta{font-size:11px;color:#8a7a66}
   .sc-open{background:linear-gradient(135deg,var(--orange),var(--orange-strong));color:#fff}
   .sc-open .tt{color:#fff}
-  .sc-locked{filter:none}
-  .lockrow{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:12px;color:var(--lock);font-weight:700}
+  .sc-part{background:linear-gradient(135deg,#fff3e8,#ffe6cf);border:1px solid #f7c99b}
   .scbtn{display:block;text-align:center;margin-top:10px;background:#fff;color:var(--orange-strong);border-radius:10px;padding:9px;font-weight:800;font-size:12.5px}
-  .scbtn.dim{background:#efe7f7;color:var(--lock)}
+  .scbtn.cta{background:var(--lock);color:#fff}
   .scfull{background:#fff;border-radius:14px;padding:14px;box-shadow:0 6px 16px rgba(180,120,50,.10)}
-  .ring{width:78px;height:78px;border-radius:50%;margin:6px auto;background:conic-gradient(var(--orange) 78%,#f0e6d8 0);display:flex;align-items:center;justify-content:center}
-  .ring b{width:58px;height:58px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;color:#3a2b1a;font-size:17px}
   .bar{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:11px}
-  .bar .bn{width:56px;color:#6b5a48;font-weight:700}
-  .bar .bt{flex:1;height:7px;background:#f0e6d8;border-radius:99px;overflow:hidden}
-  .bar .bt i{display:block;height:100%;background:var(--orange)}
-  .blur{filter:blur(5px);opacity:.65;pointer-events:none;user-select:none}
-  .lockover{background:var(--lock-soft);border:1px dashed var(--lock);border-radius:12px;padding:14px;text-align:center;margin-top:10px}
-  .lockover .ic{font-size:22px}
-  .lockover .lt{font-weight:800;color:var(--lock);font-size:13px;margin:4px 0}
+  .bar .bn{width:64px;color:#6b5a48;font-weight:700}
+  .bar .bt{flex:1;height:7px;background:#f0e6d8;border-radius:99px;overflow:hidden}.bar .bt i{display:block;height:100%;background:var(--orange)}
+  .tsk{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border:1px solid #f0e6d8;border-radius:9px;margin-bottom:6px;font-size:12px;background:#fff}
+  .tsk .sc{font-weight:900;color:var(--orange-strong)}
+  .tsk.lockd{background:#f7f3fb;border-color:#e2d5f2;color:#9b8bb5}
+  .tsk.lockd .sc{color:#b9a8d6}
+  .ctacard{background:var(--lock-soft);border:1px dashed var(--lock);border-radius:12px;padding:14px;text-align:center;margin-top:8px}
+  .ctacard .ic{font-size:22px}.ctacard .lt{font-weight:800;color:var(--lock);font-size:13px;margin:4px 0}
+  .ctacard .lp{font-size:11px;color:#6b5a48;line-height:1.5}
+  .lockover{background:var(--lock-soft);border:1px dashed var(--lock);border-radius:12px;padding:16px;text-align:center;margin-top:8px}
+  .lockover .ic{font-size:26px}.lockover .lt{font-weight:800;color:var(--lock);font-size:13px;margin:5px 0}
   .lockover .lp{font-size:11px;color:#6b5a48;line-height:1.5}
-  .note{font-size:11px;color:var(--muted);margin-top:9px;padding-left:10px;border-left:2px solid var(--orange);line-height:1.5}
-  footer{margin-top:60px;text-align:center;color:var(--muted);font-size:12px;line-height:1.7}
+  .lbrow{display:flex;align-items:center;gap:9px;padding:7px 0;font-size:12px;border-bottom:1px solid #f0e6d8}
+  .lbrow .rk{width:20px;font-weight:900;color:var(--orange-strong)}
+  .blur{filter:blur(5px);opacity:.6}
+  footer{margin-top:56px;text-align:center;color:var(--muted);font-size:12px;line-height:1.7}
 </style>
 
 <div class="wrap">
 <header class="top">
-  <div class="kicker">iRisePro · Superadmin + Student app</div>
+  <div class="kicker">iRisePro · Superadmin + Student app · v2 (settled 08-Aug)</div>
   <h1>Part-payment scorecard lock</h1>
-  <p class="sub">A ₹4999 student who has paid only part of the fee enrols, onboards, submits every task and is evaluated — but their <b>scorecard stays locked</b> until an admin marks it settled. Before / after for every surface we touch. Yashodarshi &amp; admin always see the card.</p>
+  <p class="sub"><b>₹4999 only.</b> A part-paying student enrols, onboards, submits every task and is evaluated. Their scorecard shows the <b>first 3 task scores</b> then locks the rest behind a pay-to-unlock CTA; the <b>leaderboard</b> and <b>certificate</b> stay fully locked until paid. Progress bar stays visible. An admin clicks <i>"Mark scorecard settled"</i> to unlock everything.</p>
   <div class="legend">
-    <span class="tag">Unchanged</span>
-    <span class="tag new">＋ New</span>
-    <span class="tag fix">✕ Fix (existing bug)</span>
+    <span class="tag">Unchanged</span><span class="tag new">＋ New</span><span class="tag fix">✕ Fix</span><span class="tag set">✓ Settled 08-Aug</span>
   </div>
 </header>
 
 <!-- 1 -->
 <section class="surface">
-  <div class="shead"><span class="snum">01</span><span class="stitle">Batch roster upload</span><span class="swhere">superadmin › batches › create</span></div>
-  <div class="ba">
-    <div class="col before">
-      <div class="lab">Before</div>
-      <div class="browser">
-        <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.irisepro.in/superadmin/batches/create</div></div>
+  <div class="shead"><span class="snum">01</span><span class="stitle">Enrol — single OR batch (one flow, a mode toggle)</span><span class="swhere">superadmin › batches › create</span></div>
+  <div class="ba" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="col before"><div class="lab">Before — batch only</div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">batches/create</div></div>
         <div class="screen"><div class="abar"><span class="logo">iRisePro</span><span class="crumb">Batches › New</span></div>
-          <div class="panel"><h4>Funding for this upload</h4>
-            <label class="f">Funding mode <span style="color:var(--red)">*</span></label>
+          <div class="panel"><h4>Funding (whole upload)</h4>
             <div class="sel"><div class="inp">Waiver (100% comp)</div></div>
-            <div class="help">One funding mode for the whole roster. Columns: Full Name, Email, Phone, DOB, Guardian Name, Relationship, Guardian Email.</div>
-          </div>
-          <div class="panel"><h4>Roster (.csv)</h4>
-            <div class="inp" style="color:var(--muted)">⬆ Choose file — roster.csv</div>
-            <div class="help">No template to download — you type the columns from the note above.</div>
-          </div>
-          <span class="btn">Create batch &amp; enrol</span>
-        </div></div>
-      <div class="cap">Funding is <b>one choice for the entire upload</b> (waiver | external). A mixed part/full cohort is impossible in one file. No downloadable template.</div>
+            <div class="help"><b>No single mode</b> — <code>students/create</code> is 404 (closed). Waiver | external only. No template.</div></div>
+          <div class="panel"><h4>Roster (.csv)</h4><div class="inp" style="color:var(--muted)">⬆ Choose file</div></div>
+          <span class="btn">Create &amp; enrol</span></div></div>
+      <div class="cap">CSV only. A single student = a one-row CSV or a "late joiner" add. Part-payment can't be expressed.</div>
     </div>
-    <div class="col after">
-      <div class="lab">After</div>
-      <div class="browser">
-        <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.irisepro.in/superadmin/batches/create</div></div>
+    <div class="col after"><div class="lab">After · ◉ Single <span class="tag new" style="font-size:9px">＋</span></div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">batches/create</div></div>
         <div class="screen"><div class="abar"><span class="logo">iRisePro</span><span class="crumb">Batches › New</span></div>
-          <div class="panel"><h4>Funding for this upload <span class="tag new" style="font-size:9px">＋ part_payment</span></h4>
-            <label class="f">Default funding mode <span style="color:var(--red)">*</span></label>
-            <div class="sel"><div class="inp">Part payment (₹4999 — scorecard locked)</div></div>
-            <div class="help">Default for rows that don't set their own. Now: Waiver · External · <b style="color:var(--amber)">Part payment</b>.</div>
-          </div>
-          <div class="panel"><h4>Roster (.csv) <span class="tag new" style="font-size:9px">＋ per-row funding</span></h4>
-            <div class="inp" style="color:var(--muted)">⬆ Choose file — roster.csv</div>
+          <div class="seg"><span class="on">◉ Single student</span><span>○ Upload roster</span></div>
+          <div class="panel"><h4>Student</h4>
+            <div class="rowgrid"><input class="inp" value="Vikram S" readonly><input class="inp" value="vikram@ex.com" readonly></div>
+            <div class="rowgrid"><input class="inp" value="98xxxxxx02" readonly><input class="inp" value="DOB" readonly style="color:var(--muted)"></div>
+            <input class="inp" value="Guardian name · relationship · email" readonly style="color:var(--muted);margin-bottom:8px">
+            <label class="f">Funding</label><div class="sel"><div class="inp">Part payment (₹4999)</div></div>
+            <div class="help"><b>One inline row</b> — same identity/consent/funding as the CSV.</div></div>
+          <span class="btn">Enrol student</span></div></div>
+      <div class="cap"><b>Single mode</b> = a roster of one. Type one student inline, pick funding (part_payment for ₹4999). Late-joiner "add to existing batch" uses this same row.</div>
+    </div>
+    <div class="col after"><div class="lab">After · ○ Batch <span class="tag new" style="font-size:9px">＋</span></div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">batches/create</div></div>
+        <div class="screen"><div class="abar"><span class="logo">iRisePro</span><span class="crumb">Batches › New</span></div>
+          <div class="seg"><span>○ Single student</span><span class="on">◉ Upload roster</span></div>
+          <div class="panel"><h4>Default funding</h4><div class="sel"><div class="inp">External · rows may override</div></div></div>
+          <div class="panel"><h4>Roster (.csv)</h4>
+            <div class="inp" style="color:var(--muted)">⬆ cohort-45.csv · 45 rows</div>
             <span class="btn dl sm" style="margin-top:8px">⬇ Download template</span>
-            <div class="help">A row's <b>funding</b> column overrides the default — so one file can mix full &amp; part payers.</div>
-          </div>
-          <span class="btn">Create batch &amp; enrol</span>
-        </div></div>
-      <div class="cap"><b>＋</b> Adds <b>part_payment</b> as the third funding, a <b>per-row funding column</b> (row wins, form is default), and a <b>Download template</b> button.</div>
+            <div class="help">Per-row <b>funding</b> column overrides the default → one file mixes full &amp; part payers.</div></div>
+          <span class="btn">Create &amp; enrol 45</span></div></div>
+      <div class="cap"><b>Batch mode</b> = CSV upload + template, per-row funding. Same screen, same <code>EnrolmentService</code> — the toggle just swaps the input; both post identically.</div>
     </div>
   </div>
+  <div class="note" style="max-width:900px;margin:14px auto 0;border-left-color:var(--lock)"><b>Why a toggle, not a revived single-create door:</b> single-student create was deliberately closed (404) because it bypassed the convergent identity/consent/funding path and "produced people enrolled in nothing." This does <b>not</b> reopen it — single mode is literally the roster path with one inline row, so it inherits all the batch door's correctness.</div>
 </section>
 
 <!-- 2 -->
 <section class="surface">
-  <div class="shead"><span class="snum">02</span><span class="stitle">Roster CSV template</span><span class="swhere">superadmin › batches › roster › download-template</span></div>
+  <div class="shead"><span class="snum">02</span><span class="stitle">Roster CSV template</span><span class="swhere">＋ new download route</span></div>
   <div class="ba">
     <div class="col before"><div class="lab">Before</div>
-      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">— no template route —</div></div>
-        <div class="screen"><div class="panel" style="text-align:center;color:var(--muted)"><div style="font-size:30px">🚫</div><div style="font-weight:800;margin:8px 0 4px;color:var(--ink)">No template exists</div><div class="help">Students / Yashodarshis / IGP have download-template routes. The batch roster does not — admins guess the columns from helper text.</div></div></div></div>
-      <div class="cap">Per-row funding would be <b>unusable</b> — nothing tells the uploader the column exists.</div>
-    </div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">— no template —</div></div>
+        <div class="screen"><div class="panel" style="text-align:center;color:var(--muted)"><div style="font-size:28px">🚫</div><div style="font-weight:800;color:var(--ink);margin:6px 0">No template exists</div><div class="help">Columns only in on-screen helper text.</div></div></div></div>
+      <div class="cap">Per-row funding would be unusable — nothing tells the uploader the column exists.</div></div>
     <div class="col after"><div class="lab">After <span class="tag new" style="font-size:9px">＋ New</span></div>
       <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">⬇ irisepro-batch-roster-template.csv</div></div>
-        <div class="screen"><div class="csv"><span class="h">full_name,email,phone,dob,guardian_name,relationship,guardian_email,<span style="color:#fbbf24">funding</span></span>
-Asha R,asha@ex.com,98xxxxxx01,,,,,<span style="color:#f87171">external</span>
-Vikram S,vikram@ex.com,98xxxxxx02,,,,,<span style="color:#f87171">part_payment</span>
-Meera T,meera@ex.com,98xxxxxx03,,,,,
-</div>
-        <div class="note">Blank <b>funding</b> = the form's default. <b>external</b> = paid in full (outside Razorpay). <b>part_payment</b> = scorecard locked until settled.</div>
-        </div></div>
-      <div class="cap"><b>＋</b> A downloadable CSV (mirrors the existing student/YD template pattern) with the new <b>funding</b> column documented inline.</div>
-    </div>
+        <div class="screen"><div class="csv">full_name,email,phone,dob,guardian_name,relationship,guardian_email,<span style="color:#fbbf24">funding,waiver_reason</span>
+Asha R,asha@ex.com,98..01,,,,,<span style="color:#f87171">external,</span>
+Vikram S,vikram@ex.com,98..02,,,,,<span style="color:#f87171">part_payment,</span>
+Meera T,meera@ex.com,98..03,,,,,<span style="color:#f87171">waiver,demo</span>
+</div><div class="note">Blank <b>funding</b> = form default. <b>part_payment</b> only valid for ₹4999 rows (else a row error). <b>waiver</b> needs a <b>waiver_reason</b>.</div></div></div>
+      <div class="cap"><b>＋</b> Downloadable CSV (mirrors the student/YD template pattern) documenting <b>funding</b> + <b>waiver_reason</b> inline.</div></div>
   </div>
 </section>
 
@@ -197,144 +186,147 @@ Meera T,meera@ex.com,98xxxxxx03,,,,,
 <section class="surface">
   <div class="shead"><span class="snum">03</span><span class="stitle">Enrolment panel — the unlock</span><span class="swhere">superadmin › enrollments › show</span></div>
   <div class="ba">
-    <div class="col before"><div class="lab">Before <span class="tag fix" style="font-size:9px">✕ dead control</span></div>
-      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.irisepro.in/superadmin/enrollments/812</div></div>
+    <div class="col before"><div class="lab">Before <span class="tag fix" style="font-size:9px">✕ dead "Paid"</span></div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">superadmin/enrollments/812</div></div>
         <div class="screen"><div class="abar"><span class="logo">iRisePro</span><span class="crumb">Enrolment · Vikram S</span></div>
-          <div class="panel"><h4>Payment</h4>
-            <div class="row"><span class="k">Status</span><span class="badge paid">✓ Paid</span></div>
+          <div class="panel"><h4>Payment</h4><div class="row"><span class="k">Status</span><span class="badge paid">✓ Paid</span></div>
             <label class="f" style="margin-top:12px">Update status</label>
-            <div class="sel"><div class="inp">Unpaid &nbsp;·&nbsp; <span class="dead">Paid</span> <span class="warnpill">422 — rejected</span></div></div>
-            <span class="btn" style="margin-top:12px">Update status</span>
-          </div>
-        </div></div>
-      <div class="cap"><b>✕</b> The dropdown offers <b>"Paid"</b>, but the controller validates <code>in:unpaid</code> — choosing it <b>422s</b>. A dead, misleading control (phantom-paid was removed in Task 2.7/2.9; the blade never cleaned up).</div>
-    </div>
+            <div class="sel"><div class="inp">Unpaid · <span class="dead">Paid</span> <span class="warnpill">422</span></div></div>
+            <span class="btn" style="margin-top:12px">Update</span></div></div></div>
+      <div class="cap"><b>✕</b> Dropdown offers "Paid" but the controller is <code>in:unpaid</code> → 422. Dead control.</div></div>
     <div class="col after"><div class="lab">After</div>
-      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.irisepro.in/superadmin/enrollments/812</div></div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">superadmin/enrollments/812</div></div>
         <div class="screen"><div class="abar"><span class="logo">iRisePro</span><span class="crumb">Enrolment · Vikram S</span></div>
           <div class="panel"><h4>Payment &amp; scorecard</h4>
-            <div class="row"><span class="k">Payment status</span><span class="badge paid">✓ Paid (access)</span></div>
+            <div class="row"><span class="k">Payment</span><span class="badge paid">✓ Paid (access)</span></div>
             <div class="row"><span class="k">Funding</span><span class="badge part">⬤ Part payment</span></div>
-            <div class="row"><span class="k">Scorecard</span><span class="badge locked">🔒 Locked</span></div>
-            <div style="margin-top:12px;display:flex;gap:8px">
-              <span class="btn settle sm">🔓 Mark scorecard settled</span>
-              <span class="btn ghost sm">Revoke → unpaid</span>
-            </div>
-            <div class="help" style="margin-top:8px">“Mark settled” unlocks the student's scorecard. It <b>does not</b> touch payment status — an admin can never set “paid”.</div>
-          </div>
-        </div></div>
-      <div class="cap"><b>✕ fixed:</b> dead "Paid" option gone → read-only badge. <b>＋</b> funding + lock shown; a superadmin-only <b>Mark scorecard settled</b> button (only when part_payment &amp; unsettled) sets <code>scorecard_settled_at</code>, never <code>payment_status</code>.</div>
-    </div>
+            <div class="row"><span class="k">Scorecard</span><span class="badge locked">🔒 Locked (3/21 shown)</span></div>
+            <div style="margin-top:12px;display:flex;gap:8px"><span class="btn settle sm">🔓 Mark scorecard settled</span><span class="btn ghost sm">Revoke → unpaid</span></div>
+            <div class="help" style="margin-top:8px">Settle unlocks scorecard + leaderboard + certificate. It never touches payment status.</div></div></div></div>
+      <div class="cap"><b>✕ fixed:</b> dead option gone. <b>＋</b> funding + lock shown; superadmin-only <b>Mark scorecard settled</b> sets <code>scorecard_settled_at</code>, unlocking all three deliverables.</div></div>
   </div>
 </section>
 
 <!-- 4 -->
 <section class="surface">
-  <div class="shead"><span class="snum">04</span><span class="stitle">Student panel — read-only overview</span><span class="swhere">superadmin › students › show</span></div>
+  <div class="shead"><span class="snum">04</span><span class="stitle">Student dashboard — progress stays, scorecard teases</span><span class="swhere">student app · /mobile/dashboard</span></div>
   <div class="ba">
-    <div class="col before"><div class="lab">Before</div>
-      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.irisepro.in/superadmin/students/507</div></div>
-        <div class="screen"><div class="abar"><span class="logo">iRisePro</span><span class="crumb">Student · Vikram S</span></div>
-          <div class="panel"><h4>Enrolments</h4>
-            <table class="roster"><tr><th>Challenge</th><th>Payment</th></tr>
-            <tr><td>Ultimate 64 (₹4999)</td><td><span class="badge paid">Paid</span></td></tr></table>
-            <div class="help">No funding or scorecard-lock visibility here.</div>
-          </div>
-        </div></div>
-      <div class="cap">Shows payment status only — no way to see a scorecard is locked or why.</div>
-    </div>
-    <div class="col after"><div class="lab">After <span class="tag new" style="font-size:9px">＋ read-only</span></div>
-      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.irisepro.in/superadmin/students/507</div></div>
-        <div class="screen"><div class="abar"><span class="logo">iRisePro</span><span class="crumb">Student · Vikram S</span></div>
-          <div class="panel"><h4>Enrolments</h4>
-            <table class="roster"><tr><th>Challenge</th><th>Funding</th><th>Scorecard</th><th></th></tr>
-            <tr><td>Ultimate 64 (₹4999)</td><td><span class="fund-part">part_payment</span></td><td><span class="badge locked">🔒 Locked</span></td><td><span style="color:var(--orange-strong);font-weight:700;font-size:11px">Open →</span></td></tr>
-            <tr><td>Speaking 7 (₹999)</td><td><span class="fund-ext">external</span></td><td><span class="badge settled">✓ Visible</span></td><td><span style="color:var(--orange-strong);font-weight:700;font-size:11px">Open →</span></td></tr>
-            </table>
-            <div class="help">Read-only. The <b>action</b> lives on the enrolment (Open →), never duplicated here.</div>
-          </div>
-        </div></div>
-      <div class="cap"><b>＋</b> Per-enrolment funding + lock state, each linking to its enrolment panel. Overview here; the mutating button stays on <b>one</b> surface (03).</div>
-    </div>
+    <div class="col before"><div class="lab">Part-paid (locked)</div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="sapp">
+        <div class="hi">Namaste 🙏</div><div class="name">Vikram</div>
+        <div class="tile"><div class="tt">📚 Challenge progress <span class="tag set" style="font-size:8px;margin-left:auto">visible</span></div>
+          <div style="font-size:12px;color:#6b5a48;margin-top:6px">You are on the <b style="color:var(--orange-strong)">21st Task</b> of the 21 Task Journey</div>
+          <div class="prog"><i style="width:100%"></i></div><div class="meta">21 of 21 completed · 100%</div></div>
+        <div class="tile sc-part"><div class="tt">🏆 Scorecard</div>
+          <div class="meta" style="margin-top:4px">Preview of your first 3 tasks is ready.</div>
+          <div class="scbtn">View preview →</div></div>
+        <div class="tile"><div class="tt">🏅 Leaderboard</div><div class="lbrow" style="border:none;color:var(--lock);font-weight:700">🔒 Unlocks on full payment</div></div>
+      </div></div></div>
+      <div class="cap"><b>Progress bar stays visible</b> (completion, not scores — nothing to hide). Scorecard = a preview; leaderboard locked.</div></div>
+    <div class="col after"><div class="lab">Settled (unlocked)</div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="sapp">
+        <div class="hi">Namaste 🙏</div><div class="name">Vikram</div>
+        <div class="tile"><div class="tt">📚 Challenge progress</div><div class="prog"><i style="width:100%"></i></div><div class="meta">21 of 21 completed · 100%</div></div>
+        <div class="tile sc-open"><div class="tt">🏆 Scorecard ready</div><div style="font-size:11px;opacity:.92;margin-top:4px">Your full ability profile is unlocked.</div><div class="scbtn">View scorecard →</div></div>
+        <div class="tile"><div class="tt">🏅 Leaderboard</div><div class="lbrow" style="border:none"><span class="rk">4</span> You · 82.0</div></div>
+      </div></div></div>
+      <div class="cap">After settle: scorecard full, leaderboard open — one flag, no other change.</div></div>
   </div>
 </section>
 
 <!-- 5 -->
 <section class="surface">
-  <div class="shead"><span class="snum">05</span><span class="stitle">Student dashboard — scorecard tile</span><span class="swhere">student app · /mobile/dashboard</span></div>
+  <div class="shead"><span class="snum">05</span><span class="stitle">Scorecard — first 3 tasks shown, rest locked + CTA</span><span class="swhere">6 student surfaces · truncated server-side</span></div>
   <div class="ba">
-    <div class="col before"><div class="lab">Locked (part paid)</div>
+    <div class="col before"><div class="lab">Locked (part-paid)</div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="sapp">
-        <div class="hi">Namaste 🙏</div><div class="name">Vikram</div>
-        <div class="tile"><div class="tt">📚 Your tasks</div><div class="prog"><i style="width:100%"></i></div><div class="meta" style="color:#8a7a66;font-size:11px;color:#8a7a66">21 of 21 completed</div></div>
-        <div class="tile sc-tile"><div class="tt">🏆 Scorecard</div>
-          <div class="lockrow">🔒 Locked until payment complete</div>
-          <div class="scbtn dim">View unavailable</div>
+        <div class="name" style="margin-bottom:6px">Scorecard</div>
+        <div class="scfull">
+          <div class="tsk"><span>Task 1 · Public Speaking</span><span class="sc">86</span></div>
+          <div class="tsk"><span>Task 2 · Debate</span><span class="sc">79</span></div>
+          <div class="tsk"><span>Task 3 · Storytelling</span><span class="sc">91</span></div>
+          <div class="tsk lockd"><span>Task 4 🔒</span><span class="sc">•• </span></div>
+          <div class="tsk lockd"><span>Task 5 🔒</span><span class="sc">•• </span></div>
+          <div class="ctacard"><div class="ic">🔒</div><div class="lt">18 more tasks locked</div><div class="lp">You've seen how it works. Unlock your full scorecard, leaderboard &amp; certificate by completing your payment.</div><div class="scbtn cta" style="margin-top:8px">Unlock — complete payment</div></div>
+        </div>
+        <div class="note">Tasks 4–21 are <b>never sent</b> to a locked client (truncated server-side) — the lock can't be inspect-element'd away. Same truncation on the JSON/PDF + performance API.</div>
+      </div></div></div>
+      <div class="cap"><b>Teaser, not blackout.</b> First 3 task scores in full, rest masked behind the pay CTA — "just enough to show how it works."</div></div>
+    <div class="col after"><div class="lab">Settled (full)</div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="sapp">
+        <div class="name" style="margin-bottom:6px">Scorecard</div>
+        <div class="scfull">
+          <div style="text-align:center;font-size:11px;color:#8a7a66;margin-bottom:8px">Overall · Ultimate 64</div>
+          <div class="bar"><span class="bn">Aptitude</span><span class="bt"><i style="width:80%"></i></span></div>
+          <div class="bar"><span class="bn">Attitude</span><span class="bt"><i style="width:74%"></i></span></div>
+          <div class="bar"><span class="bn">Communication</span><span class="bt"><i style="width:88%"></i></span></div>
+          <div class="bar"><span class="bn">Execution</span><span class="bt"><i style="width:70%"></i></span></div>
+          <div class="tsk"><span>All 21 tasks</span><span class="sc">✓</span></div>
+          <div class="scbtn" style="background:var(--orange);color:#fff;margin-top:10px">⬇ Download PDF</div>
         </div>
       </div></div></div>
-      <div class="cap">Tasks done (100%) — the work is untouched. The scorecard tile shows a <b>lock</b>, not the card. No score leaks.</div>
-    </div>
-    <div class="col after"><div class="lab">Unlocked (settled)</div>
-      <div class="phone"><div class="notch"></div><div class="pv"><div class="sapp">
-        <div class="hi">Namaste 🙏</div><div class="name">Vikram</div>
-        <div class="tile"><div class="tt">📚 Your tasks</div><div class="prog"><i style="width:100%"></i></div><div class="meta" style="font-size:11px;color:#8a7a66">21 of 21 completed</div></div>
-        <div class="tile sc-open"><div class="tt">🏆 Scorecard ready</div>
-          <div style="font-size:11px;opacity:.92;margin-top:4px">Your full ability profile is ready to view.</div>
-          <div class="scbtn">View scorecard →</div>
-        </div>
-      </div></div></div>
-      <div class="cap">After an admin marks it settled, the same tile flips to the normal <b>ready</b> state — one flag, no other change.</div>
-    </div>
+      <div class="cap">Settle lifts the truncation — all 21 tasks + the full pillar profile + PDF, no regeneration.</div></div>
   </div>
 </section>
 
 <!-- 6 -->
 <section class="surface">
-  <div class="shead"><span class="snum">06</span><span class="stitle">Scorecard view / PDF / email</span><span class="swhere">6 student surfaces · one shared lock resolver</span></div>
+  <div class="shead"><span class="snum">06</span><span class="stitle">Leaderboard &amp; certificate — fully locked</span><span class="swhere">settled 08-Aug · both gated till paid</span></div>
   <div class="ba">
-    <div class="col before"><div class="lab">Locked state</div>
+    <div class="col before"><div class="lab">Leaderboard (locked)</div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="sapp">
-        <div class="name" style="margin-bottom:6px">Scorecard</div>
+        <div class="name" style="margin-bottom:6px">Leaderboard</div>
         <div class="scfull">
-          <div class="blur"><div class="ring"><b>82</b></div>
-            <div class="bar"><span class="bn">Aptitude</span><span class="bt"><i style="width:80%"></i></span></div>
-            <div class="bar"><span class="bn">Attitude</span><span class="bt"><i style="width:74%"></i></span></div>
-            <div class="bar"><span class="bn">Comm.</span><span class="bt"><i style="width:88%"></i></span></div>
+          <div class="blur">
+            <div class="lbrow"><span class="rk">1</span> Ananya · 94</div>
+            <div class="lbrow"><span class="rk">2</span> Rohan · 90</div>
+            <div class="lbrow"><span class="rk">3</span> Kiran · 88</div>
           </div>
-          <div class="lockover"><div class="ic">🔒</div><div class="lt">Scorecard locked</div><div class="lp">It's ready and will unlock the moment your payment is complete. Please contact us to settle the balance.</div></div>
+          <div class="lockover"><div class="ic">🔒</div><div class="lt">Leaderboard locked</div><div class="lp">Leaderboard access will be available once the remaining payment is completed.</div></div>
         </div>
-        <div class="note">JSON &amp; PDF endpoints return a <b>locked</b> response too — a leaked signed URL can't bypass it (server re-checks, like the consent gate).</div>
       </div></div></div>
-      <div class="cap">Card is generated &amp; blurred behind a lock panel. Applies to in-app view, <b>PDF download, signed link and email view</b> — all six, via one resolver.</div>
-    </div>
-    <div class="col after"><div class="lab">Settled state</div>
+      <div class="cap">No ranking data sent — <code>LeaderboardApiController</code> returns the locked state for a part-payment student.</div></div>
+    <div class="col after"><div class="lab">Certificate (locked)</div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="sapp">
-        <div class="name" style="margin-bottom:6px">Scorecard</div>
-        <div class="scfull">
-          <div class="ring"><b>82</b></div>
-          <div style="text-align:center;font-size:11px;color:#8a7a66;margin-bottom:8px">Overall · Ultimate 64</div>
-          <div class="bar"><span class="bn">Aptitude</span><span class="bt"><i style="width:80%"></i></span></div>
-          <div class="bar"><span class="bn">Attitude</span><span class="bt"><i style="width:74%"></i></span></div>
-          <div class="bar"><span class="bn">Comm.</span><span class="bt"><i style="width:88%"></i></span></div>
-          <div class="bar"><span class="bn">Execution</span><span class="bt"><i style="width:70%"></i></span></div>
-          <div class="scbtn" style="background:var(--orange);color:#fff;margin-top:12px">⬇ Download PDF</div>
+        <div class="name" style="margin-bottom:6px">Certificate</div>
+        <div class="scfull" style="text-align:center">
+          <div class="blur" style="padding:14px 0"><div style="font-size:30px">🏅</div><div style="font-weight:900;color:#3a2b1a;margin-top:6px">Certificate of Completion</div><div style="font-size:11px;color:#8a7a66">Vikram S · Ultimate 64</div></div>
+          <div class="lockover"><div class="ic">🔒</div><div class="lt">Certificate locked</div><div class="lp">Your certificate unlocks together with your scorecard once payment is complete.</div><div class="scbtn cta" style="margin-top:8px">Complete payment to unlock</div></div>
         </div>
       </div></div></div>
-      <div class="cap">Once settled the exact same card renders in full, PDF enabled — no regeneration, just the lock lifted.</div>
-    </div>
+      <div class="cap"><code>CertificateIssuer::eligible</code> AND-s in the lock — the certificate (the crown deliverable) can't be printed/downloaded until settled.</div></div>
   </div>
 </section>
 
-<!-- staff note -->
+<!-- 7 -->
 <section class="surface">
-  <div class="shead"><span class="snum">✓</span><span class="stitle">Unchanged: Yashodarshi &amp; admin always see the card</span><span class="swhere">yashodarshi/mentee/{unit}/scorecard · superadmin cohort</span></div>
-  <div class="panel" style="background:var(--green-soft);border-color:#bbf7d0">
-    <div style="font-size:13px;color:#166534;line-height:1.6"><b>The lock is student-facing only.</b> The mentor needs the scorecard to evaluate; the admin needs it to operate. Those routes never call the lock resolver — <b>zero change</b> to their views. One resolver, six student call-sites, staff exempt.</div>
+  <div class="shead"><span class="snum">07</span><span class="stitle">Cohort scorecard — per-student tasks submitted</span><span class="swhere">superadmin cohort report · Sutirtha request</span></div>
+  <div class="ba">
+    <div class="col before"><div class="lab">Before</div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">superadmin/reports/cohort-scoreboard</div></div>
+        <div class="screen"><div class="panel"><h4>Cohort · Ultimate 64</h4>
+          <table class="roster"><tr><th>Student</th><th>Overall</th></tr>
+          <tr><td>Asha R</td><td>84</td></tr><tr><td>Vikram S</td><td>82</td></tr></table>
+          <div class="help">To see how many tasks each student submitted, an admin opens each profile.</div></div></div></div>
+      <div class="cap">No submission count — institutional "how many tasks done?" needs profile-by-profile digging.</div></div>
+    <div class="col after"><div class="lab">After <span class="tag new" style="font-size:9px">＋ column</span></div>
+      <div class="browser"><div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">superadmin/reports/cohort-scoreboard</div></div>
+        <div class="screen"><div class="panel"><h4>Cohort · Ultimate 64</h4>
+          <table class="roster"><tr><th>Student</th><th>Tasks submitted</th><th>Overall</th></tr>
+          <tr><td>Asha R</td><td><b style="color:var(--orange-strong)">21/21</b></td><td>84</td></tr>
+          <tr><td>Vikram S</td><td><b style="color:var(--amber)">15/21</b></td><td>82</td></tr></table>
+          <div class="help">Submission count right in the summary — institutional reporting in one glance.</div></div></div></div>
+      <div class="cap"><b>＋</b> A <b>tasks-submitted</b> column (e.g. 15/21) in the cohort summary — read-only, additive; no profile drilling for institutional reports.</div></div>
   </div>
+</section>
+
+<section class="surface">
+  <div class="shead"><span class="snum">✓</span><span class="stitle">Unchanged: Yashodarshi &amp; admin always see the full card</span><span class="swhere">staff surfaces exempt</span></div>
+  <div class="panel" style="background:var(--green-soft);border-color:#bbf7d0"><div style="font-size:13px;color:#166534;line-height:1.6"><b>Staff are never truncated or locked.</b> The mentor needs the full scorecard to evaluate; the admin needs it to operate. Their routes never call the lock/teaser resolver. One reader (<code>ScorecardDelivery</code>), student surfaces gated, staff exempt.</div></div>
 </section>
 
 <footer>
-  iRisePro · part-payment scorecard lock · 08-Aug-2026 · spec: <code>docs/superpowers/specs/2026-08-08-part-payment-scorecard-lock-design.md</code><br>
-  <b>Lock = orthogonal flag</b> (<code>funding_source='part_payment' AND scorecard_settled_at IS NULL</code>) — <code>payment_status</code> stays sacred; the no-admin-paid invariant is never touched.
+  iRisePro · part-payment scorecard lock v2 · 08-Aug-2026 · spec: <code>docs/superpowers/specs/2026-08-08-part-payment-scorecard-lock-design.md</code><br>
+  <b>₹4999 only · first-3-task teaser + CTA · leaderboard &amp; certificate locked · progress bar visible · single + batch enrol.</b> Lock = <code>funding_source='part_payment' AND scorecard_settled_at IS NULL</code>, orthogonal to <code>payment_status</code>.
 </footer>
 </div>
