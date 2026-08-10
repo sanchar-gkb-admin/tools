@@ -1,0 +1,1106 @@
+<title>YASHHO Onboarding — Current vs Revised, per Stream</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  /* LIVE student-app tokens — resources/views/frontendapp/onboarding/index.blade.php */
+  --primary:#FF8A3D; --primary-dark:#E67E35; --primary-light:#FFB380;
+  --secondary:#FFF1E6; --cream:#F1E6D9; --page:#FFF6EE;
+  --ink:#2a2622; --muted:#7a7168; --red:#E5544B; --green:#4CAF50; --blue:#2196F3;
+  /* page chrome (doc shell, deliberately darker so the light app mockups pop) */
+  --doc:#12100e; --doc2:#1c1916; --doc3:#2a2521; --docline:#39322c;
+  --docink:#f2ece5; --docmuted:#a2968a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--doc);color:var(--docink);font-family:Montserrat,system-ui,sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px 120px}
+
+/* ── masthead ─────────────────────────────────────────────── */
+.mast{padding:64px 0 40px;border-bottom:1px solid var(--docline);margin-bottom:56px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--primary)}
+h1{font-size:clamp(30px,5vw,50px);font-weight:900;letter-spacing:-.02em;line-height:1.06;margin:14px 0 0}
+.sub{color:var(--docmuted);max-width:70ch;margin-top:16px;font-size:16px}
+.meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--doc3);border:1px solid var(--docline);border-radius:999px;padding:5px 12px;color:var(--docmuted)}
+.tag.hot{background:rgba(255,138,61,.14);border-color:rgba(255,138,61,.4);color:var(--primary-light)}
+
+/* ── sections ─────────────────────────────────────────────── */
+section{margin:0 0 76px}
+h2{font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--primary);
+  margin:0 0 8px;display:flex;align-items:center;gap:12px}
+h2 .n{background:var(--primary);color:#1a1512;width:26px;height:26px;border-radius:8px;
+  display:grid;place-items:center;font-size:12px;font-weight:900;letter-spacing:0}
+h3{font-size:26px;font-weight:800;letter-spacing:-.01em;margin:0 0 10px;color:var(--docink)}
+.lede{color:var(--docmuted);max-width:78ch;margin:0 0 30px}
+.hr{height:1px;background:var(--docline);margin:56px 0}
+
+/* ── flow strip ───────────────────────────────────────────── */
+.flow{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:6px 2px 18px}
+.fstep{flex:0 0 auto;min-width:150px;background:var(--doc2);border:1px solid var(--docline);
+  border-radius:14px;padding:14px 16px;position:relative}
+.fstep .fn{font-size:10px;font-weight:900;color:var(--primary);letter-spacing:.14em}
+.fstep .ft{font-size:13.5px;font-weight:700;margin-top:4px;line-height:1.35}
+.fstep .fd{font-size:11.5px;color:var(--docmuted);margin-top:3px;line-height:1.45}
+.farrow{flex:0 0 auto;display:grid;place-items:center;color:var(--docline);padding:0 9px;font-size:15px}
+.fstep.new{border-color:rgba(255,138,61,.5);background:rgba(255,138,61,.07)}
+.fstep.new .ft{color:var(--primary-light)}
+
+/* ── device frames ────────────────────────────────────────── */
+.phone{width:274px;border-radius:34px;background:#0a0908;padding:9px;
+  box-shadow:0 22px 50px rgba(0,0,0,.55);flex:0 0 auto;position:relative}
+.phone::before{content:"";position:absolute;top:15px;left:50%;transform:translateX(-50%);
+  width:74px;height:5px;background:#2b2724;border-radius:99px;z-index:5}
+.pv{background:var(--page);border-radius:26px;height:558px;overflow:hidden;position:relative;
+  color:var(--ink);font-size:12px;display:flex;flex-direction:column}
+.pv-scroll{padding:26px 17px 16px;flex:1;overflow:hidden;display:flex;flex-direction:column}
+
+.browser{border-radius:12px;background:#0a0908;padding:0;overflow:hidden;
+  box-shadow:0 22px 50px rgba(0,0,0,.55);border:1px solid #241f1b}
+.bbar{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#161310;border-bottom:1px solid #241f1b}
+.bdot{width:9px;height:9px;border-radius:99px;background:#3a332d}
+.burl{flex:1;background:#221d19;border-radius:99px;padding:4px 12px;font-size:10.5px;color:#8b8078;
+  margin-left:6px;font-weight:500}
+.bview{background:var(--page);color:var(--ink);padding:26px 30px 30px;min-height:300px;font-size:12.5px}
+
+/* ── app UI atoms (mirror the real Blade) ─────────────────── */
+.eyb{font-size:8.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--primary-dark)}
+.h1a{font-size:17px;font-weight:800;margin:3px 0 0;letter-spacing:-.01em;line-height:1.2}
+.suba{font-size:10.5px;color:#8a8178;margin-top:4px;font-weight:500;line-height:1.45}
+.prog{display:flex;gap:5px;margin:0 0 16px}
+.prog i{height:5px;border-radius:99px;flex:1;background:var(--cream);display:block}
+.prog i.on{background:var(--primary)}
+.lab{font-size:10px;font-weight:800;color:#4d4741;margin:0 0 4px;display:block}
+.lab .hint{font-weight:500;color:#a89e94;font-size:9px}
+.field{background:#fff;border:1px solid var(--cream);border-radius:11px;padding:9px 11px;
+  font-size:11.5px;color:var(--ink);font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.field.ph{color:#b3aaa1;font-weight:500}
+.field.bad{border-color:var(--red);background:#fff6f5}
+.field i.fa-chevron-down{font-size:8.5px;color:#b3aaa1}
+.fgroup{margin-bottom:11px}
+.seg{display:flex;border:1px solid var(--cream);border-radius:11px;overflow:hidden;background:#fff}
+.seg span{flex:1;text-align:center;padding:9px 0;font-size:11px;font-weight:700;color:#8a8178}
+.seg span.on{background:var(--primary);color:#fff}
+.btn{background:linear-gradient(90deg,var(--primary),#FF6B57);color:#fff;border-radius:11px;
+  padding:11px 0;text-align:center;font-size:12px;font-weight:800;margin-top:auto;
+  box-shadow:0 2px 5px rgba(255,138,61,.32);display:flex;align-items:center;justify-content:center;gap:6px}
+.btn.ghost{background:#fff;border:2px solid var(--primary);color:var(--primary);box-shadow:none}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:10.5px;font-weight:600;
+  line-height:1.45;margin-bottom:10px;color:#4d4741}
+.chk b{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--primary);flex:0 0 auto;margin-top:1px;
+  display:grid;place-items:center;color:#fff;font-size:8px}
+.chk b.on{background:var(--primary)}
+.card{background:#fff;border:1px solid var(--cream);border-radius:13px;padding:11px}
+.note{background:var(--secondary);border:1px solid var(--primary-light);border-radius:13px;padding:11px 12px}
+.err{color:var(--red);font-size:10px;font-weight:700;margin-top:7px;display:flex;gap:5px;align-items:center}
+
+/* the PLAN BANNER — the new component */
+.plan{background:linear-gradient(135deg,#FFF3E9,#FFFCF8);border:1px solid var(--primary-light);
+  border-radius:14px;padding:11px 12px;margin-bottom:14px;position:relative;overflow:hidden}
+.plan::after{content:"";position:absolute;right:-16px;top:-16px;width:62px;height:62px;
+  border-radius:99px;background:rgba(255,138,61,.13)}
+.plan .pe{font-size:8px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--primary-dark)}
+.plan .pn{font-size:13px;font-weight:900;margin-top:2px;letter-spacing:-.01em;line-height:1.2}
+.plan .pm{font-size:9.5px;color:#8a8178;font-weight:600;margin-top:3px}
+.plan .pp{font-size:9.5px;color:#4d4741;font-weight:700;margin-top:5px;padding-top:5px;
+  border-top:1px dashed var(--cream);display:flex;justify-content:space-between}
+
+/* ── compare rows ─────────────────────────────────────────── */
+.grp{border:1px solid var(--docline);border-radius:20px;background:var(--doc2);
+  padding:26px 26px 30px;margin-bottom:26px}
+.grphead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:6px}
+.grphead .fam{font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;
+  background:var(--primary);color:#1a1512;padding:4px 11px;border-radius:7px}
+.grphead .fam.grey{background:var(--doc3);color:var(--docmuted);border:1px solid var(--docline)}
+.grphead .streams{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.grphead .who{font-size:12.5px;color:var(--docmuted);font-weight:600}
+.grpnote{color:var(--docmuted);font-size:13.5px;max-width:82ch;margin:8px 0 24px}
+.pair{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+.col{flex:0 0 auto;max-width:274px}
+.coltag{font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:9px;display:flex;align-items:center;gap:7px}
+.coltag.now{color:#c98b7a}
+.coltag.next{color:var(--primary)}
+.coltag .pip{width:7px;height:7px;border-radius:99px;background:currentColor}
+.cap{font-size:12px;color:var(--docmuted);margin-top:11px;line-height:1.5;max-width:274px}
+.cap b{color:var(--docink);font-weight:700}
+.arrowcol{flex:0 0 auto;align-self:center;color:var(--primary);font-size:22px;padding-top:40px}
+.delta{flex:1 1 260px;min-width:250px;background:var(--doc3);border:1px solid var(--docline);
+  border-radius:14px;padding:16px 18px;align-self:stretch}
+.delta h4{margin:0 0 10px;font-size:10.5px;font-weight:900;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--docmuted)}
+.delta ul{margin:0;padding-left:0;list-style:none}
+.delta li{font-size:12.5px;line-height:1.5;padding:6px 0 6px 20px;position:relative;border-bottom:1px dashed var(--docline)}
+.delta li:last-child{border-bottom:0}
+.delta li::before{position:absolute;left:0;top:6px;font-family:"Font Awesome 6 Free";font-weight:900;font-size:9.5px}
+.delta li.add::before{content:"\f067";color:var(--green)}
+.delta li.cut::before{content:"\f068";color:var(--red)}
+.delta li.chg::before{content:"\f061";color:var(--primary)}
+.delta li code{background:#0f0d0b;border:1px solid var(--docline);border-radius:4px;padding:1px 5px;
+  font-size:11px;color:var(--primary-light)}
+
+/* ── tables ───────────────────────────────────────────────── */
+.tblwrap{overflow-x:auto;border:1px solid var(--docline);border-radius:14px;background:var(--doc2)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th{background:var(--doc3);text-align:left;padding:12px 15px;font-size:10px;font-weight:900;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--docmuted);border-bottom:1px solid var(--docline);white-space:nowrap}
+td{padding:11px 15px;border-bottom:1px solid var(--docline);vertical-align:top;color:var(--docink)}
+tr:last-child td{border-bottom:0}
+td.k{font-weight:700;white-space:nowrap}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+  background:var(--doc3);border-radius:4px;padding:1px 6px;color:var(--primary-light)}
+.no{color:#d98878;font-weight:700}
+.yes{color:#7fc98a;font-weight:700}
+.dash{color:#5d554e}
+
+/* callout */
+.call{border-left:3px solid var(--primary);background:rgba(255,138,61,.07);
+  border-radius:0 14px 14px 0;padding:16px 20px;margin:26px 0}
+.call.warn{border-left-color:var(--red);background:rgba(229,84,75,.08)}
+.call .ct{font-size:10.5px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--primary);margin-bottom:6px}
+.call.warn .ct{color:#e8887e}
+.call p{margin:0;font-size:13.5px;color:var(--docink);max-width:88ch}
+.call p + p{margin-top:9px}
+
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;align-items:start}
+.foot{border-top:1px solid var(--docline);margin-top:72px;padding-top:26px;
+  color:var(--docmuted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:10px 26px}
+@media(max-width:720px){.wrap{padding:0 16px 80px}.arrowcol{transform:rotate(90deg);padding:0}}
+</style>
+
+<div class="wrap">
+
+<div class="mast">
+  <div class="eyebrow">YASHHO · app.irisepro.in · storyboard</div>
+  <h1>Onboarding, per stream —<br>what it is, what it becomes.</h1>
+  <p class="sub">Today every paying learner walks through <b>one</b> onboarding screen. A 32-year-old KAS
+  aspirant is handed a numeric keypad and asked for their <em>class</em>. This is the current flow, the
+  revised flow, and the exact change per stream group.</p>
+  <div class="meta">
+    <span class="tag hot">7 streams → 5 onboarding families</span>
+    <span class="tag">Mobile-first + desktop</span>
+    <span class="tag">Live theme · Montserrat / #FF8A3D</span>
+    <span class="tag">10 Aug 2026</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════ 01 · THE FLOW ══════════════════════════ -->
+<section>
+  <h2><span class="n">01</span> The journey, end to end</h2>
+  <h3>Where the context is lost</h3>
+  <p class="lede">The storefront hands off a buyer who knows exactly what they bought. Two screens later
+  the app has forgotten. Orange = changes in this storyboard.</p>
+
+  <div class="flow">
+    <div class="fstep"><div class="fn">01</div><div class="ft">Enrol form</div>
+      <div class="fd">Name · Stream · Email · Mobile</div></div>
+    <div class="farrow"><i class="fa-solid fa-arrow-right"></i></div>
+    <div class="fstep"><div class="fn">02</div><div class="ft">Razorpay</div>
+      <div class="fd">Payment → webhook provisions</div></div>
+    <div class="farrow"><i class="fa-solid fa-arrow-right"></i></div>
+    <div class="fstep"><div class="fn">03</div><div class="ft">Success screen</div>
+      <div class="fd">Names the product. Audience-aware.</div></div>
+    <div class="farrow"><i class="fa-solid fa-arrow-right"></i></div>
+    <div class="fstep new"><div class="fn">04</div><div class="ft">Login → Step 1 · You</div>
+      <div class="fd">+ plan banner · per-family fields</div></div>
+    <div class="farrow"><i class="fa-solid fa-arrow-right"></i></div>
+    <div class="fstep"><div class="fn">05</div><div class="ft">Step 2 · Consent</div>
+      <div class="fd">Forks on age (DOB). Unchanged.</div></div>
+    <div class="farrow"><i class="fa-solid fa-arrow-right"></i></div>
+    <div class="fstep"><div class="fn">06</div><div class="ft">Step 3 · Guide</div>
+      <div class="fd">By tier. Read-to-end gate.</div></div>
+    <div class="farrow"><i class="fa-solid fa-arrow-right"></i></div>
+    <div class="fstep"><div class="fn">07</div><div class="ft">Step 4 · Pace</div>
+      <div class="fd">By tier. 8-day / 25-day.</div></div>
+    <div class="farrow"><i class="fa-solid fa-arrow-right"></i></div>
+    <div class="fstep new"><div class="fn">08</div><div class="ft">Dashboard</div>
+      <div class="fd">+ plan banner pinned</div></div>
+  </div>
+
+  <div class="call warn">
+    <div class="ct">The irony worth fixing first</div>
+    <p>The onboarding welcome banner that names the programme renders only when
+    <code>funding_source ∈ {waiver, external, part_payment}</code>. A Razorpay buyer carries
+    <code>funding_source = 'razorpay'</code>.</p>
+    <p><b>The fee-waived demo student is told what programme they're in. The person who just paid ₹4,999
+    is not.</b> Their screen says only "Tell us about you."</p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════════════════ 02 · THE MAP ══════════════════════════ -->
+<section>
+  <h2><span class="n">02</span> 7 streams → 5 families</h2>
+  <h3>One shape per family, declared as data</h3>
+  <p class="lede">Today <code>ONBOARDING_FAMILY</code> maps only the three <code>acharya_*</code> keys, so
+  every other stream silently falls back to <code>'student'</code> — the school shape, class field and all.
+  The revision gives each group its own declared shape.</p>
+
+  <div class="tblwrap">
+  <table>
+    <tr>
+      <th>Family</th><th>Streams</th><th>Step-1 fields</th><th>Board</th>
+      <th>Voice</th><th>Card tag</th><th>Consent</th>
+    </tr>
+    <tr>
+      <td class="k"><code>school</code></td>
+      <td>marks_booster<br>board_booster</td>
+      <td>DOB · <b>Class</b> (5–10) · Language</td>
+      <td class="yes">Yes</td><td>guardian</td><td>Class 8</td>
+      <td>age (DOB)</td>
+    </tr>
+    <tr>
+      <td class="k"><code>exam</code></td>
+      <td>neet<br>jee</td>
+      <td>DOB · <b>Class</b> (11 / 12 / Dropper) · Language</td>
+      <td class="yes">Yes</td><td>self</td><td>Class 12</td>
+      <td>age (DOB)</td>
+    </tr>
+    <tr>
+      <td class="k"><code>aspirant</code></td>
+      <td>ias<br>kas</td>
+      <td>DOB · <b>Current stage</b> · Language</td>
+      <td class="no">No</td><td>self</td><td>Stage · Full-time aspirant</td>
+      <td>age (DOB)</td>
+    </tr>
+    <tr>
+      <td class="k"><code>transition</code></td>
+      <td>career_readiness</td>
+      <td>DOB · <b>Current stage</b> · Language</td>
+      <td class="no">No</td><td>self</td><td>Stage · Undergraduate</td>
+      <td>age (DOB)</td>
+    </tr>
+    <tr>
+      <td class="k"><code>educator</code></td>
+      <td>acharya_foundation<br>acharya_middle<br>acharya_senior</td>
+      <td>DOB · Language</td>
+      <td class="no">No</td><td>self</td><td class="dash">— none —</td>
+      <td>age (DOB)</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="call">
+    <div class="ct">The rule that removes four disagreeing lists</div>
+    <p><b>Stream sets the SHAPE. DOB sets the LAW.</b> Which fields appear, whether Board is asked, the copy
+    register and the card's tag label are all per-family data. Minor status — consent basis, guardian OTP,
+    "prepared for the family of" — is <em>always</em> server-recomputed age from DOB.</p>
+    <p>That deletes <code>SCHOOL_STREAMS</code> (declared twice), <code>ADULT_STREAMS</code> and the
+    storefront's <code>GUARDIAN_STREAMS</code> as independent authorities.</p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════════════════ 03 · PER-GROUP ══════════════════════════ -->
+<section>
+  <h2><span class="n">03</span> Step 1 · You — current vs revised</h2>
+  <h3>The same screen today. Five screens tomorrow.</h3>
+  <p class="lede">Every mockup below is Step 1 of the real onboarding, in the live app theme.
+  Left = what renders today. Right = what should render.</p>
+
+  <!-- ── ASPIRANT — the headline ─────────────────────────── -->
+  <div class="grp">
+    <div class="grphead">
+      <span class="fam">aspirant</span>
+      <span class="streams">IAS · KAS</span>
+      <span class="who">Adults. Civil-services candidates enrolling themselves.</span>
+    </div>
+    <p class="grpnote">The headline defect. <code>ias</code>/<code>kas</code> are absent from
+    <code>ONBOARDING_FAMILY</code>, so they inherit the school shape: a required
+    <b>Class / grade</b> field, free text, <code>inputmode="numeric"</code>, placeholder <b>"e.g. 9"</b>.
+    The client hard-stops with <em>"Please enter your class."</em></p>
+
+    <div class="pair">
+      <div class="col">
+        <div class="coltag now"><span class="pip"></span>Current</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:16px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">12 / 03 / 1994 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Class / grade</span>
+              <div class="field bad ph">e.g. 9</div>
+              <div style="font-size:9px;color:var(--red);font-weight:700;margin-top:4px">
+                <i class="fa-solid fa-keyboard"></i> numeric keypad · free text · required</div>
+            </div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="err"><i class="fa-solid fa-circle-exclamation"></i> Please enter your class.</div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">No plan banner. No idea what they bought. <b>Blocked until they invent a class.</b></p>
+      </div>
+
+      <div class="arrowcol"><i class="fa-solid fa-arrow-right"></i></div>
+
+      <div class="col">
+        <div class="coltag next"><span class="pip"></span>Revised</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="plan">
+            <div class="pe">Your programme</div>
+            <div class="pn">ASLI64 KAS Master Scan</div>
+            <div class="pm">KAS · 64 abilities · 21 tasks</div>
+            <div class="pp"><span>Paid ₹5,898.82</span><span>Enrolled 9 Aug</span></div>
+          </div>
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">Two quick details before your first task.</div>
+          <div style="margin-top:14px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">12 / 03 / 1994 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Current stage</span>
+              <div class="field">Full-time aspirant <i class="fa-solid fa-chevron-down"></i></div>
+              <div style="font-size:9px;color:#a89e94;font-weight:600;margin-top:4px;line-height:1.5">
+                Graduate, preparing · Working professional ·<br>Full-time aspirant · Repeat attempt</div>
+            </div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">Curated dropdown, stream-scoped. <b>No Board, no class, no keypad.</b></p>
+      </div>
+
+      <div class="delta">
+        <h4>What changes</h4>
+        <ul>
+          <li class="add">New family <code>aspirant</code> in <code>ONBOARDING_FAMILY</code></li>
+          <li class="cut">Class / grade — removed entirely</li>
+          <li class="add"><code>Current stage</code> select, 4 options, family-declared</li>
+          <li class="add">Plan banner from <code>displayName()</code></li>
+          <li class="chg">Card cover tag <code>Class 9</code> → <code>Stage · Full-time aspirant</code></li>
+          <li class="chg">Board already hidden — now by <code>shows_board</code>, not a second list</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCHOOL ─────────────────────────────────────────── -->
+  <div class="grp">
+    <div class="grphead">
+      <span class="fam">school</span>
+      <span class="streams">Marks Booster · Board Booster</span>
+      <span class="who">Class 5–10. A guardian enrols a child.</span>
+    </div>
+    <p class="grpnote">The one group the current screen was actually designed for. The field is still free
+    text though — which is why <code>ScorecardMetaBuilder::cleanClass()</code> exists to strip a stray
+    leading <em>"Class "</em> before the card renders <em>"Class Class 6"</em>.</p>
+
+    <div class="pair">
+      <div class="col">
+        <div class="coltag now"><span class="pip"></span>Current</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:16px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">04 / 07 / 2014 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Class / grade</span>
+              <div class="field bad">Class 6</div>
+              <div style="font-size:9px;color:var(--red);font-weight:700;margin-top:4px">
+                <i class="fa-solid fa-triangle-exclamation"></i> "6" · "Class 6" · "VI" all accepted</div>
+            </div>
+            <div class="fgroup"><span class="lab">Board <span class="hint">· school streams</span></span>
+              <div class="field">CBSE <i class="fa-solid fa-chevron-down"></i></div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">Right questions, <b>wrong input type</b>. Addressed to no one in particular.</p>
+      </div>
+
+      <div class="arrowcol"><i class="fa-solid fa-arrow-right"></i></div>
+
+      <div class="col">
+        <div class="coltag next"><span class="pip"></span>Revised</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="plan">
+            <div class="pe">Your child's programme</div>
+            <div class="pn">ASLI15 Marks Focus Scan</div>
+            <div class="pm">Marks Booster · 15 abilities · 7 tasks</div>
+            <div class="pp"><span>Paid ₹2,358.82</span><span>Enrolled 9 Aug</span></div>
+          </div>
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · Your child</div>
+          <div class="h1a">Tell us about Aarav</div>
+          <div class="suba">A quick 2-minute setup before the first task.</div>
+          <div style="margin-top:14px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">04 / 07 / 2014 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Class</span>
+              <div class="field">Class 6 <i class="fa-solid fa-chevron-down"></i></div>
+              <div style="font-size:9px;color:#a89e94;font-weight:600;margin-top:4px">Class 5 – Class 10</div></div>
+            <div class="fgroup"><span class="lab">Board</span>
+              <div class="field">CBSE <i class="fa-solid fa-chevron-down"></i></div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">Dropdown ends the dirty data. <b>Guardian voice</b> — the app finally speaks to the parent.</p>
+      </div>
+
+      <div class="delta">
+        <h4>What changes</h4>
+        <ul>
+          <li class="chg">Class free text → select, <code>5…10</code> only</li>
+          <li class="add">Guardian voice: "your child's programme", "Tell us about Aarav"</li>
+          <li class="add">Plan banner</li>
+          <li class="chg">Board gate moves to <code>shows_board</code> in the shape</li>
+          <li class="cut"><code>cleanClass()</code> laundering becomes dead code</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EXAM ────────────────────────────────────────────── -->
+  <div class="grp">
+    <div class="grphead">
+      <span class="fam">exam</span>
+      <span class="streams">NEET · JEE</span>
+      <span class="who">Mixed. Class 11–12 minors and adult droppers, enrolling themselves.</span>
+    </div>
+    <p class="grpnote">The storefront already says "your account" for these (self, not guardian); the app
+    treats them as school streams. Both are right — this group genuinely spans the line, which is exactly
+    why consent must stay on DOB while the field-set stays on the stream.</p>
+
+    <div class="pair">
+      <div class="col">
+        <div class="coltag now"><span class="pip"></span>Current</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:16px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">18 / 11 / 2007 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Class / grade</span>
+              <div class="field bad ph">e.g. 9</div>
+              <div style="font-size:9px;color:var(--red);font-weight:700;margin-top:4px">
+                <i class="fa-solid fa-circle-question"></i> A dropper types… what?</div></div>
+            <div class="fgroup"><span class="lab">Board <span class="hint">· school streams</span></span>
+              <div class="field">CBSE <i class="fa-solid fa-chevron-down"></i></div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">A repeat-year aspirant has <b>no valid answer</b> to "class".</p>
+      </div>
+
+      <div class="arrowcol"><i class="fa-solid fa-arrow-right"></i></div>
+
+      <div class="col">
+        <div class="coltag next"><span class="pip"></span>Revised</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="plan">
+            <div class="pe">Your programme</div>
+            <div class="pn">ASLI64 NEET Master Scan</div>
+            <div class="pm">NEET · 64 abilities · 21 tasks</div>
+            <div class="pp"><span>Paid ₹5,898.82</span><span>Enrolled 9 Aug</span></div>
+          </div>
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:14px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">18 / 11 / 2007 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Where are you now</span>
+              <div class="field">Repeat year (dropper) <i class="fa-solid fa-chevron-down"></i></div>
+              <div style="font-size:9px;color:#a89e94;font-weight:600;margin-top:4px">
+                Class 11 · Class 12 · Repeat year (dropper)</div></div>
+            <div class="fgroup"><span class="lab">Board</span>
+              <div class="field">CBSE <i class="fa-solid fa-chevron-down"></i></div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">"Dropper" becomes sayable. <b>17-year-old still routed to guardian consent</b> by DOB.</p>
+      </div>
+
+      <div class="delta">
+        <h4>What changes</h4>
+        <ul>
+          <li class="add">New family <code>exam</code></li>
+          <li class="chg">Class free text → 3-option select incl. <b>Repeat year</b></li>
+          <li class="chg">Label "Class / grade" → "Where are you now"</li>
+          <li class="add">Plan banner · self voice (matches storefront)</li>
+          <li class="add">Board kept — it matters for NEET/JEE</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRANSITION ──────────────────────────────────────── -->
+  <div class="grp">
+    <div class="grphead">
+      <span class="fam">transition</span>
+      <span class="streams">Career Readiness</span>
+      <span class="who">Class 11 → PG. The widest span of any stream.</span>
+    </div>
+    <p class="grpnote">Labelled <em>"Class 11 (PU1), Class 12 (PU2), UG &amp; PG"</em> — so it contains
+    16-year-olds. Today <code>ScorecardMetaBuilder::ADULT_STREAMS</code> forces
+    <code>is_minor = false</code> for this stream, which flips the card to adult framing for a learner the
+    consent layer correctly treated as a minor an hour earlier.</p>
+
+    <div class="pair">
+      <div class="col">
+        <div class="coltag now"><span class="pip"></span>Current</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:16px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">02 / 02 / 2010 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Class / grade</span>
+              <div class="field bad ph">e.g. 9</div>
+              <div style="font-size:9px;color:var(--red);font-weight:700;margin-top:4px">
+                <i class="fa-solid fa-circle-question"></i> A postgraduate types… what?</div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+          <div style="margin-top:9px;background:#fff6f5;border:1px solid #f3c9c4;border-radius:9px;padding:7px 9px;font-size:8.5px;color:#a8443c;font-weight:700;line-height:1.4">
+            Later, on the card: this 16-year-old is<br>rendered as an adult. Consent said minor.</div>
+        </div></div></div>
+        <p class="cap">One free-text box spanning <b>Class 11 to Postgraduate</b>.</p>
+      </div>
+
+      <div class="arrowcol"><i class="fa-solid fa-arrow-right"></i></div>
+
+      <div class="col">
+        <div class="coltag next"><span class="pip"></span>Revised</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="plan">
+            <div class="pe">Your programme</div>
+            <div class="pn">ASLI64 Career Master Scan</div>
+            <div class="pm">Career Readiness · 64 abilities · 21 tasks</div>
+            <div class="pp"><span>Paid ₹5,898.82</span><span>Enrolled 9 Aug</span></div>
+          </div>
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:14px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">02 / 02 / 2010 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Current stage</span>
+              <div class="field">Class 12 (PU2) <i class="fa-solid fa-chevron-down"></i></div>
+              <div style="font-size:9px;color:#a89e94;font-weight:600;margin-top:4px;line-height:1.5">
+                Class 11 (PU1) · Class 12 (PU2) · Undergraduate ·<br>Postgraduate · Job seeker · Working professional</div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+          <div style="margin-top:9px;background:#f2faf3;border:1px solid #c9e6cd;border-radius:9px;padding:7px 9px;font-size:8.5px;color:#3d7a45;font-weight:700;line-height:1.4">
+            Card now reads minor status from DOB —<br>same source as consent. They agree.</div>
+        </div></div></div>
+        <p class="cap">Six honest options. <b>Card and consent stop contradicting each other.</b></p>
+      </div>
+
+      <div class="delta">
+        <h4>What changes</h4>
+        <ul>
+          <li class="add">New family <code>transition</code></li>
+          <li class="chg">Class free text → 6-option stage select</li>
+          <li class="cut"><code>ADULT_STREAMS</code> deleted from ScorecardMetaBuilder</li>
+          <li class="chg"><code>is_minor</code> ← <code>Student::isMinor()</code> always</li>
+          <li class="chg">Board suppressed by <code>shows_board:false</code>, not a hardcoded list</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EDUCATOR ────────────────────────────────────────── -->
+  <div class="grp">
+    <div class="grphead">
+      <span class="fam grey">educator</span>
+      <span class="streams">Mission Acharya ×3</span>
+      <span class="who">Teachers. Already correct — shown for completeness.</span>
+    </div>
+    <p class="grpnote">The only family that already works. It proves the mechanism: declare a shape,
+    the class field disappears. The revision adds the plan banner and nothing else.</p>
+
+    <div class="pair">
+      <div class="col">
+        <div class="coltag now"><span class="pip"></span>Current</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="note" style="margin-bottom:13px">
+            <div class="eyb">Welcome, Meera 👋</div>
+            <div style="font-size:11.5px;font-weight:800;margin-top:2px;line-height:1.25">
+              You've been enrolled in <span style="color:var(--primary-dark)">Mission Acharya – Class 5 to 10</span></div>
+            <div class="suba">Your institution enrolled you in the Educator Challenge.</div>
+          </div>
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:14px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">21 / 09 / 1988 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">Minimal profile, and <b>a banner naming the programme</b> — because she was admin-enrolled.</p>
+      </div>
+
+      <div class="arrowcol"><i class="fa-solid fa-arrow-right"></i></div>
+
+      <div class="col">
+        <div class="coltag next"><span class="pip"></span>Revised</div>
+        <div class="phone"><div class="pv"><div class="pv-scroll">
+          <div class="plan">
+            <div class="pe">Your programme</div>
+            <div class="pn">Mission Acharya – Class 5 to 10</div>
+            <div class="pm">Educator · 64 abilities · 21 tasks</div>
+            <div class="pp"><span>Enrolled by institution</span><span>9 Aug</span></div>
+          </div>
+          <div class="prog"><i class="on"></i><i></i><i></i></div>
+          <div class="eyb">Step 1 · You</div>
+          <div class="h1a">Tell us about you</div>
+          <div class="suba">A quick 2-minute setup before your first task.</div>
+          <div style="margin-top:14px">
+            <div class="fgroup"><span class="lab">Date of birth</span>
+              <div class="field">21 / 09 / 1988 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Preferred language</span>
+              <div class="seg"><span class="on">English</span><span>ಕನ್ನಡ</span></div></div>
+          </div>
+          <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+        </div></div></div>
+        <p class="cap">Same banner component as every other family. <b>One authority, one look.</b></p>
+      </div>
+
+      <div class="delta">
+        <h4>What changes</h4>
+        <ul>
+          <li class="chg">Ad-hoc welcome note → shared plan banner</li>
+          <li class="chg">Funding line honest: "Enrolled by institution"</li>
+          <li class="add">Nothing else. This family is the template.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════════════════ 04 · CONSENT ══════════════════════════ -->
+<section>
+  <h2><span class="n">04</span> Step 2 · Consent — deliberately unchanged</h2>
+  <h3>Age decides. Never the stream.</h3>
+  <p class="lede">This fork is already correct and DPDPA-load-bearing. It is shown here so the revision is
+  explicit about what it does <em>not</em> touch: no family, no stream list and no dropdown may ever
+  influence which of these two screens a learner sees.</p>
+
+  <div class="pair">
+    <div class="col">
+      <div class="coltag now"><span class="pip" style="background:#d98878"></span>age &lt; 18 — any stream</div>
+      <div class="phone"><div class="pv"><div class="pv-scroll">
+        <div class="prog"><i class="on"></i><i class="on"></i><i></i></div>
+        <div class="eyb">Step 2 · A parent approves</div>
+        <div class="h1a">A quick parent check</div>
+        <div class="suba">Required by law before we process a child's data.</div>
+        <div style="margin-top:14px">
+          <div class="fgroup"><span class="lab">Parent / guardian name</span>
+            <div class="field ph">Parent / guardian's full name</div></div>
+          <div class="fgroup"><span class="lab">Relationship</span>
+            <div class="field">Parent <i class="fa-solid fa-chevron-down"></i></div></div>
+          <div class="fgroup"><span class="lab">Parent's email</span>
+            <div class="field">meera•••@gmail.com</div></div>
+          <div class="fgroup"><span class="lab">One-time code</span>
+            <div class="field ph">6-digit code</div></div>
+        </div>
+        <div class="chk"><b class="on"><i class="fa-solid fa-check"></i></b>
+          I confirm I am the parent/guardian and I consent.</div>
+        <div class="btn">Verify &amp; continue</div>
+      </div></div></div>
+      <p class="cap">Guardian OTP, payment-corroborated. <b>Fires for a 16-year-old on <em>any</em> stream</b> — including Career Readiness.</p>
+    </div>
+
+    <div class="arrowcol" style="opacity:.35"><i class="fa-solid fa-code-branch"></i></div>
+
+    <div class="col">
+      <div class="coltag next"><span class="pip"></span>age ≥ 18 — any stream</div>
+      <div class="phone"><div class="pv"><div class="pv-scroll">
+        <div class="prog"><i class="on"></i><i class="on"></i><i></i></div>
+        <div class="eyb">Step 2 · Your permissions</div>
+        <div class="h1a">Two quick permissions</div>
+        <div class="suba">You're 18+, so you can approve these yourself.</div>
+        <div style="margin-top:16px">
+          <div class="chk"><b class="on"><i class="fa-solid fa-check"></i></b>
+            I accept the Terms and the Privacy Notice, and consent to my data being processed
+            for the Success Scan.</div>
+          <div class="chk"><b class="on"><i class="fa-solid fa-check"></i></b>
+            I agree my task responses may be evaluated by a Yashodarshi mentor.</div>
+        </div>
+        <div class="card" style="margin-top:6px;font-size:9.5px;color:#7a7168;font-weight:600;line-height:1.5">
+          <i class="fa-solid fa-shield-halved" style="color:var(--green)"></i>
+          Consent is written to an append-only ledger. You can withdraw it any time from Profile.</div>
+        <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+      </div></div></div>
+      <p class="cap">Self-consent. <b>No guardian, no OTP.</b> Every IAS/KAS learner lands here.</p>
+    </div>
+
+    <div class="delta">
+      <h4>Invariant</h4>
+      <ul>
+        <li class="chg">Fork stays on <code>Carbon::parse(dob)->age &lt; 18</code>, server-side</li>
+        <li class="cut">No family / stream input to this decision — ever</li>
+        <li class="add">Scorecard <code>is_minor</code> re-points to the <b>same</b> source</li>
+        <li class="add"><code>consentPolicy()</code> already declared per family; stays declaration-only</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="call warn">
+    <div class="ct">One regression to guard before shipping</div>
+    <p><code>Student::isMinor()</code> is fail-closed: a blank or unparseable DOB returns <b>minor</b>.
+    Today <code>ADULT_STREAMS</code> masks that for adult streams by forcing <code>false</code>. Removing
+    the list means an adult learner with a missing DOB would render as <em>"prepared for the family of"</em>.</p>
+    <p>DOB is required at Step 1 for every family, so an onboarded learner should always have one — but that
+    is an assumption, not a guarantee. It needs a test before the list is deleted.</p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════════════════ 05 · PLAN BANNER ══════════════════════════ -->
+<section>
+  <h2><span class="n">05</span> "What did I actually sign up for?"</h2>
+  <h3>One banner. Two placements. One source of truth.</h3>
+  <p class="lede">Server-resolved from <code>Challenge::displayName()</code> — the exact name the buyer paid
+  under on the storefront. Pinned at the top of onboarding and on the dashboard, so the answer is never
+  more than one screen away.</p>
+
+  <div class="pair">
+    <div class="col">
+      <div class="coltag next"><span class="pip"></span>Onboarding — top of Step 1</div>
+      <div class="phone"><div class="pv"><div class="pv-scroll">
+        <div class="plan">
+          <div class="pe">Your programme</div>
+          <div class="pn">ASLI64 KAS Master Scan</div>
+          <div class="pm">KAS · 64 abilities · 21 tasks</div>
+          <div class="pp"><span>Paid ₹5,898.82</span><span>Enrolled 9 Aug</span></div>
+        </div>
+        <div class="prog"><i class="on"></i><i></i><i></i></div>
+        <div class="eyb">Step 1 · You</div>
+        <div class="h1a">Tell us about you</div>
+        <div class="suba">Two quick details before your first task.</div>
+        <div style="margin-top:14px">
+          <div class="fgroup"><span class="lab">Date of birth</span>
+            <div class="field">12 / 03 / 1994</div></div>
+          <div class="fgroup"><span class="lab">Current stage</span>
+            <div class="field">Full-time aspirant <i class="fa-solid fa-chevron-down"></i></div></div>
+        </div>
+        <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
+      </div></div></div>
+      <p class="cap">Replaces the <code>adminEnrolled</code>-gated note. <b>Everyone sees it, payers included.</b></p>
+    </div>
+
+    <div class="arrowcol"><i class="fa-solid fa-arrow-right"></i></div>
+
+    <div class="col">
+      <div class="coltag next"><span class="pip"></span>Dashboard — pinned</div>
+      <div class="phone"><div class="pv"><div class="pv-scroll">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div><div style="font-size:9px;color:#a89e94;font-weight:700">Good morning</div>
+            <div style="font-size:14px;font-weight:800">Ravi</div></div>
+          <div style="width:28px;height:28px;border-radius:99px;background:var(--secondary);
+            display:grid;place-items:center;color:var(--primary-dark);font-size:11px">
+            <i class="fa-regular fa-bell"></i></div>
+        </div>
+        <div class="plan">
+          <div class="pe">Your programme</div>
+          <div class="pn">ASLI64 KAS Master Scan</div>
+          <div class="pm">KAS · 64 abilities · 21 tasks</div>
+          <div class="pp"><span>25-Day Steady</span><span>Due 4 Sep</span></div>
+          <div class="pp" style="border-top:0;padding-top:2px;font-weight:600;color:#8a8178">
+            <span>Paid ₹5,898.82 · incl. GST</span>
+            <span style="color:var(--primary-dark);font-weight:800">Tax invoice <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:7px"></i></span></div>
+        </div>
+        <div class="card" style="margin-bottom:10px">
+          <div style="font-size:9px;font-weight:800;color:#a89e94;letter-spacing:.1em;text-transform:uppercase">Today</div>
+          <div style="font-size:12px;font-weight:800;margin-top:3px">Task 4 · Decision-Making</div>
+          <div style="height:5px;border-radius:99px;background:var(--cream);margin-top:8px;overflow:hidden">
+            <div style="width:16%;height:100%;background:var(--primary)"></div></div>
+          <div style="font-size:9px;color:#a89e94;font-weight:700;margin-top:5px">3 of 21 completed</div>
+        </div>
+        <div class="card" style="font-size:9.5px;color:#7a7168;font-weight:600;line-height:1.55">
+          <div style="font-size:9px;font-weight:800;color:#a89e94;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">You'll receive</div>
+          <div><i class="fa-solid fa-check" style="color:var(--green)"></i> AACE64™ Success Scorecard</div>
+          <div><i class="fa-solid fa-check" style="color:var(--green)"></i> Certificate</div>
+          <div><i class="fa-solid fa-check" style="color:var(--green)"></i> Career Pathway analysis</div>
+        </div>
+        <div class="btn">Start today's task <i class="fa-solid fa-arrow-right"></i></div>
+      </div></div></div>
+      <p class="cap">Replaces "Program" buried in <b>Batch Details</b>. Adds pace, deadline and deliverables.</p>
+    </div>
+
+    <div class="delta">
+      <h4>Source of every line</h4>
+      <ul>
+        <li class="chg">Name ← <code>Challenge::displayName()</code>, not raw <code>title</code></li>
+        <li class="chg">Abilities · tasks ← <code>SellableChallengeSeeder::TIERS</code></li>
+        <li class="chg">Pace · due ← <code>chosen_mode</code> + <code>modeConfig()</code></li>
+        <li class="chg">Paid ← <code>payments.payload['amount']</code> + the GST ledger</li>
+        <li class="add">Tax invoice ← <code>taxable_value</code>/<code>gst_amount</code>/<code>gst_rate</code></li>
+        <li class="cut">Delete the <code>funding_source</code> gate on the welcome note</li>
+        <li class="add">Part-payment: plan + <code>ScorecardDelivery</code> lock state, no paid figure</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="call">
+    <div class="ct">The money line is real — and already reconciled</div>
+    <p>The figure is not a plan price. <code>payments</code> carries one row per capture: the gross in
+    <code>payload['amount']</code> (paise) plus a per-transaction GST ledger —
+    <code>taxable_value</code>, <code>gst_amount</code>, <code>gst_rate</code> — written at capture by
+    <code>Gst::splitFromGross()</code> for GSTR filing and the GSTIN invoice.</p>
+    <p>₹5,898.82 is the codebase's own worked example: <em>"captures 589882p, not 499900p"</em>
+    (<code>PaymentController.php:1112</code>). With GST off, <code>Gst::breakup()</code> collapses cleanly to
+    ₹4,999 — so one component renders both states.</p>
+  </div>
+
+  <div class="call warn">
+    <div class="ct">The learner sees the tax breakup once, then never again</div>
+    <p><code>Gst::breakup()</code> — the declared single source for "the checkout summary / receipt
+    display" — is called from <code>CheckoutController</code>, <code>EnrolPaymentController</code> and
+    <code>LandingController</code>. It is called from <b>zero</b> <code>frontendapp/*</code> views.</p>
+    <p>So a buyer sees base + GST + total at checkout and, once inside the app, has no receipt at all. The
+    banner should carry a <b>Tax invoice</b> affordance reading the same ledger row — the compliance
+    surface and the "what did I buy" surface are the same screen.</p>
+    <p><b>Part-payment is the one exception.</b> An instalment plan is admin-recorded offline with no
+    Razorpay capture, so there is no <code>payments</code> row to total. That banner must show plan +
+    settlement state, never a paid figure.</p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════════════════ 06 · DESKTOP ══════════════════════════ -->
+<section>
+  <h2><span class="n">06</span> Desktop</h2>
+  <h3>Same flow, centred column</h3>
+  <p class="lede">The app is a mobile web app; on desktop it renders the same
+  <code>max-w-md mx-auto</code> column. The banner and the stage select need no separate desktop design —
+  but the two-column form below uses the extra width rather than stretching a phone layout.</p>
+
+  <div class="browser">
+    <div class="bbar"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+      <span class="burl">app.irisepro.in/mobile/onboarding</span></div>
+    <div class="bview">
+      <div style="max-width:520px;margin:0 auto">
+        <div class="plan" style="padding:15px 17px">
+          <div class="pe" style="font-size:9.5px">Your programme</div>
+          <div class="pn" style="font-size:18px">ASLI64 KAS Master Scan</div>
+          <div class="pm" style="font-size:11.5px">KAS · 64 abilities · 21 tasks · 25-Day Steady</div>
+          <div class="pp" style="font-size:11px"><span>Paid ₹5,898.82</span><span>Enrolled 9 Aug 2026</span></div>
+        </div>
+        <div class="prog" style="margin:18px 0"><i class="on"></i><i></i><i></i></div>
+        <div class="eyb" style="font-size:10px">Step 1 · You</div>
+        <div class="h1a" style="font-size:24px">Tell us about you</div>
+        <div class="suba" style="font-size:12.5px">Two quick details before your first task.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px">
+          <div><span class="lab" style="font-size:11.5px">Date of birth</span>
+            <div class="field" style="font-size:13px;padding:11px 13px">12 / 03 / 1994
+              <i class="fa-regular fa-calendar" style="color:#b3aaa1"></i></div></div>
+          <div><span class="lab" style="font-size:11.5px">Current stage</span>
+            <div class="field" style="font-size:13px;padding:11px 13px">Full-time aspirant
+              <i class="fa-solid fa-chevron-down"></i></div></div>
+        </div>
+        <div style="margin-top:14px"><span class="lab" style="font-size:11.5px">Preferred language</span>
+          <div class="seg" style="max-width:260px"><span class="on" style="font-size:12.5px;padding:11px 0">English</span>
+            <span style="font-size:12.5px;padding:11px 0">ಕನ್ನಡ</span></div></div>
+        <div class="btn" style="margin-top:26px;max-width:230px;font-size:13.5px;padding:13px 0">
+          Continue <i class="fa-solid fa-arrow-right"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="cap" style="max-width:none;margin-top:14px">Desktop pairs DOB + stage side by side and widens
+  the banner. <b>Everything else is the mobile layout, centred.</b></p>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════════════════ 07 · CARD ══════════════════════════ -->
+<section>
+  <h2><span class="n">07</span> Where it lands — the scorecard cover</h2>
+  <h3>The only place the field is ever seen by the customer</h3>
+  <p class="lede">The engine never receives <code>student_class</code>. Its input is
+  <code>{stream, tier, tasks}</code>; benchmarks, age bands, §6 coaching copy and §7 pathways are all keyed
+  by <b>stream</b>. So this cover tag is the entire customer-facing return on the question.</p>
+
+  <div class="two">
+    <div>
+      <div class="coltag now"><span class="pip"></span>Current — KAS aspirant, age 32</div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+          <span class="burl">scorecard · cover</span></div>
+        <div class="bview" style="background:#fffdf9;padding:34px 30px">
+          <div style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--primary-dark)">
+            YASHHO™ AACE64™ Success Scorecard</div>
+          <div style="font-size:15px;font-weight:800;margin-top:14px">
+            Name of the Student <span style="color:var(--primary-dark)">Ravi Kulkarni</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="background:#fff2e8;border:1px solid #f3c9c4;border-radius:99px;padding:4px 12px;
+              font-size:11px;font-weight:800;color:#a8443c">Class <b>9</b></span>
+            <span style="background:var(--secondary);border:1px solid var(--cream);border-radius:99px;
+              padding:4px 12px;font-size:11px;font-weight:700">Stream <b>KAS Booster</b></span>
+          </div>
+          <div style="margin-top:18px;font-size:11px;color:#7a7168;font-weight:600;line-height:1.6">
+            KAS Booster · 21 tasks · 64 abilities · 09 Aug 2026<br>
+            Confidential — prepared for <b>Ravi Kulkarni</b></div>
+          <div style="margin-top:16px;background:#fff6f5;border:1px solid #f3c9c4;border-radius:10px;
+            padding:11px 13px;font-size:11px;color:#a8443c;font-weight:700;line-height:1.5">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            A 32-year-old civil-services candidate, labelled Class 9 — because the keypad said "e.g. 9".</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="coltag next"><span class="pip"></span>Revised — same learner</div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+          <span class="burl">scorecard · cover</span></div>
+        <div class="bview" style="background:#fffdf9;padding:34px 30px">
+          <div style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--primary-dark)">
+            YASHHO™ AACE64™ Success Scorecard</div>
+          <div style="font-size:15px;font-weight:800;margin-top:14px">
+            Name of the Candidate <span style="color:var(--primary-dark)">Ravi Kulkarni</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="background:#f2faf3;border:1px solid #c9e6cd;border-radius:99px;padding:4px 12px;
+              font-size:11px;font-weight:800;color:#3d7a45">Stage <b>Full-time aspirant</b></span>
+            <span style="background:var(--secondary);border:1px solid var(--cream);border-radius:99px;
+              padding:4px 12px;font-size:11px;font-weight:700">Stream <b>KAS Booster</b></span>
+          </div>
+          <div style="margin-top:18px;font-size:11px;color:#7a7168;font-weight:600;line-height:1.6">
+            KAS Booster · 21 tasks · 64 abilities · 09 Aug 2026<br>
+            Confidential — prepared for <b>Ravi Kulkarni</b></div>
+          <div style="margin-top:16px;background:#f2faf3;border:1px solid #c9e6cd;border-radius:10px;
+            padding:11px 13px;font-size:11px;color:#3d7a45;font-weight:700;line-height:1.5">
+            <i class="fa-solid fa-circle-check"></i>
+            Tag label is family data. "Student" → "Candidate" for adult families.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="call">
+    <div class="ct">One template change this needs</div>
+    <p>The cover hardcodes the word <em>Class</em> before the value:
+    <code>&lt;span id="whoClass"&gt;Class &lt;b data-bind="meta.class"&gt;</code>. Binding
+    "Full-time aspirant" without changing that renders <b>"Class Full-time aspirant"</b>.</p>
+    <p>The label must become data — <code>meta.stage_label</code>, sourced from the family shape — in the
+    same edit. The existing <code>hideIfBlank</code> already handles the educator family's empty tag.</p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════════════════ 08 · LEDGER ══════════════════════════ -->
+<section>
+  <h2><span class="n">08</span> Change ledger</h2>
+  <h3>What each edit touches</h3>
+  <p class="lede">Ordered by dependency. Everything above the line is one authority moving; nothing below
+  it can ship until the shape carries the data.</p>
+
+  <div class="tblwrap">
+  <table>
+    <tr><th>#</th><th>Change</th><th>File</th><th>Removes</th></tr>
+    <tr><td class="k">1</td>
+      <td>Extend <code>SHAPES</code>: add <code>field_label</code>, <code>field_options</code>,
+        <code>voice</code>, <code>stage_label</code>; add 4 families</td>
+      <td><code>app/Support/OnboardingFamily.php</code></td>
+      <td class="dash">—</td></tr>
+    <tr><td class="k">2</td>
+      <td>Map all 7 streams to a family</td>
+      <td><code>database/seeders/SellableChallengeSeeder.php</code></td>
+      <td>the silent <code>'student'</code> fallback</td></tr>
+    <tr><td class="k">3</td>
+      <td>Render Step 1 fields from the shape, not <code>$isAcharya</code></td>
+      <td><code>…/onboarding/index.blade.php</code></td>
+      <td>the second authority on which fields <em>show</em></td></tr>
+    <tr><td class="k">4</td>
+      <td>Board gate reads <code>shows_board</code></td>
+      <td><code>MobileStudentController.php</code> · <code>OnboardingDiff.php</code></td>
+      <td><code>SCHOOL_STREAMS</code> <b>×2</b></td></tr>
+    <tr><td class="k">5</td>
+      <td>Server-validate the posted stage against the family's option list</td>
+      <td><code>saveOnboardingProfile()</code></td>
+      <td>free text reaching the DB</td></tr>
+    <tr><td class="k">6</td>
+      <td><code>is_minor</code> ← <code>Student::isMinor()</code>; tag label ← family</td>
+      <td><code>ScorecardMetaBuilder.php</code></td>
+      <td><code>ADULT_STREAMS</code> · <code>cleanClass()</code></td></tr>
+    <tr><td class="k">7</td>
+      <td>Bind the cover tag label</td>
+      <td><code>public/scorecard/scorecard-full.html</code> +<br>the two lambda template copies</td>
+      <td>the hardcoded word "Class"</td></tr>
+    <tr><td class="k">8</td>
+      <td>Plan-banner component; delete the <code>funding_source</code> gate</td>
+      <td><code>…/onboarding/index.blade.php</code> · <code>dashboard.blade.php</code></td>
+      <td>raw <code>$challenge->title</code> in the app</td></tr>
+    <tr><td class="k">8b</td>
+      <td>In-app receipt / tax invoice off the <code>payments</code> GST ledger</td>
+      <td>new view · <code>Gst::breakup()</code> · <code>Payment</code></td>
+      <td>a buyer with no receipt after checkout</td></tr>
+    <tr><td class="k">9</td>
+      <td>Add <code>voice</code> to <code>publicStreams()</code>; storefront reads it</td>
+      <td><code>ProductCatalog.php</code> · <code>irisepro/src/lib/audience.ts</code></td>
+      <td><code>GUARDIAN_STREAMS</code></td></tr>
+    <tr><td class="k">10</td>
+      <td>Ratchet: every stream in <code>PROGRAMS</code> has a family; every family a shape;
+        every <code>field_options</code> non-empty</td>
+      <td><code>tests/…/OnboardingFamilyShapeTest.php</code></td>
+      <td>the ability to regress</td></tr>
+  </table>
+  </div>
+
+  <div class="call">
+    <div class="ct">Migration cost: zero</div>
+    <p>The stage value keeps the existing <code>students.student_class</code> column. Nothing is added,
+    widened or dropped — so nothing here has to run on the old box.</p>
+    <p>The column <em>name</em> becomes a misnomer for adult families. That is a later cosmetic rename,
+    deliberately not bundled with a behaviour change.</p>
+  </div>
+
+  <div class="call warn">
+    <div class="ct">Open — needs a decision before build</div>
+    <p><b>Existing rows.</b> IAS/KAS learners already onboarded carry whatever they typed. A backfill has to
+    map those to a stage, or leave them blank and let the tag hide. Blank is safer; it loses nothing the
+    engine uses.</p>
+    <p><b>Kannada.</b> Every new option list needs a <code>kn</code> translation, or the stage select
+    renders English inside a Kannada onboarding.</p>
+  </div>
+</section>
+
+<div class="foot">
+  <span><b>Storyboard</b> · YASHHO onboarding per stream</span>
+  <span>10 Aug 2026</span>
+  <span>Theme: live student-app tokens (#FF8A3D / #FFF1E6 / Montserrat)</span>
+  <span>Every file:line claim read from the working tree at <code>release/2026-08-10</code></span>
+</div>
+
+</div>
