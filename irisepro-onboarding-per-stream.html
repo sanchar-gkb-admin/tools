@@ -184,6 +184,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
     <span class="tag hot">7 streams → 5 onboarding families</span>
     <span class="tag">Mobile-first + desktop</span>
     <span class="tag">Live theme · Montserrat / #FF8A3D</span>
+    <span class="tag hot">rev 2 · Sutirtha's review folded in</span>
     <span class="tag">10 Aug 2026</span>
   </div>
 </div>
@@ -257,8 +258,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
     <tr>
       <td class="k"><code>exam</code></td>
       <td>neet<br>jee</td>
-      <td>DOB · <b>Class</b> (11 / 12 / Dropper) · Language</td>
-      <td class="yes">Yes</td><td>self</td><td>Class 12</td>
+      <td>DOB · <b>Class</b> (5–12 + Repeat year) · Language</td>
+      <td class="yes">Yes</td><td>self</td><td>Class 9</td>
       <td>age (DOB)</td>
     </tr>
     <tr>
@@ -472,11 +473,14 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
     <div class="grphead">
       <span class="fam">exam</span>
       <span class="streams">NEET · JEE</span>
-      <span class="who">Mixed. Class 11–12 minors and adult droppers, enrolling themselves.</span>
+      <span class="who">Class 5 to repeat-year. Mostly minors, enrolling themselves.</span>
     </div>
-    <p class="grpnote">The storefront already says "your account" for these (self, not guardian); the app
-    treats them as school streams. Both are right — this group genuinely spans the line, which is exactly
-    why consent must stay on DOB while the field-set stays on the stream.</p>
+    <p class="grpnote"><b>Revised after Sutirtha, 10 Aug:</b> a <em>Class</em> dropdown, not a generic
+    stage list — and it must start at <b>Class 5</b>, not Class 11. Serious NEET/JEE preparation now
+    begins around Class 8, and Aakash / FIITJEE run coaching from Class 5. The class is real, useful
+    data for these learners; only the repeat-year case falls outside it.</p>
+    <p class="grpnote">That widening is also the strongest argument for the second decision: a stream
+    whose learners run from age 10 to adult cannot carry an audience label. Only DOB can.</p>
 
     <div class="pair">
       <div class="col">
@@ -488,11 +492,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
           <div class="suba">A quick 2-minute setup before your first task.</div>
           <div style="margin-top:16px">
             <div class="fgroup"><span class="lab">Date of birth</span>
-              <div class="field">18 / 11 / 2007 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+              <div class="field">18 / 11 / 2013 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
             <div class="fgroup"><span class="lab">Class / grade</span>
               <div class="field bad ph">e.g. 9</div>
               <div style="font-size:9px;color:var(--red);font-weight:700;margin-top:4px">
-                <i class="fa-solid fa-circle-question"></i> A dropper types… what?</div></div>
+                <i class="fa-solid fa-circle-question"></i> A repeat-year student types… what?</div></div>
             <div class="fgroup"><span class="lab">Board <span class="hint">· school streams</span></span>
               <div class="field">CBSE <i class="fa-solid fa-chevron-down"></i></div></div>
             <div class="fgroup"><span class="lab">Preferred language</span>
@@ -500,7 +504,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
           </div>
           <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
         </div></div></div>
-        <p class="cap">A repeat-year aspirant has <b>no valid answer</b> to "class".</p>
+        <p class="cap">Class 8 is a <b>real</b> answer here — but so is nothing, and the box takes both.</p>
       </div>
 
       <div class="arrowcol"><i class="fa-solid fa-arrow-right"></i></div>
@@ -520,11 +524,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
           <div class="suba">A quick 2-minute setup before your first task.</div>
           <div style="margin-top:14px">
             <div class="fgroup"><span class="lab">Date of birth</span>
-              <div class="field">18 / 11 / 2007 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
-            <div class="fgroup"><span class="lab">Where are you now</span>
-              <div class="field">Repeat year (dropper) <i class="fa-solid fa-chevron-down"></i></div>
-              <div style="font-size:9px;color:#a89e94;font-weight:600;margin-top:4px">
-                Class 11 · Class 12 · Repeat year (dropper)</div></div>
+              <div class="field">18 / 11 / 2013 <i class="fa-regular fa-calendar" style="color:#b3aaa1;font-size:10px"></i></div></div>
+            <div class="fgroup"><span class="lab">Class</span>
+              <div class="field">Class 8 <i class="fa-solid fa-chevron-down"></i></div>
+              <div style="font-size:9px;color:#a89e94;font-weight:600;margin-top:4px;line-height:1.5">
+                Class 5 … Class 10 · Class 11 (PU1) ·<br>Class 12 (PU2) · Repeat year (dropper)</div></div>
             <div class="fgroup"><span class="lab">Board</span>
               <div class="field">CBSE <i class="fa-solid fa-chevron-down"></i></div></div>
             <div class="fgroup"><span class="lab">Preferred language</span>
@@ -532,17 +536,20 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
           </div>
           <div class="btn">Continue <i class="fa-solid fa-arrow-right"></i></div>
         </div></div></div>
-        <p class="cap">"Dropper" becomes sayable. <b>17-year-old still routed to guardian consent</b> by DOB.</p>
+        <p class="cap">A Class-8 NEET starter can finally say so, and <b>"Repeat year" becomes
+        sayable</b>. This 12-year-old is routed to guardian consent by DOB.</p>
       </div>
 
       <div class="delta">
         <h4>What changes</h4>
         <ul>
           <li class="add">New family <code>exam</code></li>
-          <li class="chg">Class free text → 3-option select incl. <b>Repeat year</b></li>
-          <li class="chg">Label "Class / grade" → "Where are you now"</li>
+          <li class="chg">Class free text → <b>Class 5–12 + Repeat year</b> select</li>
+          <li class="chg">Label stays "Class" — it is a class, not a stage</li>
           <li class="add">Plan banner · self voice (matches storefront)</li>
           <li class="add">Board kept — it matters for NEET/JEE</li>
+          <li class="chg">Reuses <code>student_classes</code> values <code>5</code>…<code>12</code>;
+            only "Repeat year" is new</li>
         </ul>
       </div>
     </div>
@@ -1086,19 +1093,33 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
     deliberately not bundled with a behaviour change.</p>
   </div>
 
+  <div class="call">
+    <div class="ct">Confirmed — Sutirtha, 10 Aug</div>
+    <p><b>NEET/JEE take a Class dropdown, from Class 5.</b> Not a generic stage list. Preparation starts
+    around Class 8, and coaching institutes run NEET/JEE tracks from Class 5 — so the class is real,
+    useful data for this stream. Only the repeat-year case needs a non-class option.</p>
+    <p><b>Option lists stay English-only.</b> No <code>kn</code> translation needed — the lists are short,
+    structured dropdowns, and a standard English set across streams is sufficient. This removes a
+    blocker, not a corner: it means the option lists can be built as soon as the families land.</p>
+    <p><b>Career Readiness follows DOB.</b> The stream explicitly includes Class 11 and 12, so it can
+    have minors. DOB also gives us the age profile of who is actually joining the stream — useful beyond
+    getting the consent and minor/adult experience right.</p>
+  </div>
+
   <div class="call warn">
-    <div class="ct">Open — needs a decision before build</div>
-    <p><b>Existing rows.</b> IAS/KAS learners already onboarded carry whatever they typed. A backfill has to
-    map those to a stage, or leave them blank and let the tag hide. Blank is safer; it loses nothing the
-    engine uses.</p>
-    <p><b>Kannada.</b> Every new option list needs a <code>kn</code> translation, or the stage select
-    renders English inside a Kannada onboarding.</p>
+    <div class="ct">Still open</div>
+    <p><b>KMM's ratification</b> on the Career Readiness split. Sutirtha has agreed; the minor-framing
+    change touches the DPDPA consent surface, so it wants the second confirm before the guard tests go
+    green and land.</p>
+    <p><b>Existing rows.</b> IAS/KAS learners already onboarded carry whatever they typed. A backfill has
+    to map those to a stage, or leave them blank and let the tag hide. Blank is safer — it loses nothing
+    the engine uses. NEET/JEE rows are less affected: a value like "9" is already a valid Class option.</p>
   </div>
 </section>
 
 <div class="foot">
   <span><b>Storyboard</b> · YASHHO onboarding per stream</span>
-  <span>10 Aug 2026</span>
+  <span>rev 2 · 10 Aug 2026 — NEET/JEE class range + English-only lists per Sutirtha</span>
   <span>Theme: live student-app tokens (#FF8A3D / #FFF1E6 / Montserrat)</span>
   <span>Every file:line claim read from the working tree at <code>release/2026-08-10</code></span>
 </div>
