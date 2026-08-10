@@ -1,0 +1,259 @@
+<title>Task shuffling — what changes on screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ground:#faf7f4; --panel:#ffffff; --ink:#1a1614; --ink-soft:#5c534d; --ink-faint:#8a807a;
+    --rule:#e6ded7; --accent:#f58321; --accent-soft:#fdf0e2;
+    --locked:#b06a12; --locked-bg:#fdf4e6; --same:#4a7a52; --same-bg:#eef5ef;
+    --shadow:0 1px 2px rgba(26,22,20,.05), 0 8px 24px -12px rgba(26,22,20,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#15120f; --panel:#1e1a17; --ink:#f2ece7; --ink-soft:#b3a89f; --ink-faint:#857a72;
+      --rule:#2f2822; --accent:#f9a24d; --accent-soft:#2a1f14;
+      --locked:#e0a95f; --locked-bg:#2a2013; --same:#8fbf98; --same-bg:#17231a;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#15120f; --panel:#1e1a17; --ink:#f2ece7; --ink-soft:#b3a89f; --ink-faint:#857a72;
+    --rule:#2f2822; --accent:#f9a24d; --accent-soft:#2a1f14;
+    --locked:#e0a95f; --locked-bg:#2a2013; --same:#8fbf98; --same-bg:#17231a;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  :root[data-theme="light"]{
+    --ground:#faf7f4; --panel:#ffffff; --ink:#1a1614; --ink-soft:#5c534d; --ink-faint:#8a807a;
+    --rule:#e6ded7; --accent:#f58321; --accent-soft:#fdf0e2;
+    --locked:#b06a12; --locked-bg:#fdf4e6; --same:#4a7a52; --same-bg:#eef5ef;
+    --shadow:0 1px 2px rgba(26,22,20,.05), 0 8px 24px -12px rgba(26,22,20,.18);
+  }
+
+  body{
+    background:var(--ground); color:var(--ink); margin:0;
+    font:400 16px/1.6 Montserrat,system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:56px 22px 96px;}
+  h1,h2,h3{font-family:Montserrat,Montserrat,system-ui,sans-serif; font-weight:700; text-wrap:balance; margin:0;}
+  h1{font-size:clamp(30px,4.6vw,46px); line-height:1.12; letter-spacing:-.015em;}
+  h2{font-size:clamp(21px,2.6vw,27px); line-height:1.2; margin-bottom:6px;}
+  p{margin:0 0 14px; max-width:66ch;}
+  .lede{font-size:18px; color:var(--ink-soft); max-width:62ch; margin-top:14px;}
+  .eyebrow{font:600 11px/1 Montserrat,system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
+  .meta{color:var(--ink-faint); font-size:13px; margin-top:26px; padding-top:16px; border-top:1px solid var(--rule);}
+
+  /* ── summary table ───────────────────────────── */
+  .tablewrap{overflow-x:auto; margin:26px 0 0; border:1px solid var(--rule); border-radius:12px; background:var(--panel);}
+  table{border-collapse:collapse; width:100%; min-width:560px; font-size:14.5px;}
+  th,td{text-align:left; padding:12px 16px; border-bottom:1px solid var(--rule); vertical-align:top;}
+  th{font:600 11px/1.3 Montserrat,system-ui,sans-serif; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-faint);}
+  tr:last-child td{border-bottom:none;}
+  .pill{display:inline-block; font:600 11px/1 Montserrat,system-ui,sans-serif; padding:5px 9px; border-radius:20px; white-space:nowrap;}
+  .pill.change{background:var(--accent-soft); color:var(--accent);}
+  .pill.same{background:var(--same-bg); color:var(--same);}
+
+  /* ── surface blocks ──────────────────────────── */
+  .surface{margin-top:64px; padding-top:36px; border-top:1px solid var(--rule);}
+  .surface:first-of-type{border-top:none;}
+  .num{font:600 12px/1 Montserrat,system-ui,sans-serif; color:var(--ink-faint); letter-spacing:.1em;}
+  .why{background:var(--panel); border:1px solid var(--rule); border-left:3px solid var(--accent);
+       border-radius:0 10px 10px 0; padding:14px 18px; margin:18px 0 26px; font-size:15px; color:var(--ink-soft);}
+  .why strong{color:var(--ink);}
+
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start;}
+  @media (max-width:760px){ .pair{grid-template-columns:1fr;} }
+  .col > .label{font:600 11px/1 Montserrat,system-ui,sans-serif; letter-spacing:.11em; text-transform:uppercase;
+                color:var(--ink-faint); margin-bottom:9px; display:block;}
+  .col.after > .label{color:var(--accent);}
+
+  /* ── mocked screens ──────────────────────────── */
+  .screen{background:var(--panel); border:1px solid var(--rule); border-radius:14px; box-shadow:var(--shadow); overflow:hidden;}
+  .screen-bar{padding:11px 15px; border-bottom:1px solid var(--rule); font:600 12.5px/1 Montserrat,system-ui,sans-serif; color:var(--ink-soft);
+              display:flex; justify-content:space-between; align-items:center; gap:10px;}
+  .screen-body{padding:6px 0;}
+  .row{display:flex; align-items:center; gap:12px; padding:11px 15px; border-bottom:1px solid var(--rule); font-size:14px;}
+  .row:last-child{border-bottom:none;}
+  .row .n{width:22px; flex:none; font:600 13px/1 Montserrat,system-ui,sans-serif; color:var(--ink-faint); font-variant-numeric:tabular-nums;}
+  .row .t{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .row .t .sub{display:block; font-size:12px; color:var(--ink-faint); white-space:normal;}
+  .row .s{font-variant-numeric:tabular-nums; font-weight:600; font-size:13.5px; flex:none;}
+  .ghost{color:var(--ink-faint); font-style:italic;}
+  .locked{background:var(--locked-bg); color:var(--locked); padding:22px 18px; text-align:center; font-size:14px;}
+  .locked .big{display:block; font-family:Montserrat,Montserrat,system-ui,sans-serif; font-size:17px; color:var(--ink); margin-bottom:6px;}
+  .agg{display:flex; gap:20px; padding:13px 15px; border-bottom:1px solid var(--rule); font-size:13px; color:var(--ink-soft);}
+  .agg b{display:block; font-size:18px; color:var(--ink); font-variant-numeric:tabular-nums; font-family:Montserrat,Montserrat,system-ui,sans-serif;}
+  .flag{display:flex; align-items:flex-start; gap:11px; padding:13px 15px; font-size:14px;}
+  .box{width:15px;height:15px;border:2px solid var(--accent);border-radius:4px;flex:none;margin-top:2px;background:var(--accent);position:relative;}
+  .box::after{content:"";position:absolute;left:4px;top:0px;width:4px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);}
+  .note{font-size:12.5px; color:var(--ink-faint); margin-top:9px;}
+
+  ul{margin:0 0 14px; padding-left:20px; max-width:66ch;} li{margin-bottom:7px;}
+  code{font:500 13px/1 ui-monospace,SFMono-Regular,Menlo,monospace; background:var(--accent-soft); color:var(--accent); padding:2px 5px; border-radius:4px;}
+</style>
+
+<div class="wrap">
+
+  <div class="eyebrow">YASHHO · change requirements · 10 Aug 2026</div>
+  <h1>Task shuffling: what actually changes on screen</h1>
+  <p class="lede">Each student gets their own task order, so answers can't be shared by task number. Most screens are unaffected. Three change, and one of those is a prerequisite rather than a nice-to-have — this is what each looks like before and after.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Surface</th><th>Status</th><th>What changes</th></tr></thead>
+      <tbody>
+        <tr><td><b>Scorecard</b> — per-task rows</td><td><span class="pill change">Must change</span></td><td>Rows are labelled only "Task 1, 2, 3…". Once order is personal, that number identifies nothing.</td></tr>
+        <tr><td><b>Leaderboard</b></td><td><span class="pill change">Must change</span></td><td>Rank appears after the first evaluated task. Partial ranks compare students on different tasks.</td></tr>
+        <tr><td><b>Batch creation</b> — admin</td><td><span class="pill change">Small addition</span></td><td>One toggle, on by default.</td></tr>
+        <tr><td><b>Performance list</b> — student</td><td><span class="pill same">No change</span></td><td>Already names every task. Order simply becomes the student's own.</td></tr>
+        <tr><td><b>Acharya review</b></td><td><span class="pill same">No change</span></td><td>Already names tasks and already follows the student's own order.</td></tr>
+        <tr><td><b>Cohort scoreboard</b> — admin</td><td><span class="pill same">No change</span></td><td>Totals only, no per-task breakdown.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 1 ───────────────────────────────────────── -->
+  <section class="surface">
+    <div class="num">01 — MUST CHANGE</div>
+    <h2>Scorecard · the per-task rows</h2>
+    <div class="why"><strong>Why.</strong> Today a card row says only “Task 3”. That works because everyone does the same tasks in the same order. The moment order is personal, <strong>“Task 3” on Anita’s card and “Task 3” on Ravi’s card are different tasks</strong> — and nothing on either card says so. A parent or an Acharya comparing two cards would be comparing unlike with unlike.</div>
+
+    <div class="pair">
+      <div class="col"><span class="label">Before — a number only</span>
+        <div class="screen">
+          <div class="screen-bar"><span>Scorecard · Part A</span><span class="ghost">Anita</span></div>
+          <div class="screen-body">
+            <div class="row"><span class="n">1</span><span class="t">Task 1</span><span class="s">66.1</span></div>
+            <div class="row"><span class="n">2</span><span class="t">Task 2</span><span class="s">51.2</span></div>
+            <div class="row"><span class="n">3</span><span class="t">Task 3</span><span class="s">53.8</span></div>
+            <div class="row"><span class="n">4</span><span class="t">Task 4</span><span class="s">57.6</span></div>
+          </div>
+        </div>
+        <p class="note">Ravi’s card looks identical — same labels, different work behind them.</p>
+      </div>
+
+      <div class="col after"><span class="label">After — the task is named</span>
+        <div class="screen">
+          <div class="screen-bar"><span>Scorecard · Part A</span><span class="ghost">Anita</span></div>
+          <div class="screen-body">
+            <div class="row"><span class="n">1</span><span class="t">Introduce yourself<span class="sub">Task 1 of 21</span></span><span class="s">66.1</span></div>
+            <div class="row"><span class="n">2</span><span class="t">Explain a concept simply<span class="sub">Task 2 of 21</span></span><span class="s">51.2</span></div>
+            <div class="row"><span class="n">3</span><span class="t">Handle a difficult question<span class="sub">Task 3 of 21</span></span><span class="s">53.8</span></div>
+            <div class="row"><span class="n">4</span><span class="t">Plan a week of study<span class="sub">Task 4 of 21</span></span><span class="s">57.6</span></div>
+          </div>
+        </div>
+        <p class="note">The number is now “where it came in <em>your</em> journey”; the name says what it was.</p>
+      </div>
+    </div>
+
+    <div class="why" style="margin-top:26px;"><strong>Measured, not assumed.</strong> We ran the real scoring engine over the same tasks in four different orders, across 21-task and 7-task plans. <strong>Every total was identical</strong> — overall percentage, the four pillars, the band. Only the per-task rows move, which is the card correctly showing your own sequence. Shuffling cannot change anyone’s score.</div>
+    <p style="font-size:14.5px;color:var(--ink-soft)"><b>Cost note for engineering:</b> the card is produced by the scoring engine, and today we don’t send it the task name at all — the “1, 2, 3” is the engine numbering what it was handed. So this spans the app, the engine and the PDF template, and every frozen reference card will need re-approving.</p>
+  </section>
+
+  <!-- 2 ───────────────────────────────────────── -->
+  <section class="surface">
+    <div class="num">02 — MUST CHANGE</div>
+    <h2>Leaderboard · when a rank appears</h2>
+    <div class="why"><strong>Why.</strong> A rank shows up after the <em>first</em> evaluated task. With personal orders, Anita may have done tasks 1, 9 and 14 while Ravi has done 5, 2 and 20 — so a partial ranking compares them on <strong>different work</strong>. It’s also a gap today: a ₹999/₹1999 learner is told results unlock only when the whole set is evaluated, yet can read their rank here in the meantime. A rank is a measure.</div>
+
+    <div class="pair">
+      <div class="col"><span class="label">Before — ranked after one task</span>
+        <div class="screen">
+          <div class="screen-bar"><span>Leaderboard</span><span class="ghost">3 of 21 done</span></div>
+          <div class="screen-body">
+            <div class="agg"><div>Your rank<b>#14</b></div><div>Percentile<b>62</b></div></div>
+            <div class="row"><span class="n">12</span><span class="t">Meena Kumar</span><span class="s">71.4</span></div>
+            <div class="row"><span class="n">13</span><span class="t">Rahul Shah</span><span class="s">68.9</span></div>
+            <div class="row" style="background:var(--accent-soft)"><span class="n">14</span><span class="t"><b>You</b></span><span class="s">66.1</span></div>
+          </div>
+        </div>
+        <p class="note">Ranked against people who have done other tasks.</p>
+      </div>
+
+      <div class="col after"><span class="label">After — unlocks on completion</span>
+        <div class="screen">
+          <div class="screen-bar"><span>Leaderboard</span><span class="ghost">3 of 21 done</span></div>
+          <div class="locked">
+            <span class="big">Your rank unlocks when all your tasks are evaluated</span>
+            You’ve completed 3 of 21. Everyone is ranked on the same finished journey, so the comparison is fair.
+          </div>
+        </div>
+        <p class="note">Same screen once the set is complete — full board, unchanged.</p>
+      </div>
+    </div>
+    <p style="font-size:14.5px;color:var(--ink-soft)"><b>Needs a decision:</b> ₹4999 currently reveals progressively. Gating the rank on completion tightens that — a 21-task learner would see no rank for most of their journey. Consistent and fair, but it is a change in feel.</p>
+  </section>
+
+  <!-- 3 ───────────────────────────────────────── -->
+  <section class="surface">
+    <div class="num">03 — SMALL ADDITION</div>
+    <h2>Batch creation · the switch</h2>
+    <div class="why"><strong>Why.</strong> Shuffling is decided once, when a batch is created, and written into each student’s journey at that moment. It is never re-read afterwards — which is what guarantees <strong>no student already mid-programme is ever affected</strong>.</div>
+    <div class="pair">
+      <div class="col"><span class="label">Before</span>
+        <div class="screen">
+          <div class="screen-bar">Create New Batch</div>
+          <div class="screen-body">
+            <div class="row"><span class="t">How are you enrolling?<span class="sub">Single student · Upload roster</span></span></div>
+            <div class="row"><span class="t">How is this cohort funded?<span class="sub">Waiver · Paid externally · Part payment</span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col after"><span class="label">After — one new line</span>
+        <div class="screen">
+          <div class="screen-bar">Create New Batch</div>
+          <div class="screen-body">
+            <div class="row"><span class="t">How are you enrolling?<span class="sub">Single student · Upload roster</span></span></div>
+            <div class="row"><span class="t">How is this cohort funded?<span class="sub">Waiver · Paid externally · Part payment</span></span></div>
+            <div class="flag"><span class="box"></span><span>Give each student their own task order<span class="sub" style="display:block;font-size:12px;color:var(--ink-faint);margin-top:3px">On by default. Task 1 and the final task stay in place for ₹4999; the shorter plans shuffle throughout.</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 ───────────────────────────────────────── -->
+  <section class="surface">
+    <div class="num">04 — NO CHANGE</div>
+    <h2>Already fine · three surfaces</h2>
+    <div class="pair">
+      <div class="col"><span class="label">Student performance list</span>
+        <div class="screen">
+          <div class="screen-bar"><span>My performance</span><span class="ghost">Anita</span></div>
+          <div class="screen-body">
+            <div class="row"><span class="n">1</span><span class="t">Introduce yourself</span><span class="s">66.1</span></div>
+            <div class="row"><span class="n">2</span><span class="t">Explain a concept simply</span><span class="s">51.2</span></div>
+            <div class="row"><span class="n">3</span><span class="t">Handle a difficult question</span><span class="s">53.8</span></div>
+          </div>
+        </div>
+        <p class="note">Already names every task. The order simply becomes the student’s own.</p>
+      </div>
+      <div class="col"><span class="label">Acharya · reviewing a set</span>
+        <div class="screen">
+          <div class="screen-bar"><span>Review set</span><span class="ghost">Student #890</span></div>
+          <div class="screen-body">
+            <div class="row"><span class="n">1</span><span class="t">Introduce yourself</span><span class="s ghost">to score</span></div>
+            <div class="row"><span class="n">2</span><span class="t">Explain a concept simply</span><span class="s ghost">to score</span></div>
+            <div class="row"><span class="n">3</span><span class="t">Handle a difficult question</span><span class="s ghost">to score</span></div>
+          </div>
+        </div>
+        <p class="note">Already names tasks and already follows each student’s own order — no change needed.</p>
+      </div>
+    </div>
+    <p style="margin-top:22px"><b>Admin cohort scoreboard</b> shows totals per student — “15/21 submitted” — with no per-task breakdown, so shuffling doesn’t reach it.</p>
+  </section>
+
+  <!-- open ─────────────────────────────────────── -->
+  <section class="surface">
+    <div class="num">05</div>
+    <h2>Still to decide</h2>
+    <ul>
+      <li><b>Does personal ordering make marking harder?</b> An Acharya marking five students now sees five different sequences. It will be correct — their screen already follows each student’s order — but correct and convenient aren’t the same thing. Better to hear this now than after.</li>
+      <li><b>₹4999 and the leaderboard.</b> That tier reveals progressively today; gating rank on completion is a tightening.</li>
+      <li><b>Repeat enrolment.</b> If someone enrols in the same programme twice, we’d give them a fresh order rather than the one they already saw.</li>
+    </ul>
+    <p class="meta">Nothing changes for anyone already mid-programme: 62 students are currently in progress, and each one keeps the exact order they started with. Shuffling only ever applies to enrolments created after it’s switched on.</p>
+  </section>
+
+</div>
