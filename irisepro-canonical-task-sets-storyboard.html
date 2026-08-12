@@ -241,7 +241,7 @@ fills each slot, then <b>what order</b> the slots run in. These are the admin sc
 changes, and what it takes to get 187 existing tasks into sets.</p>
 
 <div class="facts">
-  <div class="fact"><b>187</b><span>distinct tasks in the catalogue</span></div>
+  <div class="fact"><b>187</b><span>distinct tasks <i>attached to a challenge</i> (the <code>tasks</code> table itself is larger)</span></div>
   <div class="fact"><b>245</b><span>challenge_task rows (tasks are reused)</span></div>
   <div class="fact"><b>21 / 7 / 7</b><span>slots per challenge — exactly uniform across all 21</span></div>
   <div class="fact"><b>146</b><span>tasks that ALREADY share an ability set with another</span></div>
@@ -470,9 +470,21 @@ for its position. Selected tasks float to the top.</p>
     </div>
   </div>
 </div>
-<div class="note bad"><b>This screen is the blocker.</b> 187 rows already; with 3–5 variants per slot it becomes
-600+ rows of flat checkboxes with hand-typed integers, and nothing expresses “these three are alternatives for
-slot 2”. <code>sorting_order</code> has no unique constraint, so two tasks can silently share position 4.</div>
+<div class="note bad"><b>This screen is the blocker, and the reason is structural.</b>
+<code>ChallengeController:424</code> is literally <code>Task::all()</code> — every row in <code>tasks</code>,
+unpaginated, no status filter, rendered as one flat <code>@foreach</code> of checkboxes
+(<code>challenges/edit.blade.php:135-158</code>). Position is a free integer the admin types
+(<code>name="sorting_order[…]"</code>, <code>:151-158</code>); there is no drag-to-reorder. Above all,
+<b>nothing here can express “these three are alternatives for slot 2”</b> — the pivot has one row per task, and
+no concept of a slot.
+<br><br>
+<b>What this is NOT:</b> a live ordering bug. <code>sorting_order</code> carries no unique index, but that is a
+<i>deliberate, probe-disproven</i> choice, not an oversight — <code>sync()</code> updates pivot rows one at a
+time, so a swap transits a duplicate state and a unique index would 500 mid-reorder leaving the pivot
+half-written (<code>ChallengeController:364-372</code>). Ties are disambiguated in code instead, and
+<b>prod had 0 ties when measured 12-Aug-2026</b>. Scale is a projection, not a measurement: at the 1–5
+variants-per-slot Sutirtha expects, the flat list grows several-fold — but the case for rebuilding rests on the
+missing slot concept, which no amount of scrolling fixes.</div>
 
 <h3 class="scr"><em>04</em> What every learner gets, today <span class="tag now">today</span></h3>
 <p class="cap">Identical set, identical order, for everyone on the challenge. Comparability is total; so is
