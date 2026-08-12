@@ -88,6 +88,30 @@ h3{font-size:25px;font-weight:800;margin:0 0 8px;letter-spacing:-.01em}
 .note{font-size:11.5px;color:var(--muted);margin-top:11px;line-height:1.5}
 .note b{color:var(--fg)}
 
+/* whatsapp interactive */
+.qr{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.qr span{background:var(--wa-in);border:1px solid rgba(83,189,235,.35);color:#53bdeb;border-radius:7px;padding:6px 8px;text-align:center;font-size:11px;font-weight:600}
+.listrow{margin-top:6px;background:var(--wa-in);border:1px solid rgba(83,189,235,.35);border-radius:7px;padding:6px 8px;text-align:center;color:#53bdeb;font-size:11px;font-weight:600}
+.sheet{margin-top:6px;background:#111b21;border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden}
+.sheet .sh{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--wa-meta);padding:7px 9px 4px}
+.sheet .r{font-size:10.5px;color:var(--wa-txt);padding:6px 9px;border-top:1px solid rgba(255,255,255,.06);line-height:1.35}
+.pts{display:inline-block;background:var(--accent);color:var(--accent-fg);font-size:9px;font-weight:900;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle}
+
+/* scoring gate */
+.gate{background:var(--forest);border:1px solid var(--border);border-radius:18px;padding:26px 24px;margin-top:6px}
+.tally{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:22px}
+.tal{background:var(--forest2);border:1px solid var(--border);border-radius:11px;padding:11px 13px}
+.tal .q{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:var(--accent-strong)}
+.tal .rows{margin-top:6px;font-size:11.5px;line-height:1.75;color:var(--muted)}
+.outs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.out{border-radius:13px;padding:14px 16px;border:1px solid var(--border);background:var(--forest2)}
+.out .sc{font-size:20px;font-weight:900;letter-spacing:-.01em}
+.out .nm{font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.out .go{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.45}
+.out.hot{border-color:var(--accent);background:linear-gradient(180deg,rgba(226,165,45,.16),transparent)}
+.out.hot .sc,.out.hot .nm{color:var(--accent-strong)}
+@media(max-width:700px){.outs{grid-template-columns:1fr}}
+
 /* voice card */
 .voice{width:268px;background:var(--forest2);border:1px solid #2c4a6e;border-radius:16px;padding:15px 15px 16px;min-height:238px}
 .voice .vh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
@@ -133,7 +157,7 @@ tr:last-child td{border-bottom:0}
   <h1>KAS DRIP —<br>the lead journey</h1>
   <p class="sub">Cold lead to enrolment. Routed on the CTA they actually clicked, not on one funnel for everyone. WhatsApp carries the nurture; voice is reserved for service.</p>
   <div class="chips">
-    <span class="chip gold">3 entry points · 4 tracks</span>
+    <span class="chip gold">3 entries · qualify · 4 tracks</span>
     <span class="chip">WhatsApp-only nurture</span>
     <span class="chip">Voice = service only</span>
     <span class="chip">Webinar 8–9 PM nightly</span>
@@ -199,9 +223,106 @@ tr:last-child td{border-bottom:0}
   <p class="note" style="max-width:70ch"><b>This is the constraint most bulk-import plans discover late.</b> The spreadsheet is easy; the lawful basis to message the people in it is not.</p>
 </section>
 
-<!-- ══════════ 02 TRACK A ══════════ -->
+
+<!-- ══════════ 02 QUALIFICATION ══════════ -->
 <section>
-  <h2><span class="n">02</span> Track A · fill tonight's room</h2>
+  <h2><span class="n">02</span> Qualification · three taps</h2>
+  <h3>Every question must also advance the sale</h3>
+  <p class="cap">A qualifier that does not teach is a tax on the lead. These three score, segment and sell at the same time — and the middle one is lifted straight from the page's own diagnostic.</p>
+
+  <div class="rail">
+    <div class="stop">
+      <div class="when"><span class="day">Q1</span><span class="ch wa">Buttons</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">online</div></div></div>
+        <div class="wabody">
+          <div class="bub in">Two quick questions so we point you at the right thing.<br><br><b>Which attempt is this for you?</b>
+            <div class="t">6:48 pm</div></div>
+          <div class="qr"><span>First attempt</span><span>Second attempt</span><span>Third or more</span></div>
+        </div>
+      </div></div>
+      <p class="note"><b>The strongest single predictor.</b> A repeat attempter has already proved that more books did not work — they are pre-sold on something else being wrong.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">Q2 · repeat</span><span class="ch wa">List</span><span class="ch mkt">Qualifies + sells</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">online</div></div></div>
+        <div class="wabody">
+          <div class="bub out">Second attempt<div class="t">6:49 pm ✓✓</div></div>
+          <div class="bub in"><b>Which of these happened last time?</b><div class="t">6:49 pm</div></div>
+          <div class="sheet">
+            <div class="sh">Select one</div>
+            <div class="r">Knew the topic, marked the wrong answer</div>
+            <div class="r">Eliminated two options, chose wrong</div>
+            <div class="r">Left easy questions</div>
+            <div class="r">Lost focus in the second half</div>
+            <div class="r">Panicked after a doubtful question</div>
+            <div class="r">Scored low despite studying</div>
+          </div>
+        </div>
+      </div></div>
+      <p class="note"><b>Does four jobs at once</b> — qualifies (only an attempter can answer), segments (names the ability gap), sells (that is their exact experience), and teaches. Buttons cap at 3, so this is a List.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">Q2 · first-timer</span><span class="ch wa">Buttons</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">online</div></div></div>
+        <div class="wabody">
+          <div class="bub out">First attempt<div class="t">6:49 pm ✓✓</div></div>
+          <div class="bub in">Then you have no exam story yet — which is its own advantage.<br><br><b>Where are you right now?</b><div class="t">6:49 pm</div></div>
+          <div class="qr"><span>Just starting</span><span>Mid-preparation</span><span>Revision stage</span></div>
+        </div>
+      </div></div>
+      <p class="note"><b>The branch matters.</b> Asking a first-timer what went wrong last time is the fastest way to look automated.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">Q3</span><span class="ch wa">Buttons</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">online</div></div></div>
+        <div class="wabody">
+          <div class="bub in"><b>When is your next attempt?</b><div class="t">6:51 pm</div></div>
+          <div class="qr"><span>Within 6 months</span><span>Later this year</span><span>Still deciding</span></div>
+          <div class="bub out">Within 6 months<div class="t">6:51 pm ✓✓</div></div>
+          <div class="bub in">That is enough time to measure and strengthen — but not enough to waste. Krishnaraj sir is live tonight at 8.<div class="wbtn">Join tonight</div><div class="t">6:51 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>Urgency, then immediate value.</b> Never end a qualification flow without giving something back.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:16px">The scoring gate</h3>
+  <p class="cap">Declared answers score. Behaviour scores higher — people misreport intent, but attendance is a fact.</p>
+
+  <div class="gate">
+    <div class="tally">
+      <div class="tal"><div class="q">Attempt</div><div class="rows">Third or more <span class="pts">+4</span><br>Second <span class="pts">+3</span><br>First <span class="pts">+1</span></div></div>
+      <div class="tal"><div class="q">Named a marks-loss situation</div><div class="rows">Any specific answer <span class="pts">+3</span><br>No exam story yet <span class="pts">0</span></div></div>
+      <div class="tal"><div class="q">Next attempt</div><div class="rows">Within 6 months <span class="pts">+3</span><br>Later this year <span class="pts">+2</span><br>Still deciding <span class="pts">0</span></div></div>
+      <div class="tal"><div class="q">Behaviour · weighted higher</div><div class="rows">Attended webinar <span class="pts">+4</span><br>Clicked pricing <span class="pts">+2</span><br>Replied at all <span class="pts">+2</span></div></div>
+    </div>
+
+    <div class="outs">
+      <div class="out hot"><div class="sc">10+</div><div class="nm">Hot</div><div class="go">Voice, and a human where possible. Priority in the dial queue.</div></div>
+      <div class="out"><div class="sc">5 – 9</div><div class="nm">Warm</div><div class="go">Track S or B — the scan path, at normal cadence.</div></div>
+      <div class="out"><div class="sc">under 5</div><div class="nm">Cold</div><div class="go">Long-cycle. Standing monthly webinar invitation, no sequence.</div></div>
+    </div>
+  </div>
+  <p class="note" style="max-width:74ch"><b>These weights are a hypothesis, not a finding.</b> Re-fit them against real enrolment history once there are fifty conversions — the data to do that already exists in <code>lead_events</code> joined to <code>enrollments</code>.</p>
+  <p class="note" style="max-width:74ch"><b>Ask only after giving.</b> Three questions as the opening move reads as an interrogation. Place them after the first genuine give, or immediately post-webinar while the founder has just earned the right.</p>
+</section>
+
+<!-- ══════════ 03 TRACK A ══════════ -->
+<section>
+  <h2><span class="n">03</span> Track A · fill tonight's room</h2>
   <h3>Two nudges, then stop</h3>
   <p class="cap">Every message ends at 8 PM tonight. The session runs nightly, so a miss is simply another night — that is the credibility, and the reason no countdown timer is ever used.</p>
 
@@ -275,7 +396,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 03 TRACK S ══════════ -->
 <section>
-  <h2><span class="n">03</span> Track S · they asked for their score</h2>
+  <h2><span class="n">04</span> Track S · they asked for their score</h2>
   <h3>Give them the path they asked for</h3>
   <p class="cap">This lead did not ask for a lecture. The webinar is mentioned once, as help — never as the toll gate.</p>
 
@@ -340,7 +461,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 04 TRACK B ══════════ -->
 <section>
-  <h2><span class="n">04</span> Track B · attended, not enrolled</h2>
+  <h2><span class="n">05</span> Track B · attended, not enrolled</h2>
   <h3>They have heard the founder — do not re-explain</h3>
   <p class="cap">Highest-intent nurture group in the funnel. They sat through an hour with an ex-officer. Skip the philosophy entirely and go to the specific.</p>
 
@@ -403,7 +524,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 05 HOT ══════════ -->
 <section>
-  <h2><span class="n">05</span> Hot · abandoned checkout</h2>
+  <h2><span class="n">06</span> Hot · abandoned checkout</h2>
   <h3>Within the hour, by voice — never nurture</h3>
   <p class="cap">They reached the payment page and it broke. This is a service call about their own action minutes earlier, which is also the safest ground under TCCCPR.</p>
 
@@ -435,7 +556,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 06 INBOUND ══════════ -->
 <section>
-  <h2><span class="n">06</span> Inbound · they message first</h2>
+  <h2><span class="n">07</span> Inbound · they message first</h2>
   <h3>The cheapest, warmest lead there is</h3>
   <p class="cap">WhatsApp is two-way. Any inbound message opens a 24-hour window in which no template is needed and nothing is capped — this is where the assistant should do its real work.</p>
 
@@ -475,7 +596,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 07 STOPS ══════════ -->
 <section>
-  <h2><span class="n">07</span> Stop conditions &amp; channel health</h2>
+  <h2><span class="n">08</span> Stop conditions &amp; channel health</h2>
   <h3>What ends a sequence</h3>
 
   <div class="stopbar">
@@ -509,7 +630,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 06 DESKTOP / OPS ══════════ -->
 <section>
-  <h2><span class="n">08</span> The operator's view</h2>
+  <h2><span class="n">09</span> The operator's view</h2>
   <h3>What the team watches</h3>
   <p class="cap">Agree these before launch, or success cannot be told from noise.</p>
 
@@ -530,7 +651,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 07 VERIFY ══════════ -->
 <section>
-  <h2><span class="n">09</span> Verify before shipping</h2>
+  <h2><span class="n">10</span> Verify before shipping</h2>
   <h3>Five assumptions this rests on</h3>
   <p class="cap">Each drawn from the page, not from data. Each cheap to check, expensive to get wrong.</p>
 
