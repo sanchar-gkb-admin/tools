@@ -1,0 +1,427 @@
+<title>YASHHO — KAS DRIP Campaign Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* LIVE .kas-theme tokens — src/app/globals.css:263 */
+  --accent:#e2a52d; --accent-strong:#f8d066; --accent-fg:#2a0a0c; --accent-soft:#52201a;
+  --leaf:#e8c46e; --forest:#2a0a0c; --forest2:#491a1b;
+  --bg:#3a1012; --fg:#f3ecd9; --surface:#491a1b; --muted:#e3d6ba; --border:#6e2c26;
+  /* WhatsApp render */
+  --wa-wall:#0b141a; --wa-in:#202c33; --wa-out:#005c4b; --wa-txt:#e9edef; --wa-meta:#8696a0;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1400px;margin:0 auto;padding:0 24px 110px}
+
+/* masthead */
+.mast{padding:56px 0 32px;border-bottom:1px solid var(--border);margin-bottom:46px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(30px,5vw,52px);font-weight:900;letter-spacing:-.02em;line-height:1.04;margin:12px 0 0;text-transform:uppercase}
+.sub{color:var(--muted);max-width:66ch;margin-top:14px}
+.chips{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--forest2);border:1px solid var(--border);border-radius:999px;padding:5px 12px;color:var(--muted)}
+.chip.gold{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+
+section{margin:0 0 68px}
+h2{font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;display:flex;align-items:center;gap:11px}
+h2 .n{background:var(--accent);color:var(--accent-fg);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:12px;letter-spacing:0}
+h3{font-size:25px;font-weight:800;margin:0 0 8px;letter-spacing:-.01em}
+.cap{color:var(--muted);font-size:13.5px;max-width:70ch;margin:0 0 26px}
+
+/* ── routing diagram ─────────────────────────── */
+.router{background:var(--forest);border:1px solid var(--border);border-radius:20px;padding:30px 26px}
+.entry{display:flex;justify-content:center;margin-bottom:6px}
+.node{background:var(--forest2);border:1px solid var(--border);border-radius:13px;padding:13px 20px;text-align:center;min-width:220px}
+.node .lab{font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.node .val{font-size:15px;font-weight:800;margin-top:3px}
+.node.gold{border-color:var(--accent);background:linear-gradient(180deg,rgba(226,165,45,.14),transparent)}
+.stem{width:2px;height:24px;background:var(--border);margin:0 auto}
+.qbox{background:var(--accent);color:var(--accent-fg);border-radius:11px;padding:11px 22px;font-weight:900;font-size:13.5px;text-align:center;max-width:430px;margin:0 auto;letter-spacing:.01em}
+.fan{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.branch{background:var(--forest2);border:1px solid var(--border);border-radius:14px;padding:0;overflow:hidden;display:flex;flex-direction:column}
+.branch .top{padding:12px 14px;border-bottom:1px solid var(--border)}
+.branch .tag{font-size:9.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-strong)}
+.branch .clicked{font-size:12.5px;font-weight:700;margin-top:3px;line-height:1.35}
+.branch .body{padding:12px 14px;flex:1}
+.branch .track{font-size:16px;font-weight:900;letter-spacing:-.01em}
+.branch .why{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.branch.hot{border-color:var(--accent);box-shadow:0 0 0 1px rgba(226,165,45,.35)}
+.branch.hot .track{color:var(--accent-strong)}
+
+/* ── timeline rail ───────────────────────────── */
+.rail{display:flex;gap:0;align-items:stretch;overflow-x:auto;padding:4px 2px 20px}
+.stop{flex:0 0 auto;width:268px}
+.arrow{flex:0 0 auto;display:grid;place-items:center;color:var(--border);padding:0 10px;font-size:20px;align-self:center}
+.when{display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.day{background:var(--accent);color:var(--accent-fg);font-size:10px;font-weight:900;border-radius:5px;padding:3px 8px;letter-spacing:.06em}
+.ch{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;padding:3px 8px;border:1px solid var(--border);color:var(--muted)}
+.ch.wa{color:#25d366;border-color:#1e5c40}
+.ch.voice{color:#7fb3ff;border-color:#2c4a6e}
+.ch.util{color:var(--leaf);border-color:#6b5320}
+.ch.mkt{color:#ff9b7d;border-color:#7a3524}
+
+/* ── phone + whatsapp ────────────────────────── */
+.phone{width:268px;border-radius:30px;background:#000;padding:8px;box-shadow:0 18px 42px rgba(0,0,0,.55);position:relative}
+.phone::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:64px;height:4px;background:#1d1d1d;border-radius:99px;z-index:5}
+.wa{background:var(--wa-wall);border-radius:23px;overflow:hidden;height:100%}
+.wahead{background:#202c33;padding:14px 12px 9px;display:flex;align-items:center;gap:9px}
+.waav{width:29px;height:29px;border-radius:99px;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center;font-weight:900;font-size:11px;flex:0 0 auto}
+.waname{font-size:12.5px;font-weight:700;color:var(--wa-txt);line-height:1.2}
+.wasub{font-size:9.5px;color:var(--wa-meta)}
+.wabody{padding:12px 9px 14px;display:flex;flex-direction:column;gap:7px;min-height:210px}
+.bub{max-width:86%;padding:7px 9px 5px;border-radius:8px;font-size:11.5px;line-height:1.45;color:var(--wa-txt);position:relative}
+.bub.in{background:var(--wa-in);align-self:flex-start;border-top-left-radius:2px}
+.bub.out{background:var(--wa-out);align-self:flex-end;border-top-right-radius:2px}
+.bub .t{font-size:8.5px;color:var(--wa-meta);text-align:right;margin-top:3px}
+.bub b{font-weight:700}
+.wbtn{margin-top:6px;border-top:1px solid rgba(255,255,255,.12);padding-top:6px;text-align:center;color:#53bdeb;font-weight:600;font-size:11px}
+.note{font-size:11.5px;color:var(--muted);margin-top:11px;line-height:1.5}
+.note b{color:var(--fg)}
+
+/* voice card */
+.voice{width:268px;background:var(--forest2);border:1px solid #2c4a6e;border-radius:16px;padding:15px 15px 16px;min-height:238px}
+.voice .vh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.voice .vi{width:29px;height:29px;border-radius:99px;background:#2c4a6e;color:#7fb3ff;display:grid;place-items:center;font-size:13px;flex:0 0 auto}
+.voice .vn{font-size:12.5px;font-weight:700}
+.voice .vs{font-size:9.5px;color:var(--muted)}
+.voice p{font-size:11.5px;line-height:1.5;color:var(--fg);margin:0;font-style:italic}
+
+/* stop / gates */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{background:var(--forest2);border:1px solid var(--border);border-radius:15px;padding:18px 20px}
+.card h4{margin:0 0 10px;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-strong)}
+.card ul{margin:0;padding-left:0;list-style:none}
+.card li{font-size:12.5px;line-height:1.5;padding:6px 0 6px 19px;position:relative;border-bottom:1px dashed var(--border)}
+.card li:last-child{border-bottom:0}
+.card li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:99px;background:var(--accent)}
+.card li.stopdot::before{background:#ff7a5c}
+
+.stopbar{background:linear-gradient(90deg,rgba(255,122,92,.18),transparent);border-left:3px solid #ff7a5c;border-radius:0 13px 13px 0;padding:15px 20px;margin:22px 0}
+.stopbar .t{font-size:10.5px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:#ff9b7d;margin-bottom:5px}
+.stopbar p{margin:0;font-size:13.5px}
+
+/* desktop frame */
+.browser{border-radius:11px;overflow:hidden;border:1px solid var(--border);box-shadow:0 18px 42px rgba(0,0,0,.5)}
+.bbar{display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--forest);border-bottom:1px solid var(--border)}
+.bdot{width:9px;height:9px;border-radius:99px;background:var(--border)}
+.burl{flex:1;background:var(--forest2);border-radius:99px;padding:4px 12px;font-size:10.5px;color:var(--muted);margin-left:6px}
+.bview{background:var(--forest);padding:24px}
+
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th{background:var(--forest2);text-align:left;padding:10px 13px;font-size:9.5px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+td{padding:9px 13px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.foot{border-top:1px solid var(--border);margin-top:60px;padding-top:22px;color:var(--muted);font-size:12px;display:flex;flex-wrap:wrap;gap:8px 26px}
+@media(max-width:900px){.fan{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.fan{grid-template-columns:1fr}.wrap{padding:0 15px 70px}}
+</style>
+
+<div class="wrap">
+
+<div class="mast">
+  <div class="eyebrow">YASHHO · Akhila Karnataka KAS Asali Champion</div>
+  <h1>KAS DRIP —<br>the lead journey</h1>
+  <p class="sub">Cold lead to enrolment. Routed on the CTA they actually clicked, not on one funnel for everyone. WhatsApp carries the nurture; voice is reserved for service.</p>
+  <div class="chips">
+    <span class="chip gold">4 tracks · routed on intent</span>
+    <span class="chip">WhatsApp-only nurture</span>
+    <span class="chip">Voice = service only</span>
+    <span class="chip">Webinar 8–9 PM nightly</span>
+    <span class="chip">12 Aug 2026</span>
+  </div>
+</div>
+
+<!-- ══════════ 01 ROUTER ══════════ -->
+<section>
+  <h2><span class="n">01</span> The routing decision</h2>
+  <h3>One question decides everything downstream</h3>
+  <p class="cap">The CTA a visitor clicks is intent data. Sending a score-seeker to an hour-long webinar overrides what they asked for — so the click decides the track.</p>
+
+  <div class="router">
+    <div class="entry"><div class="node gold"><div class="lab">Lead lands</div><div class="val">yashho.com /kas</div></div></div>
+    <div class="stem"></div>
+    <div class="qbox">WHICH CTA DID THEY CLICK?</div>
+
+    <div class="fan">
+      <div class="branch">
+        <div class="top"><div class="tag">Clicked</div><div class="clicked">Register for Daily Night Webinar</div></div>
+        <div class="body"><div class="track">Track A</div><div class="why">Wants guidance. Fill tonight's room — the founder converts live.</div></div>
+      </div>
+      <div class="branch">
+        <div class="top"><div class="tag">Clicked</div><div class="clicked">Check My KAS Ability Score</div></div>
+        <div class="body"><div class="track">Track S</div><div class="why">Wants a number about themselves. Give the path to it. Webinar offered as help, not a gate.</div></div>
+      </div>
+      <div class="branch">
+        <div class="top"><div class="tag">Attended</div><div class="clicked">Was in the 8 PM room</div></div>
+        <div class="body"><div class="track">Track B</div><div class="why">Has heard the founder. Skip the philosophy — go to the specific.</div></div>
+      </div>
+      <div class="branch hot">
+        <div class="top"><div class="tag">Abandoned</div><div class="clicked">Reached checkout, did not pay</div></div>
+        <div class="body"><div class="track">HOT</div><div class="why">Hottest lead we have. Recover within the hour, by voice. Never nurture.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 TRACK A ══════════ -->
+<section>
+  <h2><span class="n">02</span> Track A · fill tonight's room</h2>
+  <h3>Two nudges, then stop</h3>
+  <p class="cap">Every message ends at 8 PM tonight. The session runs nightly, so a miss is simply another night — that is the credibility, and the reason no countdown timer is ever used.</p>
+
+  <div class="rail">
+    <div class="stop">
+      <div class="when"><span class="day">+2 MIN</span><span class="ch voice">Voice</span></div>
+      <div class="voice">
+        <div class="vh"><div class="vi">☎</div><div><div class="vn">AI assistant</div><div class="vs">outbound · 40 sec</div></div></div>
+        <p>"Namaskara, this is YASHHO. You registered for tonight's KAS session. It runs 8 to 9, live with Krishnaraj sir — he was a Karnataka Civil Services officer himself. Shall I send the joining link on WhatsApp?"</p>
+      </div>
+      <p class="note"><b>Recognition, not selling.</b> One ask: may we WhatsApp you.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">+5 MIN</span><span class="ch wa">WhatsApp</span><span class="ch util">Utility</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">Your seat is confirmed for <b>tonight, 8–9 PM</b>.<br><br>Live with <b>Krishnaraj M Manjunath</b> — Ex-Karnataka Civil Services Officer, Founder of YASHHO, inventor of the AACE64 Framework.<br><br>You can ask him your KAS questions directly. Aspirants and parents both welcome.
+            <div class="wbtn">Join session</div><div class="t">6:42 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><code>kas_webinar_seat_confirmed</code></p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">7:50 PM</span><span class="ch wa">WhatsApp</span><span class="ch util">Utility</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">Starting in 10 minutes. Keep a pen — the marks-loss table is worth writing down.
+            <div class="wbtn">Join now</div><div class="t">7:50 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>One reminder, not two.</b> Registrants only.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 2</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">Which of these was you, in your last attempt?<br><br>• You knew the topic — but marked the wrong answer<br>• You eliminated two options — and still chose wrong<br>• You left easy questions<br>• You lost focus in the second half<br>• You panicked after a doubtful question<br><br>Each has a specific ability behind it. Not effort. Not syllabus.
+            <div class="wbtn">Join tonight</div><div class="t">6:04 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>The strongest message in the campaign.</b> Straight from the page's own diagnostic table.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 4</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">Five abilities decide the KAS result more than any book does:<br><br>Critical &amp; Analytical Thinking · Comprehension · Written Structure · Decision-Making · Steadfastness<br><br>The Akhila Karnataka KAS Asali Champion Benchmark sits at <b>94–95%</b> on each. Most aspirants have never seen their own number against it.
+            <div class="wbtn">Join tonight</div><div class="t">6:11 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>Then pause.</b> No further sends unless they reply or attend.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 TRACK S ══════════ -->
+<section>
+  <h2><span class="n">03</span> Track S · they asked for their score</h2>
+  <h3>Give them the path they asked for</h3>
+  <p class="cap">This lead did not ask for a lecture. The webinar is mentioned once, as help — never as the toll gate.</p>
+
+  <div class="rail">
+    <div class="stop">
+      <div class="when"><span class="day">+2 MIN</span><span class="ch wa">WhatsApp</span><span class="ch util">Utility</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">You asked to check your KAS Success Ability score.<br><br>You complete a set of tasks from home, at your own pace. A trained <b>Yashodarshi</b> scores every one personally. You receive your scorecard — each ability measured against the Akhila Karnataka KAS Asali Champion Benchmark.
+            <div class="wbtn">See the options</div><div class="t">4:18 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note">Answers the question they actually asked.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 2</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">KAS Prelims is 400 marks.<br><br>A gap of around 5% against the KAS Asali Champion Benchmark is <b>estimated</b> to cost 8–20 marks on the top five abilities alone.<br><br>Aspirants miss the cut-off by one.<br><br><i>Marks tell you what happened. YASHHO tells you why it happened.</i>
+            <div class="wbtn">Check my score</div><div class="t">11:02 am</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>"Estimated" stays in.</b> The page hedges it; outbound must too.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 4</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in"><b>ASLI64 KAS Master Scan — ₹4,999</b><br><br>✓ All 64 Success Abilities measured<br>✓ Complete scorecard + gap analysis<br>✓ KAS fit clarity<br>✓ Career pathway mapping<br>✓ <b>A dedicated Yashodarshi</b><br>✓ <b>1-to-1 mentoring</b><br><br>Not a score check — a starting point with a person attached.
+            <div class="wbtn">Choose Best Value</div><div class="t">10:30 am</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>The Yashodarshi + 1-to-1 is why ₹4,999 is the hero.</b></p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 6</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">If ₹4,999 is not today's step, begin smaller.<br><br><b>ASLI5 KAS Starter Scan — ₹999.</b> Your top 5 critical abilities against the KAS Champion Benchmark — a first-level answer to "am I built for this race?"
+            <div class="wbtn">Start — Quick Check</div><div class="t">10:12 am</div></div>
+          <div class="bub out">How long does it take?<div class="t">10:26 am ✓✓</div></div>
+          <div class="bub in">About 8 days at the fast pace. Shall I send you the link?<div class="t">10:26 am</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>A reply opens the 24-hour window</b> — free-form from here, no templates. This is where the assistant earns its keep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 HOT ══════════ -->
+<section>
+  <h2><span class="n">04</span> Hot · abandoned checkout</h2>
+  <h3>Within the hour, by voice — never nurture</h3>
+  <p class="cap">They reached the payment page and it broke. This is a service call about their own action minutes earlier, which is also the safest ground under TCCCPR.</p>
+
+  <div class="rail">
+    <div class="stop">
+      <div class="when"><span class="day">+45 MIN</span><span class="ch voice">Voice</span></div>
+      <div class="voice" style="border-color:var(--accent)">
+        <div class="vh"><div class="vi" style="background:var(--accent-soft);color:var(--accent-strong)">☎</div><div><div class="vn">AI assistant → human</div><div class="vs">service call</div></div></div>
+        <p>"Namaskara — you started enrolling for the KAS Master Scan and it didn't complete. Was there a problem with the payment, or a question I can answer?"</p>
+      </div>
+      <p class="note"><b>Service, not sales.</b> The moment the purpose becomes "would you like to buy", it is promotional and the full DLT regime applies.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">+1 HR</span><span class="ch wa">WhatsApp</span><span class="ch util">Utility</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">Your enrolment for the <b>ASLI64 KAS Master Scan</b> did not complete. Your place is still held.<br><br>If there was a payment problem or a question, reply here and we will help.
+            <div class="wbtn">Complete enrolment</div><div class="t">3:40 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><code>kas_checkout_recovery</code> — the highest-value template in the set, and the easiest to get approved.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 05 STOPS ══════════ -->
+<section>
+  <h2><span class="n">05</span> Stop conditions &amp; channel health</h2>
+  <h3>What ends a sequence</h3>
+
+  <div class="stopbar">
+    <div class="t">Hard stop</div>
+    <p>The instant a payment lands, <b>every sequence ends for that person</b>. A paying customer receiving "enrol now" is worse than no message at all.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Frequency discipline</h4>
+      <ul>
+        <li class="stopdot">Max <b>3 unanswered messages</b>, then pause — not daily-forever</li>
+        <li>Any reply resets the counter and hands to the assistant</li>
+        <li>One voice attempt per lead in 48h, not per day</li>
+        <li>Quiet hours — nothing before 9 AM or after 9 PM</li>
+        <li class="stopdot">After 7 days silent: one re-entry message only, never a fresh sequence</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Why it matters</h4>
+      <ul>
+        <li>Meta caps <b>marketing</b> templates per recipient; utility is uncapped</li>
+        <li>Users opt out of marketing while staying opted in to utility</li>
+        <li>Blocks and unanswered sends degrade <b>quality rating</b> → throttling</li>
+        <li>Only <b>4 of 9</b> templates are marketing — that is the whole exposed surface</li>
+        <li>The channel this campaign runs on is the channel it can destroy</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06 DESKTOP / OPS ══════════ -->
+<section>
+  <h2><span class="n">06</span> The operator's view</h2>
+  <h3>What the team watches</h3>
+  <p class="cap">Agree these before launch, or success cannot be told from noise.</p>
+
+  <div class="browser">
+    <div class="bbar"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">superfone · campaign dashboard — YASHHO KAS</span></div>
+    <div class="bview">
+      <table>
+        <tr><th>Track</th><th>Success measure</th><th>Channel health</th></tr>
+        <tr><td><b>A</b> · guidance</td><td>% of registrants attending a session within 7 days</td><td rowspan="4">WhatsApp quality rating · opt-out rate · block rate · marketing-cap consumption per recipient</td></tr>
+        <tr><td><b>S</b> · score-seeker</td><td>% reaching checkout within 7 days</td></tr>
+        <tr><td><b>B</b> · attended</td><td>% enrolling within 72 hours</td></tr>
+        <tr><td><b>HOT</b> · abandoned</td><td>% recovered within 24 hours</td></tr>
+        <tr><td colspan="3"><b>Cost per enrolment, by track</b> — the number that decides whether any of this continues</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 VERIFY ══════════ -->
+<section>
+  <h2><span class="n">07</span> Verify before shipping</h2>
+  <h3>Five assumptions this rests on</h3>
+  <p class="cap">Each drawn from the page, not from data. Each cheap to check, expensive to get wrong.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Could invalidate the design</h4>
+      <ul>
+        <li><b>Does the nightly webinar convert?</b> The whole funnel points at it because the CTAs do. Check attendance + enrolments within 72h.</li>
+        <li><b>Is the webinar resilient?</b> One person, every night. What happens when he travels?</li>
+        <li><b>Who sends the webinar link?</b> The site already promises to. Superfone must not double-send.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Claims to substantiate</h4>
+      <ul>
+        <li><b>The 400-mark loss table</b> is labelled "estimated". Outbound at scale invites scrutiny a landing page does not.</li>
+        <li><b>15,000+ students</b> and the <b>94–95%</b> benchmarks — same exposure.</li>
+        <li><b>Kannada</b> must come from KMM's own copy, never machine-translated from English.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <span><b>YASHHO</b> · KAS DRIP campaign flow</span>
+  <span>12 Aug 2026</span>
+  <span>Theme: live .kas-theme tokens — maroon #3a1012 / gold #e2a52d / Montserrat</span>
+  <span>Copy grounded in src/lib/kas-content.ts</span>
+</div>
+
+</div>
