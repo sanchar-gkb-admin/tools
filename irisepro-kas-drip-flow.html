@@ -30,6 +30,14 @@ h2 .n{background:var(--accent);color:var(--accent-fg);width:26px;height:26px;bor
 h3{font-size:25px;font-weight:800;margin:0 0 8px;letter-spacing:-.01em}
 .cap{color:var(--muted);font-size:13.5px;max-width:70ch;margin:0 0 26px}
 
+/* entry points */
+.entries{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.ent{background:var(--forest2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:13px 16px}
+.ent .lab{font-size:9.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-strong)}
+.ent .val{font-size:14px;font-weight:800;margin-top:3px}
+.ent .sm{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+@media(max-width:860px){.entries{grid-template-columns:1fr}}
+
 /* ── routing diagram ─────────────────────────── */
 .router{background:var(--forest);border:1px solid var(--border);border-radius:20px;padding:30px 26px}
 .entry{display:flex;justify-content:center;margin-bottom:6px}
@@ -125,7 +133,7 @@ tr:last-child td{border-bottom:0}
   <h1>KAS DRIP —<br>the lead journey</h1>
   <p class="sub">Cold lead to enrolment. Routed on the CTA they actually clicked, not on one funnel for everyone. WhatsApp carries the nurture; voice is reserved for service.</p>
   <div class="chips">
-    <span class="chip gold">4 tracks · routed on intent</span>
+    <span class="chip gold">3 entry points · 4 tracks</span>
     <span class="chip">WhatsApp-only nurture</span>
     <span class="chip">Voice = service only</span>
     <span class="chip">Webinar 8–9 PM nightly</span>
@@ -139,8 +147,14 @@ tr:last-child td{border-bottom:0}
   <h3>One question decides everything downstream</h3>
   <p class="cap">The CTA a visitor clicks is intent data. Sending a score-seeker to an hour-long webinar overrides what they asked for — so the click decides the track.</p>
 
+  <div class="entries">
+    <div class="ent"><div class="lab">Entry 1</div><div class="val">Website · yashho.com /kas</div><div class="sm">Clicked a CTA — routes below</div></div>
+    <div class="ent"><div class="lab">Entry 2</div><div class="val">Bulk import · spreadsheet</div><div class="sm">No CTA clicked — opt-in gate first</div></div>
+    <div class="ent"><div class="lab">Entry 3</div><div class="val">Inbound · they message us</div><div class="sm">Skips routing entirely — see 06</div></div>
+  </div>
+
   <div class="router">
-    <div class="entry"><div class="node gold"><div class="lab">Lead lands</div><div class="val">yashho.com /kas</div></div></div>
+    <div class="entry"><div class="node gold"><div class="lab">Entry 1 · lead lands</div><div class="val">yashho.com /kas</div></div></div>
     <div class="stem"></div>
     <div class="qbox">WHICH CTA DID THEY CLICK?</div>
 
@@ -163,6 +177,26 @@ tr:last-child td{border-bottom:0}
       </div>
     </div>
   </div>
+
+  <h3 style="margin-top:34px">Entry 2 · bulk import — the opt-in gate</h3>
+  <p class="cap">An imported lead clicked nothing, so the routing question does not apply. A harder gate applies instead.</p>
+
+  <div class="router">
+    <div class="entry"><div class="node"><div class="lab">Entry 2</div><div class="val">Spreadsheet import</div></div></div>
+    <div class="stem"></div>
+    <div class="qbox" style="background:#ff7a5c;color:#2a0a0c">DO WE HOLD WHATSAPP OPT-IN FOR THIS NUMBER?</div>
+    <div class="fan" style="grid-template-columns:1fr 1fr;max-width:760px;margin:24px auto 0">
+      <div class="branch" style="border-color:#7a3524">
+        <div class="top"><div class="tag" style="color:#ff9b7d">No opt-in on record</div><div class="clicked">Cannot be messaged on WhatsApp</div></div>
+        <div class="body"><div class="track" style="color:#ff9b7d">BLOCKED</div><div class="why">Meta requires opt-in before any business-initiated message. An old spreadsheet is not opt-in. These leads need consent obtained through another route before they enter any sequence.</div></div>
+      </div>
+      <div class="branch">
+        <div class="top"><div class="tag">Opt-in evidenced</div><div class="clicked">Consent + timestamp on record</div></div>
+        <div class="body"><div class="track">Track S</div><div class="why">No expressed intent, so treat as a score-seeker: explain the scan, then the ladder. Never assume webinar interest they never showed.</div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note" style="max-width:70ch"><b>This is the constraint most bulk-import plans discover late.</b> The spreadsheet is easy; the lawful basis to message the people in it is not.</p>
 </section>
 
 <!-- ══════════ 02 TRACK A ══════════ -->
@@ -304,9 +338,72 @@ tr:last-child td{border-bottom:0}
   </div>
 </section>
 
-<!-- ══════════ 04 HOT ══════════ -->
+<!-- ══════════ 04 TRACK B ══════════ -->
 <section>
-  <h2><span class="n">04</span> Hot · abandoned checkout</h2>
+  <h2><span class="n">04</span> Track B · attended, not enrolled</h2>
+  <h3>They have heard the founder — do not re-explain</h3>
+  <p class="cap">Highest-intent nurture group in the funnel. They sat through an hour with an ex-officer. Skip the philosophy entirely and go to the specific.</p>
+
+  <div class="rail">
+    <div class="stop">
+      <div class="when"><span class="day">9:15 PM</span><span class="ch wa">WhatsApp</span><span class="ch util">Utility</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">Thank you for joining tonight.<br><br>The next step Krishnaraj sir described is the scan itself — your own number against the Akhila Karnataka KAS Asali Champion Benchmark, ability by ability.
+            <div class="wbtn">See the options</div><div class="t">9:15 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>Same night, while it is still live for them.</b> Utility — it follows their own attendance.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 1</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in"><b>ASLI64 KAS Master Scan — ₹4,999</b><br><br>✓ All 64 Success Abilities measured<br>✓ Complete scorecard + gap analysis<br>✓ KAS fit clarity<br>✓ Career pathway mapping<br>✓ <b>A dedicated Yashodarshi</b><br>✓ <b>1-to-1 mentoring</b>
+            <div class="wbtn">Choose Best Value</div><div class="t">10:04 am</div></div>
+        </div>
+      </div></div>
+      <p class="note">Shared template with Track S — one approval, two tracks.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 3</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">The most common reply we get: <i>"I'll do it after Prelims."</i><br><br>Consider the order. The scan names the abilities to strengthen. Strengthening takes time. Doing it after the exam means learning what would have helped — after it could have.<br><br><b>SCAN · STEADY · STRENGTHEN · SUCCEED.</b> The scan is first for a reason.
+            <div class="t">11:20 am</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>The real objection, named.</b> No CTA button — this one argues, it does not push.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">DAY 6</span><span class="ch wa">WhatsApp</span><span class="ch mkt">Marketing</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">business account</div></div></div>
+        <div class="wabody">
+          <div class="bub in">If ₹4,999 is not today's step, begin smaller.<br><br><b>ASLI5 KAS Starter Scan — ₹999.</b> Your top 5 critical abilities against the KAS Champion Benchmark.<br><br>The nightly 8 PM session stays open to you either way.
+            <div class="wbtn">Start — Quick Check</div><div class="t">10:15 am</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>Then stop.</b> They can return to the room any night — that is the standing invitation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 05 HOT ══════════ -->
+<section>
+  <h2><span class="n">05</span> Hot · abandoned checkout</h2>
   <h3>Within the hour, by voice — never nurture</h3>
   <p class="cap">They reached the payment page and it broke. This is a service call about their own action minutes earlier, which is also the safest ground under TCCCPR.</p>
 
@@ -336,9 +433,49 @@ tr:last-child td{border-bottom:0}
   </div>
 </section>
 
-<!-- ══════════ 05 STOPS ══════════ -->
+<!-- ══════════ 06 INBOUND ══════════ -->
 <section>
-  <h2><span class="n">05</span> Stop conditions &amp; channel health</h2>
+  <h2><span class="n">06</span> Inbound · they message first</h2>
+  <h3>The cheapest, warmest lead there is</h3>
+  <p class="cap">WhatsApp is two-way. Any inbound message opens a 24-hour window in which no template is needed and nothing is capped — this is where the assistant should do its real work.</p>
+
+  <div class="rail">
+    <div class="stop">
+      <div class="when"><span class="day">INBOUND</span><span class="ch wa">WhatsApp</span><span class="ch util">Free-form</span></div>
+      <div class="phone"><div class="wa">
+        <div class="wahead"><div class="waav">Y</div><div><div class="waname">YASHHO</div><div class="wasub">online</div></div></div>
+        <div class="wabody">
+          <div class="bub out">Is this for KAS or all exams?<div class="t">8:12 pm ✓✓</div></div>
+          <div class="bub in">Both — but we run a dedicated KAS stream, benchmarked against the Akhila Karnataka KAS Asali Champion standard. Are you preparing for KAS yourself?<div class="t">8:12 pm</div></div>
+          <div class="bub out">yes, 2nd attempt<div class="t">8:14 pm ✓✓</div></div>
+          <div class="bub in">Then the most useful thing tonight is free — Krishnaraj sir takes a live session at 8. He was a Karnataka Civil Services officer himself. Shall I send the link?<div class="t">8:14 pm</div></div>
+        </div>
+      </div></div>
+      <p class="note"><b>No template, no cap, no approval.</b> 24 hours of free-form from any inbound message.</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="stop">
+      <div class="when"><span class="day">RULE</span></div>
+      <div class="card" style="min-height:238px">
+        <h4>What inbound changes</h4>
+        <ul>
+          <li>Any reply <b>resets the unanswered counter</b> to zero</li>
+          <li>Lead exits the scheduled sequence and is handled conversationally</li>
+          <li>Assistant may qualify, answer and route — no template needed</li>
+          <li class="stopdot">If the window closes unanswered, the lead returns to its track — never restarts it</li>
+          <li>A STOP / opt-out reply ends everything, permanently</li>
+        </ul>
+      </div>
+      <p class="note"><b>Inbound outranks every scheduled track.</b> A person asking a question must never receive a scheduled broadcast in the same hour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 STOPS ══════════ -->
+<section>
+  <h2><span class="n">07</span> Stop conditions &amp; channel health</h2>
   <h3>What ends a sequence</h3>
 
   <div class="stopbar">
@@ -372,7 +509,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 06 DESKTOP / OPS ══════════ -->
 <section>
-  <h2><span class="n">06</span> The operator's view</h2>
+  <h2><span class="n">08</span> The operator's view</h2>
   <h3>What the team watches</h3>
   <p class="cap">Agree these before launch, or success cannot be told from noise.</p>
 
@@ -393,7 +530,7 @@ tr:last-child td{border-bottom:0}
 
 <!-- ══════════ 07 VERIFY ══════════ -->
 <section>
-  <h2><span class="n">07</span> Verify before shipping</h2>
+  <h2><span class="n">09</span> Verify before shipping</h2>
   <h3>Five assumptions this rests on</h3>
   <p class="cap">Each drawn from the page, not from data. Each cheap to check, expensive to get wrong.</p>
 
