@@ -1,0 +1,1054 @@
+<title>Canonical Task Sets — admin screen flows, before &amp; after</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  /* REAL admin tokens — superadmin/layout.blade.php tailwind.config */
+  --primary:#FF8A3D; --primary-dark:#E67E35; --primary-light:#FFB380;
+  --secondary:#FFF1E6; --accent:#FFC107; --accent-dark:#FFA000;
+  --success:#4CAF50; --info:#2196F3; --card:#FFFFFF;
+  --orange600:#EA580C; --orange700:#C2410C;
+  /* canonical scorecard pillar palette — tasks/partials/skills-picker.blade.php */
+  --apt:#E0A100; --att:#2F6BF0; --com:#178A45; --exe:#F5821F;
+  --aptInk:#8A6400; --attInk:#2F6BF0; --comInk:#0F7A3B; --exeInk:#B4520A;
+  --g900:#111827; --g700:#374151; --g600:#4B5563; --g500:#6B7280; --g400:#9CA3AF;
+  --g300:#D1D5DB; --g200:#E5E7EB; --g100:#F3F4F6; --g50:#F9FAFB;
+  --page:#0e1a2b; --pageCard:#16273d; --pageLine:#22405f; --pageInk:#e7eef7; --pageMute:#8ea3bd;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--pageInk);
+  font-family:Montserrat,system-ui,sans-serif;font-weight:400;line-height:1.5;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:44px 22px 96px}
+
+/* ─── page furniture ─────────────────────────────────────────── */
+.kicker{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--primary)}
+h1{font-size:clamp(28px,4.4vw,46px);font-weight:900;letter-spacing:-.02em;margin:.28em 0 .2em;line-height:1.05}
+.sub{color:var(--pageMute);font-size:15px;max-width:74ch}
+.rule{height:1px;background:var(--pageLine);margin:36px 0}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:26px 0 6px}
+.fact{background:var(--pageCard);border:1px solid var(--pageLine);border-radius:10px;padding:12px 14px}
+.fact b{display:block;font-size:22px;font-weight:900;color:var(--primary-light);letter-spacing:-.02em}
+.fact span{display:block;font-size:11px;color:var(--pageMute);margin-top:2px;line-height:1.35}
+.src{font-size:11px;color:var(--pageMute);margin-top:10px;font-style:italic}
+
+h2.band{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--pageInk);margin:56px 0 6px}
+h2.band i{width:26px;height:26px;border-radius:7px;background:var(--primary);color:#fff;
+  display:grid;place-items:center;font-size:12px;flex:none}
+.bandsub{color:var(--pageMute);font-size:14px;margin:0 0 26px;max-width:78ch}
+
+h3.scr{display:flex;align-items:baseline;gap:11px;font-size:19px;font-weight:800;margin:38px 0 4px;letter-spacing:-.01em}
+h3.scr em{font-style:normal;font-size:12px;font-weight:800;color:var(--primary);letter-spacing:.1em}
+.cap{color:var(--pageMute);font-size:13.5px;margin:0 0 16px;max-width:80ch}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;vertical-align:middle}
+.tag.now{background:#37475e;color:#c3d3e6}
+.tag.new{background:var(--primary);color:#fff}
+
+.note{background:rgba(255,138,61,.09);border-left:3px solid var(--primary);border-radius:0 8px 8px 0;
+  padding:11px 15px;font-size:13px;color:#f0d9c6;margin:14px 0 0;max-width:96ch}
+.note.bad{background:rgba(239,68,68,.1);border-left-color:#ef4444;color:#f6d5d5}
+.note.ok{background:rgba(76,175,80,.1);border-left-color:var(--success);color:#d3ecd4}
+.note b{color:#fff}
+
+/* ─── device frames ──────────────────────────────────────────── */
+.browser{background:#dfe5ec;border-radius:11px 11px 9px 9px;box-shadow:0 22px 50px rgba(0,0,0,.44);
+  overflow:hidden;border:1px solid #b9c3d0}
+.chrome{height:30px;background:linear-gradient(#eef2f6,#dde4ec);display:flex;align-items:center;gap:7px;
+  padding:0 11px;border-bottom:1px solid #c4cdd8}
+.dot{width:9px;height:9px;border-radius:50%}
+.url{flex:1;height:18px;background:#fff;border-radius:9px;border:1px solid #ccd4de;
+  font-size:9.5px;color:#5c6b7f;display:flex;align-items:center;padding:0 9px;font-weight:500;
+  overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.vp{background:var(--secondary);max-height:660px;overflow:hidden;position:relative}
+
+.phone{width:286px;background:#101820;border-radius:34px;padding:9px;box-shadow:0 22px 46px rgba(0,0,0,.5)}
+.pnotch{width:80px;height:5px;background:#2a3441;border-radius:4px;margin:2px auto 7px}
+.pv{background:var(--secondary);border-radius:26px;overflow:hidden;height:558px;position:relative}
+.pbar{height:22px;background:var(--primary);display:flex;align-items:center;justify-content:space-between;
+  padding:0 11px;font-size:8.5px;color:#fff;font-weight:700}
+
+.duo{display:grid;grid-template-columns:1fr 300px;gap:26px;align-items:start}
+@media(max-width:1080px){.duo{grid-template-columns:1fr}}
+
+/* ─── admin shell (the real chrome: orange sidebar + cream body) ─ */
+.shell{display:flex;height:100%;font-size:11px;color:var(--g900)}
+.sb{width:132px;background:var(--primary);flex:none;padding:0;color:#fff;display:flex;flex-direction:column}
+.sb .brand{padding:11px 12px;border-bottom:1px solid rgba(230,126,53,.45);font-weight:800;font-size:11px;
+  letter-spacing:.04em;display:flex;align-items:center;gap:6px}
+.sb .brand i{font-size:12px}
+.sb nav{padding:7px 0;overflow:hidden}
+.sb a{display:flex;align-items:center;gap:7px;margin:0 7px 2px;padding:5px 8px;border-radius:6px;
+  color:#fff;text-decoration:none;font-size:10px;font-weight:500;opacity:.9}
+.sb a i{width:11px;font-size:10px;text-align:center;flex:none}
+.sb a.on{background:var(--primary-dark);opacity:1;font-weight:700}
+.main{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--secondary)}
+.topbar{height:34px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;
+  padding:0 14px;justify-content:space-between;flex:none}
+.topbar .pt{font-size:12px;font-weight:700;color:var(--g900)}
+.topbar .who{display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--g500)}
+.topbar .av{width:19px;height:19px;border-radius:50%;background:var(--primary-light);color:#fff;
+  display:grid;place-items:center;font-size:8px;font-weight:800}
+.body{padding:13px 14px;overflow:hidden;flex:1}
+
+/* ─── admin atoms ────────────────────────────────────────────── */
+.card{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.09);margin-bottom:11px;overflow:hidden}
+.card>.hd{padding:9px 12px;border-bottom:1px solid var(--g100);display:flex;align-items:center;
+  justify-content:space-between;gap:8px}
+.card>.hd h4{margin:0;font-size:11.5px;font-weight:700;color:var(--g900);display:flex;align-items:center;gap:6px}
+.card>.hd p{margin:2px 0 0;font-size:9px;color:var(--g500);font-weight:400}
+.card>.bd{padding:11px 12px}
+
+.pagehd{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;gap:10px}
+.pagehd h3{margin:0;font-size:14px;font-weight:700;color:var(--g900)}
+
+.btn{display:inline-flex;align-items:center;gap:5px;background:var(--primary);color:#fff;border:0;
+  border-radius:6px;padding:5px 11px;font-size:10px;font-weight:600;font-family:inherit;white-space:nowrap}
+.btn.o{background:var(--orange600)}
+.btn.g{background:var(--g500)}
+.btn.gh{background:#fff;color:var(--g700);border:1px solid var(--g300)}
+.btn.sm{padding:3px 8px;font-size:9px}
+.btn.ok{background:var(--success)}
+
+.fld{width:100%;border:1px solid var(--g300);border-radius:6px;padding:5px 8px;font-size:10px;
+  font-family:inherit;color:var(--g900);background:#fff}
+.fld.ph{color:var(--g400)}
+.lbl{display:block;font-size:9.5px;font-weight:600;color:var(--g700);margin-bottom:3px}
+.hint{font-size:8.5px;color:var(--g500);margin-top:3px}
+
+table.t{width:100%;border-collapse:collapse;font-size:9.5px}
+table.t th{background:linear-gradient(90deg,var(--g50),var(--g100));padding:6px 7px;text-align:left;
+  font-size:8px;font-weight:800;color:var(--g700);text-transform:uppercase;letter-spacing:.05em;
+  border-right:1px solid var(--g200);border-bottom:1px solid var(--g200);white-space:nowrap}
+table.t th.c{text-align:center}
+table.t td{padding:6px 7px;border-bottom:1px solid var(--g100);border-right:1px solid var(--g100);
+  color:var(--g700);vertical-align:middle}
+table.t td.c{text-align:center}
+table.t tr:hover td{background:var(--g50)}
+.pcell{font-weight:800;font-size:9.5px}
+.pcell.a{color:var(--attInk);background:rgba(47,107,240,.07)}
+.pcell.p{color:var(--aptInk);background:rgba(224,161,0,.09)}
+.pcell.c{color:var(--comInk);background:rgba(23,138,69,.07)}
+.pcell.e{color:var(--exeInk);background:rgba(245,130,31,.09)}
+.pcell.t{color:var(--g900);background:var(--g100)}
+
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:8px;font-weight:700;padding:2px 6px;
+  border-radius:4px;white-space:nowrap}
+.chip.set{background:#EEF2FF;color:#4338CA;border:1px solid #C7D2FE}
+.chip.one{background:var(--g100);color:var(--g500);border:1px solid var(--g200)}
+.chip.pin{background:#FEF3C7;color:#92400E;border:1px solid #FDE68A}
+.chip.lock{background:#DCFCE7;color:#166534;border:1px solid #BBF7D0}
+.chip.warn{background:#FEE2E2;color:#991B1B;border:1px solid #FECACA}
+.chip.sug{background:#F5F3FF;color:#6D28D9;border:1px solid #DDD6FE}
+
+.ck{width:11px;height:11px;border:1.5px solid var(--g300);border-radius:3px;flex:none;background:#fff;
+  display:grid;place-items:center;font-size:7px;color:#fff}
+.ck.on{background:var(--primary);border-color:var(--primary)}
+.ck.on:after{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900}
+
+.taskrow{border:1px solid var(--g200);border-radius:7px;padding:7px 9px;margin-bottom:5px;display:flex;
+  gap:8px;align-items:flex-start;background:#fff}
+.taskrow.sel{border-color:var(--primary-light);background:#FFFBF7}
+.taskrow .tt{font-size:10px;font-weight:600;color:var(--g900);line-height:1.3}
+.taskrow .td{font-size:8.5px;color:var(--g500);margin-top:1px;line-height:1.35}
+.soi{margin-top:5px;display:flex;align-items:center;gap:5px}
+.soi input{width:46px;border:1px solid var(--g300);border-radius:5px;padding:3px 5px;font-size:9px;
+  font-family:inherit;text-align:center}
+.soi span{font-size:8.5px;color:var(--g600);font-weight:600}
+
+/* slot table (the AFTER centrepiece) */
+.slot{display:grid;grid-template-columns:44px 1fr 116px 92px;gap:8px;align-items:center;
+  padding:6px 8px;border:1px solid var(--g200);border-radius:7px;margin-bottom:4px;background:#fff}
+.slot.act{border-color:var(--primary);box-shadow:0 0 0 2px rgba(255,138,61,.16)}
+.slot.pinned{background:#FFFDF5}
+.slotn{font-size:9px;font-weight:800;color:var(--g500);text-align:center;line-height:1.2}
+.slotn b{display:block;font-size:13px;color:var(--g900);font-weight:900}
+.slott{font-size:9.5px;font-weight:600;color:var(--g900);line-height:1.3;min-width:0}
+.slott span{display:block;font-size:8px;color:var(--g500);font-weight:400;margin-top:1px}
+.sel2{border:1px solid var(--g300);border-radius:5px;padding:3px 6px;font-size:8.5px;background:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:5px;color:var(--g700);font-weight:600}
+
+.side{background:#fff;border:1px solid var(--g200);border-radius:8px;overflow:hidden}
+.side .sh{padding:8px 10px;background:var(--g50);border-bottom:1px solid var(--g200);font-size:10px;
+  font-weight:700;color:var(--g900);display:flex;align-items:center;justify-content:space-between}
+.side .sb2{padding:9px 10px}
+.vrow{display:flex;gap:7px;align-items:flex-start;padding:6px 7px;border:1px solid var(--g200);
+  border-radius:6px;margin-bottom:5px}
+.vrow.on{border-color:var(--success);background:#F6FEF8}
+.vrow .vt{font-size:9px;font-weight:600;color:var(--g900);line-height:1.3}
+.vrow .vm{font-size:7.5px;color:var(--g500);margin-top:2px;display:flex;gap:4px;flex-wrap:wrap}
+
+.pills{display:flex;gap:3px;flex-wrap:wrap}
+.pdot{width:6px;height:6px;border-radius:50%;flex:none}
+
+.mask{position:absolute;inset:0;background:rgba(4,10,20,.66);display:grid;place-items:center;padding:14px}
+.modal{background:#fff;border-radius:11px;width:100%;max-width:340px;overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.modal .mh{padding:11px 13px;border-bottom:1px solid var(--g200);display:flex;align-items:center;
+  justify-content:space-between}
+.modal .mh h5{margin:0;font-size:11.5px;font-weight:700;color:var(--g900)}
+.modal .mb{padding:12px 13px}
+.modal .mf{padding:9px 13px;background:var(--g50);border-top:1px solid var(--g200);display:flex;
+  justify-content:flex-end;gap:6px}
+
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;
+  padding:12px 13px 15px;box-shadow:0 -12px 34px rgba(0,0,0,.3)}
+.grab{width:34px;height:3px;background:var(--g300);border-radius:2px;margin:0 auto 10px}
+
+.sticky{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--g200);
+  padding:7px 13px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.saved{font-size:9px;color:var(--success);font-weight:700;display:flex;align-items:center;gap:4px}
+
+/* flow strip */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 4px}
+.step{background:var(--pageCard);border:1px solid var(--pageLine);border-radius:9px;padding:9px 13px;
+  font-size:12px;font-weight:600;min-width:0}
+.step b{display:block;font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--primary);
+  text-transform:uppercase;margin-bottom:2px}
+.arw{color:var(--primary);font-size:15px;flex:none}
+
+/* learner deal comparison */
+.deal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:760px){.deal{grid-template-columns:1fr}}
+.dealc{background:var(--pageCard);border:1px solid var(--pageLine);border-radius:10px;padding:12px 13px}
+.dealc h5{margin:0 0 8px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--primary-light)}
+.seq{display:flex;flex-wrap:wrap;gap:4px}
+.tk{font-size:9.5px;font-weight:700;padding:3px 6px;border-radius:5px;background:#22405f;color:#cfe0f2;
+  border:1px solid #2f537a}
+.tk.v{background:rgba(255,138,61,.22);border-color:var(--primary);color:#ffd9bd}
+.tk.p{background:rgba(255,193,7,.2);border-color:var(--accent);color:#ffe9a8}
+.dl{font-size:10.5px;color:var(--pageMute);margin-top:9px;line-height:1.45}
+.dl b{color:#fff}
+
+table.cmp{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:16px}
+table.cmp th{text-align:left;padding:9px 11px;background:var(--pageCard);border:1px solid var(--pageLine);
+  font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--primary)}
+table.cmp td{padding:9px 11px;border:1px solid var(--pageLine);color:var(--pageInk);vertical-align:top}
+table.cmp td:first-child{font-weight:700;white-space:nowrap;color:#fff}
+table.cmp code{background:#0b1626;padding:1px 5px;border-radius:4px;font-size:11px;color:#ffc79a}
+.foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--pageLine);font-size:12px;color:var(--pageMute)}
+</style>
+
+<div class="wrap">
+
+<div class="kicker">iRisePro · YASHHO · admin storyboard</div>
+<h1>Canonical task sets</h1>
+<p class="sub">One slot, many interchangeable tasks. Two levels of randomisation at unit mint: <b>which</b> task
+fills each slot, then <b>what order</b> the slots run in. These are the admin screens — what exists today, what
+changes, and what it takes to get 187 existing tasks into sets.</p>
+
+<div class="facts">
+  <div class="fact"><b>187</b><span>distinct tasks in the catalogue</span></div>
+  <div class="fact"><b>245</b><span>challenge_task rows (tasks are reused)</span></div>
+  <div class="fact"><b>21 / 7 / 7</b><span>slots per challenge — exactly uniform across all 21</span></div>
+  <div class="fact"><b>146</b><span>tasks that ALREADY share an ability set with another</span></div>
+  <div class="fact"><b>54</b><span>distinct ability-membership signatures</span></div>
+  <div class="fact"><b>41</b><span>tasks with a unique signature → singleton unless authored</span></div>
+</div>
+<p class="src">Measured 12-Aug-2026 from <code>database/seeders/data/prod-catalog-mapping.tsv</code> — the
+version-controlled prod extract regenerated by <code>artisan catalog:regen-tsv</code>.</p>
+
+<div class="rule"></div>
+
+<div class="flow">
+  <div class="step"><b>author</b>Task + abilities</div><span class="arw">→</span>
+  <div class="step"><b>group</b>Canonical set</div><span class="arw">→</span>
+  <div class="step"><b>associate</b>Slot on challenge</div><span class="arw">→</span>
+  <div class="step"><b>mint</b>Pick 1/slot, then shuffle</div><span class="arw">→</span>
+  <div class="step"><b>freeze</b>units.task_snapshot</div><span class="arw">→</span>
+  <div class="step"><b>deliver</b>TaskOrder::for($unit)</div>
+</div>
+
+
+<!-- ══════════════════════ A · TODAY ══════════════════════ -->
+<h2 class="band"><i class="fa-solid fa-clock-rotate-left"></i> A · What exists today</h2>
+<p class="bandsub">Three real screens. The third is the one that breaks: a flat checkbox list of every task in
+the catalogue with a hand-typed order number.</p>
+
+<h3 class="scr"><em>01</em> Task Management <span class="tag now">today</span></h3>
+<p class="cap">Flat table of all 187 tasks. Pillar maxima are shown but nothing groups two tasks that measure
+the same thing.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/tasks</span></div>
+  <div class="vp" style="height:392px">
+    <div class="shell">
+      <div class="sb">
+        <div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav>
+          <a><i class="fa-solid fa-gauge"></i> Dashboard</a>
+          <a><i class="fa-solid fa-users"></i> Students</a>
+          <a class="on"><i class="fa-solid fa-list-check"></i> Tasks</a>
+          <a><i class="fa-solid fa-trophy"></i> Challenges</a>
+          <a><i class="fa-solid fa-layer-group"></i> Batches</a>
+          <a><i class="fa-solid fa-user-tie"></i> Yashodarshis</a>
+        </nav>
+      </div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Task Management</span>
+          <span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body">
+          <div class="pagehd"><h3>Task Management</h3>
+            <button class="btn"><i class="fa-solid fa-plus"></i> Create New Task</button></div>
+          <div class="card"><div class="bd" style="display:flex;gap:9px;align-items:flex-end">
+            <div style="flex:1"><span class="lbl">Search Tasks</span>
+              <div class="fld ph"><i class="fa-solid fa-magnifying-glass" style="margin-right:5px"></i>Search by title, description, or type…</div></div>
+            <div style="width:110px"><span class="lbl">Translation</span><div class="fld ph">All</div></div>
+            <button class="btn">Search</button>
+          </div></div>
+          <div class="card"><div style="padding:0"><table class="t">
+            <thead><tr><th>ID</th><th>Task Title</th><th class="c" style="background:var(--g100)">Total</th>
+              <th class="c" style="background:rgba(224,161,0,.09);color:var(--aptInk)">Aptitude</th>
+              <th class="c" style="background:rgba(47,107,240,.07);color:var(--attInk)">Attitude</th>
+              <th class="c" style="background:rgba(23,138,69,.07);color:var(--comInk)">Comms</th>
+              <th class="c" style="background:rgba(245,130,31,.09);color:var(--exeInk)">Execution</th>
+              <th class="c">EN</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>250</td><td>Challenge Zero: Know Me Before We Grow</td><td class="c pcell t">320</td>
+                <td class="c pcell p">60</td><td class="c pcell a">75</td><td class="c pcell c">105</td><td class="c pcell e">80</td>
+                <td class="c"><span class="chip lock">ok</span></td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:6px"></i><i class="fa-solid fa-eye" style="color:#2563EB;margin-right:6px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+              <tr><td>158</td><td>Challenge Command – 90-Second Drill</td><td class="c pcell t">320</td>
+                <td class="c pcell p">60</td><td class="c pcell a">75</td><td class="c pcell c">105</td><td class="c pcell e">80</td>
+                <td class="c"><span class="chip lock">ok</span></td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:6px"></i><i class="fa-solid fa-eye" style="color:#2563EB;margin-right:6px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+              <tr><td>226</td><td>Doctor Simulation Challenge – “You Are the Doctor Now”</td><td class="c pcell t">240</td>
+                <td class="c pcell p">55</td><td class="c pcell a">60</td><td class="c pcell c">70</td><td class="c pcell e">55</td>
+                <td class="c"><span class="chip lock">ok</span></td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:6px"></i><i class="fa-solid fa-eye" style="color:#2563EB;margin-right:6px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+              <tr><td>380</td><td>My Success Ability Reflection: What 21 Tasks Revealed</td><td class="c pcell t">290</td>
+                <td class="c pcell p">55</td><td class="c pcell a">70</td><td class="c pcell c">95</td><td class="c pcell e">70</td>
+                <td class="c"><span class="chip lock">ok</span></td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:6px"></i><i class="fa-solid fa-eye" style="color:#2563EB;margin-right:6px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+              <tr><td>328</td><td>The Engineer’s Emergency Decision</td><td class="c pcell t">255</td>
+                <td class="c pcell p">60</td><td class="c pcell a">60</td><td class="c pcell c">80</td><td class="c pcell e">55</td>
+                <td class="c"><span class="chip warn">missing</span></td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:6px"></i><i class="fa-solid fa-eye" style="color:#2563EB;margin-right:6px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+            </tbody></table></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note">Tasks 250 and 158 have <b>byte-identical ability membership</b> — same 64 abilities, same 320
+maximum. Nothing on this screen says so, and nothing can group them.</div>
+
+<h3 class="scr"><em>02</em> Edit Task → Abilities measured <span class="tag now">today</span></h3>
+<p class="cap">Sectioned cards with Alpine autosave. <b>“Copy abilities from another task” already exists</b> — the
+exact control needed to author an equivalent variant.</p>
+<div class="duo">
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/tasks/250/edit</span></div>
+  <div class="vp" style="height:432px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-list-check"></i> Tasks</a>
+        <a><i class="fa-solid fa-trophy"></i> Challenges</a><a><i class="fa-solid fa-layer-group"></i> Batches</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Edit Task</span><span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body" style="padding-bottom:40px">
+          <div class="card"><div class="hd"><h4><i class="fa-solid fa-align-left" style="color:var(--primary)"></i> Content</h4></div>
+            <div class="bd"><span class="lbl">Task Title *</span>
+              <div class="fld">Challenge Zero: Know Me Before We Grow</div>
+              <div style="height:7px"></div><span class="lbl">Objective <span style="color:var(--g400);font-weight:400">(one line, shown on the card)</span></span>
+              <div class="fld ph">Map where you stand before the journey begins</div></div></div>
+          <div class="card"><div class="hd"><h4><i class="fa-solid fa-list-check" style="color:var(--primary)"></i> Abilities measured</h4>
+            <p>Tick the abilities this task measures. All measured abilities count equally — no weights.</p></div>
+            <div class="bd">
+              <div style="display:flex;gap:7px;align-items:center;margin-bottom:9px">
+                <div class="fld ph" style="flex:1"><i class="fa-solid fa-magnifying-glass" style="margin-right:5px"></i>Search abilities…</div>
+                <div class="fld" style="width:150px;display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-weight:600">Copy from task…</span><i class="fa-solid fa-chevron-down" style="color:var(--g400);font-size:8px"></i></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px">
+                <div style="border-left:3px solid var(--apt);background:var(--g50);border-radius:5px;padding:6px 7px">
+                  <div style="font-size:9px;font-weight:800;color:var(--aptInk);display:flex;align-items:center;gap:4px;margin-bottom:5px">
+                    <i class="fa-solid fa-brain"></i> Aptitude <span style="margin-left:auto;font-weight:700">12/12</span></div>
+                  <div style="display:flex;flex-direction:column;gap:3px;font-size:8px;color:var(--g700)">
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Memory</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Concentration</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Attention to detail</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Logical reasoning</span></div></div>
+                <div style="border-left:3px solid var(--att);background:var(--g50);border-radius:5px;padding:6px 7px">
+                  <div style="font-size:9px;font-weight:800;color:var(--attInk);display:flex;align-items:center;gap:4px;margin-bottom:5px">
+                    <i class="fa-solid fa-heart"></i> Attitude <span style="margin-left:auto;font-weight:700">15/15</span></div>
+                  <div style="display:flex;flex-direction:column;gap:3px;font-size:8px;color:var(--g700)">
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Curiosity</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Optimism</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Empathy</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Resilience</span></div></div>
+                <div style="border-left:3px solid var(--com);background:var(--g50);border-radius:5px;padding:6px 7px">
+                  <div style="font-size:9px;font-weight:800;color:var(--comInk);display:flex;align-items:center;gap:4px;margin-bottom:5px">
+                    <i class="fa-solid fa-comments"></i> Comms <span style="margin-left:auto;font-weight:700">21/21</span></div>
+                  <div style="display:flex;flex-direction:column;gap:3px;font-size:8px;color:var(--g700)">
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Pronunciation</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Fluency</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Articulation</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Eye contact</span></div></div>
+                <div style="border-left:3px solid var(--exe);background:var(--g50);border-radius:5px;padding:6px 7px">
+                  <div style="font-size:9px;font-weight:800;color:var(--exeInk);display:flex;align-items:center;gap:4px;margin-bottom:5px">
+                    <i class="fa-solid fa-bolt"></i> Execution <span style="margin-left:auto;font-weight:700">16/16</span></div>
+                  <div style="display:flex;flex-direction:column;gap:3px;font-size:8px;color:var(--g700)">
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Goal setting</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Discipline</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Planning</span>
+                    <span><span class="ck on" style="display:inline-grid;vertical-align:-1px"></span> Efficiency</span></div></div>
+              </div>
+              <div style="margin-top:8px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:5px;padding:6px 8px;font-size:8.5px;color:#92400E">
+                <b>Shown to students</b> <span class="chip pin" style="margin-left:4px">auto</span> — the ≤5 headline abilities</div>
+            </div></div>
+          <div class="sticky"><span class="saved"><i class="fa-solid fa-check"></i> Saved</span>
+            <span style="display:flex;gap:6px"><button class="btn gh sm">Preview</button><button class="btn o">Save Task</button></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="side">
+  <div class="sh">Copy-from, expanded <span class="chip lock">exists</span></div>
+  <div class="sb2">
+    <div class="vrow on"><div><div class="vt">Challenge Command – 90-Second Drill</div>
+      <div class="vm"><span class="chip lock">64 abilities</span><span class="chip lock">max 320</span></div></div></div>
+    <div class="vrow"><div><div class="vt">Doctor Simulation Challenge</div>
+      <div class="vm"><span class="chip warn">48 abilities</span><span class="chip warn">max 240</span></div></div></div>
+    <div class="vrow"><div><div class="vt">The Engineer’s Emergency Decision</div>
+      <div class="vm"><span class="chip warn">51 abilities</span><span class="chip warn">max 255</span></div></div></div>
+    <p class="hint" style="margin-top:8px">Loads another task's measured set from
+      <code style="font-size:8px">tasks.abilities-json</code>. One click makes a new task ability-identical —
+      which is exactly the canonical-set contract.</p>
+  </div>
+</div>
+</div>
+
+<h3 class="scr"><em>03</em> Edit Challenge → Select Tasks <span class="tag now">today · the problem</span></h3>
+<p class="cap">Every task in the catalogue in one flat scrolling list. Tick a box, then <b>hand-type an integer</b>
+for its position. Selected tasks float to the top.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/challenges/8/edit</span></div>
+  <div class="vp" style="height:424px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a><i class="fa-solid fa-list-check"></i> Tasks</a>
+        <a class="on"><i class="fa-solid fa-trophy"></i> Challenges</a><a><i class="fa-solid fa-layer-group"></i> Batches</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Edit Challenge</span><span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body">
+          <div class="card"><div class="hd"><h4>Select Tasks</h4>
+            <p>Select tasks and set their order in the challenge</p></div>
+            <div class="bd" style="max-height:330px;overflow:hidden">
+              <div class="taskrow sel"><span class="ck on"></span><div style="flex:1">
+                <div class="tt">Challenge Zero: Know Me Before We Grow</div>
+                <div class="td">Before we begin the 21-task journey, let's map where you stand today across…</div>
+                <div class="soi"><span>Order</span><input value="1"></div></div></div>
+              <div class="taskrow sel"><span class="ck on"></span><div style="flex:1">
+                <div class="tt">Ability Audit: The Honest Mirror</div>
+                <div class="td">Record a 90-second self-assessment against the four pillars, then justify…</div>
+                <div class="soi"><span>Order</span><input value="2"></div></div></div>
+              <div class="taskrow sel"><span class="ck on"></span><div style="flex:1">
+                <div class="tt">The 60-Second Explain</div>
+                <div class="td">Pick a concept you learned this week and explain it to camera as if to a…</div>
+                <div class="soi"><span>Order</span><input value="3"></div></div></div>
+              <div class="taskrow"><span class="ck"></span><div style="flex:1">
+                <div class="tt">Challenge Command – 90-Second Drill</div>
+                <div class="td">A rapid-fire command drill measuring composure under a live clock…</div></div></div>
+              <div class="taskrow"><span class="ck"></span><div style="flex:1">
+                <div class="tt">Doctor Simulation Challenge – “You Are the Doctor Now”</div>
+                <div class="td">You are handed a patient brief with incomplete information. Decide, then…</div></div></div>
+              <div class="taskrow"><span class="ck"></span><div style="flex:1">
+                <div class="tt">The Engineer’s Emergency Decision</div>
+                <div class="td">A bridge is failing and you have ninety seconds and three bad options…</div></div></div>
+              <div style="text-align:center;font-size:9px;color:var(--g400);padding:5px;font-style:italic">
+                … 181 more tasks, unpaginated …</div>
+            </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note bad"><b>This screen is the blocker.</b> 187 rows already; with 3–5 variants per slot it becomes
+600+ rows of flat checkboxes with hand-typed integers, and nothing expresses “these three are alternatives for
+slot 2”. <code>sorting_order</code> has no unique constraint, so two tasks can silently share position 4.</div>
+
+<h3 class="scr"><em>04</em> What every learner gets, today <span class="tag now">today</span></h3>
+<p class="cap">Identical set, identical order, for everyone on the challenge. Comparability is total; so is
+answer-sharing.</p>
+<div class="deal">
+  <div class="dealc"><h5>Aarav · unit 412</h5>
+    <div class="seq"><span class="tk p">250</span><span class="tk">301</span><span class="tk">302</span><span class="tk">303</span><span class="tk">304</span><span class="tk">305</span><span class="tk">306</span><span class="tk">…</span><span class="tk p">30</span></div>
+    <p class="dl">Slots 1→21 in <b>sorting_order</b>. Denominator 320 × 21.</p></div>
+  <div class="dealc"><h5>Diya · unit 413 — same batch</h5>
+    <div class="seq"><span class="tk p">250</span><span class="tk">301</span><span class="tk">302</span><span class="tk">303</span><span class="tk">304</span><span class="tk">305</span><span class="tk">306</span><span class="tk">…</span><span class="tk p">30</span></div>
+    <p class="dl"><b>Byte-identical to Aarav.</b> Same tasks, same order, same numbers.</p></div>
+</div>
+
+
+<!-- ══════════════════════ B · AFTER ══════════════════════ -->
+<h2 class="band"><i class="fa-solid fa-wand-magic-sparkles"></i> B · After — canonical sets</h2>
+<p class="bandsub">Three changed screens and one new one. The association screen stops being a task list and
+becomes a <b>slot list</b>.</p>
+
+<h3 class="scr"><em>05</em> Task Management, with sets <span class="tag new">changed</span></h3>
+<p class="cap">One new column. A set badge tells you at a glance that 250 and 158 are interchangeable; the lock
+chip says their membership is verified identical.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/tasks</span></div>
+  <div class="vp" style="height:344px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-list-check"></i> Tasks</a>
+        <a><i class="fa-solid fa-trophy"></i> Challenges</a><a><i class="fa-solid fa-layer-group"></i> Batches</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Task Management</span><span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body">
+          <div class="pagehd"><h3>Task Management</h3>
+            <span style="display:flex;gap:6px">
+              <button class="btn gh"><i class="fa-solid fa-diagram-project"></i> Canonical sets</button>
+              <button class="btn"><i class="fa-solid fa-plus"></i> Create New Task</button></span></div>
+          <div class="card"><div style="padding:0"><table class="t">
+            <thead><tr><th>ID</th><th>Task Title</th>
+              <th style="background:#EEF2FF;color:#4338CA">Canonical set</th>
+              <th class="c" style="background:var(--g100)">Total</th>
+              <th class="c" style="background:rgba(224,161,0,.09);color:var(--aptInk)">Apt</th>
+              <th class="c" style="background:rgba(47,107,240,.07);color:var(--attInk)">Att</th>
+              <th class="c" style="background:rgba(23,138,69,.07);color:var(--comInk)">Com</th>
+              <th class="c" style="background:rgba(245,130,31,.09);color:var(--exeInk)">Exe</th>
+              <th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>250</td><td>Challenge Zero: Know Me Before We Grow</td>
+                <td><span class="chip set"><i class="fa-solid fa-layer-group"></i> opener-reflect</span>
+                  <span class="chip lock" style="margin-left:3px">2 of 2</span></td>
+                <td class="c pcell t">320</td><td class="c pcell p">60</td><td class="c pcell a">75</td><td class="c pcell c">105</td><td class="c pcell e">80</td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:5px"></i><i class="fa-solid fa-clone" style="color:#7C3AED;margin-right:5px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+              <tr><td>158</td><td>Challenge Command – 90-Second Drill</td>
+                <td><span class="chip set"><i class="fa-solid fa-layer-group"></i> opener-reflect</span>
+                  <span class="chip lock" style="margin-left:3px">2 of 2</span></td>
+                <td class="c pcell t">320</td><td class="c pcell p">60</td><td class="c pcell a">75</td><td class="c pcell c">105</td><td class="c pcell e">80</td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:5px"></i><i class="fa-solid fa-clone" style="color:#7C3AED;margin-right:5px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+              <tr><td>226</td><td>Doctor Simulation Challenge – “You Are the Doctor Now”</td>
+                <td><span class="chip one">singleton</span></td>
+                <td class="c pcell t">240</td><td class="c pcell p">55</td><td class="c pcell a">60</td><td class="c pcell c">70</td><td class="c pcell e">55</td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:5px"></i><i class="fa-solid fa-clone" style="color:#7C3AED;margin-right:5px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+              <tr><td>380</td><td>My Success Ability Reflection: What 21 Tasks Revealed</td>
+                <td><span class="chip set"><i class="fa-solid fa-layer-group"></i> closer-reflect</span>
+                  <span class="chip sug" style="margin-left:3px">+2 suggested</span></td>
+                <td class="c pcell t">290</td><td class="c pcell p">55</td><td class="c pcell a">70</td><td class="c pcell c">95</td><td class="c pcell e">70</td>
+                <td><i class="fa-solid fa-pen" style="color:#CA8A04;margin-right:5px"></i><i class="fa-solid fa-clone" style="color:#7C3AED;margin-right:5px"></i><i class="fa-solid fa-trash" style="color:#DC2626"></i></td></tr>
+            </tbody></table></div></div>
+          <p class="hint">New <i class="fa-solid fa-clone" style="color:#7C3AED"></i> action = <b>Add variant</b> —
+            clones the task with its abilities pre-copied, so the new row is ability-identical by construction.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="scr"><em>06</em> Edit Task → Canonical set section <span class="tag new">new section</span></h3>
+<p class="cap">One new card, below Abilities. Shows the siblings, and refuses to admit a task whose membership
+differs — with the diff spelled out, never a generic error.</p>
+<div class="duo">
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/tasks/250/edit</span></div>
+  <div class="vp" style="height:388px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-list-check"></i> Tasks</a>
+        <a><i class="fa-solid fa-trophy"></i> Challenges</a><a><i class="fa-solid fa-layer-group"></i> Batches</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Edit Task</span><span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body" style="padding-bottom:40px">
+          <div class="card" style="opacity:.55"><div class="hd"><h4><i class="fa-solid fa-list-check" style="color:var(--primary)"></i> Abilities measured</h4>
+            <p>64 of 64 ticked · max 320</p></div></div>
+          <div class="card" style="border:2px solid var(--primary)">
+            <div class="hd"><h4><i class="fa-solid fa-layer-group" style="color:#4338CA"></i> Canonical set</h4>
+              <p>Interchangeable tasks for one slot. A learner is dealt exactly one of these.</p></div>
+            <div class="bd">
+              <div style="display:flex;gap:7px;align-items:flex-end;margin-bottom:10px">
+                <div style="flex:1"><span class="lbl">Set</span>
+                  <div class="fld" style="display:flex;align-items:center;justify-content:space-between">
+                    <span style="font-weight:600">opener-reflect</span><i class="fa-solid fa-chevron-down" style="color:var(--g400);font-size:8px"></i></div></div>
+                <button class="btn gh sm"><i class="fa-solid fa-plus"></i> New set</button>
+                <button class="btn sm" style="background:#7C3AED"><i class="fa-solid fa-clone"></i> Add variant</button>
+              </div>
+              <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:6px;padding:7px 9px;margin-bottom:9px;
+                          font-size:9px;color:#166534;display:flex;align-items:center;gap:6px">
+                <i class="fa-solid fa-lock"></i><span><b>Membership verified identical</b> across all 2 members —
+                  64 abilities, max 320. Every learner keeps the same denominator.</span></div>
+              <div class="vrow on"><span class="ck on"></span><div style="flex:1">
+                <div class="vt">Challenge Zero: Know Me Before We Grow <span class="chip pin" style="margin-left:3px">this task</span></div>
+                <div class="vm"><span class="pills"><span class="pdot" style="background:var(--apt)"></span><span class="pdot" style="background:var(--att)"></span><span class="pdot" style="background:var(--com)"></span><span class="pdot" style="background:var(--exe)"></span></span>
+                  64 abilities · max 320 · used in 3 challenges</div></div></div>
+              <div class="vrow on"><span class="ck on"></span><div style="flex:1">
+                <div class="vt">Challenge Command – 90-Second Drill</div>
+                <div class="vm"><span class="pills"><span class="pdot" style="background:var(--apt)"></span><span class="pdot" style="background:var(--att)"></span><span class="pdot" style="background:var(--com)"></span><span class="pdot" style="background:var(--exe)"></span></span>
+                  64 abilities · max 320 · used in 2 challenges</div></div></div>
+              <p class="hint">Editing this task's abilities will be <b>refused</b> while it sits in a set with
+                other members — change the set, or detach first.</p>
+            </div></div>
+          <div class="sticky"><span class="saved"><i class="fa-solid fa-check"></i> Saved</span>
+            <span style="display:flex;gap:6px"><button class="btn gh sm">Preview</button><button class="btn o">Save Task</button></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="side">
+  <div class="sh">Refusal, with the diff <span class="chip warn">blocked</span></div>
+  <div class="sb2">
+    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:6px;padding:9px 10px">
+      <div style="font-size:9.5px;font-weight:800;color:#991B1B;display:flex;align-items:center;gap:5px;margin-bottom:6px">
+        <i class="fa-solid fa-triangle-exclamation"></i> Cannot join “opener-reflect”</div>
+      <p style="font-size:8.5px;color:#7F1D1D;margin:0 0 7px;line-height:1.45">
+        Members of a set must measure the <b>identical</b> ability set, or two learners get different denominators.</p>
+      <div style="font-size:8px;color:#7F1D1D;line-height:1.7">
+        <div><b>Set measures, this task doesn't:</b></div>
+        <div style="margin:2px 0 5px"><span class="chip warn">communication.pitch</span>
+          <span class="chip warn">execution.planning</span></div>
+        <div><b>This task measures, set doesn't:</b></div>
+        <div style="margin-top:2px"><span class="chip warn">aptitude.imagination</span></div>
+      </div>
+      <div style="display:flex;gap:5px;margin-top:9px">
+        <button class="btn sm" style="background:#991B1B"><i class="fa-solid fa-wand-magic-sparkles"></i> Match the set</button>
+        <button class="btn gh sm">Cancel</button></div>
+    </div>
+    <p class="hint" style="margin-top:9px"><b>Match the set</b> ticks the missing abilities and unticks the extras
+      — the same write path as “Copy from task”, so no new contract.</p>
+  </div>
+</div>
+</div>
+
+<h3 class="scr"><em>06b</em> Mobile — the two new surfaces <span class="tag new">new</span></h3>
+<p class="cap">Admin is desktop-primary but already responsive (the <code>w-64</code> sidebar collapses to a
+drawer). Both new surfaces stack to single-column with thumb-zone CTAs.</p>
+<div style="display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start">
+
+<div>
+<div class="phone">
+  <div class="pnotch"></div>
+  <div class="pv">
+    <div class="pbar"><span><i class="fa-solid fa-bars"></i> Edit Task</span><span>9:41</span></div>
+    <div style="padding:9px 10px 46px">
+      <div class="card" style="opacity:.5;margin-bottom:7px"><div class="hd"><h4 style="font-size:10px">
+        <i class="fa-solid fa-list-check" style="color:var(--primary)"></i> Abilities measured</h4>
+        <p style="font-size:8px">64 of 64 · max 320</p></div></div>
+      <div class="card" style="border:2px solid var(--primary);margin-bottom:0">
+        <div class="hd"><h4 style="font-size:10px"><i class="fa-solid fa-layer-group" style="color:#4338CA"></i> Canonical set</h4>
+          <p style="font-size:8px">A learner is dealt exactly one of these.</p></div>
+        <div class="bd" style="padding:9px 10px">
+          <span class="lbl" style="font-size:8.5px">Set</span>
+          <div class="fld" style="display:flex;align-items:center;justify-content:space-between;font-size:9px">
+            <span style="font-weight:600">opener-reflect</span><i class="fa-solid fa-chevron-down" style="color:var(--g400);font-size:7px"></i></div>
+          <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;padding:6px 7px;margin:8px 0;
+                      font-size:8px;color:#166534;line-height:1.4">
+            <i class="fa-solid fa-lock"></i> <b>Verified identical</b> — 64 abilities, max 320.</div>
+          <div class="vrow on" style="padding:5px 6px"><span class="ck on"></span><div style="flex:1">
+            <div class="vt" style="font-size:8.5px">Challenge Zero: Know Me…</div>
+            <div class="vm" style="font-size:7px">64 · 320 · 3 challenges</div></div></div>
+          <div class="vrow on" style="padding:5px 6px;margin-bottom:0"><span class="ck on"></span><div style="flex:1">
+            <div class="vt" style="font-size:8.5px">Challenge Command – 90s Drill</div>
+            <div class="vm" style="font-size:7px">64 · 320 · 2 challenges</div></div></div>
+          <button class="btn sm" style="background:#7C3AED;width:100%;justify-content:center;margin-top:8px;padding:6px">
+            <i class="fa-solid fa-clone"></i> Add variant</button>
+        </div></div>
+    </div>
+    <div class="sticky" style="padding:7px 11px"><span class="saved" style="font-size:8.5px"><i class="fa-solid fa-check"></i> Saved</span>
+      <button class="btn o sm">Save Task</button></div>
+  </div>
+</div>
+<p class="hint" style="max-width:286px;margin-top:9px;color:var(--pageMute);font-size:11px">
+  <b>Task edit · canonical set.</b> Sections stack; the autosave bar stays pinned to the bottom edge.</p>
+</div>
+
+<div>
+<div class="phone">
+  <div class="pnotch"></div>
+  <div class="pv">
+    <div class="pbar"><span><i class="fa-solid fa-bars"></i> Suggested sets</span><span>9:41</span></div>
+    <div style="padding:9px 10px">
+      <div class="card" style="margin-bottom:7px"><div class="bd" style="padding:8px 9px;display:flex;
+        gap:7px;flex-wrap:wrap;font-size:8px">
+        <span><b style="font-size:12px;color:var(--g900)">187</b> <span style="color:var(--g500)">tasks</span></span>
+        <span><b style="font-size:12px;color:#4338CA">54</b> <span style="color:var(--g500)">sigs</span></span>
+        <span><b style="font-size:12px;color:var(--success)">146</b> <span style="color:var(--g500)">groupable</span></span>
+        <span><b style="font-size:12px;color:var(--g500)">41</b> <span style="color:var(--g500)">single</span></span>
+      </div></div>
+      <div class="card" style="margin-bottom:0"><div class="hd" style="padding:8px 10px">
+        <h4 style="font-size:9.5px">64 abilities · max 320</h4>
+        <p style="font-size:7.5px">69 tasks share this signature</p></div>
+        <div class="bd" style="padding:9px 10px">
+          <span class="lbl" style="font-size:8.5px">Set name</span>
+          <div class="fld" style="font-size:9px">opener-reflect</div>
+          <div style="height:8px"></div>
+          <div class="vrow on" style="padding:5px 6px"><span class="ck on"></span><div style="flex:1">
+            <div class="vt" style="font-size:8.5px">250 · Challenge Zero</div>
+            <div class="vm" style="font-size:7px"><span class="chip lock">slot 1</span> 3 challenges</div></div></div>
+          <div class="vrow on" style="padding:5px 6px"><span class="ck on"></span><div style="flex:1">
+            <div class="vt" style="font-size:8.5px">158 · Challenge Command</div>
+            <div class="vm" style="font-size:7px"><span class="chip lock">slot 1</span> ias · kas</div></div></div>
+          <div class="vrow" style="padding:5px 6px;margin-bottom:0"><span class="ck"></span><div style="flex:1">
+            <div class="vt" style="font-size:8.5px">30 · 21-Task Journey: My Story</div>
+            <div class="vm" style="font-size:7px"><span class="chip warn">slot 21 — a closer</span></div></div></div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:5px;padding:6px 7px;margin-top:8px;
+                      font-size:7.5px;color:#92400E;line-height:1.45">
+            <i class="fa-solid fa-triangle-exclamation"></i> <b>Identical abilities ≠ interchangeable.</b>
+            Slot position shown so an editorial call can be made.</div>
+          <div style="display:flex;gap:5px;margin-top:8px">
+            <button class="btn ok sm" style="flex:1;justify-content:center"><i class="fa-solid fa-check"></i> Create set</button>
+            <button class="btn gh sm">Skip</button></div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<p class="hint" style="max-width:286px;margin-top:9px;color:var(--pageMute);font-size:11px">
+  <b>Suggested sets · migration.</b> One candidate group per card; 54 decisions instead of hand-grouping 187 tasks.</p>
+</div>
+
+</div>
+
+<h3 class="scr"><em>07</em> Edit Challenge → Slots <span class="tag new">rebuilt · the centrepiece</span></h3>
+<p class="cap">21 slot rows, not 187 task rows. Position is the row, not a typed integer. Each slot names its set
+and how many variants are eligible.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/challenges/8/edit#slots</span></div>
+  <div class="vp" style="height:492px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a><i class="fa-solid fa-list-check"></i> Tasks</a>
+        <a class="on"><i class="fa-solid fa-trophy"></i> Challenges</a><a><i class="fa-solid fa-layer-group"></i> Batches</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Edit Challenge — Class 5-7 Marks Booster ₹4999</span>
+          <span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body">
+          <div class="card"><div class="hd">
+            <h4><i class="fa-solid fa-list-ol" style="color:var(--primary)"></i> Journey slots
+              <span class="chip lock" style="margin-left:4px">21 of 21</span></h4>
+            <p>Drag to reorder. Each slot deals one task from its canonical set at enrolment.</p></div>
+            <div class="bd" style="max-height:400px;overflow:hidden">
+              <div style="display:grid;grid-template-columns:44px 1fr 116px 92px;gap:8px;padding:0 8px 5px;
+                          font-size:7.5px;font-weight:800;color:var(--g500);text-transform:uppercase;letter-spacing:.06em">
+                <span style="text-align:center">Slot</span><span>Task / set</span><span>Canonical set</span><span>Eligible</span></div>
+
+              <div class="slot pinned"><div class="slotn"><b>1</b><span class="chip pin">pinned</span></div>
+                <div class="slott">Challenge Zero: Know Me Before We Grow
+                  <span>opener · position fixed for ₹4999</span></div>
+                <div><span class="chip set">opener-reflect</span></div>
+                <div class="sel2">All (2) <i class="fa-solid fa-chevron-down" style="font-size:7px;color:var(--g400)"></i></div></div>
+
+              <div class="slot act"><div class="slotn"><b>2</b></div>
+                <div class="slott">Ability Audit: The Honest Mirror
+                  <span>+ 2 alternatives · 45 abilities · max 225</span></div>
+                <div><span class="chip set">self-audit</span></div>
+                <div class="sel2" style="border-color:var(--primary);color:var(--orange700)">2 of 3 <i class="fa-solid fa-chevron-up" style="font-size:7px"></i></div></div>
+
+              <div class="slot"><div class="slotn"><b>3</b></div>
+                <div class="slott">The 60-Second Explain <span>+ 4 alternatives · 48 abilities · max 240</span></div>
+                <div><span class="chip set">explain-aloud</span></div>
+                <div class="sel2">All (5) <i class="fa-solid fa-chevron-down" style="font-size:7px;color:var(--g400)"></i></div></div>
+
+              <div class="slot"><div class="slotn"><b>4</b></div>
+                <div class="slott">Doctor Simulation Challenge <span>no alternatives authored yet</span></div>
+                <div><span class="chip one">singleton</span></div>
+                <div class="sel2" style="color:var(--g400)">— <i class="fa-solid fa-minus" style="font-size:7px"></i></div></div>
+
+              <div class="slot"><div class="slotn"><b>5</b></div>
+                <div class="slott">Time Under Pressure <span>+ 1 alternative · 51 abilities · max 255</span></div>
+                <div><span class="chip set">pressure-drill</span></div>
+                <div class="sel2">All (2) <i class="fa-solid fa-chevron-down" style="font-size:7px;color:var(--g400)"></i></div></div>
+
+              <div style="text-align:center;font-size:8.5px;color:var(--g400);padding:4px;font-style:italic">
+                … slots 6 – 20 …</div>
+
+              <div class="slot pinned"><div class="slotn"><b>21</b><span class="chip pin">pinned</span></div>
+                <div class="slott">21-Task Journey: My Story
+                  <span>closer · position fixed for ₹4999</span></div>
+                <div><span class="chip set">closer-reflect</span></div>
+                <div class="sel2">All (2) <i class="fa-solid fa-chevron-down" style="font-size:7px;color:var(--g400)"></i></div></div>
+
+              <div style="display:flex;gap:6px;margin-top:9px">
+                <button class="btn gh sm"><i class="fa-solid fa-plus"></i> Add slot</button>
+                <button class="btn gh sm"><i class="fa-solid fa-eye"></i> Preview a dealt journey</button>
+                <span style="margin-left:auto"><button class="btn o sm">Save challenge</button></span></div>
+            </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note ok"><b>Default mode is the default.</b> Every slot reads <b>All (n)</b> unless someone narrows
+it. Slot 2 shows advanced mode in use — 2 of 3 — and the absence of a stored subset means “all”, so no existing
+challenge needs a data change.</div>
+
+<h3 class="scr"><em>08</em> Advanced mode — narrowing a slot <span class="tag new">new</span></h3>
+<p class="cap">Desktop popover on the slot row; mobile bottom-sheet. Ticking a subset restricts what that
+challenge may deal, without touching the set itself.</p>
+<div class="duo">
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/challenges/8/edit#slot-2</span></div>
+  <div class="vp" style="height:330px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-trophy"></i> Challenges</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Edit Challenge</span><span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body"></div>
+      </div>
+    </div>
+    <div class="mask">
+      <div class="modal">
+        <div class="mh"><h5>Slot 2 · eligible tasks</h5><i class="fa-solid fa-xmark" style="color:var(--g400);font-size:11px"></i></div>
+        <div class="mb">
+          <p style="font-size:9px;color:var(--g600);margin:0 0 9px;line-height:1.5">
+            Set <span class="chip set">self-audit</span> — all members measure 45 abilities, max 225.
+            Untick one to keep it out of <b>this challenge only</b>.</p>
+          <div class="vrow on"><span class="ck on"></span><div style="flex:1">
+            <div class="vt">Ability Audit: The Honest Mirror</div>
+            <div class="vm"><span class="chip lock">45 · 225</span> live in 12 units</div></div></div>
+          <div class="vrow on"><span class="ck on"></span><div style="flex:1">
+            <div class="vt">Mirror Check: Where Do I Actually Stand?</div>
+            <div class="vm"><span class="chip lock">45 · 225</span> live in 4 units</div></div></div>
+          <div class="vrow"><span class="ck"></span><div style="flex:1">
+            <div class="vt">The Honest Inventory (Kannada-first)</div>
+            <div class="vm"><span class="chip lock">45 · 225</span> not yet dealt</div></div></div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:5px;padding:6px 8px;margin-top:7px;
+                      font-size:8.5px;color:#92400E"><i class="fa-solid fa-circle-info"></i>
+            Affects <b>units minted from now on</b>. The 16 learners already holding these tasks are untouched.</div>
+        </div>
+        <div class="mf"><button class="btn gh sm">Cancel</button><button class="btn o sm">Apply to slot 2</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+<div class="phone">
+  <div class="pnotch"></div>
+  <div class="pv">
+    <div class="pbar"><span><i class="fa-solid fa-bars"></i> Challenge 8</span><span>9:41</span></div>
+    <div style="padding:9px 10px;font-size:10px;color:var(--g900)">
+      <div style="font-size:11px;font-weight:700;margin-bottom:7px">Journey slots</div>
+      <div class="slot pinned" style="grid-template-columns:34px 1fr;gap:6px">
+        <div class="slotn"><b>1</b><span style="font-size:6.5px">pin</span></div>
+        <div class="slott">Challenge Zero<span>opener-reflect · All (2)</span></div></div>
+      <div class="slot act" style="grid-template-columns:34px 1fr;gap:6px">
+        <div class="slotn"><b>2</b></div>
+        <div class="slott">Ability Audit<span>self-audit · 2 of 3</span></div></div>
+      <div class="slot" style="grid-template-columns:34px 1fr;gap:6px">
+        <div class="slotn"><b>3</b></div>
+        <div class="slott">The 60-Second Explain<span>explain-aloud · All (5)</span></div></div>
+    </div>
+    <div style="position:absolute;inset:0;background:rgba(4,10,20,.6)"></div>
+    <div class="sheet">
+      <div class="grab"></div>
+      <div style="font-size:11px;font-weight:700;color:var(--g900);margin-bottom:3px">Slot 2 · eligible tasks</div>
+      <p style="font-size:8.5px;color:var(--g600);margin:0 0 9px">Set <span class="chip set">self-audit</span> · 45 abilities · max 225</p>
+      <div class="vrow on"><span class="ck on"></span><div style="flex:1"><div class="vt">Ability Audit: The Honest Mirror</div>
+        <div class="vm">live in 12 units</div></div></div>
+      <div class="vrow on"><span class="ck on"></span><div style="flex:1"><div class="vt">Mirror Check: Where Do I Stand?</div>
+        <div class="vm">live in 4 units</div></div></div>
+      <div class="vrow"><span class="ck"></span><div style="flex:1"><div class="vt">The Honest Inventory (KN)</div>
+        <div class="vm">not yet dealt</div></div></div>
+      <button class="btn o" style="width:100%;justify-content:center;margin-top:9px;padding:8px">Apply to slot 2</button>
+    </div>
+  </div>
+</div>
+<p class="hint" style="max-width:286px;margin-top:9px;color:var(--pageMute);font-size:11px">
+  The admin panel is already responsive — the <code>w-64</code> sidebar collapses to a drawer. Mobile uses a
+  bottom-sheet in the thumb zone rather than a centred modal.</p>
+</div>
+</div>
+
+<h3 class="scr"><em>09</em> Preview a dealt journey <span class="tag new">new</span></h3>
+<p class="cap">The screen that makes the abstraction concrete before anyone enrols. Two simulated learners, side
+by side, with the two levels visible.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/challenges/8/preview-deal</span></div>
+  <div class="vp" style="height:312px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-trophy"></i> Challenges</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Preview a dealt journey</span><span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body">
+          <div class="card"><div class="hd"><h4>Simulated deal — ₹4999 · 21 slots</h4>
+            <p>Rotation ordinals 0 and 1 in the same batch. Not persisted; nothing is minted.</p></div>
+            <div class="bd">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+                <div style="border:1px solid var(--g200);border-radius:7px;padding:9px 10px">
+                  <div style="font-size:9.5px;font-weight:800;color:var(--g900);margin-bottom:6px">Learner A · ordinal 0</div>
+                  <div style="font-size:8px;color:var(--g500);margin-bottom:3px">L1 · dealt per slot</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px">
+                    <span class="chip pin">250</span><span class="chip set">301</span><span class="chip set">311</span>
+                    <span class="chip one">226</span><span class="chip set">320</span><span class="chip one">…</span><span class="chip pin">30</span></div>
+                  <div style="font-size:8px;color:var(--g500);margin-bottom:3px">L2 · after shuffle (ends pinned)</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:3px">
+                    <span class="chip pin">250</span><span class="chip set">320</span><span class="chip one">226</span>
+                    <span class="chip set">301</span><span class="chip set">311</span><span class="chip one">…</span><span class="chip pin">30</span></div>
+                </div>
+                <div style="border:1px solid var(--g200);border-radius:7px;padding:9px 10px">
+                  <div style="font-size:9.5px;font-weight:800;color:var(--g900);margin-bottom:6px">Learner B · ordinal 1</div>
+                  <div style="font-size:8px;color:var(--g500);margin-bottom:3px">L1 · dealt per slot</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px">
+                    <span class="chip pin">158</span><span class="chip set">302</span><span class="chip set">312</span>
+                    <span class="chip one">226</span><span class="chip set">321</span><span class="chip one">…</span><span class="chip pin">251</span></div>
+                  <div style="font-size:8px;color:var(--g500);margin-bottom:3px">L2 · after shuffle (ends pinned)</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:3px">
+                    <span class="chip pin">158</span><span class="chip set">312</span><span class="chip set">321</span>
+                    <span class="chip one">226</span><span class="chip set">302</span><span class="chip one">…</span><span class="chip pin">251</span></div>
+                </div>
+              </div>
+              <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:6px;padding:7px 9px;margin-top:9px;
+                          font-size:8.5px;color:#166534;display:flex;gap:6px;align-items:center">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span><b>Denominator identical: 21 slots, 1,064 points.</b> Slot 4 is a singleton so both get
+                task 226 — protection exists only where variants do.</span></div>
+            </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="scr"><em>10</em> What two learners get, after <span class="tag new">after</span></h3>
+<p class="cap">Different tasks <em>and</em> different order — but the same slots, the same abilities, the same
+maximum.</p>
+<div class="deal">
+  <div class="dealc"><h5>Aarav · unit 412 · ordinal 0</h5>
+    <div class="seq"><span class="tk p">250</span><span class="tk v">320</span><span class="tk">226</span><span class="tk v">301</span><span class="tk v">311</span><span class="tk">…</span><span class="tk p">30</span></div>
+    <p class="dl">Slot 1 dealt <b>250</b>, slot 2 dealt <b>301</b>, then shuffled. Denominator <b>1,064</b>.</p></div>
+  <div class="dealc"><h5>Diya · unit 413 · ordinal 1 · same batch</h5>
+    <div class="seq"><span class="tk p">158</span><span class="tk v">312</span><span class="tk v">321</span><span class="tk">226</span><span class="tk v">302</span><span class="tk">…</span><span class="tk p">251</span></div>
+    <p class="dl">Different opener, different middle, different closer. Denominator <b>1,064</b> — identical.
+      Sharing an answer no longer works.</p></div>
+</div>
+
+
+<!-- ══════════════════════ C · MIGRATION ══════════════════════ -->
+<h2 class="band"><i class="fa-solid fa-arrow-right-arrow-left"></i> C · Getting 187 existing tasks into sets</h2>
+<p class="bandsub">Nobody hand-groups 187 tasks. The catalogue already tells us which are candidates —
+<b>146 of 187 share an exact ability-membership set with at least one other task</b>.</p>
+
+<h3 class="scr"><em>11</em> Suggested sets <span class="tag new">new · the migration screen</span></h3>
+<p class="cap">Computed candidates, grouped by identical membership signature and filtered to the same tier and
+slot position. Sutirtha confirms or rejects; the system never groups anything on its own.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/canonical-sets/suggested</span></div>
+  <div class="vp" style="height:452px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-list-check"></i> Tasks</a>
+        <a><i class="fa-solid fa-trophy"></i> Challenges</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Canonical sets — suggested</span><span class="who"><span class="av">G</span> Super Admin</span></div>
+        <div class="body">
+          <div class="card"><div class="bd" style="display:flex;gap:9px;align-items:center;font-size:9px">
+            <span><b style="font-size:13px;color:var(--g900)">187</b> <span style="color:var(--g500)">tasks</span></span>
+            <span style="color:var(--g300)">·</span>
+            <span><b style="font-size:13px;color:#4338CA">54</b> <span style="color:var(--g500)">signatures</span></span>
+            <span style="color:var(--g300)">·</span>
+            <span><b style="font-size:13px;color:var(--success)">146</b> <span style="color:var(--g500)">groupable</span></span>
+            <span style="color:var(--g300)">·</span>
+            <span><b style="font-size:13px;color:var(--g500)">41</b> <span style="color:var(--g500)">singleton</span></span>
+            <span style="margin-left:auto;display:flex;gap:6px">
+              <div class="fld" style="width:88px;font-size:9px">Tier ₹4999</div>
+              <div class="fld" style="width:88px;font-size:9px">All streams</div></span>
+          </div></div>
+
+          <div class="card"><div class="hd"><h4>Candidate — 64 abilities · max 320
+            <span class="chip sug" style="margin-left:4px">69 tasks share this signature</span></h4>
+            <p>Same membership. Same tier. Confirm only the ones that are genuinely interchangeable.</p></div>
+            <div class="bd">
+              <div style="display:flex;gap:7px;align-items:flex-end;margin-bottom:9px">
+                <div style="flex:1"><span class="lbl">Set name</span><div class="fld">opener-reflect</div></div>
+                <button class="btn ok sm"><i class="fa-solid fa-check"></i> Create set from ticked</button>
+                <button class="btn gh sm">Skip</button></div>
+              <div class="vrow on"><span class="ck on"></span><div style="flex:1">
+                <div class="vt">250 · Challenge Zero: Know Me Before We Grow</div>
+                <div class="vm"><span class="chip lock">slot 1</span><span class="chip one">board_booster</span>
+                  <span class="chip one">career_readiness</span><span class="chip one">marks_booster</span></div></div></div>
+              <div class="vrow on"><span class="ck on"></span><div style="flex:1">
+                <div class="vt">158 · Challenge Command – 90-Second Drill</div>
+                <div class="vm"><span class="chip lock">slot 1</span><span class="chip one">ias</span><span class="chip one">kas</span></div></div></div>
+              <div class="vrow"><span class="ck"></span><div style="flex:1">
+                <div class="vt">30 · 21-Task iRisePro Journey: My Story</div>
+                <div class="vm"><span class="chip warn">slot 21 — a closer, not an opener</span><span class="chip one">board_booster</span></div></div></div>
+              <div class="vrow"><span class="ck"></span><div style="flex:1">
+                <div class="vt">246 · NEET Preparation Reflection &amp; Strategic Commitment</div>
+                <div class="vm"><span class="chip warn">slot 21 — a closer, not an opener</span><span class="chip one">neet</span></div></div></div>
+              <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:5px;padding:7px 9px;margin-top:6px;
+                          font-size:8.5px;color:#92400E"><i class="fa-solid fa-triangle-exclamation"></i>
+                <b>Identical abilities does not mean interchangeable.</b> 69 tasks share this signature across
+                openers, closers and mid-journey work. Slot position is shown so an editorial call can be made.</div>
+            </div></div>
+
+          <div class="card"><div class="hd"><h4>Candidate — 45 abilities · max 225
+            <span class="chip sug" style="margin-left:4px">9 tasks</span></h4></div>
+            <div class="bd" style="font-size:9px;color:var(--g500)">Collapsed — 9 candidates across ias, kas, jee.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note"><b>Measured, not guessed.</b> Slot 1 across the seven ₹4999 streams resolves to 4 distinct
+tasks and 3 signatures; not one of the 21 slots uses the same task in all seven streams. So the suggestions are
+real candidates, and the editorial judgement is unavoidable — which is why this screen confirms rather than
+applies.</div>
+
+<h3 class="scr"><em>12</em> The whole admin journey, end to end</h3>
+<p class="cap">From “no sets exist” to “a cohort is being dealt varied journeys”.</p>
+<div class="flow">
+  <div class="step"><b>01</b>Suggested sets<br><span style="font-size:10px;color:var(--pageMute);font-weight:400">confirm 146 candidates</span></div>
+  <span class="arw">→</span>
+  <div class="step"><b>02</b>Add variant<br><span style="font-size:10px;color:var(--pageMute);font-weight:400">clone + copy abilities</span></div>
+  <span class="arw">→</span>
+  <div class="step"><b>03</b>Slots screen<br><span style="font-size:10px;color:var(--pageMute);font-weight:400">All (n) by default</span></div>
+  <span class="arw">→</span>
+  <div class="step"><b>04</b>Preview deal<br><span style="font-size:10px;color:var(--pageMute);font-weight:400">see it before enrolling</span></div>
+  <span class="arw">→</span>
+  <div class="step"><b>05</b>Pilot one batch<br><span style="font-size:10px;color:var(--pageMute);font-weight:400">per-batch override</span></div>
+  <span class="arw">→</span>
+  <div class="step"><b>06</b>Flip default<br><span style="font-size:10px;color:var(--pageMute);font-weight:400">global</span></div>
+</div>
+
+<table class="cmp">
+  <tr><th>Screen</th><th>Today</th><th>Change</th></tr>
+  <tr><td>Task list</td><td>Flat table, 187 rows, pillar maxima</td>
+    <td><b>One new column</b> + an <code>Add variant</code> action. Additive.</td></tr>
+  <tr><td>Task edit</td><td>Content · Answer modes · Abilities · Media · Settings, Alpine autosave</td>
+    <td><b>One new card</b> after Abilities. <code>Copy from task</code> already does the hard part.</td></tr>
+  <tr><td>Challenge edit</td><td>Flat checkbox list of every task + hand-typed <code>sorting_order</code></td>
+    <td><b>Rebuilt as a slot list.</b> The only substantial front-end work.</td></tr>
+  <tr><td>Suggested sets</td><td>—</td>
+    <td><b>New screen.</b> Turns 187 hand-groupings into 54 reviewed decisions.</td></tr>
+  <tr><td>Preview deal</td><td>—</td>
+    <td><b>New screen.</b> Non-persisting simulation; the only way to see both levels at once.</td></tr>
+  <tr><td>Batch edit</td><td><code>shuffle_task_order</code> exists (nullable = inherit)</td>
+    <td>Unchanged — the same three-state override gates variant selection too.</td></tr>
+</table>
+
+<div class="note bad" style="margin-top:22px"><b>One hard prerequisite, from the code.</b>
+<code>Middleware/EnsureTaskAccess:43-46</code> authorises a task by joining <code>challenge_task</code> on
+<code>challenge_id</code>. A dealt variant lives in the learner's snapshot but not on the challenge pivot, so it
+would be <b>403'd mid-journey</b> — and <code>TaskDetailsController:962</code> fails <em>silently</em>: the page
+renders, no <code>expires_at</code> is stamped, and submit returns <code>422 timer_not_started</code>. Slice D of
+the existing per-student-order plan (cursor + every gate onto <code>TaskOrder::for($unit)</code>, one commit)
+must land first.</div>
+
+<div class="foot">
+Storyboard · 12-Aug-2026 · admin surfaces for canonical task sets.<br>
+Theme from <code>resources/views/superadmin/layout.blade.php</code> (primary #FF8A3D, secondary #FFF1E6,
+Montserrat) and the canonical pillar palette in
+<code>resources/views/superadmin/tasks/partials/skills-picker.blade.php</code>.<br>
+Counts measured from <code>database/seeders/data/prod-catalog-mapping.tsv</code>. Companion to
+<code>docs/2026-08-10-task-order-and-cleanup-spec.md</code>.
+</div>
+
+</div>
