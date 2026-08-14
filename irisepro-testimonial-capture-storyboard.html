@@ -263,7 +263,7 @@
   </div>
 
   <div class="why">
-    <strong>4999 is the flagship, and the target is every student.</strong> That is achievable — the tasks support it in all ten plans, the relationship exists, and the channels stack: in-app at T+0, the Yashodarshi, email at T+1 and T+3, admin fallback, weekly report. It also makes the 37% of active seats with no evaluator a blocker rather than a footnote, because a queue that must reach zero cannot contain seats nobody owns.
+    <strong>4999 is the flagship, and the target is every student.</strong> That is achievable — the tasks support it in all ten plans, the relationship exists, and the channels stack: in-app at T+0, the Yashodarshi, email at T+1 and T+3, admin fallback, weekly report. And coverage is not the obstacle it first appeared: every 4999 unit created since 20-Jul-2026 has a Yashodarshi assigned, so the primary channel already reaches 100% of current-era seats.
   </div>
 
   <div class="warn">
@@ -563,8 +563,10 @@
   <p>It belongs on the existing mentee surface — <code>/yashodarshi/mentorship</code> and <code>/yashodarshi/mentee/{unit}/scorecard</code> — as the same three answers, scoped to their own students: <strong>who is outstanding, who has breached 72 hours, and a link I can send right now.</strong></p>
 
   <div class="warn">
-    <strong>Measured in prod, and it changes the plan: 24 of 64 active 4999 units (37%) have no <code>yashodarshi_id</code> at all.</strong> Completed units run the same — 60 of 172. So a Yashodarshi-led channel alone would silently miss about one seat in three, in exactly the tier it was designed for. <strong>The admin fallback is not an edge case; it is a third of the work.</strong>
-    <br><br>Worth a separate look, and larger than this feature: those 24 active seats are paying for dedicated evaluation. The null may be legitimate — pending allocation, demo or holding-queue units — or it may be <code>Unit</code>’s own fail-safe guard having nulled a bad assignment and nobody noticing. <em>Cause not established here; do not assume either.</em>
+    <strong>Coverage is total on everything current. Split on the 20-Jul-2026 cutoff, prod is unambiguous:</strong>
+    <br><br>· Units created <strong>on or after 20-Jul: 40 active, <span class="pill go">0 without a Yashodarshi</span></strong>
+    <br>· Units created <strong>before 20-Jul: 24 active, 24 without</strong> — every single one
+    <br><br>The unassigned seats are <em>entirely</em> legacy, and the split is perfectly clean: not one unit created since the cutoff is missing an evaluator. <strong>So the Yashodarshi channel covers 100% of current-era 4999 seats</strong>, and the earlier read of this as “a third of the work” was wrong — it was a whole-history average hiding a solved problem. Admin fallback stays for genuine exceptions; it is not carrying a third of the tier.
   </div>
 
   <div class="warn">
@@ -574,7 +576,7 @@
   <div class="lens">
     <div class="box"><h3>Yashodarshi</h3><p>Primary at 4999. Personalised ask, existing trust, knows the task they struggled with.</p></div>
     <div class="box"><h3>Automated</h3><p>T+0 in-app, T+1 and T+3 email. Runs for everyone regardless of assignment.</p></div>
-    <div class="box"><h3>Admin</h3><p>Fallback for the ~37% with no evaluator, plus governance across all channels.</p></div>
+    <div class="box"><h3>Admin</h3><p>Exceptions only, plus governance across all channels. Legacy pre-20-Jul seats live here.</p></div>
     <div class="box"><h3>Below 4999</h3><p>No dedicated evaluator by design — automated plus admin is the whole path.</p></div>
   </div>
 </section>
@@ -583,7 +585,7 @@
 <section class="surface">
   <div class="num">13</div>
   <h2>Admin — fallback and governance, not the collector</h2>
-  <p>The same three questions the Yashodarshi sees — <strong>who hasn’t submitted, who has breached 72 hours, and give me a link I can send right now</strong> — but across every cohort, and with two jobs the Yashodarshi view doesn’t have: <strong>covering the seats that have no evaluator, and watching whether the channel that does exist is actually working.</strong></p>
+  <p>The same three questions the Yashodarshi sees — <strong>who hasn’t submitted, who has breached 72 hours, and give me a link I can send right now</strong> — but across every cohort, and with two jobs the Yashodarshi view doesn’t have: <strong>catching the exceptions, and watching whether the primary channel is actually working.</strong></p>
 
   <div class="tablewrap">
     <table>
@@ -675,7 +677,29 @@
 <!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">14</div>
-  <h2>The loop — what a referral actually compounds to</h2>
+  <h2>The flywheel — one student takes a stand and enrols someone in their possibility</h2>
+
+  <div class="why">
+    <strong>“Enrol” is doing two jobs here, and that is the whole engine.</strong> A learner enrols someone <em>in a possibility</em> — and some fraction of those people then enrol <em>in the programme</em>. The growth mechanism and the practice are the same act, which is why this can work where referral schemes normally don’t.
+  </div>
+
+  <div class="lens">
+    <div class="box"><h3>① Takes a stand</h3><p>The board. In their words, against their own number.</p></div>
+    <div class="box"><h3>② Needs a witness</h3><p>A stand nobody has heard is not a stand. Telling someone is not a favour to us — <strong>it is how their board becomes real</strong>.</p></div>
+    <div class="box"><h3>③ Enrols them in it</h3><p>Their sentence, their delta, their name. The listener sees a person they know become someone.</p></div>
+    <div class="box"><h3>④ Some enrol in YASHHO</h3><p>That fraction is k. Everything below is arithmetic on it.</p></div>
+    <div class="box"><h3>⑤ Who take a stand</h3><p>And the loop turns again — this time from the inside.</p></div>
+  </div>
+
+  <div class="why">
+    <strong>This is why the ask doesn’t feel like an ask.</strong> Every referral programme in education fights the same problem: you are requesting a favour from someone who has already paid you. Here you are not. <strong>Step ② is a requirement of the learner’s own practice</strong> — the board asks them to name a witness before we ever mention sharing. The share is them completing their board, not doing us a service, and that is the difference between a loop that turns and one that has to be pushed.
+  </div>
+
+  <div class="warn">
+    <strong>Which is exactly why there must be no cash incentive on it.</strong> A “refer a friend, get ₹500” converts a stand into a transaction — and the moment the listener suspects the sender was paid, the sentence stops being a confession and becomes an advert, which is the one thing that makes it worthless. <strong>The reward for sharing is that the stand becomes real.</strong> Do not add a second one; it would cost more than it earns.
+  </div>
+
+  <h3 style="margin-top:34px">What it compounds to</h3>
   <p>Base, measured in prod: <strong>93 distinct students at 4999, across 19 batches, average programme length 24 days.</strong> Everything below is built on those three numbers.</p>
 
   <div class="why">
@@ -761,7 +785,7 @@
     <li><strong>The T+30 check</strong>, including the witness half. Where most of the material comes from.</li>
     <li><strong>The carousel renderer</strong> — deterministic, weekly cadence from day one.</li>
     <li><strong>The Yashodarshi list</strong> — outstanding + breached, scoped to their own mentees, on the existing mentorship surface. At 4999 this is the primary channel and among the cheapest things here to build, because the relationship already exists.</li>
-    <li><strong>Admin + the weekly report</strong> — the same resolver at a wider scope: the Cohort Scoreboard band, the copy-paste link, Excel export, and cover for the ~37% of active 4999 seats with no evaluator. Needs the capability token first.</li>
+    <li><strong>Admin + the weekly report</strong> — the same resolver at a wider scope: the Cohort Scoreboard band, the copy-paste link, Excel export, and cover for exceptions. Needs the capability token first.</li>
     <li><strong>Reels</strong> — last. They need willing humans.</li>
   </ol>
 
