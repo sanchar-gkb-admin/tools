@@ -675,10 +675,59 @@
 <!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">14</div>
+  <h2>The loop — what a referral actually compounds to</h2>
+  <p>Base, measured in prod: <strong>93 distinct students at 4999, across 19 batches, average programme length 24 days.</strong> Everything below is built on those three numbers.</p>
+
+  <div class="why">
+    <strong>The formula that matters is <code>1 / (1 − k)</code></strong>, where <em>k</em> is referrals-that-enrol per completing student. A cohort of C produces Ck, which produces Ck², and so on — so one seed cohort eventually yields <strong>C / (1 − k)</strong> students in total. That single expression is more useful than any projection, because it is brutally non-linear as k approaches 1.
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>k</th><th>Lifetime multiplier</th><th>From today’s 93</th><th>Revenue @ ₹4,999</th><th>vs base</th></tr></thead>
+      <tbody>
+        <tr><td>0 <em>(today, assumed)</em></td><td>1.00×</td><td>93</td><td>₹4.6 L</td><td>—</td></tr>
+        <tr><td>0.2</td><td>1.25×</td><td>116</td><td>₹5.8 L</td><td>+₹1.2 L</td></tr>
+        <tr><td>0.3</td><td>1.43×</td><td>133</td><td>₹6.6 L</td><td>+₹2.0 L</td></tr>
+        <tr><td><strong>0.5</strong></td><td><strong>2.00×</strong></td><td><strong>186</strong></td><td><strong>₹9.3 L</strong></td><td><strong>+₹4.6 L</strong></td></tr>
+        <tr><td>0.7</td><td>3.33×</td><td>310</td><td>₹15.5 L</td><td>+₹10.9 L</td></tr>
+        <tr><td>1.0</td><td>∞</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="why">
+    <strong>Read the shape, not the rows.</strong> Moving k from 0.3 to 0.5 is worth <em>more</em> than moving it from 0 to 0.3. Which changes where effort goes: the win is not “launch a referral programme”, it is <strong>relentlessly improving one that already runs</strong>. Every point of k you add is worth more than the last.
+  </div>
+
+  <h3 style="margin-top:30px">And if every outgoing student really did enrol one?</h3>
+  <p>k = 1.0 is not a growth rate. It is doubling with no decay — 93 → 186 → 372 → 744. With a 24-day programme plus decision lag, call it six referral cycles a year: <strong>64× in year one</strong>, roughly 5,950 students and ₹2.98 crore, then 4,096× in year two. The arithmetic runs away because at k = 1 the series simply does not converge.</p>
+
+  <div class="warn">
+    <strong>So the honest answer to “what if everyone referred one” is that nobody ever has.</strong> No education business sustains k = 1; the reachable range for a high-trust, high-touch programme is roughly 0.3–0.7. That is not a let-down — <strong>0.7 triples the business off the same acquisition spend</strong>. Aim at one, bank the value of getting close, and never plan on the fantasy.
+  </div>
+
+  <h3 style="margin-top:30px">Where NPS actually sits in this</h3>
+  <div class="why">
+    <strong>NPS does not cause growth. It measures whether k &gt; 0 is <em>possible</em>.</strong> The well-known gap is between intent and act: a large share of customers say they would recommend, and a far smaller share ever do — not because they lied, but because nobody gave them <strong>the moment, the words, or the artefact</strong>. That is exactly the three things the board supplies: the moment (at the reveal, feeling at its peak), the words (their own, composed for them), the artefact (a card, one tap to send). <strong>The board is not a marketing asset. It is the conversion mechanism from promoter to referrer</strong> — which is the only step in the loop that is currently missing.
+  </div>
+
+  <div class="warn">
+    <strong>Build requirement that falls out of this, and is not yet anywhere in the plan: the share has no attribution.</strong> As designed, a learner sends their card and nothing connects the person who enrols to the person who sent it. Without a per-learner code or link on the shared artefact, <strong>k is unmeasurable</strong> — you would run the loop blind, unable to tell 0.1 from 0.5, and therefore unable to improve the one number the whole model turns on. Add it before the first card goes out, not after.
+  </div>
+
+  <div class="warn">
+    <strong>Three limits to state plainly.</strong> ① Everything except the base 93 / 19 / 24 is <em>scenario, not forecast</em> — there is no NPS data, no referral history and no share-to-enrolment conversion rate to fit against. ② <strong>93 students is too small a base to measure k at all</strong>; variance will swamp signal until the population is a few hundred, so treat early numbers as directional only. ③ Education referral has a structural ceiling consumer products don’t: batches are age-banded and geographically clustered, so a Class 8 parent can realistically only refer other Class 8 parents. The reachable pool per learner is genuinely narrow, which argues for <em>parent-to-parent</em> sharing being where the loop actually lives.
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">15</div>
   <h2>Build order</h2>
   <ol>
     <li><strong>The board, at task completion</strong> — four skins, the ★ line first. <em>This is the only piece with a real cost to delay: you cannot retroactively capture who someone was before they changed.</em></li>
-    <li><strong>The share render</strong> — prose + card image. The reward, and the distribution.</li>
+    <li><strong>The share render</strong> — prose + card image, <strong>carrying a per-learner referral code</strong>. The reward, the distribution, and the only way k is ever measurable.</li>
     <li><strong>The T+30 check</strong>, including the witness half. Where most of the material comes from.</li>
     <li><strong>The carousel renderer</strong> — deterministic, weekly cadence from day one.</li>
     <li><strong>The Yashodarshi list</strong> — outstanding + breached, scoped to their own mentees, on the existing mentorship surface. At 4999 this is the primary channel and among the cheapest things here to build, because the relationship already exists.</li>
