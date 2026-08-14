@@ -1,0 +1,446 @@
+<title>YASHHO — WhatsApp BSP selection: the process, the evidence, the decision</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{--bg:#0a1626;--surface:#10223c;--surface2:#16294a;--line:#1d3354;--line2:#2a4468;
+  --ink:#eaf1f9;--mute:#8ea3bd;--dim:#6b819d;--o:#f5821f;--o2:#ff9b3d;--o3:#ffb259;--blue:#3f93e0;
+  --ok:#3ecf8e;--warn:#f5c451;--bad:#ef5f5f;--purple:#a78bfa;--wa:#25D366;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,sans-serif;
+  font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
+.wrap{max-width:1240px;margin:0 auto;padding:44px 22px 110px}
+a{color:var(--o2)}
+.kick{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--wa)}
+h1{font-size:clamp(30px,4.6vw,50px);font-weight:900;letter-spacing:-.025em;margin:.24em 0 .18em;line-height:1.03}
+.lede{color:var(--mute);font-size:16.5px;max-width:82ch}
+h2{display:flex;align-items:center;gap:13px;font-size:13px;font-weight:800;letter-spacing:.17em;
+  text-transform:uppercase;margin:64px 0 8px}
+h2 i{width:28px;height:28px;border-radius:8px;background:var(--wa);color:#04101d;display:grid;
+  place-items:center;font-size:13px;flex:none}
+.h2sub{color:var(--mute);font-size:14.5px;margin:0 0 26px;max-width:86ch}
+h3{font-size:19px;font-weight:800;margin:34px 0 8px;letter-spacing:-.01em}
+h4{font-size:15px;font-weight:800;margin:22px 0 6px;color:var(--o3)}
+p{max-width:90ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+.card.o{border-color:var(--o);background:linear-gradient(180deg,rgba(245,130,31,.10),rgba(245,130,31,.03))}
+.card.w{border-color:var(--wa);background:linear-gradient(180deg,rgba(37,211,102,.10),rgba(37,211,102,.03))}
+.card.bad{border-color:rgba(239,95,95,.5);background:rgba(239,95,95,.07)}
+.card.q{border-color:rgba(167,139,250,.5);background:rgba(167,139,250,.06)}
+.card h4{margin-top:0}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin:24px 0}
+.b{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:14px 16px}
+.b b{display:block;font-size:25px;font-weight:900;color:var(--o3);letter-spacing:-.03em;line-height:1.1}
+.b span{display:block;font-size:11.5px;color:var(--mute);margin-top:4px;line-height:1.4}
+.b.win b{color:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:18px 0;display:block;overflow-x:auto}
+table.wrapok{white-space:normal}
+th{text-align:left;padding:9px 11px;background:var(--surface2);border:1px solid var(--line2);
+  font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--o3)}
+td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:nth-child(even) td{background:rgba(255,255,255,.014)}
+td b{color:#fff}
+code{background:#071120;padding:1.5px 6px;border-radius:4px;font-size:12px;color:var(--o3);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.p{display:inline-block;font-size:10px;font-weight:800;padding:2.5px 7px;border-radius:5px;letter-spacing:.05em;white-space:nowrap}
+.p.y{background:rgba(62,207,142,.16);color:var(--ok);border:1px solid rgba(62,207,142,.4)}
+.p.n{background:rgba(239,95,95,.14);color:var(--bad);border:1px solid rgba(239,95,95,.38)}
+.p.m{background:rgba(245,196,81,.14);color:var(--warn);border:1px solid rgba(245,196,81,.38)}
+.p.i{background:rgba(63,147,224,.14);color:var(--blue);border:1px solid rgba(63,147,224,.38)}
+.p.g{background:rgba(255,255,255,.06);color:var(--mute);border:1px solid var(--line2)}
+.src{font-size:11.5px;color:var(--dim);font-style:italic;margin-top:8px;max-width:92ch}
+.src b{color:var(--mute);font-style:normal}
+ul,ol{max-width:90ch;padding-left:22px} li{margin:6px 0} li b{color:#fff}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+.arch{background:#071120;border:1px solid var(--line2);border-radius:11px;padding:16px 18px;margin:18px 0;overflow-x:auto}
+.arch pre{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.75}
+.arch pre .c{color:var(--o3)} .arch pre .d{color:var(--dim)} .arch pre .b2{color:var(--blue)}
+.arch pre .g2{color:var(--ok)} .arch pre .r{color:var(--bad)}
+
+/* funnel */
+.funnel{margin:24px 0}
+.fstep{display:flex;align-items:center;gap:16px;margin-bottom:10px}
+.fbar{height:52px;border-radius:8px;display:flex;align-items:center;padding:0 16px;font-weight:800;
+  font-size:14px;color:#04101d;flex:none;transition:.2s}
+.fmeta{font-size:13px;color:var(--mute);line-height:1.45;min-width:0}
+.fmeta b{color:#fff;display:block;font-size:13.5px;margin-bottom:1px}
+.quote{border-left:3px solid var(--wa);padding:4px 0 4px 15px;margin:16px 0;font-size:14.5px;max-width:88ch}
+.quote cite{display:block;font-size:11.5px;color:var(--dim);font-style:normal;margin-top:6px}
+.foot{margin-top:66px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim)}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:15px 19px;margin:26px 0}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:30px}
+@media(max-width:760px){.toc ol{columns:1}}
+.toc a{text-decoration:none;font-size:13.5px}
+.sc{display:inline-flex;gap:2px;vertical-align:middle}
+.sc i{width:8px;height:12px;border-radius:2px;background:var(--line2);display:inline-block}
+.sc i.on{background:var(--wa)}
+</style>
+
+<div class="wrap">
+
+<div class="kick"><i class="fa-brands fa-whatsapp"></i> Vendor selection · 14 Aug 2026 · YASHHO / iRisePro</div>
+<h1>Choosing a WhatsApp BSP</h1>
+<p class="lede">The process, the evidence, and the decision — written so the reasoning survives the decision.
+Scope is now narrow and settled: <b>no AI calling</b>, <b>we build and own the CRM and nurture
+orchestration</b>, and WhatsApp is the one thing we buy. This document shows how 20 candidates became one,
+what each filter eliminated and why, and why the answer holds at 600 contacts <i>and</i> at 60,000.</p>
+
+<div class="big">
+  <div class="b"><b>20 → 1</b><span>candidates to recommendation, in 5 filters</span></div>
+  <div class="b win"><b>AiSensy</b><span>the recommendation</span></div>
+  <div class="b"><b>Gallabox</b><span>the close second, and when to pick it instead</span></div>
+  <div class="b"><b>ONE</b><span>number to start — split at a named trigger, not on day one</span></div>
+  <div class="b"><b>≈₹4,800</b><span>per month at today's volume, all-in</span></div>
+</div>
+
+<div class="toc"><ol>
+  <li><a href="#brief">What changed, and what we are actually buying</a></li>
+  <li><a href="#funnel">The funnel — 20 candidates to 1</a></li>
+  <li><a href="#filters">The five filters, and what each killed</a></li>
+  <li><a href="#score">The finalists scored on your dimensions</a></li>
+  <li><a href="#numbers">How many numbers — and the answer that changed</a></li>
+  <li><a href="#kannada">Kannada, and the hidden operational cost</a></li>
+  <li><a href="#cost">Cost today and at 100×</a></li>
+  <li><a href="#why">Why this works short term AND long term</a></li>
+  <li><a href="#risk">Risks, and the exit</a></li>
+  <li><a href="#next">The next 10 days</a></li>
+</ol></div>
+
+<!-- 1 -->
+<h2 id="brief"><i class="fa-solid fa-crosshairs"></i> 1 · What changed, and what we are actually buying</h2>
+<p class="h2sub">Three decisions narrowed this from a platform purchase to a channel purchase — and that
+narrowing is what makes the choice easy.</p>
+
+<table class="wrapok">
+<tr><th>Decision</th><th>Consequence for BSP selection</th></tr>
+<tr><td><b>No AI calling</b> — most expensive line item, not cost-effective at current scale</td>
+  <td>Removes voice from the requirement set entirely. No BSP needs a dialler</td></tr>
+<tr><td><b>We build, own and operate the nurture process</b> — Geeta ji documents the flow; we build the CRM to orchestrate it</td>
+  <td><b>The single most important consequence.</b> We are NOT buying a journey builder, a CRM, a lead-scoring engine or a drip engine. We need <b>a reliable pipe with good APIs</b>. Most of what BSPs charge for is now redundant to us</td></tr>
+<tr><td><b>Choose the best BSP for WhatsApp messaging</b></td>
+  <td>Scope: broadcast · event-driven sends · inbound chatbot · Kannada · numbers</td></tr>
+</table>
+
+<div class="card w">
+<h4>So the buy list is short, and the "don't buy" list is long</h4>
+<div class="split" style="margin-top:10px">
+<div>
+<p style="margin:0 0 6px"><b style="color:var(--ok)">WE BUY — the pipe and the inbound brain</b></p>
+<ul style="margin:0">
+  <li>WhatsApp Business API access + number hosting</li>
+  <li><b>Broadcast engine</b> with real throughput</li>
+  <li><b>Inbound chatbot builder</b> — enrolment/registration + support FAQ. This is the one genuinely
+    conversational surface, and it is cheaper to configure than to build</li>
+  <li>Template management incl. Kannada</li>
+  <li>Send/receive/status <b>APIs and webhooks</b></li>
+</ul>
+</div>
+<div>
+<p style="margin:0 0 6px"><b style="color:var(--bad)">WE DO NOT BUY — we own these</b></p>
+<ul style="margin:0">
+  <li>CRM / contact system of record</li>
+  <li>Lead scoring and auto-tagging</li>
+  <li>Journey / drip orchestration <span class="p g">our scheduler, our journey state</span></li>
+  <li>Analytics and attribution</li>
+  <li>The customer timeline</li>
+</ul>
+</div>
+</div>
+<p style="margin:12px 0 0"><b>This inverts the usual ranking.</b> Every BSP comparison online ranks on
+inbox polish and journey-builder depth. For us those are near-worthless. <b>We rank on API quality,
+broadcast throughput, bot capability and price per message.</b></p>
+</div>
+
+<!-- 2 -->
+<h2 id="funnel"><i class="fa-solid fa-filter"></i> 2 · The funnel — 20 candidates to 1</h2>
+<p class="h2sub">Every elimination has a stated reason, so the ones we rejected can be re-examined if a
+premise changes.</p>
+
+<div class="funnel">
+<div class="fstep"><div class="fbar" style="width:100%;background:var(--wa)">20 candidates</div>
+  <div class="fmeta"><b>The long list</b>Gupshup · AiSensy · Wati · Interakt · Gallabox · Zoko · DoubleTick · Ozonetel · Celitix · 360dialog · Infobip · Twilio · Kaleyra · Karix · ValueFirst · MSG91 · Netcore · Trengo · Respond.io · Chatarmin</div></div>
+<div class="fstep"><div class="fbar" style="width:82%;background:#48d47f">16 · Meta-verified BSP, India</div>
+  <div class="fmeta"><b>Filter 1 — must be an official BSP operating in India</b>Dropped pure global inbox tools with no Indian BSP status or INR billing</div></div>
+<div class="fstep"><div class="fbar" style="width:60%;background:#6ad894">12 · self-serve, published pricing</div>
+  <div class="fmeta"><b>Filter 2 — cost-first means no sales-quoted pricing</b>Dropped Ozonetel (621 G2 reviews — the strongest evidence in the category, but Asia pricing by sales only), Infobip, Kaleyra, Karix, ValueFirst, Netcore</div></div>
+<div class="fstep"><div class="fbar" style="width:42%;background:#8bdfa9">7 · India-first, INR, SMB-priced</div>
+  <div class="fmeta"><b>Filter 3 — priced for a pre-revenue Indian startup</b>Dropped Twilio and 360dialog on USD billing and per-message premium</div></div>
+<div class="fstep"><div class="fbar" style="width:26%;background:#a9e7bf">4 · credible bot builder</div>
+  <div class="fmeta"><b>Filter 4 — must have a no-code inbound chatbot</b>Dropped Zoko and DoubleTick (commerce-led, thin bot); Celitix (bundles voice we no longer need)</div></div>
+<div class="fstep"><div class="fbar" style="width:15%;background:var(--o)">2 finalists + 1 challenger</div>
+  <div class="fmeta"><b>Filter 5 — evidence, throughput, price per message</b><b style="color:var(--o3)">AiSensy · Gallabox</b>, with <b>Interakt</b> as the price challenger and <b>Wati</b> rejected despite the best reviews — see §3</div></div>
+</div>
+
+<!-- 3 -->
+<h2 id="filters"><i class="fa-solid fa-scissors"></i> 3 · The five filters, and what each killed</h2>
+
+<h3>3.1 &nbsp;The painful elimination: Ozonetel</h3>
+<div class="card bad">
+<p style="margin:0"><b>Ozonetel has 621 G2 reviews at ~4.6 — by a wide margin the strongest usage evidence of
+any vendor in this category</b>, and it is a Meta-certified BSP with omnichannel routing. It is eliminated
+purely by <b>Filter 2</b>: Asian pricing is quoted through sales only. <b>On a cost-first brief with no
+revenue, a vendor that will not publish a price is a vendor that expects an annual commitment.</b> If that
+premise changes — if they will do a published-price monthly plan — Ozonetel deserves to re-enter at the top
+of the list. Worth one email to find out.</p>
+</div>
+
+<h3>3.2 &nbsp;The counter-intuitive one: Wati is rejected despite the best reviews</h3>
+<table class="wrapok">
+<tr><th>Wati's case</th><th>Why it still loses for us</th></tr>
+<tr><td><b>G2 4.6 from 458–461 reviews</b> — the largest verified user base of the finalists. 16,000+ customers, 190+ countries</td>
+  <td>Evidence is real and I weight it. But it is evidence of a <b>great shared inbox</b> — §1 says the inbox is the part we need least</td></tr>
+<tr><td>Best-in-class team inbox and template campaign tooling</td>
+  <td><b>Reportedly no AI features for chatbot flow creation.</b> Our inbound requirement is an enrolment bot plus an FAQ/knowledge bot — that is precisely the gap</td></tr>
+<tr><td>Large partner ecosystem</td>
+  <td>Irrelevant — we integrate ourselves</td></tr>
+<tr><td>Pricing</td>
+  <td><b>Most expensive finalist, and pricing is reported inconsistently across sources</b> (₹1,999 / ₹2,199 / ₹2,499 / ₹4,499 / ₹4,899 / ₹14,799 all appear). <b>Plus ₹2,499/month per additional number</b> — the only vendor where I found that figure, and it triples the cost of the two-number strategy</td></tr>
+</table>
+<p><b>The lesson worth keeping:</b> review counts measure satisfaction with what a product is <i>for</i>.
+Wati's users love it for the thing we are not buying. <b>Evidence must be matched to the requirement, not
+totalled.</b></p>
+
+<!-- 4 -->
+<h2 id="score"><i class="fa-solid fa-table-list"></i> 4 · The finalists scored on your dimensions</h2>
+<p class="h2sub">Ease of use · ease of onboarding · ease of operations at scale · cost · reliability ·
+performance.</p>
+
+<table>
+<tr><th>Dimension</th><th>AiSensy</th><th>Gallabox</th><th>Interakt</th><th>Wati</th></tr>
+<tr><td><b>Platform price</b></td><td class="n"><b>₹1,500</b> Basic · ₹3,200 Pro</td><td class="n">₹2,999 base</td><td class="n">~₹999 entry</td><td class="n">₹1,999–14,799 <span class="p m">inconsistent</span></td></tr>
+<tr><td><b>Marketing / msg</b></td><td class="n">₹1.09 <span class="p m">highest markup</span></td><td class="n">not published</td><td class="n"><b>₹0.970</b> → ₹0.949</td><td class="n">not published</td></tr>
+<tr><td><b>Utility / auth per msg</b></td><td class="n">₹0.145</td><td class="n">not published</td><td class="n">not published</td><td class="n">not published</td></tr>
+<tr><td><b>Broadcast throughput</b></td><td><b>10k in ~18 min</b> <span class="p y">fastest found</span></td><td>not published</td><td>10k in <b>1.5+ hrs</b> <span class="p n">5× slower</span></td><td>not published</td></tr>
+<tr><td><b>Bulk import</b></td><td><b>2 lakh</b> in one go</td><td>unlimited contacts</td><td>not published</td><td>not published</td></tr>
+<tr><td><b>Inbound bot</b></td><td><b>AI Chatbot Flow Builder trained on business data</b> <span class="p y">matches the FAQ requirement</span></td><td><b>Gen-AI chatbots</b> + AI rewrite <span class="p y">strongest bot</span></td><td>catalog/purchase flows <span class="p m">commerce-led</span></td><td>no-code bot, <b>no AI</b> <span class="p n">gap</span></td></tr>
+<tr><td><b>Agent seats included</b></td><td><b>1 owner + 5 free</b>, then ₹750 <span class="p y">best</span></td><td>multi-agent inbox</td><td>not published</td><td>not published</td></tr>
+<tr><td><b>Usage evidence</b></td><td>G2 <b>4.3</b> (110)</td><td>G2 <b>4.6</b> (169)</td><td>G2 <b>4.5</b> (65)</td><td>G2 <b>4.6</b> (458) <span class="p y">strongest</span></td></tr>
+<tr><td><b>Integrations / API</b></td><td>~2,000 integrations, INR-native</td><td>API + webhooks</td><td>API + webhooks</td><td>APIs and webhooks</td></tr>
+<tr><td><b>Extra number cost</b></td><td class="n">not published <span class="p m">ASK</span></td><td class="n">not published</td><td class="n">not published</td><td class="n"><b>₹2,499/mo</b></td></tr>
+<tr><td><b>Overall for OUR brief</b></td><td><span class="sc"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td><span class="sc"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td><span class="sc"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td><td><span class="sc"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td></tr>
+</table>
+<p class="src"><b>Note the gaps.</b> Only AiSensy and Interakt publish per-message rates; only AiSensy
+publishes throughput and seat counts. <b>That transparency is itself a selection signal</b> — a vendor that
+publishes numbers is a vendor you can hold to them. It is also why several cells read "not published" rather
+than a guess.</p>
+
+<div class="card w">
+<h4>Recommendation: AiSensy — and the one condition that flips it to Gallabox</h4>
+<p style="margin:0 0 10px"><b>AiSensy wins on the four things that matter to us:</b> lowest platform entry
+(₹1,500), fastest broadcast engine found (5× Interakt), an AI chatbot builder trained on business data, and
+5 free agent seats. It publishes more of its numbers than anyone else, and it bills in INR.</p>
+<p style="margin:0"><b>Pick Gallabox instead if the enrolment bot turns out to be the hard part.</b> Gallabox
+scores higher on evidence (4.6 from 169 vs 4.3 from 110) and its Gen-AI chatbot plus AI-rewrite is the
+stronger conversational product. It costs ₹1,499/month more at entry. <b>The pilot in §10 is designed to
+answer exactly this question in a week.</b></p>
+</div>
+
+<!-- 5 -->
+<h2 id="numbers"><i class="fa-solid fa-hashtag"></i> 5 · How many numbers — and the answer that changed</h2>
+<p class="h2sub">I previously advised splitting transactional and marketing numbers on day one. <b>Further
+evidence says that was too strong, and on a cost-first brief it is the wrong first move.</b></p>
+
+<div class="card bad">
+<h4>The correction, stated plainly</h4>
+<p style="margin:0 0 8px">I argued a marketing blast could tank your quality rating and take your OTP
+delivery with it. Two things soften that:</p>
+<ul style="margin:0 0 8px">
+  <li><b>A Red rating primarily freezes your tier and blocks upgrades</b> rather than cutting delivery
+    outright (sources differ on whether Meta can also demote a tier — treat demotion as possible, not
+    certain).</li>
+  <li><b>Utility and authentication are a separate category and keep flowing when marketing is
+    restricted.</b> Meta's US +1 case demonstrates this: marketing templates stopped delivering while
+    utility and auth continued.</li>
+</ul>
+<p style="margin:0">So the catastrophic scenario I implied is <b>milder and slower</b> than I said. Meanwhile
+the cost is concrete: <b>₹2,499/month per extra number on Wati</b>, unpublished elsewhere.</p>
+</div>
+
+<h3>5.1 &nbsp;The real argument for splitting is opt-out, not quality</h3>
+<p><b>Quality rating recovers. A block does not.</b> Meta requires you to honour any request to block or opt
+out, and both are <b>per number</b>. So the failure that actually matters is: a guardian receives a marketing
+message they did not want, blocks the number — and because that number also carries OTP, login links and
+scorecards, <b>you have permanently lost your delivery channel to a paying customer.</b> That is a product
+failure, not a marketing one, and no tier recovers it.</p>
+
+<div class="card o">
+<h4>The answer: ONE number now. Split at a named trigger, not on a hunch.</h4>
+<div class="arch" style="margin:10px 0"><pre><span class="c">PHASE 1 — TODAY (~600 contacts)</span>
+  <span class="g2">ONE number</span>   utility + auth + marketing + inbound bot
+              ₹0 extra · one conversation thread per guardian · simplest timeline
+              <span class="d">safe because volume is low, lists are first-party, and every send is targeted</span>
+
+<span class="c">PHASE 2 — SPLIT WHEN ANY ONE OF THESE FIRES</span>
+  <span class="r">▸</span> marketing sends exceed <span class="b2">~5,000/month</span>
+  <span class="r">▸</span> quality rating hits <span class="b2">Yellow</span> for the first time
+  <span class="r">▸</span> we send to any list that is not first-party and freshly opted in
+  <span class="r">▸</span> block/opt-out rate exceeds <span class="b2">0.5%</span> of a send
+              → add a SECOND number for marketing only; number 1 becomes brand+transactional+bot
+
+<span class="c">NEVER</span>
+  <span class="r">▸</span> a third number. Two is the ceiling — beyond that the guardian cannot tell who we are</pre></div>
+<p style="margin:0"><b>Why start with one:</b> it is free, it keeps one thread per guardian (which matters
+because our unified timeline is being built around exactly that), and the split is <b>additive later</b> —
+you add a number, you do not migrate one. <b>The reversible order is one-then-two, not two-then-consolidate.</b></p>
+</div>
+
+<h3>5.2 &nbsp;Which number, and can it be toll-free?</h3>
+<table class="wrapok">
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Can we use a toll-free / 1800 number?</td><td><b>Yes on the API</b> (not on the WhatsApp Business app). Verified by <b>voice call</b> — Meta rings the number and you press 1</td></tr>
+<tr><td>The catch</td><td><b>The verification call cannot navigate an IVR.</b> If the toll-free sits behind an IVR it must be bypassed for the verification window. This is the single most common failure in toll-free onboarding</td></tr>
+<tr><td>Should we?</td><td><span class="p m">Not for number 1.</span> A normal Indian mobile number is faster to verify, familiar to guardians, and carries no IVR risk. Consider toll-free later for inbound support if call volume justifies it</td></tr>
+<tr><td>Where does the inbound bot live?</td><td><b>On number 1, always.</b> Guardians reply to what they received — OTP, scorecards, journey messages. The bot must be where the conversation already is</td></tr>
+</table>
+
+<!-- 6 -->
+<h2 id="kannada"><i class="fa-solid fa-language"></i> 6 · Kannada, and the hidden operational cost</h2>
+<p class="h2sub">Kannada is supported by everyone. The thing that will actually cost you is not support — it
+is template multiplication.</p>
+<div class="card q">
+<h4>The fact that changes how you plan content</h4>
+<p style="margin:0 0 8px"><b>WhatsApp supports Kannada</b> (with Hindi, Tamil, Telugu, Bengali, Marathi,
+Gujarati). But: <b>each language must be submitted as a SEPARATE template. A single bilingual template will
+not pass approval.</b></p>
+<p style="margin:0 0 8px">So the real cost of multilingual is <b>N × every template</b>, each needing its own
+Meta approval (24–48h standard; 1–2h for authentication), each needing a Kannada copywriter, and each
+needing version control when the copy changes.</p>
+<p style="margin:0"><b>Design consequence — put this in Geeta ji's process document:</b> a template is a
+<i>versioned content asset in N languages</i>, not a message. Keep the canonical text in our own system with
+the language variants alongside, and treat the BSP as the place they are <i>published</i>, not authored.
+That way switching BSP later is a re-submission, not a rewrite — and it keeps the template library under our
+version control rather than in a vendor's dashboard.</p>
+</div>
+<p><b>Practical sequencing:</b> launch English + Kannada only. Add Hindi when the first non-Karnataka
+cohort justifies it. <b>Every language you add multiplies template ops forever</b>, so add them on evidence,
+not ambition.</p>
+
+<!-- 7 -->
+<h2 id="cost"><i class="fa-solid fa-indian-rupee-sign"></i> 7 · Cost today and at 100×</h2>
+<p class="h2sub">Assumption: 6 utility + 2 marketing messages per contact per month. Challenge that ratio and
+the numbers move; the conclusion does not.</p>
+<table>
+<tr><th>Scale</th><th>Contacts</th><th>Utility msgs</th><th>Marketing msgs</th><th>AiSensy Pro</th><th>Interakt</th><th>Gupshup (self-serve)</th></tr>
+<tr><td><b>A · today</b></td><td class="n">600</td><td class="n">3,600</td><td class="n">1,000</td>
+  <td class="n"><b>₹4,812</b></td><td class="n">₹2,437</td><td class="n">₹4,148</td></tr>
+<tr><td><b>B · 10×</b></td><td class="n">6,000</td><td class="n">36,000</td><td class="n">10,000</td>
+  <td class="n">₹19,320</td><td class="n"><b>₹15,379</b></td><td class="n">₹16,680</td></tr>
+<tr><td><b>C · 100×</b></td><td class="n">60,000</td><td class="n">360,000</td><td class="n">100,000</td>
+  <td class="n">₹164,400</td><td class="n">₹143,800</td><td class="n"><b>₹166,800</b></td></tr>
+</table>
+<p class="src"><b>⚠️ One number in here is contested and it is load-bearing.</b> AiSensy publishes <b>₹1.09</b>
+marketing / <b>₹0.145</b> utility, while Meta's published India base is <b>₹0.8631</b> / <b>₹0.115</b>. Either
+Meta raised rates on 1 Jan 2026 or AiSensy quotes inclusive of markup. <b>Confirm before signing</b> — at
+scale C a ₹0.22 difference is ₹22,000/month. Gupshup's column assumes $0.001 (~₹0.085) platform fee on
+Meta's base with no monthly subscription.</p>
+
+<div class="card">
+<h4>What the table actually says</h4>
+<ul style="margin:0">
+  <li><b>At today's volume the platform fee dominates</b> — Interakt is cheapest on paper, but its broadcast
+    engine is 5× slower and its bot is commerce-oriented. <b>₹2,375/month is not worth a worse product at
+    this scale</b>, and that is a defensible reason to pay more.</li>
+  <li><b>At 10× and beyond the per-message markup dominates</b>, and AiSensy's ₹1.09 becomes its weakness.
+    It is the most expensive of the three at scale C.</li>
+  <li><b>So the vendor that is right today is not automatically right at 100×.</b> Which is the whole point
+    of §8.</li>
+</ul>
+</div>
+
+<!-- 8 -->
+<h2 id="why"><i class="fa-solid fa-infinity"></i> 8 · Why this works short term AND long term</h2>
+<p class="h2sub">The honest version: the vendor choice is right for now and will probably be wrong later —
+and the architecture is what makes that acceptable.</p>
+
+<div class="split">
+<div class="card w">
+<h4><i class="fa-solid fa-bolt"></i> Short term — why AiSensy is right today</h4>
+<ul style="margin:0">
+  <li><b>Lowest entry cost</b> ₹1,500, no annual commitment</li>
+  <li><b>5 free agent seats</b> — the others charge; at a 3-person team that alone is worth ₹2,250/mo</li>
+  <li><b>Fastest broadcast found</b> (10k in ~18 min) — matters when a scorecard release or a batch
+    announcement is time-bound</li>
+  <li><b>AI chatbot trained on business data</b> — the enrolment + FAQ bot is configuration, not a build</li>
+  <li><b>2 lakh contact import</b> covers the "10 lakh" ambition in 5 passes</li>
+  <li><b>Publishes its numbers</b> — rates, throughput, seats. You can hold them to it</li>
+</ul>
+</div>
+<div class="card o">
+<h4><i class="fa-solid fa-arrow-trend-up"></i> Long term — why it stays safe even when it stops being cheapest</h4>
+<ul style="margin:0">
+  <li><b>Because we own the orchestration, the BSP is a channel adapter.</b> Contacts, journey state, lead
+    score, consent and the timeline live in our Laravel backend. The BSP holds <i>no</i> state we cannot
+    reproduce</li>
+  <li><b>Templates stay under our version control</b> (§6) — switching becomes re-submission, not rewrite</li>
+  <li><b>The number is portable.</b> A WhatsApp number can be migrated between BSPs; it is our asset, not
+    theirs</li>
+  <li><b>So the exit cost is days, not quarters</b> — and that is the real long-term protection. Not picking
+    the vendor that will still be right in 2028, but making sure being wrong costs a week</li>
+  <li><b>The re-evaluation trigger is defined:</b> at ~10,000 marketing messages/month, re-price against
+    Interakt and Gupshup. At that point per-message markup is the whole game</li>
+</ul>
+</div>
+</div>
+
+<div class="card o">
+<h4>The principle underneath both columns</h4>
+<p style="margin:0"><b>Do not try to pick the vendor you will never have to leave. Pick the cheapest vendor
+that meets today's need, and spend the saved effort making sure leaving is cheap.</b> That is the same
+reasoning that killed the AI-calling build and the CRM purchase: keep the state and the logic where they are
+ours, rent the commodity, and never let a vendor hold something we cannot reproduce. Applied consistently
+across all three decisions, it is also why they compose rather than conflict.</p>
+</div>
+
+<!-- 9 -->
+<h2 id="risk"><i class="fa-solid fa-shield-halved"></i> 9 · Risks, and the exit</h2>
+<table class="wrapok">
+<tr><th>Risk</th><th>Likelihood</th><th>Mitigation</th></tr>
+<tr><td><b>AiSensy's ₹1.09 is a real 26% markup over Meta's base</b></td><td><span class="p m">medium</span></td><td>Confirm in writing before signing. If true, re-run §7 — Interakt/Gupshup win sooner than modelled</td></tr>
+<tr><td><b>The AI chatbot cannot hold an enrolment conversation in Kannada</b></td><td><span class="p m">medium</span></td><td>This is the pilot's primary test. Fall back to Gallabox, whose bot is the stronger product</td></tr>
+<tr><td><b>Support quality at ₹1,500/month is thin</b></td><td><span class="p m">medium</span> — the Superfone lesson</td><td>No annual commitment. G2 4.3 from 110 reviews is the weakest evidence of the finalists — a real, accepted trade</td></tr>
+<tr><td><b>A guardian blocks our single number</b></td><td><span class="p y">low today</span></td><td>The §5 trigger list. Monitor block rate per send from day one — it is the leading indicator, not the quality rating</td></tr>
+<tr><td><b>Template ops overwhelm us at 3+ languages</b></td><td><span class="p m">medium</span></td><td>Launch English + Kannada only. Templates versioned in our repo, not the dashboard</td></tr>
+<tr><td><b>Meta changes the rate card again</b></td><td><span class="p n">high — it changed on 1 Jan 2026</span></td><td>Unavoidable and vendor-independent. It hits every BSP equally, which is why per-message markup — the part we control — is the thing to negotiate</td></tr>
+</table>
+
+<!-- 10 -->
+<h2 id="next"><i class="fa-solid fa-list-check"></i> 10 · The next 10 days</h2>
+<table class="wrapok">
+<tr><th>When</th><th>Do</th><th>Why</th></tr>
+<tr><td><b>Day 1</b></td><td>Ask AiSensy <b>and</b> Gallabox the same five questions: (1) exact per-message rates for marketing/utility/auth in INR, in writing; (2) cost of a second WABA number; (3) can the AI bot answer from an uploaded FAQ/knowledge base <b>in Kannada</b>; (4) API + webhook docs before signing; (5) can we export every contact and conversation on exit</td><td>Q1 and Q2 decide the cost model. Q5 is the exit clause that makes §8 true</td></tr>
+<tr><td><b>Day 1</b></td><td>Email <b>Ozonetel</b>: will you do a published-price monthly plan with no annual commitment?</td><td>Best usage evidence in the category; eliminated only on pricing opacity. One email to test the premise</td></tr>
+<tr><td><b>Day 2</b></td><td>Start <b>Business Verification</b> on one Indian mobile number</td><td>It gates the 100K tier and takes days. Nothing else can start until it is done</td></tr>
+<tr><td><b>Day 3–5</b></td><td>Take the ₹1,500 AiSensy Basic plan. Submit <b>4 templates in English + Kannada</b>: OTP, login link, scorecard-ready, welcome</td><td>Tests the real bottleneck — Kannada template approval — for ₹1,500 and no commitment</td></tr>
+<tr><td><b>Day 5–8</b></td><td>Build the <b>enrolment bot</b> and a 20-question FAQ bot in Kannada. Have a native speaker judge it</td><td>The one genuinely conversational surface. If it fails here, switch to Gallabox before wiring anything</td></tr>
+<tr><td><b>Day 8–10</b></td><td>Wire <b>event-driven utility sends</b> from our backend via API — OTP first, then scorecard-ready</td><td>Utility at ₹0.145 is the cheapest, highest-trust traffic and it builds the quality rating everything else depends on</td></tr>
+<tr><td><b>Do NOT</b></td><td>Buy a second number yet · sign annual · import a purchased list · add a third language · use the BSP's journey builder</td><td>Each either costs money we do not need to spend or creates state outside our system</td></tr>
+</table>
+
+<div class="card w">
+<h4>The decision, in one paragraph</h4>
+<p style="margin:0"><b>Take AiSensy on the ₹1,500 Basic plan with one Indian mobile number carrying
+everything — utility, auth, marketing and the inbound bot — and split to a second number only when one of the
+four triggers in §5 fires.</b> It wins on the four dimensions that matter given we own the orchestration:
+lowest entry cost, fastest broadcast engine, an AI chatbot that can be trained on our own FAQ content, and
+five free agent seats. It loses on usage evidence (4.3 from 110 reviews against Wati's 4.6 from 458) and it
+carries the highest per-message markup of the finalists, which will make it the wrong choice somewhere
+around 10,000 marketing messages a month. <b>Both weaknesses are acceptable for exactly one reason: because
+the CRM, the journey state and the template library stay ours, leaving costs days rather than quarters.</b>
+Gallabox is the fallback and becomes the pick if the Kannada enrolment bot is the hard part; Ozonetel
+re-enters at the top if it will publish a price. <b>Total exposure to being wrong: ₹1,500 and a week.</b></p>
+</div>
+
+<div class="foot">
+<b>Evidence — retrieved 14 Aug 2026.</b> Meta for Developers (messaging limits, business phone numbers,
+template languages); Meta India rate card eff. 1 Jan 2026; G2 and Capterra review counts (Wati 458–461 @4.6 ·
+Gallabox 169 @4.6 · AiSensy 110 @4.3 · Interakt 65 @4.5 · Ozonetel 621 @4.6); published pricing pages
+(aisensy.com/pricing, Wati, Interakt, Gallabox, Gupshup); WhatsApp Business Policy on opt-out.<br><br>
+<b>Labelled where the source has a commercial interest.</b> Vendor-versus-vendor comparison blogs were used
+for feature discovery only, never as evidence. <b>Contested:</b> AiSensy's ₹1.09 vs Meta's ₹0.8631 base —
+confirm before signing. <b>Not published by anyone but Wati:</b> the cost of an additional WABA number.
+<b>Not tested:</b> no API was exercised, no bot was built, no reference customer contacted. This selects and
+justifies; the 10-day pilot is what verifies.
+</div>
+
+</div>
