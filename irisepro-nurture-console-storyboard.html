@@ -1,0 +1,747 @@
+<title>YASHHO — Nurture Console: admin screens for the metadata-driven nurture system</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  --primary:#FF8A3D; --primary-dark:#E67E35; --primary-light:#FFB380;
+  --secondary:#FFF1E6; --accent:#FFC107; --success:#4CAF50; --info:#2196F3; --card:#FFFFFF;
+  --orange600:#EA580C; --purple:#7C3AED;
+  --apt:#E0A100; --att:#2F6BF0; --com:#178A45; --exe:#F5821F;
+  --hot:#E8452F; --warm:#E8940F; --cold:#3D8FD1; --dorm:#7C6CB0; --lost:#8A9099;
+  --g900:#111827; --g700:#374151; --g600:#4B5563; --g500:#6B7280; --g400:#9CA3AF;
+  --g300:#D1D5DB; --g200:#E5E7EB; --g100:#F3F4F6; --g50:#F9FAFB;
+  --page:#0e1a2b; --pageCard:#16273d; --pageLine:#22405f; --pageInk:#e7eef7; --pageMute:#8ea3bd;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--pageInk);font-family:Montserrat,system-ui,sans-serif;
+  font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1300px;margin:0 auto;padding:44px 22px 100px}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--primary)}
+h1{font-size:clamp(28px,4.4vw,46px);font-weight:900;letter-spacing:-.02em;margin:.28em 0 .2em;line-height:1.05}
+.sub{color:var(--pageMute);font-size:15.5px;max-width:80ch}
+.rule{height:1px;background:var(--pageLine);margin:36px 0}
+h2.scr{display:flex;align-items:baseline;gap:11px;font-size:20px;font-weight:800;margin:52px 0 4px;letter-spacing:-.01em}
+h2.scr em{font-style:normal;font-size:12px;font-weight:800;color:var(--primary);letter-spacing:.1em}
+.cap{color:var(--pageMute);font-size:13.5px;margin:0 0 16px;max-width:84ch}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;vertical-align:middle}
+.tag.new{background:var(--primary);color:#fff}
+.tag.geeta{background:#1DA851;color:#fff}
+.tag.eng{background:#2F6BF0;color:#fff}
+.tag.lock{background:#37475e;color:#c3d3e6}
+.note{background:rgba(255,138,61,.09);border-left:3px solid var(--primary);border-radius:0 8px 8px 0;
+  padding:11px 15px;font-size:13px;color:#f0d9c6;margin:14px 0 0;max-width:98ch}
+.note.bad{background:rgba(239,68,68,.1);border-left-color:#ef4444;color:#f6d5d5}
+.note.ok{background:rgba(76,175,80,.11);border-left-color:var(--success);color:#d3ecd4}
+.note b{color:#fff}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:11px;margin:24px 0}
+.b{background:var(--pageCard);border:1px solid var(--pageLine);border-radius:10px;padding:13px 15px}
+.b b{display:block;font-size:22px;font-weight:900;color:var(--primary-light);letter-spacing:-.02em}
+.b span{display:block;font-size:11px;color:var(--pageMute);margin-top:3px;line-height:1.35}
+
+/* device frames */
+.browser{background:#dfe5ec;border-radius:11px 11px 9px 9px;box-shadow:0 20px 46px rgba(0,0,0,.42);
+  overflow:hidden;border:1px solid #b9c3d0}
+.chrome{height:30px;background:linear-gradient(#eef2f6,#dde4ec);display:flex;align-items:center;gap:7px;
+  padding:0 11px;border-bottom:1px solid #c4cdd8}
+.dot{width:9px;height:9px;border-radius:50%}
+.url{flex:1;height:18px;background:#fff;border-radius:9px;border:1px solid #ccd4de;font-size:9.5px;
+  color:#5c6b7f;display:flex;align-items:center;padding:0 9px;font-weight:500;overflow:hidden;white-space:nowrap}
+.vp{background:var(--secondary);overflow:hidden;position:relative}
+.phone{width:288px;background:#101820;border-radius:34px;padding:9px;box-shadow:0 20px 44px rgba(0,0,0,.5)}
+.pnotch{width:80px;height:5px;background:#2a3441;border-radius:4px;margin:2px auto 7px}
+.pv{background:var(--secondary);border-radius:26px;overflow:hidden;height:566px;position:relative}
+.pbar{height:22px;background:var(--primary);display:flex;align-items:center;justify-content:space-between;
+  padding:0 11px;font-size:8.5px;color:#fff;font-weight:700}
+.duo{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+@media(max-width:1100px){.duo{grid-template-columns:1fr}}
+
+/* admin shell */
+.shell{display:flex;height:100%;font-size:11px;color:var(--g900)}
+.sb{width:138px;background:var(--primary);flex:none;color:#fff;display:flex;flex-direction:column}
+.sb .brand{padding:11px 12px;border-bottom:1px solid rgba(230,126,53,.45);font-weight:800;font-size:11px;
+  display:flex;align-items:center;gap:6px}
+.sb nav{padding:7px 0;overflow:hidden}
+.sb a{display:flex;align-items:center;gap:7px;margin:0 7px 2px;padding:5px 8px;border-radius:6px;color:#fff;
+  text-decoration:none;font-size:9.5px;font-weight:500;opacity:.9}
+.sb a i{width:11px;font-size:10px;text-align:center;flex:none}
+.sb a.on{background:var(--primary-dark);opacity:1;font-weight:700}
+.main{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--secondary)}
+.topbar{height:36px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;
+  padding:0 14px;justify-content:space-between;flex:none}
+.topbar .pt{font-size:12px;font-weight:700}
+.topbar .who{display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--g500)}
+.av{width:19px;height:19px;border-radius:50%;background:var(--primary-light);color:#fff;display:grid;
+  place-items:center;font-size:8px;font-weight:800}
+.body{padding:12px 14px;overflow:hidden;flex:1}
+
+/* draft/live banner */
+.dbar{display:flex;align-items:center;gap:9px;background:#FFF7ED;border:1px solid #FED7AA;border-radius:7px;
+  padding:6px 10px;margin-bottom:10px;font-size:9.5px;color:#9A3412}
+.dbar .pill{background:var(--primary);color:#fff;font-weight:800;padding:2px 7px;border-radius:4px;font-size:8.5px}
+.dbar .liv{background:#DCFCE7;color:#166534;font-weight:800;padding:2px 7px;border-radius:4px;font-size:8.5px;
+  border:1px solid #BBF7D0}
+
+/* admin atoms */
+.card{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.09);margin-bottom:10px;overflow:hidden}
+.card>.hd{padding:8px 12px;border-bottom:1px solid var(--g100);display:flex;align-items:center;
+  justify-content:space-between;gap:8px}
+.card>.hd h4{margin:0;font-size:11px;font-weight:700;display:flex;align-items:center;gap:6px}
+.card>.hd p{margin:2px 0 0;font-size:8.5px;color:var(--g500);font-weight:400}
+.card>.bd{padding:10px 12px}
+.pagehd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:10px}
+.pagehd h3{margin:0;font-size:13.5px;font-weight:700}
+.btn{display:inline-flex;align-items:center;gap:5px;background:var(--primary);color:#fff;border:0;
+  border-radius:6px;padding:5px 10px;font-size:9.5px;font-weight:600;font-family:inherit;white-space:nowrap}
+.btn.o{background:var(--orange600)} .btn.g{background:var(--g500)}
+.btn.gh{background:#fff;color:var(--g700);border:1px solid var(--g300)}
+.btn.ok{background:var(--success)} .btn.pu{background:var(--purple)}
+.btn.sm{padding:3px 8px;font-size:8.5px}
+.fld{border:1px solid var(--g300);border-radius:5px;padding:4px 7px;font-size:9.5px;background:#fff;
+  color:var(--g900);display:inline-block}
+.fld.n{width:52px;text-align:center;font-variant-numeric:tabular-nums;font-weight:700}
+.fld.ed{border-color:var(--primary);background:#FFFBF7;box-shadow:0 0 0 2px rgba(255,138,61,.14)}
+.lbl{display:block;font-size:9px;font-weight:600;color:var(--g700);margin-bottom:3px}
+table.t{width:100%;border-collapse:collapse;font-size:9.5px}
+table.t th{background:linear-gradient(90deg,var(--g50),var(--g100));padding:5px 7px;text-align:left;
+  font-size:7.5px;font-weight:800;color:var(--g700);text-transform:uppercase;letter-spacing:.05em;
+  border-bottom:1px solid var(--g200);white-space:nowrap}
+table.t th.c{text-align:center}
+table.t td{padding:5px 7px;border-bottom:1px solid var(--g100);color:var(--g700);vertical-align:middle}
+table.t td.c{text-align:center}
+table.t tr:hover td{background:var(--g50)}
+.chip{display:inline-flex;align-items:center;gap:3px;font-size:7.5px;font-weight:800;padding:2px 6px;
+  border-radius:4px;white-space:nowrap}
+.chip.hot{background:#FEE2E2;color:#991B1B;border:1px solid #FECACA}
+.chip.warm{background:#FEF3C7;color:#92400E;border:1px solid #FDE68A}
+.chip.cold{background:#DBEAFE;color:#1E40AF;border:1px solid #BFDBFE}
+.chip.dorm{background:#EDE9FE;color:#5B21B6;border:1px solid #DDD6FE}
+.chip.lost{background:var(--g100);color:var(--g500);border:1px solid var(--g200)}
+.chip.ok{background:#DCFCE7;color:#166534;border:1px solid #BBF7D0}
+.chip.warn{background:#FEF3C7;color:#92400E;border:1px solid #FDE68A}
+.chip.bad{background:#FEE2E2;color:#991B1B;border:1px solid #FECACA}
+.chip.util{background:#DCFCE7;color:#166534;border:1px solid #BBF7D0}
+.chip.mkt{background:#FEF3C7;color:#92400E;border:1px solid #FDE68A}
+.chip.lk{background:#E5E7EB;color:#4B5563;border:1px solid #D1D5DB}
+.chip.en{background:#EEF2FF;color:#4338CA;border:1px solid #C7D2FE}
+.chip.kn{background:#FCE7F3;color:#9D174D;border:1px solid #FBCFE8}
+.lockrow{background:#F8FAFC !important;color:var(--g400) !important}
+.mask{position:absolute;inset:0;background:rgba(4,10,20,.62);display:grid;place-items:center;padding:14px}
+.modal{background:#fff;border-radius:11px;width:100%;max-width:380px;overflow:hidden;box-shadow:0 20px 46px rgba(0,0,0,.4)}
+.modal .mh{padding:10px 13px;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between}
+.modal .mh h5{margin:0;font-size:11.5px;font-weight:700}
+.modal .mb{padding:11px 13px}
+.modal .mf{padding:8px 13px;background:var(--g50);border-top:1px solid var(--g200);display:flex;justify-content:flex-end;gap:6px}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;padding:12px 13px 15px;
+  box-shadow:0 -12px 32px rgba(0,0,0,.3)}
+.grab{width:34px;height:3px;background:var(--g300);border-radius:2px;margin:0 auto 10px}
+.bar{height:14px;border-radius:3px;background:var(--g200);position:relative;overflow:hidden;min-width:60px}
+.bar i{position:absolute;inset:0 auto 0 0;display:block;background:var(--primary)}
+.bar span{position:absolute;right:5px;top:0;line-height:14px;font-size:8px;font-weight:800;color:var(--g700)}
+.flow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:20px 0}
+.st{background:var(--pageCard);border:1px solid var(--pageLine);border-radius:9px;padding:9px 12px;flex:1 1 140px;min-width:0}
+.st b{display:block;font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--primary);text-transform:uppercase;margin-bottom:2px}
+.st span{font-size:12px;display:block;line-height:1.35}
+.arw{color:var(--primary);font-size:15px;flex:none}
+table.cmp{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:14px}
+table.cmp th{text-align:left;padding:8px 10px;background:var(--pageCard);border:1px solid var(--pageLine);
+  font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--primary)}
+table.cmp td{padding:8px 10px;border:1px solid var(--pageLine);vertical-align:top}
+table.cmp td:first-child{font-weight:700;color:#fff;white-space:nowrap}
+.foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--pageLine);font-size:12px;color:var(--pageMute)}
+.toc{background:var(--pageCard);border:1px solid var(--pageLine);border-radius:10px;padding:14px 18px;margin:24px 0}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+@media(max-width:760px){.toc ol{columns:1}}
+.toc a{text-decoration:none;font-size:13px;color:var(--primary-light)}
+</style>
+
+<div class="wrap">
+
+<div class="kicker">Admin storyboard · 14 Aug 2026 · YASHHO / iRisePro</div>
+<h1>The Nurture Console</h1>
+<p class="sub">Every green <span class="tag geeta">YOU DECIDE</span> in Geeta ji's guide becomes a row she can
+edit here. <b>Config is data; guards are code.</b> So these screens let her change the words, the points and
+the timing — and show her the rules she <i>cannot</i> change, greyed out, so the boundary is visible rather
+than discovered.</p>
+
+<div class="big">
+  <div class="b"><b>8</b><span>screens · everything Geeta ji owns</span></div>
+  <div class="b"><b>Draft → Publish</b><span>never live-edit; config is versioned</span></div>
+  <div class="b"><b>Simulate</b><span>replay a change against real contacts BEFORE it ships</span></div>
+  <div class="b"><b>Locked rows</b><span>guards shown read-only, not hidden</span></div>
+  <div class="b"><b>Rollback</b><span>one click to any previous version</span></div>
+</div>
+
+<div class="toc"><ol>
+  <li><a href="#s1">01 · Console home — draft vs live</a></li>
+  <li><a href="#s2">02 · Touchpoints &amp; points</a></li>
+  <li><a href="#s3">03 · Temperature bands</a></li>
+  <li><a href="#s4">04 · Cadence rules</a></li>
+  <li><a href="#s5">05 · Sequence builder</a></li>
+  <li><a href="#s6">06 · Message inventory</a></li>
+  <li><a href="#s7">07 · Message editor — the cost classifier</a></li>
+  <li><a href="#s8">08 · Simulate before publish</a></li>
+  <li><a href="#s9">09 · Publish &amp; version history</a></li>
+  <li><a href="#s10">10 · Experiment results</a></li>
+  <li><a href="#s11">11 · Mobile</a></li>
+  <li><a href="#s12">12 · What this means for the build</a></li>
+</ol></div>
+
+<div class="flow">
+  <div class="st"><b>edit</b><span>Change points, words, timing — all in a draft</span></div><span class="arw">→</span>
+  <div class="st"><b>simulate</b><span>Replay against real contacts</span></div><span class="arw">→</span>
+  <div class="st"><b>review</b><span>See the diff vs live</span></div><span class="arw">→</span>
+  <div class="st"><b>publish</b><span>New version, stamped</span></div><span class="arw">→</span>
+  <div class="st"><b>measure</b><span>Every send records which version sent it</span></div>
+</div>
+
+<!-- 01 -->
+<h2 class="scr"><em>01</em> Console home — draft vs live <span class="tag new">new</span></h2>
+<p class="cap">One screen answers: what is live, what has changed, and is anything unsafe to publish.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture</span></div>
+  <div class="vp" style="height:406px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a><i class="fa-solid fa-users"></i> Students</a>
+        <a><i class="fa-solid fa-list-check"></i> Tasks</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a>
+        <a><i class="fa-solid fa-trophy"></i> Challenges</a><a><i class="fa-solid fa-layer-group"></i> Batches</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Nurture Console</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div class="dbar"><span class="pill">DRAFT v8</span> 6 changes since <span class="liv">LIVE v7</span>
+            <span style="margin-left:auto;display:flex;gap:5px">
+              <button class="btn gh sm"><i class="fa-solid fa-rotate-left"></i> Discard</button>
+              <button class="btn pu sm"><i class="fa-solid fa-flask"></i> Simulate</button>
+              <button class="btn ok sm"><i class="fa-solid fa-cloud-arrow-up"></i> Publish</button></span></div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:9px">
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:16px;font-weight:900;color:var(--g900)">13</div>
+              <div style="font-size:8px;color:var(--g500)">Touchpoints scored</div></div></div>
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:16px;font-weight:900;color:var(--g900)">10</div>
+              <div style="font-size:8px;color:var(--g500)">Messages · <span style="color:#B45309">4 awaiting Meta</span></div></div></div>
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:16px;font-weight:900;color:var(--g900)">2</div>
+              <div style="font-size:8px;color:var(--g500)">Sequences live</div></div></div>
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:16px;font-weight:900;color:var(--success)">412</div>
+              <div style="font-size:8px;color:var(--g500)">People in nurture now</div></div></div>
+          </div>
+          <div class="card"><div class="hd"><h4><i class="fa-solid fa-code-compare" style="color:var(--primary)"></i> What changed in this draft</h4>
+            <span class="chip lk">v7 → v8</span></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th>What</th><th>Was</th><th>Now</th><th>Changed by</th></tr></thead>
+              <tbody>
+                <tr><td>Demo attended — points</td><td>+35</td><td><b style="color:var(--success)">+40</b></td><td>Geeta</td></tr>
+                <tr><td>HOT band starts at</td><td>65</td><td><b style="color:var(--success)">60</b></td><td>Geeta</td></tr>
+                <tr><td>HOT — max unanswered</td><td>4</td><td><b style="color:var(--success)">3</b></td><td>Geeta</td></tr>
+                <tr><td><code>seq_a5_session_truth</code> — Kannada</td><td>—</td><td><b style="color:var(--success)">added</b></td><td>Geeta</td></tr>
+                <tr><td>Ladder step 5 — upgrade credit</td><td>off</td><td><b style="color:var(--success)">30 days</b></td><td>Goutam</td></tr>
+                <tr><td>No-show — points</td><td>−15</td><td><b style="color:var(--success)">−5</b></td><td>Geeta</td></tr>
+              </tbody></table></div></div>
+          <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:6px;padding:7px 10px;font-size:9px;color:#991B1B">
+            <i class="fa-solid fa-triangle-exclamation"></i> <b>Cannot publish yet</b> — 2 messages have no Kannada version,
+            and 4 templates are still awaiting Meta approval. <span style="text-decoration:underline">See what is blocking</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note ok"><b>The publish gate is the whole point.</b> A half-translated draft going live would send
+English to Kannada-preferring parents. <b>The console refuses rather than warns</b> — a warning that can be
+clicked past is not a guard.</div>
+
+<!-- 02 -->
+<h2 class="scr"><em>02</em> Touchpoints &amp; points <span class="tag geeta">Geeta ji's main screen</span></h2>
+<p class="cap">The table behind "YOU DECIDE THE POINTS". Editable rows on top; <b>locked rows greyed below</b>
+so she can see the rules she cannot move.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture/touchpoints</span></div>
+  <div class="vp" style="height:452px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a>
+        <a><i class="fa-solid fa-list-check"></i> Tasks</a><a><i class="fa-solid fa-trophy"></i> Challenges</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Nurture · Touchpoints</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div class="dbar"><span class="pill">DRAFT v8</span> editing · changes save automatically
+            <span style="margin-left:auto;display:flex;gap:5px"><button class="btn pu sm"><i class="fa-solid fa-flask"></i> Simulate</button></span></div>
+          <div class="card"><div class="hd"><h4>What people do, and what it tells us</h4>
+            <button class="btn sm"><i class="fa-solid fa-plus"></i> Add a touchpoint</button></div>
+            <div style="padding:0;max-height:330px;overflow:hidden"><table class="t">
+              <thead><tr><th style="width:26px"></th><th>What the person does</th><th>Why it matters</th><th class="c" style="width:70px">Points</th><th class="c" style="width:78px">Seen in</th></tr></thead>
+              <tbody>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td><b>Fills in our form</b></td><td>They asked us to contact them</td>
+                  <td class="c"><span class="fld n">+20</span></td><td class="c" style="font-size:8px;color:var(--g500)">last 30d: 412</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td><b>Books a demo session</b></td><td>Set aside time for us</td>
+                  <td class="c"><span class="fld n">+25</span></td><td class="c" style="font-size:8px;color:var(--g500)">218</td></tr>
+                <tr style="background:#FFFBF7"><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td><b>ATTENDS the demo</b> <span class="chip warn">edited</span></td><td>The biggest step of all</td>
+                  <td class="c"><span class="fld n ed">+40</span></td><td class="c" style="font-size:8px;color:var(--g500)">147</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td>Asks a question in the demo</td><td>Actively considering</td>
+                  <td class="c"><span class="fld n">+15</span></td><td class="c" style="font-size:8px;color:var(--g500)">61</td></tr>
+                <tr style="background:#FFFBF7"><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td><b>Books but does not attend</b> <span class="chip warn">edited</span></td><td>Rescue, do not write off</td>
+                  <td class="c"><span class="fld n ed">−5</span></td><td class="c" style="font-size:8px;color:var(--g500)">71</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td>Starts paying, does not finish</td><td>Strongest signal we have</td>
+                  <td class="c"><span class="fld n">+30</span></td><td class="c" style="font-size:8px;color:var(--g500)">24</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td>Replies to our WhatsApp</td><td>A real conversation</td>
+                  <td class="c"><span class="fld n">+10</span></td><td class="c" style="font-size:8px;color:var(--g500)">193</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td>
+                  <td>Nothing for a week</td><td>Cooling down</td>
+                  <td class="c"><span class="fld n">−10</span></td><td class="c" style="font-size:8px;color:var(--g500)">—</td></tr>
+
+                <tr><td colspan="5" style="background:var(--g100);padding:5px 8px;font-size:8px;font-weight:800;
+                  color:var(--g500);text-transform:uppercase;letter-spacing:.06em">
+                  <i class="fa-solid fa-lock"></i> Set by the system — cannot be changed here</td></tr>
+                <tr class="lockrow"><td class="c"><i class="fa-solid fa-lock" style="font-size:8px"></i></td>
+                  <td>Says stop / blocks us</td><td>Becomes STOPPED. We never message again</td>
+                  <td class="c"><span class="chip lk">fixed</span></td><td class="c" style="font-size:8px">3</td></tr>
+                <tr class="lockrow"><td class="c"><i class="fa-solid fa-lock" style="font-size:8px"></i></td>
+                  <td>Pays</td><td>Becomes PAID. Leaves nurture</td>
+                  <td class="c"><span class="chip lk">fixed</span></td><td class="c" style="font-size:8px">11</td></tr>
+                <tr class="lockrow"><td class="c"><i class="fa-solid fa-lock" style="font-size:8px"></i></td>
+                  <td>Child's task scores &amp; progress</td><td><b>Never used for marketing — the law</b></td>
+                  <td class="c"><span class="chip lk">blocked</span></td><td class="c" style="font-size:8px">—</td></tr>
+              </tbody></table></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note"><b>Two design decisions worth defending.</b> The <b>"Seen in last 30d"</b> column stops this
+being guesswork — a touchpoint nobody triggers is not worth scoring, and Geeta ji can see that without asking
+anyone. And the <b>locked rows are shown, not hidden</b>: a rule you cannot see is a rule you will accidentally
+try to work around.</div>
+
+<!-- 03 + 04 -->
+<h2 class="scr"><em>03 · 04</em> Temperature bands &amp; cadence <span class="tag geeta">Geeta ji</span></h2>
+<p class="cap">Two small tables that between them decide who hears from us, how soon, and when we stop.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture/temperature</span></div>
+  <div class="vp" style="height:380px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Nurture · Temperature &amp; cadence</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div class="dbar"><span class="pill">DRAFT v8</span> 2 changes here</div>
+          <div class="card"><div class="hd"><h4>When does someone become HOT?</h4>
+            <p>Points decide the word. Move a boundary and everyone re-sorts.</p></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th>From</th><th>To</th><th>Becomes</th><th>People there now</th></tr></thead>
+              <tbody>
+                <tr><td><span class="fld n ed">60</span></td><td>100</td><td><span class="chip hot">HOT</span></td>
+                  <td><span class="bar" style="width:120px"><i style="width:14%"></i><span>58</span></span></td></tr>
+                <tr><td><span class="fld n">30</span></td><td>59</td><td><span class="chip warm">WARM</span></td>
+                  <td><span class="bar" style="width:120px"><i style="width:31%"></i><span>129</span></span></td></tr>
+                <tr><td><span class="fld n">10</span></td><td>29</td><td><span class="chip cold">COLD</span></td>
+                  <td><span class="bar" style="width:120px"><i style="width:44%"></i><span>181</span></span></td></tr>
+                <tr><td>0</td><td>9</td><td><span class="chip dorm">SLEEPING</span></td>
+                  <td><span class="bar" style="width:120px"><i style="width:11%"></i><span>44</span></span></td></tr>
+              </tbody></table></div></div>
+          <div class="card"><div class="hd"><h4>How often do we message each one?</h4></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th>Type</th><th>First after</th><th>Then every</th><th>Stop after N unanswered</th><th>Then becomes</th></tr></thead>
+              <tbody>
+                <tr><td><span class="chip hot">HOT</span></td><td><span class="fld n">1h</span></td><td><span class="fld n">1d</span></td>
+                  <td><span class="fld n ed">3</span></td><td><span class="chip warm">WARM</span></td></tr>
+                <tr><td><span class="chip warm">WARM</span></td><td><span class="fld n">4h</span></td><td><span class="fld n">3d</span></td>
+                  <td><span class="fld n">4</span></td><td><span class="chip cold">COLD</span></td></tr>
+                <tr><td><span class="chip cold">COLD</span></td><td><span class="fld n">2d</span></td><td><span class="fld n">7d</span></td>
+                  <td><span class="fld n">3</span></td><td><span class="chip dorm">SLEEPING</span></td></tr>
+                <tr class="lockrow"><td><span class="chip lost">STOPPED</span></td><td colspan="4">
+                  <i class="fa-solid fa-lock" style="font-size:8px"></i> <b>Never contacted.</b> Not editable</td></tr>
+              </tbody></table></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note"><b>"People there now" turns an abstract number into a decision.</b> Dropping HOT from 65 to 60
+moves ~22 people into daily contact. Showing the population next to the input is what makes that visible
+before publish rather than after.</div>
+
+<!-- 05 -->
+<h2 class="scr"><em>05</em> Sequence builder <span class="tag geeta">Geeta ji</span></h2>
+<p class="cap">The five-day sequences. Steps are rows; each names a purpose and a message, not free text.</p>
+<div class="duo">
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture/sequences/pre-demo</span></div>
+  <div class="vp" style="height:398px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Sequence · Before the demo</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div class="card"><div class="hd"><h4>Who gets this sequence</h4></div>
+            <div class="bd" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:9px">
+              <span class="chip lk">Stage is</span><span class="fld">Just arrived</span>
+              <span style="color:var(--g400);font-weight:800">AND</span>
+              <span class="chip lk">Not booked a demo</span>
+              <span style="color:var(--g400);font-weight:800">AND</span>
+              <span class="chip lk">Temperature is</span><span class="fld">COLD, WARM or HOT</span>
+              <button class="btn gh sm"><i class="fa-solid fa-plus"></i> condition</button></div></div>
+          <div class="card"><div class="hd"><h4>The five messages · goal: <b>get them to the session</b></h4>
+            <span class="chip ok">order rotates</span></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th style="width:24px"></th><th>Day</th><th>What this message is for</th><th>Message</th><th>Stop if</th></tr></thead>
+              <tbody>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td><td>1</td>
+                  <td><b>Someone like you came</b></td><td><span class="chip en">EN</span><span class="chip kn">KN</span></td><td style="font-size:8px">books</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td><td>2</td>
+                  <td><b>Give the map, free</b></td><td><span class="chip en">EN</span><span class="chip kn">KN</span></td><td style="font-size:8px">books</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td><td>3</td>
+                  <td><b>A glimpse of the scorecard</b></td><td><span class="chip en">EN</span><span class="chip kn">KN</span></td><td style="font-size:8px">books</td></tr>
+                <tr><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td><td>4</td>
+                  <td><b>What marks don't tell you</b></td><td><span class="chip en">EN</span><span class="chip kn">KN</span></td><td style="font-size:8px">books</td></tr>
+                <tr style="background:#FFFBF7"><td class="c"><i class="fa-solid fa-grip-vertical" style="color:var(--g300)"></i></td><td>5</td>
+                  <td><b>What the session actually is</b></td><td><span class="chip en">EN</span><span class="chip bad">KN missing</span></td><td style="font-size:8px">books</td></tr>
+              </tbody></table></div>
+            <div class="bd" style="border-top:1px solid var(--g100);font-size:8.5px;color:var(--g600)">
+              <i class="fa-solid fa-shuffle" style="color:var(--purple)"></i> <b>Order rotates across 5 groups</b> so we can
+              tell whether a message works because of what it says or when it arrives.
+              <span style="text-decoration:underline">See results →</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+<div class="card" style="background:var(--pageCard);border:1px solid var(--pageLine);box-shadow:none">
+  <div class="hd" style="border-color:var(--pageLine)"><h4 style="color:var(--pageInk)">Conditions are a picker, not a formula box</h4></div>
+  <div class="bd" style="color:var(--pageMute);font-size:12px">
+    <p style="margin:0 0 8px">Every condition is chosen from a fixed list — <b style="color:#fff">stage · temperature ·
+    score · has tag · days since</b> — joined only by AND/OR.</p>
+    <p style="margin:0"><b style="color:#fff">No free-text formulas, ever.</b> The moment we allow
+    <code style="font-size:10px">score &gt; 40 &amp;&amp; …</code> we have built a programming language with no
+    tests and one user. A picker can be validated, explained and simulated. A formula box cannot.</p>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- 06 + 07 -->
+<h2 class="scr"><em>06 · 07</em> Message inventory &amp; editor <span class="tag geeta">Geeta ji</span></h2>
+<p class="cap">Every message in both languages, with its Meta approval state — and an editor that makes the
+cost of "selling" visible while she writes.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture/messages</span></div>
+  <div class="vp" style="height:404px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Nurture · Messages</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div class="card"><div class="hd"><h4>All messages</h4>
+            <button class="btn sm"><i class="fa-solid fa-plus"></i> New message</button></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th>What it is for</th><th class="c">Kind</th><th class="c">English</th><th class="c">Kannada</th><th class="c">Cost each</th><th>Used in</th></tr></thead>
+              <tbody>
+                <tr><td><b>We got your details</b></td><td class="c"><span class="chip util">helpful</span></td>
+                  <td class="c"><span class="chip ok">live</span></td><td class="c"><span class="chip ok">live</span></td>
+                  <td class="c">₹0.145</td><td style="font-size:8px">Before demo · step 1</td></tr>
+                <tr><td>Come and chat with our assistant</td><td class="c"><span class="chip util">helpful</span></td>
+                  <td class="c"><span class="chip ok">live</span></td><td class="c"><span class="chip ok">live</span></td>
+                  <td class="c">₹0.145</td><td style="font-size:8px">Before demo · step 2</td></tr>
+                <tr><td>Your child's scorecard is ready</td><td class="c"><span class="chip util">helpful</span></td>
+                  <td class="c"><span class="chip ok">live</span></td><td class="c"><span class="chip ok">live</span></td>
+                  <td class="c">₹0.145</td><td style="font-size:8px">Journey</td></tr>
+                <tr><td><b>What the session actually is</b></td><td class="c"><span class="chip util">helpful</span></td>
+                  <td class="c"><span class="chip warn">waiting on Meta</span></td><td class="c"><span class="chip bad">not written</span></td>
+                  <td class="c">₹0.145</td><td style="font-size:8px">Before demo · step 5</td></tr>
+                <tr><td>What ₹14 a day buys</td><td class="c"><span class="chip mkt">selling</span></td>
+                  <td class="c"><span class="chip ok">live</span></td><td class="c"><span class="chip warn">waiting on Meta</span></td>
+                  <td class="c" style="color:#B45309;font-weight:800">₹1.09</td><td style="font-size:8px">After demo · step 2</td></tr>
+                <tr><td>The batch is filling up</td><td class="c"><span class="chip mkt">selling</span></td>
+                  <td class="c"><span class="chip ok">live</span></td><td class="c"><span class="chip ok">live</span></td>
+                  <td class="c" style="color:#B45309;font-weight:800">₹1.09</td><td style="font-size:8px">After demo</td></tr>
+              </tbody></table></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mask">
+      <div class="modal" style="max-width:400px">
+        <div class="mh"><h5>Edit message — "What the session actually is"</h5>
+          <i class="fa-solid fa-xmark" style="color:var(--g400);font-size:11px"></i></div>
+        <div class="mb">
+          <div style="display:flex;gap:5px;margin-bottom:8px">
+            <span class="chip en" style="padding:4px 10px">English</span>
+            <span class="chip lk" style="padding:4px 10px">ಕನ್ನಡ — not written</span></div>
+          <span class="lbl">The message</span>
+          <div class="fld" style="width:100%;min-height:52px;line-height:1.5;color:var(--g700)">
+            Hi {{name}} — just so you know what to expect: it's 45 minutes, there's no sales pitch,
+            and there's nothing to prepare. Your child is welcome but doesn't need to come.</div>
+          <div style="background:#DCFCE7;border:1px solid #BBF7D0;border-radius:5px;padding:7px 9px;margin-top:8px">
+            <div style="font-size:9px;font-weight:800;color:#166534;margin-bottom:3px">
+              <i class="fa-solid fa-circle-check"></i> This looks like a HELPFUL message — ₹0.145</div>
+            <div style="font-size:8px;color:#166534;line-height:1.5">If you removed the offer, would they still
+              want this message? <b>Yes</b> → helpful. There is no offer in it.</div></div>
+          <div style="font-size:8px;color:var(--g500);margin-top:7px;line-height:1.5">
+            <i class="fa-solid fa-clock"></i> Meta usually approves in 24–48 hours.
+            <b>Kannada is submitted separately</b> — this message is not usable until both are approved.</div>
+        </div>
+        <div class="mf"><button class="btn gh sm">Cancel</button><button class="btn gh sm">Save draft</button>
+          <button class="btn o sm">Send to Meta</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note"><b>The classifier is the highest-value widget on this screen.</b> A 7× cost difference sits on
+one judgement call, and the honest test — <i>"if you removed the offer, would they still want this?"</i> — is
+easier to apply than a policy document. It shows the answer <b>while she writes</b>, not after the invoice.</div>
+
+<!-- 08 -->
+<h2 class="scr"><em>08</em> Simulate before publish <span class="tag new">the screen that prevents regret</span></h2>
+<p class="cap">Replays the draft against real people and shows who moves. Nothing is sent.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture/simulate</span></div>
+  <div class="vp" style="height:352px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Simulate v8 against live data</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:6px;padding:6px 10px;
+            font-size:9px;color:#5B21B6;margin-bottom:9px">
+            <i class="fa-solid fa-flask"></i> <b>Nothing will be sent.</b> This replays all 412 people through
+            draft v8 and compares against live v7.</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:9px">
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:15px;font-weight:900;color:var(--hot)">+22</div>
+              <div style="font-size:8px;color:var(--g500)">more people become HOT</div></div></div>
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:15px;font-weight:900;color:var(--g900)">+64</div>
+              <div style="font-size:8px;color:var(--g500)">messages in next 7 days</div></div></div>
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:15px;font-weight:900;color:#B45309">+₹58</div>
+              <div style="font-size:8px;color:var(--g500)">extra weekly cost</div></div></div>
+            <div class="card" style="margin:0"><div class="bd" style="padding:8px 10px">
+              <div style="font-size:15px;font-weight:900;color:var(--success)">0</div>
+              <div style="font-size:8px;color:var(--g500)">rules broken</div></div></div>
+          </div>
+          <div class="card"><div class="hd"><h4>Who moves, and where to</h4></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th>Person</th><th>Was</th><th></th><th>Becomes</th><th>Because</th><th>Next message</th></tr></thead>
+              <tbody>
+                <tr><td>Priya S · guardian · KN</td><td><span class="chip warm">WARM</span></td>
+                  <td><i class="fa-solid fa-arrow-right" style="color:var(--g400)"></i></td><td><span class="chip hot">HOT</span></td>
+                  <td style="font-size:8px">demo +40, band 65→60</td><td style="font-size:8px">After demo · step 1</td></tr>
+                <tr><td>Rakesh M · self · EN</td><td><span class="chip warm">WARM</span></td>
+                  <td><i class="fa-solid fa-arrow-right" style="color:var(--g400)"></i></td><td><span class="chip hot">HOT</span></td>
+                  <td style="font-size:8px">band 65→60</td><td style="font-size:8px">After demo · step 1</td></tr>
+                <tr><td>Anjali R · guardian · KN</td><td><span class="chip cold">COLD</span></td>
+                  <td><i class="fa-solid fa-arrow-right" style="color:var(--g400)"></i></td><td><span class="chip warm">WARM</span></td>
+                  <td style="font-size:8px">no-show −15 → −5</td><td style="font-size:8px">Before demo · step 3</td></tr>
+                <tr><td colspan="6" style="text-align:center;font-size:8px;color:var(--g400);font-style:italic">
+                  … 19 more people change …</td></tr>
+              </tbody></table></div></div>
+          <div style="display:flex;gap:6px;justify-content:flex-end">
+            <button class="btn gh sm">Back to editing</button>
+            <button class="btn ok sm"><i class="fa-solid fa-cloud-arrow-up"></i> Looks right — publish v8</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note ok"><b>This screen only exists because score and temperature are pure functions of events plus
+config.</b> Replay is what makes "what would this change have done?" answerable at all — and it turns the
+scariest action in the console into a boring one. <b>"0 rules broken" is the guard check running against the
+draft</b>, not a promise.</div>
+
+<!-- 09 -->
+<h2 class="scr"><em>09</em> Publish &amp; version history <span class="tag eng">engineering</span></h2>
+<p class="cap">Every version is kept. Every send records which version produced it. Rollback is one click.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture/versions</span></div>
+  <div class="vp" style="height:300px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Nurture · Versions</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div class="card"><div class="hd"><h4>Every version we have published</h4></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th>Version</th><th>Published</th><th>By</th><th>What changed</th><th class="c">Sends on it</th><th class="c">Booked</th><th></th></tr></thead>
+              <tbody>
+                <tr style="background:#F0FDF4"><td><b>v7</b> <span class="chip ok">LIVE</span></td><td>09 Aug</td><td>Geeta</td>
+                  <td style="font-size:8px">Added Kannada for 4 messages</td><td class="c">2,914</td><td class="c"><b>18.2%</b></td>
+                  <td><button class="btn gh sm">View</button></td></tr>
+                <tr><td>v6</td><td>02 Aug</td><td>Geeta</td><td style="font-size:8px">New "give the map" message</td>
+                  <td class="c">2,180</td><td class="c">16.9%</td><td><button class="btn gh sm">Restore</button></td></tr>
+                <tr><td>v5</td><td>28 Jul</td><td>Goutam</td><td style="font-size:8px">Cadence: HOT 2d → 1d</td>
+                  <td class="c">1,744</td><td class="c">15.1%</td><td><button class="btn gh sm">Restore</button></td></tr>
+                <tr><td>v4</td><td>19 Jul</td><td>Geeta</td><td style="font-size:8px">First Kannada messages</td>
+                  <td class="c">1,203</td><td class="c">11.4%</td><td><button class="btn gh sm">Restore</button></td></tr>
+              </tbody></table></div></div>
+          <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;padding:7px 10px;font-size:8.5px;color:#1E40AF">
+            <i class="fa-solid fa-circle-info"></i> <b>Booking rate is shown per version</b> so a change can be
+            judged rather than argued about. v4 → v7 moved booking from 11.4% to 18.2%.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 -->
+<h2 class="scr"><em>10</em> Experiment results <span class="tag new">why we send five</span></h2>
+<p class="cap">Which of the five angles actually gets people to book — separated from when it arrived.</p>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/nurture/experiments/pre-demo</span></div>
+  <div class="vp" style="height:352px">
+    <div class="shell">
+      <div class="sb"><div class="brand"><i class="fa-solid fa-bolt"></i> YASHHO</div>
+        <nav><a><i class="fa-solid fa-gauge"></i> Dashboard</a><a class="on"><i class="fa-solid fa-seedling"></i> Nurture</a></nav></div>
+      <div class="main">
+        <div class="topbar"><span class="pt">Before-demo sequence · results</span><span class="who"><span class="av">G</span> Geeta</span></div>
+        <div class="body">
+          <div class="card"><div class="hd"><h4>Which message gets people to book?</h4>
+            <span class="chip lk">412 people · 31 days</span></div>
+            <div style="padding:0"><table class="t">
+              <thead><tr><th>Message</th><th>Sent</th><th>Read</th><th class="c">Booked after this one</th><th>Rate</th></tr></thead>
+              <tbody>
+                <tr style="background:#F0FDF4"><td><b>What the session actually is</b> <span class="chip ok">winning</span></td>
+                  <td>398</td><td>341</td><td class="c"><b>71</b></td>
+                  <td><span class="bar" style="width:130px"><i style="width:100%;background:var(--success)"></i><span style="color:#fff">17.8%</span></span></td></tr>
+                <tr><td>A glimpse of the scorecard</td><td>402</td><td>352</td><td class="c">54</td>
+                  <td><span class="bar" style="width:130px"><i style="width:76%"></i><span>13.4%</span></span></td></tr>
+                <tr><td>Someone like you came</td><td>405</td><td>338</td><td class="c">47</td>
+                  <td><span class="bar" style="width:130px"><i style="width:65%"></i><span>11.6%</span></span></td></tr>
+                <tr><td>Give the map, free</td><td>399</td><td>361</td><td class="c">38</td>
+                  <td><span class="bar" style="width:130px"><i style="width:53%"></i><span>9.5%</span></span></td></tr>
+                <tr><td>What marks don't tell you</td><td>401</td><td>329</td><td class="c">29</td>
+                  <td><span class="bar" style="width:130px"><i style="width:41%"></i><span>7.2%</span></span></td></tr>
+              </tbody></table></div>
+            <div class="bd" style="border-top:1px solid var(--g100);font-size:8.5px;color:var(--g600)">
+              <i class="fa-solid fa-shuffle" style="color:var(--purple)"></i> Each message was sent at every position
+              across 5 groups, so this compares <b>what they say</b>, not when they arrived.</div></div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:6px;padding:7px 10px;font-size:8.5px;color:#92400E">
+            <i class="fa-solid fa-lightbulb"></i> <b>"Give the map" is read most (361) but books least (38).</b>
+            People enjoy it and then do nothing — it may work better as a thank-you after booking than as a reason to book.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note"><b>The read-vs-book gap is the insight this screen exists to surface.</b> A message can be
+popular and useless. Without per-message attribution you would have concluded the free guide was working,
+because everybody opens it.</div>
+
+<!-- 11 -->
+<h2 class="scr"><em>11</em> Mobile <span class="tag new">Geeta ji reviews on her phone</span></h2>
+<p class="cap">Editing points and approving copy on a phone; the heavier builders stay desktop.</p>
+<div style="display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start">
+<div>
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="pbar"><span><i class="fa-solid fa-bars"></i> Touchpoints</span><span>9:41</span></div>
+  <div style="padding:9px 10px">
+    <div class="dbar" style="font-size:8.5px;padding:5px 8px"><span class="pill" style="font-size:8px">DRAFT v8</span> 6 changes</div>
+    <div class="card" style="margin-bottom:7px"><div class="bd" style="padding:8px 10px">
+      <div style="font-size:9.5px;font-weight:700;margin-bottom:2px">ATTENDS the demo</div>
+      <div style="font-size:8px;color:var(--g500);margin-bottom:6px">The biggest step of all</div>
+      <div style="display:flex;align-items:center;gap:7px">
+        <button class="btn gh sm" style="width:26px;justify-content:center">−</button>
+        <span class="fld n ed" style="font-size:12px;padding:5px 0;flex:1">+40</span>
+        <button class="btn gh sm" style="width:26px;justify-content:center">+</button></div>
+      <div style="font-size:7.5px;color:var(--g500);margin-top:5px">Seen 147 times in the last 30 days</div></div></div>
+    <div class="card" style="margin-bottom:7px"><div class="bd" style="padding:8px 10px">
+      <div style="font-size:9.5px;font-weight:700;margin-bottom:2px">Books but does not attend</div>
+      <div style="font-size:8px;color:var(--g500);margin-bottom:6px">Rescue, do not write off</div>
+      <div style="display:flex;align-items:center;gap:7px">
+        <button class="btn gh sm" style="width:26px;justify-content:center">−</button>
+        <span class="fld n ed" style="font-size:12px;padding:5px 0;flex:1">−5</span>
+        <button class="btn gh sm" style="width:26px;justify-content:center">+</button></div></div></div>
+    <div class="card lockrow" style="margin-bottom:0;opacity:.75"><div class="bd" style="padding:8px 10px">
+      <div style="font-size:9.5px;font-weight:700;color:var(--g500)">
+        <i class="fa-solid fa-lock" style="font-size:8px"></i> Child's scores &amp; progress</div>
+      <div style="font-size:8px;color:var(--g500)">Never used for marketing — the law</div></div></div>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--g200);
+    padding:8px 11px;display:flex;gap:6px">
+    <button class="btn pu sm" style="flex:1;justify-content:center"><i class="fa-solid fa-flask"></i> Simulate</button>
+    <button class="btn ok sm" style="flex:1;justify-content:center">Publish</button></div>
+</div></div>
+<p style="max-width:288px;margin-top:9px;color:var(--pageMute);font-size:11.5px">
+  <b>Points on mobile.</b> Stepper buttons instead of typing; the locked row still visible.</p>
+</div>
+
+<div>
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="pbar"><span><i class="fa-solid fa-bars"></i> Messages</span><span>9:41</span></div>
+  <div style="padding:9px 10px"><div style="font-size:11px;font-weight:700;margin-bottom:7px">Needs attention</div>
+    <div class="card" style="margin-bottom:7px;border-left:3px solid var(--hot)"><div class="bd" style="padding:8px 10px">
+      <div style="font-size:9.5px;font-weight:700">What the session actually is</div>
+      <div style="display:flex;gap:4px;margin:5px 0"><span class="chip warn">EN waiting on Meta</span></div>
+      <div style="display:flex;gap:4px"><span class="chip bad">ಕನ್ನಡ not written</span></div>
+      <button class="btn o sm" style="width:100%;justify-content:center;margin-top:7px">Write Kannada</button></div></div>
+    <div class="card" style="margin-bottom:7px"><div class="bd" style="padding:8px 10px">
+      <div style="font-size:9.5px;font-weight:700">What ₹14 a day buys</div>
+      <div style="display:flex;gap:4px;margin:5px 0"><span class="chip mkt">selling · ₹1.09</span><span class="chip ok">EN live</span></div>
+      <div style="display:flex;gap:4px"><span class="chip warn">ಕನ್ನಡ waiting</span></div></div></div>
+  </div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div style="font-size:11px;font-weight:700;margin-bottom:3px">Is this helpful or selling?</div>
+    <p style="font-size:8.5px;color:var(--g600);margin:0 0 9px">If you removed the offer, would they still want it?</p>
+    <div style="display:flex;gap:6px">
+      <button class="btn ok sm" style="flex:1;justify-content:center;padding:8px">Yes → helpful<br><b>₹0.145</b></button>
+      <button class="btn gh sm" style="flex:1;justify-content:center;padding:8px">No → selling<br><b>₹1.09</b></button></div>
+  </div>
+</div></div>
+<p style="max-width:288px;margin-top:9px;color:var(--pageMute);font-size:11.5px">
+  <b>The classifier as a bottom sheet.</b> One question, two answers, the cost on each button.</p>
+</div>
+</div>
+
+<!-- 12 -->
+<h2 class="scr"><em>12</em> What this means for the build <span class="tag eng">engineering</span></h2>
+<table class="cmp">
+<tr><th>Screen</th><th>Backed by</th><th>Phase</th></tr>
+<tr><td>Touchpoints · bands · cadence</td><td>Versioned config rows. Pure data</td><td><b>1</b></td></tr>
+<tr><td>Locked rows</td><td><b>Code guards, rendered read-only.</b> The UI reads a registry of guards — it never receives an editable flag for them</td><td><b>1</b></td></tr>
+<tr><td>Message inventory + editor</td><td>Config + BSP template state. <b>Template creation is manual on AiSensy</b>, so "Send to Meta" is a task, not an API call — unless we pick Gupshup</td><td><b>2</b></td></tr>
+<tr><td>Sequence builder</td><td>Config + the <b>closed predicate grammar</b>. No formula box</td><td><b>2</b></td></tr>
+<tr><td><b>Simulate</b></td><td><b>Replay engine.</b> Only possible because score/temperature are pure functions of (events, config version)</td><td><b>2</b></td></tr>
+<tr><td>Versions &amp; rollback</td><td>Immutable published config + <code>config_version</code> stamped on every send</td><td><b>1</b> — the stamp; <b>2</b> — the UI</td></tr>
+<tr><td>Experiment results</td><td><code>angle_key</code> + <code>angle_position</code> + <code>cohort</code> on every send</td><td><b>3</b></td></tr>
+</table>
+
+<div class="note ok"><b>Phase 1 needs no console at all.</b> The config can live as a versioned JSON file in the
+repo — free history, free review, free rollback, no UI to build. <b>Build these screens when Geeta ji needs to
+change words without a deploy</b>, not before. At ~400 people in nurture that day is closer than it was, but
+it is still not day one.</div>
+
+<div class="note bad"><b>The one screen worth building early is Simulate.</b> Everything else is convenience —
+Geeta ji could email a change and an engineer could apply it. But <b>"what will this change do to real
+people?"</b> has no substitute, and it is the difference between a config system that invites experimentation
+and one everybody is afraid to touch.</div>
+
+<div class="foot">
+Storyboard · 14 Aug 2026 · admin console for the metadata-driven nurture system.<br>
+Theme from <code>resources/views/superadmin/layout.blade.php</code> — primary #FF8A3D, secondary #FFF1E6,
+Montserrat. Companion to the nurture technical spec and Geeta ji's working guide.<br>
+<b>Every number shown in these screens is illustrative</b>, except the per-message rates (₹0.145 utility /
+₹1.09 marketing, AiSensy published) which are still to be confirmed in writing — see the BSP selection deck.
+</div>
+
+</div>
