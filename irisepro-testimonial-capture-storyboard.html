@@ -489,8 +489,37 @@
 <!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">12</div>
-  <h2>Admin — a work queue, not a dashboard</h2>
-  <p>One screen answering three questions: <strong>who hasn’t submitted, who has breached the 72-hour window, and give me a link I can send them right now.</strong></p>
+  <h2>The Yashodarshi collects it — admin is the backstop</h2>
+  <p>At 4999 each seat carries a dedicated evaluator, and the relationship is already months old. A request from the person who has read every one of your twenty-one submissions is a different object entirely from a system email.</p>
+
+  <div class="why">
+    <strong>And they can personalise the one question that matters.</strong> The Yashodarshi wrote the feedback on every task — they know exactly which one the learner nearly abandoned. So the ★ line stops being a generic prompt and becomes <em>“You almost didn’t finish the Feedback Mirror, did you? Tell me about that.”</em> Nobody else in the system can ask it that way, and that phrasing is worth more than any amount of copy tuning.
+  </div>
+
+  <p>It belongs on the existing mentee surface — <code>/yashodarshi/mentorship</code> and <code>/yashodarshi/mentee/{unit}/scorecard</code> — as the same three answers, scoped to their own students: <strong>who is outstanding, who has breached 72 hours, and a link I can send right now.</strong></p>
+
+  <div class="warn">
+    <strong>Measured in prod, and it changes the plan: 24 of 64 active 4999 units (37%) have no <code>yashodarshi_id</code> at all.</strong> Completed units run the same — 60 of 172. So a Yashodarshi-led channel alone would silently miss about one seat in three, in exactly the tier it was designed for. <strong>The admin fallback is not an edge case; it is a third of the work.</strong>
+    <br><br>Worth a separate look, and larger than this feature: those 24 active seats are paying for dedicated evaluation. The null may be legitimate — pending allocation, demo or holding-queue units — or it may be <code>Unit</code>’s own fail-safe guard having nulled a bad assignment and nobody noticing. <em>Cause not established here; do not assume either.</em>
+  </div>
+
+  <div class="warn">
+    <strong>The Yashodarshi may collect the board. They must never collect the satisfaction.</strong> The board is the learner’s own stand — asking for it is a coaching act, and the relationship makes the answer <em>better</em>. Anything that reads as “how did I do?” inverts that: the learner will be kind, and kindness is worthless data. For the same reason, <strong>the T+30 witness question must never be routed through the Yashodarshi</strong> when the change being reported touches their own impact.
+  </div>
+
+  <div class="lens">
+    <div class="box"><h3>Yashodarshi</h3><p>Primary at 4999. Personalised ask, existing trust, knows the task they struggled with.</p></div>
+    <div class="box"><h3>Automated</h3><p>T+0 in-app, T+1 and T+3 email. Runs for everyone regardless of assignment.</p></div>
+    <div class="box"><h3>Admin</h3><p>Fallback for the ~37% with no evaluator, plus governance across all channels.</p></div>
+    <div class="box"><h3>Below 4999</h3><p>No dedicated evaluator by design — automated plus admin is the whole path.</p></div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">13</div>
+  <h2>Admin — fallback and governance, not the collector</h2>
+  <p>The same three questions the Yashodarshi sees — <strong>who hasn’t submitted, who has breached 72 hours, and give me a link I can send right now</strong> — but across every cohort, and with two jobs the Yashodarshi view doesn’t have: <strong>covering the seats that have no evaluator, and watching whether the channel that does exist is actually working.</strong></p>
 
   <div class="tablewrap">
     <table>
@@ -538,6 +567,33 @@
 
   <p>Plus <strong>Excel export</strong> of the same view for offline processing, and the T+30 queue as a second tab against the same shape — the follow-up needs exactly the same three answers.</p>
 
+  <h3 style="margin-top:32px">The weekly measure</h3>
+  <p>A standing weekly report: <strong>everyone who completed their assessment, passed 72 hours, and still has no board.</strong> Same list, scoped to their own mapped students, on the Yashodarshi dashboard.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Section</th><th>What it shows</th><th>Why it’s there</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Breached this week</strong></td><td>Crossed 72h since the last report</td><td>The actionable list. Ring these.</td></tr>
+        <tr><td><strong>Still open</strong></td><td>Carried from prior weeks, with age</td><td>Ageing is the signal — a row appearing three weeks running is not a chase problem, it’s a channel problem.</td></tr>
+        <tr><td><strong>Collected</strong></td><td>Boards in this week, by channel</td><td>So the report is not purely a list of failures, and so you can see which channel actually works.</td></tr>
+        <tr><td><strong>No evaluator</strong></td><td>Breached seats with no <code>yashodarshi_id</code></td><td>Nobody owns these. They need routing before they need chasing.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn">
+    <strong>The dashboard detects; the weekly report holds people to it.</strong> Don’t let the weekly rhythm become the SLA — if breaches only surface on Mondays, the real window quietly becomes 72 hours <em>plus up to seven days</em>. The Yashodarshi and admin views must be live and continuous; the report is the governance beat on top, not the detection mechanism.
+  </div>
+
+  <div class="why">
+    <strong>And it needs a stop rule.</strong> After two or three weeks outstanding, drop the row rather than chase it forever. A board extracted at day forty, under pressure, from someone who has already declined twice is worth less than no board — and it will fail the cold-read test anyway. Let it go and put the effort into the next cohort, where the feeling is still live.
+  </div>
+
+  <div class="why">
+    <strong>One query, three surfaces.</strong> The weekly report, the admin band and the Yashodarshi list are the same question asked with different scopes. They must come from a single resolver — if the report and the dashboard ever disagree about who is breached, nobody will trust either, and the argument about which is right will cost more than the feature saved.
+  </div>
+
   <h3 style="margin-top:32px">Where it goes — the Cohort Scoreboard, not the student list</h3>
   <p>This should be a band on <code>reports/cohort-scoreboard</code> (<code>CohortScoreboardController</code>), not a new screen and not the student index.</p>
   <ul>
@@ -554,14 +610,15 @@
 
 <!-- ───────────────────────────────────────── -->
 <section class="surface">
-  <div class="num">13</div>
+  <div class="num">14</div>
   <h2>Build order</h2>
   <ol>
     <li><strong>Board v1 at task completion</strong> — four skins, the ★ line first. <em>This is the only piece with a real cost to delay: you cannot retroactively capture who someone was before they changed.</em></li>
     <li><strong>The share render</strong> — prose + card image. The reward, and the distribution.</li>
     <li><strong>The T+30 check</strong>, including the witness half. Where most of the material comes from.</li>
     <li><strong>The carousel renderer</strong> — deterministic, weekly cadence from day one.</li>
-    <li><strong>Admin</strong> — the outstanding/breached band on the Cohort Scoreboard, the copy-paste link, and Excel export. Needs the capability token to exist first, so it follows the board rather than leading it.</li>
+    <li><strong>The Yashodarshi list</strong> — outstanding + breached, scoped to their own mentees, on the existing mentorship surface. At 4999 this is the primary channel and among the cheapest things here to build, because the relationship already exists.</li>
+    <li><strong>Admin + the weekly report</strong> — the same resolver at a wider scope: the Cohort Scoreboard band, the copy-paste link, Excel export, and cover for the ~37% of active 4999 seats with no evaluator. Needs the capability token first.</li>
     <li><strong>Reels</strong> — last. They need willing humans.</li>
   </ol>
 
