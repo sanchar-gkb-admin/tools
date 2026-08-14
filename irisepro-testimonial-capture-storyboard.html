@@ -403,29 +403,30 @@
   </div>
 
   <div class="why">
-    <strong>Three design constraints on that picker.</strong> ① <strong>One tap, straight into the answer</strong> — no dropdown, no select-then-continue. Screen 1 is the highest-drop-off screen in the flow and a decision costs momentum. ② <strong>It must render gracefully at one, two or three</strong>, since <em>ias</em>, <em>kas</em> and <em>acharya_foundation</em> currently offer a single option — with one, don’t ask, just name it. ③ <strong>Always carry an escape</strong> — “actually it was a different one” into free text. Our anchorable list is a keyword heuristic; a learner may well have been moved by a task it never flagged, and the escape is what stops the heuristic quietly capping the truth.
+    <strong>Three design constraints on that picker.</strong> ① <strong>One tap, straight into the answer</strong> — no dropdown, no select-then-continue. Screen 1 is the highest-drop-off screen in the flow and a decision costs momentum. ② <strong>Three candidates, never more</strong> — derived from their own task history, not read off a maintained list. More than three is a menu, and a menu on screen 1 is a decision nobody came to make. ③ <strong>Always carry an escape</strong> — “actually it was a different one” into free text. Any derivation we run is a guess at what mattered; a learner may well have been moved by a task it never surfaced, and the escape is what stops our guess quietly capping the truth.
   </div>
 
-  <h3 style="margin-top:32px">The anchor is per plan — and every 4999 plan has one</h3>
-  <p>Screened across every challenge in prod for a task whose title implies feedback, a real conversation, a mirror, a panel or an interview:</p>
-
-  <div class="tablewrap">
-    <table>
-      <thead><tr><th>Plan</th><th>Tasks</th><th>Anchorable</th></tr></thead>
-      <tbody>
-        <tr><td>marks_booster (8) · board_booster (10)</td><td>21</td><td><span class="pill go">3 each</span></td></tr>
-        <tr><td>career_readiness (12) · neet (29) · jee (52)</td><td>21</td><td><span class="pill go">2 each</span></td></tr>
-        <tr><td>acharya_middle (63) · acharya_senior (64)</td><td>21</td><td><span class="pill go">2 each</span></td></tr>
-        <tr><td>ias (28) · kas (54) · acharya_foundation (62)</td><td>21</td><td><span class="pill wait">1 each</span></td></tr>
-        <tr><td>the six 5-task plans (55–60)</td><td>5</td><td><span class="pill" style="background:#fde8e4;color:#b03a12">none — zero, all six</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p><strong>Ten of ten 4999 plans carry at least one anchorable task; six of six short plans carry none.</strong> So the anchor doesn’t need choosing by hand per stream — it can be derived, and the flagship tier is uniformly covered.</p>
+  <h3 style="margin-top:32px">Anchor-worthiness lives in the brief, not the title</h3>
 
   <div class="warn">
-    <strong>Two caveats before that becomes a rule in code.</strong> The screen is a keyword match on task titles, so it is a filter and not a verdict: it can miss a relational task whose title doesn’t say so, and it can false-positive on <em>simulations</em> — a mock panel is roleplay, not a real person giving you real feedback, and roleplay produces no quotable artefact. <strong>The three plans sitting on a single hit — ias, kas, acharya_foundation — need a human to confirm that hit is genuine</strong>, because if it turns out to be a simulation those plans have no anchor at all and nobody would notice.
+    <strong>A screen built on task titles produced a confidently wrong answer, and it is worth recording how.</strong> Matching titles for “feedback / mirror / interview / panel” reported that <em>ias</em>, <em>kas</em> and <em>acharya_foundation</em> had <strong>one</strong> anchorable task each. Reading the actual briefs from the catalogue dump, that is nonsense twice over:
+    <br><br>· The keyword list was built from the tasks already read in <em>board_booster</em> and <em>acharya_middle</em> — so of course those plans scored highest. <strong>The pattern was fitted to the subset it then “discovered”.</strong>
+    <br>· <em>Acharya-Foundation</em> task 6, <strong>“Reflection Through the Eyes of Loved Ones”</strong>, asks the teacher to have a trusted person name two strengths and two weaknesses and then record a 90-second video about it. It is the Feedback Mirror exactly — and its title contains not one matching word.
+  </div>
+
+  <div class="why">
+    <strong>Read properly, every 21-task plan is rich in anchors, and the best of them are not relational at all.</strong> KAS/IAS task 1, <em>Challenge Command</em>, asks the aspirant to name a real obstacle in their own preparation <strong>and “identify the ego-driven distortion around it”</strong>, on camera. That is a confession about their own self-deception — arguably a stronger opening than anything in the children’s catalogue. Their task 3, <em>External Feedback Audit</em>, is the Feedback Mirror for adults. Acharya-Foundation has <em>Reflection Through the Eyes of Loved Ones</em> and <em>Why I Teach: My Inspiration Statement</em>.
+  </div>
+
+  <h3 style="margin-top:26px">So there are three families, not one test</h3>
+  <div class="lens">
+    <div class="box"><h3>Received feedback</h3><p>Someone told them something about themselves. Produces a quotable line from a third party. <em>Feedback Mirror · External Feedback Audit · Through the Eyes of Loved Ones.</em></p></div>
+    <div class="box"><h3>Self-confrontation</h3><p>The task made them name something about themselves. Often the strongest, and entirely solo. <em>Challenge Command · Why I Teach.</em></p></div>
+    <div class="box"><h3>Decision under pressure</h3><p>Simulations. Weaker for story but not zero — “I found out I freeze when nobody hands me the question.” Most of the KAS/IAS set.</p></div>
+  </div>
+
+  <div class="warn">
+    <strong>The consequence: drop the per-plan anchor list entirely.</strong> It was a construct invented to work around not reading the briefs, and it imported a children’s criterion — “another person must be in the task” — into adult programmes where transformation is internal and the witness arrives later. <strong>Offer three candidates derived from the learner’s own behaviour, ordered by what the data suggests, and always let them write their own.</strong> That works for every plan and every tier without anyone maintaining a list, and it cannot be quietly wrong the way a keyword screen can.
   </div>
 
   <div class="warn">
