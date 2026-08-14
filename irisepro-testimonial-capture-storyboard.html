@@ -377,6 +377,25 @@
     <strong>And the Acharya briefs are unusually good raw material.</strong> “Listening Without Defending” asks a teacher to receive unfiltered student feedback without answering back; “8 Quick Checks” routinely shows them that a lesson they were sure had landed reached a third of the room. Both are <em>already</em> the scene the ★ line is fishing for — which is why the Acharya board needed a scene question rather than inventing one.
   </div>
 
+  <h3 style="margin-top:32px">How to choose which task to anchor on</h3>
+  <p>The ★ line asks about a task they nearly didn’t finish. So the anchor has to be a task that plausibly <em>produces</em> that answer. Four filters, applied in order:</p>
+  <ol>
+    <li><strong>Emotional risk, not difficulty.</strong> “I nearly didn’t” comes from what a task costs socially, not from how hard it is. This rules out every drill.</li>
+    <li><strong>Another person is inside the task.</strong> If it is solo, the story is self-report all the way down and there is no witness to corroborate it.</li>
+    <li><strong>The learner <em>receives</em> something quotable.</strong> Almost every task produces output the learner sends. Very few produce input they get back — and the carousel’s pull-quote slide cannot exist unless somebody said something <em>to</em> them.</li>
+    <li><strong>Not the first or the last task.</strong> Task 1 is the baseline, so nothing has changed yet; task 21 is the retrospective, which invites summary — and summary is the enemy of scene.</li>
+  </ol>
+
+  <p>Across challenge 10’s twenty-one tasks, only three survive filter 3 — all of them mandatory-conversation tasks: <em>The Thank You Talk</em>, <em>The Feedback Mirror</em>, <em>My Future: Their Dream, My Dream</em>. Between those, <strong>The Feedback Mirror</strong> wins on two counts: it is the only one where what comes back may be <em>unwelcome</em>, which is what makes “I nearly didn’t” true rather than decorative — and it puts a <strong>teacher</strong> in the room, an out-of-family witness, where the other two are parent-only.</p>
+
+  <div class="why">
+    <strong>In the product, don’t choose at all — derive it.</strong> The system already knows which task each learner actually struggled with: <code>student_task_responses</code> carries the timers, <code>expires_at</code> and <code>reenable_pending_at</code>. So the ★ prompt should name <em>their</em> task — “you almost didn’t finish The Feedback Mirror, didn’t you?” — which is the Yashodarshi’s advantage, available automatically. <em>Verify those fields are actually populated and meaningful before relying on them.</em> Anchoring is only a copy decision for this document and the two example answers.
+  </div>
+
+  <div class="warn">
+    <strong>And below 4999 there is nothing to anchor on.</strong> The 999 and 1999 board-booster tiers are academic drills — <em>Sentence Reconstruction</em>, <em>Reading Comprehension</em>, <em>Science Diagrams Under Pressure</em>, <em>Picture Comprehension</em>. No other person is in any of them and nothing comes back to the learner, so all four filters fail. The relational tasks live only in the 21-task challenges. That is an independent reason to focus on 4999 — and it means the ★ question needs a different form at the lower tiers, or the board simply isn’t for them yet.
+  </div>
+
   <div class="why">
     <strong>Key examples by <code>challenge_id</code>, not by archetype.</strong> Focus is the 21-task 4999 tier, but the 999 and 1999 tiers carry 5 and 7 tasks. Show a 7-task KAS aspirant an example about <em>The Ethical Officer Test</em> and they know instantly they’re reading someone else’s programme — which costs more trust than the example buys. Offer only tasks present in that learner’s own snapshot.
   </div>
