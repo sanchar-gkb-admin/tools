@@ -417,6 +417,80 @@ this as a feature is marketing your regulatory exposure back to you. <b>Treat "h
 as a compliance smell, not a performance metric.</b></p>
 </div>
 
+<!-- 6a -->
+<h2 id="usage"><i class="fa-solid fa-chart-column"></i> 6a · Grounded on actual usage — and it complicates the answer</h2>
+<p class="h2sub">Everything above ranks on features, price and compliance. This section ranks on <b>evidence
+that real businesses use the thing</b> — and it weakens my recommendation rather than confirming it.</p>
+
+<div class="card bad">
+<h4>First, what "market share data" for Indian AI calling actually is</h4>
+<p style="margin:0"><b>There is none.</b> Every "Top 10 AI Voice Agents in India 2026" result is published by a
+vendor that ranks itself first — SquadStack's blog picks SquadStack, OnDial's says "OnDial stands out as the
+best", Vomyra's says "Vomyra ranks #1", and Caller Digital, Bolti and Awaaz all do the same. <b>Zero weight
+given to any of it.</b> What follows is only third-party: review counts on G2/Gartner, GitHub adoption, and
+case studies published by a different company than the vendor.</p>
+</div>
+
+<table class="wrapok">
+<tr><th>Vendor</th><th>G2 reviews</th><th>Rating</th><th>Other verifiable usage signal</th><th>Passes your cost-first filter?</th></tr>
+<tr><td><b>Ozonetel</b></td><td class="n"><b>621+</b></td><td class="n">~4.6</td>
+  <td><b>Highest review count in the category.</b> Meta-certified BSP + voice + omnichannel routing in one</td>
+  <td><span class="p n">no — Asia pricing quoted by sales only</span></td></tr>
+<tr><td><b>Haptik</b> (Jio)</td><td class="n">167–235</td><td class="n">4.5</td>
+  <td>Gartner Peer Insights; disclosed clients incl. KFC, Whirlpool, HP, Reliance Jio, Disney Hotstar, OLA, Zurich</td>
+  <td><span class="p n">no — enterprise motion; chat-first</span></td></tr>
+<tr><td><b>Gnani.ai</b></td><td class="n">145</td><td class="n">4.4</td>
+  <td>Series B · founded 2016 · Bengaluru. <b>14M hours of Indian telephony training data.</b> Regional-language focus; BFSI compliance built in from the ground up</td>
+  <td><span class="p n">no — BFSI enterprise motion</span></td></tr>
+<tr><td><b>Exotel</b></td><td class="n">89</td><td class="n">4.4</td><td>Long-established Indian cloud telephony; strong DLT plumbing</td>
+  <td><span class="p m">partly — credit-based</span></td></tr>
+<tr><td><b>Uniphore</b></td><td class="n">48</td><td class="n">4.2</td>
+  <td><b>Gartner MQ Leader 2026</b>; Forrester Wave Strong Performer Q2 2026 — the strongest analyst position here</td>
+  <td><span class="p n">no — large enterprise only</span></td></tr>
+<tr><td><b>MyOperator</b></td><td class="n">32</td><td class="n">3.8</td><td>—</td><td><span class="p m">partly</span></td></tr>
+<tr><td><b>SquadStack</b></td><td class="n">listed, count not retrieved</td><td class="n">—</td>
+  <td>Agent trained on <b>600M real Indian sales calls</b> across 10+ languages with dialects and code-mixing</td>
+  <td><span class="p n">no — ₹5 lakh+/yr floor</span></td></tr>
+<tr><td><b>Bolna</b></td><td class="n"><b>none found</b></td><td class="n">—</td>
+  <td>GitHub <b>730 stars · 335 forks · 2,812 commits · MIT</b>. Plivo's own case study: 1M+ calls/month, 99.9% uptime. YC-backed, $6.3M seed led by General Catalyst</td>
+  <td><span class="p y">YES — only one that does</span></td></tr>
+</table>
+
+<div class="card q">
+<h4>The honest correction this forces</h4>
+<p style="margin:0 0 10px"><b>Bolna has the thinnest usage evidence on this page.</b> No G2 footprint I could
+find; 730 GitHub stars is respectable but not dominant; one third-party case study. Meanwhile <b>Gnani.ai's
+14M hours of Indian telephony training data and 145 real reviews is a materially stronger "built for India,
+proven at scale" claim</b>, and <b>Ozonetel's 621 reviews is the strongest adoption signal in the category.</b></p>
+<p style="margin:0 0 10px"><b>But your own filter inverts it.</b> Every vendor with strong usage evidence
+sells through an enterprise motion — sales-quoted pricing, annual commitments, ₹5 lakh floors. None will give
+a pre-revenue startup a $10 pay-as-you-go trial with a no-code editor. Bolna will.</p>
+<p style="margin:0"><b>So the trade is explicit rather than hidden:</b> best-evidenced vendors you cannot buy
+cheaply, versus a cheap self-serve vendor whose evidence you must generate. <b>That is what makes the
+50-lead pilot the decisive artefact</b> — it produces usage evidence on your traffic, your languages and your
+guardians, which outranks any review count. Spend ₹3,000 to find out, and take one call each from Gnani and
+Ozonetel purely to ask whether they will do a small paid pilot. If either says yes, they move ahead of Bolna.</p>
+</div>
+
+<h3>6a.1 &nbsp;ElevenLabs: excellent voice, wrong language optimisation — and you can have both</h3>
+<p>Your instinct about ElevenLabs is right, with one precise caveat. On an Indic TTS benchmark, <b>Sarvam's
+Bulbul was the closest challenger to ElevenLabs on naturalness but beat it outright on Hindi prosody,
+retroflex consonants and numbers.</b> Retroflex consonants are what Kannada and Tamil turn on; "numbers" is
+what a price-ladder conversation is made of. ElevenLabs does cover ~32 languages including Kannada, but
+reviewers note long-form Hindi prosody trails Indian-native models and regional dialects are not
+differentiated.</p>
+<p><b>You do not have to choose.</b> Bolna supports ElevenLabs as a TTS provider alongside AWS Polly,
+Deepgram, OpenAI, Azure, Cartesia, Smallest and Sarvam — so TTS becomes a per-agent setting:</p>
+<div class="arch"><pre><span class="c">PER-AGENT TTS ROUTING — the documented recommended pattern</span>
+
+  <span class="b2">kas_adult_en</span>        → <span class="g2">ElevenLabs</span>      English-heavy · expressive · adult peer register
+  <span class="b2">kas_adult_kn</span>        → <span class="g2">Sarvam Bulbul</span>   Kannada · retroflex consonants · numerics
+  <span class="b2">guardian_junior_hi</span>  → <span class="g2">Sarvam Bulbul</span>   Hindi prosody on long-form reassurance
+  <span class="b2">guardian_junior_en</span>  → <span class="g2">ElevenLabs</span>      Indian-English guardians in metros
+
+  <span class="d">Route Indic through Indian-native models; keep ElevenLabs for English-heavy workloads.</span>
+  <span class="d">A/B them per language on your own calls — the platform makes this a dropdown, not a migration.</span></pre></div>
+
 <!-- 6b -->
 <h2 id="named"><i class="fa-solid fa-hand-point-right"></i> 6b · The five vendors you named</h2>
 <p class="h2sub">Assessed against the criterion that actually decides it — <b>can it place a Kannada AI call to
