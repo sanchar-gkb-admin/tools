@@ -173,7 +173,7 @@ broadcast throughput, bot capability and price per message.</b></p>
 </div>
 
 <!-- 2 -->
-<h2 id="funnel"><i class="fa-solid fa-filter"></i> 2 · The funnel — 20 candidates to 1</h2>
+<h2 id="funnel"><i class="fa-solid fa-filter"></i> 2 · The funnel — 20 candidates to two</h2>
 <p class="h2sub">Every elimination has a stated reason, so the ones we rejected can be re-examined if a
 premise changes.</p>
 
@@ -344,6 +344,86 @@ API gap is large and verified. Decide on the API.</b></p>
 <tr><td>The template API is gated to a paid/enterprise tier, or any commitment is required</td><td><b style="color:var(--o3)">AISENSY</b> — published price and 10-minute activation win for pre-revenue. Accept the manual template work: it is an afternoon per copy revision, not a blocker</td></tr>
 <tr><td>Gupshup has no credible self-serve chatbot builder</td><td><b style="color:var(--o3)">AISENSY</b> — the inbound bot is a requirement, not a nice-to-have</td></tr>
 </table>
+</div>
+
+<!-- 4c -->
+<h2 id="pipe"><i class="fa-solid fa-diagram-project"></i> 4c · REDONE on pipe criteria — v3, 14 Aug</h2>
+<p class="h2sub">Everything above §4 was scored for a "buy a platform" brief. We decided to buy a <b>pipe</b>.
+Re-scored on that basis, using <b>only what each vendor publishes in its own documentation</b>.</p>
+
+<div class="card bad">
+<h4>The discipline this table holds to</h4>
+<p style="margin:0"><b>"Not documented" is a fact. "Doesn't support it" is an inference.</b> Absence from a
+vendor's documentation is evidence about their documentation, not proof about their product. Every cell below
+is either a count of documented endpoints or a named absence from a documentation index. Nothing is
+extrapolated.</p>
+</div>
+
+<table>
+<tr><th>Pipe criterion</th><th>Gupshup</th><th>Wati</th><th>AiSensy</th></tr>
+<tr><td><b>Flow management endpoints</b></td>
+  <td><b>6 documented</b> — Get Flow · Get All Flow · Update · Get Flow Json · Deprecate · Delete</td>
+  <td><span class="p n">none found</span> in <code>docs.wati.io/llms.txt</code></td>
+  <td><span class="p n">none found</span></td></tr>
+<tr><td><b>Dynamic Flows</b> — data channel to our server</td>
+  <td><b>Documented</b>; requires <code>endpoint_uri</code></td>
+  <td><span class="p g">not documented either way</span></td>
+  <td><span class="p g">not documented either way</span></td></tr>
+<tr><td><b>Template create / edit API</b></td>
+  <td>Create · Edit · Delete · Get All · Get By ID · Approvals &amp; Statuses</td>
+  <td><b>Create · Delete · Get v1/v2/v3 · Get by ID</b></td>
+  <td><span class="p n">none found</span> — dashboard only</td></tr>
+<tr><td><b>Total documented endpoints</b></td><td class="n"><b>~25</b></td><td class="n"><b>~20</b></td><td class="n"><b>1</b></td></tr>
+<tr><td><b>Blocked-user retrieval</b></td><td>Block · Unblock · <b>Get List of Blocked Users</b></td>
+  <td><span class="p n">not found</span></td><td><span class="p n">not found</span></td></tr>
+<tr><td><b>Opt-out / unsubscribe webhook</b></td><td>—</td>
+  <td><span class="p n">not in the 14-event list</span></td><td>—</td></tr>
+<tr><td><b>Webhook events documented</b></td><td>Webhooks + Set Callback URL</td>
+  <td><b>14 named</b> — Delivered · Read · Replied · Template Status Update · CTA clicked …</td>
+  <td><span class="p m">separate page, thin</span></td></tr>
+<tr><td><b>Session message types</b></td><td>9 named</td><td>—</td>
+  <td><span class="p n">none beyond the send endpoint</span></td></tr>
+<tr><td><b>Their features page says</b></td><td>"WhatsApp Flows" throughout</td><td>—</td>
+  <td><b>"WhatsApp Forms"</b> — the phrase "WhatsApp Flows" does not appear</td></tr>
+</table>
+<p class="src">Also documented: <b>Gallabox</b> publishes a WhatsApp Flows section with a template-builder UI
+<i>and</i> a JSON path. <b>Interakt</b> publishes WhatsApp Flows content plus flow webhooks
+(<code>Completed Flow</code>, <code>flow_response</code>) and states webhooks are available
+<b>only on Advanced and Enterprise tiers</b>.</p>
+
+<div class="card q">
+<h4>What is NOT established — stated so it is not read as settled</h4>
+<ul style="margin:0">
+  <li><b>Dynamic Flow support for anyone except Gupshup.</b> Not documented either way.</li>
+  <li><b>Whether AiSensy's "WhatsApp Forms" is Meta's WhatsApp Flows.</b> Different name; no API docs found.</li>
+  <li><b>Any per-message rate in writing.</b> AiSensy publishes ₹1.09 / ₹0.145; Meta's published India base is
+    ₹0.8631 / ₹0.115. These conflict, and Meta's pricing page uses an interactive selector rather than a
+    readable table.</li>
+  <li><b>360dialog's pricing model.</b> Secondary sources contradict each other on whether markup is zero.</li>
+</ul>
+</div>
+
+<div class="card o">
+<h4>Two corrections to earlier versions of this document</h4>
+<ol style="margin:0">
+  <li><b>I stated Wati had no template creation API. That was wrong.</b> It publishes
+    <code>POST /api/v1/whatsapp/templates</code> plus delete, get-by-ID and list across three API versions. I
+    had read the introduction page instead of the documentation index.</li>
+  <li><b>Wati was rejected in §3 on grounds that no longer apply</b> — inbox quality and chatbot AI. On pipe
+    criteria it <b>ranks second, not fourth</b>. The rejection reasoning was sound for the old brief and wrong
+    for this one.</li>
+</ol>
+</div>
+
+<div class="card w">
+<h4>Where it lands</h4>
+<p style="margin:0 0 8px"><b>Gupshup is the only vendor where every critical pipe criterion is confirmed in
+public documentation.</b> That is the finding — not that it is cheapest, nor best-reviewed, but that it is the
+only one that has already answered.</p>
+<p style="margin:0"><b>Its one real disadvantage stands:</b> pricing is quote-only, which for a pre-revenue
+company is a genuine concern. <b>If AiSensy or Wati answer yes to Flows-via-API and dynamic Flows they
+re-enter</b> — Wati with the best usage evidence of the three (4.6 from 458 reviews), AiSensy with the lowest
+published entry price.</p>
 </div>
 
 <!-- 5 -->
