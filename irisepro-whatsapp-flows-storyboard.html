@@ -1,0 +1,545 @@
+<title>YASHHO — WhatsApp Flows: what the parent actually sees</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  --page:#0e1a2b; --pageCard:#16273d; --pageLine:#22405f; --pageInk:#e7eef7; --pageMute:#8ea3bd;
+  --o:#f5821f; --o2:#ff9b3d; --o3:#ffb259; --ok:#3ecf8e; --bad:#ef5f5f; --warn:#f5c451; --purple:#a78bfa;
+  /* real WhatsApp tokens */
+  --waHead:#008069; --waBg:#EFE7DE; --waIn:#FFFFFF; --waOut:#D9FDD3; --waTime:#667781;
+  --waLink:#027EB5; --waBtn:#00A5F4; --waLine:#E9E1D8; --waDark:#111B21;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--pageInk);font-family:Montserrat,system-ui,sans-serif;
+  font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1300px;margin:0 auto;padding:44px 22px 100px}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#25D366}
+h1{font-size:clamp(28px,4.4vw,46px);font-weight:900;letter-spacing:-.02em;margin:.28em 0 .2em;line-height:1.05}
+.sub{color:var(--pageMute);font-size:15.5px;max-width:80ch}
+h2.scr{display:flex;align-items:baseline;gap:11px;font-size:20px;font-weight:800;margin:56px 0 4px}
+h2.scr em{font-style:normal;font-size:12px;font-weight:800;color:#25D366;letter-spacing:.1em}
+.cap{color:var(--pageMute);font-size:13.5px;margin:0 0 18px;max-width:84ch}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;vertical-align:middle}
+.tag.flow{background:#25D366;color:#04231a}
+.tag.paid{background:var(--warn);color:#3a2c00}
+.tag.free{background:var(--ok);color:#04231a}
+.tag.new{background:var(--o);color:#fff}
+.note{background:rgba(37,211,102,.10);border-left:3px solid #25D366;border-radius:0 8px 8px 0;
+  padding:11px 15px;font-size:13px;color:#d6f5e2;margin:14px 0 0;max-width:98ch}
+.note.bad{background:rgba(239,95,95,.1);border-left-color:var(--bad);color:#f6d5d5}
+.note.o{background:rgba(245,130,31,.1);border-left-color:var(--o);color:#f0d9c6}
+.note b{color:#fff}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:11px;margin:24px 0}
+.b{background:var(--pageCard);border:1px solid var(--pageLine);border-radius:10px;padding:13px 15px}
+.b b{display:block;font-size:22px;font-weight:900;color:#4ade80;letter-spacing:-.02em}
+.b span{display:block;font-size:11px;color:var(--pageMute);margin-top:3px;line-height:1.35}
+
+/* phone + whatsapp */
+.rail{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start}
+.unit{display:flex;flex-direction:column;gap:8px}
+.arw{align-self:center;color:#25D366;font-size:20px;flex:none;padding-top:200px}
+.phone{width:266px;background:#0b1114;border-radius:32px;padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.5);flex:none}
+.pnotch{width:74px;height:5px;background:#28323a;border-radius:4px;margin:2px auto 6px}
+.pv{border-radius:24px;overflow:hidden;height:520px;position:relative;background:var(--waBg)}
+.wahead{height:38px;background:var(--waHead);display:flex;align-items:center;gap:8px;padding:0 10px;color:#fff}
+.wahead .ava{width:24px;height:24px;border-radius:50%;background:#fff;color:var(--waHead);display:grid;
+  place-items:center;font-size:9px;font-weight:900;flex:none}
+.wahead .nm{font-size:10.5px;font-weight:600;line-height:1.2}
+.wahead .st{font-size:7.5px;opacity:.85}
+.chat{padding:10px 8px;height:calc(100% - 38px);overflow:hidden;
+  background-image:radial-gradient(rgba(0,0,0,.025) 1px,transparent 1px);background-size:14px 14px}
+.bub{max-width:88%;border-radius:8px;padding:6px 8px 4px;font-size:10.5px;line-height:1.45;
+  margin-bottom:7px;position:relative;color:#111B21;box-shadow:0 1px 1px rgba(0,0,0,.1)}
+.bub.in{background:var(--waIn);border-top-left-radius:1px}
+.bub.out{background:var(--waOut);margin-left:auto;border-top-right-radius:1px}
+.bub .t{font-size:7.5px;color:var(--waTime);text-align:right;margin-top:2px;display:block}
+.bub .t i{color:#53BDEB;font-size:8px}
+.bub b{font-weight:700}
+.bub .biz{font-size:8px;font-weight:700;color:var(--waHead);margin-bottom:2px;display:block}
+.wabtn{border-top:1px solid var(--waLine);margin:5px -8px -4px;padding:6px 0 4px;text-align:center;
+  color:var(--waBtn);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:5px}
+.wabtn+.wabtn{border-top:1px solid var(--waLine)}
+.hdrimg{background:linear-gradient(135deg,#f5821f,#ff9b3d);height:66px;border-radius:5px;margin:-2px -3px 5px;
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:10px;text-align:center;padding:0 8px}
+.sys{text-align:center;font-size:7.5px;color:#5b6b74;background:#F5EEE6;border-radius:6px;padding:3px 8px;
+  margin:0 auto 8px;display:table}
+.inputbar{position:absolute;left:0;right:0;bottom:0;background:#F0F2F5;padding:6px 8px;display:flex;gap:6px;align-items:center}
+.inputbar .ib{flex:1;background:#fff;border-radius:16px;padding:5px 10px;font-size:9px;color:#8696A0}
+.inputbar .ic{width:26px;height:26px;border-radius:50%;background:var(--waHead);color:#fff;display:grid;
+  place-items:center;font-size:10px;flex:none}
+
+/* FLOW sheet */
+.flowsheet{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column}
+.fhead{height:40px;border-bottom:1px solid #E9EDEF;display:flex;align-items:center;gap:9px;padding:0 11px;flex:none}
+.fhead .x{font-size:13px;color:#54656F}
+.fhead .ttl{font-size:11px;font-weight:700;color:#111B21}
+.fhead .pg{margin-left:auto;font-size:8px;color:#8696A0;font-weight:600}
+.fbody{padding:12px 13px;flex:1;overflow:hidden}
+.fbody h5{margin:0 0 3px;font-size:13px;font-weight:700;color:#111B21}
+.fbody p.fs{margin:0 0 12px;font-size:9.5px;color:#667781;line-height:1.5}
+.flbl{display:block;font-size:9px;font-weight:600;color:#111B21;margin:0 0 4px}
+.finput{border:1px solid #D1D7DB;border-radius:7px;padding:8px 10px;font-size:10px;color:#111B21;
+  margin-bottom:11px;background:#fff;display:flex;align-items:center;justify-content:space-between}
+.finput.ph{color:#8696A0}
+.finput.sel{border-color:var(--waHead);box-shadow:0 0 0 2px rgba(0,128,105,.12)}
+.fradio{border:1px solid #D1D7DB;border-radius:7px;padding:9px 10px;font-size:10px;margin-bottom:7px;
+  display:flex;align-items:center;gap:9px;color:#111B21}
+.fradio.on{border-color:var(--waHead);background:#F0FAF7}
+.fradio .rd{width:14px;height:14px;border-radius:50%;border:1.5px solid #C4CDD3;flex:none}
+.fradio.on .rd{border:4px solid var(--waHead)}
+.fradio .sm{display:block;font-size:8px;color:#667781;margin-top:1px}
+.ffoot{padding:10px 13px;border-top:1px solid #E9EDEF;flex:none}
+.fcta{background:var(--waHead);color:#fff;border-radius:20px;padding:9px;text-align:center;font-size:10.5px;font-weight:700}
+.fcta.g{background:#E9EDEF;color:#8696A0}
+.fprog{height:3px;background:#E9EDEF;border-radius:2px;margin-bottom:11px;overflow:hidden}
+.fprog i{display:block;height:100%;background:var(--waHead)}
+
+.lbl{text-align:center;font-size:11px;color:var(--pageMute);max-width:266px;line-height:1.45}
+.lbl b{color:#fff;display:block;font-size:12px;margin-bottom:2px}
+.pill{display:inline-block;font-size:9px;font-weight:800;padding:2px 7px;border-radius:4px;letter-spacing:.04em}
+.pill.paid{background:rgba(245,196,81,.18);color:var(--warn);border:1px solid rgba(245,196,81,.4)}
+.pill.free{background:rgba(62,207,142,.16);color:var(--ok);border:1px solid rgba(62,207,142,.4)}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:16px 0;display:block;overflow-x:auto}
+table.w{white-space:normal}
+th{text-align:left;padding:8px 10px;background:var(--pageCard);border:1px solid var(--pageLine);
+  font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#4ade80}
+td{padding:8px 10px;border:1px solid var(--pageLine);vertical-align:top}
+td b{color:#fff}
+code{background:#071120;padding:1.5px 6px;border-radius:4px;font-size:11.5px;color:var(--o3);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.arch{background:#071120;border:1px solid var(--pageLine);border-radius:11px;padding:16px 18px;margin:18px 0;overflow-x:auto}
+.arch pre{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.7}
+.arch pre .c{color:var(--o3)} .arch pre .d{color:var(--pageMute)} .arch pre .g{color:var(--ok)}
+.arch pre .r{color:var(--bad)} .arch pre .y{color:var(--warn)} .arch pre .b{color:#60a5fa}
+.foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--pageLine);font-size:12px;color:var(--pageMute)}
+</style>
+
+<div class="wrap">
+
+<div class="kicker"><i class="fa-brands fa-whatsapp"></i> Storyboard · 14 Aug 2026 · what the parent sees</div>
+<h1>WhatsApp Flows,<br>not a chatbot</h1>
+<p class="sub">The console storyboard showed what <i>we</i> manage. This shows what <b>Priya</b> experiences —
+real chat bubbles, real in-chat forms, and where the branches are. <b>The headline decision: use Meta's
+native Flows for every structured step, and keep an AI bot only as the fallback for free text.</b></p>
+
+<div class="big">
+  <div class="b"><b>60–90s</b><span>to complete a Flow · vs 5–10 min in chat</span></div>
+  <div class="b"><b>12%</b><span>abandonment · vs 35% question-by-question</span></div>
+  <div class="b"><b>+40–60%</b><span>completion when lead capture moves to a Flow</span></div>
+  <div class="b"><b>1 Oct 2026</b><span>service replies become billable — a Flow avoids it</span></div>
+  <div class="b"><b>₹0.145</b><span>the only paid message in the whole booking journey</span></div>
+</div>
+
+<div class="note o"><b>Why this matters beyond conversion.</b> Free-form replies inside the 24-hour service
+window are free <b>today</b> — but from <b>1 October 2026</b> service replies sent by a human agent or a
+third-party AI agent inside that window <b>become billable</b>. A twenty-message bot conversation that costs
+₹0 today becomes a cost line in seven weeks. <b>A Flow is one interaction, so it doesn't.</b> Flows are both
+the better experience and the cheaper one after October.</div>
+
+<!-- 01 -->
+<h2 class="scr"><em>01</em> Booking a demo — the whole journey <span class="tag flow">Flow</span></h2>
+<p class="cap">One paid template. Everything after it happens inside a form. No back-and-forth, no bot.</p>
+
+<div class="rail">
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">Business account</div></div></div>
+  <div class="chat">
+    <div class="sys">Today</div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      <div class="hdrimg">64 abilities.<br>One clear picture.</div>
+      Namaste Priya 🙏<br><br>Thank you for your interest in YASHHO for <b>Aarav</b>.<br><br>
+      The best way to see how it works is to join a live session — we build a real ability scorecard in
+      front of you.<br><br><b>45 minutes. Nothing to prepare.</b>
+      <span class="t">10:02 <i class="fa-solid fa-check-double"></i></span>
+      <div class="wabtn"><i class="fa-solid fa-calendar-check"></i> Book my seat</div>
+    </div>
+  </div>
+  <div class="inputbar"><div class="ib">Message</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>01 · The template</b>The only paid message here — <span class="pill paid">₹0.145 utility</span>
+Tapping the button opens a Flow, not a reply.</p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="flowsheet">
+    <div class="fhead"><i class="fa-solid fa-xmark x"></i><span class="ttl">Book your session</span>
+      <span class="pg">1 of 3</span></div>
+    <div class="fbody">
+      <div class="fprog"><i style="width:33%"></i></div>
+      <h5>When suits you?</h5>
+      <p class="fs">Sessions run live with a YASHHO mentor.</p>
+      <div class="fradio on"><span class="rd"></span><div>Saturday, 16 Aug · 11:00 am
+        <span class="sm">4 seats left · Kannada &amp; English</span></div></div>
+      <div class="fradio"><span class="rd"></span><div>Sunday, 17 Aug · 5:00 pm
+        <span class="sm">9 seats left · Kannada</span></div></div>
+      <div class="fradio"><span class="rd"></span><div>Wednesday, 20 Aug · 7:30 pm
+        <span class="sm">12 seats left · English</span></div></div>
+      <div class="fradio"><span class="rd"></span><div>None of these suit me
+        <span class="sm">We'll send new times</span></div></div>
+    </div>
+    <div class="ffoot"><div class="fcta">Continue</div></div>
+  </div>
+</div></div>
+<p class="lbl"><b>02 · Flow opens in-chat</b>Full screen, native. Seats and languages are live data from our
+backend — not a static template.</p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="flowsheet">
+    <div class="fhead"><i class="fa-solid fa-arrow-left x"></i><span class="ttl">Book your session</span>
+      <span class="pg">2 of 3</span></div>
+    <div class="fbody">
+      <div class="fprog"><i style="width:66%"></i></div>
+      <h5>About Aarav</h5>
+      <p class="fs">So the session is relevant to your child.</p>
+      <span class="flbl">Which class?</span>
+      <div class="finput sel">Class 5 <i class="fa-solid fa-chevron-down" style="color:#8696A0;font-size:9px"></i></div>
+      <span class="flbl">What matters most to you right now?</span>
+      <div class="finput ph">Choose one <i class="fa-solid fa-chevron-down" style="font-size:9px"></i></div>
+      <span class="flbl">Which language would you prefer?</span>
+      <div class="finput sel">ಕನ್ನಡ (Kannada) <i class="fa-solid fa-chevron-down" style="color:#8696A0;font-size:9px"></i></div>
+      <div style="background:#F0FAF7;border:1px solid #B7E4D4;border-radius:7px;padding:8px 10px;
+        font-size:8.5px;color:#0F5132;line-height:1.5;margin-top:4px">
+        <i class="fa-solid fa-shield-halved"></i> We only ask about Aarav to make the session useful.
+        <b>We never contact children directly.</b></div>
+    </div>
+    <div class="ffoot"><div class="fcta">Continue</div></div>
+  </div>
+</div></div>
+<p class="lbl"><b>03 · Structured, not chatted</b>Dropdowns give clean data. <b>The privacy line is deliberate</b>
+— it answers the worry a parent has but won't voice.</p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">online</div></div></div>
+  <div class="chat">
+    <div class="sys">Today</div>
+    <div class="bub out">Booked ✓<span class="t">10:04 <i class="fa-solid fa-check-double"></i></span></div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      ✅ <b>You're booked, Priya.</b><br><br>
+      📅 Saturday, 16 Aug · 11:00 am<br>🗣️ ಕನ್ನಡ<br>⏱️ 45 minutes<br><br>
+      Nothing to prepare. Aarav is welcome to sit with you, but doesn't have to.<br><br>
+      We'll send you the join link one hour before.
+      <span class="t">10:04</span>
+      <div class="wabtn"><i class="fa-regular fa-calendar-plus"></i> Add to calendar</div>
+      <div class="wabtn"><i class="fa-solid fa-rotate"></i> Change my time</div>
+    </div>
+  </div>
+  <div class="inputbar"><div class="ib">Message</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>04 · Back in the thread</b>Confirmation is a <span class="pill free">free session message</span>
+because Priya just interacted. <b>Change-my-time is here from the start</b> — the cheapest no-show prevention there is.</p>
+</div>
+</div>
+
+<div class="note"><b>Total cost of that entire booking: one message at ₹0.145.</b> The Flow, the confirmation
+and the buttons are all free. Compare with a chatbot doing the same job in twelve exchanges — free today,
+billable from October.</div>
+
+<!-- 02 -->
+<h2 class="scr"><em>02</em> The branch that matters most — no-show rescue <span class="tag new">the biggest leak</span></h2>
+<p class="cap">Booked and didn't attend is not a cold lead. One tap puts them in the next session.</p>
+
+<div class="rail">
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">Business account</div></div></div>
+  <div class="chat">
+    <div class="sys">Saturday</div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      Your session starts in an hour, Priya 🙏<br><br>Saturday 11:00 am · ಕನ್ನಡ
+      <span class="t">10:00 <i class="fa-solid fa-check-double"></i></span>
+      <div class="wabtn"><i class="fa-solid fa-video"></i> Join the session</div>
+    </div>
+    <div class="sys">2 hours later</div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      We missed you today, Priya — no problem at all, Saturdays are busy 🙂<br><br>
+      Shall I move you to the next one?
+      <span class="t">13:02 <i class="fa-solid fa-check-double"></i></span>
+      <div class="wabtn"><i class="fa-solid fa-calendar-day"></i> Sunday 5:00 pm</div>
+      <div class="wabtn"><i class="fa-solid fa-calendar-week"></i> Pick another time</div>
+    </div>
+  </div>
+  <div class="inputbar"><div class="ib">Message</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>05 · The rescue</b>Warm, no guilt, one tap. <b>"No problem at all" does real work</b> — a
+parent who feels judged does not rebook.</p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">online</div></div></div>
+  <div class="chat">
+    <div class="sys">Saturday</div>
+    <div class="bub out">Sunday 5:00 pm<span class="t">13:04 <i class="fa-solid fa-check-double"></i></span></div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      Done ✓ You're in Sunday's 5:00 pm session.<br><br>
+      Same thing — 45 minutes, nothing to prepare. See you then 🙏
+      <span class="t">13:04</span>
+    </div>
+    <div style="background:#FFF4E5;border:1px solid #FFD9A0;border-radius:7px;padding:7px 9px;
+      font-size:8px;color:#8a5a00;margin-top:6px;line-height:1.5">
+      <b>Behind the scenes:</b> stage stays <b>demo_booked</b> · no-show scores −5, not −15 ·
+      second no-show would score −15 and stop auto-rebooking</div>
+  </div>
+  <div class="inputbar"><div class="ib">Message</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>06 · Rebooked, free</b>Both messages sit inside the service window Priya opened by tapping.
+<span class="pill free">₹0</span></p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">Business account</div></div></div>
+  <div class="chat">
+    <div class="sys">Sunday · after the session</div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      <div class="hdrimg" style="background:linear-gradient(135deg,#2F6BF0,#3f93e0)">Aarav's ability picture</div>
+      That was lovely to have you, Priya 🙏<br><br>
+      Here's the sample scorecard we built in the session, so you can look again properly.
+      <span class="t">18:20 <i class="fa-solid fa-check-double"></i></span>
+      <div class="wabtn"><i class="fa-solid fa-file-lines"></i> Open the scorecard</div>
+      <div class="wabtn"><i class="fa-solid fa-circle-question"></i> I have a question</div>
+    </div>
+  </div>
+  <div class="inputbar"><div class="ib">Message</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>07 · Stage changes to demo_attended</b>Only now may an offer be sent. <b>The stage gate is
+code, not copy discipline.</b></p>
+</div>
+</div>
+
+<!-- 03 -->
+<h2 class="scr"><em>03</em> Post-demo — the objection Flow routes the ladder <span class="tag flow">Flow</span></h2>
+<p class="cap">Instead of guessing which offer to make, ask. The answer picks the rung.</p>
+
+<div class="rail">
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">Business account</div></div></div>
+  <div class="chat">
+    <div class="sys">Tuesday</div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      Priya, most parents ask me one of three things after the session 🙂<br><br>
+      Which one is closest to what's on your mind?
+      <span class="t">11:10 <i class="fa-solid fa-check-double"></i></span>
+      <div class="wabtn"><i class="fa-solid fa-comments"></i> Tell us</div>
+    </div>
+  </div>
+  <div class="inputbar"><div class="ib">Message</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>08 · The honest question</b><span class="pill paid">₹1.09 marketing</span> — this one carries
+an offer, so it is classified honestly.</p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="flowsheet">
+    <div class="fhead"><i class="fa-solid fa-xmark x"></i><span class="ttl">What's on your mind?</span>
+      <span class="pg">1 of 1</span></div>
+    <div class="fbody">
+      <h5>Be honest — it helps us help you</h5>
+      <p class="fs">Whatever you pick, nobody will pressure you.</p>
+      <div class="fradio"><span class="rd"></span><div>I'm ready — how do we start?
+        <span class="sm">We'll send the joining link</span></div></div>
+      <div class="fradio on"><span class="rd"></span><div>I want it, but not all at once right now
+        <span class="sm">We'll show you the instalment option</span></div></div>
+      <div class="fradio"><span class="rd"></span><div>I'm not sure we have time for 21 activities
+        <span class="sm">There's a shorter programme</span></div></div>
+      <div class="fradio"><span class="rd"></span><div>I'd like to see it work for Aarav first
+        <span class="sm">Start small — we'll credit it back</span></div></div>
+      <div class="fradio"><span class="rd"></span><div>Something else
+        <span class="sm">Tell us in your own words</span></div></div>
+    </div>
+    <div class="ffoot"><div class="fcta">Send</div></div>
+  </div>
+</div></div>
+<p class="lbl"><b>09 · The ladder, as a question</b>Each option maps to one rung. <b>She self-selects; we never
+volunteer a discount.</b></p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">online</div></div></div>
+  <div class="chat">
+    <div class="sys">Tuesday</div>
+    <div class="bub out">Not all at once right now<span class="t">11:12 <i class="fa-solid fa-check-double"></i></span></div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      That's completely fair, Priya 🙏<br><br>
+      You don't have to choose a smaller programme for that. <b>The full year can be paid in parts</b> —
+      Aarav gets exactly the same thing, and the same Yashodarshi.<br><br>
+      ₹4,999 works out at about <b>₹14 a day</b> for a whole year with a mentor. Less than a fifth of what
+      most families spend on tuition.
+      <span class="t">11:12</span>
+      <div class="wabtn"><i class="fa-solid fa-indian-rupee-sign"></i> See the instalment plan</div>
+      <div class="wabtn"><i class="fa-solid fa-phone"></i> I'd rather talk to someone</div>
+    </div>
+  </div>
+  <div class="inputbar"><div class="ib">Message</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>10 · Instalments BEFORE downgrade</b><span class="pill free">₹0</span> — inside the window she
+opened. <b>The product never shrinks because of a cashflow objection.</b></p>
+</div>
+</div>
+
+<div class="note"><b>This is the ladder working as designed.</b> A money objection produces instalments, not a
+cheaper product — and because Priya chose the option herself, we never volunteered a discount she wasn't
+asking for.</div>
+
+<!-- 04 -->
+<h2 class="scr"><em>04</em> Free text — where the AI bot belongs <span class="tag new">fallback only</span></h2>
+<p class="cap">Flows handle structure. The bot handles the unpredictable, and hands over when it should.</p>
+
+<div class="rail">
+<div class="unit">
+<div class="phone"><div class="pnotch"></div><div class="pv">
+  <div class="wahead"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i>
+    <span class="ava">Y</span><div><div class="nm">YASHHO</div><div class="st">online</div></div></div>
+  <div class="chat">
+    <div class="bub out">ಇದು 5ನೇ ತರಗತಿ ಮಗುವಿಗೆ ಸರಿಯಾಗುತ್ತದೆಯೇ?
+      <span class="t">21:14 <i class="fa-solid fa-check-double"></i></span></div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      ಹೌದು 🙂 5ನೇ ತರಗತಿ ನಮ್ಮ ಅತ್ಯಂತ ಸಾಮಾನ್ಯ ವಯಸ್ಸು.<br><br>
+      ಚಟುವಟಿಕೆಗಳು ವಯಸ್ಸಿಗೆ ತಕ್ಕಂತೆ ಇರುತ್ತವೆ — ಪ್ರತಿ ಎರಡು ವಾರಕ್ಕೆ ಸುಮಾರು 25 ನಿಮಿಷ.
+      <span class="t">21:14</span>
+      <div class="wabtn"><i class="fa-solid fa-calendar-check"></i> ಸೆಷನ್ ಬುಕ್ ಮಾಡಿ</div>
+    </div>
+    <div class="bub out">ನನ್ನ ಮಗಳಿಗೆ ಕಲಿಕೆಯ ತೊಂದರೆ ಇದೆ, ಇದು ಸಹಾಯ ಮಾಡುತ್ತದೆಯೇ?
+      <span class="t">21:16 <i class="fa-solid fa-check-double"></i></span></div>
+    <div class="bub in"><span class="biz">YASHHO</span>
+      ಇದು ಮುಖ್ಯವಾದ ಪ್ರಶ್ನೆ — ಮತ್ತು ನಾನು ಸರಿಯಾಗಿ ಉತ್ತರಿಸಬೇಕು.<br><br>
+      ನಮ್ಮ ತಂಡದವರು ನಿಮ್ಮೊಂದಿಗೆ ನೇರವಾಗಿ ಮಾತನಾಡುತ್ತಾರೆ 🙏
+      <span class="t">21:16</span>
+    </div>
+    <div class="sys"><i class="fa-solid fa-user-tie"></i> Handed to a human · Geeta will reply by 10 am</div>
+  </div>
+  <div class="inputbar"><div class="ib">ಸಂದೇಶ</div><div class="ic"><i class="fa-solid fa-microphone"></i></div></div>
+</div></div>
+<p class="lbl"><b>11 · Kannada, and knowing when to stop</b>The bot answers the routine question and
+<b>escalates the sensitive one</b> rather than improvising.</p>
+</div>
+
+<span class="arw"><i class="fa-solid fa-arrow-right"></i></span>
+
+<div class="unit" style="max-width:560px">
+<div class="arch" style="margin:0"><pre><span class="c">WHO HANDLES WHAT — and why the split matters</span>
+
+  <span class="g">FLOW</span>      every structured step        booking · child details · objection
+            <span class="d">deterministic · one interaction · clean data · cheapest</span>
+
+  <span class="b">BOT</span>       free text only               FAQ · "is this right for my child?"
+            <span class="d">fallback when someone types instead of tapping</span>
+
+  <span class="y">HUMAN</span>     anything sensitive           learning needs · money worry · complaint
+            <span class="d">the bot's job is to RECOGNISE these, not answer them</span>
+
+<span class="c">THE ESCALATION RULE — write it into the bot brief</span>
+  hand over on:  a child's health or learning difficulty
+                 anything about money the Flow did not cover
+                 <span class="r">any sign of distress</span>
+                 <span class="r">two failed attempts to answer the same question</span>
+
+  <span class="d">A bot that improvises on a learning-difficulty question does more damage</span>
+  <span class="d">than one that says "let me get a person" — this is a brand risk, not a UX nicety.</span></pre></div>
+<p class="lbl" style="max-width:100%;text-align:left;margin-top:8px"><b>12 · The division of labour</b>
+Most WhatsApp projects fail by asking the bot to do all three.</p>
+</div>
+</div>
+
+<!-- 05 -->
+<h2 class="scr"><em>05</em> The whole thing on one page</h2>
+<div class="arch"><pre><span class="c">THE JOURNEY, WITH COST AND STAGE AT EVERY STEP</span>
+
+  form submitted
+      │
+      ├─► <span class="y">TEMPLATE</span>  "come to a session"        <span class="y">₹0.145</span>   stage: <span class="b">new</span>
+      │        │
+      │        └─► tap ──► <span class="g">FLOW</span> pick session + child     <span class="g">₹0</span>
+      │                      │
+      │                      └─► <span class="g">confirmation + change-time</span>  <span class="g">₹0</span>   stage: <span class="b">demo_booked</span>
+      │
+      ├─► <span class="y">TEMPLATE</span>  1-hour-before join link     <span class="y">₹0.145</span>
+      │
+      ├── attended? ─── yes ──► <span class="y">TEMPLATE</span> scorecard   <span class="y">₹0.145</span>  stage: <span class="b">demo_attended</span>
+      │                             │
+      │                             └─► <span class="y">TEMPLATE</span> "which is on your mind?"  <span class="y">₹1.09</span>
+      │                                     │
+      │                                     └─► <span class="g">FLOW</span> objection ──► ladder rung  <span class="g">₹0</span>
+      │                                             │
+      │                                             └─► <span class="g">reply + offer</span>  <span class="g">₹0</span>  stage: <span class="b">in_conversation</span>
+      │
+      └── no ──► <span class="g">rescue + rebook</span>  <span class="g">₹0</span>   <span class="d">stays demo_booked · scores −5 not −15</span>
+
+  <span class="c">TOTAL PAID MESSAGES, form → offer:  4     ≈ ₹1.53 per lead</span>
+  <span class="d">Everything else rides the free service window Priya opens by tapping.</span></pre></div>
+
+<table class="w">
+<tr><th>Decision</th><th>Why</th></tr>
+<tr><td><b>Flows for every structured step</b></td><td>60–90s vs 5–10 min · 12% vs 35% abandonment · +40–60% completion. And <b>one interaction instead of twenty</b>, which matters from 1 Oct 2026</td></tr>
+<tr><td><b>Every template ends in a tap, not a typed reply</b></td><td>A tap opens the free service window just as a reply does — but it also gives us <b>structured data instead of text we must parse</b></td></tr>
+<tr><td><b>The objection is asked, not guessed</b></td><td>Her answer selects the ladder rung. We never volunteer a discount nobody asked for</td></tr>
+<tr><td><b>Bot is fallback, not front door</b></td><td>It handles free text and <b>escalates anything sensitive</b>. A bot improvising about a learning difficulty is a brand risk</td></tr>
+<tr><td><b>"Change my time" from the first confirmation</b></td><td>The cheapest no-show prevention available, and it costs nothing</td></tr>
+</table>
+
+<h2 class="scr"><em>06</em> Does our BSP actually support this? <span class="tag new">checked 14 Aug</span></h2>
+<p class="cap">The whole storyboard rests on Flows. So this is now the decisive BSP question — and the answer
+moves the recommendation.</p>
+<table class="w">
+<tr><th>Capability</th><th>Gupshup</th><th>AiSensy</th><th>Why it matters here</th></tr>
+<tr><td><b>Flow management API</b></td><td><b>✅ 6 endpoints</b> — Get Flow · Get All Flows · Update · Get Flow JSON · Deprecate · Delete</td><td><b>❓ none found</b></td><td>Whether Flows are version-controlled with everything else, or hand-built in a dashboard</td></tr>
+<tr><td><b>DYNAMIC Flows</b><br>live data mid-form</td><td><b>✅ explicit</b> — <code>endpoint_uri</code> data channel between the WhatsApp client and our server; Journey Builder triggers both static and dynamic</td><td><b>❓ unconfirmed</b></td><td><b>Screen 02 needs this.</b> Live seat counts and languages come from our backend. <b>Static Flows cannot do it</b></td></tr>
+<tr><td>Named "WhatsApp Flows"</td><td>✅ throughout partner + console docs</td><td><b>Says "WhatsApp Forms — Native Forms within WhatsApp"</b> on its features page; publishes a Flows guide on its blog</td><td>Probably the same thing under their own branding — <b>but unconfirmed, and that is not good enough to build on</b></td></tr>
+<tr><td>Template management API</td><td>✅ create/edit/delete/list/status</td><td>❌ dashboard only</td><td>40 templates × EN/KN, reloaded on every copy revision</td></tr>
+<tr><td>Published pricing</td><td>❌ quote-only</td><td>✅ ₹1,500 / ₹3,200</td><td>AiSensy's remaining advantage</td></tr>
+</table>
+
+<div class="note bad"><b>Three independent capability gaps now point the same way.</b> The earlier BSP
+recommendation weighted AiSensy's published price and 10-minute activation heavily — reasonable when the
+requirement was broadcast plus a bot. <b>Now that the design depends on Flows, that weighting looks wrong.</b>
+<br><br><b>Send this today:</b> <i>"Do you support Meta's native WhatsApp Flows? Specifically (a) can we create
+and update Flows via API or only in the dashboard, and (b) do you support DYNAMIC Flows with an
+<code>endpoint_uri</code> so a Flow can fetch live data from our server mid-form — for example real session
+availability?"</i><br><br><b>If the answer is "static only" or "dashboard only", switch to Gupshup.</b> The
+booking Flow is the centre of this design and a static one cannot show live seats.</div>
+
+<div class="note"><b>Also confirm the 1 Oct 2026 billing change.</b> Reported by secondary sources, not yet
+verified against Meta's own documentation — and it decides whether the fallback bot is cheap or expensive.</div>
+
+<div class="foot">
+Storyboard · 14 Aug 2026 · the parent-facing half of the nurture system.<br>
+Real WhatsApp tokens — header #008069, outgoing #D9FDD3, chat #EFE7DE. Companion to the nurture console
+storyboard, the technical spec and Geeta ji's guide.<br>
+<b>Flow performance figures</b> (60–90s, 12% vs 35%, +40–60%) are from published WhatsApp Flows guidance and
+should be re-measured on our own traffic. <b>Per-message rates still to be confirmed in writing</b> — see the
+BSP selection deck.
+</div>
+
+</div>
