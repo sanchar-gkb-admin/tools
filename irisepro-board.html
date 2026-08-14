@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YASHHO · Your board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#faf7f4; --panel:#ffffff; --ink:#1a1614; --ink-soft:#5c534d; --ink-faint:#8a807a;
+  --rule:#e6ded7; --accent:#f58321; --accent-soft:#fdf0e2; --accent-ink:#b06a12;
+  --shadow:0 1px 2px rgba(26,22,20,.05), 0 18px 50px -22px rgba(26,22,20,.30);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ground:#15120f; --panel:#1e1a17; --ink:#f2ece7; --ink-soft:#b3a89f; --ink-faint:#857a72;
+    --rule:#2f2822; --accent:#f9a24d; --accent-soft:#2a1f14; --accent-ink:#e0a95f;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 50px -22px rgba(0,0,0,.75);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15120f; --panel:#1e1a17; --ink:#f2ece7; --ink-soft:#b3a89f; --ink-faint:#857a72;
+  --rule:#2f2822; --accent:#f9a24d; --accent-soft:#2a1f14; --accent-ink:#e0a95f;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 50px -22px rgba(0,0,0,.75);
+}
+:root[data-theme="light"]{
+  --ground:#faf7f4; --panel:#ffffff; --ink:#1a1614; --ink-soft:#5c534d; --ink-faint:#8a807a;
+  --rule:#e6ded7; --accent:#f58321; --accent-soft:#fdf0e2; --accent-ink:#b06a12;
+  --shadow:0 1px 2px rgba(26,22,20,.05), 0 18px 50px -22px rgba(26,22,20,.30);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font:400 16px/1.6 Montserrat,system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased; overflow:hidden;
+}
+
+/* ── chrome ─────────────────────────────────── */
+#bar{position:fixed; top:0; left:0; right:0; height:3px; background:transparent; z-index:40}
+#bar i{display:block; height:100%; width:0; background:var(--accent);
+       transition:width .55s cubic-bezier(.2,.8,.2,1)}
+
+#top{position:fixed; top:0; left:0; right:0; z-index:30; display:flex; align-items:center;
+     gap:12px; padding:18px 20px 22px; pointer-events:none;
+     background:linear-gradient(var(--ground) 58%, transparent)}
+#top>*{pointer-events:auto}
+.brand{font:800 13px/1 Montserrat,sans-serif; letter-spacing:.2em; color:var(--accent)}
+#back{margin-left:auto; background:none; border:0; color:var(--ink-faint); cursor:pointer;
+      font:600 12px/1 Montserrat,sans-serif; letter-spacing:.06em; padding:8px 10px; border-radius:8px;
+      opacity:0; transition:opacity .3s}
+#back:hover{color:var(--ink); background:var(--panel)}
+#back.on{opacity:1}
+
+#demo{position:fixed; bottom:16px; left:50%; transform:translateX(-50%); z-index:30;
+      display:flex; gap:4px; background:var(--panel); border:1px solid var(--rule);
+      border-radius:99px; padding:4px; box-shadow:var(--shadow); max-width:calc(100vw - 32px);
+      overflow-x:auto; scrollbar-width:none}
+#demo::-webkit-scrollbar{display:none}
+#demo b{font:600 9.5px/1 Montserrat,sans-serif; letter-spacing:.1em; color:var(--ink-faint);
+        text-transform:uppercase; align-self:center; padding:0 8px 0 10px; white-space:nowrap}
+#demo button{border:0; background:none; cursor:pointer; border-radius:99px; padding:8px 13px;
+             font:600 12.5px/1 Montserrat,sans-serif; color:var(--ink-soft); white-space:nowrap;
+             transition:all .2s}
+#demo button:hover{color:var(--ink)}
+#demo button.on{background:var(--accent); color:#fff}
+
+/* ── screens ────────────────────────────────── */
+#stage{height:100%; position:relative}
+.screen{
+  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+  padding:96px 24px 108px; max-width:760px; margin:0 auto; overflow-y:auto;
+  opacity:0; visibility:hidden; transform:translateY(22px);
+  transition:opacity .42s ease, transform .42s cubic-bezier(.2,.8,.2,1), visibility .42s;
+}
+.screen.on{opacity:1; visibility:visible; transform:none}
+.screen.out{transform:translateY(-18px)}
+
+.eyebrow{font:600 11px/1 Montserrat,sans-serif; letter-spacing:.16em; text-transform:uppercase;
+         color:var(--accent); margin-bottom:18px}
+.q{font:700 clamp(27px,5.4vw,42px)/1.16 Montserrat,sans-serif; letter-spacing:-.022em;
+   text-wrap:balance; margin:0 0 16px}
+.help{font-size:16.5px; line-height:1.62; color:var(--ink-soft); max-width:54ch; margin:0 0 30px}
+.help em{font-style:normal; color:var(--ink); font-weight:600}
+
+textarea{
+  width:100%; border:0; border-bottom:2px solid var(--rule); background:transparent; color:var(--ink);
+  font:600 clamp(20px,3.4vw,27px)/1.45 Montserrat,sans-serif; letter-spacing:-.012em;
+  padding:6px 0 14px; resize:none; outline:none; overflow:hidden; transition:border-color .25s;
+}
+textarea::placeholder{color:var(--ink-faint); font-weight:400; opacity:.62}
+textarea:focus{border-bottom-color:var(--accent)}
+
+.choices{display:flex; flex-direction:column; gap:9px; max-width:520px}
+.choice{
+  display:flex; align-items:center; gap:13px; text-align:left; cursor:pointer;
+  background:var(--panel); border:1px solid var(--rule); border-radius:12px;
+  padding:15px 17px; font:600 16px/1.35 Montserrat,sans-serif; color:var(--ink);
+  transition:border-color .18s, transform .18s, background .18s;
+}
+.choice:hover{border-color:var(--accent); transform:translateX(3px)}
+.choice kbd{
+  font:700 11px/1 Montserrat,sans-serif; background:var(--ground); color:var(--ink-faint);
+  border:1px solid var(--rule); border-radius:5px; padding:5px 7px; min-width:24px; text-align:center;
+}
+.choice:hover kbd{background:var(--accent); color:#fff; border-color:var(--accent)}
+
+.go{margin-top:30px; display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+.btn{
+  background:var(--accent); color:#fff; border:0; border-radius:11px; cursor:pointer;
+  padding:14px 26px; font:700 15px/1 Montserrat,sans-serif; letter-spacing:.01em;
+  transition:transform .18s, opacity .18s;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.34; cursor:default; transform:none}
+.hint{font-size:12.5px; color:var(--ink-faint)}
+.hint kbd{font:600 11px/1 Montserrat,sans-serif; border:1px solid var(--rule); border-radius:4px;
+          padding:3px 5px; background:var(--panel)}
+.skip{background:none; border:0; color:var(--ink-faint); cursor:pointer; font:500 13px/1 Montserrat,sans-serif;
+      text-decoration:underline; text-underline-offset:3px; padding:6px}
+.skip:hover{color:var(--ink-soft)}
+
+/* mirror — their own number */
+.mirror{display:inline-flex; align-items:baseline; gap:10px; background:var(--accent-soft);
+        border-radius:12px; padding:14px 18px; margin-bottom:26px}
+.mirror .n{font:800 30px/1 Montserrat,sans-serif; letter-spacing:-.025em}
+.mirror .n.to{color:var(--accent)}
+.mirror .ar{color:var(--ink-faint); font-size:20px}
+.mirror .lb{font:600 10px/1.3 Montserrat,sans-serif; letter-spacing:.11em; text-transform:uppercase;
+            color:var(--accent-ink); margin-left:4px}
+
+.voice{display:inline-flex; align-items:center; gap:9px; margin-top:22px; color:var(--ink-faint);
+       font-size:13px; border:1px dashed var(--rule); border-radius:99px; padding:8px 15px 8px 9px}
+.voice s{width:26px; height:26px; border-radius:50%; background:var(--accent); display:grid;
+         place-items:center; color:#fff; font-size:11px; text-decoration:none}
+
+/* the witness screen with no input */
+.statement{font:700 clamp(24px,4.4vw,34px)/1.28 Montserrat,sans-serif; letter-spacing:-.02em;
+           text-wrap:balance; color:var(--ink)}
+.statement u{text-decoration:none; color:var(--accent)}
+
+/* ── the board ──────────────────────────────── */
+.board{
+  background:var(--panel); border:1px solid var(--rule); border-radius:20px;
+  box-shadow:var(--shadow); padding:30px 28px 26px; max-width:560px;
+  opacity:0; transform:scale(.965) translateY(14px);
+  transition:opacity .7s ease .12s, transform .7s cubic-bezier(.2,.8,.2,1) .12s;
+}
+.board.in{opacity:1; transform:none}
+.board .bh{display:flex; align-items:baseline; gap:10px; margin-bottom:20px;
+           padding-bottom:16px; border-bottom:1px solid var(--rule)}
+.board .bh .t{font:800 12px/1 Montserrat,sans-serif; letter-spacing:.18em; color:var(--accent);
+              text-transform:uppercase}
+.board .bh .v{margin-left:auto; font:600 11px/1 Montserrat,sans-serif; color:var(--ink-faint);
+              letter-spacing:.06em}
+.ln{margin-bottom:15px}
+.ln .k{font:600 9.5px/1 Montserrat,sans-serif; letter-spacing:.13em; text-transform:uppercase;
+       color:var(--ink-faint); display:block; margin-bottom:5px}
+.ln .v{font:600 17px/1.42 Montserrat,sans-serif; letter-spacing:-.008em}
+.ln.stand .v{font-weight:700; font-size:21px; line-height:1.3; letter-spacing:-.018em}
+.ln.recovery{background:var(--accent-soft); margin:0 -12px 15px; padding:13px 12px; border-radius:10px}
+.ln .v.empty{color:var(--ink-faint); font-weight:400; font-style:italic}
+.board .bf{display:flex; align-items:center; gap:12px; border-top:1px solid var(--rule);
+           padding-top:15px; margin-top:19px; flex-wrap:wrap}
+.board .bf .who{font-size:13px; color:var(--ink-soft)}
+.board .bf .d{margin-left:auto; display:flex; align-items:baseline; gap:7px;
+              font:800 19px/1 Montserrat,sans-serif; letter-spacing:-.02em}
+.board .bf .d i{font-style:normal; color:var(--ink-faint); font-size:14px}
+.board .bf .d b{color:var(--accent)}
+.board .bf .d s{text-decoration:none; font:600 9px/1 Montserrat,sans-serif; letter-spacing:.1em;
+                text-transform:uppercase; color:var(--ink-faint)}
+
+.after{margin-top:26px; max-width:560px}
+.after p{font-size:14.5px; color:var(--ink-soft); margin:0 0 18px; line-height:1.65}
+.after .row{display:flex; gap:10px; flex-wrap:wrap}
+.handoff{background:var(--accent-soft); border-radius:14px; padding:18px 20px 20px; margin:0 0 20px}
+.handoff .k{font:600 9.5px/1 Montserrat,sans-serif; letter-spacing:.13em; text-transform:uppercase;
+            color:var(--accent-ink); display:block; margin-bottom:9px}
+.handoff p{font-size:14.5px; color:var(--ink-soft); margin:0 0 15px}
+.btn.ghost{background:transparent; color:var(--ink-soft); border:1px solid var(--rule)}
+.btn.ghost:hover{color:var(--ink); border-color:var(--ink-faint)}
+
+@media (max-width:600px){
+  .screen{padding:88px 20px 96px}
+  .ln.recovery{margin-left:-8px; margin-right:-8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .screen,.board,#bar i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"><i></i></div>
+<div id="top">
+  <span class="brand">YASHHO</span>
+  <button id="back">← back</button>
+</div>
+<div id="stage"></div>
+
+<div id="demo">
+  <b>preview only · never asked in-app</b>
+  <button data-k="learner" class="on">Class 8 learner</button>
+  <button data-k="aspirant">KAS aspirant</button>
+  <button data-k="acharya">Acharya</button>
+  <button data-k="parent">Parent</button>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   ONE SPINE, FOUR SKINS.
+
+   Every archetype answers the same five lines — stand, cost, witness, date,
+   recovery — plus one line that belongs only to them. What changes is the
+   vocabulary, who counts as a witness, and how far ahead "by when" reaches.
+   That sameness is deliberate: a parent has to recognise their child's board
+   in an aspirant's board, or the proof stops compounding.
+
+   In production the archetype is DERIVED (stream · tier · acharya_* · account
+   role), never asked. The switcher at the bottom exists only for this preview.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+const A = {
+
+learner: {
+  who:'Ananya · Class 8 · Board Exam Booster',
+  name:'Ananya',
+  metric:'Execution · AACE', from:41, to:72,
+  open:{
+    eyebrow:'your scorecard is ready',
+    q:'Ananya — four minutes, before you look.',
+    help:'Your scorecard says what you <em>did</em>. This says who you <em>are</em> — in your words, not ours. Nobody sees it unless you say so.',
+    cta:'Start'
+  },
+  qs:[
+    { key:'stand', eyebrow:'1 · your stand',
+      q:'I’m someone who…',
+      help:'Not what you’re good at. What you’d want said about you when you’re not in the room.',
+      ph:'…says the true thing first' },
+
+    { key:'cost', eyebrow:'2 · what it costs',
+      q:'Which means I’ll stop…',
+      help:'You said you’re someone who <em>{{stand}}</em>. Something has to go for that to be true. What?',
+      ph:'…writing long answers so nobody can tell I’m unsure' },
+
+    { key:'witness', eyebrow:'3 · who’ll notice', type:'choice',
+      q:'Who’ll notice first?',
+      help:'One person. Not everyone — one.',
+      opts:['My class teacher|your class teacher','A friend|your friend','Amma|Amma','Appa|Appa',
+            'My brother / sister|them'] },
+
+    { key:'date', eyebrow:'4 · by when', type:'choice',
+      q:'By when will they have noticed?',
+      help:'Close enough that you can’t forget it.',
+      opts:['This week','By the end of this month','Before my next scorecard'] },
+
+    { key:'recovery', eyebrow:'5 · and when you don’t',
+      q:'You’ll break this. Everyone does.',
+      help:'So decide now what happens then. Breaking your word isn’t the failure — <em>not going back</em> is. What will you say to {{witness}}?',
+      ph:'…tell her I didn’t, and say why' },
+
+    { key:'extra', eyebrow:'6 · one more', optional:true,
+      q:'Was there a moment you nearly didn’t finish?',
+      help:'One task, one moment. What made you carry on?',
+      ph:'…the one about a decision I regretted' }
+  ],
+  labels:{ stand:'I am someone who', cost:'Which means I’ll stop', witness:'Who’ll know first',
+           date:'By', recovery:'And when I don’t', extra:'The moment it nearly stopped' }
+},
+
+aspirant: {
+  who:'K. Manjunath · KAS · 4th attempt',
+  name:'Manjunath',
+  metric:'Execution · AACE', from:38, to:69,
+  open:{
+    eyebrow:'your scorecard is ready',
+    q:'Four minutes before you open it.',
+    help:'You know what your marks say. This is the other record — what you’ll stand on in the room, written now, while it still costs something to write.',
+    cta:'Begin'
+  },
+  qs:[
+    { key:'stand', eyebrow:'1 · your stand',
+      q:'I’m the kind of candidate who…',
+      help:'Not what you know. What the board will find out about you inside two minutes.',
+      ph:'…says “I don’t know” without flinching' },
+
+    { key:'cost', eyebrow:'2 · what it costs',
+      q:'Which means, in the room, I will not…',
+      help:'Name the habit that has cost you before. You already know which one.',
+      ph:'…pad an answer to fill the silence' },
+
+    { key:'witness', eyebrow:'3 · who holds you to it', type:'choice',
+      q:'Who’ll hold you to this?',
+      help:'Someone who will actually ask. Not someone who’ll be polite about it.',
+      opts:['My study partner|your study partner','My mentor|your mentor',
+            'My wife / husband|them','The parent funding this|them'] },
+
+    { key:'date', eyebrow:'4 · by when', type:'choice',
+      q:'By when?',
+      opts:['My next mock','My next attempt','Results day'] },
+
+    { key:'recovery', eyebrow:'5 · the way back',
+      q:'When you slip — and you will — how do you return?',
+      help:'Not a punishment. A route. Nobody here fails from slipping; they fail from taking three weeks to come back. Make it small enough to actually do.',
+      ph:'…open the file the same night, not the next week' },
+
+    { key:'extra', eyebrow:'6 · the question you’re dreading',
+      q:'“Why has it taken this long?”',
+      help:'They will ask. Answer it now, as a stand rather than a defence — and you never have to be ambushed by it again.',
+      ph:'…because I was preparing to be right instead of preparing to be useful' }
+  ],
+  labels:{ stand:'I am the kind of candidate who', cost:'In the room I will not',
+           witness:'Who holds me to it', date:'By', recovery:'My way back',
+           extra:'When they ask why it took this long' }
+},
+
+acharya: {
+  who:'Shashikala D. · Mission Acharya',
+  name:'Shashikala',
+  metric:'Communication · AACE', from:55, to:81,
+  open:{
+    eyebrow:'your scorecard is ready',
+    q:'Four minutes — for you, not for your class.',
+    help:'You spend the day asking children who they are becoming. This one is yours.',
+    cta:'Begin'
+  },
+  qs:[
+    { key:'stand', eyebrow:'1 · your stand',
+      q:'I’m a teacher who…',
+      help:'Not your subject. What a student would say about you in ten years’ time.',
+      ph:'…lets the silence run until someone thinks' },
+
+    { key:'cost', eyebrow:'2 · what it costs',
+      q:'Which means I’ll stop…',
+      help:'Something <em>you</em> do — not something you’ll assign. This is your board, not this term’s plan.',
+      ph:'…finishing their sentences for them' },
+
+    { key:'witness', eyebrow:'3 · who’ll notice', type:'choice',
+      q:'Which colleague will know?',
+      help:'Someone in the staff room who’ll notice if you drift back.',
+      opts:['The teacher I share a class with|them','My head teacher|your head teacher',
+            'A teacher I trained with|them','My co-Acharya|your co-Acharya'] },
+
+    { key:'date', eyebrow:'4 · by when', type:'choice',
+      q:'By the end of which term?',
+      opts:['This term','Next term','Before the year ends'] },
+
+    { key:'recovery', eyebrow:'5 · and when you forget',
+      q:'Forty children make anyone forget.',
+      help:'What brings you back? Something that fits inside a school day — not a resolution.',
+      ph:'…wait five seconds before I answer for them' },
+
+    { key:'extra', eyebrow:'6 · the multiplier',
+      q:'One child who’ll be different because of this.',
+      help:'A name. Not a type of child — a name.',
+      ph:'…the boy on the last bench who answers only when nobody is looking' }
+  ],
+  labels:{ stand:'I am a teacher who', cost:'Which means I’ll stop', witness:'Who’ll know',
+           date:'By the end of', recovery:'When I forget', extra:'The one child' }
+},
+
+parent: {
+  who:'Lakshmi R. · Ananya’s mother',
+  name:'Lakshmi',
+  metric:'Ananya · Execution', from:41, to:72,
+  open:{
+    eyebrow:'ananya’s scorecard is ready',
+    q:'Four minutes before you see her scorecard.',
+    help:'She has been asked who she is becoming. It seems only fair to ask you the same thing.',
+    cta:'Begin'
+  },
+  qs:[
+    { key:'stand', eyebrow:'1 · your stand',
+      q:'I’m a parent who…',
+      help:'What Ananya would say about you if someone asked her at twenty-five.',
+      ph:'…asks about her day before her marks' },
+
+    { key:'cost', eyebrow:'2 · what it costs',
+      q:'Which means I’ll stop…',
+      help:'You said you’re a parent who <em>{{stand}}</em>. What has to go?',
+      ph:'…comparing her to her cousin' },
+
+    { key:'witness', eyebrow:'3 · who’ll notice', type:'statement',
+      statement:'Ananya will notice. <u>She’s the only witness on this one.</u>',
+      help:'Nobody else needs to know. She’ll be asked, in thirty days, whether anything changed at home.',
+      value:'Ananya' },
+
+    { key:'date', eyebrow:'4 · by when', type:'choice',
+      q:'By when?',
+      opts:['This week','Within the month','Before her next scorecard'] },
+
+    { key:'recovery', eyebrow:'5 · and when you slip',
+      q:'You’ll slip back into the old way.',
+      help:'Every parent does, usually on a bad day at work. What do you do when you catch yourself?',
+      ph:'…say out loud that I did it again, in front of her' },
+
+    { key:'extra', eyebrow:'6 · the one that matters',
+      q:'The complaint you keep making — say it as a request.',
+      help:'Every complaint is a request nobody has made out loud yet. Write the request underneath, plainly, the way you’d want it said to you.',
+      ph:'…instead of “you never talk to us” — “tell me one thing about today”' }
+  ],
+  labels:{ stand:'I am a parent who', cost:'Which means I’ll stop', witness:'Who’ll know',
+           date:'By', recovery:'When I slip back', extra:'The request under the complaint' }
+}
+
+};
+
+/* ── engine ──────────────────────────────────────────────────────────────── */
+const stage = document.getElementById('stage');
+const bar   = document.querySelector('#bar i');
+const back  = document.getElementById('back');
+
+let key = 'learner', p = A[key], i = 0, ans = {};
+
+const fill = (s) => s.replace(/\{\{(\w+)\}\}/g, (_, k) => ans[k + 'Ref'] || ans[k] || '…');
+const el = (h) => { const d = document.createElement('div'); d.innerHTML = h.trim(); return d.firstElementChild; };
+
+function render(dir){
+  const old = stage.querySelector('.screen.on');
+  if (old){ old.classList.remove('on'); old.classList.add('out'); setTimeout(()=>old.remove(), 460); }
+
+  const total = p.qs.length + 2;
+  bar.style.width = (i / (total - 1) * 100) + '%';
+  back.classList.toggle('on', i > 0 && i <= p.qs.length);
+
+  const s = i === 0 ? open() : (i <= p.qs.length ? question(p.qs[i-1]) : board());
+  stage.appendChild(s);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    s.classList.add('on');
+    const t = s.querySelector('textarea');
+    if (t && window.innerWidth > 760) t.focus();
+    const b = s.querySelector('.board');
+    if (b) setTimeout(()=>b.classList.add('in'), 90);
+  }));
+}
+
+function mirror(){
+  return `<div class="mirror"><span class="n">${p.from}</span><span class="ar">→</span>
+          <span class="n to">${p.to}</span><span class="lb">${p.metric}</span></div>`;
+}
+
+function open(){
+  const s = el(`<section class="screen">
+    <div class="eyebrow">${p.open.eyebrow}</div>
+    ${mirror()}
+    <h1 class="q">${p.open.q}</h1>
+    <p class="help">${p.open.help}</p>
+    <div class="go"><button class="btn">${p.open.cta}</button>
+      <span class="hint">about 4 minutes · <kbd>Enter</kbd> to move on</span></div>
+    <div class="voice"><s>●</s> you can talk instead of typing</div>
+  </section>`);
+  s.querySelector('.btn').onclick = next;
+  return s;
+}
+
+function question(q){
+  const head = `<div class="eyebrow">${q.eyebrow}</div>
+                ${q.type === 'statement' ? '' : `<h1 class="q">${fill(q.q)}</h1>`}
+                ${q.type === 'statement' ? `<p class="statement">${q.statement}</p><div style="height:18px"></div>` : ''}
+                ${q.help ? `<p class="help">${fill(q.help)}</p>` : ''}`;
+
+  if (q.type === 'choice'){
+    // "Label|ref" — the label goes on the board in the learner's own voice ("My class teacher"),
+    // the ref is what gets spliced into a later question ("What will you say to your class teacher?").
+    // Without this split, screen 5 read "What will you say to My class teacher?".
+    const s = el(`<section class="screen">${head}
+      <div class="choices">${q.opts.map((o,n)=>{
+        const [label, ref] = o.split('|');
+        return `<button class="choice" data-v="${label}" data-r="${ref || label}">
+                  <kbd>${n+1}</kbd><span>${label}</span></button>`;
+      }).join('')}
+      </div></section>`);
+    s.querySelectorAll('.choice').forEach(b => b.onclick = () => {
+      ans[q.key] = b.dataset.v; ans[q.key + 'Ref'] = b.dataset.r; next();
+    });
+    return s;
+  }
+
+  if (q.type === 'statement'){
+    const s = el(`<section class="screen">${head}
+      <div class="go"><button class="btn">I understand</button></div></section>`);
+    s.querySelector('.btn').onclick = () => { ans[q.key] = q.value; next(); };
+    return s;
+  }
+
+  const s = el(`<section class="screen">${head}
+    <textarea rows="1" placeholder="${q.ph || ''}">${ans[q.key] || ''}</textarea>
+    <div class="go">
+      <button class="btn" disabled>OK</button>
+      <span class="hint"><kbd>Enter</kbd> to continue · <kbd>Shift</kbd>+<kbd>Enter</kbd> for a new line</span>
+      ${q.optional ? '<button class="skip">skip this one</button>' : ''}
+    </div></section>`);
+
+  const t = s.querySelector('textarea'), btn = s.querySelector('.btn');
+  const grow = () => { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
+  const sync = () => { btn.disabled = !t.value.trim(); grow(); };
+  t.addEventListener('input', sync);
+  t.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); if (t.value.trim()) commit(); }
+  });
+  const commit = () => { ans[q.key] = t.value.trim(); next(); };
+  btn.onclick = commit;
+  const sk = s.querySelector('.skip');
+  if (sk) sk.onclick = () => { delete ans[q.key]; next(); };
+  setTimeout(sync, 0);
+  return s;
+}
+
+function board(){
+  const L = p.labels;
+  const line = (k, cls) => {
+    const v = ans[k];
+    return `<div class="ln ${cls || ''}">
+      <span class="k">${L[k]}</span>
+      <div class="v${v ? '' : ' empty'}">${v || 'left blank — you can add it later'}</div>
+    </div>`;
+  };
+
+  const s = el(`<section class="screen">
+    <div class="eyebrow">your board · version 1</div>
+    <div class="board">
+      <div class="bh"><span class="t">My board</span><span class="v">v1 · today</span></div>
+      ${line('stand','stand')}
+      ${line('cost')}
+      <div style="display:flex; gap:22px; flex-wrap:wrap">
+        <div style="flex:1; min-width:130px">${line('witness')}</div>
+        <div style="flex:1; min-width:130px">${line('date')}</div>
+      </div>
+      ${line('recovery','recovery')}
+      ${line('extra')}
+      <div class="bf">
+        <span class="who">${p.who}</span>
+        <span class="d"><span>${p.from}</span><i>→</i><b>${p.to}</b><s>${p.metric}</s></span>
+      </div>
+    </div>
+    <div class="after">
+      <p><strong>Nobody sees this yet.</strong> It’s yours. We’ll ask you again at your next
+      scorecard — and the difference between that board and this one <em>is</em> your story,
+      told in words you wrote before you knew how it turned out.</p>
+      ${key === 'parent' ? `
+      <div class="handoff">
+        <span class="k">and one more thing</span>
+        <p>Ananya has her own board to fill. It’s hers — you won’t see it unless she shows you.</p>
+        <button class="btn" id="pass">Pass the phone to Ananya →</button>
+      </div>` : ''}
+      <div class="row">
+        <button class="btn${key === 'parent' ? ' ghost' : ''}">Keep it private</button>
+        <button class="btn ghost">Choose who can see it</button>
+        <button class="btn ghost" id="again">Start over</button>
+      </div>
+    </div>
+  </section>`);
+  s.querySelector('#again').onclick = () => { ans = {}; i = 0; render(); };
+  const pass = s.querySelector('#pass');
+  if (pass) pass.onclick = () => switchTo('learner');
+  return s;
+}
+
+function next(){ i++; render(); }
+back.onclick = () => { if (i > 0){ i--; render(); } };
+
+document.addEventListener('keydown', e => {
+  const cur = stage.querySelector('.screen.on');
+  if (!cur) return;
+  if (/^[1-9]$/.test(e.key) && document.activeElement.tagName !== 'TEXTAREA'){
+    const c = cur.querySelectorAll('.choice')[+e.key - 1];
+    if (c) c.click();
+  }
+  if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA'){
+    const b = cur.querySelector('.btn:not(:disabled)');
+    if (b) b.click();
+  }
+});
+
+function switchTo(k){
+  key = k; p = A[k]; ans = {}; i = 0;
+  document.querySelectorAll('#demo button').forEach(x => x.classList.toggle('on', x.dataset.k === k));
+  render();
+}
+document.querySelectorAll('#demo button').forEach(b => b.onclick = () => switchTo(b.dataset.k));
+
+render();
+</script>
+</body>
+</html>
