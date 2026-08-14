@@ -1,0 +1,458 @@
+<title>YASHHO — Lead nurture &amp; temperature: the working spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{--bg:#0a1626;--surface:#10223c;--surface2:#16294a;--line:#1d3354;--line2:#2a4468;
+  --ink:#eaf1f9;--mute:#8ea3bd;--dim:#6b819d;--o:#f5821f;--o2:#ff9b3d;--o3:#ffb259;--blue:#3f93e0;
+  --ok:#3ecf8e;--warn:#f5c451;--bad:#ef5f5f;--purple:#a78bfa;--wa:#25D366;
+  --hot:#ff5f4d;--warm:#f5a623;--cold:#4a9fe0;--dorm:#8a7fb5;--lost:#5b6b80;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,sans-serif;
+  font-weight:400;line-height:1.62;-webkit-font-smoothing:antialiased;font-size:15px}
+.wrap{max-width:1180px;margin:0 auto;padding:44px 22px 110px}
+a{color:var(--o2)}
+.kick{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o)}
+h1{font-size:clamp(29px,4.4vw,46px);font-weight:900;letter-spacing:-.025em;margin:.24em 0 .18em;line-height:1.04}
+.lede{color:var(--mute);font-size:16.5px;max-width:82ch}
+h2{display:flex;align-items:center;gap:13px;font-size:13px;font-weight:800;letter-spacing:.17em;
+  text-transform:uppercase;margin:62px 0 8px}
+h2 i{width:28px;height:28px;border-radius:8px;background:var(--o);color:#0a1626;display:grid;
+  place-items:center;font-size:13px;flex:none}
+.h2sub{color:var(--mute);font-size:14.5px;margin:0 0 24px;max-width:86ch}
+h3{font-size:18.5px;font-weight:800;margin:32px 0 8px;letter-spacing:-.01em}
+h4{font-size:15px;font-weight:800;margin:20px 0 6px;color:var(--o3)}
+p{max-width:90ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+.card.o{border-color:var(--o);background:linear-gradient(180deg,rgba(245,130,31,.10),rgba(245,130,31,.03))}
+.card.bad{border-color:rgba(239,95,95,.5);background:rgba(239,95,95,.07)}
+.card.ok{border-color:rgba(62,207,142,.45);background:rgba(62,207,142,.06)}
+.card.q{border-color:rgba(167,139,250,.5);background:rgba(167,139,250,.06)}
+.card h4{margin-top:0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0;display:block;overflow-x:auto}
+table.wrapok{white-space:normal}
+th{text-align:left;padding:9px 11px;background:var(--surface2);border:1px solid var(--line2);
+  font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--o3)}
+td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:nth-child(even) td{background:rgba(255,255,255,.014)}
+td b{color:#fff}
+code{background:#071120;padding:1.5px 6px;border-radius:4px;font-size:12px;color:var(--o3);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.p{display:inline-block;font-size:10px;font-weight:800;padding:2.5px 7px;border-radius:5px;letter-spacing:.05em;white-space:nowrap}
+.p.y{background:rgba(62,207,142,.16);color:var(--ok);border:1px solid rgba(62,207,142,.4)}
+.p.n{background:rgba(239,95,95,.14);color:var(--bad);border:1px solid rgba(239,95,95,.38)}
+.p.m{background:rgba(245,196,81,.14);color:var(--warn);border:1px solid rgba(245,196,81,.38)}
+.p.i{background:rgba(63,147,224,.14);color:var(--blue);border:1px solid rgba(63,147,224,.38)}
+.p.v{background:rgba(167,139,250,.14);color:var(--purple);border:1px solid rgba(167,139,250,.38)}
+.p.g{background:rgba(255,255,255,.06);color:var(--mute);border:1px solid var(--line2)}
+.p.lock{background:rgba(245,130,31,.16);color:var(--o3);border:1px solid rgba(245,130,31,.45)}
+.p.geeta{background:rgba(37,211,102,.14);color:var(--wa);border:1px solid rgba(37,211,102,.4)}
+.p.eng{background:rgba(63,147,224,.14);color:var(--blue);border:1px solid rgba(63,147,224,.4)}
+.t{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:5px;color:#04101d}
+.t.hot{background:var(--hot)} .t.warm{background:var(--warm)} .t.cold{background:var(--cold)}
+.t.dorm{background:var(--dorm)} .t.lost{background:var(--lost);color:#cfd9e6}
+.t.cust{background:var(--ok)} .t.new{background:#a9b7c9}
+.src{font-size:11.5px;color:var(--dim);font-style:italic;margin-top:8px;max-width:92ch}
+ul,ol{max-width:90ch;padding-left:22px} li{margin:6px 0} li b{color:#fff}
+.arch{background:#071120;border:1px solid var(--line2);border-radius:11px;padding:16px 18px;margin:18px 0;overflow-x:auto}
+.arch pre{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.72}
+.arch pre .c{color:var(--o3)} .arch pre .d{color:var(--dim)} .arch pre .b2{color:var(--blue)}
+.arch pre .g2{color:var(--ok)} .arch pre .r{color:var(--bad)} .arch pre .k{color:var(--purple)}
+.fill{background:rgba(37,211,102,.07);border:1px dashed rgba(37,211,102,.45);border-radius:4px;
+  padding:2px 10px;color:var(--wa);font-size:11.5px;font-weight:700;display:inline-block;min-width:70px}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:15px 19px;margin:26px 0}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:30px}
+@media(max-width:760px){.toc ol{columns:1}}
+.toc a{text-decoration:none;font-size:13.5px}
+.owner{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.ob{flex:1 1 260px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:14px 16px}
+.ob h5{margin:0 0 8px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.ob ul{margin:0;padding-left:18px;font-size:13px}
+.foot{margin-top:62px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim)}
+</style>
+
+<div class="wrap">
+
+<div class="kick">Working spec · v1 draft · 14 Aug 2026 · for Geeta ji + engineering</div>
+<h1>Lead nurture &amp; lead temperature</h1>
+<p class="lede">One shared vocabulary for the nurture process and the system that runs it. <b>Geeta ji owns the
+process: the touchpoints, the sequences, the words, the timing.</b> Engineering owns the plumbing. This
+document exists so both halves use the <b>same names for the same things</b> — because every place the
+process document and the code disagree becomes a bug nobody can see.</p>
+
+<div class="card o">
+<h4>How to use this document</h4>
+<p style="margin:0 0 8px">Three kinds of content, marked throughout:</p>
+<p style="margin:0"><span class="p lock">LOCKED</span> already decided — do not change without a
+conversation &nbsp;·&nbsp; <span class="p geeta">GEETA JI</span> yours to fill in &nbsp;·&nbsp;
+<span class="p eng">ENGINEERING</span> built from what you fill in</p>
+</div>
+
+<div class="toc"><ol>
+  <li><a href="#own">Who owns what</a></li>
+  <li><a href="#vocab">The vocabulary — closed sets</a></li>
+  <li><a href="#touch">The touchpoint catalogue</a></li>
+  <li><a href="#score">The scoring model</a></li>
+  <li><a href="#temp">Temperature bands → cadence</a></li>
+  <li><a href="#seq">The sequences — per stream × persona</a></li>
+  <li><a href="#msg">The message inventory</a></li>
+  <li><a href="#rules">Six rules that cannot be broken</a></li>
+  <li><a href="#tech">The technical contract</a></li>
+  <li><a href="#example">A worked example, end to end</a></li>
+  <li><a href="#deliver">What Geeta ji delivers, and in what form</a></li>
+</ol></div>
+
+<!-- 1 -->
+<h2 id="own"><i class="fa-solid fa-users-gear"></i> 1 · Who owns what</h2>
+<div class="owner">
+<div class="ob"><h5 style="color:var(--wa)">Geeta ji — the process</h5>
+<ul>
+  <li>Which touchpoints exist, and what each one <i>means</i></li>
+  <li>The sequence per stream and persona</li>
+  <li>The words — every message, in English and Kannada</li>
+  <li>Timing and cadence between touches</li>
+  <li>When a lead is hot, and what "hot" earns them</li>
+  <li>When we stop contacting someone</li>
+</ul></div>
+<div class="ob"><h5 style="color:var(--blue)">Engineering — the plumbing</h5>
+<ul>
+  <li>Capturing every touchpoint as an event</li>
+  <li>Computing score and temperature from her weights</li>
+  <li>Sending at the right moment via AiSensy</li>
+  <li>Enforcing the six rules in §8 in code</li>
+  <li>The unified timeline and reporting</li>
+</ul></div>
+<div class="ob"><h5 style="color:var(--o3)">Shared — this document</h5>
+<ul>
+  <li>The names of states and events</li>
+  <li>The score weights</li>
+  <li>The message inventory</li>
+  <li><b>If it is not written here, it does not exist in the system</b></li>
+</ul></div>
+</div>
+
+<!-- 2 -->
+<h2 id="vocab"><i class="fa-solid fa-spell-check"></i> 2 · The vocabulary — closed sets</h2>
+<p class="h2sub">Every list below is <b>closed</b>: only these values, no others, no free text. Adding a value
+is a deliberate decision that changes this document first and the code second.</p>
+
+<h3>2.1 &nbsp;Lead temperature <span class="p lock">LOCKED — 6 states</span></h3>
+<table class="wrapok">
+<tr><th>State</th><th>Meaning in plain words</th><th>Can we send marketing?</th><th>Can we send utility?</th></tr>
+<tr><td><span class="t new">NEW</span></td><td>Just arrived. We know nothing yet</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td></tr>
+<tr><td><span class="t cold">COLD</span></td><td>Gave details, has not engaged since</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td></tr>
+<tr><td><span class="t warm">WARM</span></td><td>Engaging — opening, replying, browsing</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td></tr>
+<tr><td><span class="t hot">HOT</span></td><td>Showing buying intent right now</td><td><span class="p m">prefer utility</span></td><td><span class="p y">yes</span></td></tr>
+<tr><td><span class="t cust">CUSTOMER</span></td><td>Has paid. A different relationship entirely</td><td><span class="p m">sparingly</span></td><td><span class="p y">yes</span></td></tr>
+<tr><td><span class="t dorm">DORMANT</span></td><td>Was warm, went quiet, decayed</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td></tr>
+<tr><td><span class="t lost">LOST</span></td><td>Opted out, blocked, or asked us to stop</td><td><span class="p n">NEVER</span></td><td><span class="p n">NEVER</span></td></tr>
+</table>
+<p class="src"><b>Note:</b> that is 7 rows for a 6-state set because <span class="t lost">LOST</span> is
+terminal and absorbing — nothing exits it except an explicit new opt-in from the person themselves.</p>
+
+<h3>2.2 &nbsp;Persona <span class="p lock">LOCKED — 2</span></h3>
+<table class="wrapok">
+<tr><th>Persona</th><th>Who is on the other end</th><th>Why this distinction is load-bearing</th></tr>
+<tr><td><code>self_adult</code></td><td>The learner, an adult, buying for themselves — KAS / IAS aspirants</td><td>Peer register. Outcome-led. No child-protection constraints</td></tr>
+<tr><td><code>guardian</code></td><td>A parent or guardian buying for a child under 18</td><td><b>The child is never contacted and never profiled.</b> See §8 Rule 1</td></tr>
+</table>
+
+<h3>2.3 &nbsp;Stream <span class="p lock">LOCKED — 7</span></h3>
+<p><code>kas</code> · <code>ias</code> · <code>jee</code> · <code>neet</code> · <code>board_booster</code> ·
+<code>marks_booster</code> · <code>career_readiness</code></p>
+
+<h3>2.4 &nbsp;Language <span class="p lock">LOCKED — 2 at launch</span></h3>
+<p><code>en</code> · <code>kn</code> &nbsp;— Kannada is a launch requirement. Hindi and others are added only
+on evidence, because <b>every language multiplies template work permanently</b> (§8 Rule 5).</p>
+
+<!-- 3 -->
+<h2 id="touch"><i class="fa-solid fa-hand-pointer"></i> 3 · The touchpoint catalogue</h2>
+<p class="h2sub">A touchpoint is <b>anything the person does, or fails to do, that tells us something about
+their interest.</b> This is the heart of the process document.</p>
+
+<div class="card q">
+<h4><span class="p geeta">GEETA JI</span> — the one question to ask of every touchpoint</h4>
+<p style="margin:0"><b>"If I saw only this, would I think this person is more likely or less likely to
+buy — and how much more?"</b> That answer is the score. Everything else follows from it.</p>
+</div>
+
+<table class="wrapok">
+<tr><th>#</th><th>Touchpoint</th><th>Where it happens</th><th>Signal</th><th>Score Δ <span class="p geeta">yours</span></th></tr>
+<tr><td>1</td><td>Lead form submitted</td><td>Website</td><td>Declared intent — the strongest early signal</td><td class="n">+20 <span class="p g">suggested</span></td></tr>
+<tr><td>2</td><td>Pricing / plan page viewed</td><td>Website</td><td>Evaluating</td><td class="n">+15</td></tr>
+<tr><td>3</td><td>Payment started, not completed</td><td>Checkout</td><td><b>Highest intent signal we have</b></td><td class="n">+30</td></tr>
+<tr><td>4</td><td>WhatsApp message replied to</td><td>WhatsApp</td><td>Active engagement</td><td class="n">+10</td></tr>
+<tr><td>5</td><td>Enrolment bot conversation completed</td><td>WhatsApp bot</td><td>Self-qualified</td><td class="n">+25</td></tr>
+<tr><td>6</td><td>Asked a question to the support bot</td><td>WhatsApp bot</td><td>Considering</td><td class="n">+8</td></tr>
+<tr><td>7</td><td>Clicked a link in our message</td><td>WhatsApp</td><td>Attention</td><td class="n">+5</td></tr>
+<tr><td>8</td><td>Message delivered, unread 48 h</td><td>WhatsApp</td><td>Fading</td><td class="n">−3</td></tr>
+<tr><td>9</td><td>No interaction for 7 days</td><td>—</td><td>Decay</td><td class="n">−10</td></tr>
+<tr><td>10</td><td>No interaction for 30 days</td><td>—</td><td>Gone quiet</td><td class="n">→ DORMANT</td></tr>
+<tr><td>11</td><td><b>Opted out / blocked / said stop</b></td><td>Any</td><td><b>Terminal</b></td><td class="n">→ LOST</td></tr>
+<tr><td>12</td><td>Payment completed</td><td>Checkout</td><td>Converted</td><td class="n">→ CUSTOMER</td></tr>
+<tr><td class="n">13+</td><td><span class="fill">add rows</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td><td class="n"><span class="fill">…</span></td></tr>
+</table>
+
+<div class="card bad">
+<h4>Touchpoints that must NEVER be scored <span class="p lock">LOCKED</span></h4>
+<p style="margin:0 0 6px">For the <code>guardian</code> persona, the following are <b>service data about a
+child</b> and may not influence any marketing decision, score, tag or audience:</p>
+<ul style="margin:0">
+  <li>The child's task submissions, completions or timings</li>
+  <li>The child's scores, ability profile or scorecard band</li>
+  <li>Anything the child did inside the app</li>
+</ul>
+<p style="margin:8px 0 0">Sending a guardian <i>"your child's scorecard is ready"</i> is fine — that is
+service. <b>Using how well the child scored to decide who gets an upsell is not.</b> See §8 Rule 1.</p>
+</div>
+
+<!-- 4 -->
+<h2 id="score"><i class="fa-solid fa-temperature-half"></i> 4 · The scoring model</h2>
+<p class="h2sub">One number, 0–100, recomputed after every event.</p>
+<div class="arch"><pre><span class="c">HOW THE SCORE MOVES</span>
+
+  score starts at <span class="b2">0</span> when the contact is created
+  every touchpoint applies its Δ  (§3)
+  score is <span class="k">clamped to 0–100</span> — it can never go negative or above 100
+  score <span class="k">decays</span> with silence, so it reflects interest NOW, not interest ever
+
+  <span class="d">Temperature is derived from score. It is never set by hand.</span>
+  <span class="d">Exception: LOST and CUSTOMER are set by events, and override the score entirely.</span></pre></div>
+
+<table class="wrapok">
+<tr><th>Score</th><th>Temperature</th><th>What it means we should do</th></tr>
+<tr><td class="n">60–100</td><td><span class="t hot">HOT</span></td><td>Reach out now. A human may take over</td></tr>
+<tr><td class="n">30–59</td><td><span class="t warm">WARM</span></td><td>Keep nurturing on cadence</td></tr>
+<tr><td class="n">10–29</td><td><span class="t cold">COLD</span></td><td>Slow drip. Prove value before asking</td></tr>
+<tr><td class="n">0–9</td><td><span class="t new">NEW</span> or <span class="t dorm">DORMANT</span></td><td>NEW if recent; DORMANT if it decayed here</td></tr>
+</table>
+<p class="src"><span class="p geeta">GEETA JI</span> — the band boundaries (60 / 30 / 10) are a starting
+proposal. Move them once we have 100 real leads and can see where behaviour actually clusters.</p>
+
+<!-- 5 -->
+<h2 id="temp"><i class="fa-solid fa-clock"></i> 5 · Temperature bands → cadence</h2>
+<p class="h2sub">This table is the bridge between the process and the system. It says: <b>given how warm
+someone is, how often do we speak to them, and how?</b></p>
+<table class="wrapok">
+<tr><th>Temperature</th><th>First touch</th><th>Then</th><th>Max touches</th><th>Channel / template type</th><th>Then what?</th></tr>
+<tr><td><span class="t hot">HOT</span></td><td><span class="fill">within 1 h</span></td><td><span class="fill">daily</span></td><td class="n"><span class="fill">3</span></td><td>Utility + human handoff</td><td>→ WARM if no reply</td></tr>
+<tr><td><span class="t warm">WARM</span></td><td><span class="fill">same day</span></td><td><span class="fill">every 2–3 d</span></td><td class="n"><span class="fill">4</span></td><td>Utility + bot</td><td>→ COLD if no reply</td></tr>
+<tr><td><span class="t cold">COLD</span></td><td><span class="fill">day 2</span></td><td><span class="fill">weekly</span></td><td class="n"><span class="fill">3</span></td><td>Marketing</td><td>→ DORMANT</td></tr>
+<tr><td><span class="t dorm">DORMANT</span></td><td>—</td><td><span class="fill">monthly</span></td><td class="n"><span class="fill">2</span></td><td>Marketing</td><td>Stop. Do not delete</td></tr>
+<tr><td><span class="t cust">CUSTOMER</span></td><td>—</td><td>Lifecycle-driven, not cadence-driven</td><td class="n">—</td><td>Utility</td><td>—</td></tr>
+<tr><td><span class="t lost">LOST</span></td><td colspan="5"><b>Nothing. Ever.</b> Enforced in code, not by discipline</td></tr>
+</table>
+
+<div class="card q">
+<h4><span class="p geeta">GEETA JI</span> — the two decisions hiding in this table</h4>
+<ol style="margin:0">
+  <li><b>Max touches.</b> After N unanswered messages we stop and let them cool. What is N for each band?
+    Too high and we get blocked — which is permanent and costs us the OTP channel too (§8 Rule 3).</li>
+  <li><b>What re-heats someone.</b> A DORMANT lead who suddenly opens a message — does that alone move them
+    back to WARM, or must they reply? This decides whether re-engagement campaigns work or just churn.</li>
+</ol>
+</div>
+
+<!-- 6 -->
+<h2 id="seq"><i class="fa-solid fa-diagram-project"></i> 6 · The sequences — per stream × persona</h2>
+<p class="h2sub">A KAS aspirant and a class-5 parent are different conversations, not different tones. Each
+needs its own sequence.</p>
+
+<div class="card">
+<h4>Start with TWO sequences, not fourteen</h4>
+<p style="margin:0">7 streams × 2 personas = 14 possible sequences. <b>Do not write 14.</b> Write the two
+that are genuinely different — <code>kas · self_adult</code> and <code>board_booster · guardian</code> — and
+let the others start as copies with the stream name swapped. Split a copy into its own sequence only when
+you can say <i>why</i> it needs different words. <b>Every sequence you create is one you maintain in two
+languages forever.</b></p>
+</div>
+
+<h4><span class="p geeta">GEETA JI</span> — sequence template, fill one per sequence</h4>
+<table class="wrapok">
+<tr><th>Step</th><th>Trigger</th><th>Wait</th><th>Message purpose</th><th>Template type</th><th>Exit if…</th></tr>
+<tr><td class="n">1</td><td>Form submitted</td><td class="n">0 min</td><td><span class="fill">acknowledge + set expectation</span></td><td><span class="p y">utility</span></td><td>—</td></tr>
+<tr><td class="n">2</td><td>Step 1 sent</td><td class="n"><span class="fill">10 min</span></td><td><span class="fill">invite to the enrolment bot</span></td><td><span class="p y">utility</span></td><td>replies</td></tr>
+<tr><td class="n">3</td><td>No reply</td><td class="n"><span class="fill">1 day</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td></tr>
+<tr><td class="n">4</td><td><span class="fill">…</span></td><td class="n"><span class="fill">…</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td></tr>
+</table>
+<p class="src"><b>"Message purpose", not "message text".</b> Write what the message must achieve; the words
+come in §7. Keeping them separate means we can rewrite copy without redesigning the sequence.</p>
+
+<!-- 7 -->
+<h2 id="msg"><i class="fa-solid fa-comment-dots"></i> 7 · The message inventory</h2>
+<p class="h2sub">Every message is a WhatsApp <b>template</b> that Meta must approve before we can send it.
+This has three consequences that shape how you write.</p>
+
+<table class="wrapok">
+<tr><th>Fact</th><th>What it means for you</th></tr>
+<tr><td><b>Each language is a separate template submission.</b> A bilingual template will not pass approval</td>
+  <td>English and Kannada are <b>two</b> templates for one message. 20 messages = 40 templates</td></tr>
+<tr><td><b>Approval takes 24–48 h</b> (authentication templates 1–2 h)</td>
+  <td>Copy must be finalised days before a campaign, not the morning of</td></tr>
+<tr><td><b>Utility ≈ ₹0.145, Marketing ≈ ₹1.09 per message</b> — roughly <b>7×</b></td>
+  <td><b>Classification is a real cost decision.</b> A message that genuinely serves the person — an update, a confirmation, something they asked for — is utility. The moment it carries an offer it becomes marketing and costs 7× more <i>and</i> becomes blockable</td></tr>
+</table>
+
+<h4><span class="p geeta">GEETA JI</span> — one row per message</h4>
+<table class="wrapok">
+<tr><th>ID</th><th>Purpose</th><th>Type</th><th>English</th><th>Kannada</th><th>Variables</th></tr>
+<tr><td><code>lead_ack</code></td><td>Acknowledge form, set expectation</td><td><span class="p y">utility</span></td><td><span class="fill">write</span></td><td><span class="fill">ಬರೆಯಿರಿ</span></td><td>name, stream</td></tr>
+<tr><td><code>bot_invite</code></td><td>Invite to enrolment bot</td><td><span class="p y">utility</span></td><td><span class="fill">write</span></td><td><span class="fill">ಬರೆಯಿರಿ</span></td><td>name</td></tr>
+<tr><td><code>scorecard_ready</code></td><td>Scorecard is available</td><td><span class="p y">utility</span></td><td><span class="fill">write</span></td><td><span class="fill">ಬರೆಯಿರಿ</span></td><td>name, link</td></tr>
+<tr><td><code>offer_seats</code></td><td>Batch filling — act now</td><td><span class="p m">marketing</span></td><td><span class="fill">write</span></td><td><span class="fill">ಬರೆಯಿರಿ</span></td><td>batch, date</td></tr>
+<tr><td><span class="fill">…</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td><td><span class="fill">…</span></td></tr>
+</table>
+
+<div class="card ok">
+<h4>Where the canonical text lives <span class="p lock">LOCKED</span></h4>
+<p style="margin:0"><b>In our own system, not in AiSensy's dashboard.</b> AiSensy is where templates are
+<i>published</i>, not where they are authored. This means: we keep version history, we can see who changed
+what, and if we ever change BSP the templates are a re-submission rather than a rewrite. <b>Geeta ji's
+inventory sheet is the source of truth; the dashboard is a copy.</b></p>
+</div>
+
+<div class="card bad">
+<h4>⚠️ Publishing a template is MANUAL — verified 14 Aug 2026</h4>
+<p style="margin:0 0 8px">AiSensy's public API reference documents <b>exactly one endpoint</b>:
+<code>POST backend.aisensy.com/campaign/t1/api/v2</code>, which sends a message through a
+<b>pre-existing campaign</b>. There is <b>no documented API to create, edit or list templates</b>, and none
+to create campaigns. Both are done by logging into the dashboard
+(<i>Manage → Template Message → + New</i>).</p>
+<p style="margin:0 0 8px"><b>What this means operationally.</b> Every message in §7 becomes, once:</p>
+<div class="arch" style="margin:8px 0"><pre>  <span class="b2">1.</span> Geeta ji writes the copy in the inventory      <span class="d">(our source of truth)</span>
+  <span class="b2">2.</span> Someone creates the template in the dashboard  <span class="r">MANUAL</span>  <span class="d">× EN and KN</span>
+  <span class="b2">3.</span> Meta approves                                  <span class="d">24-48 h (auth: 1-2 h)</span>
+  <span class="b2">4.</span> Someone creates the campaign that wraps it     <span class="r">MANUAL</span>  <span class="d">× EN and KN</span>
+  <span class="b2">5.</span> Laravel can now send it by campaign name       <span class="g2">automated from here</span>
+
+  <span class="d">20 messages → 40 templates + 40 campaigns, hand-created once. Then fully automated.</span></pre></div>
+<p style="margin:0"><b>Tolerable, because it is one-time and low-frequency</b> — Meta's approval delay means
+automation would save little. <b>But it is a thin API surface for a team building its own orchestration</b>,
+and it is a fair reason to re-price <b>Gupshup</b>, which is the developer-first option with a fuller API.
+Our §2 elimination of Gupshup was on platform-fee grounds; given we are building the orchestration ourselves,
+API depth may be the more important axis. <b>Add to the day-one vendor questions.</b></p>
+</div>
+
+<!-- 8 -->
+<h2 id="rules"><i class="fa-solid fa-gavel"></i> 8 · Six rules that cannot be broken</h2>
+<p class="h2sub">These are enforced in code where possible, so that following them is not a matter of
+remembering.</p>
+<table class="wrapok">
+<tr><th>#</th><th>Rule</th><th>Why</th></tr>
+<tr><td><b>1</b></td><td><b>The child is never contacted and never profiled.</b> All messages go to the guardian. No child task data, score or behaviour may influence any score, tag, audience or offer</td>
+  <td>India's data protection law prohibits tracking, profiling or targeted advertising directed at children under 18, <b>and consent does not make it permissible</b>. Engineering enforces this as a whitelist on what leaves our system</td></tr>
+<tr><td><b>2</b></td><td><b>No message without a recorded opt-in.</b> Consent is logged with a timestamp and the exact wording shown</td>
+  <td>Required by WhatsApp policy, and it is our evidence if a complaint is ever made</td></tr>
+<tr><td><b>3</b></td><td><b>LOST is permanent and absorbing.</b> No message of any type, ever, until that person opts in again themselves</td>
+  <td>A block is per-number and permanent. If someone blocks us over a marketing message, <b>we also lose the ability to send them their OTP and their scorecard</b>. This is a product failure, not a marketing one</td></tr>
+<tr><td><b>4</b></td><td><b>Classify templates honestly.</b> If it carries an offer, it is marketing</td>
+  <td>Mis-classifying to save cost risks template rejection and account-level damage. The 7× saving is not worth the account</td></tr>
+<tr><td><b>5</b></td><td><b>English + Kannada only at launch.</b> A new language needs a written reason</td>
+  <td>Every language permanently multiplies template authoring, approval, versioning and QA</td></tr>
+<tr><td><b>6</b></td><td><b>One source of truth: our system.</b> Score, temperature and journey state are computed by us. AiSensy holds a copy for filtering audiences and nothing else</td>
+  <td>Two systems that both decide "how hot is this lead" will disagree, and the disagreement will be invisible until it costs a sale</td></tr>
+</table>
+
+<!-- 9 -->
+<h2 id="tech"><i class="fa-solid fa-plug"></i> 9 · The technical contract <span class="p eng">ENGINEERING</span></h2>
+<p class="h2sub">Included so Geeta ji can see the shape, and so engineering has one place to build against.</p>
+
+<div class="arch"><pre><span class="c">WHAT WE SEND TO AISENSY — the projection, not the truth</span>
+
+POST https://backend.aisensy.com/campaign/t1/api/v2
+{
+  "apiKey":       "…",
+  "campaignName": "<span class="b2">lead_ack_kn</span>",         <span class="d">// one campaign per template per language</span>
+  "destination":  "+9198XXXXXXXX",       <span class="d">// the GUARDIAN, always</span>
+  "userName":     "Guardian name",
+  "templateParams": ["Aarav", "KAS"],
+  "<span class="k">tags</span>": [                            <span class="d">// IMMUTABLE facts only — see below</span>
+      "stream_kas", "persona_guardian", "lang_kn", "source_webinar"
+  ],
+  "<span class="k">attributes</span>": {                      <span class="d">// MUTABLE state — overwritten every send</span>
+      "lead_score":       "72",
+      "lead_temperature": "<span class="r">HOT</span>",
+      "journey_stage":    "enrolment_started",
+      "last_touch_at":    "2026-08-14",
+      "preferred_lang":   "kn"
+  }
+}
+   <span class="g2">↑ the state push RIDES ALONG with a message we were already sending.</span>
+   <span class="g2">  No separate sync job. No drift window longer than one message.</span>
+
+<span class="c">THE RULE THAT PREVENTS THE MOST COMMON FAILURE</span>
+  <span class="k">ATTRIBUTES</span> = things that CHANGE  → overwritten, safe
+  <span class="k">TAGS</span>       = things that NEVER change → additive, and possibly not removable via API
+
+  <span class="r">If temperature were a TAG, a contact would end up carrying temp_cold AND</span>
+  <span class="r">temp_warm AND temp_hot at once, and every audience filter would be wrong.</span></pre></div>
+
+<table class="wrapok">
+<tr><th>Must verify with AiSensy before building</th><th>Why it matters</th></tr>
+<tr><td>Can tags be <b>removed</b> via API, or only added?</td><td>Decides whether anything mutable may ever be a tag</td></tr>
+<tr><td>Actual <b>tag and attribute limits</b> on the ₹1,500 Basic plan</td><td>One source suggested 100 tags / 20 attributes on Pro — <b>unconfirmed</b>. Our design uses ~5 attributes and ~8 tags deliberately, so we should be well inside either way</td></tr>
+<tr><td>Does the webhook fire on <b>reply, delivery, read, and opt-out</b>?</td><td>Reply and opt-out are what scoring most depends on. <b>Opt-out is terminal, so missing it means breaking Rule 3</b></td></tr>
+<tr><td>Exact per-message rates in writing</td><td>AiSensy publishes ₹1.09 marketing; Meta's base is ₹0.8631. Confirm which we pay</td></tr>
+</table>
+
+<!-- 10 -->
+<h2 id="example"><i class="fa-solid fa-route"></i> 10 · A worked example, end to end</h2>
+<p class="h2sub">One guardian, twelve days, so the whole model can be checked against something concrete.</p>
+<table class="wrapok">
+<tr><th>When</th><th>What happens</th><th>Δ</th><th>Score</th><th>Temp</th><th>What we send</th></tr>
+<tr><td>Day 0, 10:00</td><td>Priya submits the form for her class-5 son, chooses Kannada</td><td class="n">+20</td><td class="n">20</td><td><span class="t cold">COLD</span></td><td><code>lead_ack_kn</code> <span class="p y">utility</span></td></tr>
+<tr><td>Day 0, 10:10</td><td>—</td><td class="n">—</td><td class="n">20</td><td><span class="t cold">COLD</span></td><td><code>bot_invite_kn</code> <span class="p y">utility</span></td></tr>
+<tr><td>Day 0, 10:40</td><td>Priya replies "ಹೌದು"</td><td class="n">+10</td><td class="n">30</td><td><span class="t warm">WARM</span></td><td>Bot takes over</td></tr>
+<tr><td>Day 0, 10:52</td><td>Completes the enrolment bot conversation</td><td class="n">+25</td><td class="n">55</td><td><span class="t warm">WARM</span></td><td>Bot summary + next step</td></tr>
+<tr><td>Day 1</td><td>Views the pricing page</td><td class="n">+15</td><td class="n">70</td><td><span class="t hot">HOT</span></td><td><b>Human alerted.</b> Cadence switches to HOT</td></tr>
+<tr><td>Day 2</td><td>Starts payment, drops off</td><td class="n">+30</td><td class="n">100 <span class="p g">clamped</span></td><td><span class="t hot">HOT</span></td><td>Payment-help message <span class="p y">utility</span></td></tr>
+<tr><td>Day 3–5</td><td>Silence. 3 HOT touches used</td><td class="n">−3 ×3</td><td class="n">91</td><td><span class="t hot">HOT</span></td><td>Max touches reached → hold</td></tr>
+<tr><td>Day 9</td><td>7 days since last interaction</td><td class="n">−10</td><td class="n">81</td><td><span class="t hot">HOT</span></td><td>Re-enter HOT cadence once</td></tr>
+<tr><td>Day 12</td><td>Pays</td><td class="n">→</td><td class="n">—</td><td><span class="t cust">CUSTOMER</span></td><td>Welcome + onboarding. <b>Leaves nurture entirely</b></td></tr>
+</table>
+<div class="card q">
+<h4>Two things this example exposes <span class="p geeta">for Geeta ji</span></h4>
+<ol style="margin:0">
+  <li><b>The score clamps at 100 and then decay barely moves her.</b> She stays HOT for ten days on the
+    strength of one abandoned payment. Is that right, or should an abandoned payment expire faster than
+    ordinary decay?</li>
+  <li><b>She used all 3 HOT touches by day 5 and then we went quiet for four days.</b> Is silence correct
+    there, or should she drop to WARM cadence and keep a slower conversation alive?</li>
+</ol>
+<p style="margin:8px 0 0">Neither has an obviously right answer, and both are process decisions rather than
+technical ones. <b>They are exactly the kind of thing this document exists to surface before it is built.</b></p>
+</div>
+
+<!-- 11 -->
+<h2 id="deliver"><i class="fa-solid fa-file-arrow-up"></i> 11 · What Geeta ji delivers, and in what form</h2>
+<table class="wrapok">
+<tr><th>#</th><th>Deliverable</th><th>Form</th><th>Blocks</th></tr>
+<tr><td>1</td><td><b>Touchpoint catalogue with weights</b> — §3 completed, rows added</td><td>This table, filled</td><td>Everything</td></tr>
+<tr><td>2</td><td><b>Cadence table</b> — §5, with max-touches and re-heat rules</td><td>This table, filled</td><td>The scheduler</td></tr>
+<tr><td>3</td><td><b>Two sequences</b> — <code>kas·self_adult</code> and <code>board_booster·guardian</code></td><td>§6 template, one per sequence</td><td>The nurture engine</td></tr>
+<tr><td>4</td><td><b>Message inventory</b> — every message, EN + KN, classified utility or marketing</td><td>§7 table</td><td>Template submission (24–48 h lead time)</td></tr>
+<tr><td>5</td><td><b>Bot scripts</b> — the enrolment conversation and the top 20 support questions, EN + KN</td><td>Plain document</td><td>The AiSensy bot build</td></tr>
+</table>
+
+<div class="card o">
+<h4>The one thing to get right first</h4>
+<p style="margin:0"><b>Deliverable 4, the message inventory — specifically the utility-vs-marketing
+classification.</b> It sets a 7× cost difference on every message we ever send, it determines what can be
+blocked, and templates need 24–48 hours of approval lead time before anything can launch. <b>Everything else
+can be tuned after go-live; this one is expensive to change afterwards</b> because each correction is a fresh
+approval cycle in two languages.</p>
+</div>
+
+<div class="foot">
+<b>Status: v1 draft for review.</b> Written 14 Aug 2026 to give Geeta ji's process document and the
+implementation a single shared vocabulary.<br><br>
+<b>Grounded in:</b> AiSensy's published API contract (<code>backend.aisensy.com/campaign/t1/api/v2</code>,
+accepting <code>tags</code> and <code>attributes</code> on send; tags and attributes must be declared in the
+project before use); Meta's WhatsApp template language rules (one submission per language); Meta's message
+category pricing; India's DPDP Act §9(3) on children's data; WhatsApp Business Policy on opt-out.<br><br>
+<b>Unverified and flagged in §9:</b> whether tags can be removed via API; actual tag/attribute limits on the
+Basic plan; webhook event coverage; and the ₹1.09 vs ₹0.8631 marketing rate discrepancy. <b>None of these
+blocks Geeta ji's work</b> — they block engineering's, and all four are answered by one email to AiSensy.
+</div>
+
+</div>
