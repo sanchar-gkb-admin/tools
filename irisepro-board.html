@@ -162,6 +162,9 @@ textarea:focus{border-bottom-color:var(--accent)}
 .ln .v{font:600 17px/1.42 Montserrat,sans-serif; letter-spacing:-.008em}
 .ln.stand .v{font-weight:700; font-size:21px; line-height:1.3; letter-spacing:-.018em}
 .ln.recovery{background:var(--accent-soft); margin:0 -12px 15px; padding:13px 12px; border-radius:10px}
+/* the only line about something that already happened — so the eventual story opens on it */
+.ln.scene{border-left:2px solid var(--accent); padding-left:13px; margin-bottom:19px}
+.ln.scene .v{font-style:italic; font-weight:500}
 .ln .v.empty{color:var(--ink-faint); font-weight:400; font-style:italic}
 .board .bf{display:flex; align-items:center; gap:12px; border-top:1px solid var(--rule);
            padding-top:15px; margin-top:19px; flex-wrap:wrap}
@@ -236,36 +239,37 @@ learner: {
     cta:'Start'
   },
   qs:[
-    { key:'stand', eyebrow:'1 · your stand',
+    { key:'extra', eyebrow:'the moment',
+      q:'Was there a task you nearly didn’t finish?',
+      help:'Start here, while you still remember it. One task, one moment — and what made you carry on.',
+      ph:'…the one about a decision I regretted' },
+
+    { key:'stand', eyebrow:'your stand',
       q:'I’m someone who…',
       help:'Not what you’re good at. What you’d want said about you when you’re not in the room.',
       ph:'…says the true thing first' },
 
-    { key:'cost', eyebrow:'2 · what it costs',
+    { key:'cost', eyebrow:'what it costs',
       q:'Which means I’ll stop…',
       help:'You said you’re someone who <em>{{stand}}</em>. Something has to go for that to be true. What?',
       ph:'…writing long answers so nobody can tell I’m unsure' },
 
-    { key:'witness', eyebrow:'3 · who’ll notice', type:'choice',
+    { key:'witness', eyebrow:'who’ll notice', type:'choice',
       q:'Who’ll notice first?',
       help:'One person. Not everyone — one.',
       opts:['My class teacher|your class teacher','A friend|your friend','Amma|Amma','Appa|Appa',
             'My brother / sister|them'] },
 
-    { key:'date', eyebrow:'4 · by when', type:'choice',
+    { key:'date', eyebrow:'by when', type:'choice',
       q:'By when will they have noticed?',
       help:'Close enough that you can’t forget it.',
       opts:['This week','By the end of this month','Before my next scorecard'] },
 
-    { key:'recovery', eyebrow:'5 · and when you don’t',
+    { key:'recovery', eyebrow:'and when you don’t',
       q:'You’ll break this. Everyone does.',
       help:'So decide now what happens then. Breaking your word isn’t the failure — <em>not going back</em> is. What will you say to {{witness}}?',
       ph:'…tell her I didn’t, and say why' },
 
-    { key:'extra', eyebrow:'6 · one more', optional:true,
-      q:'Was there a moment you nearly didn’t finish?',
-      help:'One task, one moment. What made you carry on?',
-      ph:'…the one about a decision I regretted' }
   ],
   labels:{ stand:'I am someone who', cost:'Which means I’ll stop', witness:'Who’ll know first',
            date:'By', recovery:'And when I don’t', extra:'The moment it nearly stopped' }
@@ -282,35 +286,36 @@ aspirant: {
     cta:'Begin'
   },
   qs:[
-    { key:'stand', eyebrow:'1 · your stand',
+    { key:'extra', eyebrow:'the question you’re dreading',
+      q:'“Why has it taken this long?”',
+      help:'They will ask. Answer it here, first, as a stand rather than a defence — and you never have to be ambushed by it again.',
+      ph:'…because I was preparing to be right instead of preparing to be useful' },
+
+    { key:'stand', eyebrow:'your stand',
       q:'I’m the kind of candidate who…',
       help:'Not what you know. What the board will find out about you inside two minutes.',
       ph:'…says “I don’t know” without flinching' },
 
-    { key:'cost', eyebrow:'2 · what it costs',
+    { key:'cost', eyebrow:'what it costs',
       q:'Which means, in the room, I will not…',
       help:'Name the habit that has cost you before. You already know which one.',
       ph:'…pad an answer to fill the silence' },
 
-    { key:'witness', eyebrow:'3 · who holds you to it', type:'choice',
+    { key:'witness', eyebrow:'who holds you to it', type:'choice',
       q:'Who’ll hold you to this?',
       help:'Someone who will actually ask. Not someone who’ll be polite about it.',
       opts:['My study partner|your study partner','My mentor|your mentor',
             'My wife / husband|them','The parent funding this|them'] },
 
-    { key:'date', eyebrow:'4 · by when', type:'choice',
+    { key:'date', eyebrow:'by when', type:'choice',
       q:'By when?',
       opts:['My next mock','My next attempt','Results day'] },
 
-    { key:'recovery', eyebrow:'5 · the way back',
+    { key:'recovery', eyebrow:'the way back',
       q:'When you slip — and you will — how do you return?',
       help:'Not a punishment. A route. Nobody here fails from slipping; they fail from taking three weeks to come back. Make it small enough to actually do.',
       ph:'…open the file the same night, not the next week' },
 
-    { key:'extra', eyebrow:'6 · the question you’re dreading',
-      q:'“Why has it taken this long?”',
-      help:'They will ask. Answer it now, as a stand rather than a defence — and you never have to be ambushed by it again.',
-      ph:'…because I was preparing to be right instead of preparing to be useful' }
   ],
   labels:{ stand:'I am the kind of candidate who', cost:'In the room I will not',
            witness:'Who holds me to it', date:'By', recovery:'My way back',
@@ -328,37 +333,42 @@ acharya: {
     cta:'Begin'
   },
   qs:[
-    { key:'stand', eyebrow:'1 · your stand',
+    { key:'scene', eyebrow:'the moment',
+      q:'A moment in your class this term you’ve thought about since.',
+      help:'Something that actually happened — a child who surprised you, a question you couldn’t answer, a silence that went somewhere.',
+      ph:'…he answered, correctly, and then looked around to see who had heard' },
+
+    { key:'stand', eyebrow:'your stand',
       q:'I’m a teacher who…',
       help:'Not your subject. What a student would say about you in ten years’ time.',
       ph:'…lets the silence run until someone thinks' },
 
-    { key:'cost', eyebrow:'2 · what it costs',
+    { key:'cost', eyebrow:'what it costs',
       q:'Which means I’ll stop…',
       help:'Something <em>you</em> do — not something you’ll assign. This is your board, not this term’s plan.',
       ph:'…finishing their sentences for them' },
 
-    { key:'witness', eyebrow:'3 · who’ll notice', type:'choice',
+    { key:'witness', eyebrow:'who’ll notice', type:'choice',
       q:'Which colleague will know?',
       help:'Someone in the staff room who’ll notice if you drift back.',
       opts:['The teacher I share a class with|them','My head teacher|your head teacher',
             'A teacher I trained with|them','My co-Acharya|your co-Acharya'] },
 
-    { key:'date', eyebrow:'4 · by when', type:'choice',
+    { key:'date', eyebrow:'by when', type:'choice',
       q:'By the end of which term?',
       opts:['This term','Next term','Before the year ends'] },
 
-    { key:'recovery', eyebrow:'5 · and when you forget',
+    { key:'recovery', eyebrow:'and when you forget',
       q:'Forty children make anyone forget.',
       help:'What brings you back? Something that fits inside a school day — not a resolution.',
       ph:'…wait five seconds before I answer for them' },
 
-    { key:'extra', eyebrow:'6 · the multiplier',
+    { key:'extra', eyebrow:'the multiplier',
       q:'One child who’ll be different because of this.',
       help:'A name. Not a type of child — a name.',
       ph:'…the boy on the last bench who answers only when nobody is looking' }
   ],
-  labels:{ stand:'I am a teacher who', cost:'Which means I’ll stop', witness:'Who’ll know',
+  labels:{ scene:'What happened', stand:'I am a teacher who', cost:'Which means I’ll stop', witness:'Who’ll know',
            date:'By the end of', recovery:'When I forget', extra:'The one child' }
 },
 
@@ -373,36 +383,41 @@ parent: {
     cta:'Begin'
   },
   qs:[
-    { key:'stand', eyebrow:'1 · your stand',
+    { key:'scene', eyebrow:'the moment',
+      q:'Something Ananya said recently that you haven’t stopped thinking about.',
+      help:'Her words, as close as you can remember them. This is the only line here about something that has already happened — and it’s the one her story will open on.',
+      ph:'…“you only ask about marks”' },
+
+    { key:'stand', eyebrow:'your stand',
       q:'I’m a parent who…',
       help:'What Ananya would say about you if someone asked her at twenty-five.',
       ph:'…asks about her day before her marks' },
 
-    { key:'cost', eyebrow:'2 · what it costs',
+    { key:'cost', eyebrow:'what it costs',
       q:'Which means I’ll stop…',
       help:'You said you’re a parent who <em>{{stand}}</em>. What has to go?',
       ph:'…comparing her to her cousin' },
 
-    { key:'witness', eyebrow:'3 · who’ll notice', type:'statement',
+    { key:'witness', eyebrow:'who’ll notice', type:'statement',
       statement:'Ananya will notice. <u>She’s the only witness on this one.</u>',
       help:'Nobody else needs to know. She’ll be asked, in thirty days, whether anything changed at home.',
       value:'Ananya' },
 
-    { key:'date', eyebrow:'4 · by when', type:'choice',
+    { key:'date', eyebrow:'by when', type:'choice',
       q:'By when?',
       opts:['This week','Within the month','Before her next scorecard'] },
 
-    { key:'recovery', eyebrow:'5 · and when you slip',
+    { key:'recovery', eyebrow:'and when you slip',
       q:'You’ll slip back into the old way.',
       help:'Every parent does, usually on a bad day at work. What do you do when you catch yourself?',
       ph:'…say out loud that I did it again, in front of her' },
 
-    { key:'extra', eyebrow:'6 · the one that matters',
+    { key:'extra', eyebrow:'the one that matters',
       q:'The complaint you keep making — say it as a request.',
       help:'Every complaint is a request nobody has made out loud yet. Write the request underneath, plainly, the way you’d want it said to you.',
       ph:'…instead of “you never talk to us” — “tell me one thing about today”' }
   ],
-  labels:{ stand:'I am a parent who', cost:'Which means I’ll stop', witness:'Who’ll know',
+  labels:{ scene:'What she said', stand:'I am a parent who', cost:'Which means I’ll stop', witness:'Who’ll know',
            date:'By', recovery:'When I slip back', extra:'The request under the complaint' }
 }
 
@@ -426,7 +441,7 @@ function render(dir){
   bar.style.width = (i / (total - 1) * 100) + '%';
   back.classList.toggle('on', i > 0 && i <= p.qs.length);
 
-  const s = i === 0 ? open() : (i <= p.qs.length ? question(p.qs[i-1]) : board());
+  const s = i === 0 ? open() : (i <= p.qs.length ? question(p.qs[i-1], i) : board());
   stage.appendChild(s);
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     s.classList.add('on');
@@ -456,8 +471,10 @@ function open(){
   return s;
 }
 
-function question(q){
-  const head = `<div class="eyebrow">${q.eyebrow}</div>
+function question(q, n){
+  // Numbered here, not in the data — the ★ line moved to the front once already, and hardcoded
+  // numbers would have silently disagreed with the order the moment it moved again.
+  const head = `<div class="eyebrow">${n} · ${q.eyebrow}</div>
                 ${q.type === 'statement' ? '' : `<h1 class="q">${fill(q.q)}</h1>`}
                 ${q.type === 'statement' ? `<p class="statement">${q.statement}</p><div style="height:18px"></div>` : ''}
                 ${q.help ? `<p class="help">${fill(q.help)}</p>` : ''}`;
@@ -523,6 +540,7 @@ function board(){
     <div class="eyebrow">your board · version 1</div>
     <div class="board">
       <div class="bh"><span class="t">My board</span><span class="v">v1 · today</span></div>
+      ${ans.scene ? line('scene','scene') : ''}
       ${line('stand','stand')}
       ${line('cost')}
       <div style="display:flex; gap:22px; flex-wrap:wrap">
