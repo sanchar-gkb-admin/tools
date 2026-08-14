@@ -354,7 +354,7 @@ acharya: {
     { key:'scene', eyebrow:'the moment',
       q:'A moment in your class this term you’ve thought about since.',
       help:'Something that actually happened — a child who surprised you, a question you couldn’t answer, a silence that went somewhere.',
-      ph:'…he answered, correctly, and then looked around to see who had heard' },
+      ph:'…the unfiltered student feedback, and what I didn’t say back' },
 
     { key:'stand', eyebrow:'your stand',
       q:'I’m a teacher who…',
@@ -470,15 +470,15 @@ const EX = {
   'aspirant.recovery':['open the file the same night, not the next week',
                        'message my study partner before I have justified it to myself'],
 
-  /* ⚠ NOT GROUNDED. Mission Acharya (acharya_foundation/middle/senior, tier 4999, audience=acharya,
-     is_listed=false) has no task briefs in the repo — prod-catalog-mapping.tsv has no acharya rows.
-     These are invented and must be replaced from the real brief list before this ships. */
-  'acharya.scene':   ['He answered — correctly — and then looked around to see who had heard.',
-                      'A girl asked me something I could not answer. I said so. The room went very quiet, and then it got loud.'],
+  /* Mission Acharya — challenges 62/63/64 (acharya_foundation / middle / senior), all tier 4999,
+     21 tasks each. Titles read from PROD; they are not in the repo's seed data, which has no
+     acharya rows in prod-catalog-mapping.tsv. Grounded against challenge 63 (Class 5–10). */
+  'acharya.scene':   ['Listening Without Defending. I read the unfiltered student feedback and my first three thoughts were all defences. I didn’t say any of them out loud. That was the whole task.',
+                      '8 Quick Checks. I ran one at the end of a lesson I was sure had landed. Eleven of forty had it. I had been teaching to the four who answer.'],
   'acharya.stand':   ['lets the silence run until someone thinks',
                       'asks the second question, not just the first'],
   'acharya.cost':    ['finishing their sentences for them',
-                      'calling on the same five children because it is faster'],
+                      'treating the four who answer as though they were the class'],
   'acharya.recovery':['wait five seconds before I answer for them',
                       'ask the class what I missed, out loud'],
   'acharya.extra':   ['The boy on the last bench who answers only when nobody is looking.',

@@ -1,4 +1,4 @@
-<title>Stories of transformation — capturing them without asking for them</title>
+<title>The board — capturing transformation without asking anyone to describe it</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -30,11 +30,8 @@
     --shadow:0 1px 2px rgba(26,22,20,.05), 0 8px 24px -12px rgba(26,22,20,.18);
   }
 
-  body{
-    background:var(--ground); color:var(--ink); margin:0;
-    font:400 16px/1.6 Montserrat,system-ui,-apple-system,sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
+  body{background:var(--ground); color:var(--ink); margin:0;
+       font:400 16px/1.6 Montserrat,system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased;}
   .wrap{max-width:1080px; margin:0 auto; padding:56px 22px 96px;}
   h1,h2,h3{font-family:Montserrat,system-ui,sans-serif; font-weight:700; text-wrap:balance; margin:0;}
   h1{font-size:clamp(30px,4.6vw,46px); line-height:1.12; letter-spacing:-.015em;}
@@ -42,545 +39,540 @@
   h3{font-size:17px; line-height:1.3; margin-bottom:6px;}
   p{margin:0 0 14px; max-width:66ch;}
   .lede{font-size:18px; color:var(--ink-soft); max-width:62ch; margin-top:14px;}
-  .eyebrow{font:600 11px/1 Montserrat,system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
+  .eyebrow{font:600 11px/1 Montserrat,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
   .meta{color:var(--ink-faint); font-size:13px; margin-top:26px; padding-top:16px; border-top:1px solid var(--rule);}
 
   .why{background:var(--panel); border:1px solid var(--rule); border-left:3px solid var(--accent);
        border-radius:0 10px 10px 0; padding:14px 18px; margin:18px 0 26px; font-size:15px; color:var(--ink-soft);}
   .why strong{color:var(--ink);}
 
-  .surface{margin-top:64px; padding-top:36px; border-top:1px solid var(--rule);}
-  .num{font:600 12px/1 Montserrat,system-ui,sans-serif; color:var(--ink-faint); letter-spacing:.1em;}
+  .surface{margin-top:60px; padding-top:34px; border-top:1px solid var(--rule);}
+  .num{font:600 12px/1 Montserrat,sans-serif; color:var(--ink-faint); letter-spacing:.1em;}
 
-  /* ── phone frames ─────────────────────────── */
-  .screens{display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:22px; margin-top:28px;}
-  .phone{background:var(--panel); border:1px solid var(--rule); border-radius:20px; box-shadow:var(--shadow);
-         overflow:hidden; display:flex; flex-direction:column;}
-  .phone .bar{height:34px; border-bottom:1px solid var(--rule); display:flex; align-items:center;
-              padding:0 14px; gap:6px; background:var(--ground);}
-  .phone .bar i{width:7px; height:7px; border-radius:50%; background:var(--rule); display:block;}
-  .phone .bar span{margin-left:auto; font:600 10px/1 Montserrat,sans-serif; letter-spacing:.08em;
-                   text-transform:uppercase; color:var(--ink-faint);}
-  .phone .body{padding:22px 20px 24px; flex:1; display:flex; flex-direction:column;}
-  .prog{height:3px; background:var(--rule); border-radius:2px; margin-bottom:20px; overflow:hidden;}
-  .prog b{display:block; height:100%; background:var(--accent); border-radius:2px;}
-  .qnum{font:600 10px/1 Montserrat,sans-serif; letter-spacing:.12em; text-transform:uppercase;
-        color:var(--accent); margin-bottom:10px;}
-  .q{font:700 20px/1.25 Montserrat,sans-serif; letter-spacing:-.01em; margin-bottom:12px; text-wrap:balance;}
-  .sub{font-size:13.5px; color:var(--ink-soft); margin-bottom:16px;}
-  .mirror{background:var(--accent-soft); border-radius:10px; padding:13px 15px; margin-bottom:16px;}
-  .mirror .lbl{font:600 10px/1 Montserrat,sans-serif; letter-spacing:.1em; text-transform:uppercase;
-               color:var(--accent); margin-bottom:7px;}
-  .mirror .big{font:700 26px/1 Montserrat,sans-serif; color:var(--ink); letter-spacing:-.02em;}
-  .mirror .big em{font-style:normal; color:var(--ink-faint); font-size:17px; margin:0 5px;}
-  .mic{display:flex; align-items:center; gap:11px; border:1px dashed var(--rule); border-radius:12px;
-       padding:13px 15px; color:var(--ink-soft); font-size:13.5px; margin-top:auto;}
-  .mic b{width:32px; height:32px; border-radius:50%; background:var(--accent); flex:none; display:grid;
-         place-items:center; color:#fff; font-size:14px;}
-  .typed{border:1px solid var(--rule); border-radius:10px; padding:12px 14px; font-size:14px;
-         color:var(--ink-soft); background:var(--ground); min-height:52px; margin-top:auto;}
-  .typed.filled{color:var(--ink); font-style:italic;}
-  .btn{margin-top:14px; background:var(--accent); color:#fff; border-radius:10px; padding:11px 14px;
-       font:600 13.5px/1 Montserrat,sans-serif; text-align:center;}
-  .btn.ghost{background:transparent; color:var(--ink-faint); border:1px solid var(--rule);}
-  .cap{font-size:12.5px; color:var(--ink-faint); margin-top:12px; line-height:1.5;}
+  a.cta{display:inline-block; background:var(--accent); color:#fff; text-decoration:none;
+        border-radius:11px; padding:14px 24px; font:700 15px/1 Montserrat,sans-serif; margin-top:8px;}
+  a{color:var(--accent);}
 
-  /* ── the card ─────────────────────────────── */
-  .card{background:var(--panel); border:1px solid var(--rule); border-radius:16px; padding:30px 28px;
-        box-shadow:var(--shadow); max-width:520px; margin-top:22px;}
-  .card .quote{font:700 23px/1.35 Montserrat,sans-serif; letter-spacing:-.012em; text-wrap:balance;}
-  .card .delta{display:flex; align-items:baseline; gap:9px; margin:20px 0 16px;}
-  .card .delta .n{font:800 30px/1 Montserrat,sans-serif; letter-spacing:-.02em;}
-  .card .delta .n.to{color:var(--accent);}
-  .card .delta .arw{color:var(--ink-faint);}
-  .card .delta .lbl{font:600 10px/1 Montserrat,sans-serif; letter-spacing:.11em; text-transform:uppercase;
-                    color:var(--ink-faint); margin-left:6px;}
-  .card .who{font-size:13.5px; color:var(--ink-soft); border-top:1px solid var(--rule); padding-top:14px;}
-
-  /* ── admin ────────────────────────────────── */
-  .adminwrap{border:1px solid var(--rule); border-radius:14px; background:var(--panel); overflow:hidden;
-             box-shadow:var(--shadow); margin-top:24px;}
-  .adminbar{padding:14px 18px; border-bottom:1px solid var(--rule); display:flex; align-items:center; gap:12px;
-            background:var(--ground);}
-  .adminbar b{font:700 14px/1 Montserrat,sans-serif;}
-  .adminbar span{margin-left:auto; font-size:12px; color:var(--ink-faint);}
-  .tablewrap{overflow-x:auto;}
-  table{border-collapse:collapse; width:100%; min-width:640px; font-size:14px;}
-  th,td{text-align:left; padding:12px 16px; border-bottom:1px solid var(--rule); vertical-align:top;}
+  .tablewrap{overflow-x:auto; margin-top:18px;}
+  table{border-collapse:collapse; width:100%; min-width:600px; font-size:14.5px;}
+  th,td{text-align:left; padding:11px 15px; border-bottom:1px solid var(--rule); vertical-align:top;}
   th{font:600 10.5px/1.3 Montserrat,sans-serif; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-faint);}
   tr:last-child td{border-bottom:none;}
+  td.k{font:600 10.5px/1.3 Montserrat,sans-serif; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--ink-faint); white-space:nowrap; width:1%;}
+  .star{color:var(--accent); font-weight:700;}
+
   .pill{display:inline-block; font:600 10.5px/1 Montserrat,sans-serif; padding:5px 9px; border-radius:20px; white-space:nowrap;}
   .pill.go{background:var(--same-bg); color:var(--same);}
   .pill.wait{background:var(--locked-bg); color:var(--locked);}
   .pill.new{background:var(--accent-soft); color:var(--accent);}
-  .delta-cell{font:700 14px/1 Montserrat,sans-serif;}
-  .delta-cell em{font-style:normal; color:var(--ink-faint); font-weight:400;}
 
-  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:24px;}
+  .card{background:var(--panel); border:1px solid var(--rule); border-radius:16px; padding:26px 26px;
+        box-shadow:var(--shadow); max-width:560px; margin-top:20px;}
+  .card p{font-size:16.5px; line-height:1.55;}
+  .card .who{font-size:13.5px; color:var(--ink-soft); border-top:1px solid var(--rule); padding-top:14px; margin:16px 0 0;}
+  .delta{display:flex; align-items:baseline; gap:9px; margin:18px 0 0;}
+  .delta .n{font:800 28px/1 Montserrat,sans-serif; letter-spacing:-.02em;}
+  .delta .n.to{color:var(--accent);}
+  .delta .arw{color:var(--ink-faint);}
+  .delta .lbl{font:600 10px/1 Montserrat,sans-serif; letter-spacing:.11em; text-transform:uppercase;
+              color:var(--ink-faint); margin-left:6px;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:22px;}
+  .lens{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin-top:20px;}
   @media (max-width:760px){ .grid2{grid-template-columns:1fr;} }
-  .box{background:var(--panel); border:1px solid var(--rule); border-radius:12px; padding:18px 20px;}
+  .box{background:var(--panel); border:1px solid var(--rule); border-radius:12px; padding:17px 19px;}
   .box h3{margin-bottom:8px;}
   .box p{font-size:14.5px; color:var(--ink-soft); margin-bottom:0;}
-
-  /* ── the clock ────────────────────────────── */
-  .clock{margin-top:24px; border-left:2px solid var(--rule); padding-left:0;}
-  .tick{position:relative; padding:0 0 22px 26px; border-left:2px solid var(--accent); margin-left:-2px;}
-  .tick:last-child{padding-bottom:0;}
-  .tick::before{content:''; position:absolute; left:-6px; top:5px; width:10px; height:10px;
-                border-radius:50%; background:var(--accent);}
-  .tick b{display:block; font:700 13px/1 Montserrat,sans-serif; color:var(--accent); letter-spacing:.02em;}
-  .tick span{display:block; font:700 17px/1.3 Montserrat,sans-serif; margin:5px 0 4px;}
-  .tick em{display:block; font-style:normal; font-size:14.5px; color:var(--ink-soft); max-width:60ch;}
-
-  .lens{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin-top:20px;}
   .lens .box h3{color:var(--accent); font-size:15px;}
 
-  /* ── reel frames ──────────────────────────── */
-  .reels{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:20px; margin-top:26px;}
-  .reel{background:var(--panel); border:1px solid var(--rule); border-radius:16px; overflow:hidden;
-        box-shadow:var(--shadow); display:flex; flex-direction:column;}
-  .reel .vp{aspect-ratio:9/16; background:linear-gradient(165deg,var(--accent-soft),var(--ground));
-            position:relative; display:flex; flex-direction:column; padding:16px 15px;}
-  .reel .t{position:absolute; top:12px; left:15px; font:700 10px/1 Montserrat,sans-serif;
-           letter-spacing:.1em; color:var(--accent); text-transform:uppercase;}
-  .reel .ovl{margin-top:auto; font:700 19px/1.25 Montserrat,sans-serif; letter-spacing:-.01em;
-             text-wrap:balance;}
-  .reel .ovl u{text-decoration:none; background:var(--accent); color:#fff; padding:1px 6px; border-radius:4px;
-               box-decoration-break:clone; -webkit-box-decoration-break:clone;}
-  .reel .cc{margin-top:10px; font:600 11.5px/1.4 Montserrat,sans-serif; color:var(--ink-soft);
-            border-top:1px dashed var(--rule); padding-top:9px;}
-  .reel .note{padding:13px 15px 15px; font-size:13px; color:var(--ink-soft); border-top:1px solid var(--rule);}
+  .clock{margin-top:22px;}
+  .tick{position:relative; padding:0 0 20px 26px; border-left:2px solid var(--accent);}
+  .tick:last-child{padding-bottom:0; border-left-color:transparent;}
+  .tick::before{content:''; position:absolute; left:-6px; top:5px; width:10px; height:10px;
+                border-radius:50%; background:var(--accent);}
+  .tick b{display:block; font:700 13px/1 Montserrat,sans-serif; color:var(--accent);}
+  .tick span{display:block; font:700 16px/1.3 Montserrat,sans-serif; margin:5px 0 4px;}
+  .tick em{display:block; font-style:normal; font-size:14.5px; color:var(--ink-soft); max-width:60ch;}
 
-  /* ── carousel ─────────────────────────────── */
-  .rail{display:flex; gap:14px; overflow-x:auto; padding:4px 4px 16px; margin-top:24px;
-        scroll-snap-type:x mandatory;}
-  .slide{flex:0 0 232px; aspect-ratio:4/5; scroll-snap-align:start; border-radius:14px;
-         border:1px solid var(--rule); background:var(--panel); box-shadow:var(--shadow);
-         padding:20px 18px; display:flex; flex-direction:column; position:relative;}
-  .slide .sn{font:700 10px/1 Montserrat,sans-serif; letter-spacing:.12em; color:var(--ink-faint);
-             text-transform:uppercase;}
-  .slide .st{font:700 20px/1.28 Montserrat,sans-serif; letter-spacing:-.012em; margin-top:auto;
-             text-wrap:balance;}
-  .slide .sf{font-size:12px; color:var(--ink-faint); margin-top:12px;}
+  .rail{display:flex; gap:14px; overflow-x:auto; padding:4px 4px 16px; margin-top:22px;}
+  .slide{flex:0 0 224px; aspect-ratio:4/5; border-radius:14px; border:1px solid var(--rule);
+         background:var(--panel); box-shadow:var(--shadow); padding:19px 17px; display:flex; flex-direction:column;}
+  .slide .sn{font:700 10px/1 Montserrat,sans-serif; letter-spacing:.12em; color:var(--ink-faint); text-transform:uppercase;}
+  .slide .st{font:700 19px/1.28 Montserrat,sans-serif; letter-spacing:-.012em; margin-top:auto; text-wrap:balance;}
+  .slide .sf{font-size:12px; color:var(--ink-faint); margin-top:10px;}
   .slide.hook{background:var(--accent); border-color:var(--accent);}
-  .slide.hook .sn{color:rgba(255,255,255,.7);}
-  .slide.hook .st,.slide.hook .sf{color:#fff;}
-  .slide.hook .sf{color:rgba(255,255,255,.8);}
+  .slide.hook .sn{color:rgba(255,255,255,.7);} .slide.hook .st{color:#fff;} .slide.hook .sf{color:rgba(255,255,255,.8);}
   .slide.quote{background:var(--accent-soft); border-color:var(--accent-soft);}
   .slide.quote .st{font-style:italic; font-weight:600;}
-  .slide.turn .st{font-size:27px;}
-  .slide.end .big{font:800 34px/1 Montserrat,sans-serif; letter-spacing:-.02em; margin-top:auto;}
-  .slide.end .big i{font-style:normal; color:var(--ink-faint); font-size:22px; margin:0 6px;}
+  .slide.end .big{font:800 30px/1 Montserrat,sans-serif; margin-top:12px; letter-spacing:-.02em;}
+  .slide.end .big i{font-style:normal; color:var(--ink-faint); font-size:20px; margin:0 5px;}
   .slide.end .big b{color:var(--accent);}
 
-  ul{margin:0 0 14px; padding-left:20px; max-width:66ch;}
+  ul,ol{margin:0 0 14px; padding-left:20px; max-width:66ch;}
   li{margin-bottom:7px; color:var(--ink-soft);}
   li strong{color:var(--ink);}
   code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; background:var(--accent-soft);
        color:var(--locked); padding:2px 6px; border-radius:5px;}
+  .warn{background:var(--locked-bg); border:1px solid var(--rule); border-left:3px solid var(--locked);
+        border-radius:0 10px 10px 0; padding:14px 18px; margin:18px 0 26px; font-size:15px; color:var(--ink-soft);}
+  .warn strong{color:var(--locked);}
 </style>
 
 <div class="wrap">
 
-<div class="eyebrow">YASHHO · Storyboard</div>
-<h1>Stories of transformation — captured without asking for one</h1>
-<p class="lede">Ask a learner to describe how they changed and you get “it was good, I learnt a lot.” Not because nothing happened — because <strong>noticing is the hard part</strong>, and a fourteen-year-old has no reason to have done it. This is a capture flow that does the noticing for them, an admin surface to run it, and the three shapes the story goes out in — <strong>a carousel, a reel, a ninety-second cut</strong>.</p>
+<div class="eyebrow">YASHHO · Storyboard · v2</div>
+<h1>The board — capturing transformation without asking anyone to describe it</h1>
+<p class="lede">Ask a learner how they changed and you get “it was good, I learnt a lot.” Not because nothing happened — because <strong>noticing is the hard part</strong>, and a fourteen-year-old has no reason to have done it. This is the instrument that does the noticing for them, what it produces, and when to ask.</p>
+
+<p><a class="cta" href="irisepro-board.html">Open the working prototype →</a></p>
 
 <div class="why">
-  <strong>The one idea everything else follows from.</strong> YASHHO already holds the evidence: the scorecard, the AACE deltas, the task history, the Yashodarshi’s actual words. So we never ask <em>“how did you change?”</em> — we show them what changed and ask them to <strong>react</strong>. Reacting is easy. Remembering is not.
+  <strong>The one idea everything follows from.</strong> YASHHO already holds the evidence: the scorecard, the AACE deltas, the task history, the Yashodarshi’s own words. So we never ask <em>“how did you change?”</em> — we show them what changed and ask them to <strong>react</strong>. Reacting is easy. Remembering is not.
 </div>
 
-<!-- ───────────────────────────────────────────── -->
+<!-- ───────────────────────────────────────── -->
 <section class="surface" style="border-top:none">
   <div class="num">01</div>
-  <h2>The learner flow — one question per screen</h2>
-  <p>Typeform-shaped: full-bleed, one thing to answer, thumb-reachable, progress always visible. Fired <strong>at the scorecard reveal</strong>, when feeling is already at its highest — never as an email a week later.</p>
+  <h2>The board — one spine, four skins</h2>
+  <p>Five lines, five minutes. It is not a testimonial form; it is a <strong>mini vision board for what someone stands for</strong>, in their words. We supply the grammar, never the content.</p>
 
-  <div class="screens">
-
-    <div class="phone">
-      <div class="bar"><i></i><i></i><i></i><span>invite</span></div>
-      <div class="body">
-        <div class="prog"><b style="width:0%"></b></div>
-        <div class="q">Before you go — can we ask you four questions?</div>
-        <div class="sub">About 90 seconds. You can talk instead of typing. Nothing is shared unless you say so.</div>
-        <div class="mirror">
-          <div class="lbl">Your scorecard is ready</div>
-          <div class="big">64<em>/100</em></div>
-        </div>
-        <div class="btn" style="margin-top:auto">Yes, ask me</div>
-        <div class="btn ghost">Not now</div>
-      </div>
-    </div>
-
-    <div class="phone">
-      <div class="bar"><i></i><i></i><i></i><span>Q1 · the mirror</span></div>
-      <div class="body">
-        <div class="prog"><b style="width:25%"></b></div>
-        <div class="qnum">Question 1 of 4</div>
-        <div class="q">What did you start doing differently?</div>
-        <div class="mirror">
-          <div class="lbl">Your Execution score</div>
-          <div class="big">41 <em>→</em> <span style="color:var(--accent)">72</span></div>
-        </div>
-        <div class="sub">This is the biggest change on your scorecard. Something caused it.</div>
-        <div class="mic"><b>●</b> Hold to talk · or type</div>
-      </div>
-    </div>
-
-    <div class="phone">
-      <div class="bar"><i></i><i></i><i></i><span>Q2 · the moment</span></div>
-      <div class="body">
-        <div class="prog"><b style="width:50%"></b></div>
-        <div class="qnum">Question 2 of 4</div>
-        <div class="q">Was there a task you nearly didn’t finish?</div>
-        <div class="mirror">
-          <div class="lbl">You took longest on</div>
-          <div class="big" style="font-size:16px; line-height:1.35">“Explain a decision you regret”</div>
-        </div>
-        <div class="sub">What made you carry on?</div>
-        <div class="mic"><b>●</b> Hold to talk · or type</div>
-      </div>
-    </div>
-
-    <div class="phone">
-      <div class="bar"><i></i><i></i><i></i><span>Q3 · ordinary tuesday</span></div>
-      <div class="body">
-        <div class="prog"><b style="width:75%"></b></div>
-        <div class="qnum">Question 3 of 4</div>
-        <div class="q">What do you do now that you didn’t do before?</div>
-        <div class="sub">Not on big days. On an ordinary Tuesday.</div>
-        <div class="mic"><b>●</b> Hold to talk · or type</div>
-        <div class="cap">If someone has said something to you about it — a teacher, a parent, a friend — tell us what they said.</div>
-      </div>
-    </div>
-
-    <div class="phone">
-      <div class="bar"><i></i><i></i><i></i><span>Q4 · the declaration</span></div>
-      <div class="body">
-        <div class="prog"><b style="width:100%"></b></div>
-        <div class="qnum">Question 4 of 4</div>
-        <div class="q">Finish this sentence.</div>
-        <div class="typed filled">I’m someone who&nbsp;…</div>
-        <div class="sub" style="margin-top:14px">Not what you hope to be. What you’ve decided you are.</div>
-        <div class="cap">And by when will everyone else know it too?</div>
-      </div>
-    </div>
-
-    <div class="phone">
-      <div class="bar"><i></i><i></i><i></i><span>consent</span></div>
-      <div class="body">
-        <div class="prog"><b style="width:100%"></b></div>
-        <div class="q">Who can see this?</div>
-        <div class="typed" style="min-height:0">◻ Just my family and me</div>
-        <div class="typed" style="min-height:0; margin-top:8px">◻ YASHHO can share it, first name only</div>
-        <div class="typed" style="min-height:0; margin-top:8px">◻ YASHHO can share it with my name and class</div>
-        <div class="cap">A parent or guardian confirms this for learners under 18. You can change your mind any time — one tap in the app.</div>
-        <div class="btn">Save</div>
-      </div>
-    </div>
-
+  <div class="tablewrap">
+    <table>
+      <tr><td class="k">★</td><td><strong>The moment</strong> — something that already happened. <em>The only line here with a fact in it.</em></td></tr>
+      <tr><td class="k">1</td><td><strong>The stand</strong> — I am someone who ___ <em>(present tense, not aspiration)</em></td></tr>
+      <tr><td class="k">2</td><td><strong>The cost</strong> — which means I’ll stop ___</td></tr>
+      <tr><td class="k">3</td><td><strong>The witness</strong> — a named person, never “everyone”</td></tr>
+      <tr><td class="k">4</td><td><strong>The date</strong></td></tr>
+      <tr><td class="k">5</td><td><strong>The recovery</strong> — when I don’t, I’ll ___</td></tr>
+    </table>
   </div>
 
-  <div class="why" style="margin-top:30px">
-    <strong>Why these four and not a form.</strong> Q1 is answerable only because we showed the number — <em>the question answers itself emotionally, they just say it out loud</em>. Q2 catches the moment while it is still recoverable; asked a month later it is gone. Q3 is the credibility beat, because anyone can peak once. Q4 converts a feeling into a declaration with a date on it, which is the only part that moves the <em>reader</em> to act.
+  <div class="why">
+    <strong>Why a stand and not a vision.</strong> A vision board is about <em>having</em> — the rank, the college, the car. Nothing on it can fail, so nobody is accountable to it, and it is the affirmation tradition that breaks under any honest look at your own life. A stand is public by construction, costs something, and can be broken. <strong>Line 2 is what separates a stand from a wish</strong>: if they can’t name what it costs, they’ve expressed a preference.
+  </div>
+
+  <div class="why">
+    <strong>Line 5 is the most valuable thing in the product, and no vision board has it.</strong> Integrity isn’t never breaking your word — it’s what you do the moment you notice you have. A board with no failure mode dies on its first failure and the person walks away carrying shame instead of a practice. Teaching a thirteen-year-old that a broken word is <em>recoverable</em> may outlast everything else here.
   </div>
 </section>
 
-<!-- ───────────────────────────────────────────── -->
+<!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">02</div>
-  <h2>Talking beats typing</h2>
-  <p>A thirty-second voice note is easier to give <strong>and</strong> far more moving to receive. Children will not write a paragraph; they will happily talk. We transcribe, trim, and read it back for approval.</p>
-  <div class="why">
-    <strong>The rule that keeps it honest: we may cut, never add.</strong> Every published word was theirs. It is the difference between a testimonial and a advertisement wearing one’s face.
+  <h2>Four archetypes — same shape, different words</h2>
+  <p>The archetype is <strong>derived, never asked</strong> — stream, tier, <code>acharya_*</code>, account role. What changes per skin is vocabulary, who counts as a witness, how far “by when” reaches, and one archetype-specific line.</p>
+
+  <div class="warn">
+    <strong>Keep the shape identical.</strong> A parent has to recognise their child’s board in an aspirant’s board — that recognition is what makes a fifteen-year hypothesis feel purchasable today. Four separate designs would destroy the only property that makes cross-population proof work.
   </div>
+
+  <h3 style="margin-top:26px">🎒 The learner · Class 6–10</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k star">★</td><td>Was there a task you nearly didn’t finish?</td></tr>
+    <tr><td class="k">1</td><td>I’m someone who ___</td></tr>
+    <tr><td class="k">2</td><td>Which means I’ll <strong>stop</strong> ___</td></tr>
+    <tr><td class="k">3</td><td>Who’ll notice first? <em>class teacher · friend · Amma · Appa · sibling</em></td></tr>
+    <tr><td class="k">4</td><td>By ___ <em>this week · this month · before my next scorecard</em></td></tr>
+    <tr><td class="k">5</td><td>If I don’t, I’ll tell ___ and say why</td></tr>
+  </table></div>
+  <p style="font-size:14.5px; color:var(--ink-soft)">Horizon is this week — a thirteen-year-old cannot hold December. Line 3 forces a name, which is the guard against <em>“I stand for honesty and hard work.”</em></p>
+
+  <h3 style="margin-top:32px">📚 The aspirant · KAS / IAS</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k star">★</td><td>“Why has it taken this long?” — <em>answer it now, as a stand rather than a defence</em></td></tr>
+    <tr><td class="k">1</td><td>I’m the kind of candidate who ___</td></tr>
+    <tr><td class="k">2</td><td>Which means <strong>in the room</strong> I will not ___</td></tr>
+    <tr><td class="k">3</td><td>Who’ll hold me to it? <em>study partner · mentor · spouse · the parent funding this</em></td></tr>
+    <tr><td class="k">4</td><td>By which mock / attempt?</td></tr>
+    <tr><td class="k">5</td><td>When I slip, I’ll return by ___</td></tr>
+  </table></div>
+  <p style="font-size:14.5px; color:var(--ink-soft)">Tone is the design. These are adults who have failed publicly and will close the tab at the first whiff of a coaching-centre poster — no encouragement, no exclamation marks. The ★ is the question they dread most, and rehearsing it as a stand is the most useful line on any of these boards.</p>
+
+  <h3 style="margin-top:32px">🪔 The Acharya · teacher</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k star">★</td><td>A moment in your class this term you’ve thought about since.</td></tr>
+    <tr><td class="k">1</td><td>I’m a teacher who ___</td></tr>
+    <tr><td class="k">2</td><td>Which means I’ll stop ___ <em>(something you do, not something you’ll assign)</em></td></tr>
+    <tr><td class="k">3</td><td>Which colleague will know?</td></tr>
+    <tr><td class="k">4</td><td>By the end of which term?</td></tr>
+    <tr><td class="k">5</td><td>When I forget, I’ll ___</td></tr>
+    <tr><td class="k star">+</td><td><strong>One child who’ll be different because of this</strong> — a name, not a type of child</td></tr>
+  </table></div>
+  <p style="font-size:14.5px; color:var(--ink-soft)">The failure mode is a teacher converting the practice into homework, which kills it — hence line 2 asks them to give something up. The named child is where the multiplier lives.</p>
+
+  <h3 style="margin-top:32px">🏠 The parent</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k star">★</td><td>Something she said recently that you haven’t stopped thinking about.</td></tr>
+    <tr><td class="k">1</td><td>I’m a parent who ___</td></tr>
+    <tr><td class="k">2</td><td>Which means I’ll stop ___</td></tr>
+    <tr><td class="k">3</td><td><strong>Your child.</strong> Fixed, not a picker — the only screen with no input</td></tr>
+    <tr><td class="k">4</td><td>By ___</td></tr>
+    <tr><td class="k">5</td><td>When I slip back, I’ll ___</td></tr>
+    <tr><td class="k star">+</td><td><strong>The complaint you keep making, said instead as a request</strong></td></tr>
+  </table></div>
+  <p style="font-size:14.5px; color:var(--ink-soft)">For a minor the parent is the default respondent, and their board ends with a handoff — <em>“Ananya has her own board to fill. It’s hers — you won’t see it unless she shows you.”</em> That privacy line is what makes the child answer honestly instead of performing for whoever is holding the phone.</p>
 </section>
 
-<!-- ───────────────────────────────────────────── -->
+<!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">03</div>
-  <h2>What comes back to them</h2>
-  <p>Not a form that vanishes. Their own words, their own numbers, theirs to send to their grandmother — <strong>before</strong> it goes anywhere else.</p>
+  <h2>What happened when we judged the output instead of the form</h2>
+  <p>The form read beautifully. So we rendered what each board actually <em>produces</em> and asked one question of it: <strong>would a stranger forward this?</strong></p>
 
-  <div class="card">
-    <div class="quote">“I used to write long answers so nobody could tell I wasn’t sure. Now I write the one sentence I’d keep, and build after it.”</div>
-    <div class="delta">
-      <span class="n">41</span><span class="arw">→</span><span class="n to">72</span>
-      <span class="lbl">Execution · AACE</span>
-    </div>
-    <div class="who">Ananya · Class 8 · Board Exam Booster · 21-task journey</div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Board</th><th>What v1 produces</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Learner</strong></td><td>A scene <em>and</em> a commitment</td><td><span class="pill go">passes</span> — only because of the ★ line</td></tr>
+        <tr><td><strong>Aspirant</strong></td><td>“I was preparing to be right instead of preparing to be useful”</td><td><span class="pill new">a line, not a story</span> — best 12-second card in the set</td></tr>
+        <tr><td><strong>Acharya</strong></td><td>“the boy on the last bench who answers only when nobody is looking”</td><td><span class="pill wait">best image, no action</span></td></tr>
+        <tr><td><strong>Parent</strong></td><td>Promises only</td><td><span class="pill wait">not publishable at v1</span></td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="why" style="margin-top:26px">
-    Roughly half will post this without being asked — and <strong>that</strong> is what moves the next parent, far more than a testimonials page nobody scrolls. Give the learner a reason to give it, and distribution follows.
+  <div class="why">
+    <strong>The ★ line was doing all the work — and it was last, and optional.</strong> Everything else on the board is future tense: admirable, and unshareable. The one line asking about something that <em>already happened</em> is the story. It now opens every form, is never optional, and asking it first also makes <em>“I’m someone who…”</em> easier to answer, which was the hardest cold open in the flow.
+  </div>
+
+  <div class="warn">
+    <strong>Three of four boards are not publishable at v1.</strong> They are excellent instruments for change and weak instruments for story. If we expect shares from all four in month one we will ship three weak ones and wrongly conclude the format doesn’t work. <strong>Month one’s shares come from learners. The other three become stories at T+30, in the diff</strong> — which makes the follow-up not an accountability nicety but where most of the material comes from.
   </div>
 </section>
 
-<!-- ───────────────────────────────────────────── -->
+<!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">04</div>
-  <h2>The admin feature</h2>
-  <p>Three screens. Who to ask, what came back, and what goes out.</p>
+  <h2>The measure — and the metric that will lie to you</h2>
+  <p>Two checks, one before anything is built and one after.</p>
 
-  <h3 style="margin-top:26px">a · Candidates — ranked by story, not by score</h3>
-  <div class="adminwrap">
-    <div class="adminbar"><b>Stories · candidates</b><span>18 eligible · 4 asked · 2 returned</span></div>
-    <div class="tablewrap">
-      <table>
-        <thead><tr><th>Learner</th><th>Biggest shift</th><th>Why them</th><th>Consent</th><th></th></tr></thead>
-        <tbody>
-          <tr>
-            <td><strong>Ananya R.</strong><br><span style="color:var(--ink-faint)">Class 8 · Board Booster</span></td>
-            <td class="delta-cell">41 <em>→</em> 72<br><em>Execution</em></td>
-            <td style="color:var(--ink-soft)">Started mid-pack. Finished every task late but finished.</td>
-            <td><span class="pill go">guardian ✓</span></td>
-            <td><span class="pill new">Ask</span></td>
-          </tr>
-          <tr>
-            <td><strong>K. Manjunath</strong><br><span style="color:var(--ink-faint)">KAS · adult</span></td>
-            <td class="delta-cell">38 <em>→</em> 69<br><em>Execution</em></td>
-            <td style="color:var(--ink-soft)">Three years preparing, first completed set.</td>
-            <td><span class="pill go">self ✓</span></td>
-            <td><span class="pill wait">Asked 2d</span></td>
-          </tr>
-          <tr>
-            <td><strong>Shashikala D.</strong><br><span style="color:var(--ink-faint)">Mission Acharya · teacher</span></td>
-            <td class="delta-cell">55 <em>→</em> 81<br><em>Communication</em></td>
-            <td style="color:var(--ink-soft)">Teacher voice. Reaches parents differently.</td>
-            <td><span class="pill go">self ✓</span></td>
-            <td><span class="pill new">Ask</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="why">
-    <strong>Rank by relatability, not by rank.</strong> The toppers make the worst testimonials — a parent reads them and thinks <em>that child is exceptional</em>. The unglamorous middle makes them think <em>that could be mine</em>. “Why them” is a sentence a human writes, not a computed score.
-  </div>
-
-  <h3 style="margin-top:34px">b · Review — trim, never write</h3>
   <div class="grid2">
     <div class="box">
-      <h3>What came in</h3>
-      <p style="font-style:italic">“Umm, so like… I used to write really long answers, like really long, because then nobody could tell if I was sure or not sure, you know? And then my Yashodarshi asked me which one sentence I would keep…”</p>
+      <h3>Pre-ship · the cold read</h3>
+      <p>Show a rendered board to someone with no context — not staff, not a customer — and ask one question: <strong>“What did this person do?”</strong> If they can’t answer with a specific action, there’s no scene in it and it will not travel. This is the test that failed three of the four boards above, before a line of Laravel was written.</p>
     </div>
-    <div class="box" style="border-left:3px solid var(--accent)">
-      <h3>What goes out</h3>
-      <p style="font-style:italic">“I used to write long answers so nobody could tell I wasn’t sure. Now I write the one sentence I’d keep, and build after it.”</p>
-      <p style="margin-top:10px; font-size:13px; color:var(--ink-faint)">Cuts only. Every word was hers. Learner approves before publish.</p>
+    <div class="box">
+      <h3>Post-ship · shared unasked</h3>
+      <p>Not views. Not reads. Not completion. <strong>A share is a person putting their own name behind it</strong> — the only signal here that cannot be gamed from the inside.</p>
     </div>
   </div>
 
-  <h3 style="margin-top:34px">c · Publish</h3>
-  <p>One switch per destination, each honouring the consent level the learner picked: <strong>private card</strong> · <strong>storefront</strong> · <strong>parent comms</strong> · <strong>Yashodarshi training set</strong>. Withdrawing consent pulls it from all of them — the same one-tap the app already promises.</p>
+  <div class="warn">
+    <strong>Completion rate is the wrong metric and it will look like success.</strong> A form with 90% completion producing boards nobody forwards has failed. Worse, optimising for completion pushes the design shorter, easier and blander — and the first two casualties would be the recovery line and the scene line, which are the two carrying the whole thing. The acceptance criterion is not <em>“learners finish it”</em>. It is <strong>“a stranger reads one and forwards it.”</strong>
+  </div>
 </section>
 
-<!-- ───────────────────────────────────────────── -->
+<!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">05</div>
-  <h2>Before we build any of it</h2>
-  <p>Run it by hand with <strong>ten</strong> learners this week. Open their scorecard, find the biggest AACE delta and the sharpest Yashodarshi line, ring them, ask the four questions in order. Fifteen minutes each.</p>
-  <ul>
-    <li>You will learn <strong>which question actually opens people up</strong> — and it will not be all four.</li>
-    <li>You will hear whether the mirror (“41 → 72”) does the work we think it does.</li>
-    <li>You will find out what a child says when asked to declare something, which is the riskiest screen here.</li>
-  </ul>
-  <p>Then build the in-app flow around the questions that worked, not around all of them.</p>
-</section>
+  <h2>When to ask — the hooks</h2>
+  <p>Trigger on <strong>task completion, not scorecard delivery</strong>. The scorecard can lag; the feeling cannot wait. Where the scorecard already exists, anchor on the AACE delta; where it doesn’t, anchor on the task they just finished.</p>
 
-<!-- ───────────────────────────────────────────── -->
-<section class="surface">
-  <div class="num">06</div>
-  <h2>The part to get right, not fast</h2>
-  <p>Three of these screens are aimed at minors. Given the posture YASHHO has already taken — payment-corroborated guardian consent, erasure that anonymises in place and keeps the consent ledger — <strong>a child’s face and words on a public page is a separate consent from the one given at enrolment</strong>, and it should look and feel separate.</p>
-  <ul>
-    <li>The ask must never read as a condition of the programme, or of getting the scorecard.</li>
-    <li>Default to <strong>first name only</strong>. Full name and class is an opt-up, never a default.</li>
-    <li>Withdrawal is one tap, no reason required, and it must actually unpublish.</li>
-    <li>For under-13s the <strong>parent voice</strong> is not a fallback — it is often the stronger story, because the noticing comes from outside the learner.</li>
-  </ul>
-  <div class="why">
-    <strong>A story taken without full consent is worth less than no story</strong> — it is the one asset that turns from proof into liability the moment anyone questions how it was obtained.
+  <div class="clock">
+    <div class="tick"><b>T+0 · in-app</b><span>The moment the last task is submitted</span><em>Highest yield by a distance. Everything after this is recovery.</em></div>
+    <div class="tick"><b>T+1 · email</b><span>Only if they bounced</span><em>Subject line is the mirror: “Your Execution went 41 → 72.”</em></div>
+    <div class="tick"><b>T+3 · email</b><span>Final ask, different angle</span><em>The moment, not the number. Then stop.</em></div>
+    <div class="tick"><b>T+7</b><span>Link expires</span><em>After this the CTA is log in.</em></div>
+  </div>
+
+  <p>Two reminders, never three. Suppress the instant a board exists. <strong>For minors the mail goes to the guardian on the account, not the child.</strong></p>
+
+  <div class="warn">
+    <strong>The magic link must be a capability token, not a login.</strong> The existing magic link mints a <em>session</em> — <code>~/login-link.sh</code> hands over the account. A forwarded board email would then be seven days of full access to a minor’s scorecard. Same signed-URL machinery, different scope: <strong>opens one form, writes one board, single-use, reads nothing else</strong>, and surfaces only the delta it needs. On expiry it falls back to real login. This has to be a separate token type or the two get conflated the first time someone reuses the helper.
   </div>
 </section>
 
-<!-- ───────────────────────────────────────────── -->
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">06</div>
+  <h2>T+30 — the diff, and where the story actually is</h2>
+  <p>Short. Two or three questions, under a minute. They already gave you a board; this is a check, not a second form.</p>
+
+  <div class="why">
+    <strong>Four rules that decide whether this produces truth or flattery.</strong>
+    <br>① <strong>Quote their own words back</strong> — never “how’s it going?”
+    <br>② <strong>Make “no” the easiest answer to give.</strong> If the honest answer is costly, you get politeness. The most valuable response here is <em>“I slipped, and here’s what I did”</em> — that is the recovery line being tested, which is the whole practice.
+    <br>③ <strong>Ask the witness separately</strong>, and tell both people the other cannot see their answer.
+    <br>④ <strong>The publishable artefact is the pair</strong>, not either half.
+  </div>
+
+  <h3 style="margin-top:30px">🎒 Learner</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k">quote</td><td><em>“Thirty days ago you said you’d stop writing long answers so nobody could tell you were unsure.”</em></td></tr>
+    <tr><td class="k">1</td><td>What actually happened? <em>I did it · Mostly · I slipped, then went back · Not yet</em></td></tr>
+    <tr><td class="k">2</td><td>If did → <strong>What did you notice?</strong> · If slipped → <strong>What did you do when you noticed?</strong></td></tr>
+    <tr><td class="k star">→</td><td>To the witness: <strong>“Has Ananya done anything differently this month? You don’t have to be kind — she can’t see this.”</strong></td></tr>
+  </table></div>
+
+  <h3 style="margin-top:28px">📚 Aspirant</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k">quote</td><td><em>“You said that in the room you would not pad an answer to fill the silence.”</em></td></tr>
+    <tr><td class="k">1</td><td>Have you been in a room where it was tested? <em>Yes, and I held it · Yes, and I didn’t · Not yet</em></td></tr>
+    <tr><td class="k">2</td><td>What happened?</td></tr>
+    <tr><td class="k star">3</td><td><strong>“Say your ‘why has it taken this long’ answer out loud now. Has it changed?”</strong></td></tr>
+    <tr><td class="k star">→</td><td>To the study partner or mentor: “Has anything changed in how they work, or how they talk about this?”</td></tr>
+  </table></div>
+  <p style="font-size:14.5px; color:var(--ink-soft)">Q3 is self-evidencing: if that answer has changed in thirty days, <em>that is the transformation</em>, in their own voice, with no interpretation from us.</p>
+
+  <h3 style="margin-top:28px">🪔 Acharya</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k">quote</td><td><em>“You named the boy on the last bench who answers only when nobody is looking.”</em></td></tr>
+    <tr><td class="k star">1</td><td><strong>“Has he answered out loud yet?”</strong> <em>Yes · Not yet · Something else happened</em></td></tr>
+    <tr><td class="k">2</td><td>Tell me about it.</td></tr>
+    <tr><td class="k">3</td><td>And what did you stop doing?</td></tr>
+    <tr><td class="k star">→</td><td>To the colleague: “Have you noticed anything different in their class?”</td></tr>
+  </table></div>
+  <p style="font-size:14.5px; color:var(--ink-soft)">The strongest single question in the system, and it writes itself out of what they already told us. A teacher will answer that one.</p>
+
+  <h3 style="margin-top:28px">🏠 Parent</h3>
+  <div class="tablewrap"><table>
+    <tr><td class="k">quote</td><td><em>“You said you’d stop comparing her to her cousin.”</em></td></tr>
+    <tr><td class="k">1</td><td>How did it go? <em>I did · Mostly · I slipped and said so · I didn’t manage it</em></td></tr>
+    <tr><td class="k">2</td><td>What happened when you slipped?</td></tr>
+    <tr><td class="k star">→</td><td>To the child, privately: <strong>“Has anything changed at home this month?”</strong> — <em>she won’t see your answer, you won’t see hers</em></td></tr>
+  </table></div>
+
+  <h3 style="margin-top:34px">And this is what it produces</h3>
+  <div class="card">
+    <p><strong>What Lakshmi wrote in August:</strong><br>
+    <em>“I’ll stop comparing her to her cousin. When I slip, I’ll say out loud that I did it again — in front of her.”</em></p>
+    <p style="margin-top:16px"><strong>What Ananya said in September, asked separately:</strong><br>
+    <em>“She said sorry. My mother said sorry to me. I didn’t know that was allowed.”</em></p>
+    <p class="who">Neither of them wrote a testimonial. Two honest answers, thirty days apart, from two people who couldn’t see each other’s.</p>
+  </div>
+
+  <div class="why">
+    <strong>Publish the parent story in the child’s voice, not the parent’s.</strong> A parent describing their own growth reads as self-congratulation. A child reporting a change in their parent cannot be argued with — they have no reason to flatter.
+  </div>
+
+  <div class="warn">
+    <strong>Practical blocker to solve before this ships.</strong> If the only address on file is the guardian’s, the child’s “separately, privately” answer is not actually independent — it lands in the same inbox. For minors the child’s half has to be captured <strong>in-app, while logged in as the learner</strong>, not by email. Verify which contacts exist per household before designing the send.
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">07</div>
-  <h2>The 90-second cut — and the 200-word budget</h2>
-  <p>A story nobody finishes moves nobody. A teenager speaking conversationally runs 130–150 words a minute, and a testimonial is read slower than prose. So the whole share is <strong>about 200 words</strong> — four beats, fifty words each. That is not a style note. It is the spec.</p>
+  <h2>Examples — grounded, and keyed to the right challenge</h2>
+  <p>Two per question, behind a link, never shown by default. <strong>Two rather than one on purpose:</strong> a single example becomes a template — show one and half the cohort writes a variation of it. Two that disagree with each other give permission instead of a pattern.</p>
+
+  <p>They name tasks that actually exist, read from <code>database/seeders/data/prod-catalog-mapping.tsv</code>:</p>
+  <ul>
+    <li><strong>Learner</strong> (ch 10, Board Exam Booster, 21 tasks) — <em>The Feedback Mirror</em>, <em>The Thank You Talk with your Parents</em></li>
+    <li><strong>Aspirant</strong> (ch 54, KAS 21-task) — <em>The Ethical Officer Test</em>, <em>You Are the Assistant Commissioner at 6:30 AM</em></li>
+    <li><strong>Parent</strong> — the two mandatory parent-conversation tasks they were physically in the room for: <em>The Thank You Talk</em>, <em>My Future: Their Dream, My Dream</em></li>
+    <li><strong>Acharya</strong> (ch 63, Mission Acharya Class 5–10, 21 tasks) — <em>Listening Without Defending: Responding to Unfiltered Student Feedback</em>, <em>8 Quick Checks: Do My Students Really Understand?</em></li>
+  </ul>
+
+  <div class="why">
+    <strong>The Acharya tasks exist — they are just not in the repo.</strong> Mission Acharya runs as three challenges in prod — <strong>62</strong> <code>acharya_foundation</code> (Pre-KG–4), <strong>63</strong> <code>acharya_middle</code> (5–10), <strong>64</strong> <code>acharya_senior</code> (PU/UG) — all tier 4999, <code>audience=acharya</code>, 21 tasks each. They carry no rows in <code>prod-catalog-mapping.tsv</code>, so anything reading the seed data alone concludes they don’t exist. Worth knowing for every future audit, not just this one: <em>the seeded catalogue is not the catalogue.</em>
+  </div>
+
+  <div class="why">
+    <strong>And the Acharya briefs are unusually good raw material.</strong> “Listening Without Defending” asks a teacher to receive unfiltered student feedback without answering back; “8 Quick Checks” routinely shows them that a lesson they were sure had landed reached a third of the room. Both are <em>already</em> the scene the ★ line is fishing for — which is why the Acharya board needed a scene question rather than inventing one.
+  </div>
+
+  <div class="why">
+    <strong>Key examples by <code>challenge_id</code>, not by archetype.</strong> Focus is the 21-task 4999 tier, but the 999 and 1999 tiers carry 5 and 7 tasks. Show a 7-task KAS aspirant an example about <em>The Ethical Officer Test</em> and they know instantly they’re reading someone else’s programme — which costs more trust than the example buys. Offer only tasks present in that learner’s own snapshot.
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">08</div>
+  <h2>The share — 200 words, four beats</h2>
+  <p>A teenager speaking conversationally runs 130–150 words a minute, and a testimonial is read slower than prose. The whole share is <strong>about 200 words</strong> — four beats, fifty words each. That is the spec, not a style note.</p>
 
   <div class="clock">
     <div class="tick"><b>0:00 – 0:10</b><span>The confession</span><em>Open at the lowest point. No setup, no “I joined YASHHO in March.”</em></div>
-    <div class="tick"><b>0:10 – 0:45</b><span>One scene</span><em>One task, one person, one thing that was said. Not a summary of ten weeks.</em></div>
-    <div class="tick"><b>0:45 – 1:05</b><span>The ordinary Tuesday</span><em>What they do now — and who noticed it without being asked.</em></div>
-    <div class="tick"><b>1:05 – 1:30</b><span>The declaration</span><em>“I’m someone who ___,” with a date on it. Then the number. Then the logo.</em></div>
+    <div class="tick"><b>0:10 – 0:45</b><span>One scene</span><em>One task, one person, one thing that was said.</em></div>
+    <div class="tick"><b>0:45 – 1:05</b><span>The ordinary Tuesday</span><em>What they do now — and who noticed without being asked.</em></div>
+    <div class="tick"><b>1:05 – 1:30</b><span>The declaration</span><em>“I’m someone who ___,” with a date. Then the number. Then the logo.</em></div>
   </div>
 
-  <h3 style="margin-top:36px">What it sounds like at full length</h3>
   <div class="card" style="max-width:640px">
-    <p style="font-size:17px; line-height:1.55">“I used to write really long answers. Not because I knew more — because if I wrote enough, nobody could tell which part I wasn’t sure about.</p>
-    <p style="font-size:17px; line-height:1.55">There was a task about a decision I regretted. I wrote four pages, and my Yashodarshi sent back one line: <em>which one sentence would you keep?</em> I sat with that for two days. I was angry about it, actually.</p>
-    <p style="font-size:17px; line-height:1.55">Then I kept one sentence. It was the only true thing on the page.</p>
-    <p style="font-size:17px; line-height:1.55">Now I write that sentence first. In class, in my notebook, when my mother asks me something. Last month my class teacher asked me to stop putting my hand up so often, so others could go.</p>
-    <p style="font-size:17px; line-height:1.55; margin-bottom:18px">I’m someone who says the true thing first. By December I want to be the one they ask to open the debate.”</p>
-    <div class="delta" style="margin:0 0 14px">
-      <span class="n">41</span><span class="arw">→</span><span class="n to">72</span>
-      <span class="lbl">Execution · AACE</span>
-    </div>
-    <div class="who">Ananya · Class 8 · 171 words · 1 min 22 sec</div>
+    <p>“I used to write really long answers. Not because I knew more — because if I wrote enough, nobody could tell which part I wasn’t sure about.</p>
+    <p>There was a task about a decision I regretted. I wrote four pages, and my Yashodarshi sent back one line: <em>which one sentence would you keep?</em> I sat with that for two days. I was angry about it, actually.</p>
+    <p>Then I kept one sentence. It was the only true thing on the page.</p>
+    <p>Now I write that sentence first. In class, in my notebook, when my mother asks me something. Last month my class teacher asked me to stop putting my hand up so often, so others could go.</p>
+    <p>I’m someone who says the true thing first. By December I want to be the one they ask to open the debate.”</p>
+    <div class="delta"><span class="n">41</span><span class="arw">→</span><span class="n to">72</span><span class="lbl">Execution · AACE</span></div>
+    <p class="who">Ananya · Class 8 · 171 words · 1 min 22 sec</p>
   </div>
 
-  <div class="why" style="margin-top:26px">
-    <strong>Read what she never says.</strong> Never “confident”, never “grateful”, never the programme’s name. The teacher noticing does work no self-description can — <em>nobody can credibly report their own transformation</em>. And it ends unfinished, on a December nobody has seen yet. That is the only line in it that makes a stranger want to come back.
+  <div class="why">
+    <strong>Read what she never says.</strong> Never “confident”, never “grateful”, never the programme’s name. The teacher noticing does work no self-description can — <em>nobody can credibly report their own transformation</em>. And it ends unfinished, on a December nobody has seen. That is the only line that makes a stranger want to come back.
   </div>
 
-  <h3 style="margin-top:36px">Six rules, ordered by what they cost when broken</h3>
+  <h3 style="margin-top:30px">Six rules, ordered by what they cost when broken</h3>
   <ul>
     <li><strong>Open on a confession, not a claim.</strong> “I wrote long answers so nobody could tell” stops a scroll. “YASHHO changed my life” is wallpaper.</li>
-    <li><strong>Someone else must notice.</strong> The third-party line is the credibility engine. Without it every other beat reads as a claim.</li>
+    <li><strong>Someone else must notice.</strong> Without the third party, every other beat reads as a claim.</li>
     <li><strong>A number, not a superlative.</strong> 41 → 72 costs four characters and does what “improved a lot” cannot.</li>
-    <li><strong>One scene, not a summary.</strong> Ten weeks compressed into a paragraph is a brochure. One Tuesday is a story.</li>
-    <li><strong>End on an open loop.</strong> A declaration with a date leaves the viewer needing to know whether she does it. <em>That</em> is the click — not the CTA.</li>
-    <li><strong>The product appears in the last five seconds.</strong> The story sells. The logo only says where to go.</li>
+    <li><strong>One scene, not a summary.</strong> Ten weeks in a paragraph is a brochure. One Tuesday is a story.</li>
+    <li><strong>End on an open loop.</strong> A declaration with a date is the click — not the CTA.</li>
+    <li><strong>The product appears in the last five seconds.</strong> The story sells; the logo says where to go.</li>
   </ul>
-
-  <h3 style="margin-top:36px">One capture, four lengths — never go back and ask again</h3>
-  <div class="lens">
-    <div class="box"><h3>0:12 · the card</h3><p>One sentence + the delta. The atom; everything else expands it.</p></div>
-    <div class="box"><h3>0:45 · the beat</h3><p>Confession + scene, or Tuesday + declaration. Three of these per sitting.</p></div>
-    <div class="box"><h3>1:30 · the arc</h3><p>All four beats, one face, one cut. The storefront version.</p></div>
-    <div class="box"><h3>∞ · the archive</h3><p>Full transcript, unpublished. Where next quarter’s copy comes from.</p></div>
-  </div>
-
-  <div class="why" style="margin-top:22px">
-    <strong>This is why each capture screen caps an answer at ~30 seconds.</strong> Not rationing — it is the edit, done at source. Four thirty-second answers <em>are</em> the 90-second cut, in order, already the right length. An uncapped answer has to be rescued in an edit suite, and the rescuing is where a learner’s words quietly become ours.
-  </div>
 </section>
 
-<!-- ───────────────────────────────────────────── -->
-<section class="surface">
-  <div class="num">08</div>
-  <h2>Same capture → UGC reels and shorts</h2>
-  <p>The four beats were built to be spoken, so the video version needs no second process: <strong>add “record instead of type” to the same four screens</strong> and the reel is already shot, in order, at the right length.</p>
-
-  <div class="why">
-    <strong>Do not film it.</strong> UGC works because it looks unproduced — a real room, real light, a phone held slightly wrong. The moment there is a crew, a backdrop or a ring light, the viewer reclassifies it as an advertisement and stops believing the number. <em>The learner’s own front camera is not a compromise; it is the format.</em>
-  </div>
-
-  <div class="reels">
-    <div class="reel">
-      <div class="vp">
-        <span class="t">0:30 · the confession</span>
-        <div class="ovl">“I used to write long answers so <u>nobody could tell</u> I wasn’t sure.”</div>
-        <div class="cc">CC burned in · first frame is her face mid-sentence · no intro card</div>
-      </div>
-      <div class="note">Q1 only. Highest completion rate of the three — the hook is a confession, and it lands inside 1.5 seconds.</div>
-    </div>
-
-    <div class="reel">
-      <div class="vp">
-        <span class="t">0:45 · the noticing</span>
-        <div class="ovl">“Her teacher asked her to <u>stop raising her hand</u> so often.”</div>
-        <div class="cc">Two voices · learner + the person who noticed · cut between them</div>
-      </div>
-      <div class="note">The strongest of the three and the hardest to get. Ask the parent or Acharya the same question separately, then intercut. Nobody argues with a witness.</div>
-    </div>
-
-    <div class="reel">
-      <div class="vp">
-        <span class="t">0:15 · the declaration</span>
-        <div class="ovl">“I’m someone who <u>says the true thing first.</u>”</div>
-        <div class="cc">Freeze → 41 → 72 animates → logo, 2 sec, silent</div>
-      </div>
-      <div class="note">Cheapest to produce, highest cadence. Q4 plus the delta. Ship one of these a week without ever needing a full story.</div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:38px">What the capture screen must do differently for video</h3>
-  <ul>
-    <li><strong>Vertical, front camera, one take, 30 seconds.</strong> A retake button, not an edit timeline — the second take is always better and the fourth is always worse.</li>
-    <li><strong>Show the prompt over the viewfinder</strong> so they answer a question instead of performing to a lens.</li>
-    <li><strong>No script.</strong> The instant a child reads, the eyes go dead and everything after it reads as coached.</li>
-    <li><strong>Captions are not optional.</strong> Most of this is watched on mute; an uncaptioned reel is a silent film about a person talking.</li>
-    <li><strong>The only graphic is their own number.</strong> No app screenshots, no b-roll, no music that tells you how to feel.</li>
-    <li><strong>Under-13s: the parent holds the phone and answers.</strong> Not a fallback — often the better film, because the noticing comes from outside the child, and nobody has to watch a small person perform.</li>
-  </ul>
-
-  <div class="why">
-    <strong>Two a week beats twenty in a month.</strong> Reels compound on cadence, not polish, and a flow that ships one 15-second declaration every week will out-perform a quarterly batch of beautiful films. Which is the real argument for building this into the product rather than commissioning it: <em>the ask has to sit where the feeling already is.</em>
-  </div>
-
-  <h3 style="margin-top:36px">Consent is a different question for video</h3>
-  <p>A face is not a sentence. The consent screen must name the format explicitly — <strong>“a video of you, on Instagram and YouTube”</strong> — and a learner who consents to a written quote has <em>not</em> consented to a reel. Same ladder, asked again: private · voice only · face. Withdrawal must pull the published video too, which means the admin has to hold the destination list, not just the file.</p>
-</section>
-
-<!-- ───────────────────────────────────────────── -->
+<!-- ───────────────────────────────────────── -->
 <section class="surface">
   <div class="num">09</div>
-  <h2>The carousel — the one format the system can render by itself</h2>
-  <p>A reel needs a person willing to be on camera. A carousel needs <strong>only the four answers we already have</strong>, set in type over the delta. Nobody films, nobody edits, nobody waits for a face. It is the same story, rendered — which makes it the first thing to build and the one that will actually ship weekly.</p>
+  <h2>The carousel — build this first</h2>
+  <p>A reel needs a person willing to be on camera. A carousel needs <strong>only the answers we already have</strong>, set in type over the delta. Nobody films, nobody edits, no consent for a likeness, nobody to schedule. Transcript in, six slides out, one admin click.</p>
 
   <div class="rail">
-    <div class="slide hook">
-      <div class="sn">1 / 6 · the hook</div>
-      <div class="st">“I used to write long answers so nobody could tell I wasn’t sure.”</div>
-      <div class="sf">No logo. No name. Nothing to dismiss.</div>
-    </div>
-    <div class="slide">
-      <div class="sn">2 / 6 · the scene</div>
-      <div class="st">A task asked me about a decision I regretted. I wrote four pages.</div>
-    </div>
-    <div class="slide quote">
-      <div class="sn">3 / 6 · what she was asked</div>
-      <div class="st">“Which one sentence would you keep?”</div>
-      <div class="sf">Her Yashodarshi</div>
-    </div>
-    <div class="slide turn">
-      <div class="sn">4 / 6 · the turn</div>
-      <div class="st">I sat with that for two days.</div>
-      <div class="sf">Slide 5 is where it breaks. Keep this one almost empty.</div>
-    </div>
-    <div class="slide">
-      <div class="sn">5 / 6 · the noticing</div>
-      <div class="st">Last month my teacher asked me to raise my hand less, so others could go.</div>
-    </div>
-    <div class="slide end">
-      <div class="sn">6 / 6 · the declaration</div>
-      <div class="st" style="margin-top:auto">“I’m someone who says the true thing first.”</div>
-      <div class="big" style="margin-top:14px">41 <i>→</i> <b>72</b></div>
-      <div class="sf">Execution · Ananya, Class 8 · <strong>YASHHO</strong></div>
-    </div>
+    <div class="slide hook"><div class="sn">1 / 6 · hook</div><div class="st">“I used to write long answers so nobody could tell I wasn’t sure.”</div><div class="sf">No logo. Nothing to dismiss.</div></div>
+    <div class="slide"><div class="sn">2 / 6 · scene</div><div class="st">A task asked me about a decision I regretted. I wrote four pages.</div></div>
+    <div class="slide quote"><div class="sn">3 / 6 · what she was asked</div><div class="st">“Which one sentence would you keep?”</div><div class="sf">Her Yashodarshi</div></div>
+    <div class="slide"><div class="sn">4 / 6 · the turn</div><div class="st" style="font-size:25px">I sat with that for two days.</div><div class="sf">Keep this one almost empty.</div></div>
+    <div class="slide"><div class="sn">5 / 6 · the noticing</div><div class="st">Last month my teacher asked me to raise my hand less, so others could go.</div></div>
+    <div class="slide end"><div class="sn">6 / 6 · declaration</div><div class="st" style="margin-top:auto">“I’m someone who says the true thing first.”</div><div class="big">41 <i>→</i> <b>72</b></div><div class="sf">Ananya, Class 8 · <strong>YASHHO</strong></div></div>
   </div>
-  <p style="font-size:13px; color:var(--ink-faint); margin-top:-4px">← swipe · 4:5, six slides, generated from the transcript</p>
+  <p style="font-size:13px; color:var(--ink-faint)">← swipe · 4:5, six slides, generated from the board</p>
 
-  <h3 style="margin-top:36px">What makes a carousel work that does not apply to a reel</h3>
+  <ul style="margin-top:22px">
+    <li><strong>Slide 1 is the whole post</strong> — the only one most people see. No branding on it: a logo there tells the scroll it’s an ad before the sentence gets a chance.</li>
+    <li><strong>Every slide ends slightly unfinished.</strong> Swipe-through is the only metric; a slide that resolves is a slide people stop on.</li>
+    <li><strong>Six slides, not ten.</strong> Past eight, completion collapses.</li>
+    <li><strong>The shortest slide carries the turn.</strong> Whitespace reads as weight.</li>
+    <li><strong>The CTA lives in the caption</strong>, never on a slide. The slides are her story; the caption is ours.</li>
+  </ul>
+</section>
+
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">10</div>
+  <h2>Reels — same capture, no second process</h2>
+  <p>Add “record instead of type” to the same screens and the reel is already shot, in order, at the right length.</p>
+
+  <div class="why">
+    <strong>Do not film it.</strong> UGC works because it looks unproduced. The moment there is a crew, a backdrop or a ring light, the viewer reclassifies it as an advertisement and stops believing the number. <em>The learner’s own front camera is not a compromise; it is the format.</em>
+  </div>
+
+  <div class="lens">
+    <div class="box"><h3>0:30 · the confession</h3><p>The ★ answer alone. Hook lands inside 1.5 seconds.</p></div>
+    <div class="box"><h3>0:45 · the noticing</h3><p>Learner intercut with the person who noticed. Strongest, hardest to get.</p></div>
+    <div class="box"><h3>0:15 · the declaration</h3><p>Line 1 over the delta. Cheapest, highest cadence — one a week.</p></div>
+    <div class="box"><h3>1:30 · the arc</h3><p>All four beats, one face, one cut. Two or three a year.</p></div>
+  </div>
+
+  <ul style="margin-top:22px">
+    <li><strong>Vertical, front camera, one take, 30 seconds.</strong> A retake button, not an edit timeline — the second take is always better and the fourth is always worse.</li>
+    <li><strong>Prompt over the viewfinder</strong>, so they answer a question instead of performing to a lens.</li>
+    <li><strong>No script.</strong> The instant a child reads, the eyes go dead and everything after reads as coached.</li>
+    <li><strong>Captions are not optional</strong> — most of this is watched on mute.</li>
+    <li><strong>The only graphic is their own number.</strong> No app screenshots, no music that tells you how to feel.</li>
+    <li><strong>Under-13s: the parent holds the phone and answers.</strong> Often the better film — the noticing comes from outside the child, and nobody watches a small person perform.</li>
+  </ul>
+
+  <p><strong>Two a week beats twenty in a month.</strong> Reels compound on cadence, not polish — which is the argument for building this into the product rather than commissioning it. The ask has to sit where the feeling already is.</p>
+</section>
+
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">11</div>
+  <h2>Consent</h2>
+  <p>Given YASHHO’s existing posture — payment-corroborated guardian consent, erasure that anonymises in place and keeps the ledger — <strong>a child’s words on a public page is a separate consent from the one given at enrolment</strong>, and it should look and feel separate.</p>
   <ul>
-    <li><strong>Slide 1 is the whole post.</strong> It is the only one most people ever see, and it earns every other slide. Put no branding on it — a logo on slide 1 tells the scroll it is an ad before the sentence gets a chance.</li>
-    <li><strong>Every slide must end slightly unfinished.</strong> Swipe-through is the only metric that matters; a slide that resolves is a slide people stop on.</li>
-    <li><strong>Six slides, not ten.</strong> The four beats plus a pull-quote and a close. More than eight and completion collapses.</li>
-    <li><strong>4:5, not square.</strong> More vertical screen for the same scroll, and the type can be big enough to read without pinching.</li>
-    <li><strong>The shortest slide carries the turn.</strong> Whitespace reads as weight. “I sat with that for two days” alone on a slide does more than a paragraph explaining it.</li>
-    <li><strong>The CTA lives in the caption, never on a slide.</strong> The slides are her story; the caption is ours.</li>
+    <li>The ask must never read as a condition of the programme, or of getting the scorecard.</li>
+    <li>Default to <strong>first name only</strong>. Full name and class is an opt-up.</li>
+    <li><strong>A face is not a sentence.</strong> Consent to a written quote is not consent to a reel — same ladder, asked again, and the screen must name the format: “a video of you, on Instagram and YouTube.”</li>
+    <li>Withdrawal is one tap, no reason required, and it must actually unpublish — so the admin holds the destination list, not just the file.</li>
+  </ul>
+  <div class="why">
+    <strong>A story taken without full consent is worth less than no story.</strong> It is the one asset that turns from proof into liability the moment anyone asks how it was obtained.
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">12</div>
+  <h2>Admin — a work queue, not a dashboard</h2>
+  <p>One screen answering three questions: <strong>who hasn’t submitted, who has breached the 72-hour window, and give me a link I can send them right now.</strong></p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Learner</th><th>Finished</th><th>Board</th><th>SLA</th><th>Nudges</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Ananya R.</strong><br><span style="color:var(--ink-faint)">Class 8 · ch 10</span></td>
+          <td>12 Aug, 18:40<br><span style="color:var(--ink-faint)">6h ago</span></td>
+          <td><span class="pill go">submitted</span></td>
+          <td><span class="pill go">within</span></td>
+          <td>—</td><td>—</td>
+        </tr>
+        <tr>
+          <td><strong>K. Manjunath</strong><br><span style="color:var(--ink-faint)">KAS · ch 54</span></td>
+          <td>11 Aug, 09:15<br><span style="color:var(--ink-faint)">43h ago</span></td>
+          <td><span class="pill wait">started, 3 of 6</span></td>
+          <td><span class="pill wait">29h left</span></td>
+          <td>T+1 sent</td>
+          <td><span class="pill new">Copy link</span></td>
+        </tr>
+        <tr>
+          <td><strong>Shashikala D.</strong><br><span style="color:var(--ink-faint)">Acharya · ch 63</span></td>
+          <td>9 Aug, 20:02<br><span style="color:var(--ink-faint)">104h ago</span></td>
+          <td><span class="pill wait">none</span></td>
+          <td><span class="pill" style="background:#fde8e4;color:#b03a12">breached 32h</span></td>
+          <td>T+1, T+3 sent</td>
+          <td><span class="pill new">Copy link</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="margin-top:18px"><strong>The SLA clock starts at task completion, not at scorecard delivery</strong> — same trigger as the automated nudge, or the two will disagree and the queue will show phantom breaches whenever a scorecard lags.</p>
+
+  <h3 style="margin-top:30px">The copy-paste link</h3>
+  <p>One click puts a ready URL on the clipboard, with its expiry shown next to it, so staff can drop it into WhatsApp without leaving the screen. Which raises the thing that has to be got right:</p>
+
+  <div class="warn">
+    <strong>An admin-generated link is an account-access vector unless it is scoped.</strong> It must be the <em>same capability token</em> as the emailed one — opens one form, writes one board, reads nothing else, single-use, short expiry. Never a session. And because copy-paste means WhatsApp, <strong>assume every link gets forwarded</strong>: single-use plus a short window is what makes a forwarded link already dead rather than a door into a minor’s scorecard. Log who minted it, for whom, and when — an admin who can silently generate access to any learner is a hole regardless of intent.
+  </div>
+
+  <div class="why">
+    <strong>Don’t let “breached” become a staff scoreboard.</strong> It is a work queue — a list of people to ring — not a performance metric. The moment it is reported upward as a percentage, the incentive shifts to closing rows rather than getting honest boards, and a chased board is worth less than none.
+  </div>
+
+  <p>Plus <strong>Excel export</strong> of the same view for offline processing, and the T+30 queue as a second tab against the same shape — the follow-up needs exactly the same three answers.</p>
+
+  <h3 style="margin-top:32px">Where it goes — the Cohort Scoreboard, not the student list</h3>
+  <p>This should be a band on <code>reports/cohort-scoreboard</code> (<code>CohortScoreboardController</code>), not a new screen and not the student index.</p>
+  <ul>
+    <li><strong>The SLA is inherently time-windowed, and a batch finishes together.</strong> “Who is outstanding right now” only means something against a cohort. On the global student list the same column is permanently noisy and sorted by nothing useful.</li>
+    <li><strong>That screen already answers “who has done what”</strong> — students as columns, filling as each task is evaluated. Board-submitted is the same question in one more column, next to the completion it depends on.</li>
+    <li><strong>It is already batch-scoped and institution-filterable</strong> (cohort = challenge + start date), which is exactly the slice someone chasing boards works in.</li>
+    <li><strong>Everything there is derived via <code>CohortInsightService</code></strong>, with nothing hardcoded. Board state should be derived the same way rather than denormalised into a new column.</li>
   </ul>
 
   <div class="why">
-    <strong>This is the build order, and it falls out of the format rather than from preference.</strong> The carousel is deterministic — transcript in, six slides out, one admin click, no consent for a face and no scheduling anybody. The reel needs a willing learner, a parent who agrees to a camera and a person to cut it. So build the carousel renderer first, ship weekly from day one, and let the reels arrive when a story is good enough to be worth chasing.
+    <strong>But the copy-link action belongs on the student row in both places.</strong> When a parent rings up you look them up by name, not by cohort — so the button has to exist on the student record too. Which means the SLA state must be computed in <strong>one</strong> place (a single <code>BoardSla</code>-style resolver) and rendered by both surfaces. Two independent implementations of “is this breached?” is precisely the defect class that produced <code>StudentSeat</code>, <code>ScorecardDelivery</code> and <code>LeaderboardService</code> — each built reactively after the drift had already cost something.
   </div>
+</section>
 
-  <h3 style="margin-top:36px">Which format for which story</h3>
-  <div class="lens">
-    <div class="box"><h3>Carousel</h3><p>Default. Any consented story, no face needed. Weekly cadence, one click.</p></div>
-    <div class="box"><h3>0:15 declaration</h3><p>When the Q4 line is unusually sharp. Cheap, high frequency.</p></div>
-    <div class="box"><h3>0:45 noticing</h3><p>Only when a parent or teacher will speak too. Rare, and worth waiting for.</p></div>
-    <div class="box"><h3>1:30 arc</h3><p>Storefront and paid. Two or three a year, not a cadence.</p></div>
+<!-- ───────────────────────────────────────── -->
+<section class="surface">
+  <div class="num">13</div>
+  <h2>Build order</h2>
+  <ol>
+    <li><strong>Board v1 at task completion</strong> — four skins, the ★ line first. <em>This is the only piece with a real cost to delay: you cannot retroactively capture who someone was before they changed.</em></li>
+    <li><strong>The share render</strong> — prose + card image. The reward, and the distribution.</li>
+    <li><strong>The T+30 check</strong>, including the witness half. Where most of the material comes from.</li>
+    <li><strong>The carousel renderer</strong> — deterministic, weekly cadence from day one.</li>
+    <li><strong>Admin</strong> — the outstanding/breached band on the Cohort Scoreboard, the copy-paste link, and Excel export. Needs the capability token to exist first, so it follows the board rather than leading it.</li>
+    <li><strong>Reels</strong> — last. They need willing humans.</li>
+  </ol>
+
+  <div class="why">
+    <strong>Before any of it: run ten by hand this week.</strong> Open a learner’s scorecard, find the biggest AACE delta and the sharpest Yashodarshi line, ring them, ask the six questions in order. Fifteen minutes each. You will learn which questions actually open people up — and it will not be all six.
   </div>
 </section>
 
 <div class="meta">
-  YASHHO · storyboard for review · testimonial capture + admin surface<br>
-  Not built. Proposal for discussion — the ten-call pilot comes first.
+  YASHHO · storyboard v2 · the board, its four skins, the T+30 diff, and the three share formats<br>
+  Prototype: <a href="irisepro-board.html">irisepro-board.html</a> — not built in the app. Proposal for discussion; the ten-call pilot comes first.
 </div>
 
 </div>
