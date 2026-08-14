@@ -87,11 +87,28 @@ orchestration</b>, and WhatsApp is the one thing we buy. This document shows how
 what each filter eliminated and why, and why the answer holds at 600 contacts <i>and</i> at 60,000.</p>
 
 <div class="big">
-  <div class="b"><b>20 → 1</b><span>candidates to recommendation, in 5 filters</span></div>
-  <div class="b win"><b>AiSensy</b><span>the recommendation</span></div>
-  <div class="b"><b>Gallabox</b><span>the close second, and when to pick it instead</span></div>
+  <div class="b"><b>20 → 2</b><span>candidates to a conditional recommendation</span></div>
+  <div class="b win"><b>Gupshup</b><span>if self-serve includes the template API — 25+ endpoints vs 1</span></div>
+  <div class="b"><b>AiSensy</b><span>if it does not, or if a commitment is required</span></div>
   <div class="b"><b>ONE</b><span>number to start — split at a named trigger, not on day one</span></div>
-  <div class="b"><b>≈₹4,800</b><span>per month at today's volume, all-in</span></div>
+  <div class="b"><b>3 questions</b><span>one email settles which</span></div>
+</div>
+
+<div class="card bad">
+<h4><i class="fa-solid fa-rotate-left"></i> Revision v2 — 14 Aug, after checking the APIs</h4>
+<p style="margin:0 0 8px">This document originally recommended AiSensy outright. <b>Two findings changed
+that, and one of them is a fault in my own process:</b></p>
+<ul style="margin:0 0 8px">
+  <li><b>AiSensy's public API is a single endpoint.</b> No template create/edit/list, no campaign creation —
+    both are dashboard-only. For a team building its own orchestration that is a thin surface (§4b).</li>
+  <li><b>Gupshup exposes ~25+ documented endpoints</b>, including full template management and blocked-user
+    listing.</li>
+  <li><b>And Gupshup was never explicitly eliminated.</b> It was in the 20-candidate long list, and it simply
+    did not resurface in the finalists — a silent drop, which is precisely what a written funnel is supposed
+    to make impossible. Corrected in §2.</li>
+</ul>
+<p style="margin:0">The recommendation is now <b>conditional on three answerable questions</b> (§10). Nothing
+about the number strategy (§5) or the Kannada template maths (§6) changes.</p>
 </div>
 
 <div class="toc"><ol>
@@ -99,6 +116,7 @@ what each filter eliminated and why, and why the answer holds at 600 contacts <i
   <li><a href="#funnel">The funnel — 20 candidates to 1</a></li>
   <li><a href="#filters">The five filters, and what each killed</a></li>
   <li><a href="#score">The finalists scored on your dimensions</a></li>
+  <li><a href="#gupshup"><b>Gupshup vs AiSensy — the comparison that changed the answer</b></a></li>
   <li><a href="#numbers">How many numbers — and the answer that changed</a></li>
   <li><a href="#kannada">Kannada, and the hidden operational cost</a></li>
   <li><a href="#cost">Cost today and at 100×</a></li>
@@ -170,6 +188,22 @@ premise changes.</p>
   <div class="fmeta"><b>Filter 4 — must have a no-code inbound chatbot</b>Dropped Zoko and DoubleTick (commerce-led, thin bot); Celitix (bundles voice we no longer need)</div></div>
 <div class="fstep"><div class="fbar" style="width:15%;background:var(--o)">2 finalists + 1 challenger</div>
   <div class="fmeta"><b>Filter 5 — evidence, throughput, price per message</b><b style="color:var(--o3)">AiSensy · Gallabox</b>, with <b>Interakt</b> as the price challenger and <b>Wati</b> rejected despite the best reviews — see §3</div></div>
+<div class="fstep"><div class="fbar" style="width:15%;background:var(--bad)">⚠ Filter 6 — added after the fact</div>
+  <div class="fmeta"><b>API depth, which should have been Filter 2</b><b style="color:var(--bad)">Gupshup re-enters at the top.</b> Because we build our own orchestration, API surface is a primary criterion, not a tiebreak — and applying it late is what let Gupshup drop out silently</div></div>
+</div>
+
+<div class="card bad">
+<h4>The process fault, recorded so it is not repeated</h4>
+<p style="margin:0 0 8px"><b>Gupshup was in the 20-candidate list and no filter ever removed it.</b> It was
+sorted into the "enterprise" bucket early and never re-examined — so it failed to appear in the finalists
+without a written reason. Two lessons:</p>
+<ul style="margin:0">
+  <li><b>A funnel only works if every elimination is explicit.</b> An implicit drop is invisible, and
+    invisible drops are how the right answer gets lost.</li>
+  <li><b>The filter order encoded a wrong assumption.</b> I ranked platform fee above API depth. Once we
+    decided to build the orchestration ourselves (§1), <b>API depth became the primary axis</b> — and the
+    filter order should have been rewritten at that moment, not after.</li>
+</ul>
 </div>
 
 <!-- 3 -->
@@ -226,14 +260,88 @@ publishes numbers is a vendor you can hold to them. It is also why several cells
 than a guess.</p>
 
 <div class="card w">
-<h4>Recommendation: AiSensy — and the one condition that flips it to Gallabox</h4>
+<h4>Among the self-serve four: AiSensy — with Gallabox as the fallback</h4>
 <p style="margin:0 0 10px"><b>AiSensy wins on the four things that matter to us:</b> lowest platform entry
 (₹1,500), fastest broadcast engine found (5× Interakt), an AI chatbot builder trained on business data, and
 5 free agent seats. It publishes more of its numbers than anyone else, and it bills in INR.</p>
 <p style="margin:0"><b>Pick Gallabox instead if the enrolment bot turns out to be the hard part.</b> Gallabox
 scores higher on evidence (4.6 from 169 vs 4.3 from 110) and its Gen-AI chatbot plus AI-rewrite is the
-stronger conversational product. It costs ₹1,499/month more at entry. <b>The pilot in §10 is designed to
-answer exactly this question in a week.</b></p>
+stronger conversational product. It costs ₹1,499/month more at entry.</p>
+</div>
+
+<!-- 4b -->
+<h2 id="gupshup"><i class="fa-solid fa-code"></i> 4b · Gupshup vs AiSensy — the comparison that changed the answer</h2>
+<p class="h2sub">Because we build the orchestration, the API is not a technical detail. It is the product.</p>
+
+<h3>4b.1 &nbsp;API surface — this is not close</h3>
+<table>
+<tr><th>Capability</th><th>Gupshup</th><th>AiSensy</th><th>Why it matters to us</th></tr>
+<tr><td>Create template</td><td><span class="p y">API</span></td><td><span class="p n">dashboard only</span></td><td rowspan="5"><b>We are about to load 40 templates</b> (20 messages × EN/KN) and reload them every time Geeta ji revises copy. With Gupshup that is a script driven from her inventory sheet. With AiSensy it is 40 forms, every time</td></tr>
+<tr><td>Edit template</td><td><span class="p y">API</span></td><td><span class="p n">dashboard only</span></td></tr>
+<tr><td>Delete template</td><td><span class="p y">API</span></td><td><span class="p n">dashboard only</span></td></tr>
+<tr><td>List all templates</td><td><span class="p y">API</span></td><td><span class="p n">—</span></td></tr>
+<tr><td><b>Approval status tracking</b></td><td><span class="p y">API</span></td><td><span class="p n">refresh the page</span></td></tr>
+<tr><td>Campaign pre-creation required before sending?</td><td><span class="p y">no</span></td><td><span class="p n">YES — a second 40-item manual task</span></td><td>AiSensy's send endpoint fires a <i>pre-existing campaign</i>, so every template needs a campaign built by hand first</td></tr>
+<tr><td><b>Get list of blocked users</b></td><td><span class="p y">API</span></td><td><span class="p n">—</span></td><td><b>Makes §8 Rule 3 verifiable rather than trusted.</b> We can reconcile our LOST list against reality — a compliance control, not a convenience</td></tr>
+<tr><td>Session message types</td><td><span class="p y">text · image · doc · audio · video · sticker · reaction · location · quick replies</span></td><td><span class="p n">one send endpoint</span></td><td>The support bot can send a scorecard PDF or a location</td></tr>
+<tr><td>Webhooks</td><td><span class="p y">documented + set-callback API</span></td><td><span class="p m">exists, documented separately</span></td><td>Reply and opt-out events drive the whole scoring model</td></tr>
+<tr><td><b>Documented endpoints</b></td><td class="n"><b>~25+</b></td><td class="n"><b>1</b></td><td>—</td></tr>
+</table>
+
+<h3>4b.2 &nbsp;Cost — the structures differ, so the winner flips with our message MIX</h3>
+<table>
+<tr><th></th><th>Gupshup (self-serve)</th><th>AiSensy</th></tr>
+<tr><td>Monthly platform fee</td><td class="n"><b>₹0</b> reported</td><td class="n">₹1,500 Basic · ₹3,200 Pro</td></tr>
+<tr><td>Markup style</td><td><b>flat ~₹0.085/msg</b></td><td>baked into the rate</td></tr>
+<tr><td>Marketing / msg</td><td class="n"><b>~₹0.948</b></td><td class="n">₹1.09</td></tr>
+<tr><td>Utility / msg</td><td class="n">~₹0.200</td><td class="n"><b>₹0.145</b></td></tr>
+<tr><td>Pricing transparency</td><td><span class="p n">quote-only</span></td><td><span class="p y">published</span></td></tr>
+<tr><td>Activation</td><td><span class="p m">enterprise motion</span></td><td><span class="p y">10 minutes</span></td></tr>
+</table>
+<p><b>A flat markup favours expensive messages and punishes cheap ones.</b> Gupshup wins on marketing but
+<i>loses</i> on utility — and our mix is roughly <b>3:1 utility-heavy</b> (OTP, login links, scorecards,
+journey updates), which cuts against it.</p>
+
+<table>
+<tr><th>Scale</th><th>Utility / Marketing</th><th>AiSensy Pro</th><th>Gupshup</th><th>Winner</th></tr>
+<tr><td><b>A · today</b></td><td class="n">3,600 / 1,000</td><td class="n">₹4,812</td><td class="n"><b>₹1,668</b></td><td><span class="p y">Gupshup −65%</span></td></tr>
+<tr><td><b>B · 10×</b></td><td class="n">36,000 / 10,000</td><td class="n">₹19,320</td><td class="n"><b>₹16,680</b></td><td><span class="p y">Gupshup −14%</span></td></tr>
+<tr><td><b>C · 100×</b></td><td class="n">360,000 / 100,000</td><td class="n"><b>₹164,400</b></td><td class="n">₹166,800</td><td><span class="p m">AiSensy −1.5%</span></td></tr>
+</table>
+<p>At today's volume <b>the platform fee IS most of the bill</b>, so Gupshup's ₹0 monthly dominates. At 100×
+the fee is noise and AiSensy's cheaper utility rate wins it back.</p>
+
+<div class="card bad">
+<h4>⚠️ This table rests on a contested number, and the contradiction is fatal to precision</h4>
+<ul style="margin:0 0 8px">
+  <li>One source: Meta's India base is <b>₹0.8631</b> marketing, and AiSensy adds ~26%</li>
+  <li>Another: <b>₹1.09 IS Meta's pass-through rate</b>, with BSPs adding 0–25% on top</li>
+</ul>
+<p style="margin:0 0 8px"><b>Both cannot be true</b> — if Meta's base were ₹1.09, Gupshup's reported ₹0.948
+would be below Meta's own cost, which is impossible. Meta's official pricing page uses an interactive market
+selector rather than a readable table, so I could not settle it from the primary source.</p>
+<p style="margin:0"><b>So treat §4b.2 as directional, not decisive. The cost gap is small and uncertain; the
+API gap is large and verified. Decide on the API.</b></p>
+</div>
+
+<h3>4b.3 &nbsp;What AiSensy still wins</h3>
+<ol>
+  <li><b>Published pricing</b> — you know the number before a sales call.</li>
+  <li><b>10-minute activation</b> — Gupshup has an enterprise motion; expect days.</li>
+  <li><b>The AI chatbot builder trained on business data.</b> <b>This is the one I weight most heavily</b>, and
+    <b>I have not verified that Gupshup's self-serve tier offers an equivalent.</b> Gupshup is a messaging
+    platform first; AiSensy packages the bot. Our inbound enrolment + FAQ bot is a real requirement, so this
+    could decide it on its own.</li>
+</ol>
+
+<div class="card o">
+<h4>The conditional recommendation</h4>
+<table style="margin:10px 0 0">
+<tr><th>If…</th><th>Then</th></tr>
+<tr><td>Gupshup self-serve is genuinely no-commitment, <b>includes the template API</b>, and has a usable Kannada FAQ bot</td><td><b style="color:var(--wa)">GUPSHUP</b> — cheaper today, cheaper at 10×, and the API alone justifies it</td></tr>
+<tr><td>The template API is gated to a paid/enterprise tier, or any commitment is required</td><td><b style="color:var(--o3)">AISENSY</b> — published price and 10-minute activation win for pre-revenue. Accept the manual template work: it is an afternoon per copy revision, not a blocker</td></tr>
+<tr><td>Gupshup has no credible self-serve chatbot builder</td><td><b style="color:var(--o3)">AISENSY</b> — the inbound bot is a requirement, not a nice-to-have</td></tr>
+</table>
 </div>
 
 <!-- 5 -->
@@ -408,7 +516,12 @@ across all three decisions, it is also why they compose rather than conflict.</p
 <h2 id="next"><i class="fa-solid fa-list-check"></i> 10 · The next 10 days</h2>
 <table class="wrapok">
 <tr><th>When</th><th>Do</th><th>Why</th></tr>
-<tr><td><b>Day 1</b></td><td>Ask AiSensy <b>and</b> Gallabox the same five questions: (1) exact per-message rates for marketing/utility/auth in INR, in writing; (2) cost of a second WABA number; (3) can the AI bot answer from an uploaded FAQ/knowledge base <b>in Kannada</b>; (4) API + webhook docs before signing; (5) can we export every contact and conversation on exit</td><td>Q1 and Q2 decide the cost model. Q5 is the exit clause that makes §8 true</td></tr>
+<tr><td><b>Day 1</b><br><span class="p n">DECIDES IT</span></td><td><b>Email Gupshup the three questions that settle the recommendation:</b><br>
+  <b>1.</b> Is there a self-serve tier with <b>no monthly commitment</b>, and is the <b>template management API available on it</b>?<br>
+  <b>2.</b> Exact per-message rates for India in INR — marketing and utility — <b>in writing</b>.<br>
+  <b>3.</b> Does self-serve include a <b>no-code chatbot builder that answers from an uploaded FAQ in Kannada</b>?</td>
+  <td><b>All three yes → Gupshup. Any no → AiSensy.</b> API access is commonly gated to paid tiers, and if it is, the entire §4b benefit list evaporates</td></tr>
+<tr><td><b>Day 1</b></td><td>Ask AiSensy <b>and</b> Gallabox the same five questions: (1) exact per-message rates in INR, in writing; (2) cost of a second WABA number; (3) can the AI bot answer from an uploaded FAQ <b>in Kannada</b>; (4) can tags be <b>removed</b> via API; (5) can we export every contact and conversation on exit</td><td>Runs in parallel so we are not blocked on Gupshup's reply. Q5 is the exit clause that makes §8 true</td></tr>
 <tr><td><b>Day 1</b></td><td>Email <b>Ozonetel</b>: will you do a published-price monthly plan with no annual commitment?</td><td>Best usage evidence in the category; eliminated only on pricing opacity. One email to test the premise</td></tr>
 <tr><td><b>Day 2</b></td><td>Start <b>Business Verification</b> on one Indian mobile number</td><td>It gates the 100K tier and takes days. Nothing else can start until it is done</td></tr>
 <tr><td><b>Day 3–5</b></td><td>Take the ₹1,500 AiSensy Basic plan. Submit <b>4 templates in English + Kannada</b>: OTP, login link, scorecard-ready, welcome</td><td>Tests the real bottleneck — Kannada template approval — for ₹1,500 and no commitment</td></tr>
@@ -419,16 +532,20 @@ across all three decisions, it is also why they compose rather than conflict.</p
 
 <div class="card w">
 <h4>The decision, in one paragraph</h4>
-<p style="margin:0"><b>Take AiSensy on the ₹1,500 Basic plan with one Indian mobile number carrying
-everything — utility, auth, marketing and the inbound bot — and split to a second number only when one of the
-four triggers in §5 fires.</b> It wins on the four dimensions that matter given we own the orchestration:
-lowest entry cost, fastest broadcast engine, an AI chatbot that can be trained on our own FAQ content, and
-five free agent seats. It loses on usage evidence (4.3 from 110 reviews against Wati's 4.6 from 458) and it
-carries the highest per-message markup of the finalists, which will make it the wrong choice somewhere
-around 10,000 marketing messages a month. <b>Both weaknesses are acceptable for exactly one reason: because
-the CRM, the journey state and the template library stay ours, leaving costs days rather than quarters.</b>
-Gallabox is the fallback and becomes the pick if the Kannada enrolment bot is the hard part; Ozonetel
-re-enters at the top if it will publish a price. <b>Total exposure to being wrong: ₹1,500 and a week.</b></p>
+<p style="margin:0 0 10px"><b>Use ONE Indian mobile number for everything — utility, auth, marketing and the
+inbound bot — and split to a second only when one of the four triggers in §5 fires.</b> That part is settled
+and does not depend on the vendor.</p>
+<p style="margin:0 0 10px"><b>On the vendor, send one email before choosing.</b> If Gupshup's self-serve tier
+is no-commitment, includes the template management API, and has a usable Kannada FAQ bot, <b>take
+Gupshup</b>: it is ~65% cheaper at today's volume (because the platform fee <i>is</i> most of our bill),
+still cheaper at 10×, and its ~25 endpoints against AiSensy's one turn a recurring 40-template manual load
+into a script. If any of those three comes back no, <b>take AiSensy on the ₹1,500 Basic plan</b> and accept
+the dashboard work — it is an afternoon per copy revision, not a blocker.</p>
+<p style="margin:0"><b>What makes either choice safe is the same thing:</b> the CRM, the journey state, the
+lead score and the canonical template text stay ours. The BSP holds no state we cannot reproduce, so being
+wrong costs days rather than quarters. <b>That is why this document can end on a condition rather than a
+verdict without that being a cop-out</b> — the architecture already absorbed the risk that the vendor choice
+would otherwise carry. Total exposure to being wrong: <b>₹1,500 and a week.</b></p>
 </div>
 
 <div class="foot">
