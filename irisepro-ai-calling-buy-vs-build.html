@@ -1,0 +1,570 @@
+<title>YASHHO — AI calling: buy vs build. Cost-first analysis and recommendation</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a1626; --surface:#10223c; --surface2:#16294a; --line:#1d3354; --line2:#2a4468;
+  --ink:#eaf1f9; --mute:#8ea3bd; --dim:#6b819d;
+  --o:#f5821f; --o2:#ff9b3d; --o3:#ffb259; --blue:#3f93e0;
+  --ok:#3ecf8e; --warn:#f5c451; --bad:#ef5f5f; --purple:#a78bfa;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,sans-serif;
+  font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
+.wrap{max-width:1240px;margin:0 auto;padding:44px 22px 110px}
+a{color:var(--o2)}
+.kick{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o)}
+h1{font-size:clamp(30px,4.6vw,50px);font-weight:900;letter-spacing:-.025em;margin:.24em 0 .18em;line-height:1.03}
+.lede{color:var(--mute);font-size:16.5px;max-width:82ch}
+.rule{height:1px;background:var(--line);margin:38px 0}
+h2{display:flex;align-items:center;gap:13px;font-size:13px;font-weight:800;letter-spacing:.17em;
+  text-transform:uppercase;margin:64px 0 8px;color:var(--ink)}
+h2 i{width:28px;height:28px;border-radius:8px;background:var(--o);color:#0a1626;display:grid;
+  place-items:center;font-size:13px;flex:none}
+.h2sub{color:var(--mute);font-size:14.5px;margin:0 0 26px;max-width:86ch}
+h3{font-size:19px;font-weight:800;margin:34px 0 8px;letter-spacing:-.01em}
+h4{font-size:15px;font-weight:800;margin:22px 0 6px;color:var(--o3)}
+p{max-width:90ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+.card.o{border-color:var(--o);background:linear-gradient(180deg,rgba(245,130,31,.10),rgba(245,130,31,.03))}
+.card.bad{border-color:rgba(239,95,95,.5);background:rgba(239,95,95,.07)}
+.card.ok{border-color:rgba(62,207,142,.45);background:rgba(62,207,142,.06)}
+.card.q{border-color:rgba(167,139,250,.5);background:rgba(167,139,250,.06)}
+.card h4{margin-top:0}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:24px 0}
+.b{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:14px 16px}
+.b b{display:block;font-size:25px;font-weight:900;color:var(--o3);letter-spacing:-.03em;line-height:1.1}
+.b span{display:block;font-size:11.5px;color:var(--mute);margin-top:4px;line-height:1.4}
+.b.win b{color:var(--ok)}
+.b.lose b{color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:18px 0;display:block;overflow-x:auto}
+table.wrapok{white-space:normal}
+th{text-align:left;padding:9px 11px;background:var(--surface2);border:1px solid var(--line2);
+  font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--o3)}
+td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:nth-child(even) td{background:rgba(255,255,255,.014)}
+td b{color:#fff}
+code{background:#071120;padding:1.5px 6px;border-radius:4px;font-size:12px;color:var(--o3);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.p{display:inline-block;font-size:10px;font-weight:800;padding:2.5px 7px;border-radius:5px;
+  letter-spacing:.05em;white-space:nowrap}
+.p.y{background:rgba(62,207,142,.16);color:var(--ok);border:1px solid rgba(62,207,142,.4)}
+.p.n{background:rgba(239,95,95,.14);color:var(--bad);border:1px solid rgba(239,95,95,.38)}
+.p.m{background:rgba(245,196,81,.14);color:var(--warn);border:1px solid rgba(245,196,81,.38)}
+.p.i{background:rgba(63,147,224,.14);color:var(--blue);border:1px solid rgba(63,147,224,.38)}
+.p.v{background:rgba(167,139,250,.14);color:var(--purple);border:1px solid rgba(167,139,250,.38)}
+.p.g{background:rgba(255,255,255,.06);color:var(--mute);border:1px solid var(--line2)}
+.src{font-size:11.5px;color:var(--dim);font-style:italic;margin-top:8px;max-width:92ch}
+.src b{color:var(--mute);font-style:normal}
+ul,ol{max-width:90ch;padding-left:22px}
+li{margin:6px 0}
+li b{color:#fff}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.split3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:980px){.split,.split3{grid-template-columns:1fr}}
+.flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;margin:22px 0}
+.st{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px;flex:1 1 148px;min-width:0}
+.st b{display:block;font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--o);margin-bottom:3px}
+.st span{font-size:12.5px;display:block;line-height:1.4}
+.arw{align-self:center;color:var(--o);font-size:16px;flex:none}
+.arch{background:#071120;border:1px solid var(--line2);border-radius:11px;padding:16px 18px;margin:18px 0;overflow-x:auto}
+.arch pre{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.75;color:var(--ink)}
+.arch pre .c{color:var(--o3)} .arch pre .d{color:var(--dim)} .arch pre .b2{color:var(--blue)} .arch pre .g2{color:var(--ok)} .arch pre .r{color:var(--bad)}
+.quote{border-left:3px solid var(--o);padding:4px 0 4px 15px;margin:16px 0;font-size:14.5px;max-width:88ch}
+.quote cite{display:block;font-size:11.5px;color:var(--dim);font-style:normal;margin-top:6px}
+.bar{height:22px;border-radius:4px;background:var(--line2);position:relative;overflow:hidden;min-width:130px}
+.bar i{position:absolute;inset:0 auto 0 0;display:block}
+.bar span{position:absolute;left:8px;top:0;line-height:22px;font-size:11px;font-weight:800;color:#04101d}
+.foot{margin-top:66px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim)}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:15px 19px;margin:26px 0}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:30px}
+@media(max-width:760px){.toc ol{columns:1}}
+.toc a{text-decoration:none;font-size:13.5px}
+</style>
+
+<div class="wrap">
+
+<div class="kick">Commissioned analysis · 14 Aug 2026 · YASHHO / iRisePro · pre-revenue, cost-first</div>
+<h1>AI calling: buy or build</h1>
+<p class="lede">Scope narrowed to what is actually undecided. The CRM you already own and will build a read-model
+over. WhatsApp is settled on AiSensy. <b>AI calling is the only open question</b> — and on cost, on your own
+prototype evidence, and on the per-stream training requirement, the three arguments point the same way.</p>
+
+<div class="big">
+  <div class="b win"><b>₹5.52/min</b><span>Bolna hosted, all-in</span></div>
+  <div class="b lose"><b>₹8.7–14.2</b><span>DIY on ElevenLabs, per min — 1.6–2.6× worse</span></div>
+  <div class="b"><b>₹3.9–5.0</b><span>self-hosted OSS per min — saves ₹1.4/min, loses the trainer</span></div>
+  <div class="b lose"><b>6–10 wks</b><span>engineer-time to reach production on a DIY build</span></div>
+  <div class="b"><b>₹4,968</b><span>your entire monthly voice bill at today's volume</span></div>
+</div>
+
+<div class="card o">
+<h4>The answer, up front</h4>
+<p style="margin:0 0 10px"><b>Buy Bolna hosted, on pay-as-you-go, with no commitment.</b> Not because buying is
+philosophically better, but because at 900 minutes a month the entire voice bill is <b>₹4,968</b> — and the
+cheapest possible self-hosted build saves roughly <b>₹1,250 a month</b> while costing 6–10 engineer-weeks and
+handing you back the exact problem that stopped your prototype.</p>
+<p style="margin:0"><b>You cannot save your way to justifying a single sprint here, let alone two.</b> The
+build case does not open until roughly <b>25,000 minutes/month</b> — about 28× your current volume. Revisit it
+then, and revisit it as "self-host the engine we already know", not as "build from parts".</p>
+</div>
+
+<h2 id="lang" style="margin-top:44px"><i class="fa-solid fa-language"></i> 0 · Kannada is the must-have. Here is who actually has it</h2>
+<p class="h2sub">You named Kannada as non-negotiable, with Hindi, Tamil, Telugu, Bengali, Marathi and Gujarati
+mattering later. This is the most usefully <b>falsifiable</b> criterion you have given me, so I checked it
+first — and it eliminates most of the market.</p>
+
+<table class="wrapok">
+<tr><th>Language</th><th>Bolna</th><th>Sarvam (Bulbul V3 TTS / Saaras v3 STT)</th><th>ElevenLabs</th><th>Vapi / Retell</th><th>₹2/min claimants</th></tr>
+<tr><td><b>Kannada</b> <span class="p n">must-have</span></td><td><span class="p y">yes</span></td><td><span class="p y">yes — TTS + STT</span></td><td><span class="p m">generic multilingual</span></td><td><span class="p m">via provider</span></td><td><span class="p g">unverified</span></td></tr>
+<tr><td>Hindi</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td><td><span class="p m">claimed</span></td></tr>
+<tr><td>Tamil · Telugu · Malayalam</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td><td><span class="p m">generic</span></td><td><span class="p m">via provider</span></td><td><span class="p g">unverified</span></td></tr>
+<tr><td>Bengali · Marathi · Gujarati</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td><td><span class="p m">generic</span></td><td><span class="p m">via provider</span></td><td><span class="p g">unverified</span></td></tr>
+<tr><td>Punjabi · Odia</td><td><span class="p y">yes</span></td><td><span class="p y">yes</span></td><td><span class="p m">generic</span></td><td><span class="p m">via provider</span></td><td><span class="p g">unverified</span></td></tr>
+<tr><td>Hinglish / code-switching</td><td><span class="p y">explicit</span></td><td><span class="p y">explicit — Romanized + code-mixed</span></td><td><span class="p n">weak</span></td><td><span class="p n">weak</span></td><td><span class="p g">unverified</span></td></tr>
+</table>
+
+<div class="card ok">
+<h4>The finding that settles "built specifically for India"</h4>
+<p style="margin:0 0 10px"><b>Bolna supports all 10 languages you named</b> — Hindi, Bengali, Tamil, Telugu,
+Gujarati, <b>Kannada</b>, Malayalam, Marathi, Punjabi, Odia, plus English (India). Not a roadmap; a published
+list.</p>
+<p style="margin:0 0 10px"><b>And Bolna integrates Sarvam natively at all three layers</b> — Sarvam TTS,
+Sarvam Transcriber (STT) and Sarvam LLM each have first-class integration pages and docs. That is not a
+workaround; it is the intended configuration.</p>
+<p style="margin:0">Why that matters more than any feature list: <b>Sarvam's Bulbul V3 achieves the lowest
+character error rate across every Indian-relevant domain</b> — numerics, STEM terms, named entities,
+code-mixing, Romanized text, abbreviations — beating global TTS systems. Those six categories are
+<i>exactly</i> what a KAS conversation is made of. Saaras v3 STT covers 23 Indic languages.</p>
+</div>
+
+<div class="arch"><pre><span class="c">THE INDIA-NATIVE STACK — every layer built for this market</span>
+
+  orchestration + playground   <span class="g2">Bolna</span>        YC · "Voice AI for India" · Bengaluru
+  TTS / STT / LLM              <span class="g2">Sarvam</span>       $1.5B sovereign-AI unicorn · 22-23 Indic languages
+  carrier                      <span class="g2">Plivo / Exotel</span>  Indian numbers · DLT infrastructure
+  compliance posture           <span class="g2">TCCCPR + DPDPA</span>  §3 of this document
+
+  <span class="d">No layer is a global product with an India setting. That is the answer to</span>
+  <span class="d">"we need a voice agent built specifically for India."</span></pre></div>
+
+<p><b>On "cost-effective at scale":</b> Bolna publishes volume tiers down to <b>4.51¢/min</b> (≈₹3.95) — a
+28% reduction from the ₹5.52 headline — and supports <b>BYOK</b> for LLM/TTS/STT, so at scale you can bring
+your own Sarvam contract and pay Bolna only the orchestration fee. <b>That is the scale lever, and it does
+not require rebuilding anything.</b> It is also why §2's crossover sits so far out.</p>
+
+<div class="toc">
+  <ol>
+    <li><a href="#lang">Kannada is the must-have — who actually has it</a></li>
+    <li><a href="#frame">Reframing: cost-first for a pre-revenue startup</a></li>
+    <li><a href="#three">The three paths, costed at your real volume</a></li>
+    <li><a href="#telephony">Why your prototype stalled — and what that proves</a></li>
+    <li><a href="#oss">The open-source split, and what self-hosting costs you</a></li>
+    <li><a href="#streams">Per-stream agents: KAS aspirant vs class-5 parent</a></li>
+    <li><a href="#shortlist">AI-calling shortlist on cost, support, performance</a></li>
+    <li><a href="#build">If you build anyway: the shortest reliable path</a></li>
+    <li><a href="#ask">The seven questions that decide it</a></li>
+    <li><a href="#next">The next 14 days</a></li>
+  </ol>
+</div>
+
+<!-- 1 -->
+<h2 id="frame"><i class="fa-solid fa-compass"></i> 1 · Reframing: cost-first, pre-revenue</h2>
+<p class="h2sub">"Cost is the deciding factor" changes the objective function, and it is worth being precise
+about what it changes it to.</p>
+
+<p>For a pre-revenue startup, cost-optimal is <b>not</b> lowest headline rate. It is <b>lowest cost of being
+wrong</b>. Three consequences, and they drive everything below:</p>
+<ul>
+  <li><b>Prefer variable cost to fixed cost, always.</b> A ₹5 lakh annual contract at 40 learners is not a
+    discount, it is a bet on a volume you do not have. Pay-as-you-go at a worse per-minute rate is cheaper in
+    expectation than a commitment at a better one.</li>
+  <li><b>Engineering time is your most expensive input, not your cheapest.</b> It is the one resource you
+    cannot buy more of, and every week spent on telephony plumbing is a week not spent on the product that
+    creates revenue. Treating engineer-weeks as free is the classic way a "cheaper" build becomes the most
+    expensive line in the budget.</li>
+  <li><b>"Cost-first" and "great support" are in direct tension, and you have already paid for that lesson.</b>
+    Superfone <i>was</i> the cheap option. Seed-stage vendors under-staff support first because it is the
+    largest cost that does not show up in a demo. So the resolution is not "buy expensive support" — it is
+    <b>buy no commitment</b>, so that bad support costs you a migration rather than a contract.</li>
+</ul>
+
+<div class="card">
+<h4>The decision rule I am applying</h4>
+<p style="margin:0">Minimise <b>total cost to a working, compliant hot-lead call</b> — licence + usage +
+engineer-weeks + the expected cost of switching if it fails — over the next two quarters, not the next two
+years. On that rule the answer is unambiguous, and it stays unambiguous even if Bolna's rate doubles.</p>
+</div>
+
+<!-- 2 -->
+<h2 id="three"><i class="fa-solid fa-scale-unbalanced"></i> 2 · The three paths, costed at your real volume</h2>
+<p class="h2sub">Assumption: 500 leads/month · 60% connect · 3-minute average call = <b>900 billable
+minutes/month</b>. Challenge these two numbers and the conclusion moves; nothing else does.</p>
+
+<table class="wrapok">
+<tr><th>Path</th><th>Per minute</th><th>Monthly @900 min</th><th>One-off eng cost</th><th>Who owns telephony &amp; DLT</th><th>Per-stream trainer</th></tr>
+<tr><td><b>A · Buy Bolna hosted</b></td>
+  <td class="n"><b>₹5.52</b></td><td class="n"><b>₹4,968</b></td><td class="n"><b>~0</b> (API wiring, days)</td>
+  <td><span class="p y">Bolna, via Plivo/Exotel</span></td><td><span class="p y">no-code playground</span></td></tr>
+<tr><td><b>B · Self-host Bolna OSS</b></td>
+  <td class="n">₹3.9–5.0 <span class="p g">est.</span></td><td class="n">₹3,510–4,500</td><td class="n">3–5 weeks</td>
+  <td><span class="p n">you</span></td><td><span class="p n">lost — closed source</span></td></tr>
+<tr><td><b>C · Build on ElevenLabs/Vapi</b></td>
+  <td class="n">₹8.7–14.2</td><td class="n">₹7,830–12,780</td><td class="n">6–10 weeks</td>
+  <td><span class="p n">you</span></td><td><span class="p m">build it yourself</span></td></tr>
+</table>
+
+<h3>2.1 &nbsp;The component maths, so you can audit it</h3>
+<table class="wrapok">
+<tr><th>Component</th><th>Rate found</th><th>≈ ₹/min</th><th>Source quality</th></tr>
+<tr><td>ElevenLabs Agents</td><td class="n">$0.08 std · $0.10 turbo · $0.12 premium /min</td><td class="n">7.0–10.5</td><td>secondary, consistent across 4 write-ups</td></tr>
+<tr><td>LLM reasoning (separate — ElevenLabs is voice only)</td><td class="n">varies by model</td><td class="n">1–3</td><td>modelled</td></tr>
+<tr><td>Vapi published / all-in</td><td class="n">$0.05 → $0.10–0.30 real</td><td class="n">4.4 → 8.8–26</td><td>independent write-ups agree headline understates 2–4×</td></tr>
+<tr><td>Retell published / all-in</td><td class="n">$0.07 → $0.07–0.31 real</td><td class="n">6.1 → 6.1–27</td><td>as above</td></tr>
+<tr><td>Cheapest credible self-host stack (Groq Llama 3 + Deepgram STT + Aura TTS + direct SIP)</td><td class="n">~$0.05/min components</td><td class="n">~4.4</td><td>Inworld worked cost model</td></tr>
+<tr><td>Sarvam AI — Indian-language STT/TTS</td><td class="n">STT ₹30/hour · TTS ₹15–30/10k chars</td><td class="n">~0.5 STT + TTS</td><td><b>primary</b> — sarvam.ai/api-pricing</td></tr>
+<tr><td>Orchestration if not Bolna (LiveKit / Pipecat Cloud)</td><td class="n">$0.01/min, free to 1k min/mo, OSS self-host</td><td class="n">0.9</td><td>primary</td></tr>
+<tr><td>Telephony — Plivo India outbound</td><td class="n">~₹0.71/min</td><td class="n">0.71</td><td>primary; ₹0.60–1.20 direct SIP, ₹0.80–1.80 aggregator</td></tr>
+</table>
+<p class="src"><b>Note the honest range on B.</b> ₹3.9–5.0/min assumes Sarvam for Indian-language TTS/STT,
+a cheap LLM, self-hosted orchestration and Plivo. It excludes your own compute, monitoring and on-call. Add
+those and B converges toward A — which is the point.</p>
+
+<div class="card bad">
+<h4>The number that ends the argument</h4>
+<p style="margin:0 0 8px">Best case, self-hosting saves <b>₹1,458/month</b> at today's volume
+(₹4,968 → ₹3,510). Against 3–5 engineer-weeks up front plus permanent ownership.</p>
+<p style="margin:0"><b>Payback period on the cheapest build: 24–40 months</b> — and that assumes zero
+maintenance, which is false. Meanwhile the same weeks spent on the orchestration layer, the drip engine
+and the unified timeline produce capability you cannot rent at all.</p>
+</div>
+
+<h3>2.2 &nbsp;Where the crossover actually is</h3>
+<div class="arch"><pre><span class="c">MONTHLY VOICE MINUTES → CHEAPEST PATH</span>
+
+      900 min   <span class="g2">▓▓</span>                                    <span class="g2">BUY</span>   ₹4,968 vs ₹3,510 build · payback 24-40 mo
+    5,000 min   <span class="g2">▓▓▓▓▓▓▓▓▓▓</span>                            <span class="g2">BUY</span>   saves ₹8,100/mo · payback still 5-8 mo
+   25,000 min   <span class="b2">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</span>           <span class="b2">TOSS-UP</span>  saves ~₹40k/mo · payback ~2 mo
+  100,000 min   <span class="r">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</span>  <span class="r">SELF-HOST</span> saves ~₹1.6L/mo — and negotiate first
+
+  <span class="d">25,000 min/mo ≈ 14,000 leads/mo ≈ 28× today. Revisit at that point, not before.</span>
+  <span class="d">And at that volume your FIRST move is to renegotiate: Bolna publishes volume tiers to 4.51¢/min.</span></pre></div>
+
+<!-- 3 -->
+<h2 id="telephony"><i class="fa-solid fa-plug-circle-xmark"></i> 3 · Why your prototype stalled — and what that proves</h2>
+<p class="h2sub">This is the strongest evidence in the analysis, and it is yours, not mine.</p>
+
+<div class="quote">The telephony layer integration was the hard / stopping part.<cite>Your prior build
+attempt</cite></div>
+
+<p>That is not incidental. <b>The telephony layer is the one part of a voice agent that is not a
+programming problem.</b> Splitting it out:</p>
+
+<table class="wrapok">
+<tr><th>Telephony sub-problem</th><th>Nature</th><th>Does self-hosting help?</th><th>Does buying help?</th></tr>
+<tr><td>Number provisioning in India</td><td>Carrier paperwork</td><td><span class="p n">no</span></td><td><span class="p y">yes — Bolna states instant local provisioning without carrier negotiation</span></td></tr>
+<tr><td>DLT registration + voice template approval</td><td>Regulatory process</td><td><span class="p n">no</span></td><td><span class="p y">yes — rides Exotel's DLT infrastructure</span></td></tr>
+<tr><td>DND / NCPR scrubbing</td><td>Ongoing operational duty</td><td><span class="p n">no</span></td><td><span class="p y">yes, if contracted</span></td></tr>
+<tr><td>Carrier reputation &amp; ML block avoidance</td><td>Relationship + traffic shaping</td><td><span class="p n">no — worse, you have no history</span></td><td><span class="p y">yes — shared pool with established patterns</span></td></tr>
+<tr><td>Media streaming, barge-in, turn-taking under Indian mobile jitter</td><td>Hard engineering</td><td><span class="p m">the OSS engine solves it</span></td><td><span class="p y">solved</span></td></tr>
+<tr><td>Burst scaling on a campaign send</td><td>Infra</td><td><span class="p n">you size it</span></td><td><span class="p y">Plivo handles 10× bursts for Bolna</span></td></tr>
+</table>
+
+<div class="card o">
+<p style="margin:0"><b>Five of six are operational, not technical.</b> Your prototype did not fail because
+the code was hard; it stalled at the boundary where software meets Indian telecom process. <b>Self-hosting
+an open-source engine returns all five of those to you.</b> That is why "build" and "the thing that stopped
+us" are the same decision, and why the cost saving is illusory — you would be buying back the blocker for
+₹1,458/month.</p>
+</div>
+
+<!-- 4 -->
+<h2 id="oss"><i class="fa-solid fa-code-branch"></i> 4 · The open-source split, and what self-hosting costs you</h2>
+<p class="h2sub">Bolna is genuinely open source — but not all of it, and the closed part is the part you asked for.</p>
+
+<div class="split">
+<div class="card ok">
+<h4><i class="fa-brands fa-github"></i> Open source (<code>github.com/bolna-ai/bolna</code>)</h4>
+<ul style="margin:0">
+  <li>The full <b>orchestration engine</b> — ASR + LLM + TTS over websockets</li>
+  <li>Telephony <b>adapters</b>: Twilio, Plivo, Exotel, Vonage</li>
+  <li>Transcription via Deepgram, Azure</li>
+  <li>LLMs: OpenAI, DeepSeek, Llama, Cohere, Mistral</li>
+  <li><b>Docker and Kubernetes on-prem deployment officially documented</b></li>
+</ul>
+</div>
+<div class="card bad">
+<h4><i class="fa-solid fa-lock"></i> Closed source — hosted only</h4>
+<ul style="margin:0">
+  <li>The <b>no-code agent playground</b></li>
+  <li>The hosted APIs and managed infrastructure</li>
+  <li>Managed number provisioning &amp; the DLT/regulatory path</li>
+  <li>Burst scaling, 99.9% uptime operation</li>
+  <li>Support with a named account manager (Enterprise tier)</li>
+</ul>
+</div>
+</div>
+
+<div class="card q">
+<h4><i class="fa-solid fa-circle-exclamation"></i> Why this specifically defeats self-hosting for you</h4>
+<p style="margin:0">You asked for <b>"easy to onboard, easy to train and retrain, customisable per
+stream."</b> That is a description of the <b>no-code playground</b> — and it is on the closed side of the
+line. Self-hosting gives you the engine and takes away the trainer, so every prompt change for every stream
+becomes a config commit and a deploy. <b>You would be trading the feature you most want for ₹1,458/month.</b></p>
+</div>
+
+<!-- 5 -->
+<h2 id="streams"><i class="fa-solid fa-people-arrows"></i> 5 · Per-stream agents: KAS aspirant vs class-5 parent</h2>
+<p class="h2sub">A real requirement with a real architectural answer — and one DPDPA constraint that must be
+designed in, not bolted on.</p>
+
+<p>You are right that these are different conversations, and the difference is not tone — it is <b>who is on
+the phone</b>:</p>
+<table class="wrapok">
+<tr><th></th><th>KAS / IAS aspirant</th><th>Parent of a class-5 student</th></tr>
+<tr><td><b>Who answers</b></td><td>The learner — an adult, buying for themselves</td><td>The guardian — buying on behalf of a child</td></tr>
+<tr><td><b>Motivation</b></td><td>Self-efficacy, competitive edge, own career</td><td>The child's future; often anxiety-led</td></tr>
+<tr><td><b>Objection shape</b></td><td>"Will this actually help me clear the exam?"</td><td>"Is this safe, age-appropriate, worth the money?"</td></tr>
+<tr><td><b>Language register</b></td><td>Peer, direct, outcome-led</td><td>Deferential, reassuring, zero-fear</td></tr>
+<tr><td><b>DPDPA §9(3) exposure</b></td><td><span class="p y">none — adult data subject</span></td><td><span class="p m">the child must never be profiled or targeted; the guardian is the only contactable party</span></td></tr>
+</table>
+
+<div class="card o">
+<h4>The design: one agent per (stream × persona), all driven from your own data</h4>
+<div class="arch" style="margin:10px 0 0"><pre><span class="c">YOUR LARAVEL BACKEND decides WHICH agent, and passes the context</span>
+
+  lead captured → resolve <span class="b2">stream</span> (kas · ias · jee · neet · board · marks · career)
+                  resolve <span class="b2">persona</span> (self-buyer adult | guardian-of-minor)
+                          ↓
+  POST /call  { agent_id: "<span class="g2">kas_adult_v3</span>", context: { first_name, stream_label,
+                exam_cycle, price_ladder, <span class="r">NEVER: child name, child task scores</span> } }
+                          ↓
+  <span class="c">BOLNA</span> runs that agent's prompt + voice + flow. You version the agent, not the code.
+
+  <span class="d">7 streams × 2 personas = up to 14 agents. Start with 2 — kas_adult and guardian_junior —</span>
+  <span class="d">because those are your two genuinely different conversations. Add streams as data justifies.</span></pre></div>
+</div>
+
+<p><b>Two things this buys you.</b> First, prompt iteration stops being a deploy: your growth person edits
+<code>guardian_junior</code> in the playground while engineering ships product. Second, the <b>agent id is a
+first-class experiment variable</b> — you can A/B two openers for the same stream and attribute conversion,
+because your backend already owns the outcome data.</p>
+
+<div class="card bad">
+<h4>The DPDPA line, drawn concretely</h4>
+<p style="margin:0">For the guardian persona, the context payload may carry the <b>guardian's</b> name, the
+stream, and the commercial facts. It must <b>not</b> carry the child's task scores, ability profile or
+progress — because passing child-derived behavioural data into a third-party targeting engine is the
+clearest possible instance of what §9(3) prohibits, and consent does not cure it. Enforce this as a
+<b>whitelist</b> on the outbound payload in your own code, not as a guideline for whoever writes the prompt.</p>
+</div>
+
+<!-- 6 -->
+<h2 id="shortlist"><i class="fa-solid fa-ranking-star"></i> 6 · AI-calling shortlist on cost, support, performance</h2>
+<p class="h2sub">Your three stated criteria, applied to the vendors that can actually place an Indian call.</p>
+
+<table class="wrapok">
+<tr><th>Vendor</th><th>Cost</th><th>India performance</th><th>Onboard / retrain</th><th>Maturity &amp; support signal</th><th>Verdict</th></tr>
+<tr><td><b>Bolna</b></td>
+  <td class="n"><b>₹5.52/min</b><br>PAYG from $10<br>vol. to 4.51¢/min</td>
+  <td>10+ Indian languages incl. Hinglish; <b>500–700 ms</b> latency <span class="p g">vendor-adjacent</span>; managed Plivo/Exotel/Airtel SIP + BYO</td>
+  <td><span class="p y">no-code playground</span> + full REST API; multi-agent via API</td>
+  <td>YC; <b>$6.3M seed led by General Catalyst</b>; 1M+ calls/mo per Plivo's own case study; dedicated AM on Enterprise only</td>
+  <td><span class="p y">RECOMMENDED</span></td></tr>
+<tr><td><b>Retell AI</b></td>
+  <td class="n">$0.07 published<br>$0.07–0.31 real</td>
+  <td><b>800 ms+</b>; not India-optimised</td>
+  <td><span class="p y">no-code flow builder</span>; structured dialog; strong on compliance</td>
+  <td>Established global; better docs than most</td>
+  <td><span class="p m">FALLBACK</span> if Bolna's Indian-language quality fails your test</td></tr>
+<tr><td><b>Vapi</b></td>
+  <td class="n">$0.05 published<br>$0.10–0.30 real</td>
+  <td><b>1,450 ms+</b> — worst measured for India</td>
+  <td><span class="p n">API-only, no visual builder</span>; Squads multi-agent handoff</td>
+  <td>Well funded, developer-favourite</td>
+  <td><span class="p n">NO</span> — fails your "easy to retrain" requirement and the latency is wrong for India</td></tr>
+<tr><td><b>Ubona</b> <span class="p v">you asked</span></td>
+  <td class="n">No public rate card</td>
+  <td>Enterprise voice bots, 19 years of carrier work</td>
+  <td>Enterprise engagement, not self-serve</td>
+  <td><b>Founded 2007</b>, Series A — the most durable vendor in this analysis</td>
+  <td><span class="p m">ONE CALL</span> worth 30 minutes purely to hear their compliance answer; expect enterprise pricing and sales cycle</td></tr>
+<tr><td><b>MyOperator · Exotel · Ozonetel</b></td>
+  <td class="n">~₹5/min effective (MyOperator)</td>
+  <td>Best DLT plumbing and carrier relations; Exotel's real-time media APIs reportedly lag for voice AI</td>
+  <td>Telephony-first, AI bolted on</td>
+  <td>Long-established, real support organisations</td>
+  <td><span class="p m">COMPLIANCE FALLBACK</span> worse AI, better paperwork</td></tr>
+<tr><td><b>₹2/min claimants</b><br>Dvaarik · Tabbly · Agni/Ravan</td>
+  <td class="n">₹2/min claimed</td>
+  <td>Unverified</td><td>Unknown</td>
+  <td><span class="p n">no funding, review or scale signal found</span></td>
+  <td><span class="p n">AVOID</span> at ₹4,968/mo total spend, a ₹3/min saving is ₹2,700/mo — not worth repeating the Superfone experience for</td></tr>
+<tr><td><b>Vomyra</b></td>
+  <td class="n">₹19,999/mo unlimited</td>
+  <td>Claims <b>80% pickup on 98/94 mobile numbers</b></td><td>Self-serve</td>
+  <td>Early</td>
+  <td><span class="p n">RED FLAG</span> — see below</td></tr>
+</table>
+
+<div class="card bad">
+<h4>Why "80% pickup on normal mobile numbers" should worry you, not attract you</h4>
+<p style="margin:0">High pickup on a regular 98/94 number means the traffic is <b>not</b> on the 140-series
+that TCCCPR requires for promotional calls — which is exactly the pattern TRAI's carrier-side ML profiling
+is built to detect, and exactly the pattern that gets a number blocked with no appeal. A vendor marketing
+this as a feature is marketing your regulatory exposure back to you. <b>Treat "high pickup, normal number"
+as a compliance smell, not a performance metric.</b></p>
+</div>
+
+<!-- 6b -->
+<h2 id="named"><i class="fa-solid fa-hand-point-right"></i> 6b · The five vendors you named</h2>
+<p class="h2sub">Assessed against the criterion that actually decides it — <b>can it place a Kannada AI call to
+an Indian mobile?</b> Four of five cannot, and I would rather say so than pad the shortlist.</p>
+
+<table class="wrapok">
+<tr><th>Vendor</th><th>What it actually is</th><th>Kannada AI voice call?</th><th>Cost</th><th>Verdict</th></tr>
+<tr><td><b>Expedify.ai</b></td>
+  <td>AI-native CRM with autonomous voice + chat agents; omnichannel voice/chat/email/WhatsApp/SMS; journey automation; "Neo" embedded analyst. <b>Ships a vertical for education.</b> SMB-targeted</td>
+  <td><span class="p m">claims voice agents; Kannada unverified</span></td>
+  <td>Credit-based; <b>no pricing published</b></td>
+  <td><span class="p m">CLOSEST TO "ONE PLATFORM" — WORTH ONE CALL.</span> It is the only vendor found that claims voice + WhatsApp + CRM + an education vertical in one product. But <b>I could find no funding, customer-count, revenue or review trail</b> — it fails your own "proven at scale" test, and it is an AI-native <i>CRM</i>, so it re-creates the second-authority problem from §4. Take the call; do not build on it yet</td></tr>
+<tr><td><b>Kapture CX</b></td>
+  <td>Enterprise agentic CX OS — VITOS agent builder (voice/chat/email/social), COMMAND, CALIBRATE, PULSE; ticketing, omnichannel</td>
+  <td><span class="p m">enterprise voice agents; not India-language-led</span></td>
+  <td>From <b>₹4,000</b>; enterprise tiers unpublished</td>
+  <td><span class="p m">CREDIBLE, MIS-AIMED.</span> 1,000+ enterprises, 16–60 countries, the only vendor here with <b>Gartner Peer Insights</b> coverage. But built for <b>inbound service</b> at enterprise scale (BFSI, retail, travel) — you need <b>outbound acquisition</b>. Reviews flag slowness at high ticket volume. Revisit when support load, not lead gen, is the constraint</td></tr>
+<tr><td><b>Privyr</b></td>
+  <td>Mobile-first WhatsApp lead-follow-up CRM. Instant lead alerts, personalised follow-ups, interest tracking, AI <b>Sequence Generator</b> for text follow-ups</td>
+  <td><span class="p n">no — text sequences, not voice agents</span></td>
+  <td><b>Free tier</b> · $15 · Pro <b>$35/mo</b></td>
+  <td><span class="p n">SOLVES A PROBLEM YOU DO NOT HAVE.</span> Genuinely good and genuinely cheap at what it does — a phone-first rep chasing leads by hand. You are automating, not equipping reps. And it is a CRM (§4). <b>Useful only as a stopgap if you want humans calling leads before the AI agent is live</b></td></tr>
+<tr><td><b>OnePageCRM</b></td>
+  <td>Lightweight sales CRM; "Action Stream" — one next action per contact; Speed Dialer, WhatsApp <i>integration</i> (not BSP), route planner</td>
+  <td><span class="p n">no</span></td>
+  <td><b>$9.95</b>/user/mo Pro · <b>$19.95</b> Business (annual)</td>
+  <td><span class="p n">NO.</span> Cheapest CRM on this page and well reviewed in 80+ countries, but per-seat pricing for a CRM you should not buy, no BSP, no voice AI, no Indian telephony. The Action Stream discipline is a good <i>idea</i> to copy into your own read-model</td></tr>
+<tr><td><b>Apollo.io</b></td>
+  <td>B2B sales intelligence + email sequencing + dialer</td>
+  <td><span class="p n">no — and no WhatsApp channel at all</span></td>
+  <td>International dialler only on the top Organization tier</td>
+  <td><span class="p n">STRUCTURALLY WRONG.</span> B2B database, US-first, email-first. You are B2C, India, WhatsApp-first. Its core value is B2B prospecting data you have no use for — you generate your own leads</td></tr>
+</table>
+
+<div class="card o">
+<h4>The pattern across all five</h4>
+<p style="margin:0">Four of the five are <b>CRMs</b>, and the fifth (Kapture) is an enterprise service desk.
+None of them is an India-native voice agent. That is not a coincidence — <b>it reflects that the market
+sells CRMs because CRMs are easy to sell, while the hard, India-specific part is the voice layer.</b> You
+already have the CRM. The only thing worth buying is the part nobody in this list is best at, which is
+exactly why §6 lands on Bolna + Sarvam.</p>
+</div>
+
+<!-- 7 -->
+<h2 id="build"><i class="fa-solid fa-screwdriver-wrench"></i> 7 · If you build anyway: the shortest reliable path</h2>
+<p class="h2sub">You asked for it, so here it is properly — and note that the shortest reliable path is
+<b>not</b> a greenfield build.</p>
+
+<div class="card o">
+<h4>Do not build from parts. Adopt, then migrate.</h4>
+<p style="margin:0">The shortest reliable path is <b>Bolna hosted → Bolna self-hosted</b>, because it is the
+only path where the engine, the adapters and your integration code are identical on both sides. You learn the
+domain on someone else's operations, and the migration is a deployment exercise rather than a rewrite. Every
+other route re-solves problems Bolna's OSS core has already solved.</p>
+</div>
+
+<div class="flow">
+  <div class="st"><b>Phase 0 · now</b><span>Bolna hosted PAYG. Build your side against their REST API. <b>Days.</b></span></div>
+  <span class="arw">→</span>
+  <div class="st"><b>Phase 1 · month 2</b><span>Own the telephony contract directly — BYO Plivo/Exotel SIP into Bolna. You now hold the numbers and DLT, they still run the engine. <b>The blocker, de-risked in isolation.</b></span></div>
+  <span class="arw">→</span>
+  <div class="st"><b>Phase 2 · trigger</b><span>At ~25,000 min/mo, deploy the OSS engine on K8s alongside. Same adapters, same API shape.</span></div>
+  <span class="arw">→</span>
+  <div class="st"><b>Phase 3</b><span>Shift traffic percentage-wise. Keep hosted as the failover. Rebuild only the playground you actually miss.</span></div>
+</div>
+
+<p><b>Phase 1 is the important one and you should do it regardless of whether Phase 2 ever happens.</b> It
+separates the two risks you currently have bundled: "can we run an AI voice agent" and "can we own Indian
+telephony". Solve them one at a time, in that order, with the vendor absorbing whichever one you are not
+working on.</p>
+
+<table class="wrapok">
+<tr><th>If you build from scratch instead</th><th>Shortest reliable stack</th><th>Why this and not the obvious choice</th></tr>
+<tr><td>Orchestration</td><td><b>Bolna OSS</b> or <b>Pipecat</b>/<b>LiveKit</b> ($0.01/min hosted, OSS self-host, free to 1k min)</td><td>Never hand-roll turn-taking and barge-in. This is where months go</td></tr>
+<tr><td>STT + TTS</td><td><b>Sarvam AI</b> — STT ₹30/hr, TTS ₹15–30/10k chars, 22 Indian languages, Bulbul V3 with 25+ voices</td><td>Cheapest credible Indian-language pair, and <b>they run a startup programme offering 6–12 months of credits plus priority engineering support</b> — worth applying to on its own merits</td></tr>
+<tr><td>LLM</td><td>Cheap fast model; Groq-class ≈ ₹0.1/min</td><td>Reasoning is the cheapest component. Do not over-buy it</td></tr>
+<tr><td>Telephony</td><td><b>Plivo</b> ₹0.71/min, or direct SIP at ₹0.60–1.20</td><td>Bolna itself runs on Plivo at 1M+ calls/month — the route is proven at scale you will not reach soon</td></tr>
+<tr><td>Compliance</td><td>DLT registration, 140-series, approved voice templates, DND scrubbing — <b>yours</b></td><td>No vendor, open source or otherwise, does this for you once you own the numbers</td></tr>
+</table>
+
+<!-- 8 -->
+<h2 id="ask"><i class="fa-solid fa-circle-question"></i> 8 · The seven questions that decide it</h2>
+<p class="h2sub">Ask all seven of Bolna. Question 1 is the one Superfone could not answer — which was the
+actual root cause of your experience, not the support tickets.</p>
+<table class="wrapok">
+<tr><th>#</th><th>Question</th><th>What a good answer sounds like · what a bad one means</th></tr>
+<tr><td><b>1</b></td><td>Your docs describe obtaining <b>140 and 160-series</b> numbers. TRAI's July 2026 clarification restricts 1600/160 to <b>BFSI and government</b>. <b>What number series can an education company lawfully use for a requested callback, and who signs the DLT registration?</b></td>
+  <td><span class="p y">Good:</span> a specific series, a named process, and "we register, you approve the template". <span class="p n">Bad:</span> "our numbers get high pickup" — that is the §6 red flag, and it ends the conversation</td></tr>
+<tr><td><b>2</b></td><td>Give me an <b>education-sector reference</b> running Hindi + Kannada + English to Indian parents.</td><td><span class="p n">No reference = you are the reference.</span> Priced accordingly, or not at all</td></tr>
+<tr><td><b>3</b></td><td>On <b>pay-as-you-go</b>, how many distinct agents can I configure? The Pilot page says "1 pre-configured voice agent"</td><td>You need <b>at least 2</b> on day one and up to 14. If multi-agent is gated to Enterprise, the cost model changes and so does the recommendation</td></tr>
+<tr><td><b>4</b></td><td>Is <b>₹5.52/min all-in</b>, or platform fee + LLM + TTS + STT + telephony billed separately? Their pricing shows both a "flat $0.02/min platform fee" and "₹5.52/min" — <b>which is it?</b></td><td>Get this in writing. This is the single number the whole business case rests on, and their own pages present it two ways</td></tr>
+<tr><td><b>5</b></td><td>Can I <b>bring my own Plivo/Exotel SIP</b> on the self-serve tier, keeping the numbers in my name?</td><td>This is Phase 1 of §7. If yes, your telephony risk is separable today</td></tr>
+<tr><td><b>6</b></td><td><b>Data residency and retention</b> — where do recordings and transcripts live, for how long, and can I delete on request? We process minors' guardians under DPDPA</td><td>You need India residency or a documented transfer basis, plus deletion on request to honour DPDPA rights</td></tr>
+<tr><td><b>7</b></td><td><b>Support SLA on the tier I am actually buying</b>, not on Enterprise. Who answers at 9pm on a Saturday when the hot-lead queue stalls?</td><td>Their pricing puts "priority support with dedicated AM" on Enterprise <b>only</b>. Assume PAYG support is community-grade and decide whether that is acceptable</td></tr>
+</table>
+
+<div class="card q">
+<h4>Two unresolved facts I am not going to smooth over</h4>
+<ul style="margin:0">
+  <li><b>Scale claim conflict.</b> Bolna's own material says <b>200,000+ calls/day</b>; Plivo's customer page
+    says <b>1M+ calls/month</b> (≈33k/day). That is a 6× gap. I weight Plivo higher as the third party, but
+    ask them to reconcile it — the answer tells you something about how they talk about themselves.</li>
+  <li><b>Carrier-side ML blocking.</b> Reported consistently across secondary sources, not confirmed in a
+    primary TRAI document I could retrieve. Verify with your telco before treating it as fact. It is the
+    main operational risk on the PSTN path, so it deserves a primary source.</li>
+</ul>
+</div>
+
+<!-- 9 -->
+<h2 id="next"><i class="fa-solid fa-flag-checkered"></i> 9 · The next 14 days</h2>
+<table class="wrapok">
+<tr><th>When</th><th>Do</th><th>Cost</th></tr>
+<tr><td><b>Day 1</b></td><td>Send the seven questions to Bolna in writing. Book Ubona for a 30-minute compliance-only call as the enterprise comparator</td><td class="n">₹0</td></tr>
+<tr><td><b>Day 1</b></td><td><b>Apply to Sarvam's startup programme</b> — 6–12 months of API credits plus priority engineering support. Free option value whichever path you take</td><td class="n">₹0</td></tr>
+<tr><td><b>Day 2</b></td><td>Add explicit, logged, timestamped <b>call-consent</b> to every lead form, versioned in your consent ledger. This is the legal basis for the whole motion and is worthless applied retroactively</td><td class="n">₹0</td></tr>
+<tr><td><b>Day 3–5</b></td><td>Buy <b>$10 of Bolna PAYG</b>. Build <code>kas_adult_v1</code> and <code>guardian_junior_v1</code>. Call 20 of your own team, then 30 real leads</td><td class="n">~₹1,000</td></tr>
+<tr><td><b>Day 6–10</b></td><td>Measure what actually matters: connect rate, Kannada/Hindi quality judged by a native speaker, latency as <i>experienced</i>, and whether any number gets flagged. Answer the ₹5.52 question with a real invoice</td><td class="n">~₹2,000</td></tr>
+<tr><td><b>Day 11–14</b></td><td>Decide. If Bolna clears: wire it behind your orchestrator with the per-stream agent router in §5 and the payload whitelist. If it fails on language: run the same test on Retell</td><td class="n">—</td></tr>
+<tr><td><b>Do NOT</b></td><td>Sign anything annual · buy a CRM · buy MoEngage/WebEngage/Kapture · pick a ₹2/min vendor with no funding or review trail · self-host before Phase 1</td><td class="n">—</td></tr>
+</table>
+
+<div class="card o">
+<h4>The recommendation in one paragraph</h4>
+<p style="margin:0"><b>Buy Bolna hosted on pay-as-you-go and spend nothing you cannot walk away from.</b> At
+900 minutes a month your entire voice bill is ₹4,968, the cheapest possible self-host saves ₹1,458 with a
+24–40 month payback, and the closed-source no-code playground is precisely the per-stream trainer you asked
+for. Your prototype stalled on telephony, and five of six telephony problems are operational rather than
+technical — so self-hosting hands the blocker straight back to you for a saving smaller than one engineer-day
+a month. Take Phase 1 anyway: move the Plivo/Exotel contract into your own name while Bolna still runs the
+engine, which separates "can we run a voice agent" from "can we own Indian telephony" and de-risks the only
+part that has ever stopped you. Revisit self-hosting at <b>25,000 minutes/month</b> — and when you get there,
+renegotiate before you rebuild, because Bolna publishes volume pricing down to 4.51¢/min. <b>On a cost-first
+brief the AI caller is the cheap, solved, rentable part. The expensive part is the orchestration and consent
+layer — and that is the part you should own.</b></p>
+</div>
+
+<div class="foot">
+<b>Evidence base — retrieved 14 Aug 2026.</b> Primary: Meta for Developers (WhatsApp Cloud API calling,
+messaging limits); TRAI TCCCPR 2018 Second Amendment (Gazette, 12 Feb 2025); TRAI 1600/140 clarification via
+SCC Online (18 Jul 2026); DPDPA 2023 §9; sarvam.ai/api-pricing; plivo.com pricing and the Bolna customer
+case study; bolna.ai/pricing, /integrations, /docs; github.com/bolna-ai/bolna; Tracxn (Superfone, Ubona,
+Sarvam, Indian voice-AI landscape); G2 · Capterra · Gartner Peer Insights.<br><br>
+<b>Labelled <span class="p g">vendor</span> where the source has a commercial interest in the answer.</b>
+Latency figures originate from a competitor's comparison and should be re-measured on your own traffic.
+<b>Unverified:</b> carrier-side ML blocking (secondary sources only); Ubona, Kapture-enterprise, SquadStack,
+NeoDove and Ozonetel-Asia publish no rate card; the ₹2/min claimants have no funding, review or scale trail
+I could find. <b>No reference customer was contacted and no API was tested</b> — this shortlists and rejects;
+it does not sign.
+</div>
+
+</div>
