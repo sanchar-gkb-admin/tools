@@ -179,6 +179,24 @@ textarea:focus{border-bottom-color:var(--accent)}
 .after{margin-top:26px; max-width:560px}
 .after p{font-size:14.5px; color:var(--ink-soft); margin:0 0 18px; line-height:1.65}
 .after .row{display:flex; gap:10px; flex-wrap:wrap}
+/* examples — closed by default */
+.ex{margin-top:20px}
+.exlink{background:none; border:0; padding:0; cursor:pointer; color:var(--ink-faint);
+        font:500 13.5px/1 Montserrat,sans-serif; text-decoration:underline; text-underline-offset:3px}
+.exlink:hover{color:var(--accent)}
+.exbody{display:none; margin-top:14px; border-left:2px solid var(--rule); padding-left:16px}
+.ex.open .exbody{display:block}
+.exbody p{font-size:15px; line-height:1.55; color:var(--ink-soft); font-style:italic; margin:0 0 11px}
+.exnote{font-size:12.5px; color:var(--ink-faint)}
+
+/* the story */
+.sl{font:500 18.5px/1.55 Montserrat,sans-serif; margin:0 0 15px; letter-spacing:-.006em}
+.sl:first-child{font-weight:700; font-size:21px; line-height:1.4; letter-spacing:-.016em}
+.attrib{margin-top:14px; font:600 11px/1 Montserrat,sans-serif; letter-spacing:.11em;
+        text-transform:uppercase; color:var(--accent)}
+.note{font-size:13px; color:var(--ink-faint); transition:color .3s}
+.note.flash{color:var(--accent); font-weight:600}
+
 .handoff{background:var(--accent-soft); border-radius:14px; padding:18px 20px 20px; margin:0 0 20px}
 .handoff .k{font:600 9.5px/1 Montserrat,sans-serif; letter-spacing:.13em; text-transform:uppercase;
             color:var(--accent-ink); display:block; margin-bottom:9px}
@@ -423,6 +441,62 @@ parent: {
 
 };
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   EXAMPLES — hidden behind a link, never shown by default.
+
+   Two per question, deliberately unalike in register, and always labelled as
+   somebody else's answer. A single example becomes a template: show one and
+   half the cohort writes a variation of it. Two that disagree with each other
+   give permission instead of a pattern.
+   ───────────────────────────────────────────────────────────────────────────── */
+const EX = {
+  /* Board Exam Booster, challenge 10 — real task titles from prod-catalog-mapping.tsv */
+  'learner.extra':   ['The Feedback Mirror. I had to ask a parent, a friend AND a teacher what my two strengths were and two things to improve. I nearly didn’t ask my teacher. I asked.',
+                      'The Thank You Talk with your Parents. Saying it out loud, on camera, with them sitting there. I did it in one take because I knew there wouldn’t be a second.'],
+  'learner.stand':   ['says the true thing first',
+                      'finishes what she starts, even late'],
+  'learner.cost':    ['writing long answers so nobody can tell I am unsure',
+                      'saying “I forgot” when what I mean is I did not want to'],
+  'learner.recovery':['tell her I didn’t, and say why — the same day, not the next week',
+                      'do it again properly, and show her both'],
+
+  /* KAS Booster, challenges 51 (7-task) and 54 (21-task) */
+  'aspirant.extra':  ['Because I was preparing to be right instead of preparing to be useful. The Ethical Officer Test asked what I would DO, not what the answer was, and I didn’t have one.',
+                      'Three attempts taught me the syllabus. “You Are the Assistant Commissioner at 6:30 AM” taught me that I freeze when nobody hands me the question first.'],
+  'aspirant.stand':  ['says “I do not know” without flinching',
+                      'answers the question that was asked, not the one I prepared'],
+  'aspirant.cost':   ['pad an answer to fill the silence',
+                      'agree with the chairman because he is the chairman'],
+  'aspirant.recovery':['open the file the same night, not the next week',
+                       'message my study partner before I have justified it to myself'],
+
+  /* ⚠ NOT GROUNDED. Mission Acharya (acharya_foundation/middle/senior, tier 4999, audience=acharya,
+     is_listed=false) has no task briefs in the repo — prod-catalog-mapping.tsv has no acharya rows.
+     These are invented and must be replaced from the real brief list before this ships. */
+  'acharya.scene':   ['He answered — correctly — and then looked around to see who had heard.',
+                      'A girl asked me something I could not answer. I said so. The room went very quiet, and then it got loud.'],
+  'acharya.stand':   ['lets the silence run until someone thinks',
+                      'asks the second question, not just the first'],
+  'acharya.cost':    ['finishing their sentences for them',
+                      'calling on the same five children because it is faster'],
+  'acharya.recovery':['wait five seconds before I answer for them',
+                      'ask the class what I missed, out loud'],
+  'acharya.extra':   ['The boy on the last bench who answers only when nobody is looking.',
+                      'Kavya, who knows the answer and says it to her desk.'],
+
+  /* The parent was IN the room for these two — both are mandatory-conversation tasks */
+  'parent.scene':    ['During The Thank You Talk she said “you only ask about marks”. She said it to the camera, not to me.',
+                      'We recorded “My Future: Their Dream, My Dream”. She asked what I hoped for her, and I realised I had never actually told her.'],
+  'parent.stand':    ['asks about her day before her marks',
+                      'lets her finish her answer before starting mine'],
+  'parent.cost':     ['comparing her to her cousin',
+                      'answering for her when she pauses'],
+  'parent.recovery': ['say out loud that I did it again, in front of her',
+                      'apologise properly — not the kind that ends in “but”'],
+  'parent.extra':    ['Instead of “you never talk to us” — “tell me one thing about today.”',
+                      'Instead of “why is it always the phone” — “sit with me for ten minutes.”']
+};
+
 /* ── engine ──────────────────────────────────────────────────────────────── */
 const stage = document.getElementById('stage');
 const bar   = document.querySelector('#bar i');
@@ -441,7 +515,10 @@ function render(dir){
   bar.style.width = (i / (total - 1) * 100) + '%';
   back.classList.toggle('on', i > 0 && i <= p.qs.length);
 
-  const s = i === 0 ? open() : (i <= p.qs.length ? question(p.qs[i-1], i) : board());
+  const s = i === 0 ? open()
+          : i <= p.qs.length ? question(p.qs[i-1], i)
+          : i === p.qs.length + 1 ? board()
+          : story();
   stage.appendChild(s);
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     s.classList.add('on');
@@ -503,8 +580,14 @@ function question(q, n){
     return s;
   }
 
+  const ex = EX[key + '.' + q.key];
   const s = el(`<section class="screen">${head}
     <textarea rows="1" placeholder="${q.ph || ''}">${ans[q.key] || ''}</textarea>
+    ${ex ? `<div class="ex">
+      <button class="exlink">see how two other people answered this</button>
+      <div class="exbody">${ex.map(e=>`<p>“${e}”</p>`).join('')}
+        <span class="exnote">Theirs, not a template. Yours will not sound like either.</span>
+      </div></div>` : ''}
     <div class="go">
       <button class="btn" disabled>OK</button>
       <span class="hint"><kbd>Enter</kbd> to continue · <kbd>Shift</kbd>+<kbd>Enter</kbd> for a new line</span>
@@ -522,6 +605,8 @@ function question(q, n){
   btn.onclick = commit;
   const sk = s.querySelector('.skip');
   if (sk) sk.onclick = () => { delete ans[q.key]; next(); };
+  const exl = s.querySelector('.exlink');
+  if (exl) exl.onclick = () => s.querySelector('.ex').classList.toggle('open');
   setTimeout(sync, 0);
   return s;
 }
@@ -565,8 +650,8 @@ function board(){
         <button class="btn" id="pass">Pass the phone to Ananya →</button>
       </div>` : ''}
       <div class="row">
-        <button class="btn${key === 'parent' ? ' ghost' : ''}">Keep it private</button>
-        <button class="btn ghost">Choose who can see it</button>
+        <button class="btn" id="tostory">Turn this into something I can send →</button>
+        <button class="btn ghost">Keep it private</button>
         <button class="btn ghost" id="again">Start over</button>
       </div>
     </div>
@@ -574,7 +659,175 @@ function board(){
   s.querySelector('#again').onclick = () => { ans = {}; i = 0; render(); };
   const pass = s.querySelector('#pass');
   if (pass) pass.onclick = () => switchTo('learner');
+  s.querySelector('#tostory').onclick = next;
   return s;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BOARD → STORY.
+
+   The board is a form. Nobody forwards a form. So the share is composed prose
+   in their own words — the scene first, because that is the only line about
+   something that already happened, and a stranger needs an action before they
+   will read a commitment.
+
+   Every word between the joins is theirs. We supply punctuation and order.
+   ───────────────────────────────────────────────────────────────────────────── */
+const STORY = {
+  learner: a => [
+    `There was a task I nearly didn’t finish. ${a.extra}`,
+    `I’m stopping ${a.cost}.`,
+    `I’m someone who ${a.stand} — and ${a.witnessRef || a.witness} will know by ${String(a.date).toLowerCase()}.`,
+    `And when I don’t, I’ll ${a.recovery}.`
+  ],
+  aspirant: a => [
+    `When they ask why it has taken this long, I’ll say: ${a.extra}`,
+    `So in the room I will not ${a.cost}.`,
+    `I’m the kind of candidate who ${a.stand}. ${a.witness} holds me to it, by ${String(a.date).toLowerCase()}.`,
+    `When I slip, I ${a.recovery}.`
+  ],
+  acharya: a => [
+    `${a.scene}`,
+    `I’m a teacher who ${a.stand}. Which means I’m stopping ${a.cost}.`,
+    `${a.witness} will know by ${String(a.date).toLowerCase()}. When I forget, I’ll ${a.recovery}.`,
+    `One child will be different because of this: ${a.extra}`
+  ],
+  parent: a => [
+    `My daughter said: ${a.scene}`,
+    `I’m a parent who ${a.stand}. I’m stopping ${a.cost}.`,
+    `She’ll notice — by ${String(a.date).toLowerCase()}. And when I slip back, I’ll ${a.recovery}.`,
+    `The complaint I keep making, said instead as a request: ${a.extra}`
+  ]
+};
+
+const storyText = () => STORY[key](ans).filter(Boolean).join('\n\n');
+const storyFull = () => `${storyText()}\n\n— ${p.name}, ${p.who.split(' · ').slice(1).join(' · ')}\nMy board at YASHHO · yashho.com`;
+
+function story(){
+  const s = el(`<section class="screen">
+    <div class="eyebrow">ready to send</div>
+    <div class="board in" style="padding:28px 26px">
+      ${STORY[key](ans).filter(Boolean).map(l=>`<p class="sl">${l}</p>`).join('')}
+      <div class="bf" style="margin-top:22px">
+        <span class="who">— ${p.name} · ${p.who.split(' · ').slice(1).join(' · ')}</span>
+        <span class="d"><span>${p.from}</span><i>→</i><b>${p.to}</b><s>${p.metric}</s></span>
+      </div>
+      <div class="attrib">My board at YASHHO · yashho.com</div>
+    </div>
+
+    <div class="after">
+      <div class="row">
+        <button class="btn" id="wa">Send on WhatsApp</button>
+        <button class="btn ghost" id="native">Share…</button>
+        <button class="btn ghost" id="copy">Copy the words</button>
+        <button class="btn ghost" id="img">Download for Instagram</button>
+      </div>
+      <p class="note" id="say">Instagram can’t take text from a link — so the button saves the card as an
+      image and copies the caption. Paste it when you post.</p>
+      <div class="row"><button class="btn ghost" id="bk">← back to my board</button></div>
+    </div>
+  </section>`);
+
+  const say = m => { const n = s.querySelector('#say'); n.textContent = m; n.classList.add('flash');
+                     setTimeout(()=>n.classList.remove('flash'), 1600); };
+
+  s.querySelector('#wa').onclick = () =>
+    window.open('https://wa.me/?text=' + encodeURIComponent(storyFull()), '_blank', 'noopener');
+
+  s.querySelector('#native').onclick = async () => {
+    if (navigator.share){ try { await navigator.share({ text: storyFull() }); } catch(e){} }
+    else say('This browser has no share sheet — use WhatsApp or Copy.');
+  };
+
+  s.querySelector('#copy').onclick = async () => {
+    try { await navigator.clipboard.writeText(storyFull()); say('Copied. Paste it anywhere.'); }
+    catch(e){ say('Could not copy — select the text above instead.'); }
+  };
+
+  s.querySelector('#img').onclick = async () => {
+    try {
+      await cardImage();
+      try { await navigator.clipboard.writeText(storyFull()); say('Image saved, caption copied. Open Instagram and paste.'); }
+      catch(e){ say('Image saved. Copy the words separately for your caption.'); }
+    } catch(e){ say('Could not build the image here — use Copy the words.'); }
+  };
+
+  s.querySelector('#bk').onclick = () => { i = p.qs.length + 1; render(); };
+  return s;
+}
+
+/* 1080×1350 — Instagram's 4:5, the most vertical screen a feed post can hold. */
+async function cardImage(){
+  const W = 1080, H = 1350, P = 88;
+  await document.fonts.load('700 44px Montserrat');
+  await document.fonts.load('800 64px Montserrat');
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d');
+
+  x.fillStyle = '#faf7f4'; x.fillRect(0,0,W,H);
+  x.fillStyle = '#f58321'; x.fillRect(0,0,W,12);
+
+  const paras = STORY[key](ans).filter(Boolean);
+
+  // Measure first, then centre. Short boards were leaving a third of the card empty at the
+  // bottom, which reads as a broken template rather than a quiet one.
+  x.fillStyle = '#f58321'; x.font = '700 24px Montserrat';
+  x.letterSpacing = '4px';
+  x.fillText('MY BOARD', P, P + 54);
+  x.letterSpacing = '0px';
+
+  // Measure, then centre in the space between the eyebrow and the footer rule. Top-anchoring
+  // left a third of the card empty on short boards, which reads as broken rather than quiet.
+  x.font = '600 40px Montserrat';
+  const block = paras.reduce((h, t) => h + wrap(x, t, 0, 0, W - P*2, 54, true) + 26, 0) - 26;
+  const top = P + 54 + 74, bottom = H - P - 150;
+  let y = top + Math.max(0, (bottom - top - block) / 2);
+
+  x.fillStyle = '#1a1614';
+  for (const para of paras){
+    y = wrap(x, para, P, y, W - P*2, 54);
+    y += 26;
+  }
+
+  y = H - P - 96;
+  x.strokeStyle = '#e6ded7'; x.lineWidth = 2;
+  x.beginPath(); x.moveTo(P, y); x.lineTo(W-P, y); x.stroke();
+
+  y += 52;
+  x.fillStyle = '#5c534d'; x.font = '500 26px Montserrat';
+  x.fillText(`— ${p.name} · ${p.who.split(' · ').slice(1).join(' · ')}`, P, y);
+
+  x.font = '800 40px Montserrat'; x.textAlign = 'right';
+  x.fillStyle = '#f58321'; x.fillText(`${p.to}`, W - P, y);
+  const wTo = x.measureText(`${p.to}`).width;
+  x.fillStyle = '#8a807a'; x.font = '500 32px Montserrat';
+  x.fillText('→', W - P - wTo - 18, y);
+  const wAr = x.measureText('→').width;
+  x.fillStyle = '#1a1614'; x.font = '800 40px Montserrat';
+  x.fillText(`${p.from}`, W - P - wTo - wAr - 36, y);
+  x.textAlign = 'left';
+
+  y += 44;
+  x.fillStyle = '#8a807a'; x.font = '600 22px Montserrat';
+  x.fillText('YASHHO · yashho.com', P, y);
+
+  const a = document.createElement('a');
+  a.download = 'my-board-yashho.png';
+  a.href = c.toDataURL('image/png');
+  a.click();
+}
+
+/* measureOnly=true returns the height the text WOULD take, without drawing it */
+function wrap(x, text, left, top, max, lh, measureOnly){
+  let line = '', y = top;
+  const put = (t) => { if (!measureOnly) x.fillText(t, left, y); y += lh; };
+  for (const w of text.split(' ')){
+    const t = line ? line + ' ' + w : w;
+    if (x.measureText(t).width > max && line){ put(line); line = w; }
+    else line = t;
+  }
+  if (line) put(line);
+  return measureOnly ? y - top : y;
 }
 
 function next(){ i++; render(); }
