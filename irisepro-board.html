@@ -202,8 +202,9 @@ textarea:focus{border-bottom-color:var(--accent)}
 /* the story */
 .sl{font:500 18.5px/1.55 Montserrat,sans-serif; margin:0 0 15px; letter-spacing:-.006em}
 .sl:first-child{font-weight:700; font-size:21px; line-height:1.4; letter-spacing:-.016em}
-.attrib{margin-top:14px; font:600 11px/1 Montserrat,sans-serif; letter-spacing:.11em;
-        text-transform:uppercase; color:var(--accent)}
+.attrib{margin-top:14px; font:600 11px/1.5 Montserrat,sans-serif; letter-spacing:.11em;
+        text-transform:uppercase; color:var(--ink-faint)}
+.attrib .lnk{color:var(--accent); text-transform:none; letter-spacing:.02em; font-size:12.5px}
 .note{font-size:13px; color:var(--ink-faint); transition:color .3s}
 .note.flash{color:var(--accent); font-weight:600}
 
@@ -259,6 +260,7 @@ const A = {
 learner: {
   who:'Ananya · Class 8 · Board Exam Booster',
   name:'Ananya',
+  code:'an7k2',
   metric:'Execution · AACE', from:41, to:72,
   open:{
     eyebrow:'your scorecard is ready',
@@ -310,6 +312,7 @@ learner: {
 aspirant: {
   who:'K. Manjunath · KAS · 4th attempt',
   name:'Manjunath',
+  code:'km4rd',
   metric:'Execution · AACE', from:38, to:69,
   open:{
     eyebrow:'your scorecard is ready',
@@ -357,6 +360,7 @@ aspirant: {
 acharya: {
   who:'Shashikala D. · Mission Acharya',
   name:'Shashikala',
+  code:'sd9tb',
   metric:'Communication · AACE', from:55, to:81,
   open:{
     eyebrow:'your scorecard is ready',
@@ -407,6 +411,7 @@ acharya: {
 parent: {
   who:'Lakshmi R. · Ananya’s mother',
   name:'Lakshmi',
+  code:'lr3vn',
   metric:'Ananya · Execution', from:41, to:72,
   open:{
     eyebrow:'ananya’s scorecard is ready',
@@ -727,8 +732,24 @@ const STORY = {
   ]
 };
 
+/* ── ATTRIBUTION ───────────────────────────────────────────────────────────
+   The code IS the story link, not a coupon alongside it. One thing to send,
+   one thing to remember — and what the recipient opens is the board they were
+   just handed, with "start your own" underneath, rather than a homepage that
+   has nothing to do with the sentence that made them click.
+
+   It is also the only way k is ever measurable: without a per-learner code on
+   the artefact you cannot tell a referral rate of 0.1 from 0.5, and so cannot
+   improve the one number the whole loop turns on.
+
+   In production: minted server-side, stable per learner + board, and resolving
+   to a page that honours the consent level on that board — a private board's
+   link must 404 for everyone but its owner.
+   ───────────────────────────────────────────────────────────────────────── */
+const shareUrl = () => `yashho.com/s/${p.code}`;
+
 const storyText = () => STORY[key](ans).filter(Boolean).join('\n\n');
-const storyFull = () => `${storyText()}\n\n— ${p.name}, ${p.who.split(' · ').slice(1).join(' · ')}\nMy board at YASHHO · yashho.com`;
+const storyFull = () => `${storyText()}\n\n— ${p.name}, ${p.who.split(' · ').slice(1).join(' · ')}\n${shareUrl()}`;
 
 function story(){
   const s = el(`<section class="screen">
@@ -739,7 +760,7 @@ function story(){
         <span class="who">— ${p.name} · ${p.who.split(' · ').slice(1).join(' · ')}</span>
         <span class="d"><span>${p.from}</span><i>→</i><b>${p.to}</b><s>${p.metric}</s></span>
       </div>
-      <div class="attrib">My board at YASHHO · yashho.com</div>
+      <div class="attrib">My board · <span class="lnk">yashho.com/s/${p.code}</span></div>
     </div>
 
     <div class="after">
@@ -834,9 +855,14 @@ async function cardImage(){
   x.fillText(`${p.from}`, W - P - wTo - wAr - 36, y);
   x.textAlign = 'left';
 
+  // The link carries the attribution. Small, under the name — the story is theirs,
+  // the code is ours, and it must never read as a discount coupon stapled to it.
   y += 44;
   x.fillStyle = '#8a807a'; x.font = '600 22px Montserrat';
-  x.fillText('YASHHO · yashho.com', P, y);
+  x.fillText('YASHHO · ', P, y);
+  const wPre = x.measureText('YASHHO · ').width;
+  x.fillStyle = '#f58321'; x.font = '700 22px Montserrat';
+  x.fillText(`yashho.com/s/${p.code}`, P + wPre, y);
 
   const a = document.createElement('a');
   a.download = 'my-board-yashho.png';

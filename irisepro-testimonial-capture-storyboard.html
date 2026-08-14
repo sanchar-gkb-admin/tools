@@ -696,6 +696,28 @@
     </table>
   </div>
 
+  <h3 style="margin-top:30px">How those numbers are arrived at</h3>
+  <p>Nothing here is fitted to referral data — there isn’t any. It is one geometric series over one measured base.</p>
+  <ol>
+    <li><strong>Seed</strong> C = <strong>93</strong>, the distinct students holding a 4999 seat in prod today.</li>
+    <li><strong>Each generation is k times the last.</strong> 93 completing students produce 93k enrolments; those produce 93k²; and so on.</li>
+    <li><strong>Sum the series.</strong> 93 × (1 + k + k² + k³ + …) = <strong>93 / (1 − k)</strong>. At k = 0.5 that is 93 × 2 = 186.</li>
+    <li><strong>Multiply by ₹4,999.</strong> 186 × 4,999 = ₹9,29,814 → ₹9.3 L.</li>
+  </ol>
+  <p>Worked at k = 0.5, generation by generation: 93 → 46.5 → 23.3 → 11.6 → 5.8 → 2.9 → 1.5 … cumulative 93, 139, 163, 174, 180, 183, 185. <strong>Five generations get you 98% of the total</strong>, so the tail is arithmetically real and practically irrelevant.</p>
+
+  <div class="warn">
+    <strong>Four things those figures are not.</strong>
+    <br>① <strong>Not annual.</strong> The total accrues across generations — five of them at roughly a 24-day programme plus decision lag is somewhere near a year to eighteen months. Reading ₹9.3 L as an annual number overstates it badly.
+    <br>② <strong>Not incremental.</strong> The total includes the original 93. The <em>added</em> revenue is the difference: +₹2.0 L at k = 0.3, +₹4.6 L at k = 0.5, +₹10.8 L at k = 0.7.
+    <br>③ <strong>Not collected revenue.</strong> ₹4,999 gross, no discounts, no part-payment, no refunds — and part-payment exists in the system, so net collection is lower.
+    <br>④ <strong>Not a constant k.</strong> The model holds k fixed across generations; in reality the first cohort’s friends are the most reachable and later generations decay. Treat every row as an upper bound for its k.
+  </div>
+
+  <div class="why">
+    <strong>The more useful way to read the whole table.</strong> Nobody runs a business off one seed cohort with no other acquisition — you keep acquiring, and the loop multiplies whatever you acquire. So the real statement is not “93 becomes 186”. It is: <strong>at k = 0.5, every rupee of acquisition spend buys two rupees of enrolment</strong>. That applies to every cohort you will ever run, not just this one, and it is why k is worth engineering rather than hoping for.
+  </div>
+
   <div class="why">
     <strong>Read the shape, not the rows.</strong> Moving k from 0.3 to 0.5 is worth <em>more</em> than moving it from 0 to 0.3. Which changes where effort goes: the win is not “launch a referral programme”, it is <strong>relentlessly improving one that already runs</strong>. Every point of k you add is worth more than the last.
   </div>
@@ -713,7 +735,15 @@
   </div>
 
   <div class="warn">
-    <strong>Build requirement that falls out of this, and is not yet anywhere in the plan: the share has no attribution.</strong> As designed, a learner sends their card and nothing connects the person who enrols to the person who sent it. Without a per-learner code or link on the shared artefact, <strong>k is unmeasurable</strong> — you would run the loop blind, unable to tell 0.1 from 0.5, and therefore unable to improve the one number the whole model turns on. Add it before the first card goes out, not after.
+    <strong>Build requirement that falls out of this: the share needs attribution or k is unmeasurable.</strong> Without a per-learner code on the artefact you run the loop blind — unable to tell 0.1 from 0.5, and therefore unable to improve the one number the whole model turns on. It has to be there before the first card goes out; cohorts shared without it are lost to measurement permanently.
+  </div>
+
+  <div class="why">
+    <strong>Now built: the code <em>is</em> the story link, not a coupon beside it.</strong> <code>yashho.com/s/an7k2</code> — one thing to send, one thing to remember, and it sits small under the name on both the card and the text. Crucially, <strong>what the recipient opens is the board they were just handed</strong>, with “start your own” underneath — not a homepage that has nothing to do with the sentence that made them click. Attribution and conversion are the same object.
+  </div>
+
+  <div class="warn">
+    <strong>Two rules for it in production.</strong> ① Minted server-side and stable per learner + board, so a re-share never generates a second code and splits the credit. ② <strong>It must honour the consent level of the board it points at</strong> — a private board’s link has to 404 for everyone but its owner. A referral code that quietly makes a child’s board public because someone forwarded it is the exact failure this document has been guarding against throughout.
   </div>
 
   <div class="warn">
