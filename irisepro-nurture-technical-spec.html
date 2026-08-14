@@ -96,7 +96,7 @@ conversation &nbsp;·&nbsp; <span class="p geeta">GEETA JI</span> yours to fill 
   <li><a href="#temp">Temperature bands → cadence</a></li>
   <li><a href="#seq">The sequences — per stream × persona</a></li>
   <li><a href="#msg">The message inventory</a></li>
-  <li><a href="#rules">Six rules that cannot be broken</a></li>
+  <li><a href="#rules">Eight rules that cannot be broken</a></li>
   <li><a href="#tech">The technical contract</a></li>
   <li><a href="#example">A worked example, end to end</a></li>
   <li><a href="#deliver">What Geeta ji delivers, and in what form</a></li>
@@ -119,7 +119,7 @@ conversation &nbsp;·&nbsp; <span class="p geeta">GEETA JI</span> yours to fill 
   <li>Capturing every touchpoint as an event</li>
   <li>Computing score and temperature from her weights</li>
   <li>Sending at the right moment via AiSensy</li>
-  <li>Enforcing the six rules in §8 in code</li>
+  <li>Enforcing the eight rules in §8 in code</li>
   <li>The unified timeline and reporting</li>
 </ul></div>
 <div class="ob"><h5 style="color:var(--o3)">Shared — this document</h5>
@@ -150,7 +150,53 @@ is a deliberate decision that changes this document first and the code second.</
 <p class="src"><b>Note:</b> that is 7 rows for a 6-state set because <span class="t lost">LOST</span> is
 terminal and absorbing — nothing exits it except an explicit new opt-in from the person themselves.</p>
 
-<h3>2.2 &nbsp;Persona <span class="p lock">LOCKED — 2</span></h3>
+<h3>2.2 &nbsp;Journey stage <span class="p lock">LOCKED — 5 states, strictly forward-only</span></h3>
+<p>Orthogonal to temperature. <b>Temperature says how urgently to speak; stage says what to speak about.</b>
+A HOT lead at <code>new</code> is pushed to a demo; a COLD lead at <code>demo_attended</code> is reminded of
+what they saw. The two are independent and both are required to select a message.</p>
+<table class="wrapok">
+<tr><th>Stage</th><th>Entered when</th><th>The single goal</th><th>Exit</th></tr>
+<tr><td><code>new</code></td><td>Contact created</td><td>Get a demo booked</td><td>demo booked</td></tr>
+<tr><td><code>demo_booked</code></td><td>Session seat reserved</td><td><b>Get them to attend</b></td><td>attended, or no-show</td></tr>
+<tr><td><code>demo_attended</code></td><td><b>Attendance confirmed</b></td><td>Open the joining conversation</td><td>conversation started</td></tr>
+<tr><td><code>in_conversation</code></td><td>Offer discussion begins</td><td>Close at the highest fitting tier</td><td>paid, or lapsed</td></tr>
+<tr><td><code>enrolled</code></td><td>Payment succeeds</td><td>—</td><td><b>Leaves nurture entirely</b></td></tr>
+</table>
+
+<div class="card o">
+<h4>Two rules the stage model must enforce in code</h4>
+<ol style="margin:0">
+  <li><b>No offer message may be sent before <code>demo_attended</code></b> — unless the contact is already
+    an existing customer. The demo does the selling; everything before it exists only to get them into the
+    room. Enforce as a guard on message selection, not as a guideline.</li>
+  <li><b><code>demo_booked</code> → no-show is NOT a downgrade to cold.</b> It needs its own rescue branch
+    (offer the next session immediately). Treating a no-show as a cold lead loses someone who was nearly
+    there. Model it as a distinct event, not merely as absence of the attendance event.</li>
+</ol>
+</div>
+
+<h3>2.3 &nbsp;Offer ladder <span class="p lock">LOCKED — 5 steps, descend only on a stated objection</span></h3>
+<p>Stored as <code>ladder_step</code> on the contact so we can measure where deals actually land, and which
+objection moved them.</p>
+<table class="wrapok">
+<tr><th>Step</th><th>Offer</th><th>Descend when the objection is…</th><th>Maps to</th></tr>
+<tr><td class="n">1</td><td><b>₹4,999 + 1-year mentoring</b></td><td>— always the opening</td><td>21 tasks · AACE64</td></tr>
+<tr><td class="n">2</td><td>₹4,999 programme alone</td><td>mentoring commitment</td><td>21 tasks · AACE64</td></tr>
+<tr><td class="n">3</td><td><b>₹4,999 in instalments</b></td><td><b>money / cashflow</b></td><td>existing <code>part_payment</code> funding source</td></tr>
+<tr><td class="n">4</td><td>₹1,999</td><td>time / commitment</td><td>7 tasks · AACE15</td></tr>
+<tr><td class="n">5</td><td>₹999</td><td>wants proof first</td><td>7 tasks · AACE5</td></tr>
+</table>
+<div class="card q">
+<h4>Why step 3 precedes step 4 — encode this, don't leave it to judgement</h4>
+<p style="margin:0"><b>A money objection is answered with payment terms, not a smaller product.</b> Dropping
+₹4,999 → ₹999 loses ₹4,000 <i>and</i> delivers a weaker first experience, which depresses renewal. The
+<code>part_payment</code> funding source already exists in the system, so step 3 costs us nothing to offer.
+<b>Only descend to step 4 or 5 when the stated objection is genuinely time, commitment or proof — never
+money.</b> Worth reporting on: if most deals land at step 5, either the demo is under-selling or the ladder
+is being offered too early.</p>
+</div>
+
+<h3>2.4 &nbsp;Persona <span class="p lock">LOCKED — 2</span></h3>
 <table class="wrapok">
 <tr><th>Persona</th><th>Who is on the other end</th><th>Why this distinction is load-bearing</th></tr>
 <tr><td><code>self_adult</code></td><td>The learner, an adult, buying for themselves — KAS / IAS aspirants</td><td>Peer register. Outcome-led. No child-protection constraints</td></tr>
@@ -179,6 +225,12 @@ buy — and how much more?"</b> That answer is the score. Everything else follow
 <table class="wrapok">
 <tr><th>#</th><th>Touchpoint</th><th>Where it happens</th><th>Signal</th><th>Score Δ <span class="p geeta">yours</span></th></tr>
 <tr><td>1</td><td>Lead form submitted</td><td>Website</td><td>Declared intent — the strongest early signal</td><td class="n">+20 <span class="p g">suggested</span></td></tr>
+<tr><td>1a</td><td><b>Demo session booked</b></td><td>Booking flow</td><td>Committed time to us → <code>demo_booked</code></td><td class="n">+25</td></tr>
+<tr><td>1b</td><td><b>Demo session ATTENDED</b></td><td>Session platform</td><td><b>The largest single signal we have.</b> → <code>demo_attended</code>, and unlocks offer messaging</td><td class="n">+40</td></tr>
+<tr><td>1c</td><td>Stayed for the full demo</td><td>Session platform</td><td>Genuine engagement, not a token join</td><td class="n">+10</td></tr>
+<tr><td>1d</td><td>Asked a question during the demo</td><td>Session platform</td><td>Actively evaluating</td><td class="n">+15</td></tr>
+<tr><td>1e</td><td><b>No-show after booking</b></td><td>—</td><td><b>Distinct event, not absence.</b> Triggers the rescue branch, NOT a cold downgrade</td><td class="n">−5</td></tr>
+<tr><td>1f</td><td>Second no-show after rebooking</td><td>—</td><td>Now a real negative signal</td><td class="n">−15</td></tr>
 <tr><td>2</td><td>Pricing / plan page viewed</td><td>Website</td><td>Evaluating</td><td class="n">+15</td></tr>
 <tr><td>3</td><td>Payment started, not completed</td><td>Checkout</td><td><b>Highest intent signal we have</b></td><td class="n">+30</td></tr>
 <tr><td>4</td><td>WhatsApp message replied to</td><td>WhatsApp</td><td>Active engagement</td><td class="n">+10</td></tr>
@@ -334,7 +386,7 @@ API depth may be the more important axis. <b>Add to the day-one vendor questions
 </div>
 
 <!-- 8 -->
-<h2 id="rules"><i class="fa-solid fa-gavel"></i> 8 · Six rules that cannot be broken</h2>
+<h2 id="rules"><i class="fa-solid fa-gavel"></i> 8 · Eight rules that cannot be broken</h2>
 <p class="h2sub">These are enforced in code where possible, so that following them is not a matter of
 remembering.</p>
 <table class="wrapok">
@@ -349,6 +401,10 @@ remembering.</p>
   <td>Mis-classifying to save cost risks template rejection and account-level damage. The 7× saving is not worth the account</td></tr>
 <tr><td><b>5</b></td><td><b>English + Kannada only at launch.</b> A new language needs a written reason</td>
   <td>Every language permanently multiplies template authoring, approval, versioning and QA</td></tr>
+<tr><td><b>5b</b></td><td><b>No offer message before <code>demo_attended</code></b>, unless the contact is an existing customer</td>
+  <td>The demo does the selling. Enforce as a guard on message selection — a rule that lives only in a process document will be broken by the first campaign that ignores stage</td></tr>
+<tr><td><b>5c</b></td><td><b>Descend the offer ladder only on a STATED objection, and never skip step 3</b></td>
+  <td>A money objection is answered with instalments, not a smaller product. Volunteering the ladder unprompted loses the sale we could have had</td></tr>
 <tr><td><b>6</b></td><td><b>One source of truth: our system.</b> Score, temperature and journey state are computed by us. AiSensy holds a copy for filtering audiences and nothing else</td>
   <td>Two systems that both decide "how hot is this lead" will disagree, and the disagreement will be invisible until it costs a sale</td></tr>
 </table>
@@ -368,11 +424,13 @@ POST https://backend.aisensy.com/campaign/t1/api/v2
   "templateParams": ["Aarav", "KAS"],
   "<span class="k">tags</span>": [                            <span class="d">// IMMUTABLE facts only — see below</span>
       "stream_kas", "persona_guardian", "lang_kn", "source_webinar"
+      <span class="d">// NOTE: journey_stage and ladder_step are ATTRIBUTES, not tags — both change</span>
   ],
   "<span class="k">attributes</span>": {                      <span class="d">// MUTABLE state — overwritten every send</span>
       "lead_score":       "72",
       "lead_temperature": "<span class="r">HOT</span>",
-      "journey_stage":    "enrolment_started",
+      "journey_stage":    "demo_attended",   <span class="d">// gates whether offers may be sent</span>
+      "ladder_step":      "1",
       "last_touch_at":    "2026-08-14",
       "preferred_lang":   "kn"
   }
