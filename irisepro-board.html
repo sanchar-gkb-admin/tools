@@ -179,6 +179,16 @@ textarea:focus{border-bottom-color:var(--accent)}
 .after{margin-top:26px; max-width:560px}
 .after p{font-size:14.5px; color:var(--ink-soft); margin:0 0 18px; line-height:1.65}
 .after .row{display:flex; gap:10px; flex-wrap:wrap}
+/* task picker — one tap, then straight into the answer */
+.tasks{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px}
+.task{cursor:pointer; background:var(--panel); border:1px solid var(--rule); border-radius:99px;
+      padding:10px 16px; font:600 14px/1.3 Montserrat,sans-serif; color:var(--ink);
+      transition:all .18s; text-align:left}
+.task:hover{border-color:var(--accent)}
+.task.on{background:var(--accent); border-color:var(--accent); color:#fff}
+.task.other{color:var(--ink-faint); border-style:dashed}
+.task.other.on{color:#fff; border-style:solid}
+
 /* examples — closed by default */
 .ex{margin-top:20px}
 .exlink{background:none; border:0; padding:0; cursor:pointer; color:var(--ink-faint);
@@ -258,9 +268,13 @@ learner: {
   },
   qs:[
     { key:'extra', eyebrow:'the moment',
-      q:'Was there a task you nearly didn’t finish?',
-      help:'Start here, while you still remember it. One task, one moment — and what made you carry on.',
-      ph:'…The Feedback Mirror. I nearly didn’t ask my teacher.' },
+      q:'Which one stayed with you?',
+      // The three anchorable tasks in challenge 10 — derived per plan, not hardcoded in production.
+      // Resonance, not struggle: struggle is only our proxy for meaning, and it is a bleak thing to
+      // open on. The task that stayed with someone nearly always cost them something anyway.
+      tasks:['The Feedback Mirror','The Thank You Talk with your Parents','My Future: Their Dream, My Dream'],
+      help:'Then tell me what happened in it — one moment, while you still remember it.',
+      ph:'…I nearly didn’t ask my teacher. I asked.' },
 
     { key:'stand', eyebrow:'your stand',
       q:'I’m someone who…',
@@ -581,7 +595,14 @@ function question(q, n){
   }
 
   const ex = EX[key + '.' + q.key];
-  const s = el(`<section class="screen">${head}
+  // One tap, straight into the answer — screen 1 is the highest-drop-off screen and a
+  // select-then-continue costs momentum. With a single option there is no question to ask, so
+  // production should just name it. The escape matters: the anchorable list is a heuristic.
+  const picker = q.tasks ? `<div class="tasks">
+      ${q.tasks.map(t => `<button class="task" data-t="${t}">${t}</button>`).join('')}
+      <button class="task other" data-t="">a different one</button>
+    </div>` : '';
+  const s = el(`<section class="screen">${head}${picker}
     <textarea rows="1" placeholder="${q.ph || ''}">${ans[q.key] || ''}</textarea>
     ${ex ? `<div class="ex">
       <button class="exlink">see how two other people answered this</button>
@@ -607,6 +628,12 @@ function question(q, n){
   if (sk) sk.onclick = () => { delete ans[q.key]; next(); };
   const exl = s.querySelector('.exlink');
   if (exl) exl.onclick = () => s.querySelector('.ex').classList.toggle('open');
+  s.querySelectorAll('.task').forEach(b => b.onclick = () => {
+    s.querySelectorAll('.task').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    ans.task = b.dataset.t;
+    t.focus();
+  });
   setTimeout(sync, 0);
   return s;
 }
@@ -675,7 +702,7 @@ function board(){
    ───────────────────────────────────────────────────────────────────────────── */
 const STORY = {
   learner: a => [
-    `There was a task I nearly didn’t finish. ${a.extra}`,
+    a.task ? `${a.task}. ${a.extra}` : `${a.extra}`,
     `I’m stopping ${a.cost}.`,
     `I’m someone who ${a.stand} — and ${a.witnessRef || a.witness} will know by ${String(a.date).toLowerCase()}.`,
     `And when I don’t, I’ll ${a.recovery}.`

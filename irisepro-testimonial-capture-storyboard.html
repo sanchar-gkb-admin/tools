@@ -173,7 +173,7 @@
 
   <h3 style="margin-top:26px">🎒 The learner · Class 6–10</h3>
   <div class="tablewrap"><table>
-    <tr><td class="k star">★</td><td>Was there a task you nearly didn’t finish?</td></tr>
+    <tr><td class="k star">★</td><td>Which task stayed with you? <em>(1–3 to choose from)</em> → What happened in it?</td></tr>
     <tr><td class="k">1</td><td>I’m someone who ___</td></tr>
     <tr><td class="k">2</td><td>Which means I’ll <strong>stop</strong> ___</td></tr>
     <tr><td class="k">3</td><td>Who’ll notice first? <em>class teacher · friend · Amma · Appa · sibling</em></td></tr>
@@ -260,6 +260,14 @@
       <h3>Post-ship · shared unasked</h3>
       <p>Not views. Not reads. Not completion. <strong>A share is a person putting their own name behind it</strong> — the only signal here that cannot be gamed from the inside.</p>
     </div>
+  </div>
+
+  <div class="why">
+    <strong>4999 is the flagship, and the target is every student.</strong> That is achievable — the tasks support it in all ten plans, the relationship exists, and the channels stack: in-app at T+0, the Yashodarshi, email at T+1 and T+3, admin fallback, weekly report. It also makes the 37% of active seats with no evaluator a blocker rather than a footnote, because a queue that must reach zero cannot contain seats nobody owns.
+  </div>
+
+  <div class="warn">
+    <strong>But a coverage target creates its own failure mode, so measure two numbers, not one.</strong> Chase 100% alone and staff will extract boards, and an extracted board fails the cold read — you would reach the target and hold nothing worth sending. Track <strong>coverage</strong> (asked and answered) and <strong>quality</strong> (passed the cold read, or was shared) side by side, and treat a rising coverage line with a flat quality line as the alarm it is. <em>100% of nothing is still nothing.</em>
   </div>
 
   <div class="warn">
@@ -378,7 +386,7 @@
   </div>
 
   <h3 style="margin-top:32px">How to choose which task to anchor on</h3>
-  <p>The ★ line asks about a task they nearly didn’t finish. So the anchor has to be a task that plausibly <em>produces</em> that answer. Four filters, applied in order:</p>
+  <p>The ★ line asks which task stayed with them, and what happened in it. So a task only belongs in the choices if it can plausibly <em>produce</em> that answer. Four filters, applied in order:</p>
   <ol>
     <li><strong>Emotional risk, not difficulty.</strong> “I nearly didn’t” comes from what a task costs socially, not from how hard it is. This rules out every drill.</li>
     <li><strong>Another person is inside the task.</strong> If it is solo, the story is self-report all the way down and there is no witness to corroborate it.</li>
@@ -389,11 +397,43 @@
   <p>Across challenge 10’s twenty-one tasks, only three survive filter 3 — all of them mandatory-conversation tasks: <em>The Thank You Talk</em>, <em>The Feedback Mirror</em>, <em>My Future: Their Dream, My Dream</em>. Between those, <strong>The Feedback Mirror</strong> wins on two counts: it is the only one where what comes back may be <em>unwelcome</em>, which is what makes “I nearly didn’t” true rather than decorative — and it puts a <strong>teacher</strong> in the room, an out-of-family witness, where the other two are parent-only.</p>
 
   <div class="why">
-    <strong>In the product, don’t choose at all — derive it.</strong> The system already knows which task each learner actually struggled with: <code>student_task_responses</code> carries the timers, <code>expires_at</code> and <code>reenable_pending_at</code>. So the ★ prompt should name <em>their</em> task — “you almost didn’t finish The Feedback Mirror, didn’t you?” — which is the Yashodarshi’s advantage, available automatically. <em>Verify those fields are actually populated and meaningful before relying on them.</em> Anchoring is only a copy decision for this document and the two example answers.
+    <strong>In the product: offer the choice, and ask for resonance — not struggle.</strong> Put the plan’s anchorable tasks on screen 1 as <strong>one to three tappable names</strong>: <em>“Which one stayed with you?”</em> Then, on the same screen, <em>“What happened in it?”</em> They select on meaning; we still get the scene.
+    <br><br><strong>Resonance is the better selector, and the better opening.</strong> Struggle is only ever our proxy for meaning — asking directly is more accurate and it isn’t a negative frame on the highest-drop-off screen in the flow. And it costs nothing, because the task that stayed with someone is nearly always the one that cost them something.
+    <br><br>Order the options by what the data suggests — <code>student_task_responses</code> carries the timers, <code>expires_at</code> and <code>reenable_pending_at</code>, so the likely one can sit first (<em>verify those fields are actually populated before relying on them</em>). But <strong>let them overrule it</strong>: the task that moved them is not always the one that took longest, and confidently naming a task they found trivial would undo the personalisation it was meant to buy.
+  </div>
+
+  <div class="why">
+    <strong>Three design constraints on that picker.</strong> ① <strong>One tap, straight into the answer</strong> — no dropdown, no select-then-continue. Screen 1 is the highest-drop-off screen in the flow and a decision costs momentum. ② <strong>It must render gracefully at one, two or three</strong>, since <em>ias</em>, <em>kas</em> and <em>acharya_foundation</em> currently offer a single option — with one, don’t ask, just name it. ③ <strong>Always carry an escape</strong> — “actually it was a different one” into free text. Our anchorable list is a keyword heuristic; a learner may well have been moved by a task it never flagged, and the escape is what stops the heuristic quietly capping the truth.
+  </div>
+
+  <h3 style="margin-top:32px">The anchor is per plan — and every 4999 plan has one</h3>
+  <p>Screened across every challenge in prod for a task whose title implies feedback, a real conversation, a mirror, a panel or an interview:</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Plan</th><th>Tasks</th><th>Anchorable</th></tr></thead>
+      <tbody>
+        <tr><td>marks_booster (8) · board_booster (10)</td><td>21</td><td><span class="pill go">3 each</span></td></tr>
+        <tr><td>career_readiness (12) · neet (29) · jee (52)</td><td>21</td><td><span class="pill go">2 each</span></td></tr>
+        <tr><td>acharya_middle (63) · acharya_senior (64)</td><td>21</td><td><span class="pill go">2 each</span></td></tr>
+        <tr><td>ias (28) · kas (54) · acharya_foundation (62)</td><td>21</td><td><span class="pill wait">1 each</span></td></tr>
+        <tr><td>the six 5-task plans (55–60)</td><td>5</td><td><span class="pill" style="background:#fde8e4;color:#b03a12">none — zero, all six</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Ten of ten 4999 plans carry at least one anchorable task; six of six short plans carry none.</strong> So the anchor doesn’t need choosing by hand per stream — it can be derived, and the flagship tier is uniformly covered.</p>
+
+  <div class="warn">
+    <strong>Two caveats before that becomes a rule in code.</strong> The screen is a keyword match on task titles, so it is a filter and not a verdict: it can miss a relational task whose title doesn’t say so, and it can false-positive on <em>simulations</em> — a mock panel is roleplay, not a real person giving you real feedback, and roleplay produces no quotable artefact. <strong>The three plans sitting on a single hit — ias, kas, acharya_foundation — need a human to confirm that hit is genuine</strong>, because if it turns out to be a simulation those plans have no anchor at all and nobody would notice.
   </div>
 
   <div class="warn">
-    <strong>And below 4999 there is nothing to anchor on.</strong> The 999 and 1999 board-booster tiers are academic drills — <em>Sentence Reconstruction</em>, <em>Reading Comprehension</em>, <em>Science Diagrams Under Pressure</em>, <em>Picture Comprehension</em>. No other person is in any of them and nothing comes back to the learner, so all four filters fail. The relational tasks live only in the 21-task challenges. That is an independent reason to focus on 4999 — and it means the ★ question needs a different form at the lower tiers, or the board simply isn’t for them yet.
+    <strong>And the short plans have nothing to anchor on.</strong> <em>Sentence Reconstruction</em>, <em>Reading Comprehension</em>, <em>Science Diagrams Under Pressure</em>, <em>Picture Comprehension</em> — academic drills, no other person, nothing received. All four filters fail. Asking someone who did five comprehension exercises what they now stand for will read as absurd, because it is. <strong>They need a smaller, honest instrument</strong> — which one of these was hardest, what you noticed about how you work, one thing you’ll do differently this week — with no witness, no stand and no recovery line, because a witness they don’t have and a stand they haven’t earned are both dishonest at that length. Their board is a learning artefact for the learner, not marketing material, and should not be expected to produce shares.
+  </div>
+
+  <div class="why">
+    <strong>Design it, don’t build it yet.</strong> Prod currently holds 239 units at 4999, <strong>one</strong> at 999 and <strong>none</strong> at 1999. Customising for a population that does not exist is premature — define the short-plan shape so it isn’t invented under pressure later, and build it when those enrolments actually start.
   </div>
 
   <div class="why">
