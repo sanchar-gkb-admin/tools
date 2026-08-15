@@ -241,6 +241,26 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
 .v-good{background:var(--okbg);color:#14532d}
 .speaker{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
   color:var(--o-deep);background:var(--cream3);border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+
+/* stepper rail */
+.rail{display:flex;gap:5px;padding:11px 15px 0}
+.rail i{flex:1;height:3px;border-radius:2px;background:#eee6dd;display:block}
+.rail i.on{background:linear-gradient(90deg,var(--o),var(--o2))}
+.steplbl{padding:7px 15px 0;font-size:9.5px;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--o-deep);display:flex;justify-content:space-between}
+.steplbl span{color:var(--mut2);font-weight:600;letter-spacing:0;text-transform:none}
+.bigq{font-size:15px;font-weight:800;color:var(--ink);line-height:1.32;letter-spacing:-.01em;margin:0 0 9px}
+.exwrap{background:#12100e;border-radius:12px;overflow:hidden;position:relative;margin-bottom:11px}
+.exwrap .thumb{height:200px;display:flex;align-items:center;justify-content:center;position:relative}
+.exwrap .play{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.94);
+  display:flex;align-items:center;justify-content:center;color:var(--o);font-size:17px;padding-left:3px}
+.exwrap .badge{position:absolute;top:10px;left:10px;background:rgba(255,138,61,.95);color:#fff;
+  font-size:9px;font-weight:800;letter-spacing:.06em;border-radius:999px;padding:3px 9px}
+.exwrap .dur{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.66);color:#fff;
+  font-size:9.5px;font-weight:700;border-radius:5px;padding:2px 7px}
+.exmeta{background:#1c1917;padding:9px 11px}
+.exmeta b{color:#fff;font-size:11px;font-weight:700;display:block}
+.exmeta span{color:#a8a29e;font-size:9.5px}
 </style>
 
 <div class="mast"><div class="inner">
@@ -526,6 +546,205 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
         teacher or a Class 6 child who has never met the distinction. The prompt must carry the
         sentence-completion form <i>and</i> two or three examples, or half the videos come back as
         "before, my school had no smart board."</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ EXEMPLAR ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">EX</span> The example video — the slot already exists</h2>
+    <p class="cap">No code needed. <code>learning_materials</code> takes <code>{type:"video", title, url}</code>
+    and renders a swipeable, <b>sandboxed inline player</b> at the top of the task. Sutirtha can add it
+    herself from the superadmin today.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Task 21 of 21</span><span class="r">FINAL</span></div>
+      <div class="body">
+        <div class="card" style="padding:13px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px">
+            <span style="font-size:15px">🎬</span>
+            <h3 style="margin:0;font-size:13px">Watch this first</h3>
+            <span style="margin-left:auto;font-size:9px;font-weight:700;color:#F58321;
+              background:#FDEEDE;border-radius:999px;padding:2px 8px">1 · start here</span>
+          </div>
+          <div class="exwrap" style="margin-bottom:0">
+            <div class="thumb"><div class="play"><i class="fas fa-play"></i></div>
+              <div class="badge">EXAMPLE</div><div class="dur">1:26</div></div>
+            <div class="exmeta"><b>What a powerful share sounds like</b>
+              <span>Recorded on a phone · one take · not a studio</span></div>
+          </div>
+        </div>
+        <div class="note info"><b>Yours should sound like you, not like this.</b> Same three beats —
+        your own words, your own classroom.</div>
+        <div class="card">
+          <h3>Your three beats</h3>
+          <ol class="ol">
+            <li><b>WHO I WAS BEING</b></li>
+            <li><b>WHAT I DID</b></li>
+            <li><b>WHAT I INVENTED</b></li>
+          </ol>
+        </div>
+      </div>
+    </div></div>
+
+    <div style="flex:1;min-width:340px">
+      <table style="margin-bottom:14px">
+        <tr><th>Question</th><th>Verified answer</th></tr>
+        <tr><td>Is there a space for a video embed?</td>
+            <td><b>Yes.</b> <code>learning_materials</code> · <code>LearningMaterial::forTask()</code> →
+            swipeable carousel at the top of the task screen</td></tr>
+        <tr><td>Does it play inline?</td>
+            <td><b>Yes</b>, in a <b>sandboxed</b> iframe — the player cannot navigate the learner off the
+            task (that sandbox exists because of the podcast-eviction bug)</td></tr>
+        <tr><td>Which types?</td>
+            <td><code>podcast · video · pdf · image · link</code>. <code>video</code> resolves
+            <b>YouTube or Vimeo</b> only</td></tr>
+        <tr><td>How many tasks use it?</td>
+            <td><b>13 of 240.</b> Task 17 already embeds a YouTube clip this exact way</td></tr>
+        <tr><td>And <code>task_multimedia</code>?</td>
+            <td><b>0 of 240 — unused.</b> Still exactly the "no example media on any task" gap flagged in
+            #tech on 7 Jul; the render for it is commented out</td></tr>
+        <tr><td>Any code required?</td>
+            <td><b>None.</b> Superadmin → task → Learning Materials → add a row</td></tr>
+      </table>
+      <div class="note bad" style="font-size:12px;padding:14px">
+        <b>Constraint for Sutirtha: Google Drive will not work.</b> The normaliser explicitly rejects
+        <code>drive.google.com</code>, <code>docs.google.com</code> and
+        <code>googleusercontent.com</code>. A raw <code>.mp4</code> URL won't embed either — it degrades to
+        a plain link. The exemplar must be on <b>YouTube (unlisted is fine) or Vimeo</b>.</div>
+      <div class="note warn" style="font-size:12px;padding:14px">
+        <b>One label to change.</b> The carousel header reads <b>"📚 Learning Material · start here"</b>.
+        For a worked example that says <i>study material</i>, not <i>here's how it's done</i>. Either
+        retitle the section on this task or give the row a title that carries the meaning —
+        <i>"Watch this first — what a powerful share sounds like"</i>.</div>
+    </div>
+  </div>
+
+  <div class="two" style="margin-top:22px">
+    <div class="callout" style="margin:0">
+      <h4>What Sutirtha's example should actually do</h4>
+      <p><b>Shoot it badly on purpose.</b> Phone held in one hand, vertical, one take, real classroom or
+      home behind her, one stumble left in. A polished studio piece teaches teachers that this needs
+      production they don't have — and they won't record at all.</p>
+      <p><b>Hit the three beats visibly</b>, pausing between them, so the structure is learnable by
+      watching rather than by reading.</p>
+      <p><b>Keep it under 90 seconds</b> — the example must obey the rule it is demonstrating.</p>
+    </div>
+    <div class="callout" style="margin:0">
+      <h4>Staff example ≠ peer example</h4>
+      <p>Sutirtha is staff. Her video is a <b>format demo</b> — "this is the shape" — and that is genuinely
+      useful for launch, because it can exist today.</p>
+      <p>But the thing that makes a teacher actually record is seeing <b>another teacher</b> do it. As soon
+      as two or three Acharyas have submitted well, swap in a real one (with written consent) and label it
+      <i>"Anitha, Class 7, KVS Bengaluru"</i>. Social proof beats instruction.</p>
+      <p>Ideal end state: <b>two rows</b> — one demo, one peer.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ SEAMLESS ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">FLOW</span> Custom final task — a ceremony, not a form</h2>
+    <p class="cap">The generic task screen is a long scroll: recorder, then link field, then checkboxes,
+    then submit. The 21st task earns a bespoke four-step flow where each step is the only thing on screen.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Your final task</span><span class="r">42:18</span></div>
+      <div class="rail"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="steplbl">Step 1 of 4 · Watch <span>~2 min</span></div>
+      <div class="body">
+        <p class="bigq">See what a powerful share sounds like.</p>
+        <div class="exwrap">
+          <div class="thumb" style="height:186px"><div class="play"><i class="fas fa-play"></i></div>
+            <div class="badge">EXAMPLE</div><div class="dur">1:26</div></div>
+          <div class="exmeta"><b>Sutirtha · format demo</b><span>Phone · one take</span></div>
+        </div>
+        <button class="btn">I've watched it — next</button>
+      </div>
+    </div></div>
+
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Your final task</span><span class="r">39:04</span></div>
+      <div class="rail"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <div class="steplbl">Step 2 of 4 · Record <span>90 sec</span></div>
+      <div class="body">
+        <p class="bigq">Beat 2 of 3 — what did you actually do?</p>
+        <div class="rec" style="height:200px">
+          <i class="fas fa-user who"></i>
+          <div class="dot"><i></i> REC</div><div class="clock">0:48 / 1:30</div>
+          <div class="cue"><b>WHAT I DID</b> — which task, what you did differently, which class, which week.</div>
+          <div class="bar"><i style="width:53%"></i></div>
+        </div>
+        <div class="note info">Cues advance on their own. Speak, don't read.</div>
+        <button class="btn ghost sm">Stop &amp; review</button>
+      </div>
+    </div></div>
+
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Your final task</span><span class="r">36:11</span></div>
+      <div class="rail"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <div class="steplbl">Step 3 of 4 · Share <span>1 tap</span></div>
+      <div class="body">
+        <p class="bigq">Your caption is written. Choose where it goes.</p>
+        <div class="kit" style="margin-bottom:11px">
+          <div class="kh"><i class="fas fa-wand-magic-sparkles"></i><b>Ready to paste</b><em>AUTO</em></div>
+          <div class="cap-box" style="font-size:10px">21 tasks ago I was being a teacher who had already
+          decided which children couldn't be reached…<br><br>
+          <span class="tag">@yashho.official</span> <span class="tag">@kvs.bengaluru</span>
+          <span class="hash">#MissionAcharya</span></div>
+          <div class="copyrow"><div class="cbtn"><i class="fas fa-copy"></i> Copied ✓</div></div>
+        </div>
+        <button class="btn"><i class="fas fa-share-nodes"></i> &nbsp;Open share menu</button>
+        <p class="hint" style="text-align:center;margin-top:9px">Nothing posts until you choose.</p>
+      </div>
+    </div></div>
+
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Your final task</span><span class="r">33:52</span></div>
+      <div class="rail"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <div class="steplbl">Step 4 of 4 · Prove <span>almost done</span></div>
+      <div class="body">
+        <p class="bigq">Paste the link to your post.</p>
+        <div class="field filled focus" style="margin-bottom:8px">https://www.instagram.com/reel/C8xK…</div>
+        <div class="chk"><div class="bx on"><i class="fas fa-check"></i></div>
+          <span>I added <b>@yashho.official</b> as a collaborator.</span></div>
+        <div class="chk"><div class="bx on"><i class="fas fa-check"></i></div>
+          <span>I understand my evaluator will open this link.</span></div>
+        <button class="btn" style="margin-top:15px">Complete my journey</button>
+        <button class="btn ghost sm" style="margin-top:9px">Add another platform</button>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="two" style="margin-top:20px">
+    <div class="callout" style="margin:0">
+      <h4>What makes it seamless</h4>
+      <p><b>One decision per screen.</b> No scrolling past things that aren't yet relevant — the link field
+      doesn't exist until there is something to link to.</p>
+      <p><b>The caption is generated while they record</b>, so step 3 opens already done. The only remaining
+      act is choosing a platform.</p>
+      <p><b>The share sheet returns them here.</b> Coming back from Instagram lands on step 4 with the field
+      focused and the clipboard offered — not on a form they have to find their place in again.</p>
+      <p><b>The task timer stays pinned</b> in the app bar across all four steps — the same server clock,
+      never restarted by a step change.</p>
+    </div>
+    <div class="callout" style="margin:0">
+      <h4>What it costs, honestly</h4>
+      <p>This is a <b>new Blade view</b> for one task, not a tweak to the shared submission screen — so it
+      must reuse the existing partials (<code>media-recorder</code>, <code>task-timer</code>,
+      <code>task-nav-guard</code>, <code>task-telemetry</code>) rather than re-implement them, or the timer
+      and expiry behaviour will drift from every other task.</p>
+      <p>It also needs a rule for <b>which tasks get it</b>. Keying it to "the last task in the challenge"
+      is derivable and safe; hardcoding task 419 is not, because the same task id serves all three Acharya
+      challenges and the learner variants use different ids.</p>
     </div>
   </div>
 </section>
