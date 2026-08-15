@@ -1394,17 +1394,16 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
           </div>
           <div>
             <div class="card" style="margin:0 0 11px">
-              <h3 style="font-size:13px">A · Ability dials <span style="font-weight:500;color:var(--mut2);font-size:10px">— exists today</span></h3>
-              <div class="score"><span>Confidence</span><b>4.5</b></div>
-              <div class="score"><span>Voice tone &amp; modulation</span><b>4.0</b></div>
-              <div class="score"><span>Structure</span><b>3.5</b></div>
-              <div class="score"><span>Initiative</span><b>5.0</b></div>
-              <div class="score"><span>Uniqueness</span><b>4.0</b></div>
-              <div class="score" style="color:var(--mut2)"><span>…47 more dials</span><b>—</b></div>
-              <div class="note warn" style="margin:11px 0 0;font-size:10.5px">
-                <b>52 dials on this task.</b> Measured against task 419's real ability map: a video+link
-                submission makes <b>all 52 scoreable, none flagged</b>. A screenshot-only submission drops
-                to 36 scoreable / 16 flagged.</div>
+              <h3 style="font-size:13px">No ability dials on this task</h3>
+              <div style="text-align:center;padding:16px 10px;color:var(--mut2)">
+                <i class="fas fa-sliders" style="font-size:22px;opacity:.35"></i>
+                <div style="font-size:10.5px;margin-top:9px;line-height:1.5">The share task carries
+                <b>no rubric</b>, so there is nothing to score.<br>The checklist <b>is</b> the evaluation.</div>
+              </div>
+              <div class="note warn" style="margin:0;font-size:10.5px">
+                <b>For comparison:</b> task 419 today maps <b>52 abilities</b>, and a video+link submission
+                makes all 52 scoreable. Asking a <i>senior</i> evaluator to move 52 dials on a task that
+                cannot change the outcome is pure waste.</div>
             </div>
             <div class="card" style="margin:0">
               <h3 style="font-size:13px">Feedback</h3>
@@ -1419,43 +1418,78 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
 
   <div class="two" style="margin-top:20px">
     <div class="delta" style="margin:0">
-      <h5>A · Score it as abilities — zero code</h5>
+      <h5>Why the checklist REPLACES the dials</h5>
       <ul>
-        <li>Task 419 <b>already maps 52 abilities</b> — 11 aptitude · 11 attitude · 14 communication · 16 execution.</li>
-        <li><code>link</code> is already a first-class evidence mode, so nothing is flagged by adding it.</li>
-        <li>The judgement beats — <i>owned a way of being</i>, <i>the act was specific</i>, <i>declared a
-          possibility</i> — land on existing dials: confidence, structure, initiative, uniqueness.</li>
-        <li>Checking instructions ride in <code>deliverable_spec</code>, which the evaluator
-          <b>already sees</b> (<code>evaluate-detail.blade.php:173</code>). No code.</li>
-        <li>⚠ Run <code>php artisan tasks:verify-mode-coverage</code> after authoring — a non-canonical
-          ability key does not error, it silently becomes scoreable in every mode.</li>
+        <li><b>A rubric-less task cannot be evaluated today.</b> Measured:
+          <code>'attribute_scores' =&gt; 'required|array'</code> is unconditional, and Laravel's
+          <code>required</code> rejects an empty array —
+          <span class="mono">empty array → REJECTED · one score → accepted</span>.</li>
+        <li>So no rubric ⇒ no eval row ⇒ <b>the gate never opens</b> until the expiry sweep forces it.
+          The learner would share and nothing would happen.</li>
+        <li><b>The fix is the fork:</b> <code>storeEvaluationResult</code> branches on
+          <code>task_kind</code> — for a share task it validates the <b>checklist</b> and skips the ability
+          rules entirely.</li>
+        <li>Which makes the completion event exact: <b>the Yashodarshi finalising that row IS what
+          completes the task and unlocks the scorecard.</b> Completeness already counts non-draft eval
+          rows, so nothing changes there.</li>
       </ul>
     </div>
     <div class="delta" style="margin:0">
-      <h5>B · The checklist — small and new</h5>
+      <h5>One partial, not a separate screen</h5>
       <ul>
-        <li>Four booleans + a platform count. <b>Objective facts</b>, so no inter-rater drift.</li>
-        <li>Storage: a new JSON column on <code>yashodarshi_evaluation_results</code>. <b>Do not reuse
-          <code>score_snapshot</code></b> without checking what writes it first.</li>
-        <li>Must be <b>per-task configurable</b>, or the checklist appears on all 240 tasks.</li>
-        <li><b>It records; it does not compute.</b> The score stays one authority — the ability dials —
-          and the checklist disciplines the evaluator's judgement rather than competing with it.</li>
-        <li>This is what <i>"marks deducted if they don't add the collaborator"</i> actually needs: today
-          there is nowhere for that fact to live.</li>
+        <li><b>Reused as-is:</b> the brief (objective / description / what-to-submit), the video player,
+          <code>_link-item</code> (safe href, new tab, <code>nofollow</code>, never fetched), the feedback box.</li>
+        <li><b>Swapped:</b> the ability-dial block → the share checklist. One partial behind the
+          <code>task_kind</code> switch.</li>
+        <li><b>A separate screen would duplicate the link partial</b> — which is the security-relevant one.
+          A second copy is exactly where the stored-XSS guard eventually gets forgotten.</li>
+        <li>Storage for the checklist: a new JSON column. <b>Do not reuse <code>score_snapshot</code></b>
+          without checking what writes it. Keeping <code>attribute_scores</code> empty is what keeps
+          <code>ScorecardInputBuilder</code> skipping the row.</li>
       </ul>
     </div>
+  </div>
+
+  <div class="note bad" style="font-size:12.5px;padding:15px;margin-top:16px">
+    <b>The 7-task evaluation is a BUNDLED SESSION — and the share task would jam it.</b>
+    The two tiers evaluate differently: ₹4999 is <b>per-task</b> (<code>session()</code> 404s for premium —
+    <i>"NOT a bundled session"</i>), while a 7-task set is drafted, reviewed and <b>released together</b>.
+    <code>submitReview</code> carries a hard PARTIAL guard —
+    <i>"cannot release a set with any task still unscored"</i> — over <code>sessionTaskIds()</code>, which
+    reads the frozen snapshot.
+    <br><br>
+    So a share task inside that snapshot means <b>seven completed, evaluated tasks sit unreleased</b> while
+    the evaluator waits days for a share that may never come — and per <code>FeedbackReveal</code> a 7-task
+    set stays <b>atomically locked until every task is evaluated</b>, so the learner gets no feedback on
+    anything. That is worse than a delayed scorecard.
+    <br><br>
+    <b>Fix: exclude it from <code>sessionTaskIds()</code>.</b> The share task is then evaluated per-task on
+    the standalone screen for <b>both</b> tiers — one screen, one partial, and the session cockpit never has
+    to know it exists.</div>
+
+  <div class="callout">
+    <h4>The open question: what happens when the proof is bad?</h4>
+    <p><b>There is no reject / resubmit path anywhere.</b> Evaluation is one-way: a row is created and the
+    task closes. So if the link is dead, or it is someone else's post, or YASHHO was never tagged, today the
+    only options are finalise anyway or leave it unevaluated — and leaving it unevaluated <b>blocks the
+    scorecard indefinitely</b>. The gate becomes a trap.</p>
+    <p><b>Option 1 — accept-with-facts (recommended).</b> The Yashodarshi always finalises, ticking what is
+    true. Bad proof ⇒ unticked collaborator ⇒ no Brand Ambassador badge, but the scorecard opens. No new
+    state, and nothing can strand a learner.</p>
+    <p><b>Option 2 — send it back once.</b> Truer to "validated proof", but it adds a state to a vocabulary
+    that was once spelled out by hand in <b>thirty-nine places</b> before <code>ATTEMPTED</code> /
+    <code>COMPLETED</code> were created to stop it drifting. Not a small change.</p>
   </div>
 
   <div class="callout">
     <h4>Two constraints that bound anything built here</h4>
     <p><b>Only four pillars reach the scorecard.</b> <code>yashodarshi_evaluation_results</code> has fixed
     <code>aptitude_score / attitude_score / communication_score / execution_score</code> columns feeding
-    <code>total_score</code>. A criterion that maps to none of the four never reaches the learner.</p>
+    <code>total_score</code>.</p>
     <p><b>Senior evaluators only.</b> <code>Challenge::pool()</code> returns <code>premium_4999</code> for
     tier 4999 and <code>storeEvaluationResult</code> does
     <code>abort_unless($yashodarshi-&gt;isSenior(), 403)</code>. All three Acharya challenges are ₹4999 — so
-    <b>only senior Yashodarshis can score this task at all.</b> Worth confirming there are enough of them
-    before the 21st task lands for everyone at once.</p>
+    <b>only senior Yashodarshis can evaluate this task at all.</b></p>
   </div>
 </section>
 
@@ -1469,13 +1503,30 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
     checklist and the link validation can never disagree.</p>
   </div>
 
-  <div class="flow" style="margin-bottom:18px">
+  <div class="flow" style="margin-bottom:14px">
     <div class="st newx">tasks.task_kind<small>'standard' | 'share'</small></div><span class="ar">→</span>
-    <div class="st newx">TaskKind::for($task)<small>one resolver</small></div><span class="ar">→</span>
-    <div class="st">studentView()<small>which blade</small></div>
-    <div class="st">evaluatorChecklist()<small>show B?</small></div>
-    <div class="st">requiresLink()<small>validation</small></div>
+    <div class="st newx">TaskKind::for($task)<small>ONE resolver</small></div>
   </div>
+  <div class="scroll" style="margin-bottom:18px"><table>
+    <tr><th>Question it answers</th><th>Call site</th><th>Share task</th><th>If wrong</th></tr>
+    <tr><td>Inside the 90-min sprint budget?</td><td><code>SprintBudget::sprintFittedDurations()</code></td>
+        <td><b>NO</b></td><td>all 7 real tasks drop 12 → 10 min, bonus SLA crushed to 18 min</td></tr>
+    <tr><td>Inside the bundled 7-task session?</td><td><code>sessionTaskIds()</code></td>
+        <td><b>NO</b></td><td>the set can never be released — 7 evaluated tasks stay locked, no feedback at all</td></tr>
+    <tr><td>Inside "N of 7 completed"?</td><td>progress presenters</td>
+        <td><b>NO</b></td><td>learner sees "7 of 8" after finishing everything required</td></tr>
+    <tr><td>Inside scorecard completeness?</td><td><code>ScorecardCompleteness::totalTasks()</code></td>
+        <td><b>YES</b></td><td>excluded ⇒ no gate at all; this is the whole point</td></tr>
+    <tr><td>Which evaluator panel?</td><td><code>storeEvaluationResult</code> + <code>evaluate-detail</code></td>
+        <td><b>checklist</b></td><td><code>attribute_scores required</code> ⇒ evaluator cannot save ⇒ gate never opens</td></tr>
+    <tr><td>Which student layout?</td><td><code>TaskDetailsController</code></td>
+        <td><b>stepper</b></td><td>falls back to the standard two-screen form</td></tr>
+  </table></div>
+  <div class="note bad" style="font-size:12px;padding:14px;margin-bottom:18px">
+    <b>Four of these six fail SILENTLY.</b> Nothing errors — the sprint just gets shorter, the set just
+    won't release, the count just reads wrong. So this needs a <b>ratchet</b>: one test asserting a
+    <code>share</code>-kind task is absent from the three denominators, present in completeness, and routed
+    to the checklist panel. Without it this is another guard wired to nothing.</div>
 
   <div class="two">
     <div class="delta" style="margin:0">
