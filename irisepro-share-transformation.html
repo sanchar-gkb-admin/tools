@@ -1461,6 +1461,76 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
 
 <div class="rule"></div>
 
+<!-- ============ FORK ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">FORK</span> How both renders know this is a share task</h2>
+    <p class="cap">One tag, one resolver, three derived capabilities — so the student layout, the evaluator
+    checklist and the link validation can never disagree.</p>
+  </div>
+
+  <div class="flow" style="margin-bottom:18px">
+    <div class="st newx">tasks.task_kind<small>'standard' | 'share'</small></div><span class="ar">→</span>
+    <div class="st newx">TaskKind::for($task)<small>one resolver</small></div><span class="ar">→</span>
+    <div class="st">studentView()<small>which blade</small></div>
+    <div class="st">evaluatorChecklist()<small>show B?</small></div>
+    <div class="st">requiresLink()<small>validation</small></div>
+  </div>
+
+  <div class="two">
+    <div class="delta" style="margin:0">
+      <h5>Why explicit, not derived</h5>
+      <ul>
+        <li><b>Deriving from <code>answer_modes</code> misclassifies.</b> Four live tasks already carry a
+          link mode and are <i>not</i> share tasks — LinkedIn Launchpad (12:7), CEO Idea Pitch (12:19),
+          and the two LinkedIn profile-build tasks (29:6, 52:6). Derivation captures all four.</li>
+        <li><b>Deriving from position misclassifies too.</b> "Last task in the challenge" captures 30,
+          246, 251, 348 and 380 — reflections, not share tasks; task 30 is <code>file</code>-mode only.
+          And <code>task_snapshot</code> is frozen per unit, so "last" is not even stable.</li>
+        <li><b>Not a boolean.</b> <code>is_share_task</code> invites <code>is_reflection_task</code> next;
+          flag-accretion is how three renders end up disagreeing. A closed set names the question once.</li>
+      </ul>
+    </div>
+    <div class="delta" style="margin:0">
+      <h5>Modelled on what already exists</h5>
+      <ul>
+        <li><code>App\Support\Task\TaskScreen</code> is the codebase's own answer to this class of problem
+          — <i>"The ONE question every surface asks about a task, and its ONE answer"</i>, written after the
+          dashboard card grew <b>seven</b> independent authorities.</li>
+        <li>TaskScreen owns <b>state</b> (live / submitted / blocked+reason). <b>Kind</b> is a different
+          question, so it gets its own resolver rather than being bolted into that one.</li>
+        <li><b>One switch selects a bundle.</b> Three independent flags would eventually produce a task
+          with the stepper and no checklist, and nothing would catch it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note bad" style="font-size:12.5px;padding:15px;margin-top:16px">
+    <b>There is already a <code>task_type</code> column — and it's a zombie.</b>
+    <code>enum('CareerRise','Sankalp')</code>, <b>retired in #68</b> ("nothing branches on task_type's
+    value"), with code comments stating the column was dropped — yet it is still in the schema. Do not
+    repurpose it: that resurrects a deliberately-killed field with the wrong enum. Adding a near-identical
+    second type column beside it is the two-implementations smell. <b>Drop <code>task_type</code> in the
+    same migration that adds <code>task_kind</code>.</b></div>
+
+  <div class="callout">
+    <h4>Three rollout traps</h4>
+    <p><b>Default <code>standard</code> = zero behaviour change</b> across all 240 existing tasks. Adding a
+    column is expand-safe, so it ships with <code>deploy.sh --migrate</code>.</p>
+    <p><b>Tag the task, not the <code>challenge_task</code> pivot</b> — task 419 is the same kind in all
+    three Acharya challenges. And because <code>task_snapshot</code> stores task <b>ids</b>, the tag reaches
+    learners already mid-journey (the same reason a text rewrite reaches them and a new task does not).</p>
+    <p><b>Submissions made before the tag exists carry no checklist data.</b> The evaluator partial must
+    render <i>"not captured"</i> — never empty checkboxes. Unticked boxes read as "they didn't do it", and
+    an evaluator would score down on absent data.</p>
+    <p><b>The fork is the LAYOUT only.</b> <code>task-timer</code>, <code>task-nav-guard</code>,
+    <code>task-telemetry</code> and <code>media-recorder</code> stay shared partials — re-implementing the
+    timer inside a bespoke view is how expiry behaviour drifts from the other twenty tasks.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
 <!-- ============ BUILD ============ -->
 <section>
   <div class="sechead">
