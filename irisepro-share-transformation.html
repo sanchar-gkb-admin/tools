@@ -1707,6 +1707,118 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
 
 <div class="rule"></div>
 
+<!-- ============ REACH ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">REACH</span> Getting it to learners who already started — or finished</h2>
+    <p class="cap">A new task never enters a frozen <code>task_snapshot</code>. Three populations, three
+    mechanisms — and one of them must never be given the task at all.</p>
+  </div>
+
+  <div class="scroll" style="margin-bottom:18px"><table>
+    <tr><th></th><th>A · New units</th><th>B · Mid-journey</th><th>C · Already finished</th></tr>
+    <tr><td><b>State</b></td><td>unit minted after ship</td>
+        <td>unit live, no scorecard yet</td><td>scorecard generated / unit finalised</td></tr>
+    <tr><td><b>Mechanism</b></td><td>task is in the challenge — minted automatically</td>
+        <td><b>append to <code>task_snapshot</code></b></td>
+        <td><b>invitation — snapshot untouched</b></td></tr>
+    <tr><td><b>Gates the scorecard?</b></td><td>yes</td><td>yes</td>
+        <td>no — theirs is already delivered</td></tr>
+    <tr><td><b>Earns the badge?</b></td><td>yes</td><td>yes</td><td>yes — the badge <i>is</i> the incentive</td></tr>
+    <tr><td><b>Build</b></td><td><span class="tag2 t-have">NONE</span></td>
+        <td><span class="tag2 t-new">backfill command</span></td>
+        <td><span class="tag2 t-new">invite flow</span></td></tr>
+  </table></div>
+
+  <div class="note bad" style="font-size:12.5px;padding:15px;margin-bottom:18px">
+    <b>NEVER append the task to a finished learner's snapshot.</b> <code>totalTasks()</code> would go
+    21 → 22 while <code>done</code> stays 21, so <code>isComplete()</code> flips to <b>false</b> — and
+    <code>isComplete</code> has a second consumer: <b><code>LeaderboardEligibility:291</code></b>. They would
+    <b>silently drop off a leaderboard they had already earned a place on</b>. A test pins the leaderboard
+    set to <code>isComplete</code>, so the two stay locked together.</div>
+
+  <div class="note ok" style="font-size:12.5px;padding:15px;margin-bottom:18px">
+    <b>Why the invitation is safe.</b> Completeness is <code>$done &gt;= $total</code>, and
+    <code>totalTasks()</code> reads <code>count($unit-&gt;task_snapshot)</code>. Leave the snapshot alone
+    and write only the response + eval row: <code>total</code> stays <b>21</b>, <code>done</code> becomes
+    <b>22</b>, and <code>22 &gt;= 21</code> still holds. <code>isComplete()</code> stays true, the
+    leaderboard place is untouched, and the badge is granted on validation. <b>The invitation works
+    precisely because it does not touch the snapshot.</b></div>
+
+  <div class="stage">
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+        <div class="urlpill">app.irisepro.in/admin/units/297 — cohort</div></div>
+      <div class="bview"><div class="dbody">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+          color:var(--o-deep);margin-bottom:4px">MISSION ACHARYA · Class 5–10 · unit 297</div>
+        <p style="font-size:12px;color:var(--mut);margin:0 0 14px">18 learners · 12 finished ·
+          <b style="color:var(--o-deep)">7 not yet invited to share</b></p>
+        <table style="font-size:12px">
+          <tr><th>Learner</th><th>Journey</th><th>Share</th><th>Badge</th><th></th></tr>
+          <tr><td>Anitha K</td><td>21 of 21 ✓</td>
+              <td><span class="tag2 t-have">validated</span></td><td>🏅</td><td style="color:var(--mut2)">—</td></tr>
+          <tr><td>Ramesh B</td><td>21 of 21 ✓</td>
+              <td><span class="tag2 t-new">shared, awaiting review</span></td><td>—</td>
+              <td style="color:var(--mut2)">—</td></tr>
+          <tr><td>Lakshmi R</td><td>21 of 21 ✓</td>
+              <td><span class="tag2 t-fix">invited 3d ago</span></td><td>—</td>
+              <td><span style="color:var(--o-deep);font-weight:700">Remind</span></td></tr>
+          <tr><td>Suresh M</td><td>21 of 21 ✓</td><td style="color:var(--mut2)">not invited</td><td>—</td>
+              <td><span style="color:var(--o-deep);font-weight:700">Invite ↗</span></td></tr>
+          <tr><td>Priya N</td><td>14 of 21</td><td style="color:var(--mut2)">in journey (B)</td><td>—</td>
+              <td style="color:var(--mut2)">auto</td></tr>
+        </table>
+        <div class="note info" style="font-size:11.5px;margin-top:14px">
+          <b>The data already exists.</b> <code>~/acharya-status.sh</code> already emits exactly this per
+          learner — every task, its response status, the evaluation state, plus seat flags, with a
+          <code>--json</code> mode. The cohort screen is a view over a query that is already written.</div>
+      </div></div>
+    </div>
+
+    <div style="flex:1;min-width:330px">
+      <div class="delta" style="margin:0 0 13px">
+        <h5>The invite link — not a CampaignLink</h5>
+        <ul>
+          <li><code>campaign_links</code> is <code>slug · destination · utm_* · clicks</code> — a
+            <b>marketing redirect with no per-learner identity</b>. It cannot carry "this learner, this
+            task", and its counter is aggregate.</li>
+          <li>Use the existing magic-link path instead — single-use, short-lived, hashed at rest, mints a
+            session for one named learner.</li>
+          <li>⚠ <b>Opening a task burns its timer.</b> The link must land on the share flow itself, never a
+            generic dashboard.</li>
+          <li>⚠ <b>God-mode primitive</b> — it mints a session for any email with no proof of email control.
+            Admin authz only; never a public route.</li>
+        </ul>
+      </div>
+      <div class="delta" style="margin:0">
+        <h5>The B backfill command</h5>
+        <ul>
+          <li>Model it on <code>tasks:reenable-media</code>: <b>dry-run by default</b>, idempotent,
+            failure-safe per learner.</li>
+          <li><b>Hard-refuse a finalised seat</b> (unit <code>is_expired=1</code> or a generated
+            <code>scorecards</code> row). That refusal is what keeps population C out of population B's
+            command — it is the safety mechanism, not a nicety.</li>
+          <li>Print what it would change, per learner, before it changes anything.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>One pre-flight to run before linking the task to all 24 challenges</h4>
+    <p><code>totalTasks()</code> falls through: <code>count(task_snapshot) ?: challenge-&gt;tasks()-&gt;count()
+    ?: number_of_tasks</code>. A unit whose snapshot is <b>empty or missing</b> skips the first branch and
+    counts the <b>challenge</b> — so the moment the share task is linked, that unit's total silently jumps
+    by one and its scorecard can no longer complete.</p>
+    <p><b>Count live units with an empty <code>task_snapshot</code> first.</b> If any exist they must be
+    backfilled before the task is linked, not after. This is a prod read, and it is cheap compared to
+    discovering it through a blocked scorecard.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
 <!-- ============ BUILD ============ -->
 <section>
   <div class="sechead">
