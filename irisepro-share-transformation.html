@@ -261,6 +261,54 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
 .exmeta{background:#1c1917;padding:9px 11px}
 .exmeta b{color:#fff;font-size:11px;font-weight:700;display:block}
 .exmeta span{color:#a8a29e;font-size:9.5px}
+
+/* ── faithful reproductions of the LIVE task screen ── */
+.realbar{background:linear-gradient(135deg,#FDEEDE,#fff);padding:12px 15px;border-radius:0 0 22px 22px;
+  box-shadow:0 1px 3px rgba(20,10,0,.06);display:flex;align-items:center;gap:10px;
+  position:sticky;top:0;z-index:4}
+.realbar .av{width:29px;height:29px;border-radius:50%;background:var(--o);color:#fff;font-size:10px;
+  font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+.realbar .nm{font-size:11px;font-weight:700;color:var(--ink);line-height:1.2}
+.realbar .nm small{display:block;font-weight:500;color:var(--mut2);font-size:9px}
+.realbar .icons{margin-left:auto;display:flex;gap:8px;color:var(--mut2);font-size:12px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ptile{background:linear-gradient(135deg,var(--cream1),#fff);border-radius:9px;padding:9px;
+  position:relative;overflow:hidden}
+.ptile:after{content:"";position:absolute;top:-16px;right:-16px;width:44px;height:44px;
+  background:rgba(255,138,61,.05);border-radius:50%}
+.ptile .r1{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;position:relative;z-index:1}
+.ptile .r1 span{font-size:10px;font-weight:500;color:var(--ink2)}
+.ptile .r1 i{width:18px;height:18px;border-radius:50%;background:var(--cream3);color:var(--o);
+  font-size:8px;display:flex;align-items:center;justify-content:center}
+.ptile .v{font-size:14px;font-weight:800;color:var(--o);position:relative;z-index:1}
+.ptile .v small{font-size:9px;margin-right:1px}
+.apill{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;
+  font-size:9.5px;font-weight:700;background:#FFF1E6;color:#C25E17;border:1px solid #FFD9B8;
+  margin:0 4px 4px 0}
+.apill .st{color:#F58321}
+.ctacard{text-align:center;padding:20px 15px}
+.ctacard .circ{width:46px;height:46px;border-radius:50%;background:var(--cream3);color:var(--o);
+  font-size:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 11px}
+.ctacard h3{font-size:13px;font-weight:800;margin:0 0 6px}
+.ctacard p{font-size:10.5px;color:var(--mut);margin:0 0 15px}
+.ctabtn{display:inline-block;background:linear-gradient(90deg,var(--o),var(--o2));color:#fff;
+  border-radius:11px;padding:11px 28px;font-size:12px;font-weight:800;box-shadow:0 5px 14px rgba(255,138,61,.3)}
+.ba{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:start}
+@media(max-width:1000px){.ba{grid-template-columns:1fr}.ba .arrowcol{display:none}}
+.arrowcol{display:flex;align-items:center;justify-content:center;padding-top:200px;color:var(--o2);font-size:26px}
+.bahead{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.bahead.b{color:#64748b}.bahead.a{color:#5b21b6}
+.bahead em{font-style:normal;font-size:8.5px;font-weight:800;border-radius:4px;padding:2px 6px;letter-spacing:.04em}
+.bahead.b em{background:#f1f5f9;color:#64748b}
+.bahead.a em{background:var(--newbg);color:#5b21b6}
+.basub{font-size:11px;color:var(--mut);margin:0 0 12px}
+.delta{background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-top:13px}
+.delta h5{margin:0 0 8px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--o-deep)}
+.delta ul{margin:0;padding-left:16px}
+.delta li{font-size:11.5px;color:var(--ink2);line-height:1.6;margin-bottom:5px}
+.delta li b{color:var(--ink)}
+.kept{color:var(--ok)}.gone{color:#b91c1c}.newd{color:#5b21b6}
 </style>
 
 <div class="mast"><div class="inner">
@@ -389,6 +437,191 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
     end on a deficit. The word YASHHO does not appear anywhere in it, and neither does a before/after frame.</p>
     <p>The rewrite keeps the reflection honest but makes it <b>publishable</b> — and the diagnostic questions
     stay valuable, so where they live instead is an open decision, not something this storyboard settles.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ BEFORE / AFTER ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">B/A</span> Before &amp; after — grounded in the live blades</h2>
+    <p class="cap">The left phone is the task screen <b>as it renders today</b>, rebuilt component-for-component
+    from <code>task-details.blade.php</code> after driving the running local app. The right is the proposal.</p>
+  </div>
+
+  <div class="ba">
+    <div>
+      <p class="bahead b">Today <em>LIVE</em></p>
+      <p class="basub">Two screens. Read everything, scroll to the bottom, tap <b>Submit Now</b>, land on a
+      second screen and start again.</p>
+      <div class="phone" style="width:300px"><div class="pv">
+        <div class="realbar">
+          <div class="av">AD</div>
+          <div class="nm">ASHA DEMO<small>Class 8–10 · Task 21 of 21</small></div>
+          <div class="icons"><i class="fas fa-bell"></i><i class="fas fa-circle-user"></i></div>
+        </div>
+        <div class="body">
+          <div class="hero">
+            <div class="eyebrow">Awesome</div>
+            <div class="name">ASHA DEMO,</div>
+            <div class="line">You are submitting 21 TASKS. ONE REFLECTION task!</div>
+            <div class="div"></div>
+            <div class="pts"><div class="ico"><i class="fas fa-star"></i></div>
+              <div><span>Earn</span><b>90 points</b></div></div>
+          </div>
+
+          <div class="card">
+            <h3>Points You'll Earn</h3>
+            <p style="font-size:10.5px;color:var(--mut);margin-bottom:11px">Completing this task will boost
+            your scores in these areas:</p>
+            <div class="pgrid">
+              <div class="ptile"><div class="r1"><span>Attitude</span><i class="fas fa-smile"></i></div>
+                <div class="v"><small>+</small>5</div></div>
+              <div class="ptile"><div class="r1"><span>Aptitude</span><i class="fas fa-brain"></i></div>
+                <div class="v"><small>+</small>5</div></div>
+              <div class="ptile"><div class="r1"><span>Communication</span><i class="fas fa-comments"></i></div>
+                <div class="v"><small>+</small>5</div></div>
+              <div class="ptile"><div class="r1"><span>Execution</span><i class="fas fa-bolt"></i></div>
+                <div class="v"><small>+</small>5</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Description</h3>
+            <p>You have now completed all 20 educator tasks covering teaching, assessment, inclusion,
+            student wellbeing, career guidance…</p>
+            <ol class="ol">
+              <li>What strengths did you discover or confirm?</li>
+              <li>What professional gap or weakness became clear?</li>
+              <li>Which task made you question an existing belief?</li>
+              <li>What is one practice you will start?</li>
+              <li>What is one practice you will stop?</li>
+              <li>What support or training do you still require?</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:2px">Abilities that this task builds</h3>
+            <p style="font-size:9.5px;color:var(--mut2);margin-bottom:9px">The top abilities you'll
+            strengthen by completing this task.</p>
+            <div>
+              <span class="apill"><span class="st">★</span>Self Awareness</span>
+              <span class="apill"><span class="st">★</span>Reflection</span>
+              <span class="apill"><span class="st">★</span>Accountability</span>
+              <span class="apill" style="background:var(--cream1)">+4 more</span>
+            </div>
+          </div>
+
+          <div class="card ctacard">
+            <div class="circ"><i class="fas fa-tasks"></i></div>
+            <h3>Your task is in progress</h3>
+            <p>Your timer is running. Submit whenever you are ready.</p>
+            <span class="ctabtn">Submit Now <i class="fas fa-play" style="font-size:9px"></i></span>
+          </div>
+          <p class="hint" style="text-align:center">↓ second screen: recorder, link field, checkboxes, submit</p>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="arrowcol"><i class="fas fa-arrow-right"></i></div>
+
+    <div>
+      <p class="bahead a">Proposed <em>NEW</em></p>
+      <p class="basub">One screen, four steps. Everything above is still <b>there</b> — it is
+      <b>sequenced</b> rather than stacked, so only the current move is on screen.</p>
+      <div class="phone" style="width:300px"><div class="pv">
+        <div class="realbar">
+          <div class="av">AD</div>
+          <div class="nm">ASHA DEMO<small>Final task · 42:18 left</small></div>
+          <div class="icons"><i class="fas fa-bell"></i><i class="fas fa-circle-user"></i></div>
+        </div>
+        <div class="rail"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="steplbl">Step 1 of 4 · Watch <span>~2 min</span></div>
+        <div class="body">
+          <div class="hero" style="padding:13px">
+            <div class="eyebrow">Your last task, Acharya</div>
+            <div class="name" style="font-size:14px">ONE STORY WORTH TELLING</div>
+            <div class="div"></div>
+            <div class="pts"><div class="ico"><i class="fas fa-star"></i></div>
+              <div><span>Earn</span><b>90 points</b></div></div>
+          </div>
+
+          <p class="bigq">See what a powerful share sounds like.</p>
+          <div class="exwrap">
+            <div class="thumb" style="height:158px"><div class="play"><i class="fas fa-play"></i></div>
+              <div class="badge">EXAMPLE</div><div class="dur">1:26</div></div>
+            <div class="exmeta"><b>Sutirtha · format demo</b><span>Phone · one take · YouTube unlisted</span></div>
+          </div>
+
+          <div class="card">
+            <h3>Your three beats</h3>
+            <ol class="ol">
+              <li><b>WHO I WAS BEING</b> — <i>"I was being a teacher who…"</i></li>
+              <li><b>WHAT I DID</b> — the task, the class, the week.</li>
+              <li><b>WHAT I INVENTED</b> — what's now possible.</li>
+            </ol>
+          </div>
+
+          <div class="card" style="padding:12px">
+            <h3 style="margin-bottom:2px">Abilities this builds</h3>
+            <div style="margin-top:7px">
+              <span class="apill"><span class="st">★</span>Self Awareness</span>
+              <span class="apill"><span class="st">★</span>Communication</span>
+              <span class="apill" style="background:var(--cream1)">+5 more</span>
+            </div>
+          </div>
+
+          <button class="btn">I've watched it — next</button>
+          <p class="hint" style="text-align:center;margin-top:9px">Points breakdown moves to the end,
+          where it lands as reward.</p>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="two" style="margin-top:22px">
+    <div class="delta" style="margin:0">
+      <h5>What is kept, exactly as-is</h5>
+      <ul>
+        <li><b class="kept">✓</b> The sticky gradient header (<code>rounded-b-3xl</code>, bell + profile)</li>
+        <li><b class="kept">✓</b> The cream hero card with name and points</li>
+        <li><b class="kept">✓</b> <b>Abilities that this task builds</b> — the ★ pills and "+N more"</li>
+        <li><b class="kept">✓</b> The shared server timer (<code>task-timer</code> partial), never restarted by a step</li>
+        <li><b class="kept">✓</b> All three modals: <b>expired</b>, <b>leave-this-task</b>, <b>continued on another device</b></li>
+        <li><b class="kept">✓</b> <code>task-nav-guard</code> and <code>task-telemetry</code></li>
+        <li><b class="kept">✓</b> The link field, its allow-list hint and the evaluator acknowledgement</li>
+        <li><b class="kept">✓</b> The minor branch and its screenshot fallback</li>
+      </ul>
+    </div>
+    <div class="delta" style="margin:0">
+      <h5>What actually changes</h5>
+      <ul>
+        <li><b class="newd">→</b> <b>Two screens become one.</b> Today: task-details → <i>Submit Now</i> →
+          task-submission. The final task keeps you in place.</li>
+        <li><b class="newd">→</b> <b>"Points You'll Earn" moves to the end.</b> Four pillar tiles up front is
+          a scoring briefing before a story; at the end it reads as reward.</li>
+        <li><b class="newd">→</b> <b>Description becomes three cue cards</b> that advance during recording,
+          instead of a six-item list to memorise.</li>
+        <li><b class="newd">→</b> <b>A worked example</b> at the top — <code>learning_materials</code>,
+          already supported, currently unused on this task.</li>
+        <li><b class="newd">→</b> <b>Caption + share sheet</b> — the only genuinely new component.</li>
+        <li><b class="newd">→</b> <b>A progress rail</b>, so "how much is left" is answerable at a glance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>How this was grounded — and what is still unverified</h4>
+    <p>The local app was powered with <code>scripts/e2e-up.sh</code>, logged in as a seeded learner, and the
+    live task screen fetched and parsed in document order. That is where the <b>Points You'll Earn</b> pillar
+    tiles, the <b>Abilities</b> pills, the <b>sticky gradient header</b> and the <b>two-screen split</b> came
+    from — none of which were in the first draft of this storyboard, which was built from reading
+    <code>task-submission.blade.php</code> alone.</p>
+    <p><b>Not verified:</b> the screens above are hand-rebuilt from the markup, not screenshots — the
+    Playwright browser was locked by another session, so nothing here has been visually diffed against a
+    real render. The seeded Acharya account also sits mid-onboarding rather than mid-journey, so the
+    <b>21st-task</b> state specifically has not been driven end to end.</p>
   </div>
 </section>
 
