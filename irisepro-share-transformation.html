@@ -1,0 +1,974 @@
+<title>YASHHO · Share Your Transformation — Task 21 storyboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --o:#FF8A3D; --o2:#F9A949; --o-deep:#B45309;
+  --cream1:#FFF9F5; --cream2:#FFF1E6; --cream3:#FFF5E9;
+  --ink:#1f2937; --ink2:#374151; --mut:#6b7280; --mut2:#9ca3af;
+  --line:#e5e7eb; --white:#fff; --page:#f7f4f0;
+  --ok:#15803d; --okbg:#f0fdf4; --warn:#b45309; --warnbg:#fffbeb;
+  --bad:#b91c1c; --badbg:#fef2f2;
+  --new:#7c3aed; --newbg:#f5f3ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);
+  font-family:Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 90px}
+
+/* ---------- masthead ---------- */
+.mast{background:linear-gradient(135deg,var(--cream1),var(--cream2));
+  border-bottom:1px solid rgba(255,138,61,.18);padding:44px 20px 38px;margin-bottom:34px;position:relative;overflow:hidden}
+.mast:after{content:"";position:absolute;top:-90px;right:-70px;width:280px;height:280px;
+  background:rgba(255,138,61,.07);border-radius:50%}
+.mast .inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--o-deep)}
+h1{font-size:clamp(26px,4.4vw,42px);font-weight:900;letter-spacing:-.02em;margin:.28em 0 .18em;line-height:1.08}
+.sub{color:var(--ink2);max-width:74ch;font-size:15px;margin:0}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:#fff;border:1px solid rgba(255,138,61,.28);border-radius:999px;
+  padding:5px 13px;font-size:11.5px;font-weight:600;color:var(--o-deep)}
+
+/* ---------- sections ---------- */
+h2{font-size:19px;font-weight:800;margin:0 0 3px;letter-spacing:-.01em;display:flex;align-items:center;gap:11px}
+h2 .num{background:var(--o);color:#fff;border-radius:8px;font-size:12px;font-weight:800;
+  padding:4px 9px;letter-spacing:.04em;flex:none}
+.cap{color:var(--mut);font-size:13.5px;margin:0 0 18px;max-width:80ch}
+section{margin:46px 0}
+.sechead{margin-bottom:20px}
+.rule{height:1px;background:linear-gradient(90deg,rgba(255,138,61,.32),transparent);margin:54px 0 0}
+
+/* ---------- device frames ---------- */
+.stage{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start}
+.phone{width:288px;flex:none;background:#111;border-radius:38px;padding:9px;
+  box-shadow:0 18px 44px rgba(20,10,0,.20);position:relative}
+.phone:before{content:"";position:absolute;top:15px;left:50%;transform:translateX(-50%);
+  width:96px;height:20px;background:#111;border-radius:0 0 14px 14px;z-index:5}
+.pv{background:var(--white);border-radius:30px;overflow:hidden;height:588px;overflow-y:auto;position:relative}
+.pv::-webkit-scrollbar{width:0}
+.browser{flex:1;min-width:430px;background:#fff;border-radius:12px;overflow:hidden;
+  box-shadow:0 14px 38px rgba(20,10,0,.13);border:1px solid var(--line)}
+.chrome{background:#eee8e2;padding:9px 13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #ddd4cc}
+.dots{display:flex;gap:5px}.dots i{width:10px;height:10px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.urlpill{flex:1;background:#fff;border-radius:6px;font-size:11px;color:var(--mut);padding:5px 11px;
+  font-family:ui-monospace,Menlo,monospace;overflow:hidden;white-space:nowrap}
+.bview{background:var(--white);min-height:400px}
+
+/* ---------- app chrome inside phone ---------- */
+.appbar{background:#fff;padding:13px 15px 11px;display:flex;align-items:center;gap:11px;
+  border-bottom:1px solid #f1ece7;position:sticky;top:0;z-index:4}
+.appbar .bk{color:var(--mut);font-size:15px}
+.appbar .t{font-size:12.5px;font-weight:700;color:var(--ink)}
+.appbar .r{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--o-deep);
+  background:var(--cream3);border-radius:999px;padding:3px 9px}
+.body{padding:15px}
+.dbody{padding:26px 30px}
+
+/* ---------- real UI atoms ---------- */
+.hero{background:linear-gradient(135deg,var(--cream1),var(--cream2));border-radius:14px;
+  padding:16px;margin-bottom:14px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;
+  background:rgba(255,138,61,.06);border-radius:50%}
+.hero .eyebrow{font-size:10.5px;color:var(--mut)}
+.hero .name{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
+.hero .line{font-size:10.5px;color:var(--mut);margin-top:3px}
+.hero .div{border-bottom:1px solid rgba(255,138,61,.14);margin:11px 0}
+.hero .pts{display:flex;align-items:center;gap:8px}
+.hero .pts .ico{width:27px;height:27px;border-radius:50%;background:var(--cream3);
+  display:flex;align-items:center;justify-content:center;color:var(--o);font-size:11px}
+.hero .pts b{font-size:14px;font-weight:800;color:var(--o)}
+.hero .pts span{font-size:9.5px;color:var(--mut2);display:block;line-height:1.1}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px;
+  margin-bottom:13px;box-shadow:0 1px 3px rgba(20,10,0,.05)}
+.card h3{font-size:13px;font-weight:800;margin:0 0 9px;color:var(--ink)}
+.card p{font-size:11.5px;color:var(--ink2);margin:0 0 8px;line-height:1.62}
+.ol{margin:0;padding-left:17px;font-size:11.5px;color:var(--ink2);line-height:1.72}
+.ol li{margin-bottom:5px}
+.ol li b{color:var(--o-deep)}
+
+.lbl{font-size:11px;font-weight:600;color:var(--ink2);display:block;margin-bottom:6px}
+.field{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 12px;
+  font-size:11.5px;color:var(--ink);background:#fff;font-family:inherit}
+.field.ph{color:var(--mut2)}
+.field.focus{border-color:var(--o);box-shadow:0 0 0 3px rgba(255,138,61,.16)}
+.field.filled{color:var(--ink);font-family:ui-monospace,Menlo,monospace;font-size:10.5px}
+.hint{font-size:9.8px;color:var(--mut2);margin:6px 0 0;line-height:1.5}
+.chk{display:flex;align-items:flex-start;gap:8px;margin-top:11px}
+.chk .bx{width:15px;height:15px;border:1.6px solid #d1d5db;border-radius:4px;flex:none;margin-top:1px;background:#fff}
+.chk .bx.on{background:var(--o);border-color:var(--o);color:#fff;font-size:9px;
+  display:flex;align-items:center;justify-content:center}
+.chk span{font-size:11px;color:var(--ink2);line-height:1.5}
+
+.btn{display:block;width:100%;text-align:center;background:linear-gradient(135deg,var(--o),var(--o2));
+  color:#fff;border:none;border-radius:11px;padding:13px;font-size:12.5px;font-weight:800;
+  font-family:inherit;letter-spacing:.01em;box-shadow:0 5px 15px rgba(255,138,61,.32)}
+.btn.ghost{background:#fff;color:var(--o-deep);border:1.6px solid rgba(255,138,61,.4);box-shadow:none}
+.btn.sm{padding:10px;font-size:11.5px}
+.btn.dis{background:#e5e7eb;color:#9ca3af;box-shadow:none}
+
+.timer{background:var(--cream3);border:1px solid rgba(255,138,61,.22);border-radius:10px;
+  padding:9px 12px;display:flex;align-items:center;gap:9px;margin-bottom:13px}
+.timer i{color:var(--o)}
+.timer b{font-size:14px;font-weight:800;color:var(--o-deep);font-variant-numeric:tabular-nums}
+.timer span{font-size:9.5px;color:var(--mut);display:block;line-height:1.15}
+
+/* recorder */
+.rec{background:#12100e;border-radius:12px;height:186px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;margin-bottom:11px}
+.rec .who{color:#5b5751;font-size:40px}
+.rec .dot{position:absolute;top:11px;left:11px;background:rgba(220,38,38,.94);color:#fff;
+  font-size:9.5px;font-weight:800;border-radius:999px;padding:3px 9px;display:flex;align-items:center;gap:5px}
+.rec .dot i{width:6px;height:6px;background:#fff;border-radius:50%;display:block}
+.rec .clock{position:absolute;top:11px;right:11px;background:rgba(0,0,0,.62);color:#fff;
+  font-size:10px;font-weight:700;border-radius:6px;padding:3px 8px;font-variant-numeric:tabular-nums}
+.rec .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.16)}
+.rec .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--o),var(--o2))}
+.rec .cue{position:absolute;left:11px;right:11px;bottom:16px;background:rgba(0,0,0,.66);
+  border-radius:8px;padding:8px 10px;color:#fff;font-size:10px;line-height:1.45}
+.rec .cue b{color:var(--o2)}
+
+/* share kit */
+.kit{background:var(--newbg);border:1.5px solid rgba(124,58,237,.28);border-radius:13px;padding:14px;margin-bottom:13px}
+.kit .kh{display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.kit .kh i{color:var(--new);font-size:12px}
+.kit .kh b{font-size:11.5px;font-weight:800;color:#5b21b6}
+.kit .kh em{margin-left:auto;font-style:normal;font-size:9px;font-weight:800;color:#fff;
+  background:var(--new);border-radius:999px;padding:2px 7px;letter-spacing:.04em}
+.cap-box{background:#fff;border:1px solid rgba(124,58,237,.2);border-radius:9px;padding:10px;
+  font-size:10.5px;line-height:1.62;color:var(--ink2)}
+.cap-box .tag{color:#1d4ed8;font-weight:700}
+.cap-box .hash{color:var(--new);font-weight:600}
+.copyrow{display:flex;gap:7px;margin-top:9px}
+.copyrow .cbtn{flex:1;background:#fff;border:1px solid rgba(124,58,237,.3);color:#5b21b6;
+  border-radius:8px;padding:8px;font-size:10px;font-weight:700;text-align:center}
+
+/* OS share sheet */
+.sheet-scrim{position:absolute;inset:0;background:rgba(10,8,4,.55);z-index:8;border-radius:30px}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#f4f2ef;border-radius:18px 18px 30px 30px;
+  padding:13px 13px 22px;z-index:9;box-shadow:0 -8px 30px rgba(0,0,0,.28)}
+.sheet .grab{width:34px;height:4px;background:#c9c4bd;border-radius:2px;margin:0 auto 12px}
+.sheet .pv2{background:#fff;border-radius:11px;padding:9px;display:flex;gap:9px;align-items:center;margin-bottom:13px}
+.sheet .pv2 .th{width:38px;height:50px;border-radius:6px;background:#12100e;flex:none;
+  display:flex;align-items:center;justify-content:center;color:#5b5751;font-size:13px}
+.sheet .pv2 .m b{font-size:10.5px;font-weight:700;display:block;color:var(--ink)}
+.sheet .pv2 .m span{font-size:9px;color:var(--mut2)}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:13px}
+.app{text-align:center}
+.app .ic{width:47px;height:47px;border-radius:13px;margin:0 auto 5px;display:flex;
+  align-items:center;justify-content:center;color:#fff;font-size:19px}
+.app span{font-size:8.6px;color:var(--ink2);font-weight:600;display:block;line-height:1.2}
+.ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.wa{background:#25D366}.li{background:#0A66C2}.fb{background:#1877F2}
+.xx{background:#000}.yt{background:#FF0000}.more{background:#c9c4bd;color:#4b5563 !important}
+.sheet .cancel{background:#fff;border-radius:11px;padding:11px;text-align:center;
+  font-size:11.5px;font-weight:700;color:#2563eb}
+
+/* status blocks */
+.note{border-radius:10px;padding:10px 12px;font-size:10.6px;line-height:1.55;margin-bottom:12px}
+.note.ok{background:var(--okbg);border:1px solid #bbf7d0;color:#14532d}
+.note.warn{background:var(--warnbg);border:1px solid #fde68a;color:#78350f}
+.note.bad{background:var(--badbg);border:1px solid #fecaca;color:#7f1d1d}
+.note.info{background:var(--cream1);border:1px solid rgba(255,138,61,.24);color:var(--o-deep)}
+.note b{font-weight:800}
+
+.score{display:flex;justify-content:space-between;align-items:center;padding:7px 0;
+  border-bottom:1px dashed var(--line);font-size:10.6px;color:var(--ink2)}
+.score:last-child{border-bottom:none}
+.score b{font-weight:800;color:var(--o-deep);font-variant-numeric:tabular-nums}
+
+/* flow strip */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);
+  border-radius:13px;padding:16px 18px;margin-bottom:12px}
+.flow .st{background:var(--cream1);border:1px solid rgba(255,138,61,.26);border-radius:9px;
+  padding:9px 13px;font-size:11px;font-weight:700;color:var(--o-deep);text-align:center;line-height:1.3}
+.flow .st small{display:block;font-weight:500;color:var(--mut);font-size:9px;margin-top:2px}
+.flow .st.newx{background:var(--newbg);border-color:rgba(124,58,237,.3);color:#5b21b6}
+.flow .ar{color:var(--o2);font-size:14px}
+
+/* legend + tables */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0 0;font-size:11px;color:var(--mut)}
+.legend b{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink2)}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;font-size:12.5px}
+th{background:var(--cream1);text-align:left;padding:11px 13px;font-size:10.5px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.07em;color:var(--o-deep);border-bottom:1px solid var(--line)}
+td{padding:11px 13px;border-bottom:1px solid #f3f0ec;color:var(--ink2);vertical-align:top;line-height:1.55}
+tr:last-child td{border-bottom:none}
+td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#f6f3ef;
+  padding:1px 5px;border-radius:4px;color:var(--o-deep)}
+.tag2{display:inline-block;font-size:9.5px;font-weight:800;border-radius:5px;padding:2px 7px;letter-spacing:.03em}
+.t-new{background:var(--newbg);color:#5b21b6}
+.t-have{background:var(--okbg);color:#14532d}
+.t-fix{background:var(--badbg);color:#7f1d1d}
+.scroll{overflow-x:auto}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:860px){.two{grid-template-columns:1fr}.browser{min-width:100%}}
+.callout{background:#fff;border-left:4px solid var(--o);border-radius:0 11px 11px 0;
+  padding:15px 18px;margin:18px 0;box-shadow:0 1px 3px rgba(20,10,0,.05)}
+.callout h4{margin:0 0 7px;font-size:13px;font-weight:800;color:var(--o-deep)}
+.callout p{margin:0 0 7px;font-size:13px;color:var(--ink2);line-height:1.65}
+.callout p:last-child{margin-bottom:0}
+.foot{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);
+  font-size:11.5px;color:var(--mut2);line-height:1.7}
+
+/* prompt comparison */
+.vs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+@media(max-width:900px){.vs{grid-template-columns:1fr}}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px;
+  box-shadow:0 1px 3px rgba(20,10,0,.05)}
+.vcard.now{border-top:3px solid #cbd5e1}
+.vcard.draft{border-top:3px solid var(--o2)}
+.vcard.prop{border-top:3px solid var(--new);background:#fdfcff}
+.vcard h5{margin:0 0 3px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.vcard.now h5{color:#64748b}.vcard.draft h5{color:var(--o-deep)}.vcard.prop h5{color:#5b21b6}
+.vcard .who2{font-size:10px;color:var(--mut2);margin:0 0 10px;font-weight:600}
+.vcard p{font-size:12px;color:var(--ink2);line-height:1.6;margin:0 0 8px}
+.vcard p:last-child{margin-bottom:0}
+.vcard .q{font-size:11.5px;color:var(--ink2);line-height:1.58;padding-left:14px;position:relative;margin-bottom:7px}
+.vcard .q:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--mut2)}
+.vcard.prop .q:before{background:var(--new)}
+.vcard .beat{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  color:#5b21b6;display:block;margin-bottom:2px}
+.verdict{font-size:10.5px;line-height:1.5;border-radius:7px;padding:8px 10px;margin-top:11px}
+.v-bad{background:var(--badbg);color:#7f1d1d}
+.v-mid{background:var(--warnbg);color:#78350f}
+.v-good{background:var(--okbg);color:#14532d}
+.speaker{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--o-deep);background:var(--cream3);border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+</style>
+
+<div class="mast"><div class="inner">
+  <div class="kicker">YASHHO · Storyboard · 15 Aug 2026</div>
+  <h1>Share Your Transformation</h1>
+  <p class="sub">The last task of the journey becomes a brand-building act: record a 90-second story —
+  <b>who I was being</b>, <b>what I did</b>, <b>what possibility I invented</b> — share it with one tap
+  through the phone's own share sheet, then paste the post link back as verifiable proof of work.
+  Screens below are the real student app — Montserrat, <span class="mono">#FF8A3D</span>, live components.</p>
+  <div class="meta">
+    <span class="pill">Being · Did · Invented</span>
+    <span class="pill">Task 419 + 251</span>
+    <span class="pill">90-second video</span>
+    <span class="pill">Native share sheet</span>
+    <span class="pill">Link-back = proof</span>
+    <span class="pill">DPDPA §9 safe</span>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<!-- ============ FLOW ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">FLOW</span> Nine screens, one journey</h2>
+    <p class="cap">Orange = already exists in the app today. Purple = the new pieces this storyboard proposes.</p>
+  </div>
+  <div class="flow">
+    <div class="st newx">00 Prompt<small>being · did · invented</small></div><span class="ar">→</span>
+    <div class="st">01 Task<small>the ask</small></div><span class="ar">→</span>
+    <div class="st">02 Record<small>90s video</small></div><span class="ar">→</span>
+    <div class="st newx">03 Share kit<small>caption + tags</small></div><span class="ar">→</span>
+    <div class="st newx">04 Share sheet<small>OS native</small></div><span class="ar">→</span>
+    <div class="st">05 Paste link<small>proof</small></div><span class="ar">→</span>
+    <div class="st newx">06 Confirm<small>collaborator</small></div><span class="ar">→</span>
+    <div class="st">07 Submitted<small>scored</small></div>
+  </div>
+  <div class="legend">
+    <b><span class="sw" style="background:var(--o)"></span> Exists today — reuse, don't rebuild</b>
+    <b><span class="sw" style="background:var(--new)"></span> New — the friction removal</b>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ 01 ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">01</span> The task — rewritten for a story, not an audit</h2>
+    <p class="cap">Three beats in 90 seconds instead of six questions in 90 seconds. Names YASHHO and the school.
+    Nothing here asks them to publish a weakness.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Task 21 of 21</span><span class="r">FINAL</span></div>
+      <div class="body">
+        <div class="hero">
+          <div class="eyebrow">Awesome</div>
+          <div class="name">LAKSHMI R,</div>
+          <div class="line">You are submitting your final task!</div>
+          <div class="div"></div>
+          <div class="pts"><div class="ico"><i class="fas fa-star"></i></div>
+            <div><span>Earn</span><b>90 points</b></div></div>
+        </div>
+        <div class="timer"><i class="fas fa-clock"></i>
+          <div><span>Time left</span><b>42:18</b></div></div>
+        <div class="card">
+          <h3>21 tasks. One story worth telling.</h3>
+          <p>You have finished all 20 educator tasks. This last one has two parts —
+          <b>record your story</b>, then <b>share it</b>.</p>
+          <p style="font-weight:700;color:var(--o-deep);margin-top:11px">Part 1 · Record (90 seconds)</p>
+          <p style="margin-bottom:6px">Speak to a teacher who is exactly where you were 21 tasks ago:</p>
+          <ol class="ol">
+            <li><b>WHO I WAS BEING</b> — <em>"Before these 21 tasks, I was being a teacher who…"</em>
+              Not what was hard. Not what your school was like. Who <b>you</b> were being.</li>
+            <li><b>WHAT I DID</b> — which task, what you actually did differently, which class, which week.</li>
+            <li><b>WHAT I INVENTED</b> — what is now possible that simply wasn't before. Declare it.</li>
+          </ol>
+          <p class="hint" style="margin-top:9px">Say your name, your school, and YASHHO at least once.
+          Close by telling the teacher watching that it's available to them too.</p>
+        </div>
+        <div class="note info"><b>Part 2 · Share.</b> After recording we'll write your caption and open your
+        phone's share menu. You choose where it goes — Instagram, WhatsApp, LinkedIn.</div>
+        <button class="btn">Start recording</button>
+      </div>
+    </div></div>
+
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+        <div class="urlpill">app.irisepro.in/mobile/task/419/submit</div></div>
+      <div class="bview"><div class="dbody">
+        <div class="hero" style="padding:22px">
+          <div class="eyebrow" style="font-size:12px">Awesome</div>
+          <div class="name" style="font-size:23px">LAKSHMI R,</div>
+          <div class="line" style="font-size:12px">You are submitting your final task!</div>
+          <div class="div"></div>
+          <div class="pts"><div class="ico" style="width:34px;height:34px;font-size:13px"><i class="fas fa-star"></i></div>
+            <div><span style="font-size:11px">Earn</span><b style="font-size:18px">90 points</b></div></div>
+        </div>
+        <div class="two" style="gap:16px;margin-top:16px">
+          <div class="card" style="margin:0">
+            <h3 style="font-size:14px">Part 1 · Record (90 seconds)</h3>
+            <p style="font-size:12.5px">Speak to a teacher who is exactly where you were 21 tasks ago:</p>
+            <ol class="ol" style="font-size:12.5px">
+              <li><b>WHO I WAS BEING</b> — not the conditions. You.</li>
+              <li><b>WHAT I DID</b> — the specific task and act.</li>
+              <li><b>WHAT I INVENTED</b> — what's now possible.</li>
+            </ol>
+          </div>
+          <div class="card" style="margin:0">
+            <h3 style="font-size:14px">Part 2 · Share it</h3>
+            <p style="font-size:12.5px">We write the caption and open your share menu. You choose the platform,
+            tag YASHHO and your school, add us as a collaborator, then paste the link back here.</p>
+            <div class="note info" style="margin:9px 0 0;font-size:11.5px">Sharing is always your choice.
+            We prepare it — we never post for you.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="callout">
+    <h4>What changed from the live task text</h4>
+    <p>Task 419 today asks six questions in 90 seconds — including <em>"what professional gap or weakness
+    became clear?"</em> and, as the closing beat, <em>"what support, training or resources do you still
+    require?"</em>. Both are good private assessment prompts and both are unsafe to publish: the video would
+    end on a deficit. The word YASHHO does not appear anywhere in it, and neither does a before/after frame.</p>
+    <p>The rewrite keeps the reflection honest but makes it <b>publishable</b> — and the diagnostic questions
+    stay valuable, so where they live instead is an open decision, not something this storyboard settles.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ PROMPT ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">PROMPT</span> What the share should actually ask for</h2>
+    <p class="cap">Three beats, not six questions. A good share communicates <b>who they were being</b>,
+    <b>what they did</b>, and <b>what possibility they invented</b> out of taking part. Below: what is live
+    today, what Sutirtha proposed on 15 Aug, and what this storyboard recommends.</p>
+  </div>
+
+  <div class="callout" style="margin-top:0">
+    <h4>Why these three beats, and in this order</h4>
+    <p><b>Who I was being</b> earns the next twenty seconds — another teacher or parent sees themselves and
+    keeps watching. <b>What I did</b> makes it believable; without a specific act it is a testimonial cliché.
+    <b>What I invented</b> is the only beat that moves anyone watching to do anything.</p>
+    <p>It also makes the video <b>safe to post</b>. The live task asks for a weakness; this asks for a shift
+    they authored. Same honesty, opposite standing — nobody is exposed, because they are the one who did it.</p>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:800;margin:26px 0 12px;color:var(--ink)">
+    A · Acharya — task 419 (solo educator, all three MISSION ACHARYA challenges)</h3>
+  <div class="vs">
+    <div class="vcard now">
+      <h5>Live today</h5>
+      <p class="who2">6 questions · 90 seconds · 15s each</p>
+      <div class="q">What strengths did you discover or confirm?</div>
+      <div class="q">What professional gap or weakness became clear?</div>
+      <div class="q">Which task made you question a belief or practice?</div>
+      <div class="q">One practice you will start?</div>
+      <div class="q">One practice you will stop or reduce?</div>
+      <div class="q">What support, training or resources do you still require?</div>
+      <div class="verdict v-bad"><b>Not shareable.</b> Publishes a weakness, closes on a deficit, never
+      says YASHHO, no before/after. Good private assessment; wrong for a public video.</div>
+    </div>
+    <div class="vcard draft">
+      <h5>Sutirtha · 15 Aug</h5>
+      <p class="who2">No Acharya variant proposed yet</p>
+      <p style="color:var(--mut2);font-size:11.5px">The draft she shared covers the <b>student + parent</b>
+      task. The Acharyas — who are the ones actually doing this now, as their 21st task — have no rewritten
+      prompt yet.</p>
+      <div class="verdict v-mid"><b>Gap.</b> Worth confirming with her which task is being edited:
+      <b>419</b> (Acharya, solo) or <b>251</b> (student + parent). They need different prompts.</div>
+    </div>
+    <div class="vcard prop">
+      <h5>Proposed</h5>
+      <p class="who2">3 beats · 90 seconds · ~30s each</p>
+      <div class="q"><span class="beat">Beat 1 · who I was being</span>
+        <i>"Before these 21 tasks, I was being a teacher who…"</i> — not what was hard, not what your
+        school was like. Who <b>you</b> were being.</div>
+      <div class="q"><span class="beat">Beat 2 · what I did</span>
+        Which task, what you actually did differently — which class, which week.</div>
+      <div class="q"><span class="beat">Beat 3 · what I invented</span>
+        What is now possible that simply wasn't before. Declare it, don't predict it.</div>
+      <div class="q"><span class="beat">Close</span>
+        Name, school, YASHHO. <i>"If you're a teacher watching this — it's available to you too."</i></div>
+      <div class="verdict v-good"><b>Shareable and honest.</b> Recognition → credibility → invitation.</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:800;margin:30px 0 12px;color:var(--ink)">
+    B · Student + parent — task 251 (Class 5–7 · Corporate ₹4999 21st)</h3>
+  <div class="vs">
+    <div class="vcard now">
+      <h5>Live today</h5>
+      <p class="who2">3 questions each · both on camera · 90s</p>
+      <span class="speaker">Student</span>
+      <div class="q">Which task did you enjoy the most and why?</div>
+      <div class="q">Most important thing you learned about yourself?</div>
+      <div class="q">How has your confidence or communication changed since Day 1?</div>
+      <span class="speaker" style="margin-top:8px">Parent</span>
+      <div class="q">Which task was most meaningful for your child and why?</div>
+      <div class="q">Most important thing you learned about your child?</div>
+      <div class="q">Any change noticed in your child…</div>
+      <div class="verdict v-bad"><b>Six answers, two speakers, 90 seconds.</b> ~15s each. No YASHHO,
+      no before/after, no act.</div>
+    </div>
+    <div class="vcard draft">
+      <h5>Sutirtha · 15 Aug</h5>
+      <p class="who2">1 compound question each</p>
+      <span class="speaker">Student</span>
+      <div class="q">Before YASHHO, what was difficult for you — and after 20 tasks, what has changed and
+      how will it help your studies or dreams?</div>
+      <span class="speaker" style="margin-top:8px">Parent</span>
+      <div class="q">Before YASHHO, what did you worry about in your child — and after 20 tasks, what
+      specific positive change have you noticed?</div>
+      <div class="verdict v-mid"><b>Two real fixes:</b> YASHHO is named, before/after is explicit.
+      <b>Still open:</b> "what was difficult" asks about conditions, not who they were being · no
+      <i>what I did</i> beat, so the claim has no evidence · "how will it help" is a forecast, not an
+      invented possibility · the parent only reports on the child, never speaks for themselves.</div>
+    </div>
+    <div class="vcard prop">
+      <h5>Proposed</h5>
+      <p class="who2">3 short beats each · ~15s per beat</p>
+      <span class="speaker">Student</span>
+      <div class="q"><i>"Before YASHHO, I was the kind of student who…"</i> — finish it.</div>
+      <div class="q">Which <b>one task</b> changed it — and what did you actually do?</div>
+      <div class="q">One thing you know you can do now that you didn't think you could.</div>
+      <span class="speaker" style="margin-top:8px">Parent</span>
+      <div class="q"><i>"Before YASHHO, I was being a parent who…"</i> — finish it.</div>
+      <div class="q">The <b>moment</b> you noticed the change — not that there was one, the moment.</div>
+      <div class="q">What's now possible for your child that you weren't counting on.</div>
+      <div class="verdict v-good"><b>The parent gets their own beat.</b> A parent's shift is the most
+      shared content in a family video — and it stops the published clip being a parent describing a
+      worry about a named minor.</div>
+    </div>
+  </div>
+
+  <div class="stage" style="margin-top:22px">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Task 21 · Together</span><span class="r">2 PEOPLE</span></div>
+      <div class="body">
+        <div class="note info"><b>You and your parent, together on camera.</b> Three short answers each.
+        About 15 seconds per answer.</div>
+        <div class="card">
+          <h3>Your three answers</h3>
+          <ol class="ol">
+            <li><i>"Before YASHHO, I was the kind of student who…"</i></li>
+            <li>Which <b>one task</b> changed it — and what did you do?</li>
+            <li>One thing you can do now that you didn't think you could.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Your parent's three answers</h3>
+          <ol class="ol">
+            <li><i>"Before YASHHO, I was being a parent who…"</i></li>
+            <li>The <b>moment</b> you noticed the change.</li>
+            <li>What's now possible that you weren't counting on.</li>
+          </ol>
+        </div>
+        <div class="note warn"><b>Finish together:</b> "If you're a parent or a student watching this —
+        this is available to you too."</div>
+        <button class="btn">Start recording</button>
+      </div>
+    </div></div>
+    <div style="flex:1;min-width:340px">
+      <div class="callout" style="margin-top:0">
+        <h4>The question that should not be dropped</h4>
+        <p>Task 419's <em>"what support, training or resources do you still require?"</em> is genuinely
+        useful — and it is an unusually clean commercial signal. A teacher naming what they still need is a
+        teacher telling you what to offer them next.</p>
+        <p>It just cannot be in a video meant for Instagram. Bring it back as a <b>private field</b> on the
+        same task, visible to the Yashodarshi and never to the public.</p>
+      </div>
+      <div class="note bad" style="font-size:12px;padding:14px">
+        <b>Task 251 puts a minor on camera.</b> Of all the 21st tasks it is the most genuinely shareable —
+        a real family, real emotion — and the hardest consent case in the catalogue. The guardian
+        <code>link_exposure</code> consent covers the child posting; a parent describing a worry about a
+        named child, published, is a separate editorial judgement worth making deliberately.</div>
+      <div class="note info" style="font-size:12px;padding:14px">
+        <b>"Who were you being" needs its own translation.</b> It is exact, but it reads as jargon to a
+        teacher or a Class 6 child who has never met the distinction. The prompt must carry the
+        sentence-completion form <i>and</i> two or three examples, or half the videos come back as
+        "before, my school had no smart board."</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ 02 ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">02</span> Recording — with the three beats on screen</h2>
+    <p class="cap">The existing recorder, plus a live cue card so they don't have to hold the structure in their head.
+    The visible countdown is the KVS teachers' request from the same Slack thread.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Recording</span><span class="r">1 / 3</span></div>
+      <div class="body">
+        <div class="rec">
+          <i class="fas fa-user who"></i>
+          <div class="dot"><i></i> REC</div>
+          <div class="clock">0:24 / 1:30</div>
+          <div class="cue"><b>WHO I WAS BEING</b> — <i>"Before these 21 tasks, I was being a teacher who…"</i></div>
+          <div class="bar"><i style="width:27%"></i></div>
+        </div>
+        <div class="note info"><b>Beat 1 of 3.</b> Take about 30 seconds each. The cue advances on its own.</div>
+        <button class="btn ghost sm" style="margin-bottom:9px">Stop &amp; review</button>
+        <button class="btn dis sm">Re-record</button>
+      </div>
+    </div></div>
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Review</span><span class="r">0:87</span></div>
+      <div class="body">
+        <div class="rec" style="height:196px">
+          <i class="fas fa-play who" style="font-size:32px"></i>
+          <div class="clock">0:87 · 41 MB</div>
+        </div>
+        <div class="note ok"><i class="fas fa-circle-check"></i> <b>Looks good.</b> 87 seconds, under the
+        90-second and 100 MB limits.</div>
+        <button class="btn">Next — get my share kit</button>
+        <button class="btn ghost sm" style="margin-top:9px">Record again</button>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ 03 ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">03</span> The share kit — the actual friction removal</h2>
+    <p class="cap">The caption is written for them, with tags and hashtags already in it. One tap copies it.
+    This is the piece that decides whether they share at all.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Share your story</span><span class="r">STEP 2</span></div>
+      <div class="body">
+        <div class="kit">
+          <div class="kh"><i class="fas fa-wand-magic-sparkles"></i><b>Your caption is ready</b><em>NEW</em></div>
+          <div class="cap-box">
+            21 tasks ago I struggled to keep my quiet students engaged. Today every child in my Class 7
+            speaks at least once a period.<br><br>
+            This is what changed for me — and it can change for you.<br><br>
+            <span class="tag">@yashho.official</span> <span class="tag">@kvs.bengaluru</span><br>
+            <span class="hash">#MissionAcharya #YASHHO #TeachersOfIndia #21Tasks</span>
+          </div>
+          <div class="copyrow">
+            <div class="cbtn"><i class="fas fa-copy"></i> Copy caption</div>
+            <div class="cbtn"><i class="fas fa-pen"></i> Edit</div>
+          </div>
+        </div>
+        <div class="note warn"><b>Before you post:</b> paste the caption, then add
+        <b>@yashho.official</b> as a <b>collaborator</b> on Instagram. Both are scored.</div>
+        <button class="btn"><i class="fas fa-share-nodes"></i> &nbsp;Share my video</button>
+        <p class="hint" style="text-align:center;margin-top:10px">Opens your phone's own share menu.
+        Nothing is posted until you choose where.</p>
+      </div>
+    </div></div>
+
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+        <div class="urlpill">app.irisepro.in/mobile/task/419/submit — desktop</div></div>
+      <div class="bview"><div class="dbody">
+        <div class="note warn" style="font-size:12.5px;margin-bottom:16px">
+          <b>Desktop has no share sheet.</b> <code>navigator.share()</code> with a file attached is a
+          mobile capability. On desktop we degrade honestly rather than pretending.</div>
+        <div class="two" style="gap:16px">
+          <div class="kit" style="margin:0">
+            <div class="kh"><i class="fas fa-wand-magic-sparkles"></i><b>Your caption</b><em>NEW</em></div>
+            <div class="cap-box" style="font-size:12px">
+              21 tasks ago I struggled to keep my quiet students engaged. Today every child in my Class 7
+              speaks at least once a period.<br><br>
+              <span class="tag">@yashho.official</span> <span class="tag">@kvs.bengaluru</span>
+              <span class="hash">#MissionAcharya #YASHHO</span>
+            </div>
+            <div class="copyrow"><div class="cbtn"><i class="fas fa-copy"></i> Copy caption</div></div>
+          </div>
+          <div class="card" style="margin:0">
+            <h3 style="font-size:14px">Two ways to post</h3>
+            <p style="font-size:12.5px"><b>1 · Download</b> the video, then upload it from your phone or desktop app.</p>
+            <p style="font-size:12.5px"><b>2 · Continue on your phone</b> — scan the code and the share sheet opens there.</p>
+            <div style="width:96px;height:96px;background:#12100e;border-radius:9px;margin:12px 0;
+              display:flex;align-items:center;justify-content:center;color:#5b5751;font-size:34px">
+              <i class="fas fa-qrcode"></i></div>
+            <button class="btn ghost sm"><i class="fas fa-download"></i> &nbsp;Download video</button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ 04 ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">04</span> The OS share sheet — exactly what Sutirtha described</h2>
+    <p class="cap">"Like when I share a picture from the gallery — Instagram, Facebook, WhatsApp, Twitter, LinkedIn."
+    That is <code>navigator.share({files:[video], text: caption})</code>. The video itself travels; it isn't a link.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv" style="position:relative">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Share your story</span><span class="r">STEP 2</span></div>
+      <div class="body" style="filter:blur(1.2px)">
+        <div class="kit"><div class="kh"><i class="fas fa-wand-magic-sparkles"></i><b>Your caption is ready</b></div>
+          <div class="cap-box" style="height:74px;overflow:hidden">21 tasks ago I struggled to keep my quiet
+          students engaged. Today every child in my Class 7 speaks at least once…</div></div>
+        <button class="btn">Share my video</button>
+      </div>
+      <div class="sheet-scrim"></div>
+      <div class="sheet">
+        <div class="grab"></div>
+        <div class="pv2">
+          <div class="th"><i class="fas fa-video"></i></div>
+          <div class="m"><b>my-yashho-story.mp4</b><span>Video · 41 MB · 0:87</span></div>
+        </div>
+        <div class="apps">
+          <div class="app"><div class="ic ig"><i class="fab fa-instagram"></i></div><span>Instagram</span></div>
+          <div class="app"><div class="ic wa"><i class="fab fa-whatsapp"></i></div><span>WhatsApp</span></div>
+          <div class="app"><div class="ic li"><i class="fab fa-linkedin-in"></i></div><span>LinkedIn</span></div>
+          <div class="app"><div class="ic fb"><i class="fab fa-facebook-f"></i></div><span>Facebook</span></div>
+          <div class="app"><div class="ic xx"><i class="fab fa-x-twitter"></i></div><span>X</span></div>
+          <div class="app"><div class="ic yt"><i class="fab fa-youtube"></i></div><span>Shorts</span></div>
+          <div class="app"><div class="ic more"><i class="fas fa-ellipsis"></i></div><span>More</span></div>
+        </div>
+        <div class="cancel">Cancel</div>
+      </div>
+    </div></div>
+
+    <div style="flex:1;min-width:340px">
+      <div class="callout" style="margin-top:0">
+        <h4>Why this and not "share to Instagram" buttons</h4>
+        <p><b>Instagram has no web share URL.</b> There is no <code>instagram.com/share?url=…</code> and there
+        never has been. You cannot pre-fill an Instagram post from a link, so a row of per-platform buttons
+        cannot do what Sutirtha is asking for. The OS sheet can, because the video file travels with it.</p>
+        <p><b>LinkedIn ignores caption parameters too.</b> <code>share-offsite</code> dropped
+        <code>title</code>/<code>summary</code>; it reads Open Graph off the URL you hand it. Only WhatsApp
+        and X genuinely pre-fill text.</p>
+      </div>
+      <div class="note warn" style="font-size:12px;padding:14px">
+        <b>Untested on your devices.</b> iOS often drops the <code>text</code> field when a file is attached,
+        which is exactly why the caption also goes to the clipboard in screen 03 — belt and braces. This needs
+        a real device pass on one iPhone and one Android before it ships.</div>
+      <div class="note bad" style="font-size:12px;padding:14px">
+        <b>The collaborator invite cannot be automated.</b> No share intent on any platform can add a
+        collaborator — it is a manual in-app step. It can only ever be an instruction plus a scoring
+        criterion, which is what you had already concluded in the DM.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ 05 ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">05</span> Proof of work — the link comes back</h2>
+    <p class="cap">This screen already exists and already validates. It is the <code>link</code> answer mode
+    shipped in sub-plan 2B — https-only, host allow-list, shortened links refused.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Prove you shared</span><span class="r">STEP 3</span></div>
+      <div class="body">
+        <div class="note ok"><i class="fas fa-circle-check"></i> <b>Video attached.</b> my-yashho-story.mp4 · 0:87</div>
+        <div class="card">
+          <label class="lbl">Share a link to your post</label>
+          <div class="field filled focus">https://www.instagram.com/reel/C8xK…</div>
+          <p class="hint">Allowed sites: instagram.com, linkedin.com, facebook.com, x.com, youtube.com.
+          Use the full <b>https://</b> link — shortened links are not allowed.</p>
+          <div class="chk"><div class="bx on"><i class="fas fa-check"></i></div>
+            <span>I understand my evaluator will open this link.</span></div>
+          <div class="chk"><div class="bx on"><i class="fas fa-check"></i></div>
+            <span>I added <b>@yashho.official</b> as a collaborator.</span></div>
+        </div>
+        <div class="card">
+          <h3>Shared anywhere else?</h3>
+          <p class="hint" style="margin:0 0 9px">Each extra platform earns more. Optional.</p>
+          <label class="lbl">Second link</label>
+          <div class="field ph">https://…</div>
+        </div>
+        <button class="btn">Submit my final task</button>
+      </div>
+    </div></div>
+
+    <div style="flex:1;min-width:340px">
+      <table>
+        <tr><th>Proof tier</th><th>Mechanism</th><th>Status</th></tr>
+        <tr><td><b>The post URL</b><br><span style="font-size:11px;color:var(--mut)">evaluator opens it and sees the real post</span></td>
+            <td><code>link</code> answer mode<br><span class="mono">LinkSubmissionPolicy</span></td>
+            <td><span class="tag2 t-have">EXISTS</span></td></tr>
+        <tr><td><b>Screenshot</b><br><span style="font-size:11px;color:var(--mut)">the fallback when a link can't be given</span></td>
+            <td><code>file</code> answer mode</td>
+            <td><span class="tag2 t-have">EXISTS</span></td></tr>
+        <tr><td><b>The video itself</b><br><span style="font-size:11px;color:var(--mut)">the story being told</span></td>
+            <td><code>video</code> answer mode, 90s / 100 MB</td>
+            <td><span class="tag2 t-have">EXISTS</span></td></tr>
+        <tr><td><b>Collaborator confirmed</b><br><span style="font-size:11px;color:var(--mut)">self-declared, verified by the evaluator opening the post</span></td>
+            <td>checkbox + rubric line</td>
+            <td><span class="tag2 t-new">NEW</span></td></tr>
+        <tr><td><b>Second platform</b><br><span style="font-size:11px;color:var(--mut)">breadth of reach</span></td>
+            <td>repeatable link field</td>
+            <td><span class="tag2 t-new">NEW</span></td></tr>
+      </table>
+      <div class="note bad" style="margin-top:14px;font-size:12px;padding:14px">
+        <b>Blocker found while checking this.</b> Four live tasks already use the link mode — <b>76</b>
+        (Corporate ₹4999 · task 7), <b>83</b> (Corporate ₹4999 · task 19), <b>231</b> (NEET ₹4999 · task 6),
+        <b>333</b> (JEE ₹4999 · task 6). All four store <code>"sites":["LinkedIn"]</code> — the display label
+        instead of the domain — and the matcher compares against registrable domains. Running the real
+        validator: <span class="mono">https://www.linkedin.com/posts/abc-123 → REJECTED</span>, while a
+        <code>preset:social</code> control is ACCEPTED. None of the four has a fallback mode, so those
+        learners cannot submit at all. Fix the authoring form, not just the four rows.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ 06 ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">06</span> Under 18 — the guardian fork already built</h2>
+    <p class="cap">DPDPA §9. The consent purpose <code>link_exposure</code> exists and its own docblock covers
+    "asking the child to post publicly". Server-side, re-checked every submit, never trusted from the client.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Prove you shared</span><span class="r">MINOR</span></div>
+      <div class="body">
+        <div class="note warn"><b>A parent or guardian needs to approve sharing.</b> Until then you can still
+        finish this task by uploading a screenshot.</div>
+        <div class="card">
+          <h3>Ask your guardian</h3>
+          <p>We'll email them a one-time code. They approve once, and it covers both your evaluator opening
+          your link and posting publicly.</p>
+          <label class="lbl">Guardian's email</label>
+          <div class="field ph">parent@example.com</div>
+          <button class="btn sm" style="margin-top:11px">Send approval request</button>
+        </div>
+        <div class="card">
+          <h3>Or upload a screenshot</h3>
+          <p class="hint" style="margin:0 0 9px">A picture of your post works just as well as proof.</p>
+          <div style="border:1.6px dashed #d1d5db;border-radius:10px;padding:20px;text-align:center;color:var(--mut2)">
+            <i class="fas fa-camera" style="font-size:19px"></i>
+            <div style="font-size:10.5px;margin-top:7px;font-weight:600">Tap to add a screenshot</div>
+          </div>
+        </div>
+        <button class="btn">Submit my final task</button>
+      </div>
+    </div></div>
+    <div style="flex:1;min-width:340px">
+      <div class="callout" style="margin-top:0">
+        <h4>The screenshot fallback is the whole reason this is safe</h4>
+        <p>A minor without guardian consent is never blocked from <em>finishing the task</em> — only from
+        submitting a <em>link</em>. They photograph their post instead and get scored normally. That branch
+        is already in the Blade template and already enforced server-side.</p>
+        <p>It also means the share task never becomes a reason a child cannot complete their journey — which
+        is the failure mode that would have mattered most.</p>
+      </div>
+      <div class="note info" style="font-size:12px;padding:14px">
+        <b>One boundary worth naming.</b> This consent covers the <b>child posting</b>. It does not cover
+        <b>YASHHO hosting</b> the child's video on a public page — that makes YASHHO the publisher rather
+        than the child, and would need its own consent, retention rule and takedown path. That is the whole
+        difference between the native-sheet design and a public share-page design.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ 07 ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">07</span> Submitted — and what it scored</h2>
+    <p class="cap">Sutirtha's ask: marks deducted when the steps aren't followed. Shown as earned criteria,
+    not as a penalty — the same points, framed as something achieved.</p>
+  </div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="appbar"><i class="fas fa-chevron-left bk"></i><span class="t">Task 21 · Submitted</span><span class="r">DONE</span></div>
+      <div class="body">
+        <div class="hero" style="text-align:center">
+          <div style="font-size:34px;color:var(--o);margin-bottom:7px"><i class="fas fa-circle-check"></i></div>
+          <div class="name" style="font-size:15px">JOURNEY COMPLETE</div>
+          <div class="line">21 of 21 tasks · your Yashodarshi is reviewing</div>
+        </div>
+        <div class="card">
+          <h3>What this task earns</h3>
+          <div class="score"><span>Owns a way of <i>being</i>, not conditions</span><b>0–25</b></div>
+          <div class="score"><span>The act is specific — task, class, week</span><b>0–25</b></div>
+          <div class="score"><span>Declares a possibility, not a forecast</span><b>0–10</b></div>
+          <div class="score"><span>Platforms shared on</span><b>0–15</b></div>
+          <div class="score"><span>YASHHO + school tagged</span><b>0–10</b></div>
+          <div class="score"><span>Collaborator added</span><b>0–5</b></div>
+          <div class="score" style="border-top:1.6px solid var(--line);margin-top:5px;padding-top:9px">
+            <span style="font-weight:800;color:var(--ink)">Total</span><b style="font-size:13px">90</b></div>
+        </div>
+        <div class="note ok"><b>You may have just changed someone's mind.</b> Your story is now in front of
+        people who trust you — that is worth more than any score here.</div>
+      </div>
+    </div></div>
+
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+        <div class="urlpill">app.irisepro.in/yashodarshi/evaluate/…</div></div>
+      <div class="bview"><div class="dbody">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+          color:var(--o-deep);margin-bottom:12px">Yashodarshi · evaluation view</div>
+        <div class="two" style="gap:16px">
+          <div>
+            <div class="rec" style="height:174px;margin-bottom:11px"><i class="fas fa-play who" style="font-size:28px"></i></div>
+            <div class="card" style="margin:0">
+              <h3 style="font-size:13px">Identity — internal only</h3>
+              <div class="score"><span>Learner</span><b style="font-family:inherit">LAKSHMI R</b></div>
+              <div class="score"><span>Batch</span><b style="font-family:inherit">KVS-BLR-07</b></div>
+              <div class="score"><span>Task</span><b style="font-family:inherit">419 · 21 of 21</b></div>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="margin:0 0 11px">
+              <h3 style="font-size:13px">Proof submitted</h3>
+              <p style="font-size:12px;margin-bottom:7px"><i class="fab fa-instagram" style="color:#dc2743"></i>
+                <span class="mono">instagram.com/reel/C8xK…</span> <i class="fas fa-arrow-up-right-from-square"
+                style="color:var(--mut2);font-size:9px"></i></p>
+              <p style="font-size:12px;margin-bottom:7px"><i class="fab fa-linkedin" style="color:#0A66C2"></i>
+                <span class="mono">linkedin.com/posts/lak…</span></p>
+              <div class="chk"><div class="bx on"><i class="fas fa-check"></i></div>
+                <span style="font-size:11.5px">Collaborator declared — verify on the post</span></div>
+            </div>
+            <div class="note info" style="font-size:11.5px;margin:0">
+              <b>This answers Sutirtha's evaluation gap.</b> He noted that when reviewing videos "we don't get
+              to know the student's name." The name and batch sit here, in the evaluator's view — while the
+              shared version out on Instagram carries only what the learner chose to say.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ BUILD ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">BUILD</span> What exists, what's new, what's broken</h2>
+    <p class="cap">Most of this is already in the codebase. The genuinely new surface is small.</p>
+  </div>
+  <div class="scroll"><table>
+    <tr><th>Piece</th><th>Where it lives</th><th></th></tr>
+    <tr><td>Link answer mode + URL field</td><td><code>AnswerModeValidator</code> · <code>task-submission.blade.php:246</code></td><td><span class="tag2 t-have">EXISTS</span></td></tr>
+    <tr><td>Host allow-list (instagram, linkedin, x, facebook, youtube…)</td><td><code>config/link_submission.php</code> preset <code>social</code></td><td><span class="tag2 t-have">EXISTS</span></td></tr>
+    <tr><td>Shortener block · https-only · homograph guard</td><td><code>LinkSubmissionPolicy</code></td><td><span class="tag2 t-have">EXISTS</span></td></tr>
+    <tr><td>Minor guardian consent + screenshot fallback</td><td><code>link_exposure</code> · <code>LinkExposureConsent</code></td><td><span class="tag2 t-have">EXISTS</span></td></tr>
+    <tr><td>Adult "evaluator will open this" acknowledgement</td><td><code>TaskDetailsController:2110</code></td><td><span class="tag2 t-have">EXISTS</span></td></tr>
+    <tr><td>90-second video capture, 100 MB cap</td><td><code>partials/media-recorder</code> · <code>UploadPolicy</code></td><td><span class="tag2 t-have">EXISTS</span></td></tr>
+    <tr><td><code>navigator.share()</code> with clipboard fallback</td><td><code>igp/referrals.blade.php:293</code> — proven pattern</td><td><span class="tag2 t-have">EXISTS</span></td></tr>
+    <tr><td>Share kit — generated caption, tags, hashtags per stream</td><td>new partial + per-challenge template</td><td><span class="tag2 t-new">NEW</span></td></tr>
+    <tr><td>Share sheet <em>with the video file attached</em></td><td><code>navigator.share({files:[…]})</code> — file variant is new</td><td><span class="tag2 t-new">NEW</span></td></tr>
+    <tr><td>Collaborator checkbox + second-platform link</td><td>form + rubric lines</td><td><span class="tag2 t-new">NEW</span></td></tr>
+    <tr><td>Desktop degradation (download + QR handoff)</td><td>new</td><td><span class="tag2 t-new">NEW</span></td></tr>
+    <tr><td>Task 419 copy rewritten to the 3-beat story</td><td>catalogue edit — Sutirtha, no code</td><td><span class="tag2 t-new">NEW</span></td></tr>
+    <tr><td><b>4 LinkedIn tasks reject every valid URL</b></td><td><code>"sites":["LinkedIn"]</code> vs domain matcher; cause is <code>TaskController::buildAnswerModes()</code> accepting unvalidated site strings</td><td><span class="tag2 t-fix">BROKEN</span></td></tr>
+  </table></div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============ OPEN ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">OPEN</span> Three decisions this storyboard does not make</h2>
+    <p class="cap">Each changes the build materially. None should be assumed.</p>
+  </div>
+  <div class="two">
+    <div class="callout" style="margin:0">
+      <h4>1 · The 7-task journeys have no video task at all</h4>
+      <p>Derived across all 31 challenges: every one of the 14 seven-task journeys has <b>zero</b> video tasks.
+      Their 7th tasks are graded subject work — <em>Picture Comprehension</em>, <em>The Silent Networker
+      Challenge</em>, <em>Your First 100 Days as District Collector</em>.</p>
+      <p>So "update the 7th task" would paste share instructions over an assessment task. The 21-task journeys
+      all end in a reflection video and take this naturally; the 7-task ones do not end in anything.
+      <b>Either they gain a closing reflection, or the share ships to 21-task journeys only.</b></p>
+    </div>
+    <div class="callout" style="margin:0">
+      <h4>2 · Native sheet, or a public share page?</h4>
+      <p>Everything drawn above is the <b>native sheet</b> — nothing becomes public, no consent changes, no
+      retention changes. It gives Instagram and WhatsApp exactly what they need.</p>
+      <p>A <b>public page</b> with Open Graph tags is the only thing that produces a real preview card on
+      LinkedIn and X, and the only thing that sends traffic back. It costs: a public copy of the video, a
+      retention change (originals are deleted after evaluation today), a new consent for minors, and a
+      takedown path.</p>
+    </div>
+    <div class="callout" style="margin:0">
+      <h4>3 · Where do the diagnostic questions go?</h4>
+      <p>Task 419's "what weakness became clear" and "what support do you still require" are genuinely useful
+      assessment signal. They just cannot be in a video meant for Instagram.</p>
+      <p>Keep them as a private second deliverable on the same task, move them earlier in the journey, or fold
+      them into the rubric the Yashodarshi scores against — a product call, not a technical one.</p>
+    </div>
+    <div class="callout" style="margin:0">
+      <h4>4 · Existing learners mid-journey</h4>
+      <p>You raised this in the DM: a catalogue edit may not reach learners already inside a unit, because a
+      started unit's task set is <b>frozen</b> in its <code>task_snapshot</code> — that is deliberate, and it is
+      what protects a journey from catalogue churn.</p>
+      <p>Editing task 419's <em>text</em> reaches everyone, since the snapshot stores task IDs. Adding a
+      <em>new</em> task does not. That is the real argument for rewriting 419 rather than creating a 22nd task —
+      and it needs confirming against the running box before anyone promises it to Sutirtha.</p>
+    </div>
+  </div>
+</section>
+
+<p class="foot">
+  Storyboard · 15 Aug 2026 · YASHHO / iRisePro.<br>
+  Screens use the live student-app theme (Montserrat, <span class="mono">#FF8A3D</span>, cream
+  <span class="mono">#FFF9F5 → #FFF1E6</span>) pulled from <span class="mono">task-submission.blade.php</span>.<br>
+  Catalogue facts derived from the 14-Aug prod snapshot (240 tasks · 31 challenges · 338 links) loaded
+  locally and queried; the link-validator defect was reproduced by executing
+  <span class="mono">LinkSubmissionPolicy</span> against the stored task config, with a passing control.<br>
+  Not verified: device behaviour of <span class="mono">navigator.share()</span> with files, and how many
+  learners have hit the four broken LinkedIn tasks — that needs a prod read.
+</p>
+
+</div>
