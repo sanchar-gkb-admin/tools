@@ -1531,6 +1531,131 @@ td code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;background
 
 <div class="rule"></div>
 
+<!-- ============ GATE ============ -->
+<section>
+  <div class="sechead">
+    <h2><span class="num">GATE</span> A bonus task that unlocks the scorecard — and a badge</h2>
+    <p class="cap">Not the 7th, not the 21st: a <b>bonus task</b> after the last one. It <b>gates</b> the
+    scorecard without <b>scoring</b> into it — and that combination already works with no scoring code change.</p>
+  </div>
+
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="realbar">
+        <div class="av">AD</div>
+        <div class="nm">ASHA DEMO<small>21 of 21 complete</small></div>
+        <div class="icons"><i class="fas fa-bell"></i><i class="fas fa-circle-user"></i></div>
+      </div>
+      <div class="body">
+        <div class="hero" style="text-align:center">
+          <div style="font-size:30px;color:var(--o);margin-bottom:6px"><i class="fas fa-lock"></i></div>
+          <div class="name" style="font-size:15px">ONE MORE THING</div>
+          <div class="line">to unlock your scorecard</div>
+        </div>
+        <div class="card">
+          <h3>Share your story</h3>
+          <p>You've finished all 21 tasks. Tell one teacher what changed — and your scorecard opens.</p>
+          <div class="note ok" style="margin:10px 0 0"><b>This one isn't marked.</b> It won't change your
+          scores either way — it just opens the door.</div>
+        </div>
+        <div class="kit">
+          <div class="kh"><i class="fas fa-award"></i><b>Earn: Brand Ambassador</b><em>NEW</em></div>
+          <div style="display:flex;align-items:center;gap:11px;margin-top:4px">
+            <div style="width:52px;height:52px;border-radius:50%;flex:none;
+              background:linear-gradient(135deg,var(--o),var(--o2));display:flex;align-items:center;
+              justify-content:center;color:#fff;font-size:20px;box-shadow:0 4px 12px rgba(255,138,61,.35)">
+              <i class="fas fa-bullhorn"></i></div>
+            <div style="font-size:10.5px;color:var(--ink2);line-height:1.5">
+              A one-of-a-kind avatar on your profile — only for those who spoke up.</div>
+          </div>
+        </div>
+        <button class="btn">Start my final story</button>
+        <p class="hint" style="text-align:center;margin-top:9px">Take your time — you have until your
+        challenge window closes.</p>
+      </div>
+    </div></div>
+
+    <div style="flex:1;min-width:340px">
+      <table style="margin-bottom:14px">
+        <tr><th>Requirement</th><th>Mechanism</th><th>Change</th></tr>
+        <tr><td><b>Gates the scorecard</b></td>
+            <td>the eval row counts in <code>ScorecardCompleteness</code>, which counts task_ids and never
+            inspects the scores</td><td><span class="tag2 t-have">NONE</span></td></tr>
+        <tr><td><b>Cannot move the marks</b></td>
+            <td>author <b>no <code>task_scores</code> rubric</b> ⇒ <code>attribute_scores === []</code> ⇒
+            <code>ScorecardInputBuilder</code> hits <code>continue</code></td><td><span class="tag2 t-have">NONE</span></td></tr>
+        <tr><td><b>Unlocks even if never done</b></td>
+            <td><code>TaskExpiry</code> writes the terminal <code>'expired'</code> row at the deadline —
+            <b>unconditionally</b>, rubric or not</td><td><span class="tag2 t-have">NONE</span></td></tr>
+        <tr><td>Outside the 90-min sprint</td>
+            <td><code>SprintBudget::sprintFittedDurations()</code> exclusion</td><td><span class="tag2 t-fix">NEEDED</span></td></tr>
+        <tr><td>Brand Ambassador badge</td>
+            <td><code>award_type</code> + <code>event_key</code> on <code>achievements</code>; grant via the
+            existing <code>student_achievement</code> pivot</td><td><span class="tag2 t-new">NEW</span></td></tr>
+      </table>
+
+      <div class="note bad" style="font-size:12px;padding:14px;margin-bottom:12px">
+        <b>Trap 1 — the gating task MUST have a deadline.</b> <code>TaskExpiry</code> fires off
+        <code>expires_at</code>. Disable the timer and the rescue never runs, no terminal row is written,
+        and <b>the scorecard is blocked forever</b>. The deadline stops being time pressure and becomes
+        the guarantee that the gate opens.</div>
+
+      <div class="note bad" style="font-size:12px;padding:14px">
+        <b>Trap 2 — an unallocated unit blocks it permanently.</b>
+        <code>$yashodarshiId = $unit?-&gt;yashodarshi_id; if (! $yashodarshiId) return false;</code> — no
+        evaluator on the unit ⇒ no terminal row ever. Today that costs one unscored task; <b>with a gate it
+        costs the entire scorecard.</b> Needs a monitor: any unit past its window carrying a gating task
+        with no evaluator.</div>
+    </div>
+  </div>
+
+  <div class="two" style="margin-top:20px">
+    <div class="delta" style="margin:0">
+      <h5>Why a bonus task, not the 7th / 21st</h5>
+      <ul>
+        <li><b>Replacing the 7th costs 12 graded tasks.</b> Measured: <b>12 distinct 7th tasks across 14
+          challenge slots</b> — Picture Comprehension, First 100 Days as District Collector, AI Engineer
+          for a Day… each needing a rewrite, a mode change and a re-authored ability map.</li>
+        <li><b>The 90-minute sprint makes an in-task share impossible</b> — per-task slots are 90÷7 ≈ 12 min,
+          inside a non-stop proctored sitting.</li>
+        <li><b>Measured cost of NOT excluding it from the sprint:</b>
+          <code>7 tasks → [12,12,12,12,12,12,12]</code> vs
+          <code>8 tasks → [10,10,10,10,10,10,10,18]</code> — every real task loses 17%, and the bonus
+          task's own 6h SLA is crushed to 18 minutes.</li>
+        <li>⚠ <b>A new task never enters a frozen <code>task_snapshot</code></b> — so it reaches nobody
+          currently mid-journey. New units only, unless a snapshot backfill is scoped separately.</li>
+      </ul>
+    </div>
+    <div class="delta" style="margin:0">
+      <h5>The badge — why the existing model can't hold it</h5>
+      <ul>
+        <li>Every badge today is a <b>threshold on a pillar percentage</b> —
+          <code>achievements.threshold</code> (0–100) vs a tier-normalised domain score.</li>
+        <li><b>Brand Ambassador is earned by an act, not a score</b> — and the share task deliberately has
+          <b>no rubric</b>, so it contributes 0 to every domain and can never cross any threshold. The
+          thing that makes it safe for the scorecard makes it invisible to badges.</li>
+        <li><b>The substrate already exists:</b> <code>student_achievement</code> carries
+          <code>unlocked_at</code> and is already written via <code>attach()</code> — but <b>only from the
+          dead Flutter API</b> (<code>Api/MobileStudentApiController:1263</code>), which has no live
+          consumer. The grant path works and nothing calls it.</li>
+        <li>So: one migration (<code>award_type</code> + <code>event_key</code>, <code>domain</code>
+          nullable), grant from the live Blade path, display branches on type. <b>One badge concept, two
+          award paths, one surface</b> — not a second badge system.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>One copy point that matters</h4>
+    <p>If the task gates but does not score, the learner has to be <b>told</b> so. "Unlock your scorecard"
+    reads as "this is graded" — and a teacher who believes a rushed share will drag their marks down will
+    either skip it or rush it badly. The screen must say it plainly:
+    <i>"One last thing — share your story to unlock your scorecard. This one isn't marked."</i></p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
 <!-- ============ BUILD ============ -->
 <section>
   <div class="sechead">
