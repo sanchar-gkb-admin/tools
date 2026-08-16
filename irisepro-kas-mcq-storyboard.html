@@ -146,7 +146,7 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .wrow span{width:180px;flex:none}
 .wrow i{flex:1;height:8px;background:#f2ece6;border-radius:99px;overflow:hidden;display:block}
 .wrow i b{display:block;height:100%;background:var(--o);border-radius:99px}
-.wrow em{font-style:normal;font:700 12px Montserrat;width:46px;text-align:right;font-variant-numeric:tabular-nums}
+.wrow em{font-style:normal;font:700 12px Montserrat;width:46px;text-align:right;font-paper-numeric:tabular-nums}
 .wrow.dim{color:#a9a19a} .wrow.dim i b{background:#d8cec5}
 </style>
 
@@ -172,7 +172,7 @@ parsed from the source papers and reconciled against their own summary tables.</
 <tr><th>Layer</th><th>Today</th><th>MCQ</th></tr>
 <tr><td>Admin shell</td><td><code>superadmin.layout</code> — nav, auth, styling</td><td><span class="pill p-ex">EXISTS</span> — but the nav is a flat hardcoded <code>&lt;a&gt;</code> list (<code>:110-334</code>) with no section primitive, and the layout has <b>no <code>@stack('scripts')</code></b>, so MCQ admin JS must inline <code>@once</code></td></tr>
 <tr><td>Ability tagging</td><td><code>partials/skills-picker</code> — membership checklist posting <code>abilities[]</code> as <code>pillar.ability</code></td><td><span class="pill p-new">NOT REUSED</span> — <code>skills-picker</code> is a <i>membership checklist</i>; a slot now carries a 15-value weight vector authored by KMM. Different data, different screen, read-only</td></tr>
-<tr><td>Slot / form authoring</td><td>— <i>(tasks are authored one at a time)</i></td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>Slot / question authoring</td><td>— <i>(tasks are authored one at a time)</i></td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>Statistical gates</td><td>—</td><td><span class="pill p-new">NEW</span> — and they are the point of this admin, not a report on it</td></tr>
 </table>
 
@@ -190,8 +190,8 @@ parsed from the source papers and reconciled against their own summary tables.</
 
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:9px">
-        <div><div class="slot-h">100 slots · 9 forms each</div>
-             <div class="slot-m">8 sets + 1 spare · 1,800 forms across both papers</div></div>
+        <div><div class="slot-h">100 slots · 9 questions each</div>
+             <div class="slot-m">8 sets + 1 spare · 1,800 questions across both papers</div></div>
         <div style="text-align:right"><span class="count">137<small> / 900</small></span>
              <div class="slot-m">GS-1</div></div>
       </div>
@@ -224,7 +224,7 @@ parsed from the source papers and reconciled against their own summary tables.</
 
     <div class="attn red">
       <h5>Blocking</h5>
-      <div class="attn-row"><b>9 slots</b><span>have no forms — the paper cannot generate</span></div>
+      <div class="attn-row"><b>9 slots</b><span>have no questions — the paper cannot generate</span></div>
       <div class="attn-row"><b>4 of 15</b><span>Structure, Time management, Steadfastness, Discipline — weight is <b>uniform</b> across all 100 slots (CV = 0.00), so each would report the student's overall score under an ability's name</span></div>
       <div class="attn-row"><b>Comprehension</b><span>32.7% of the paper's total weight — one ability carries a third of it</span></div>
     </div>
@@ -259,40 +259,40 @@ it into a decision.</div>
         <a class="btn btn-g" href="#a03">edit slot</a>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
-        <span class="count">18<small> of 22 forms</small></span>
-        <a class="btn" href="#a04">+ add form</a>
+        <span class="count">18<small> of 22 questions</small></span>
+        <a class="btn" href="#a04">+ add question</a>
       </div>
     </div>
     <div class="attn">
       <h5>Needs attention</h5>
-      <div class="attn-row"><b>form 07</b><span>3 distractors have no explanation</span></div>
-      <div class="attn-row"><b>form 11</b><span>2 distractors have no explanation</span></div>
-      <div class="attn-row"><b>form 14</b><span>88% get it right vs 69% across this slot — <b style="color:#2c7a44">enough data to be sure</b> (412 responses)</span></div>
-      <div class="attn-row"><b>form 19</b><span>91% vs 69% — <span class="tooearly">not yet measurable, 23 of the ~365 responses needed</span></span></div>
+      <div class="attn-row"><b>question 07</b><span>3 distractors have no explanation</span></div>
+      <div class="attn-row"><b>question 11</b><span>2 distractors have no explanation</span></div>
+      <div class="attn-row"><b>question 14</b><span>88% get it right vs 69% across this slot — <b style="color:#2c7a44">enough data to be sure</b> (412 responses)</span></div>
+      <div class="attn-row"><b>question 19</b><span>91% vs 69% — <span class="tooearly">not yet measurable, 23 of the ~365 responses needed</span></span></div>
     </div>
-    <div class="okline"><span>14 forms OK</span><span style="font-weight:700;color:#8a4415">show</span></div>
+    <div class="okline"><span>14 questions OK</span><span style="font-weight:700;color:#8a4415">show</span></div>
   </div>
 </div></div></div>
 
-<div class="note bad"><b>The n-gate on form 19 matters more than it looks.</b>
-The equivalence rule was <code>p_max − p_min ≤ 0.10 across a slot's forms</code>. That is a <b>range statistic</b>,
-and a threshold on a range means nothing without n. The expected range of <b>22 perfectly equivalent forms</b> under
+<div class="note bad"><b>The n-gate on question 19 matters more than it looks.</b>
+The equivalence rule was <code>p_max − p_min ≤ 0.10 across a slot's questions</code>. That is a <b>range statistic</b>,
+and a threshold on a range means nothing without n. The expected range of <b>22 perfectly equivalent questions</b> under
 the null is <code>d₂(22)·√(0.25/n)</code> = <b>0.349 at n=30 · 0.270 at n=50 · 0.191 at n=100</b>. So as written the
-rule quarantines <i>healthy</i> slots. The author pulls a good form, the pool drops below <code>target_n</code>,
+rule quarantines <i>healthy</i> slots. The author pulls a good question, the pool drops below <code>target_n</code>,
 generation degrades, and nothing says so. <b>No verdict may render before it can be true.</b><br><br>
 <b>Waiting for n is necessary and not sufficient.</b> Solving that expression for 0.10 gives <b>n ≈ 365</b> responses
-per form — 8,030 per slot, 803,000 per paper, about <b>380 Advanced students per paper</b> before the check that the
+per question — 8,030 per slot, 803,000 per paper, about <b>380 Advanced students per paper</b> before the check that the
 design calls "the only real equivalence check" can speak at all. But choosing n so that the <i>expected</i> null range
 equals the threshold means, by definition, <b>half of perfectly equivalent slots still exceed it</b>. So the fix is
-not "wait longer" — it is a proper test: a two-proportion z of each form against its slot's pooled p excluding
-itself, with the family-wise correction stated (Bonferroni z<sub>crit</sub> = 3.05 across one slot's 22 forms,
+not "wait longer" — it is a proper test: a two-proportion z of each question against its slot's pooled p excluding
+itself, with the family-wise correction stated (Bonferroni z<sub>crit</sub> = 3.05 across one slot's 22 questions,
 <b>4.24</b> across a paper's 2,200). A02 must also say which checks are live and which are dormant, so nobody reads a
 quiet slot as a validated one.</div>
 
-<div class="note"><b>Same cause, different symptom.</b> A form added in month 6 is only ever drawn by students already
+<div class="note"><b>Same cause, different symptom.</b> A question added in month 6 is only ever drawn by students already
 ten attempts in — a more practised, self-selected population. Its p is inflated by cohort, not difficulty. So the
 rule's most reliable behaviour is to flag <b>the newest content</b> as too easy, which is exactly the content the
-137-of-400 shortfall depends on. Store <code>p_value_by_attempt_index[]</code>, not a scalar, and compare forms only
+137-of-400 shortfall depends on. Store <code>p_value_by_attempt_index[]</code>, not a scalar, and compare questions only
 at the same attempt index.</div>
 
 <h3>A03 · Slot settings — a weight CHECK, not an ability picker</h3>
@@ -305,7 +305,7 @@ at the same attempt index.</div>
   <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Edit slot 22</span></div>
   <div class="a-body">
     <div class="card">
-      <div class="slot-m" style="margin-bottom:9px">THE STRATUM — every form inherits all of it</div>
+      <div class="slot-m" style="margin-bottom:9px">THE STRATUM — every question inherits all of it</div>
       <table style="margin:0">
         <tr><th style="width:32%">Topic</th><td>Indian National Movement
           <span style="color:#a9a19a;font-size:11.5px">&nbsp;— authoring guidance</span></td></tr>
@@ -322,7 +322,7 @@ at the same attempt index.</div>
       </table>
     </div>
     <div class="card">
-      <div class="slot-m" style="margin-bottom:8px">FORMS NEEDED</div>
+      <div class="slot-m" style="margin-bottom:8px">QUESTIONS NEEDED</div>
       <table style="margin:0">
         <tr><th style="width:32%">8 sets + 1 spare</th><td>9 &nbsp;<span style="color:#2c7a44;font-size:12px">✓ have 18</span></td></tr>
       </table>
@@ -361,7 +361,7 @@ at the same attempt index.</div>
 <div class="note bad"><b>The tier ladder is gone, and it took a problem with it.</b> <code>target_n</code> was a
 single scalar while the old tiers needed 4 / 8 / 22 — one slot cannot hold three values, and sizing separately meant
 Basic and Advanced students answered <b>different item sets</b> with incomparable percentages. Under the set model
-there is one number: <b>9 forms</b> — 8 sets plus a spare. Every student draws from one pool. <b>1,800 forms across
+there is one number: <b>9 questions</b> — 8 sets plus a spare. Every student draws from one pool. <b>1,800 questions across
 both papers instead of 4,400, a 59% cut, and one author can finish it in 3.6–6 months.</b><br><br>
 <b>And the weights are not ours to write.</b> KMM authors the ability mapping; this screen validates it. That is the
 right split — the judgement about what a question demands belongs to the framework's author, and the arithmetic about
@@ -376,7 +376,7 @@ paper's full specification. Randomising position costs nothing now and is a migr
 &ldquo;<i>Position in paper &mdash; randomised per student, never a fixed seq_no</i>&rdquo;. <code>seq_no</code> is
 precisely fixed: it is the slot&rsquo;s identity, unique within the paper, the order the draw walks, and half the
 primary key of every response row. What is randomised is <code>presentation_order</code>, a different number
-living on the student&rsquo;s variant.<br><br>
+living on the student&rsquo;s paper.<br><br>
 <b>Write the screen position into <code>mcq_responses.seq_no</code> and every answer is attributed to the wrong
 slot</b> &mdash; therefore to the wrong weight vector, therefore to the wrong abilities. It would not throw, it
 would not look wrong, and the scorecard would be confidently, invisibly false. The caption was an instruction to
@@ -397,19 +397,19 @@ responses exist.<br><br>
 <b>Topic and cognitive demand &mdash; read by people, not by code.</b> Zero runtime consumers, and that is not a
 defect. Their job was to <i>construct</i> the blueprint &mdash; grouping the existing questions by topic &times;
 ability set &times; band is how the 100 slots came to exist &mdash; and now they tell an author what a replacement
-form has to be. Calling that out matters because a field with no consumer is normally a bug, and these two are
+question has to be. Calling that out matters because a field with no consumer is normally a bug, and these two are
 the exception rather than an oversight.</div>
 
-<h3>A04 · Form editor — the ONE screen an author actually types in</h3>
-<p class="cap">Everything else on this board is a view or a check. This is the surface where 1,800 forms get
+<h3>A04 · Question editor — the ONE screen an author actually types in</h3>
+<p class="cap">Everything else on this board is a view or a check. This is the surface where 1,800 questions get
 written, so every second of friction here is multiplied by 1,800.</p>
 <div class="row"><div>
 <div class="step">A04</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
-    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/forms/new</span></div>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/new</span></div>
   <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
-    <span style="font:600 11px Montserrat;color:#6b7280">Form 19 of 9 needed &middot; draft &middot; <span class="saved">saved 12s ago</span></span></div>
+    <span style="font:600 11px Montserrat;color:#6b7280">Question 19 of 9 needed &middot; draft &middot; <span class="saved">saved 12s ago</span></span></div>
   <div class="a-body">
 
     <div class="langs">
@@ -426,9 +426,9 @@ written, so every second of friction here is multiplied by 1,800.</p>
         &nbsp;<span style="color:#a08b78">+ 12 more at 1</span> &nbsp;<a href="#a03" style="color:#c2571c;font-weight:700">see all 15</a></div>
     </div>
 
-    <div class="warn"><b>Near-duplicate:</b> form 7 of this slot also tests <i>Chauri Chaura &rarr; withdrawal</i>.
-      Two forms of one slot may not carry the same <code>concept_key</code> &mdash; a student could draw both across
-      their 8 sets. <a href="#a02" style="color:#8a5a00;font-weight:700">Open form 7</a></div>
+    <div class="warn"><b>Near-duplicate:</b> question 7 of this slot also tests <i>Chauri Chaura &rarr; withdrawal</i>.
+      Two questions of one slot may not carry the same <code>concept_key</code> &mdash; a student could draw both across
+      their 8 sets. <a href="#a02" style="color:#8a5a00;font-weight:700">Open question 7</a></div>
 
     <div class="card">
       <div class="slot-m">QUESTION</div>
@@ -474,19 +474,19 @@ written, so every second of friction here is multiplied by 1,800.</p>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       <a class="btn btn-g" href="#a07">Submit for review</a>
       <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Save &amp; add another</a>
-      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate this form</a>
+      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate this question</a>
       <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Preview as student</a>
     </div>
   </div>
 </div></div>
 
 <div class="note"><b>Four affordances that are not decoration &mdash; each one is 1,800&times;.</b><br><br>
-<b>Autosave, on the create path.</b> The task editor already has one; a new MCQ form did not, so a dropped
+<b>Autosave, on the create path.</b> The task editor already has one; a new MCQ question did not, so a dropped
 connection cost the twenty minutes since the author opened the page. A draft with no id is exactly when a
 loss is total.<br><br>
-<b>Save &amp; add another, and Duplicate.</b> The nine forms of a slot are structurally identical &mdash; same area,
+<b>Save &amp; add another, and Duplicate.</b> The nine questions of a slot are structurally identical &mdash; same area,
 same demand, same weights, same shape &mdash; and differ only in stem and options. Returning to the workbench
-between each one turns nine forms into nine navigations. Duplicate carries the shape and <i>deliberately clears
+between each one turns nine questions into nine navigations. Duplicate carries the shape and <i>deliberately clears
 the stem, options and concept key</i>, so it cannot become a copy-paste route to a near-duplicate.<br><br>
 <b><code>error_type</code> is a closed list, not free text.</b> It was a required field with no defined values across
 13,200 distractors. Free text there is unaggregatable by construction &mdash; &ldquo;confuses cause and trigger&rdquo; and
@@ -496,15 +496,15 @@ student&rsquo;s &ldquo;you made this error 4 times&rdquo; line; as prose it powe
 concept twice across 1,600 draws. That promise is kept by an index at draw time &mdash; but discovering the clash
 then means a paper that cannot be built. Catching it while the author is still on the page costs one line.</div>
 
-<h3>A04b &middot; The same form in Kannada &mdash; text is editable, structure is not</h3>
+<h3>A04b &middot; The same question in Kannada &mdash; text is editable, structure is not</h3>
 <p class="cap">Switching language does not open a second question. It opens a second <i>rendering</i> of one question.</p>
 <div class="row"><div>
 <div class="step">A04b</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
-    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/forms/19?lang=kn</span></div>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/19?lang=kn</span></div>
   <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
-    <span style="font:600 11px Montserrat;color:#6b7280">Form 19 &middot; KN translation &middot; <span class="saved">saved 4s ago</span></span></div>
+    <span style="font:600 11px Montserrat;color:#6b7280">Question 19 &middot; KN translation &middot; <span class="saved">saved 4s ago</span></span></div>
   <div class="a-body">
 
     <div class="langs">
@@ -565,13 +565,13 @@ then means a paper that cannot be built. Catching it while the author is still o
 <code>error_type</code>, <code>shuffle_safe</code>, the slot&rsquo;s weights, the timing. A diagnosis is a fact about the
 option, not about its wording &mdash; so a Kannada candidate picking C and an English candidate picking C made the
 same error, and the scorecard can say so.<br><br>
-<b>Model each language as its own question row and three things break at once.</b> <code>unique(slot_id, form_no)</code>
-stops holding. The draw counts 27 forms in a slot that has 9, so it believes it has three times the bank it has.
+<b>Model each language as its own question row and three things break at once.</b> <code>unique(slot_id, question_no)</code>
+stops holding. The draw counts 27 questions in a slot that has 9, so it believes it has three times the bank it has.
 And a student could draw the English and the Kannada rendering of one item across their eight sets &mdash; the exact
 repeat <code>I4</code> exists to forbid, invisible to an index keyed on the question id.<br><br>
 <b>An item goes live only when every required language has passed review.</b> Per-language availability sounds
 kinder to the schedule and is the trap: it silently gives Kannada candidates a smaller pool per slot, and the
-no-repeat guarantee is arithmetic over that pool. Nine forms per slot has to mean nine <i>in every language on
+no-repeat guarantee is arithmetic over that pool. Nine questions per slot has to mean nine <i>in every language on
 offer</i>, or it means nothing for the candidate sitting in Kannada.</div>
 
 <div class="note bad"><b>The gates must re-run per language, and this item proves why with its own numbers.</b>
@@ -602,12 +602,12 @@ and <i>per ability</i>, since the tell concentrates in Comprehension and Critica
 should be the longest about a quarter of the time, the shortest about a quarter, and so on. χ²(3) against uniform,
 critical value 7.815. This subsumes the old rule and closes its mirror exploit: a bank at <b>0%</b> longest-correct
 passes a one-sided ceiling while making "never pick the longest" worth roughly 22 marks.<br><br>
-No per-form verdict — a single item's rank carries no information. A04 shows a running budget instead, and the whole
+No per-question verdict — a single item's rank carries no information. A04 shows a running budget instead, and the whole
 discipline is one sentence an author can hold: <b>roughly one question in four should have the shortest option
 correct.</b></div>
 
 <h3>A08 &middot; Slot workspace &mdash; the screen the author actually lives in</h3>
-<p class="cap">The unit of work is <b>a slot</b>, not a form. Nine forms that share an area, a demand, a
+<p class="cap">The unit of work is <b>a slot</b>, not a question. Nine questions that share an area, a demand, a
 difficulty and a weight vector, differing only in concept. You fill a slot in one sitting, on one screen.</p>
 <div class="row"><div>
 <div class="step">A08</div>
@@ -615,7 +615,7 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/fill</span></div>
   <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
-    <span style="font:600 11px Montserrat;color:#6b7280">GS-1 &middot; slot <b>22 of 100</b> &middot; <b>6 of 9 forms</b> &middot; <span class="saved">saved 8s ago</span></span></div>
+    <span style="font:600 11px Montserrat;color:#6b7280">GS-1 &middot; slot <b>22 of 100</b> &middot; <b>6 of 9 questions</b> &middot; <span class="saved">saved 8s ago</span></span></div>
   <div class="a-body"><div class="wsp">
 
     <div class="rail">
@@ -626,8 +626,8 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
       <div class="blk">
         <h5>THIS PAPER</h5>
         <div class="meter"><i style="width:41%"></i></div>
-        <div class="k"><b>369 of 900 forms</b><br>41 slots full &middot; 59 to go<br>
-          <span style="color:#a9a19a">100 slots &times; 9 forms<br>9 = 8 sets + <b>1 spare</b><br><span style="font-size:9.5px">spare: stream setting</span></span></div>
+        <div class="k"><b>369 of 900 questions</b><br>41 slots full &middot; 59 to go<br>
+          <span style="color:#a9a19a">100 slots &times; 9 questions<br>9 = 8 sets + <b>1 spare</b><br><span style="font-size:9.5px">spare: stream setting</span></span></div>
       </div>
       <div class="blk">
         <h5>WEIGHTS &middot; KMM</h5>
@@ -645,7 +645,7 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
     </div>
 
     <div style="flex:1">
-      <div class="fcard done"><b class="n">1</b><span style="flex:1"><span style="font:700 9.5px Montserrat;color:#a9a19a">FORM&nbsp;</span>Withdrawn after Chauri Chaura</span><code>withdrawal-trigger</code><span class="saved">&#10003;</span></div>
+      <div class="fcard done"><b class="n">1</b><span style="flex:1"><span style="font:700 9.5px Montserrat;color:#a9a19a">QUESTION&nbsp;</span>Withdrawn after Chauri Chaura</span><code>withdrawal-trigger</code><span class="saved">&#10003;</span></div>
       <div class="fcard done"><b class="n">2</b><span style="flex:1">Khilafat linkage &mdash; which leader</span><code>khilafat-link</code><span class="saved">&#10003;</span></div>
       <div class="fcard done"><b class="n">3</b><span style="flex:1">Calcutta session &mdash; year</span><code>calcutta-session</code><span class="saved">&#10003;</span></div>
       <div class="fcard done" style="opacity:.55"><b class="n">4</b><span style="flex:1">Bardoli resolution</span><code>bardoli-resolution</code><span class="saved">&#10003;</span></div>
@@ -654,7 +654,7 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
 
       <div class="fcard now">
         <div style="display:flex;gap:9px;align-items:center;margin-bottom:8px">
-          <b class="n">7</b><span style="font:700 11px Montserrat;color:var(--o-deep);flex:1">WRITING FORM 7 OF 9</span>
+          <b class="n">7</b><span style="font:700 11px Montserrat;color:var(--o-deep);flex:1">WRITING QUESTION 7 OF 9</span>
           <span class="lk">&#9998; keep the correct option short &mdash; budget</span>
         </div>
         <input class="fld" style="font-weight:600" placeholder="stem &mdash; a concept none of the six above cover">
@@ -665,8 +665,8 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
         </div>
         <div style="font:600 10.5px Montserrat;color:#a9a19a;margin-bottom:7px">pick the three errors first &mdash; the options write themselves from them</div>
         <div style="display:flex;gap:7px;flex-wrap:wrap">
-          <a class="btn btn-g" href="#a08" style="padding:7px 14px;font-size:11px">Save &amp; write form 8 of 9 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
-          <a class="btn" href="#a08" style="padding:7px 14px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate form 3&rsquo;s shape</a>
+          <a class="btn btn-g" href="#a08" style="padding:7px 14px;font-size:11px">Save &amp; write question 8 of 9 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
+          <a class="btn" href="#a08" style="padding:7px 14px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate question 3&rsquo;s shape</a>
         </div>
       </div>
 
@@ -674,18 +674,18 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
       <div class="fcard" style="opacity:.4"><b class="n">9</b><span style="flex:1">&mdash; spare</span></div>
 
       <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
-        <a class="btn" href="#a08" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Slot 22 done &rarr; next starved slot: <b>47 of 100</b>, 0 of 9 forms written</a>
+        <a class="btn" href="#a08" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Slot 22 done &rarr; next starved slot: <b>47 of 100</b>, 0 of 9 questions written</a>
       </div>
     </div>
   </div></div>
 </div></div>
 
-<div class="note"><b>Four things this screen does that a per-form create page cannot.</b><br><br>
-<b>It removes 3,400 page loads.</b> Nine forms via a create-page-and-return costs 18 navigations per slot;
+<div class="note"><b>Four things this screen does that a per-question create page cannot.</b><br><br>
+<b>It removes 3,400 page loads.</b> Nine questions via a create-page-and-return costs 18 navigations per slot;
 across 200 slots that is <b>3,600</b>. Filling in place costs one load per slot &mdash; <b>200</b>. Nothing about
 the writing got easier, but 18&times; of the sitting-down-and-getting-back went away.<br><br>
 <b>The six siblings are on screen while you write the seventh.</b> The near-duplicate warning in A04 fires after
-you have written the question; the concept list in the rail prevents you writing it. Same invariant, one
+you have written the question; the concept list in the rail prevents you writing it. Same inpaper, one
 prevents and one scolds.<br><br>
 <b>It asks for the three misconceptions before the three options.</b> The stem is not what takes fifteen minutes
 &mdash; three <i>real</i> beliefs a candidate holds is. Choosing them from a list that has learned this topic&rsquo;s
@@ -696,27 +696,27 @@ next-starved-slot button is the same least-served-first ordering the draw alread
 
 <div class="note bad"><b>And one correction to my own design, forced by arithmetic.</b> I had the length-rank
 budget as a per-slot meter. <b>Per slot it is unmanageable.</b> The target is the correct option being longest
-about a quarter of the time &mdash; <b>2.25 of 9</b>. An author who reaches form 8 at <b>5 of 8</b> cannot recover:
+about a quarter of the time &mdash; <b>2.25 of 9</b>. An author who reaches question 8 at <b>5 of 8</b> cannot recover:
 finishing perfectly still lands at <b>5 of 9 = 56%</b>, against a 25% target. By the time a slot-level meter shows
 a problem, the slot is already spent.<br><br>
 So the budget is <b>tracked at bank level and spent as an instruction</b>: the rail does not report a slot verdict,
-it says <i>&ldquo;keep this one short&rdquo;</i> before the form is written. Same measurement, opposite direction &mdash; a
+it says <i>&ldquo;keep this one short&rdquo;</i> before the question is written. Same measurement, opposite direction &mdash; a
 gate that fires after the fact would simply quarantine work that is already paid for.</div>
 
 <div class="note"><b>Two scales, and they are easy to swap.</b> <b>100</b> is slots &mdash; one per question
-in the real paper, numbered 1&ndash;100, so slot 22 and slot 47 are ordinary neighbours. <b>9</b> is forms
+in the real paper, numbered 1&ndash;100, so slot 22 and slot 47 are ordinary neighbours. <b>9</b> is questions
 <i>inside</i> one slot: the eight a monthly student will draw across their eight sets, plus one spare. Every
 count on this board now carries its unit, because the screen previously showed a bare &ldquo;6 of 9&rdquo; beside
 a slot number and invited exactly the wrong reading.<br><br>
-<b>And the 9 is a formula, not a constant.</b> <code>targetN(slot) = 8k + stream.form_spare</code> &mdash; 9 for the eight-set product,
+<b>And the 9 is a formula, not a constant.</b> <code>targetN(slot) = 8k + stream.question_spare</code> &mdash; 9 for the eight-set product,
 17 if a stream sells sixteen, 25 for twenty-four. <b>Spare is a per-stream setting</b> &mdash; how much quarantine headroom a bank needs is a property of that stream&rsquo;s content, not of the platform. And a slot&rsquo;s own <code>target_n</code> is nullable: it means <i>override</i>, not storage, so raising the stream setting cannot leave stale nines behind in 200 rows. One resolver, every caller.<br><br>
-<b>Growing is additive and safe; promising is not.</b> Forms 10&ndash;17 are new rows in existing slots, and every
+<b>Growing is additive and safe; promising is not.</b> Questions 10&ndash;17 are new rows in existing slots, and every
 prior draw is already recorded, so extending a pool cannot disturb a student mid-journey. Raising
-<code>sets_allowed</code> <i>before</i> those forms exist is the unsafe order &mdash; the product promises a set the
-bank cannot draw and <code>SlotStarved</code> aborts both papers. <b>One more 8-pack is 1,600 forms</b> across the
+<code>sets_allowed</code> <i>before</i> those questions exist is the unsafe order &mdash; the product promises a set the
+bank cannot draw and <code>SlotStarved</code> aborts both papers. <b>One more 8-pack is 1,600 questions</b> across the
 two papers, roughly 3.3 author-months.<br><br>
-<b>One spare tolerates one quarantine per slot, and no more.</b> Eight of nine get drawn; pull one form and eight
-remain, exactly enough. Pull a second and the eighth set cannot be built for anyone who reaches that slot. A06 exists because forms do get pulled &mdash; and the number is now a row, changeable without a deploy. Raising it is forward-looking: it marks slots as needing more forms and blocks a <code>sets_allowed</code> increase, but no student mid-journey is disturbed, because the draw aborts on <i>their</i> eligible set being empty, never on the authoring target.</div>
+<b>One spare tolerates one quarantine per slot, and no more.</b> Eight of nine get drawn; pull one question and eight
+remain, exactly enough. Pull a second and the eighth set cannot be built for anyone who reaches that slot. A06 exists because questions do get pulled &mdash; and the number is now a row, changeable without a deploy. Raising it is forward-looking: it marks slots as needing more questions and blocks a <code>sets_allowed</code> increase, but no student mid-journey is disturbed, because the draw aborts on <i>their</i> eligible set being empty, never on the authoring target.</div>
 
 <h3>A09 &middot; Translation desk &mdash; a different job, so a different screen</h3>
 <p class="cap">9,000 text units per language. A translator makes no structural decisions and should never
@@ -727,7 +727,7 @@ see a structural control.</p>
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/translate?lang=kn&amp;slot=22</span></div>
   <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
-    <span style="font:600 11px Montserrat;color:#6b7280">KANNADA &middot; GS-1 slot <b>22 of 100</b> &middot; 31 of 45 lines ticked <span style="color:#a9a19a">(9 forms &times; 5)</span></span></div>
+    <span style="font:600 11px Montserrat;color:#6b7280">KANNADA &middot; GS-1 slot <b>22 of 100</b> &middot; 31 of 45 lines ticked <span style="color:#a9a19a">(9 questions &times; 5)</span></span></div>
   <div class="a-body">
     <div class="card" style="background:#fdf6e6;border-color:#f0e0bb">
       <div style="font-size:12.5px;color:#8a5a00">Every line starts as a <b>machine draft</b> and counts for nothing until
@@ -735,7 +735,7 @@ see a structural control.</p>
     </div>
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
-        <div class="slot-m">FORM 19 &middot; <code style="font-size:10px">withdrawal-trigger</code></div>
+        <div class="slot-m">QUESTION 19 &middot; <code style="font-size:10px">withdrawal-trigger</code></div>
         <span style="font:600 10.5px Montserrat;color:#a9a19a">ENGLISH &mdash; locked &nbsp;|&nbsp; ಕನ್ನಡ</span>
       </div>
       <div class="tr"><div class="en">The Non-Cooperation Movement was withdrawn after:</div>
@@ -751,7 +751,7 @@ see a structural control.</p>
       <div class="gate" style="margin-top:8px"><u class="g-no">&#10007;</u><span>Option length spread in Kannada</span><em>2.17&times; &middot; ceiling 2.0&times;</em></div>
     </div>
     <div class="card" style="opacity:.5;padding:9px 12px">
-      <div class="slot-m">FORM 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 5 lines, machine draft</div>
+      <div class="slot-m">QUESTION 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 5 lines, machine draft</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <a class="btn btn-g" href="#a07">Send slot 22 (KN) for review</a>
@@ -760,23 +760,23 @@ see a structural control.</p>
   </div>
 </div></div>
 
-<div class="note"><b>Translating through the form editor would repeat the mistake A08 just fixed.</b> A04b is the
+<div class="note"><b>Translating through the question editor would repeat the mistake A08 just fixed.</b> A04b is the
 right screen for fixing <i>one</i> rendering; it is the wrong screen for 9,000 of them, for the same reason a
-create-page is wrong for 1,800 forms. Here the unit is a <b>line</b>: English left and locked, Kannada right and
+create-page is wrong for 1,800 questions. Here the unit is a <b>line</b>: English left and locked, Kannada right and
 editable, tab moves down, and a slot&rsquo;s 45 lines sit on one screen.<br><br>
 <b>Seeded, not blank.</b> Kannada is typed through transliteration and a blank column is the expensive starting
 state. A machine draft turns 9,000 acts of composition into 9,000 acts of <i>reading and correcting</i>, which is
 a different order of work. The safety is already in the design and needs no new rule: <b>publish requires every
 required language approved by a reader of that language</b>, so an unticked machine line cannot reach a
 candidate. The amber tint and the tick exist so that state is visible rather than inferred.<br><br>
-<b>The Kannada gates run here, where they can still be fixed.</b> Form 19&rsquo;s option spread is 2.17&times; in
+<b>The Kannada gates run here, where they can still be fixed.</b> Question 19&rsquo;s option spread is 2.17&times; in
 Kannada against 1.32&times; in English &mdash; a failure created by translation, so it has to surface to the
 translator, not to the author who wrote a clean English item weeks earlier.</div>
 
 <h2>3 · The gates</h2>
 
 <h3>A05 · Bank health — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
-<p class="cap">Bank-wide properties no single form can show. Their acceptance test is that they <b>fail</b> on the two source papers.</p>
+<p class="cap">Bank-wide properties no single question can show. Their acceptance test is that they <b>fail</b> on the two source papers.</p>
 <div class="row"><div>
 <div class="step">A05</div>
 <div class="browser">
@@ -795,10 +795,10 @@ translator, not to the author who wrote a clean English item weeks earlier.</div
     </div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:8px">WHAT THE STUDENT ACTUALLY SEES</div>
-      <div class="gate"><u class="g-ok">✓</u><span>Option order uniformly random per student, per form</span><em>asserted by test</em></div>
-      <div class="gate"><u class="g-no">✗</u><span>Unshuffleable forms capped, and passing the key gates themselves</span><em>31 forms · no cap set</em></div>
+      <div class="gate"><u class="g-ok">✓</u><span>Option order uniformly random per student, per question</span><em>asserted by test</em></div>
+      <div class="gate"><u class="g-no">✗</u><span>Unshuffleable questions capped, and passing the key gates themselves</span><em>31 questions · no cap set</em></div>
       <div style="font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.5">
-        <code>shuffle_safe = false</code> forms render <b>unpermuted</b> — and they are exactly the ones carrying
+        <code>shuffle_safe = false</code> questions render <b>unpermuted</b> — and they are exactly the ones carrying
         "all of the above" and ordered pairs. That subset is the only place letter leakage can reach a student, and
         it is the only one with no rule.</div>
     </div>
@@ -828,16 +828,16 @@ so on that paper, knowing nothing outperforms the worked example. Regenerate bot
 bank, and use these two papers as the gates' fixtures.</div>
 
 <h3>A06 · Quarantine — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
-<p class="cap">Quarantine stops a form being drawn. It does not decide what happens to the answers already given to it — and that is a measurement decision, not housekeeping.</p>
+<p class="cap">Quarantine stops a question being drawn. It does not decide what happens to the answers already given to it — and that is a measurement decision, not housekeeping.</p>
 <div class="row"><div>
 <div class="step">A06</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
-    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/forms/14/quarantine</span></div>
-  <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Quarantine form 14</span></div>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/14/quarantine</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Quarantine question 14</span></div>
   <div class="a-body">
     <div class="card">
-      <div class="slot-h">Form 14 diverges from slot 22</div>
+      <div class="slot-h">Question 14 diverges from slot 22</div>
       <div class="slot-m">88% correct against the slot's 69% · 412 responses · z = 8.3 <span style="color:#2c7a44">(clears the paper-wide 4.24)</span></div>
     </div>
     <div class="card">
@@ -847,20 +847,20 @@ bank, and use these two papers as the gates' fixtures.</div>
       <div class="gate"><u style="background:#6b7280">3</u><span><b>Keep silently</b> — reproducible, and wrong for measurement</span><em>0 cards change</em></div>
       <div style="font-size:11.5px;color:#6b7280;margin-top:9px;line-height:1.5">
         Whichever is chosen is <b>stamped on the card</b>, like <code>explanations_policy</code>, for the same reason.
-        Note <code>attempts_included[]</code> records which attempts fed a card but <b>not which forms</b> — so
+        Note <code>attempts_included[]</code> records which attempts fed a card but <b>not which questions</b> — so
         without <code>forms_included[]</code>, options 1 and 2 are both unimplementable.</div>
     </div>
     <a class="btn btn-g" href="#a02">Cancel</a>
   </div>
 </div></div></div>
 
-<div class="note"><b>Why this screen exists at all.</b> The design said "quarantine ≠ retire: existing variants are
-untouched". That is right for reproducibility and wrong for measurement — a form quarantined for diverging has been
+<div class="note"><b>Why this screen exists at all.</b> The design said "quarantine ≠ retire: existing papers are
+untouched". That is right for reproducibility and wrong for measurement — a question quarantined for diverging has been
 declared <i>not a member of its slot</i>, yet its responses stay in every mean forever, and nothing on any card
 records it.</div>
 
 <h3>A07 &middot; Review queue &mdash; the second pair of eyes</h3>
-<p class="cap">A form goes <b>draft &rarr; in review &rarr; live</b>. Nothing reaches a paying candidate on one
+<p class="cap">A question goes <b>draft &rarr; in review &rarr; live</b>. Nothing reaches a paying candidate on one
 person&rsquo;s say-so.</p>
 <div class="row"><div>
 <div class="step">A07</div>
@@ -882,7 +882,7 @@ person&rsquo;s say-so.</p>
         <span class="st" style="background:#f4f2f0;color:#6b7280">HI</span><span class="st" style="background:#f4f2f0;color:#8a7f76">YOUR OWN &mdash; LOCKED</span></div>
     </div>
     <div class="card">
-      <div class="slot-m" style="margin-bottom:6px">SLOT 22 &middot; FORM 19</div>
+      <div class="slot-m" style="margin-bottom:6px">SLOT 22 &middot; QUESTION 19</div>
       <div style="font:700 13.5px Montserrat;margin-bottom:8px">The Non-Cooperation Movement was withdrawn after:</div>
       <div class="opt correct"><b>A</b><span>the Chauri Chaura incident</span></div>
       <div class="opt"><b>B</b><span>the Jallianwala Bagh massacre<br><span style="color:#6b7280;font-size:11.5px">cause / trigger</span></span></div>
@@ -898,7 +898,7 @@ person&rsquo;s say-so.</p>
 </div></div>
 
 <div class="note bad"><b>This screen did not exist, and its absence was the largest hole on the board.</b>
-Every other admin surface here &mdash; batches, campaigns, evaluation &mdash; has a second actor. MCQ forms went
+Every other admin surface here &mdash; batches, campaigns, evaluation &mdash; has a second actor. MCQ questions went
 <code>draft &rarr; live</code> on a single author&rsquo;s click, which means the four automated gates were the <i>entire</i>
 quality bar. Those gates check structure: a misconception is present, the rank budget holds, the item is safe to
 shuffle. <b>Not one of them can tell whether the answer is correct.</b> Both existing KAS answer keys are already
@@ -910,11 +910,11 @@ that the screen hides but the route allows is not a control.</div>
 <h2>4 · What each screen needs from the backend</h2>
 <table>
 <tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
-<tr><td>A01 blueprint</td><td>slots · published form counts vs 9 · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>A02 workbench</td><td>forms · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A01 blueprint</td><td>slots · published question counts vs 9 · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A02 workbench</td><td>questions · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A03 slot settings</td><td>KMM's weight vector, read-only · <code>target_n</code> = 9</td><td><span class="pill p-ext">EXTENDS</span></td></tr>
-<tr><td>A04b translation</td><td><code>mcq_question_texts</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>A04 form editor</td><td>per-form gate rules live · autosave on the create path · the <code>error_type</code> enum · a <code>concept_key</code> uniqueness probe scoped to the slot</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A04b translation</td><td><code>mcq_question_variants</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A04 question editor</td><td>per-question gate rules live · autosave on the create path · the <code>error_type</code> enum · a <code>concept_key</code> uniqueness probe scoped to the slot</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A07 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A05 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>shuffle_safe</code> population</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A06 quarantine</td><td><code>forms_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
