@@ -207,7 +207,7 @@ it into a decision.</div>
       <div class="attn-row"><b>form 07</b><span>3 distractors have no explanation</span></div>
       <div class="attn-row"><b>form 11</b><span>2 distractors have no explanation</span></div>
       <div class="attn-row"><b>form 14</b><span>88% get it right vs 69% across this slot — <b style="color:#2c7a44">enough data to be sure</b> (412 responses)</span></div>
-      <div class="attn-row"><b>form 19</b><span>91% vs 69% — <span class="tooearly">too early to tell, 23 responses of the 685 needed</span></span></div>
+      <div class="attn-row"><b>form 19</b><span>91% vs 69% — <span class="tooearly">not yet measurable, 23 of the ~365 responses needed</span></span></div>
     </div>
     <div class="okline"><span>14 forms OK</span><span style="font-weight:700;color:#8a4415">show</span></div>
   </div>
@@ -217,10 +217,16 @@ it into a decision.</div>
 The equivalence rule was <code>p_max − p_min ≤ 0.10 across a slot's forms</code>. That is a <b>range statistic</b>,
 and a threshold on a range means nothing without n. The expected range of <b>22 perfectly equivalent forms</b> under
 the null is <code>d₂(22)·√(0.25/n)</code> = <b>0.349 at n=30 · 0.270 at n=50 · 0.191 at n=100</b>. So as written the
-rule quarantines <i>healthy</i> slots until roughly <b>685 responses per form</b> — 15,000 per slot, 1.5M per paper.
-The author pulls a good form, the pool drops below <code>target_n</code>, generation degrades, and nothing says so.
-<b>No verdict may render before it can be true.</b> The plain-English copy survives; the certainty claim had to be
-earned.</div>
+rule quarantines <i>healthy</i> slots. The author pulls a good form, the pool drops below <code>target_n</code>,
+generation degrades, and nothing says so. <b>No verdict may render before it can be true.</b><br><br>
+<b>Waiting for n is necessary and not sufficient.</b> Solving that expression for 0.10 gives <b>n ≈ 365</b> responses
+per form — 8,030 per slot, 803,000 per paper, about <b>380 Advanced students per paper</b> before the check that the
+design calls "the only real equivalence check" can speak at all. But choosing n so that the <i>expected</i> null range
+equals the threshold means, by definition, <b>half of perfectly equivalent slots still exceed it</b>. So the fix is
+not "wait longer" — it is a proper test: a two-proportion z of each form against its slot's pooled p excluding
+itself, with the family-wise correction stated (Bonferroni z<sub>crit</sub> = 3.05 across one slot's 22 forms,
+<b>4.24</b> across a paper's 2,200). A02 must also say which checks are live and which are dormant, so nobody reads a
+quiet slot as a validated one.</div>
 
 <div class="note"><b>Same cause, different symptom.</b> A form added in month 6 is only ever drawn by students already
 ten attempts in — a more practised, self-selected population. Its p is inflated by cohort, not difficulty. So the
@@ -385,7 +391,7 @@ bank, and use these two papers as the gates' fixtures.</div>
   <div class="a-body">
     <div class="card">
       <div class="slot-h">Form 14 diverges from slot 22</div>
-      <div class="slot-m">88% correct against the slot's 69% · 412 responses · z = 4.1</div>
+      <div class="slot-m">88% correct against the slot's 69% · 412 responses · z = 8.3 <span style="color:#2c7a44">(clears the paper-wide 4.24)</span></div>
     </div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:9px">IT HAS ALREADY BEEN ANSWERED 412 TIMES</div>
