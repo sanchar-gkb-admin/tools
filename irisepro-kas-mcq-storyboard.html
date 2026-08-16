@@ -627,7 +627,7 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
         <h5>THIS PAPER</h5>
         <div class="meter"><i style="width:41%"></i></div>
         <div class="k"><b>369 of 900 forms</b><br>41 slots full &middot; 59 to go<br>
-          <span style="color:#a9a19a">100 slots &times; 9 forms<br>9 = 8 sets + 1 spare</span></div>
+          <span style="color:#a9a19a">100 slots &times; 9 forms<br>9 = 8 sets + <b>1 spare</b><br><span style="font-size:9.5px">spare: stream setting</span></span></div>
       </div>
       <div class="blk">
         <h5>WEIGHTS &middot; KMM</h5>
@@ -708,18 +708,15 @@ in the real paper, numbered 1&ndash;100, so slot 22 and slot 47 are ordinary nei
 <i>inside</i> one slot: the eight a monthly student will draw across their eight sets, plus one spare. Every
 count on this board now carries its unit, because the screen previously showed a bare &ldquo;6 of 9&rdquo; beside
 a slot number and invited exactly the wrong reading.<br><br>
-<b>And the 9 is a formula, not a constant.</b> <code>target_n = 8k + 1</code> &mdash; 9 for the eight-set product,
-17 if a stream sells sixteen, 25 for twenty-four. It is already a column; what matters is that the bank gate,
-the blueprint&rsquo;s &ldquo;full&rdquo; marker, the starved-slot queue and <code>SlotStarved</code> all read that one
-value, or raising the allowance leaves some of them certifying against the old number.<br><br>
+<b>And the 9 is a formula, not a constant.</b> <code>targetN(slot) = 8k + stream.form_spare</code> &mdash; 9 for the eight-set product,
+17 if a stream sells sixteen, 25 for twenty-four. <b>Spare is a per-stream setting</b> &mdash; how much quarantine headroom a bank needs is a property of that stream&rsquo;s content, not of the platform. And a slot&rsquo;s own <code>target_n</code> is nullable: it means <i>override</i>, not storage, so raising the stream setting cannot leave stale nines behind in 200 rows. One resolver, every caller.<br><br>
 <b>Growing is additive and safe; promising is not.</b> Forms 10&ndash;17 are new rows in existing slots, and every
 prior draw is already recorded, so extending a pool cannot disturb a student mid-journey. Raising
 <code>sets_allowed</code> <i>before</i> those forms exist is the unsafe order &mdash; the product promises a set the
 bank cannot draw and <code>SlotStarved</code> aborts both papers. <b>One more 8-pack is 1,600 forms</b> across the
 two papers, roughly 3.3 author-months.<br><br>
 <b>One spare tolerates one quarantine per slot, and no more.</b> Eight of nine get drawn; pull one form and eight
-remain, exactly enough. Pull a second and the eighth set cannot be built for anyone who reaches that slot. A06
-exists because forms do get pulled, so whether <code>spare</code> stays at 1 is a live product call.</div>
+remain, exactly enough. Pull a second and the eighth set cannot be built for anyone who reaches that slot. A06 exists because forms do get pulled &mdash; and the number is now a row, changeable without a deploy. Raising it is forward-looking: it marks slots as needing more forms and blocks a <code>sets_allowed</code> increase, but no student mid-journey is disturbed, because the draw aborts on <i>their</i> eligible set being empty, never on the authoring target.</div>
 
 <h3>A09 &middot; Translation desk &mdash; a different job, so a different screen</h3>
 <p class="cap">9,000 text units per language. A translator makes no structural decisions and should never
