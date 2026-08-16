@@ -303,7 +303,7 @@ paper's full specification. Randomising position costs nothing now and is a migr
       <div class="slot-m" style="margin-bottom:7px">GATES</div>
       <div class="gate"><u class="g-no">✗</u><span>Every wrong option names a real misconception</span><em>2 missing</em></div>
       <div class="gate"><u class="g-ok">✓</u><span>Longest option isn't the answer too often</span><em>slot at 27%, ceiling 35%</em></div>
-      <div class="gate"><u class="g-ok">✓</u><span>Option length spread within 2.0×</span><em>1.3×</em></div>
+      <div class="gate"><u class="g-ok">✓</u><span>Correct option's length rank</span><em>slot: longest in 6 of 18 (33%)</em></div>
       <div class="gate"><u class="g-ok">✓</u><span>Safe to shuffle</span><em>no "all of the above"</em></div>
     </div>
     <a class="btn btn-g" href="#a02">Save draft</a>
@@ -311,11 +311,26 @@ paper's full specification. Randomising position costs nothing now and is a migr
 </div></div></div>
 
 <div class="note"><b>The friction is deliberate</b> — requiring a named misconception per wrong option is what
-prevents fillers like <i>"only mountain climbing"</i>. But it is also what <i>creates</i> the longest-option tell,
-since real distractors need qualifying clauses and fillers are two words. <b>The two rules have never been run against
-each other:</b> ≤2.0× length spread pulls one way, "a belief a real candidate actually holds" pulls the other, hardest
-on exactly the higher-order items. Author the exemplar pair and find out which rule bends — before 2,200 forms are
-written against a contradiction.</div>
+prevents fillers like <i>"only mountain climbing"</i>. It was assumed this fought the length rule, since real
+distractors carry qualifying clauses and fillers are two words. <b>We ran the exemplar pair. It doesn't.</b><br><br>
+Take a genuine higher-order item whose correct option needs a clause (129 chars) against lazy distractors (28, 40, 18):
+spread <b>7.17×</b>, fails. Now rewrite those three as beliefs candidates actually hold — the 42nd Amendment origin
+story, the State-vs-Union confusion, the Article 31C inversion — and they come out at 84, 82, 73. Spread <b>1.77×</b>,
+passes. <b>Writing better distractors closes the gap rather than widening it</b>, because a real misconception needs
+about as much qualification as a real answer.<br><br>
+<b>But the correct option is still the longest of the four.</b> The item satisfies the rule and fails the rule's
+purpose — which is the actual defect: <code>max/min ≤ 2.0×</code> constrains <b>spread</b>, and the tell lives in
+<b>rank</b>. Trim the correct option to 57 chars and it becomes the shortest of the four, spread 1.47×, still a
+higher-order item with three real misconceptions, tell gone.</div>
+
+<div class="note bad"><b>So the rule changes.</b> Length-ratio is replaced by <b>rank uniformity</b>: across the bank —
+and <i>per ability</i>, since the tell concentrates in Comprehension and Critical &amp; Analytical — the correct option
+should be the longest about a quarter of the time, the shortest about a quarter, and so on. χ²(3) against uniform,
+critical value 7.815. This subsumes the old rule and closes its mirror exploit: a bank at <b>0%</b> longest-correct
+passes a one-sided ceiling while making "never pick the longest" worth roughly 22 marks.<br><br>
+No per-form verdict — a single item's rank carries no information. A04 shows a running budget instead, and the whole
+discipline is one sentence an author can hold: <b>roughly one question in four should have the shortest option
+correct.</b></div>
 
 <h2>3 · The gates</h2>
 
@@ -408,7 +423,9 @@ records it.</div>
 <tr><td><b>Bilingual or English-only?</b> KAS Prelims papers are bilingual and <code>Question</code> has no language field.</td><td>Everything — it is a schema change once 2,200 forms exist</td></tr>
 <tr><td><b>Does a paper get an ability target</b>, or does the distribution keep accumulating?</td><td>A01, and whether 60%-Comprehension is intentional</td></tr>
 <tr><td><b>Which quarantine policy</b> — recompute, disclose, or keep?</td><td>A06 and the <code>forms_included[]</code> schema</td></tr>
-<tr><td><b>Can a contrastive higher-order question pass both</b> the ≤2.0× length rule and the misconception rule?</td><td>A04 — author the exemplar pair and find out</td></tr>
+<tr><td style="text-decoration:line-through;color:#9ca3af"><b>Can a contrastive higher-order question pass both</b> the ≤2.0× length rule and the misconception rule?</td><td><b style="color:#2c7a44">ANSWERED</b> — yes, both are satisfiable; the ratio rule was the wrong instrument and is replaced by rank uniformity. See §2, A04.</td></tr>
+<tr><td><b>What is <code>k_min</code></b> — the fewest slots that may back a reported ability? Problem-solving is <b>1 question</b> in GS-1; any number printed for it is noise.</td><td>A01's "Blocking" panel, which currently blocks nothing</td></tr>
+<tr><td><b>What are the permitted <code>error_type</code> values?</b> Required on 13,200 wrong options, with no vocabulary defined and a gate whose statistic is <code>non-null</code>.</td><td>A04 — a required free-text field is a vacuous-green trap at this volume</td></tr>
 </table>
 
 </div>
