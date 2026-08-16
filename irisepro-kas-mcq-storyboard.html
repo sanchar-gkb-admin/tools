@@ -88,6 +88,12 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .abgrid{display:grid;grid-template-columns:repeat(20,1fr);gap:2px;margin:8px 0}
 .abgrid i{aspect-ratio:1;border-radius:2px}
 .tooearly{font:600 11.5px Montserrat;color:#8a7f76;font-style:italic}
+.wrow{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:4px 0}
+.wrow span{width:180px;flex:none}
+.wrow i{flex:1;height:8px;background:#f2ece6;border-radius:99px;overflow:hidden;display:block}
+.wrow i b{display:block;height:100%;background:var(--o);border-radius:99px}
+.wrow em{font-style:normal;font:700 12px Montserrat;width:46px;text-align:right;font-variant-numeric:tabular-nums}
+.wrow.dim{color:#a9a19a} .wrow.dim i b{background:#d8cec5}
 </style>
 
 <div class="wrap">
@@ -111,7 +117,7 @@ parsed from the source papers and reconciled against their own summary tables.</
 <table>
 <tr><th>Layer</th><th>Today</th><th>MCQ</th></tr>
 <tr><td>Admin shell</td><td><code>superadmin.layout</code> — nav, auth, styling</td><td><span class="pill p-ex">EXISTS</span> — but the nav is a flat hardcoded <code>&lt;a&gt;</code> list (<code>:110-334</code>) with no section primitive, and the layout has <b>no <code>@stack('scripts')</code></b>, so MCQ admin JS must inline <code>@once</code></td></tr>
-<tr><td>Ability tagging</td><td><code>partials/skills-picker</code> — membership checklist posting <code>abilities[]</code> as <code>pillar.ability</code></td><td><span class="pill p-ext">EXTENDS</span> — <b>not</b> reusable verbatim: <code>:79</code> emits a task-scoped <code>abilities-json</code> route unconditionally, outside the <code>@isset</code> guard, and <code>:136-138</code> always renders <code>headline_abilities[]</code>. Needs <code>$abilitiesUrl</code> and <code>$showHeadline</code></td></tr>
+<tr><td>Ability tagging</td><td><code>partials/skills-picker</code> — membership checklist posting <code>abilities[]</code> as <code>pillar.ability</code></td><td><span class="pill p-new">NOT REUSED</span> — <code>skills-picker</code> is a <i>membership checklist</i>; a slot now carries a 15-value weight vector authored by KMM. Different data, different screen, read-only</td></tr>
 <tr><td>Slot / form authoring</td><td>— <i>(tasks are authored one at a time)</i></td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>Statistical gates</td><td>—</td><td><span class="pill p-new">NEW</span> — and they are the point of this admin, not a report on it</td></tr>
 </table>
@@ -130,10 +136,10 @@ parsed from the source papers and reconciled against their own summary tables.</
 
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:9px">
-        <div><div class="slot-h">100 slots</div>
-             <div class="slot-m">Basic needs 4 forms each · Intermediate 8 · Advanced 22</div></div>
-        <div style="text-align:right"><span class="count">137<small> / 400</small></span>
-             <div class="slot-m">Basic tier</div></div>
+        <div><div class="slot-h">100 slots · 9 forms each</div>
+             <div class="slot-m">8 sets + 1 spare · 1,800 forms across both papers</div></div>
+        <div style="text-align:right"><span class="count">137<small> / 900</small></span>
+             <div class="slot-m">GS-1</div></div>
       </div>
       <div class="bar"><i style="background:var(--ok);width:34%"></i><i style="background:var(--warn);width:31%"></i><i style="background:#f0e6dd;width:35%"></i></div>
       <div class="grid-slots">
@@ -156,16 +162,17 @@ parsed from the source papers and reconciled against their own summary tables.</
         <i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#a34a7f"></i><i style="background:#a34a7f"></i><i style="background:#6b7280"></i><i style="background:#6b7280"></i><i style="background:#d4574e"></i>
       </div>
       <div style="font:600 11px Montserrat;color:#6b7280;display:flex;gap:12px;flex-wrap:wrap">
-        <span style="color:#F58321">■ Comprehension 60</span><span style="color:#3f7fb8">■ Attention to Detail 25</span>
-        <span style="color:#7a5cb5">■ Critical &amp; Analytical 10</span><span style="color:#a34a7f">■ Accountability 2</span>
-        <span style="color:#6b7280">■ Leadership 2</span><span style="color:#d4574e">■ Problem-solving 1</span></div>
+        <span style="color:#F58321">■ Comprehension Σw 32.7</span><span style="color:#3f7fb8">■ Attention to Detail 28.7</span>
+        <span style="color:#7a5cb5">■ Critical &amp; Analytical 10.3</span><span style="color:#a34a7f">■ Decision-making 9.7</span>
+        <span style="color:#6b7280">■ 11 others</span></div>
+      <div style="font-size:11px;color:#a9a19a;margin-top:5px">Σ of all 15 weights = 100.0, one unit per slot. Every ability carries some weight in every slot.</div>
     </div>
 
     <div class="attn red">
       <h5>Blocking</h5>
       <div class="attn-row"><b>9 slots</b><span>have no forms — the paper cannot generate</span></div>
-      <div class="attn-row"><b>60 of 100</b><span>slots are Comprehension. Six abilities carry the whole paper.</span></div>
-      <div class="attn-row"><b>3 of 15</b><span>Steadfastness, Discipline, Conflict Resolution — no slot measures them</span></div>
+      <div class="attn-row"><b>4 of 15</b><span>Structure, Time management, Steadfastness, Discipline — weight is <b>uniform</b> across all 100 slots (CV = 0.00), so each would report the student's overall score under an ability's name</span></div>
+      <div class="attn-row"><b>Comprehension</b><span>32.7% of the paper's total weight — one ability carries a third of it</span></div>
     </div>
   </div>
 </div></div></div>
@@ -253,31 +260,37 @@ at the same attempt index.</div>
       </table>
     </div>
     <div class="card">
-      <div class="slot-m" style="margin-bottom:8px">FORMS NEEDED — one target per tier, not one scalar</div>
+      <div class="slot-m" style="margin-bottom:8px">FORMS NEEDED</div>
       <table style="margin:0">
-        <tr><th style="width:32%">Basic · 3 attempts</th><td>4 &nbsp;<span style="color:#2c7a44;font-size:12px">✓ have 18</span></td></tr>
-        <tr><th>Intermediate · 7</th><td>8 &nbsp;<span style="color:#2c7a44;font-size:12px">✓ have 18</span></td></tr>
-        <tr><th>Advanced · 21</th><td>22 &nbsp;<span style="color:#a8541b;font-size:12px">⚠ have 18</span></td></tr>
+        <tr><th style="width:32%">8 sets + 1 spare</th><td>9 &nbsp;<span style="color:#2c7a44;font-size:12px">✓ have 18</span></td></tr>
       </table>
     </div>
     <div class="card">
-      <div class="slot-m" style="margin-bottom:8px">ABILITIES — <span style="color:#8a4415">skills-picker, on a slot-scoped route</span></div>
-      <div>
-        <span class="chk on">✓ Attention to Detail</span><span class="chk on">✓ Memory</span><span class="chk on">✓ Decision-making</span>
-        <span class="chk">Comprehension</span><span class="chk">Critical &amp; Analytical Thinking</span><span class="chk">Problem-solving</span>
-        <span class="chk">Mental Dexterity</span><span class="chk">Efficiency</span>
-      </div>
-      <div style="margin-top:11px;font-size:12.5px;color:#6b7280">Copy from slot… &nbsp;·&nbsp; 3 of 64 selected</div>
+      <div class="slot-m" style="margin-bottom:3px">ABILITY WEIGHTS — <span style="color:#8a4415">authored by KMM, validated here</span></div>
+      <div style="font-size:11.5px;color:#6b7280;margin-bottom:9px">All 15 KAS abilities. Σ = 1.000. Read-only — edits go back to the source file.</div>
+      <div class="wrow"><span>Attention to Detail</span><i><b style="width:44%"></b></i><em>0.435</em></div>
+      <div class="wrow"><span>Comprehension</span><i><b style="width:44%"></b></i><em>0.435</em></div>
+      <div class="wrow"><span>Decision-making</span><i><b style="width:5%"></b></i><em>0.048</em></div>
+      <div class="wrow"><span>Critical &amp; Analytical Thinking</span><i><b style="width:1.4%"></b></i><em>0.014</em></div>
+      <div class="wrow dim"><span>Problem-solving</span><i><b style="width:1%"></b></i><em>0.010</em></div>
+      <div class="wrow dim"><span>Accountability</span><i><b style="width:1%"></b></i><em>0.010</em></div>
+      <div class="wrow dim"><span>+ 9 more at 0.010</span><i></i><em>0.090</em></div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);
+                  margin-top:8px;padding-top:8px;font:800 12px Montserrat">
+        <span>15 abilities</span><span style="color:#2c7a44">Σ = 1.000 ✓</span></div>
     </div>
-    <a class="btn" href="#a02">Save slot</a>
+    <a class="btn btn-g" href="#a05">See paper-level validation</a>
   </div>
 </div></div></div>
 
-<div class="note bad"><b>Two corrections here.</b> <code>target_n</code> was a single scalar on the Slot while the
-tiers need 4 / 8 / 22 — one slot cannot hold three values. Size for the top tier and a Basic student sees 3 of 22
-(14%, where the fairness argument fails); size separately and Basic and Advanced students answer <b>different item
-sets</b> with incomparable percentages, recorded nowhere. Key it on <code>(slot_id, tier)</code> and stamp
-<code>pool_tier</code> on the Variant.<br><br>
+<div class="note bad"><b>The tier ladder is gone, and it took a problem with it.</b> <code>target_n</code> was a
+single scalar while the old tiers needed 4 / 8 / 22 — one slot cannot hold three values, and sizing separately meant
+Basic and Advanced students answered <b>different item sets</b> with incomparable percentages. Under the set model
+there is one number: <b>9 forms</b> — 8 sets plus a spare. Every student draws from one pool. <b>1,800 forms across
+both papers instead of 4,400, a 59% cut, and one author can finish it in 3.6–6 months.</b><br><br>
+<b>And the weights are not ours to write.</b> KMM authors the ability mapping; this screen validates it. That is the
+right split — the judgement about what a question demands belongs to the framework's author, and the arithmetic about
+whether the resulting vector can support a claim belongs here.<br><br>
 And <b>position must be randomised per student.</b> Slot identity was fixed to <code>(paper_id, seq_no)</code> with
 shuffling only <i>within</i> an area — but both source papers are positionally blocked <i>by</i> area (GS-1's 16 areas
 fall in 22 contiguous runs; GS-2 is three blocks of 40/30/30). So position predicts area and area predicts ability,
@@ -367,6 +380,18 @@ correct.</b></div>
         "all of the above" and ordered pairs. That subset is the only place letter leakage can reach a student, and
         it is the only one with no rule.</div>
     </div>
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:8px">KMM'S WEIGHT FILE — ON ARRIVAL</div>
+      <div class="gate"><u class="g-ok">✓</u><span>Exactly 15 abilities, all on the KAS whitelist</span><em>no bare "Structure"</em></div>
+      <div class="gate"><u class="g-ok">✓</u><span>Σ weights = 1.000 per slot</span><em>100 of 100</em></div>
+      <div class="gate"><u class="g-ok">✓</u><span>Every weight above zero</span><em>1,500 of 1,500</em></div>
+      <div class="gate"><u class="g-no">✗</u><span><b>Each ability's weight varies across slots</b> (CV ≥ 0.5)</span><em>4 abilities at CV 0.00</em></div>
+      <div class="gate"><u class="g-no">✗</u><span>Effective evidence per ability ≥ k<sub>min</sub></span><em>k<sub>min</sub> undecided</em></div>
+      <div style="font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.5">
+        The fourth gate is the one that will bite, and it needs raising with KMM <b>before</b> they finalise.
+        An ability weighted the same in every slot cannot be told apart from the total score — the weighted
+        average collapses to the plain mean.</div>
+    </div>
     <div class="attn red">
       <h5>Acceptance test — these gates must FAIL on the source papers</h5>
       <div class="attn-row"><b>GS-1</b><span>100 of 100 answers follow a strict A,B,C,D cycle · A=25 B=25 C=25 D=25</span></div>
@@ -415,9 +440,9 @@ records it.</div>
 <h2>4 · What each screen needs from the backend</h2>
 <table>
 <tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
-<tr><td>A01 blueprint</td><td>slots · published form counts per tier · the paper's ability distribution</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A01 blueprint</td><td>slots · published form counts vs 9 · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A02 workbench</td><td>forms · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>A03 slot settings</td><td><code>skills-picker</code> on a slot route · <code>target_n</code> per <code>(slot, tier)</code></td><td><span class="pill p-ext">EXTENDS</span></td></tr>
+<tr><td>A03 slot settings</td><td>KMM's weight vector, read-only · <code>target_n</code> = 9</td><td><span class="pill p-ext">EXTENDS</span></td></tr>
 <tr><td>A04 form editor</td><td>per-form gate rules, live</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A05 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>shuffle_safe</code> population</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A06 quarantine</td><td><code>forms_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
@@ -426,7 +451,7 @@ records it.</div>
 <h2>5 · Open before build</h2>
 <table>
 <tr><th>Question</th><th>Blocks</th></tr>
-<tr><td><b>Bilingual or English-only?</b> KAS Prelims papers are bilingual and <code>Question</code> has no language field.</td><td>Everything — it is a schema change once 2,200 forms exist</td></tr>
+<tr><td><b>Bilingual or English-only?</b> KAS Prelims papers are bilingual and <code>Question</code> has no language field.</td><td>Everything — and it now costs nothing, because KMM is authoring fresh papers</td></tr>
 <tr><td><b>Does a paper get an ability target</b>, or does the distribution keep accumulating?</td><td>A01, and whether 60%-Comprehension is intentional</td></tr>
 <tr><td><b>Which quarantine policy</b> — recompute, disclose, or keep?</td><td>A06 and the <code>forms_included[]</code> schema</td></tr>
 <tr><td style="text-decoration:line-through;color:#9ca3af"><b>Can a contrastive higher-order question pass both</b> the ≤2.0× length rule and the misconception rule?</td><td><b style="color:#2c7a44">ANSWERED</b> — yes, both are satisfiable; the ratio rule was the wrong instrument and is replaced by rank uniformity. See §2, A04.</td></tr>
