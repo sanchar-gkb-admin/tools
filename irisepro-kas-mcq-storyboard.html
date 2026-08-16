@@ -307,10 +307,18 @@ at the same attempt index.</div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:9px">THE STRATUM — every form inherits all of it</div>
       <table style="margin:0">
-        <tr><th style="width:32%">Topic</th><td>Indian National Movement</td></tr>
-        <tr><th>Cognitive demand</th><td>recall a precise date</td></tr>
-        <tr><th>Difficulty band</th><td>moderate</td></tr>
-        <tr><th>Position in paper</th><td>randomised per student &nbsp;<span style="color:#6b7280;font-size:12px">— never a fixed seq_no</span></td></tr>
+        <tr><th style="width:32%">Topic</th><td>Indian National Movement
+          <span style="color:#a9a19a;font-size:11.5px">&nbsp;— authoring guidance</span></td></tr>
+        <tr><th>Cognitive demand</th><td>recall a precise date
+          <span style="color:#a9a19a;font-size:11.5px">&nbsp;— authoring guidance</span></td></tr>
+        <tr><th>Area</th><td>History
+          <span style="color:#2c7a44;font-size:11.5px">&nbsp;— shuffle boundary &middot; scorecard breakdown</span></td></tr>
+        <tr><th>Difficulty band</th><td>moderate
+          <span style="color:#2c7a44;font-size:11.5px">&nbsp;— sets this slot&rsquo;s 60s benchmark</span></td></tr>
+        <tr><th>Slot number <code>seq_no</code></th><td><b>22 &mdash; fixed, permanent</b>
+          <span style="color:#a9a19a;font-size:11.5px">&nbsp;— the slot&rsquo;s identity, unique in the paper</span></td></tr>
+        <tr><th>Position on screen</th><td>randomised per student, <b>within History only</b>
+          <span style="color:#a9a19a;font-size:11.5px">&nbsp;— a separate number, <code>presentation_order</code></span></td></tr>
       </table>
     </div>
     <div class="card">
@@ -363,6 +371,34 @@ shuffling only <i>within</i> an area — but both source papers are positionally
 fall in 22 contiguous runs; GS-2 is three blocks of 40/30/30). So position predicts area and area predicts ability,
 for every student, on every attempt, forever. By attempt 5 a student has the blueprint; one study group has the
 paper's full specification. Randomising position costs nothing now and is a migration later.</div>
+
+<div class="note bad"><b>Two numbers, and this row previously conflated them.</b> It read
+&ldquo;<i>Position in paper &mdash; randomised per student, never a fixed seq_no</i>&rdquo;. <code>seq_no</code> is
+precisely fixed: it is the slot&rsquo;s identity, unique within the paper, the order the draw walks, and half the
+primary key of every response row. What is randomised is <code>presentation_order</code>, a different number
+living on the student&rsquo;s variant.<br><br>
+<b>Write the screen position into <code>mcq_responses.seq_no</code> and every answer is attributed to the wrong
+slot</b> &mdash; therefore to the wrong weight vector, therefore to the wrong abilities. It would not throw, it
+would not look wrong, and the scorecard would be confidently, invisibly false. The caption was an instruction to
+build exactly that.<br><br>
+<b>And the shuffle is bounded by area</b> (<code>shuffleWithinArea</code>), so &ldquo;randomised&rdquo; was never the
+whole truth either: a History slot stays among History questions. A candidate who has budgeted their time by
+section still finds the paper in sections.</div>
+
+<div class="note"><b>What each field on this screen is actually for &mdash; traced to its consumer, not assumed.</b><br><br>
+<b>Area &mdash; two real consumers.</b> It bounds the shuffle, and it is the &ldquo;where did I lose marks&rdquo;
+breakdown on the scorecard. The only field here the running system reads twice.<br><br>
+<b>Difficulty band &mdash; one intended consumer, currently unwired.</b> The archetype carries
+<code>ideal_seconds {"easy":45,"medium":60,"hard":90}</code>, keyed by exactly this enum &mdash; so the band is what
+sets a slot&rsquo;s per-question time benchmark, and the 60s in the student&rsquo;s pace bar comes from here. <b>No
+spec line says that lookup happens.</b> The link is implied by the enum values matching, which is not a link. It
+is also the one field with a way to check itself: observed proportion-correct against the declared band, once
+responses exist.<br><br>
+<b>Topic and cognitive demand &mdash; read by people, not by code.</b> Zero runtime consumers, and that is not a
+defect. Their job was to <i>construct</i> the blueprint &mdash; grouping the existing questions by topic &times;
+ability set &times; band is how the 100 slots came to exist &mdash; and now they tell an author what a replacement
+form has to be. Calling that out matters because a field with no consumer is normally a bug, and these two are
+the exception rather than an oversight.</div>
 
 <h3>A04 · Form editor — the ONE screen an author actually types in</h3>
 <p class="cap">Everything else on this board is a view or a check. This is the surface where 1,800 forms get
