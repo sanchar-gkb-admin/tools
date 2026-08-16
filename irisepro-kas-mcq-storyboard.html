@@ -108,6 +108,15 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
       font-size:12.5px;color:#8a5a00;margin-bottom:9px}
 .rq{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
 .rq:first-of-type{border-top:0}
+.langs{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}
+.langs a{font:800 10.5px Montserrat;padding:5px 11px;border-radius:99px;text-decoration:none;
+  border:1px solid var(--line);color:#8a7f76;background:#fff;display:flex;gap:5px;align-items:center}
+.langs a.on{background:var(--o-deep);border-color:var(--o-deep);color:#fff}
+.langs a i{width:6px;height:6px;border-radius:99px;background:#c9c1b9;font-style:normal}
+.langs a.on i{background:#ffd9b8}
+.langs a.done i{background:#2c7a44}
+.langs a.todo i{background:#e0a99c}
+.lk{font:600 11px Montserrat;color:#a9a19a;display:flex;gap:5px;align-items:center}
 .rq .who{font:600 11px Montserrat;color:#a9a19a;width:74px;flex:none}
 .rq .st{font:800 10px Montserrat;padding:3px 8px;border-radius:99px;flex:none}
 .wrow{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:4px 0}
@@ -344,6 +353,13 @@ written, so every second of friction here is multiplied by 1,800.</p>
     <span style="font:600 11px Montserrat;color:#6b7280">Form 19 of 9 needed &middot; draft &middot; <span class="saved">saved 12s ago</span></span></div>
   <div class="a-body">
 
+    <div class="langs">
+      <a class="on" href="#a04"><i></i>EN &middot; source</a>
+      <a class="done" href="#a04b"><i></i>KN</a>
+      <a class="todo" href="#a04b"><i></i>HI</a>
+      <a href="#a04" style="border-style:dashed">+ language</a>
+    </div>
+
     <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
       <div style="font:700 12px Montserrat;color:#8a4415">Inherited from slot 22 &mdash; not editable here</div>
       <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">Indian National Movement &middot; recall a precise date &middot; moderate &middot; 60s</div>
@@ -420,6 +436,94 @@ student&rsquo;s &ldquo;you made this error 4 times&rdquo; line; as prose it powe
 <b>The near-duplicate warning fires on the concept key, live.</b> <code>I4</code> promises a student never sees the same
 concept twice across 1,600 draws. That promise is kept by an index at draw time &mdash; but discovering the clash
 then means a paper that cannot be built. Catching it while the author is still on the page costs one line.</div>
+
+<h3>A04b &middot; The same form in Kannada &mdash; text is editable, structure is not</h3>
+<p class="cap">Switching language does not open a second question. It opens a second <i>rendering</i> of one question.</p>
+<div class="row"><div>
+<div class="step">A04b</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/forms/19?lang=kn</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
+    <span style="font:600 11px Montserrat;color:#6b7280">Form 19 &middot; KN translation &middot; <span class="saved">saved 4s ago</span></span></div>
+  <div class="a-body">
+
+    <div class="langs">
+      <a class="done" href="#a04"><i></i>EN &middot; source</a>
+      <a class="on" href="#a04b"><i></i>KN</a>
+      <a class="todo" href="#a04b"><i></i>HI</a>
+      <a href="#a04b" style="border-style:dashed">+ language</a>
+    </div>
+
+    <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
+      <div style="font:700 12px Montserrat;color:#8a4415">Locked &mdash; these belong to the question, not to a language</div>
+      <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">correct option <b>A</b> &middot; concept key
+        <code>inm.ncm.withdrawal-trigger</code> &middot; error types <b>cause/trigger</b>, <b>era confusion</b> &times;2
+        &middot; weights <b>AtD 50 &middot; Comp 26 &middot; DM 12</b> &middot; 60s</div>
+    </div>
+
+    <div class="card">
+      <div class="slot-m">ಪ್ರಶ್ನೆ · QUESTION</div>
+      <div style="font:600 11px Montserrat;color:#a9a19a;margin:4px 0 3px">EN &mdash; The Non-Cooperation Movement was withdrawn after:</div>
+      <input class="fld area" value="ಅಸಹಕಾರ ಚಳವಳಿಯನ್ನು ಯಾವುದರ ನಂತರ ಹಿಂಪಡೆಯಲಾಯಿತು:">
+
+      <div class="orow ok">
+        <div class="top"><b>A</b><input value="ಚೌರಿ ಚೌರಾ ಘಟನೆ"><span class="saved">&#10003; CORRECT</span></div>
+        <div class="why"><span class="lk">&#128274; cause is fixed by the question</span></div>
+      </div>
+      <div class="orow">
+        <div class="top"><b>B</b><input value="ಜಲಿಯನ್‌ವಾಲಾ ಬಾಗ್ ಹತ್ಯಾಕಾಂಡ"></div>
+        <div class="why"><span class="lk">&#128274; cause / trigger</span><input value="ಚಳವಳಿಯ ಕಾರಣವನ್ನು ಅದು ಕೊನೆಗೊಂಡ ಕಾರಣದೊಂದಿಗೆ ಸಂಕರಿಸುತ್ತದೆ"></div>
+      </div>
+      <div class="orow">
+        <div class="top"><b>C</b><input value="ಭಾರತದ ವಿಭಜನೆ"></div>
+        <div class="why"><span class="lk">&#128274; era confusion</span><input value="&#8212;"></div>
+      </div>
+      <div class="orow">
+        <div class="top"><b>D</b><input value="ರಾಯಲ್ ಇಂಡಿಯನ್ ನೌಕಾಪಡೆ ದಂಗೆ"></div>
+        <div class="why"><span class="lk">&#128274; era confusion</span><input value="&#8212;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:7px">GATES &mdash; RE-RUN FOR KANNADA</div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Safe to shuffle</span><em>no positional phrase in KN either</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>3rd of 4 &mdash; same as EN</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>Option length spread</span><em>EN 1.32&times; &middot; <b>KN 2.17&times;</b></em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>Every rendering reviewed by a reader of that language</span><em>KN unreviewed &middot; HI absent</em></div>
+    </div>
+
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <a class="btn btn-g" href="#a07">Submit KN for review</a>
+      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Back to source</a>
+    </div>
+  </div>
+</div></div>
+
+<div class="note"><b>One question, N renderings &mdash; and the split is not cosmetic.</b><br><br>
+<b>Per language:</b> the stem, the four option texts, the explanation, and the misconception prose.
+<b>Not per language:</b> which option is correct, the <code>concept_key</code>, each distractor&rsquo;s
+<code>error_type</code>, <code>shuffle_safe</code>, the slot&rsquo;s weights, the timing. A diagnosis is a fact about the
+option, not about its wording &mdash; so a Kannada candidate picking C and an English candidate picking C made the
+same error, and the scorecard can say so.<br><br>
+<b>Model each language as its own question row and three things break at once.</b> <code>unique(slot_id, form_no)</code>
+stops holding. The draw counts 27 forms in a slot that has 9, so it believes it has three times the bank it has.
+And a student could draw the English and the Kannada rendering of one item across their eight sets &mdash; the exact
+repeat <code>I4</code> exists to forbid, invisible to an index keyed on the question id.<br><br>
+<b>An item goes live only when every required language has passed review.</b> Per-language availability sounds
+kinder to the schedule and is the trap: it silently gives Kannada candidates a smaller pool per slot, and the
+no-repeat guarantee is arithmetic over that pool. Nine forms per slot has to mean nine <i>in every language on
+offer</i>, or it means nothing for the candidate sitting in Kannada.</div>
+
+<div class="note bad"><b>The gates must re-run per language, and this item proves why with its own numbers.</b>
+Rank held &mdash; the correct option is 3rd of 4 in both scripts. <b>Spread did not.</b> English runs 22&ndash;29
+characters, a ratio of <b>1.32&times;</b>; the same four options in Kannada run 12&ndash;26, a ratio of
+<b>2.17&times;</b>, which clears the old 2.0&times; ceiling that the English rendering passes comfortably.<br><br>
+One item, one gate, <b>two different verdicts</b> &mdash; from translation alone. So a bank certified in English is
+not certified. Kannada is agglutinative and written in a script with its own density; character counts are simply
+a different measurement there, and any rule expressed in characters has to be evaluated where it is read.<br><br>
+<i>(Rank being stable here is one item, not a finding &mdash; it is the reason the rank budget is tracked per
+language too rather than assumed to travel.)</i></div>
 
 <div class="note"><b>The friction is deliberate</b> — requiring a named misconception per wrong option is what
 prevents fillers like <i>"only mountain climbing"</i>. It was assumed this fought the length rule, since real
@@ -537,18 +641,19 @@ person&rsquo;s say-so.</p>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/review</span></div>
-  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">14 awaiting review</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">14 awaiting review &middot; 3 languages</span></div>
   <div class="a-body">
     <div class="card">
       <div class="slot-m" style="margin-bottom:4px">AWAITING REVIEW</div>
       <div class="rq"><span class="who">R. Menon</span><span style="flex:1">Slot 22 &middot; <i>&ldquo;The Non-Cooperation Movement was withdrawn after&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
+        <span class="st" style="background:#f4f2f0;color:#6b7280">EN</span><span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
+      <div class="rq"><span class="who">S. Kulkarni</span><span style="flex:1">Slot 22 &middot; <i>&ldquo;ಅಸಹಕಾರ ಚಳವಳಿಯನ್ನು ಯಾವುದರ ನಂತರ&hellip;&rdquo;</i></span><span class="st" style="background:#f4f2f0;color:#6b7280">KN</span><span class="st" style="background:#fdf6e6;color:#8a5a00">SPREAD 2.17&times;</span></div>
       <div class="rq"><span class="who">R. Menon</span><span style="flex:1">Slot 23 &middot; <i>&ldquo;Which of the following best describes Article 31C&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
+        <span class="st" style="background:#f4f2f0;color:#6b7280">EN</span><span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
       <div class="rq"><span class="who">A. Shetty</span><span style="flex:1">Slot 41 &middot; <i>&ldquo;The Doctrine of Lapse was applied to&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#fdf6e6;color:#8a5a00">RANK BUDGET</span></div>
+        <span class="st" style="background:#f4f2f0;color:#6b7280">EN</span><span class="st" style="background:#fdf6e6;color:#8a5a00">RANK BUDGET</span></div>
       <div class="rq" style="opacity:.45"><span class="who">You</span><span style="flex:1">Slot 60 &middot; <i>&ldquo;Under the 42nd Amendment, the word&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#f4f2f0;color:#8a7f76">YOUR OWN &mdash; LOCKED</span></div>
+        <span class="st" style="background:#f4f2f0;color:#6b7280">HI</span><span class="st" style="background:#f4f2f0;color:#8a7f76">YOUR OWN &mdash; LOCKED</span></div>
     </div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:6px">SLOT 22 &middot; FORM 19</div>
@@ -573,7 +678,7 @@ quality bar. Those gates check structure: a misconception is present, the rank b
 shuffle. <b>Not one of them can tell whether the answer is correct.</b> Both existing KAS answer keys are already
 known-bad &mdash; GS-1&rsquo;s is a perfect A,B,C,D cycle, GS-2&rsquo;s is 61% &ldquo;A&rdquo; &mdash; so &ldquo;the author checked it&rdquo;
 is a bar this content has demonstrably failed before.<br><br>
-<b>The reviewer may not be the author</b> (row 4, locked). Enforce it in the transition, not the UI: a self-approval
+<b>A translation needs a reviewer who reads that language</b> &mdash; an English speaker approving Kannada is a rubber stamp with a name on it, and the queue is filtered by what a reviewer can read. <b>The reviewer may not be the author</b> (row 4, locked), and a translator may not approve their own translation. Enforce it in the transition, not the UI: a self-approval
 that the screen hides but the route allows is not a control.</div>
 
 <h2>4 · What each screen needs from the backend</h2>
@@ -582,8 +687,9 @@ that the screen hides but the route allows is not a control.</div>
 <tr><td>A01 blueprint</td><td>slots · published form counts vs 9 · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A02 workbench</td><td>forms · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A03 slot settings</td><td>KMM's weight vector, read-only · <code>target_n</code> = 9</td><td><span class="pill p-ext">EXTENDS</span></td></tr>
+<tr><td>A04b translation</td><td><code>mcq_question_texts</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A04 form editor</td><td>per-form gate rules live · autosave on the create path · the <code>error_type</code> enum · a <code>concept_key</code> uniqueness probe scoped to the slot</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>A07 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code></td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A07 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A05 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>shuffle_safe</code> population</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A06 quarantine</td><td><code>forms_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
 </table>
