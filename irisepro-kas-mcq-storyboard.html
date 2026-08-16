@@ -88,6 +88,28 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .abgrid{display:grid;grid-template-columns:repeat(20,1fr);gap:2px;margin:8px 0}
 .abgrid i{aspect-ratio:1;border-radius:2px}
 .tooearly{font:600 11.5px Montserrat;color:#8a7f76;font-style:italic}
+.fld{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:400 13px Montserrat;
+     background:#fff;margin-bottom:7px;display:block;color:var(--ink)}
+.fld.area{min-height:44px}
+.orow{border:1px solid var(--line);border-radius:9px;padding:9px 10px;margin-bottom:8px;background:#fff}
+.orow.ok{border-color:#a9dab6;background:#f6fcf7}
+.orow.bad{border-color:#eec4bf;background:#fdf7f6}
+.orow .top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.orow .top b{width:20px;height:20px;border-radius:99px;background:var(--cream2);color:var(--o-deep);
+     font:800 10px Montserrat;display:grid;place-items:center;flex:none}
+.orow .top input{flex:1;border:0;font:600 13px Montserrat;background:transparent;color:var(--ink)}
+.orow .why{display:flex;gap:7px;align-items:center}
+.orow .why input{flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:400 12px Montserrat}
+.sel{border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:600 11.5px Montserrat;
+     background:#fbf9f7;color:#6b4a33;flex:none}
+.sel.empty{border-color:#e0a99c;color:#b4381f;background:#fdf5f4}
+.saved{font:600 11px Montserrat;color:#2c7a44}
+.warn{background:#fdf6e6;border:1px solid #f0e0bb;border-radius:8px;padding:8px 11px;
+      font-size:12.5px;color:#8a5a00;margin-bottom:9px}
+.rq{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
+.rq:first-of-type{border-top:0}
+.rq .who{font:600 11px Montserrat;color:#a9a19a;width:74px;flex:none}
+.rq .st{font:800 10px Montserrat;padding:3px 8px;border-radius:99px;flex:none}
 .wrow{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:4px 0}
 .wrow span{width:180px;flex:none}
 .wrow i{flex:1;height:8px;background:#f2ece6;border-radius:99px;overflow:hidden;display:block}
@@ -200,7 +222,7 @@ it into a decision.</div>
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div>
           <div class="slot-h">Indian National Movement · recall a precise date · moderate</div>
-          <div class="slot-m">Attention to Detail · Memory · Decision-making</div>
+          <div class="slot-m">AtD 50 · Comp 26 · DM 12 · +12 more</div>
         </div>
         <a class="btn btn-g" href="#a03">edit slot</a>
       </div>
@@ -241,8 +263,8 @@ rule's most reliable behaviour is to flag <b>the newest content</b> as too easy,
 137-of-400 shortfall depends on. Store <code>p_value_by_attempt_index[]</code>, not a scalar, and compare forms only
 at the same attempt index.</div>
 
-<h3>A03 · Slot settings — the one place abilities are chosen</h3>
-<p class="cap">Set once for the whole slot: 100 decisions per paper instead of 2,200.</p>
+<h3>A03 · Slot settings — a weight CHECK, not an ability picker</h3>
+<p class="cap">This screen changed shape. Previously the author <i>picked</i> a subset of abilities — an input. Now every slot carries all fifteen with weights, <b>KMM authors the vector</b>, and the admin validates it.</p>
 <div class="row"><div>
 <div class="step">A03</div>
 <div class="browser">
@@ -310,37 +332,94 @@ fall in 22 contiguous runs; GS-2 is three blocks of 40/30/30). So position predi
 for every student, on every attempt, forever. By attempt 5 a student has the blueprint; one study group has the
 paper's full specification. Randomising position costs nothing now and is a migration later.</div>
 
-<h3>A04 · Form editor — no ability picker, live gates</h3>
-<p class="cap">The author answers one question here: <i>does this question do what its slot claims?</i></p>
+<h3>A04 · Form editor — the ONE screen an author actually types in</h3>
+<p class="cap">Everything else on this board is a view or a check. This is the surface where 1,800 forms get
+written, so every second of friction here is multiplied by 1,800.</p>
 <div class="row"><div>
 <div class="step">A04</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/forms/new</span></div>
-  <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Form 19 · draft</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
+    <span style="font:600 11px Montserrat;color:#6b7280">Form 19 of 9 needed &middot; draft &middot; <span class="saved">saved 12s ago</span></span></div>
   <div class="a-body">
+
     <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
-      <div style="font:700 12px Montserrat;color:#8a4415">Inherited from slot 22 — not editable here</div>
-      <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">Indian National Movement · recall a precise date · moderate · Attention to Detail, Memory, Decision-making</div>
+      <div style="font:700 12px Montserrat;color:#8a4415">Inherited from slot 22 &mdash; not editable here</div>
+      <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">Indian National Movement &middot; recall a precise date &middot; moderate &middot; 60s</div>
+      <div style="font-size:12.5px;color:#6b4a33;margin-top:4px">Weights &nbsp;<b>Attention to Detail 50 &middot; Comprehension 26 &middot; Decision-making 12</b>
+        &nbsp;<span style="color:#a08b78">+ 12 more at 1</span> &nbsp;<a href="#a03" style="color:#c2571c;font-weight:700">see all 15</a></div>
     </div>
+
+    <div class="warn"><b>Near-duplicate:</b> form 7 of this slot also tests <i>Chauri Chaura &rarr; withdrawal</i>.
+      Two forms of one slot may not carry the same <code>concept_key</code> &mdash; a student could draw both across
+      their 8 sets. <a href="#a02" style="color:#8a5a00;font-weight:700">Open form 7</a></div>
+
     <div class="card">
       <div class="slot-m">QUESTION</div>
-      <div style="font:700 14px Montserrat;margin:5px 0 12px">The Non-Cooperation Movement was withdrawn after:</div>
-      <div class="opt correct"><b>A</b><span>the Chauri Chaura incident<br><span style="color:#1d6b34;font-size:11.5px">✓ correct — students see this in a random position</span></span></div>
-      <div class="opt"><b>B</b><span>the Jallianwala Bagh massacre<br><span style="color:#6b7280;font-size:11.5px">confuses cause with trigger — dates the withdrawal to 1919</span></span></div>
-      <div class="opt"><b>C</b><span>the Partition of India<br><span class="miss">✗ needs an explanation — what misconception picks this?</span></span></div>
-      <div class="opt"><b>D</b><span>the Royal Indian Navy revolt<br><span class="miss">✗ needs an explanation</span></span></div>
+      <input class="fld area" value="The Non-Cooperation Movement was withdrawn after:">
+      <div style="display:flex;gap:7px;align-items:center;margin-bottom:11px">
+        <span style="font:700 10px Montserrat;color:#a9a19a">CONCEPT KEY</span>
+        <input class="fld" style="margin:0;flex:1;font-size:12px" value="inm.ncm.withdrawal-trigger">
+      </div>
+
+      <div class="orow ok">
+        <div class="top"><b>A</b><input value="the Chauri Chaura incident"><span class="saved">&#10003; CORRECT</span></div>
+        <div class="why"><span style="font:700 10px Montserrat;color:#a9a19a;width:52px">SHOWN AT</span>
+          <span style="font-size:12px;color:#6b7280">a random position for every student</span></div>
+      </div>
+
+      <div class="orow">
+        <div class="top"><b>B</b><input value="the Jallianwala Bagh massacre"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
+        <div class="why"><select class="sel"><option>cause / trigger</option></select>
+          <input value="confuses the cause of the movement with the reason it ended"></div>
+      </div>
+
+      <div class="orow bad">
+        <div class="top"><b>C</b><input value="the Partition of India"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
+        <div class="why"><select class="sel empty"><option>&mdash; error type &mdash;</option></select>
+          <input placeholder="what belief makes a candidate pick this?" value=""></div>
+      </div>
+
+      <div class="orow bad">
+        <div class="top"><b>D</b><input value="the Royal Indian Navy revolt"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
+        <div class="why"><select class="sel empty"><option>&mdash; error type &mdash;</option></select>
+          <input placeholder="what belief makes a candidate pick this?" value=""></div>
+      </div>
     </div>
+
     <div class="card">
       <div class="slot-m" style="margin-bottom:7px">GATES</div>
-      <div class="gate"><u class="g-no">✗</u><span>Every wrong option names a real misconception</span><em>2 missing</em></div>
-      <div class="gate"><u class="g-ok">✓</u><span>Longest option isn't the answer too often</span><em>slot at 27%, ceiling 35%</em></div>
-      <div class="gate"><u class="g-ok">✓</u><span>Correct option's length rank</span><em>slot: longest in 6 of 18 (33%)</em></div>
-      <div class="gate"><u class="g-ok">✓</u><span>Safe to shuffle</span><em>no "all of the above"</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>Every wrong option names a real misconception</span><em>2 missing &mdash; C, D</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>No two distractors share an error type</span><em>blocked until C and D are typed</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>slot: longest in 6 of 18 (33%)</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Safe to shuffle</span><em>no &ldquo;all of the above&rdquo;</em></div>
     </div>
-    <a class="btn btn-g" href="#a02">Save draft</a>
+
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <a class="btn btn-g" href="#a07">Submit for review</a>
+      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Save &amp; add another</a>
+      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate this form</a>
+      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Preview as student</a>
+    </div>
   </div>
-</div></div></div>
+</div></div>
+
+<div class="note"><b>Four affordances that are not decoration &mdash; each one is 1,800&times;.</b><br><br>
+<b>Autosave, on the create path.</b> The task editor already has one; a new MCQ form did not, so a dropped
+connection cost the twenty minutes since the author opened the page. A draft with no id is exactly when a
+loss is total.<br><br>
+<b>Save &amp; add another, and Duplicate.</b> The nine forms of a slot are structurally identical &mdash; same area,
+same demand, same weights, same shape &mdash; and differ only in stem and options. Returning to the workbench
+between each one turns nine forms into nine navigations. Duplicate carries the shape and <i>deliberately clears
+the stem, options and concept key</i>, so it cannot become a copy-paste route to a near-duplicate.<br><br>
+<b><code>error_type</code> is a closed list, not free text.</b> It was a required field with no defined values across
+13,200 distractors. Free text there is unaggregatable by construction &mdash; &ldquo;confuses cause and trigger&rdquo; and
+&ldquo;mistakes the trigger for the cause&rdquo; are the same diagnosis and will never group. As an enum it powers the
+student&rsquo;s &ldquo;you made this error 4 times&rdquo; line; as prose it powers nothing.<br><br>
+<b>The near-duplicate warning fires on the concept key, live.</b> <code>I4</code> promises a student never sees the same
+concept twice across 1,600 draws. That promise is kept by an index at draw time &mdash; but discovering the clash
+then means a paper that cannot be built. Catching it while the author is still on the page costs one line.</div>
 
 <div class="note"><b>The friction is deliberate</b> — requiring a named misconception per wrong option is what
 prevents fillers like <i>"only mountain climbing"</i>. It was assumed this fought the length rule, since real
@@ -450,13 +529,61 @@ untouched". That is right for reproducibility and wrong for measurement — a fo
 declared <i>not a member of its slot</i>, yet its responses stay in every mean forever, and nothing on any card
 records it.</div>
 
+<h3>A07 &middot; Review queue &mdash; the second pair of eyes</h3>
+<p class="cap">A form goes <b>draft &rarr; in review &rarr; live</b>. Nothing reaches a paying candidate on one
+person&rsquo;s say-so.</p>
+<div class="row"><div>
+<div class="step">A07</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/review</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">14 awaiting review</span></div>
+  <div class="a-body">
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:4px">AWAITING REVIEW</div>
+      <div class="rq"><span class="who">R. Menon</span><span style="flex:1">Slot 22 &middot; <i>&ldquo;The Non-Cooperation Movement was withdrawn after&hellip;&rdquo;</i></span>
+        <span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
+      <div class="rq"><span class="who">R. Menon</span><span style="flex:1">Slot 23 &middot; <i>&ldquo;Which of the following best describes Article 31C&hellip;&rdquo;</i></span>
+        <span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
+      <div class="rq"><span class="who">A. Shetty</span><span style="flex:1">Slot 41 &middot; <i>&ldquo;The Doctrine of Lapse was applied to&hellip;&rdquo;</i></span>
+        <span class="st" style="background:#fdf6e6;color:#8a5a00">RANK BUDGET</span></div>
+      <div class="rq" style="opacity:.45"><span class="who">You</span><span style="flex:1">Slot 60 &middot; <i>&ldquo;Under the 42nd Amendment, the word&hellip;&rdquo;</i></span>
+        <span class="st" style="background:#f4f2f0;color:#8a7f76">YOUR OWN &mdash; LOCKED</span></div>
+    </div>
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:6px">SLOT 22 &middot; FORM 19</div>
+      <div style="font:700 13.5px Montserrat;margin-bottom:8px">The Non-Cooperation Movement was withdrawn after:</div>
+      <div class="opt correct"><b>A</b><span>the Chauri Chaura incident</span></div>
+      <div class="opt"><b>B</b><span>the Jallianwala Bagh massacre<br><span style="color:#6b7280;font-size:11.5px">cause / trigger</span></span></div>
+      <div class="opt"><b>C</b><span>the Partition of India<br><span style="color:#6b7280;font-size:11.5px">era confusion</span></span></div>
+      <div class="opt"><b>D</b><span>the Royal Indian Navy revolt<br><span style="color:#6b7280;font-size:11.5px">era confusion &mdash; <b style="color:#b4381f">clashes with C</b></span></span></div>
+      <input class="fld" style="margin-top:9px" placeholder="a note back to the author (required to send back)">
+      <div style="display:flex;gap:8px;margin-top:2px">
+        <a class="btn btn-g" href="#a05">Approve &amp; go live</a>
+        <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Send back</a>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<div class="note bad"><b>This screen did not exist, and its absence was the largest hole on the board.</b>
+Every other admin surface here &mdash; batches, campaigns, evaluation &mdash; has a second actor. MCQ forms went
+<code>draft &rarr; live</code> on a single author&rsquo;s click, which means the four automated gates were the <i>entire</i>
+quality bar. Those gates check structure: a misconception is present, the rank budget holds, the item is safe to
+shuffle. <b>Not one of them can tell whether the answer is correct.</b> Both existing KAS answer keys are already
+known-bad &mdash; GS-1&rsquo;s is a perfect A,B,C,D cycle, GS-2&rsquo;s is 61% &ldquo;A&rdquo; &mdash; so &ldquo;the author checked it&rdquo;
+is a bar this content has demonstrably failed before.<br><br>
+<b>The reviewer may not be the author</b> (row 4, locked). Enforce it in the transition, not the UI: a self-approval
+that the screen hides but the route allows is not a control.</div>
+
 <h2>4 · What each screen needs from the backend</h2>
 <table>
 <tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
 <tr><td>A01 blueprint</td><td>slots · published form counts vs 9 · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A02 workbench</td><td>forms · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A03 slot settings</td><td>KMM's weight vector, read-only · <code>target_n</code> = 9</td><td><span class="pill p-ext">EXTENDS</span></td></tr>
-<tr><td>A04 form editor</td><td>per-form gate rules, live</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A04 form editor</td><td>per-form gate rules live · autosave on the create path · the <code>error_type</code> enum · a <code>concept_key</code> uniqueness probe scoped to the slot</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A07 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code></td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A05 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>shuffle_safe</code> population</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>A06 quarantine</td><td><code>forms_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
 </table>
