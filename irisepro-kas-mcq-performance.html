@@ -139,6 +139,24 @@ candidate who cannot see <i>where</i> they lost marks will not believe a number 
 below benchmark. Each rung earns the next. Marks are checkable, areas are checkable, timing is checkable — by the time
 the abilities appear the student has already agreed with three screens' worth of facts.</div>
 
+<div class="note"><b>Overall AACE uses the engine's existing convention, unchanged.</b>
+<code>scorecard-engine/src/cli.py:155</code> — <code>overall_total / (overall_count × 5) × 100</code>. That is
+already what "Overall AACE" means on both the card and the in-app dashboard, so MCQ inherits it rather than
+defining a new one.<br><br>
+It is <b>the marks in percentage form</b> — with weights summing to 100 per slot the weighting cancels exactly, so
+it equals percent-correct. That is the point of showing it: <code>230.25 / 400</code> cannot be set against a
+benchmark of 92, and <code>57.6%</code> can. Two numbers that are the same thing in different units is a scale
+conversion; two that disagree would be a support ticket.<br><br>
+Pillars use the same convention scoped to their own abilities (<code>cli.py:151-153</code>). <b>The spread across
+the fifteen is the diagnostic signal — their mean is not</b>, which is why the abilities get rung 4 and the headline
+gets one line.</div>
+
+<div class="note"><b>Never-reached questions follow the engine's <code>[#101]</code> achievement-vs-diagnostic split,
+already locked 9 Jul.</b> In <code>cli.py:135-139</code> a not-attempted instance scores 0 but <i>stays in</i> the
+denominator for Overall, and drops out of <i>both</i> sides for pillars and abilities. Applied one level down: a
+paper that expired at Q64 costs the student marks on the 36 they never saw, and says nothing about their
+Comprehension. Same rule, no new one.</div>
+
 <table>
 <tr><th>rung</th><th>paper</th><th>set</th><th>journey</th></tr>
 <tr><td>1 · Marks</td><td>of 200</td><td>of 400, both papers</td><td>trend across sets</td></tr>
@@ -166,7 +184,17 @@ the abilities appear the student has already agreed with three screens' worth of
           <div class="kv" style="margin-top:8px"><span>GS-1</span><b>112.75</b></div>
           <div class="kv"><span>GS-2</span><b>117.50</b></div>
           <div class="kv"><span>119 correct · 31 wrong · 50 blank</span><b>+238 −7.75</b></div>
-          <div style="font-size:10.5px;color:#a9a19a;text-align:center;margin-top:7px">
+          <div style="border-top:1px solid #f5efe9;margin-top:9px;padding-top:9px">
+            <div class="kv" style="border:0"><span><b>Overall AACE</b></span><b style="color:var(--o-deep)">57.6%</b></div>
+            <div class="pil" style="padding:4px 0 0"><div class="track">
+              <span class="fill" style="width:57.6%;background:var(--avg)"></span>
+              <span class="bm" style="left:71%"></span><span class="bm" style="left:79%"></span><span class="bm" style="left:89%"></span>
+            </div></div>
+            <div style="font-size:10px;color:#a9a19a;margin-top:6px;line-height:1.5">
+              Your marks as a percentage — the unit the benchmarks are in.<br>
+              Three marks: developmental · age-specific · KAS competitive.</div>
+          </div>
+          <div style="font-size:10.5px;color:#a9a19a;text-align:center;margin-top:8px">
             Last three KAS cutoffs, both papers: 192 · 208 · 224</div>
         </div>
         <div class="card">
@@ -282,6 +310,8 @@ single ability is that ability wearing a hat, and if Structure is thinly weighte
           <div class="kv" style="margin-top:8px"><span>58 correct × +2</span><b>+116.00</b></div>
           <div class="kv"><span>13 wrong × −0.25</span><b>−3.25</b></div>
           <div class="kv"><span>29 blank</span><b>0</b></div>
+          <div class="kv" style="border-top:1px solid #f5efe9;margin-top:4px;padding-top:7px">
+            <span><b>Overall AACE</b></span><b style="color:var(--o-deep)">56.4%</b></div>
         </div>
         <div class="card" style="background:var(--cream3);box-shadow:none">
           <div style="font-size:12px;color:#7a6a5c;line-height:1.55">
@@ -393,6 +423,8 @@ above rather than generated — the rush is rung 3, the blanks are rung 3, the 7
           <div class="big"><b>230.25</b><span>OF 400</span></div>
           <div class="kv" style="margin-top:8px"><span>GS-1</span><b>112.75</b></div>
           <div class="kv"><span>GS-2</span><b>117.50</b></div>
+          <div class="kv" style="border-top:1px solid #f5efe9;margin-top:6px;padding-top:7px">
+            <span><b>Overall AACE</b></span><b style="color:var(--o-deep)">57.6%</b></div>
           <div style="font-size:10.5px;color:#a9a19a;text-align:center;margin-top:7px">Cutoffs: 192 · 208 · 224</div>
         </div>
         <div class="card">
@@ -451,6 +483,7 @@ above rather than generated — the rush is rung 3, the blanks are rung 3, the 7
 <table>
 <tr><th>question</th><th>blocks</th></tr>
 <tr><td><b>Does the Communication pillar render at all?</b> One of fifteen abilities sits in it.</td><td>rung 4 at every level</td></tr>
+<tr><td style="text-decoration:line-through;color:#9ca3af"><b>How to aggregate an Overall AACE across the 15</b></td><td><b style="color:#2c7a44">ANSWERED</b> — the engine's existing convention, unchanged. No new formula.</td></tr>
 <tr><td><b>Guessing correction</b> — the ability score currently rewards guessing by ~10pp, and this paper's marking makes guessing correct on every question.</td><td>every number in rung 4</td></tr>
 <tr><td><b><code>k_min</code></b> — how much evidence before an ability shows a number instead of "too few".</td><td>which rows render</td></tr>
 <tr><td><b>How many areas</b> in rung 2 before "all 22 areas"? Drawn at 3 + 1.</td><td>rung 2</td></tr>
