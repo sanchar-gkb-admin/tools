@@ -1,0 +1,449 @@
+<title>KAS MCQ — Authoring & Student Screen Flows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Calistoga&display=swap" rel="stylesheet">
+<style>
+:root{
+  --o:#F58321; --o-deep:#E57311; --o-bright:#F97216;
+  --cream:#FFF9F5; --cream2:#FFF1E6; --cream3:#FFF5E9;
+  --gold:#FFC107; --gold-b:#FFD700;
+  --admin-o:#FF8A3D; --admin-cream:#FFF1E6;
+  --ink:#1f2937; --mut:#6b7280; --line:#e5e7eb;
+  --ok:#4CAF50; --info:#2196F3; --warn:#FFC107; --bad:#e05252;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#faf7f4;color:var(--ink);font:400 15px/1.6 Montserrat,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:40px 22px 90px}
+h1{font:900 40px/1.1 Montserrat;letter-spacing:-.02em;margin:0 0 6px}
+h1 em{font-family:Calistoga,serif;font-style:normal;color:var(--o)}
+.sub{color:var(--mut);margin:0 0 34px;font-size:16px}
+h2{font:800 13px/1 Montserrat;letter-spacing:.16em;text-transform:uppercase;color:var(--o-deep);
+   margin:56px 0 6px;padding-top:22px;border-top:2px solid var(--o)}
+h3{font:800 20px/1.3 Montserrat;margin:30px 0 4px}
+.cap{color:var(--mut);font-size:14px;margin:0 0 16px;max-width:70ch}
+.note{background:var(--cream2);border-left:3px solid var(--o);padding:10px 14px;border-radius:0 8px 8px 0;
+      font-size:13.5px;color:#5b4636;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:14px 0}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--cream2);font-weight:700}
+code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 26px}
+.pill{font:700 11px Montserrat;padding:5px 11px;border-radius:99px;letter-spacing:.04em}
+.p-new{background:#e7f6ea;color:#1d6b34;border:1px solid #a9dab6}
+.p-ex{background:#e8f1fb;color:#14507f;border:1px solid #a8c9e8}
+.p-ext{background:#fff4e0;color:#8a5a00;border:1px solid #f0d18a}
+
+/* ── device frames ── */
+.row{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin:8px 0 10px}
+.step{font:900 12px Montserrat;letter-spacing:.1em;color:var(--o);margin:0 0 6px}
+.browser{width:100%;max-width:720px;border:1px solid #d8d2cc;border-radius:12px;overflow:hidden;
+         background:#fff;box-shadow:0 8px 26px rgba(60,40,20,.10)}
+.chrome{background:#efeae5;padding:8px 11px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #ddd6cf}
+.dot{width:10px;height:10px;border-radius:99px}
+.url{flex:1;background:#fff;border-radius:99px;font:500 11px Montserrat;color:#8a8078;padding:4px 12px;
+     border:1px solid #e2dcd6;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.phone{width:288px;border:9px solid #2a2622;border-radius:34px;overflow:hidden;background:#fff;
+       box-shadow:0 10px 30px rgba(40,25,10,.20);position:relative;flex:none}
+.phone::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+       width:104px;height:19px;background:#2a2622;border-radius:0 0 13px 13px;z-index:5}
+.pv{height:534px;overflow:auto;background:var(--cream)}
+.pv::-webkit-scrollbar{width:0}
+
+/* ── admin UI atoms ── */
+.a-top{background:#fff;border-bottom:1px solid var(--line);padding:11px 15px;display:flex;
+       align-items:center;justify-content:space-between}
+.a-brand{font:900 13px Montserrat;color:var(--admin-o);letter-spacing:.02em}
+.a-body{padding:15px;background:#fcfaf8;min-height:330px}
+.crumb{font:600 11px Montserrat;color:var(--mut);margin-bottom:11px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+.slot-h{font:800 15px Montserrat;margin:0 0 3px}
+.slot-m{font:600 12px Montserrat;color:var(--mut);margin:0 0 2px}
+.btn{display:inline-block;background:var(--o);color:#fff;font:700 12px Montserrat;padding:8px 15px;
+     border-radius:8px;text-decoration:none}
+.btn-g{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.count{font:800 22px Montserrat}
+.count small{font:600 12px Montserrat;color:var(--mut)}
+.attn{background:#fff8f4;border:1px solid #f2d3bd;border-radius:9px;padding:11px 13px;margin:11px 0}
+.attn h5{font:800 11px Montserrat;letter-spacing:.11em;text-transform:uppercase;color:#a8541b;margin:0 0 8px}
+.attn-row{display:flex;gap:9px;padding:5px 0;font-size:13px;border-top:1px solid #f6e4d8}
+.attn-row:first-of-type{border-top:0}
+.attn-row b{font:700 12px Montserrat;color:#8a4415;min-width:56px}
+.okline{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mut);
+        padding:9px 2px;border-top:1px solid var(--line)}
+.bar{height:7px;border-radius:99px;background:#eee;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.grid-slots{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;margin:9px 0}
+.gs{aspect-ratio:1;border-radius:2px}
+.opt{border:1px solid var(--line);border-radius:8px;padding:8px 11px;margin-bottom:7px;font-size:13px;
+     display:flex;gap:9px;align-items:flex-start}
+.opt b{color:var(--mut);font:700 12px Montserrat}
+.opt.correct{border-color:#a9dab6;background:#f2fbf4}
+.miss{color:#b4381f;font:600 11.5px Montserrat}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:4px 9px;border-radius:99px;
+     background:#f4f1ee;margin:0 5px 5px 0;font-weight:600}
+.chk.on{background:#fdf0e4;color:#8a4415}
+
+/* ── student UI atoms ── */
+.s-top{background:#fff;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;
+       border-bottom:1px solid #f0e6dd}
+.s-t{font:800 13px Montserrat}
+.s-body{padding:14px}
+.s-card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 2px 10px rgba(120,80,40,.07);margin-bottom:12px}
+.s-q{font:700 15px/1.45 Montserrat;margin:0 0 12px}
+.s-opt{border:1.5px solid #efe4da;border-radius:11px;padding:11px 13px;margin-bottom:8px;font-size:14px;
+       display:flex;gap:10px;align-items:center;background:#fff}
+.s-opt b{width:21px;height:21px;border-radius:99px;background:var(--cream2);color:var(--o-deep);
+         font:800 11px Montserrat;display:grid;place-items:center;flex:none}
+.s-opt.sel{border-color:var(--o);background:#fff6ee}
+.s-opt.sel b{background:var(--o);color:#fff}
+.s-cta{display:block;background:var(--o);color:#fff;text-align:center;font:800 14px Montserrat;
+       padding:13px;border-radius:12px;text-decoration:none;margin-top:4px}
+.s-cta.ghost{background:#fff;color:var(--o-deep);border:1.5px solid #f3dcc6}
+.timer{font:800 13px Montserrat;color:var(--o-deep);background:var(--cream2);padding:5px 11px;border-radius:99px}
+.timer.warn{background:#fdeaea;color:#b03030}
+.prog{height:5px;background:#f0e6dd;border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--o)}
+.stat{text-align:center;padding:11px 6px;background:#fff;border-radius:12px;flex:1}
+.stat b{display:block;font:900 21px Montserrat;color:var(--o-deep)}
+.stat span{font:600 10.5px Montserrat;color:var(--mut);letter-spacing:.03em}
+.lock{background:linear-gradient(180deg,#fff6ee,#fff);border:1.5px dashed #f0c9a4;border-radius:14px;
+      padding:17px 14px;text-align:center}
+.abil{display:flex;align-items:center;gap:9px;padding:9px 0;border-top:1px solid #f3ece5;font-size:13px}
+.abil:first-of-type{border-top:0}
+.abil .nm{flex:1;font-weight:600}
+.abil .vl{font:800 13px Montserrat}
+.ci{height:6px;background:#f0e6dd;border-radius:99px;position:relative;width:74px;flex:none}
+.ci i{position:absolute;height:100%;background:var(--o);border-radius:99px;opacity:.35}
+.ci u{position:absolute;width:2px;height:100%;background:var(--o-deep)}
+.omr{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.omr b{aspect-ratio:1;border-radius:4px;display:grid;place-items:center;font:700 9px Montserrat;color:#fff}
+.tr{display:flex;align-items:flex-end;gap:5px;height:66px;margin:10px 0 4px}
+.tr i{flex:1;background:var(--o);border-radius:3px 3px 0 0;opacity:.85}
+.tr i.now{background:var(--o-deep);opacity:1}
+</style>
+
+<div class="wrap">
+
+<h1>KAS MCQ — <em>screen flows</em></h1>
+<p class="sub">Authoring admin and student experience. Built on the existing iRisePro theme — student app Montserrat on <code>#F58321</code>/cream, superadmin on <code>#FF8A3D</code>.</p>
+
+<div class="legend">
+  <span class="pill p-ex">EXISTS — reused unchanged</span>
+  <span class="pill p-ext">EXTENDS — existing screen, new state</span>
+  <span class="pill p-new">NEW — built for MCQ</span>
+</div>
+
+<h2>0 · How it plugs in</h2>
+<table>
+<tr><th>Layer</th><th>What exists today</th><th>MCQ</th></tr>
+<tr><td>Admin shell</td><td><code>superadmin.layout</code> — nav, auth, styling</td><td><span class="pill p-ex">EXISTS</span> extended with an MCQ section</td></tr>
+<tr><td>Ability tagging</td><td><code>partials/skills-picker</code> — membership checklist, posts <code>abilities[]</code> as <code>pillar.ability</code></td><td><span class="pill p-ex">EXISTS</span> repointed at the <b>slot</b>, not the question</td></tr>
+<tr><td>Slot / form authoring</td><td>— <i>(tasks are authored one at a time)</i></td><td><span class="pill p-new">NEW</span> the whole workbench</td></tr>
+<tr><td>Student shell</td><td><code>frontendapp/*</code> — Blade, Tailwind, Montserrat</td><td><span class="pill p-ex">EXISTS</span></td></tr>
+<tr><td>Timed question screen</td><td><code>task-details</code> already carries a per-task timer</td><td><span class="pill p-ext">EXTENDS</span> same timer, MCQ body</td></tr>
+<tr><td>Results / abilities</td><td><code>performance</code>, <code>performance-detail</code> — 4 pillars</td><td><span class="pill p-ext">EXTENDS</span> plus attempt state + trajectory</td></tr>
+<tr><td>Scorecard delivery</td><td><code>ScorecardDelivery</code> — consent, lock, PREPARING</td><td><span class="pill p-ext">EXTENDS</span> new <code>INELIGIBLE</code> state</td></tr>
+</table>
+
+<h2>A · Authoring — desktop</h2>
+<p class="cap">The author's unit of work is a <b>slot</b>: a group of different questions sharing one topic, cognitive demand, ability set and difficulty band. Abilities are set once on the slot; a form never declares its own.</p>
+
+<h3>A01 · Blueprint — what's missing</h3>
+<p class="cap">The landing screen. One cell per slot, shaded by how full it is. Answers "where do I work next" before anything is opened.</p>
+<div class="row"><div>
+<div class="step">01</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/papers/GS-1</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">MCQ · Papers</span></div>
+  <div class="a-body">
+    <div class="crumb">MCQ › Papers › <b style="color:#1f2937">KAS GS-1 (Prelims Paper I)</b></div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:9px">
+        <div><div class="slot-h">100 slots · target 4 forms each</div>
+             <div class="slot-m">Basic tier — 3 attempts + 1 spare</div></div>
+        <div style="text-align:right"><span class="count">137<small> / 400</small></span>
+             <div class="slot-m">forms published</div></div>
+      </div>
+      <div class="bar"><i style="background:var(--ok);width:34%"></i><i style="background:var(--warn);width:31%"></i><i style="background:#f0e6dd;width:35%"></i></div>
+      <div class="grid-slots">
+        <span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#e6ddd5"></span>
+        <span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#FFC107"></span>
+        <span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span>
+        <span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span>
+      </div>
+      <div style="font:600 11.5px Montserrat;color:#6b7280;display:flex;gap:15px">
+        <span>■ full (34)</span><span style="color:#a8541b">■ partial (31)</span><span>■ empty (9)</span></div>
+    </div>
+    <div class="attn">
+      <h5>Blocking</h5>
+      <div class="attn-row"><b>9 slots</b><span>have no forms — the paper cannot generate</span></div>
+      <div class="attn-row"><b>31 slots</b><span>below target — re-attempts will run out of questions</span></div>
+    </div>
+  </div>
+</div></div></div>
+
+<h3>A02 · Slot workbench — calm by default</h3>
+<p class="cap">Four lines when healthy. The absence of a "needs attention" block <i>is</i> the all-clear — noise means something is wrong.</p>
+<div class="row"><div>
+<div class="step">02</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Slot 22</span></div>
+  <div class="a-body">
+    <div class="crumb">MCQ › GS-1 › <b style="color:#1f2937">Slot 22</b></div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="slot-h">Indian National Movement · recall a precise date · moderate</div>
+          <div class="slot-m">Attention to Detail · Memory · Decision-making</div>
+        </div>
+        <a class="btn btn-g" href="#a03">edit slot</a>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+        <span class="count">18<small> of 22 forms</small></span>
+        <a class="btn" href="#a04">+ add form</a>
+      </div>
+    </div>
+    <div class="attn">
+      <h5>Needs attention</h5>
+      <div class="attn-row"><b>form 14</b><span>too easy — 88% get it right, vs 69% across this slot</span></div>
+      <div class="attn-row"><b>form 07</b><span>3 distractors have no explanation</span></div>
+      <div class="attn-row"><b>form 11</b><span>2 distractors have no explanation</span></div>
+    </div>
+    <div class="okline"><span>18 forms OK</span><span style="font-weight:700;color:#8a4415">show</span></div>
+  </div>
+</div></div></div>
+
+<div class="note"><b>Why not columns.</b> An earlier draft showed forms side by side. That breaks past three, and 22 is the advanced tier. Comparison becomes a tool you invoke on two or three forms, never the default layout.</div>
+
+<h3>A03 · Slot settings — the one place abilities are chosen</h3>
+<p class="cap">Reuses <code>skills-picker</code> unchanged. Set once here for the whole slot: 100 decisions per paper instead of 2,200.</p>
+<div class="row"><div>
+<div class="step">03</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/edit</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Edit slot 22</span></div>
+  <div class="a-body">
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:9px">THE STRATUM — every form inherits all four</div>
+      <table style="margin:0">
+        <tr><th style="width:34%">Topic</th><td>Indian National Movement</td></tr>
+        <tr><th>Cognitive demand</th><td>recall a precise date</td></tr>
+        <tr><th>Difficulty band</th><td>moderate</td></tr>
+        <tr><th>Forms target</th><td>22 &nbsp;<span style="color:#6b7280;font-size:12px">(advanced: 21 attempts + 1)</span></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:8px">ABILITIES — <span style="color:#8a4415">skills-picker, reused</span></div>
+      <div>
+        <span class="chk on">✓ Attention to Detail</span><span class="chk on">✓ Memory</span><span class="chk on">✓ Decision-making</span>
+        <span class="chk">Comprehension</span><span class="chk">Critical &amp; Analytical Thinking</span><span class="chk">Problem-solving</span>
+        <span class="chk">Mental Dexterity</span><span class="chk">Efficiency</span>
+      </div>
+      <div style="margin-top:11px;font-size:12.5px;color:#6b7280">Copy from slot… &nbsp;·&nbsp; 3 of 64 selected</div>
+    </div>
+    <a class="btn" href="#a02">Save slot</a>
+  </div>
+</div></div></div>
+
+<h3>A04 · Form editor — no ability picker, live gates</h3>
+<p class="cap">The author answers one question here: <i>does this question do what its slot claims?</i> Everything mechanical is already handled.</p>
+<div class="row"><div>
+<div class="step">04</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/forms/new</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro · SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Form 19 · draft</span></div>
+  <div class="a-body">
+    <div class="card" style="background:var(--admin-cream);border-color:#f0d7bf">
+      <div style="font:700 12px Montserrat;color:#8a4415">Inherited from slot 22 — not editable here</div>
+      <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">Indian National Movement · recall a precise date · moderate · Attention to Detail, Memory, Decision-making</div>
+    </div>
+    <div class="card">
+      <div class="slot-m">QUESTION</div>
+      <div style="font:700 14px Montserrat;margin:5px 0 12px">The Non-Cooperation Movement was withdrawn after:</div>
+      <div class="opt correct"><b>A</b><span>the Chauri Chaura incident<br><span style="color:#1d6b34;font-size:11.5px">✓ correct</span></span></div>
+      <div class="opt"><b>B</b><span>the Jallianwala Bagh massacre<br><span style="color:#6b7280;font-size:11.5px">confuses cause with trigger — dates the withdrawal to 1919</span></span></div>
+      <div class="opt"><b>C</b><span>the Partition of India<br><span class="miss">✗ needs an explanation — what misconception picks this?</span></span></div>
+      <div class="opt"><b>D</b><span>the Royal Indian Navy revolt<br><span class="miss">✗ needs an explanation</span></span></div>
+    </div>
+    <div class="attn" style="background:#fff8f4">
+      <h5>Before this can be published</h5>
+      <div class="attn-row"><b>2 options</b><span>have no explanation — every wrong answer must name a real misconception</span></div>
+      <div class="attn-row"><b>lengths</b><span>OK — longest option is 1.3× the shortest</span></div>
+    </div>
+    <a class="btn btn-g" href="#a02">Save draft</a>
+  </div>
+</div></div></div>
+
+<div class="note"><b>The friction is deliberate.</b> Requiring a named misconception for every wrong option is what prevents fillers like <i>"only mountain climbing"</i> — which is also what creates the longest-option tell, since real distractors need qualifying clauses and fillers are two words.</div>
+
+<h2>B · Student — mobile</h2>
+<p class="cap">Extends the existing <code>frontendapp</code> Blade screens. The timer pattern already exists on <code>task-details</code>.</p>
+
+<div class="row">
+  <div>
+    <div class="step">05 · paper list</div>
+    <div class="phone"><div class="pv">
+      <div class="s-top"><span class="s-t">Mock Test Series</span><span style="font-size:11px;color:#6b7280">KAS 2026</span></div>
+      <div class="s-body">
+        <div class="s-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font:800 14px Montserrat">GS-1 · Prelims Paper I</div>
+                 <div style="font-size:11.5px;color:#6b7280">100 questions · 120 min</div></div>
+            <span style="font:800 11px Montserrat;color:var(--o-deep);background:var(--cream2);padding:4px 9px;border-radius:99px">2 of 3</span>
+          </div>
+          <div class="prog" style="margin:11px 0 8px"><i style="width:66%"></i></div>
+          <div style="font-size:11.5px;color:#6b7280;margin-bottom:11px">One more attempt unlocks your ability profile</div>
+          <a class="s-cta" href="#s06">Start attempt 3</a>
+        </div>
+        <div class="s-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font:800 14px Montserrat">GS-2 · Prelims Paper II</div>
+                 <div style="font-size:11.5px;color:#6b7280">100 questions · 120 min</div></div>
+            <span style="font:800 11px Montserrat;color:#6b7280;background:#f3efeb;padding:4px 9px;border-radius:99px">0 of 3</span>
+          </div>
+          <div class="prog" style="margin:11px 0 8px"><i style="width:0%"></i></div>
+          <a class="s-cta ghost" href="#s06">Start attempt 1</a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">06 · question</div>
+    <div class="phone"><div class="pv">
+      <div class="s-top"><span class="s-t">Q 23 <span style="color:#9ca3af">/ 100</span></span><span class="timer">00:47</span></div>
+      <div style="padding:0 14px"><div class="prog"><i style="width:23%"></i></div></div>
+      <div class="s-body">
+        <div class="s-card">
+          <div style="font:700 10.5px Montserrat;color:var(--o-deep);letter-spacing:.09em;margin-bottom:7px">INDIAN NATIONAL MOVEMENT</div>
+          <div class="s-q">The Non-Cooperation Movement was withdrawn after:</div>
+          <div class="s-opt"><b>A</b><span>the Chauri Chaura incident</span></div>
+          <div class="s-opt sel"><b>B</b><span>the Jallianwala Bagh massacre</span></div>
+          <div class="s-opt"><b>C</b><span>the Partition of India</span></div>
+          <div class="s-opt"><b>D</b><span>the Royal Indian Navy revolt</span></div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a class="s-cta ghost" style="flex:1;margin:0" href="#s07">Skip</a>
+          <a class="s-cta" style="flex:2;margin:0" href="#s07">Next</a>
+        </div>
+        <div style="text-align:center;font-size:11.5px;color:#9ca3af;margin-top:11px">⚑ Mark for review</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">07 · submitted</div>
+    <div class="phone"><div class="pv">
+      <div class="s-top"><span class="s-t">Attempt 3 · submitted</span></div>
+      <div class="s-body">
+        <div style="display:flex;gap:8px;margin-bottom:12px">
+          <div class="stat"><b>128</b><span>OF 200</span></div>
+          <div class="stat"><b>71</b><span>ATTEMPTED</span></div>
+          <div class="stat"><b>82%</b><span>ACCURACY</span></div>
+        </div>
+        <div class="s-card">
+          <div style="font:800 12px Montserrat;margin-bottom:9px">Your answers</div>
+          <div class="omr">
+            <b style="background:var(--ok)">1</b><b style="background:var(--ok)">2</b><b style="background:var(--bad)">3</b><b style="background:var(--ok)">4</b><b style="background:#dcd4cc">5</b><b style="background:var(--ok)">6</b><b style="background:var(--ok)">7</b><b style="background:var(--bad)">8</b><b style="background:var(--ok)">9</b><b style="background:#dcd4cc">10</b>
+            <b style="background:var(--ok)">11</b><b style="background:var(--ok)">12</b><b style="background:var(--ok)">13</b><b style="background:#dcd4cc">14</b><b style="background:var(--ok)">15</b><b style="background:var(--bad)">16</b><b style="background:var(--ok)">17</b><b style="background:var(--ok)">18</b><b style="background:#dcd4cc">19</b><b style="background:var(--ok)">20</b>
+          </div>
+          <div style="display:flex;gap:13px;font-size:11px;color:#6b7280;margin-top:9px">
+            <span>■ right</span><span>■ wrong</span><span>■ skipped</span></div>
+        </div>
+        <a class="s-cta" href="#s09">See your ability profile →</a>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="row">
+  <div>
+    <div class="step">08 · not yet eligible</div>
+    <div class="phone"><div class="pv">
+      <div class="s-top"><span class="s-t">Ability profile</span></div>
+      <div class="s-body">
+        <div class="lock">
+          <div style="font-size:30px">🔒</div>
+          <div style="font:800 15px Montserrat;margin:7px 0 5px">2 of 3 attempts complete</div>
+          <div style="font-size:13px;color:#6b7280;line-height:1.55">One number from one paper can be luck.<br>Your ability profile unlocks after the third attempt, so it reflects how you actually perform.</div>
+          <div class="prog" style="margin:14px 0 12px"><i style="width:66%"></i></div>
+          <a class="s-cta" href="#s06">Start attempt 3</a>
+        </div>
+        <div class="s-card" style="margin-top:12px">
+          <div style="font:800 12px Montserrat;margin-bottom:6px">Meanwhile</div>
+          <div style="font-size:13px;color:#6b7280">Your marks, answers and timing for each attempt are available now.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">09 · ability profile</div>
+    <div class="phone"><div class="pv">
+      <div class="s-top"><span class="s-t">Ability profile</span><span style="font-size:10.5px;color:#6b7280">GS-1</span></div>
+      <div class="s-body">
+        <div class="s-card" style="background:var(--cream3)">
+          <div style="font-size:12px;color:#8a4415;font-weight:700">Based on 3 of 21 attempts</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:3px">This will sharpen as you continue.</div>
+        </div>
+        <div class="s-card">
+          <div style="font:800 12px Montserrat;margin-bottom:4px">vs KAS Competitive benchmark</div>
+          <div class="abil"><span class="nm">Comprehension</span><span class="ci"><i style="left:34%;width:26%"></i><u style="left:46%"></u></span><span class="vl" style="color:#b03030">−24</span></div>
+          <div class="abil"><span class="nm">Attention to Detail</span><span class="ci"><i style="left:41%;width:22%"></i><u style="left:52%"></u></span><span class="vl" style="color:#b03030">−19</span></div>
+          <div class="abil"><span class="nm">Critical &amp; Analytical</span><span class="ci"><i style="left:29%;width:31%"></i><u style="left:44%"></u></span><span class="vl" style="color:#b03030">−31</span></div>
+          <div class="abil"><span class="nm">Decision-making</span><span class="ci"><i style="left:52%;width:24%"></i><u style="left:64%"></u></span><span class="vl" style="color:#b03030">−12</span></div>
+          <div class="abil"><span class="nm">Problem-solving</span><span class="ci"><i style="left:19%;width:38%"></i><u style="left:38%"></u></span><span class="vl" style="color:#b03030">−38</span></div>
+          <div class="abil"><span class="nm" style="color:#9ca3af">Conflict Resolution</span><span style="flex:1"></span><span style="font-size:11px;color:#9ca3af">assessed at Mains</span></div>
+        </div>
+        <div style="font-size:11px;color:#9ca3af;text-align:center">The bar shows the range your score could sit in.<br>It narrows with every attempt.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">10 · trajectory</div>
+    <div class="phone"><div class="pv">
+      <div class="s-top"><span class="s-t">Your progress</span></div>
+      <div class="s-body">
+        <div class="s-card">
+          <div style="font:800 13px Montserrat">Attention to Detail</div>
+          <div style="font-size:12px;color:#6b7280">across 4 blocks of 3 attempts</div>
+          <div class="tr"><i style="height:44%"></i><i style="height:58%"></i><i style="height:66%"></i><i class="now" style="height:78%"></i></div>
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#9ca3af">
+            <span>48%</span><span>61%</span><span>67%</span><span style="color:var(--o-deep);font-weight:700">71%</span></div>
+          <div style="font-size:12.5px;color:#1d6b34;font-weight:700;margin-top:9px">↑ climbing steadily — +23 points</div>
+        </div>
+        <div class="s-card">
+          <div style="font:800 13px Montserrat">Problem-solving</div>
+          <div class="tr"><i style="height:40%"></i><i style="height:43%"></i><i style="height:41%"></i><i class="now" style="height:44%"></i></div>
+          <div style="font-size:12.5px;color:#a8541b;font-weight:700;margin-top:9px">→ flat — the explanations aren't landing here</div>
+          <a class="s-cta ghost" style="margin-top:10px" href="#">Practise this →</a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="note"><b>Screen 10 is the product.</b> Marks tell a student what they scored. The trajectory tells them whether the coaching is working — and an ability that stays flat across four blocks of feedback is a different problem from one that climbs. That distinction is only visible because attempts are grouped into blocks with a reveal between them.</div>
+
+<h2>C · What each screen needs from the backend</h2>
+<table>
+<tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
+<tr><td>A01 blueprint</td><td>slots + published form counts vs <code>target_n</code></td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A02 workbench</td><td>forms + gate results + observed p per form</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>A03 slot settings</td><td><code>skills-picker</code> against slot abilities</td><td><span class="pill p-ex">EXISTS</span></td></tr>
+<tr><td>A04 form editor</td><td>per-form gate rules, live</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>B05 paper list</td><td>attempts used vs <code>min_attempts_for_scorecard</code></td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>B06 question</td><td>stored Variant — never the live bank</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>B07 submitted</td><td><code>mcq_attempt_results</code> — written immediately, no engine wait</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>B08 ineligible</td><td><code>ScorecardDelivery::mcqState()</code></td><td><span class="pill p-ext">EXTENDS</span></td></tr>
+<tr><td>B09 ability profile</td><td><code>mcq_scorecards</code> + confidence from observation count</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>B10 trajectory</td><td>per-block ability means across attempts</td><td><span class="pill p-new">NEW</span></td></tr>
+</table>
+
+</div>
