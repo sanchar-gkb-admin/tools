@@ -1,0 +1,724 @@
+<title>KAS MCQ — Student Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Calistoga&display=swap" rel="stylesheet">
+<style>
+:root{
+  --o:#F58321; --o-deep:#E57311; --o-bright:#F97216;
+  --cream:#FFF9F5; --cream2:#FFF1E6; --cream3:#FFF5E9;
+  --amber:#E8A317; --ink:#1f2937; --mut:#6b7280; --line:#eee6de;
+  --ok:#3f8f4f; --bad:#c0453a; --skip:#b9aea4;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#faf7f4;color:var(--ink);font:400 15px/1.6 Montserrat,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1220px;margin:0 auto;padding:40px 22px 100px}
+h1{font:900 40px/1.1 Montserrat;letter-spacing:-.02em;margin:0 0 6px}
+h1 em{font-family:Calistoga,serif;font-style:normal;color:var(--o)}
+.sub{color:var(--mut);margin:0 0 30px;font-size:16px;max-width:76ch}
+h2{font:800 13px/1 Montserrat;letter-spacing:.16em;text-transform:uppercase;color:var(--o-deep);
+   margin:60px 0 8px;padding-top:22px;border-top:2px solid var(--o)}
+h3{font:800 19px/1.3 Montserrat;margin:34px 0 4px}
+.cap{color:var(--mut);font-size:14px;margin:0 0 18px;max-width:78ch}
+.note{background:var(--cream2);border-left:3px solid var(--o);padding:11px 15px;border-radius:0 8px 8px 0;
+      font-size:13.5px;color:#5b4636;margin:16px 0;max-width:88ch}
+.note b{color:#8a4415}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:14px 0}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--cream2);font-weight:700}
+code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;margin:10px 0 6px}
+.step{font:900 11px Montserrat;letter-spacing:.11em;color:var(--o);margin:0 0 7px}
+.step small{display:block;font:600 11px Montserrat;color:var(--mut);letter-spacing:0;margin-top:2px}
+.phone{width:290px;border:9px solid #2a2622;border-radius:34px;overflow:hidden;background:#fff;
+       box-shadow:0 10px 30px rgba(40,25,10,.18);position:relative;flex:none}
+.phone::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+       width:104px;height:19px;background:#2a2622;border-radius:0 0 13px 13px;z-index:5}
+.pv{height:548px;overflow:hidden;background:var(--cream)}
+.browser{width:100%;max-width:760px;border:1px solid #d8d2cc;border-radius:12px;overflow:hidden;
+         background:#fff;box-shadow:0 8px 26px rgba(60,40,20,.10)}
+.chrome{background:#efeae5;padding:8px 11px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #ddd6cf}
+.dot{width:10px;height:10px;border-radius:99px}
+.url{flex:1;background:#fff;border-radius:99px;font:500 11px Montserrat;color:#8a8078;padding:4px 12px;border:1px solid #e2dcd6}
+
+/* student atoms */
+.top{background:#fff;padding:10px 13px;border-bottom:1px solid #f2e9e0}
+.tl{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:7px}
+.tl .q{font:800 13px Montserrat}
+.tl .q span{color:#a9a19a;font-weight:600}
+.clock{font:800 13px Montserrat;color:var(--ink);font-variant-numeric:tabular-nums}
+.clock.warn{color:#b03030}
+.who{font:600 10px Montserrat;color:#a9a19a;letter-spacing:.04em}
+/* THE PACE BAR */
+.pace{height:6px;background:#f0e6dd;border-radius:99px;position:relative;overflow:visible}
+.pace .fill{position:absolute;left:0;top:0;height:100%;background:var(--o);border-radius:99px}
+.pace .fill.over{background:linear-gradient(90deg,var(--o) 70%,var(--amber))}
+.pace .tick{position:absolute;top:-3px;width:2px;height:12px;background:#6b7280;border-radius:2px}
+.pace .tick::after{content:"";position:absolute;top:-3px;left:-2px;width:6px;height:6px;border-radius:99px;background:#6b7280}
+.pacelbl{display:flex;justify-content:space-between;font:600 9.5px Montserrat;color:#a9a19a;margin-top:5px;letter-spacing:.03em}
+.body{padding:13px}
+.card{background:#fff;border-radius:14px;padding:13px;box-shadow:0 2px 10px rgba(120,80,40,.07);margin-bottom:11px}
+.qtag{font:800 9.5px Montserrat;color:var(--o-deep);letter-spacing:.1em;margin-bottom:6px}
+.stem{font:700 14.5px/1.45 Montserrat;margin:0 0 11px}
+.opt{border:1.5px solid #efe4da;border-radius:11px;padding:10px 12px;margin-bottom:7px;font-size:13.5px;
+     display:flex;gap:9px;align-items:center;background:#fff}
+.opt b{width:20px;height:20px;border-radius:99px;background:var(--cream2);color:var(--o-deep);
+       font:800 10.5px Montserrat;display:grid;place-items:center;flex:none}
+.opt.sel{border-color:var(--o);background:#fff6ee}
+.opt.sel b{background:var(--o);color:#fff}
+.opt.right{border-color:#a9d3b1;background:#f3faf4}
+.opt.right b{background:var(--ok);color:#fff}
+.opt.chose{border-color:#e8b3ac;background:#fdf5f4}
+.opt.chose b{background:var(--bad);color:#fff}
+.cta{display:block;background:var(--o);color:#fff;text-align:center;font:800 13.5px Montserrat;
+     padding:12px;border-radius:12px;text-decoration:none;margin-top:3px}
+.cta.ghost{background:#fff;color:var(--o-deep);border:1.5px solid #f3dcc6}
+.cta.quiet{background:#f4efea;color:#6b7280;border:0}
+.rule{font:600 10.5px Montserrat;color:#8a7f76;background:var(--cream3);padding:5px 10px;border-radius:7px;
+      text-align:center;letter-spacing:.02em}
+.h{font:800 12.5px Montserrat;margin:0 0 7px}
+.kv{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 0;border-top:1px solid #f5efe9}
+.kv:first-of-type{border-top:0}
+.kv b{font-weight:700}
+.big{text-align:center;padding:6px 0 2px}
+.big b{display:block;font:900 30px Montserrat;color:var(--o-deep);line-height:1.1}
+.big span{font:600 10.5px Montserrat;color:var(--mut);letter-spacing:.05em}
+.omr{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.omr i{aspect-ratio:1;border-radius:4px;display:grid;place-items:center;font:700 9px Montserrat;font-style:normal}
+.omr i.r{background:#e4f2e6;color:var(--ok);border:1px solid #b9dcc0}
+.omr i.w{background:#fbeceb;color:var(--bad);border:1px solid #eec4bf}
+.omr i.s{background:#f2eeea;color:#8a7f76;border:1px solid #e2dad2}
+.leg{display:flex;gap:12px;font:600 10px Montserrat;margin-top:8px}
+.leg span{display:flex;align-items:center;gap:4px}
+.leg u{width:11px;height:11px;border-radius:3px;text-decoration:none;display:grid;place-items:center;font-size:7.5px}
+/* palette */
+.pal{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.pal i{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font:700 11px Montserrat;font-style:normal;
+       border:1.5px solid #ece2d8;background:#fff;color:#8a7f76}
+.pal i.done{background:var(--o);color:#fff;border-color:var(--o)}
+.pal i.mark{border-color:var(--amber);color:#8a5a00;background:#fdf6e6}
+.pal i.now{outline:2px solid var(--ink);outline-offset:1px}
+/* benchmark track */
+.bt{margin:11px 0 3px}
+.bt .nm{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;margin-bottom:5px}
+.bt .nm b{font-weight:700}
+.bt .nm em{font-style:normal;font:600 10px Montserrat;color:#a9a19a}
+.track{height:9px;background:#f2ece6;border-radius:99px;position:relative}
+.track .band{position:absolute;top:0;height:100%;background:rgba(245,131,33,.32);border-radius:99px}
+.track .me{position:absolute;top:-2px;width:3px;height:13px;background:var(--o-deep);border-radius:2px}
+.track .bm{position:absolute;top:-4px;width:1.5px;height:17px;background:#6b7280}
+.words{font-size:11.5px;color:#5b5148;margin-top:6px;line-height:1.45}
+.words b{color:var(--ink)}
+.insuf{font-size:11.5px;color:#8a7f76;font-style:italic}
+/* trajectory */
+.tr{display:flex;align-items:flex-end;gap:6px;height:70px;margin:12px 0 3px}
+.tr i{flex:1;position:relative;background:var(--o);border-radius:3px 3px 0 0;opacity:.85}
+.tr i.now{background:var(--o-deep);opacity:1}
+.tr i u{position:absolute;left:50%;transform:translateX(-50%);width:1.5px;background:#8a7f76;text-decoration:none}
+.tr i u::before,.tr i u::after{content:"";position:absolute;left:-3px;width:7px;height:1.5px;background:#8a7f76}
+.tr i u::before{top:0}.tr i u::after{bottom:0}
+.verdict{font:700 12px Montserrat;margin-top:8px}
+.verdict.up{color:#2c7a44}.verdict.flat{color:#8a7f76}
+.foot{font:600 9.5px Montserrat;color:#b5aca4;line-height:1.6;margin-top:10px;letter-spacing:.02em}
+.badge{font:800 10px Montserrat;padding:3px 8px;border-radius:99px;letter-spacing:.03em}
+.b-live{background:#fdf0e4;color:#8a4415}
+.b-done{background:#eaf3ec;color:#2c7a44}
+.b-off{background:#f2eeea;color:#8a7f76}
+.pill{font:700 11px Montserrat;padding:5px 11px;border-radius:99px}
+.p-new{background:#e7f6ea;color:#1d6b34;border:1px solid #a9dab6}
+.p-fix{background:#fdeeea;color:#9c3b2b;border:1px solid #eec4bf}
+</style>
+
+<div class="wrap">
+
+<h1>KAS MCQ — <em>the student experience</em></h1>
+<p class="sub">Sixteen screens. The first pass drew six; a four-lens red team found the other ten, plus the reasons several of the first six were wrong. Everything below is the corrected design.</p>
+
+<h2>1 · The timer</h2>
+<p class="cap">Decided here because it shapes every screen in the attempt. <b>There is no per-question timer.</b></p>
+
+<div class="row">
+<div style="flex:1;min-width:340px">
+<table style="margin-top:0">
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Per-question countdown?</td><td><b>No.</b> "00:47" beside "Q 23 / 100" reads as seconds-on-this-question or minutes-left. In a 120-minute paper the one number that must never be ambiguous is time remaining.</td></tr>
+<tr><td>What replaces it</td><td>A wall clock (exact, always) and <b>one bar carrying two facts</b>: fill = questions answered, tick = where the clock says you should be. The gap between them is the message.</td></tr>
+<tr><td>Overspend at 60s / 72s</td><td>The aggregate signal already covers it — overspend and your fill falls behind the tick. If an immediate cue is wanted, the <b>leading edge of the fill warms cream → amber across 60→72s</b> and resets on advance. One element, no text, no new furniture.</td></tr>
+<tr><td>Beep or haptic?</td><td><b>No — on measurement grounds.</b> Audio and vibration don't fire identically across devices and OS settings. If Time management is a measured ability and one student gets a buzz while another doesn't, part of that score measures <i>what phone they own</i>. Colour renders everywhere.</td></tr>
+<tr><td>Flag</td><td><code>mcq.pace_signal ∈ {none · ambient · ambient_plus_overspend}</code>, <b>stamped on the card</b>. We measure time management under this setting; a card that doesn't say which setting produced it is uninterpretable.</td></tr>
+</table>
+</div>
+</div>
+
+<div class="note"><b>What could not be reused.</b> <code>task-details</code>' timer calls <code>expireTask</code> → <code>markExpired()</code> at zero — status <code>expired</code>, zero evaluation, and a card reading <i>"marked as not attempted"</i>. On a two-hour paper that voids the exam at the buzzer. Its second-tab handler (<code>task:softlock</code>) <b>permanently halts the countdown</b>. What is worth reusing is the ~40-line skew-proof anchoring pattern — client anchors <code>Date.now() + remaining</code>, never the absolute deadline, re-syncs on foreground — not the partial.</div>
+
+<h2>2 · Getting in</h2>
+
+<div class="row">
+  <div>
+    <div class="step">S01<small>series not open yet</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Mock Test Series</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card" style="text-align:center;padding:22px 15px">
+          <div style="font-size:26px">⏳</div>
+          <div style="font:800 15px Montserrat;margin:9px 0 6px">Opening shortly</div>
+          <div style="font-size:13px;color:var(--mut);line-height:1.55">Your Success Scan scorecard is still being prepared. The mock series opens the moment it's ready — usually within an hour.</div>
+          <div style="margin-top:13px" class="rule">We'll notify you. Nothing to do.</div>
+        </div>
+        <a class="cta ghost" href="#">View my Success Scan</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S02<small>paper list — four states</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Mock Test Series</span><span class="who">ANANYA R</span></div></div>
+      <div class="body" style="padding:11px">
+        <div class="card" style="padding:11px;border:1.5px solid var(--o)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+            <span style="font:800 13px Montserrat">GS-1 · Prelims Paper I</span><span class="badge b-live">IN PROGRESS</span></div>
+          <div style="font-size:11.5px;color:var(--mut);margin-bottom:8px">You were on Q64 · <b style="color:var(--o-deep)">41:12 left</b></div>
+          <a class="cta" style="padding:9px;font-size:12.5px" href="#s07">Resume attempt 3</a>
+        </div>
+        <div class="card" style="padding:11px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font:800 13px Montserrat">GS-2 · Prelims Paper II</span><span class="badge b-off">0 of 3 done</span></div>
+          <div style="font-size:11.5px;color:var(--mut);margin-bottom:8px">100 questions · 120 min · +2 / −0.66</div>
+          <a class="cta ghost" style="padding:9px;font-size:12.5px" href="#s03">Start attempt 1</a>
+        </div>
+        <div class="card" style="padding:11px;opacity:.72">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font:800 13px Montserrat">GS-1 · attempt 4</span><span class="badge b-off">NOT YET</span></div>
+          <div style="font-size:11.5px;color:var(--mut)">New questions are still being written for 9 of the 100 areas. Opens 24 Aug.</div>
+        </div>
+        <div class="card" style="padding:11px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font:800 13px Montserrat">GS-2 · all attempts used</span><span class="badge b-done">3 of 3 done</span></div>
+          <a class="cta ghost" style="padding:9px;font-size:12.5px" href="#">Add more attempts →</a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S03<small>before you start — <span style="color:#1d6b34">NEW, was missing</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">GS-1 · attempt 1</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="h">How this paper is marked</div>
+          <div class="kv"><span>Correct</span><b style="color:var(--ok)">+2</b></div>
+          <div class="kv"><span>Wrong</span><b style="color:var(--bad)">−0.66</b></div>
+          <div class="kv"><span>Left blank</span><b>0</b></div>
+          <div class="kv"><span>Time</span><b>120 minutes</b></div>
+        </div>
+        <div class="card">
+          <div class="h">What we measure</div>
+          <div style="font-size:12.5px;color:#5b5148;line-height:1.55">
+            Your marks, and the abilities behind them.<br><br>
+            <b>A blank counts as evidence too</b> — knowing when not to guess is part of what we measure. It isn't a free pass.
+          </div>
+        </div>
+        <div class="card" style="background:var(--cream3);box-shadow:none">
+          <div style="font-size:12px;color:#7a6a5c;line-height:1.5">Answers and explanations unlock after your 3rd attempt.</div>
+        </div>
+        <a class="cta" href="#s04">Begin — the clock starts now</a>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="note"><b>S03 is the screen whose absence was worst.</b> The design measures "decision-making under negative marking" and never told the student there <i>was</i> negative marking. A student penalised by a rule they were never shown reads the deduction as a bug.</div>
+
+<h2>3 · Sitting the paper</h2>
+
+<div class="row">
+  <div>
+    <div class="step">S04<small>question — on pace</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top">
+        <div class="tl"><span class="q">Q 38 <span>/ 100</span></span><span class="clock">1:02:14 left</span></div>
+        <div class="pace"><i class="fill" style="width:38%"></i><i class="tick" style="left:48%"></i></div>
+        <div class="pacelbl"><span>38 ANSWERED</span><span>PACE</span></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="qtag">INDIAN NATIONAL MOVEMENT</div>
+          <div class="stem">The Non-Cooperation Movement was withdrawn after:</div>
+          <div class="opt"><b>A</b><span>the Partition of India</span></div>
+          <div class="opt sel"><b>B</b><span>the Chauri Chaura incident</span></div>
+          <div class="opt"><b>C</b><span>the Jallianwala Bagh massacre</span></div>
+          <div class="opt"><b>D</b><span>the Royal Indian Navy revolt</span></div>
+        </div>
+        <div style="display:flex;gap:7px;margin-bottom:9px">
+          <a class="cta quiet" style="flex:1;margin:0;padding:10px;font-size:12.5px" href="#s05">← Back</a>
+          <a class="cta ghost" style="flex:1;margin:0;padding:10px;font-size:12.5px" href="#s05">⚑ Mark</a>
+          <a class="cta" style="flex:1.4;margin:0;padding:10px;font-size:12.5px" href="#s05">Next →</a>
+        </div>
+        <div class="rule">+2 correct · −0.66 wrong · 0 blank</div>
+        <div style="text-align:center;margin-top:9px"><a href="#s05" style="font:700 11.5px Montserrat;color:var(--o-deep);text-decoration:none">⊞ All 100 questions</a></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S04b<small>behind pace + overspend</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top">
+        <div class="tl"><span class="q">Q 23 <span>/ 100</span></span><span class="clock">1:14:32 left</span></div>
+        <div class="pace"><i class="fill over" style="width:23%"></i><i class="tick" style="left:38%"></i></div>
+        <div class="pacelbl"><span>23 ANSWERED</span><span>PACE</span></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="qtag">INDIAN POLITY</div>
+          <div class="stem">Which of the following are Directive Principles rather than Fundamental Rights?</div>
+          <div class="opt"><b>A</b><span>Equal pay for equal work</span></div>
+          <div class="opt"><b>B</b><span>Protection of monuments of national importance</span></div>
+          <div class="opt"><b>C</b><span>Both of the above</span></div>
+          <div class="opt"><b>D</b><span>Neither of the above</span></div>
+        </div>
+        <div style="display:flex;gap:7px;margin-bottom:9px">
+          <a class="cta quiet" style="flex:1;margin:0;padding:10px;font-size:12.5px" href="#">← Back</a>
+          <a class="cta ghost" style="flex:1;margin:0;padding:10px;font-size:12.5px" href="#">⚑ Mark</a>
+          <a class="cta" style="flex:1.4;margin:0;padding:10px;font-size:12.5px" href="#">Next →</a>
+        </div>
+        <div class="rule">+2 correct · −0.66 wrong · 0 blank</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S05<small>question palette — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top">
+        <div class="tl"><span class="q">All questions</span><span class="clock">1:02:14 left</span></div>
+        <div class="pace"><i class="fill" style="width:38%"></i><i class="tick" style="left:48%"></i></div>
+        <div class="pacelbl"><span>38 ANSWERED</span><span>PACE</span></div>
+      </div>
+      <div class="body">
+        <div class="card" style="padding:11px">
+          <div class="pal">
+            <i class="done">1</i><i class="done">2</i><i class="done">3</i><i>4</i><i class="done">5</i><i class="mark">6</i>
+            <i class="done">7</i><i class="done">8</i><i>9</i><i class="done">10</i><i class="done">11</i><i class="done">12</i>
+            <i class="mark">13</i><i class="done">14</i><i class="done">15</i><i class="done">16</i><i>17</i><i class="done">18</i>
+            <i class="done">19</i><i class="done">20</i><i class="mark">21</i><i class="done">22</i><i class="done">23</i><i>24</i>
+            <i class="done">25</i><i class="done">26</i><i class="done">27</i><i class="done">28</i><i class="done">29</i><i class="done">30</i>
+            <i class="done">31</i><i>32</i><i class="done">33</i><i class="done">34</i><i class="done">35</i><i class="done">36</i>
+            <i class="done">37</i><i class="done now">38</i><i>39</i><i>40</i><i>41</i><i>42</i>
+          </div>
+          <div class="leg" style="margin-top:10px">
+            <span><u style="background:var(--o)"></u>answered 38</span>
+            <span><u style="border:1.5px solid #ece2d8"></u>blank 5</span>
+            <span><u style="border:1.5px solid var(--amber);background:#fdf6e6"></u>marked 3</span>
+          </div>
+        </div>
+        <a class="cta ghost" href="#s06">Review my 3 marked</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S06<small>before submitting — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Submit GS-1 · attempt 3?</span><span class="clock">22:04 left</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="kv"><span>Answered</span><b>88 of 100</b></div>
+          <div class="kv"><span>Left blank</span><b>12</b></div>
+          <div class="kv"><span>Still marked for review</span><b style="color:var(--amber)">3</b></div>
+        </div>
+        <div class="card" style="background:var(--cream3);box-shadow:none">
+          <div style="font-size:12.5px;color:#7a6a5c;line-height:1.55">
+            Your 12 blanks will score <b>0</b> and count as evidence of how you decide under a penalty. You still have <b>22 minutes</b>.
+          </div>
+        </div>
+        <a class="cta ghost" href="#s05">Go back — 3 marked</a>
+        <a class="cta" href="#s09">Submit now</a>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="row">
+  <div>
+    <div class="step">S07<small>resume — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">GS-1 · attempt 3</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="h">Your paper is still open</div>
+          <div class="kv"><span>You were on</span><b>Q64</b></div>
+          <div class="kv"><span>Answered so far</span><b>58</b></div>
+          <div class="kv"><span>Time remaining</span><b style="color:var(--o-deep)">41:12</b></div>
+        </div>
+        <div class="card" style="background:var(--cream3);box-shadow:none">
+          <div style="font-size:12.5px;color:#7a6a5c;line-height:1.55">The clock kept running while you were away. Everything you answered is saved.</div>
+        </div>
+        <a class="cta" href="#s04">Resume at Q64</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S08<small>time up — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">GS-1 · attempt 3</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="h">Time's up — your paper was submitted</div>
+          <div class="kv"><span>Answered</span><b>58 of 100</b></div>
+          <div class="kv"><span>Left blank</span><b>6</b></div>
+          <div class="kv"><span>Never reached</span><b>36</b></div>
+        </div>
+        <div class="card" style="background:var(--cream3);box-shadow:none">
+          <div style="font-size:12.5px;color:#7a6a5c;line-height:1.55">
+            The 36 you never reached are <b>not counted against your abilities</b> — we only measure questions you saw. They score 0 for marks.
+          </div>
+        </div>
+        <a class="cta" href="#s09">See your result</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S09<small>result — numbers now reconcile</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">GS-1 · attempt 3</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="big"><b>107.4</b><span>OF 200</span></div>
+          <div class="kv" style="margin-top:9px"><span>58 correct</span><b style="color:var(--ok)">+116.0</b></div>
+          <div class="kv"><span>13 wrong</span><b style="color:var(--bad)">−8.6</b></div>
+          <div class="kv"><span>29 blank</span><b>0</b></div>
+          <div style="font-size:11px;color:#a9a19a;margin-top:8px;text-align:center">Last three KAS cutoffs: 96 · 104 · 112</div>
+        </div>
+        <div class="card">
+          <div class="h">Your answers</div>
+          <div class="omr">
+            <i class="r">✓</i><i class="r">✓</i><i class="w">✗</i><i class="r">✓</i><i class="s">–</i><i class="r">✓</i><i class="r">✓</i><i class="w">✗</i><i class="r">✓</i><i class="s">–</i>
+            <i class="r">✓</i><i class="r">✓</i><i class="r">✓</i><i class="s">–</i><i class="r">✓</i><i class="w">✗</i><i class="r">✓</i><i class="r">✓</i><i class="s">–</i><i class="r">✓</i>
+          </div>
+          <div class="leg">
+            <span><u class="r" style="background:#e4f2e6;color:var(--ok)">✓</u>58 right</span>
+            <span><u class="w" style="background:#fbeceb;color:var(--bad)">✗</u>13 wrong</span>
+            <span><u class="s" style="background:#f2eeea;color:#8a7f76">–</u>29 blank</span>
+          </div>
+          <div style="font-size:11px;color:#a9a19a;margin-top:7px;text-align:center">Tap any question to see why</div>
+        </div>
+        <a class="cta ghost" href="#s12">Ability profile — 1 more attempt</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S10<small>why I got it wrong — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Q 23 · review</span><span class="who">3 of 42 wrong</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="qtag">INDIAN NATIONAL MOVEMENT</div>
+          <div class="stem">The Non-Cooperation Movement was withdrawn after:</div>
+          <div class="opt right"><b>A</b><span>the Chauri Chaura incident</span></div>
+          <div class="opt chose"><b>B</b><span>the Jallianwala Bagh massacre</span></div>
+        </div>
+        <div class="card" style="background:#f3faf4;box-shadow:none">
+          <div style="font:800 10px Montserrat;color:#2c7a44;letter-spacing:.09em;margin-bottom:5px">WHY A</div>
+          <div style="font-size:12.5px;line-height:1.55;color:#3d4b41">Gandhi withdrew the movement in Feb 1922 after protesters burned a police station at Chauri Chaura, killing 22 policemen.</div>
+        </div>
+        <div class="card" style="background:#fdf5f4;box-shadow:none">
+          <div style="font:800 10px Montserrat;color:#9c3b2b;letter-spacing:.09em;margin-bottom:5px">WHY YOU PICKED B</div>
+          <div style="font-size:12.5px;line-height:1.55;color:#4b3d3a">Jallianwala Bagh (1919) is what <i>triggered</i> the movement, not what ended it. This confuses cause with conclusion — and dates the withdrawal three years early.</div>
+        </div>
+        <a class="cta quiet" href="#">← prev</a>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="note"><b>S10 is the whole authoring investment finally reaching someone.</b> The admin forces a named misconception behind every wrong option — 2,200 of them at the advanced tier. The first pass drew no screen for any of them, so the product collected the cost of teaching and delivered none of it.</div>
+
+<h2>4 · The result</h2>
+
+<div class="row">
+  <div>
+    <div class="step">S11<small>preparing — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Ability profile</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card" style="text-align:center;padding:24px 15px">
+          <div style="font-size:26px">⏳</div>
+          <div style="font:800 15px Montserrat;margin:9px 0 6px">Working it out</div>
+          <div style="font-size:13px;color:var(--mut);line-height:1.55">Reading all three of your papers together. Usually two or three minutes.</div>
+          <div class="rule" style="margin-top:14px">We'll notify you — you can close this</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S12<small>not enough yet — no padlock</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Ability profile</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="h">Two papers in</div>
+          <div style="font-size:13px;color:#5b5148;line-height:1.6">
+            One paper tells us how a single morning went. Three tell us how you actually work.<br><br>
+            We'd rather give you a number you can trust than one you can't.
+          </div>
+          <div class="pace" style="margin:14px 0 6px"><i class="fill" style="width:66%"></i></div>
+          <div style="font:600 10px Montserrat;color:#a9a19a">2 OF 3 COMPLETE</div>
+        </div>
+        <div class="card">
+          <div class="h">Ready now</div>
+          <div style="font-size:12.5px;color:#5b5148;line-height:1.55">Your marks, your answers and the explanation behind every question you got wrong — for both papers.</div>
+          <a class="cta ghost" style="margin-top:10px" href="#s09">Review attempt 2</a>
+        </div>
+        <a class="cta" href="#s03">Start attempt 3</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S13<small>ability profile — corrected</small></div>
+    <div class="phone"><div class="pv" style="overflow:auto">
+      <div class="top"><div class="tl"><span class="q">Ability profile</span><span class="who">GS-1</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="h" style="margin-bottom:2px">Where you stand</div>
+          <div style="font-size:11px;color:#a9a19a;margin-bottom:4px">Averaged across your first 3 attempts</div>
+
+          <div class="bt">
+            <div class="nm"><b>Comprehension</b><em>from 40 questions</em></div>
+            <div class="track"><i class="band" style="left:52%;width:22%"></i>
+              <i class="bm" style="left:71%"></i><i class="bm" style="left:74%"></i><i class="bm" style="left:77%"></i>
+              <i class="me" style="left:63%"></i></div>
+            <div class="words"><b>Below all three benchmarks.</b> Your range sits 8–20 points under the developmental bar.</div>
+          </div>
+
+          <div class="bt">
+            <div class="nm"><b>Attention to Detail</b><em>from 19 questions</em></div>
+            <div class="track"><i class="band" style="left:60%;width:26%"></i>
+              <i class="bm" style="left:70%"></i><i class="bm" style="left:73%"></i><i class="bm" style="left:76%"></i>
+              <i class="me" style="left:73%"></i></div>
+            <div class="words">Your range <b>spans all three benchmarks</b> — we can't yet tell which one you sit at.</div>
+          </div>
+
+          <div class="bt">
+            <div class="nm"><b>Problem-solving</b><em>from 7 questions</em></div>
+            <div class="track" style="opacity:.45"><i class="bm" style="left:69%"></i><i class="bm" style="left:72%"></i><i class="bm" style="left:75%"></i></div>
+            <div class="words insuf">Not enough evidence to report — only 7 questions in this paper measure it. 3 more attempts will tell.</div>
+          </div>
+
+          <div class="bt">
+            <div class="nm"><b>Conflict Resolution</b><em>—</em></div>
+            <div class="words insuf">Measured in the Mains paper, not this one.</div>
+          </div>
+
+          <div class="foot">
+            GS-1 ONLY · BENCHMARKS V3 · EXPLANATIONS FROM ATTEMPT 3 · PACE SIGNAL: AMBIENT<br>
+            THE THREE MARKS ON EACH TRACK ARE THE DEVELOPMENTAL, AGE-SPECIFIC AND COMPETITIVE BENCHMARKS.
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S14<small>trajectory — verdict suppressed below significance</small></div>
+    <div class="phone"><div class="pv" style="overflow:auto">
+      <div class="top"><div class="tl"><span class="q">Your progress</span><span class="who">21-ATTEMPT PLAN</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div style="font:800 13px Montserrat">Attention to Detail</div>
+          <div style="font-size:11px;color:#a9a19a">7 blocks of 3 attempts</div>
+          <div class="tr">
+            <i style="height:42%"><u style="top:-16%;height:32%"></u></i>
+            <i style="height:52%"><u style="top:-13%;height:26%"></u></i>
+            <i style="height:58%"><u style="top:-13%;height:26%"></u></i>
+            <i style="height:66%"><u style="top:-12%;height:24%"></u></i>
+            <i style="height:70%"><u style="top:-12%;height:24%"></u></i>
+            <i style="height:74%"><u style="top:-11%;height:22%"></u></i>
+            <i class="now" style="height:79%"><u style="top:-11%;height:22%"></u></i>
+          </div>
+          <div class="verdict up">↑ Real improvement — +26 points across 7 blocks</div>
+          <div style="font-size:11px;color:#a9a19a;margin-top:5px">The whiskers are how precise each block is. This climb is bigger than they are.</div>
+        </div>
+        <div class="card">
+          <div style="font:800 13px Montserrat">Problem-solving</div>
+          <div class="tr">
+            <i style="height:40%"><u style="top:-30%;height:60%"></u></i>
+            <i style="height:43%"><u style="top:-28%;height:56%"></u></i>
+            <i style="height:41%"><u style="top:-29%;height:58%"></u></i>
+            <i class="now" style="height:44%"><u style="top:-28%;height:56%"></u></i>
+          </div>
+          <div class="verdict flat">→ No change we can distinguish yet</div>
+          <div style="font-size:11px;color:#a9a19a;margin-top:5px">Only 7 questions per paper measure this, so the whiskers are wide. Ups and downs this size are noise.</div>
+          <a class="cta ghost" style="margin-top:10px" href="#">Practise problem-solving →</a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="note"><b>Two verdicts, two treatments.</b> The first pass narrated a 4-point wobble as <i>"the explanations aren't landing here"</i> — a causal claim, blaming the coaching, at z = 0.20. Under the measured precision a student who learns <b>nothing</b> still sees a median +13.6-point swing. The rule now: <b>no causal attribution and no CTA below |z| ≥ 1.96</b>, and where a verdict does render, the app states what moved — never whose fault it is.</div>
+
+<h2>5 · When things go wrong</h2>
+
+<div class="row">
+  <div>
+    <div class="step">S15<small>part-payment lock — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Ability profile</span><span class="who">GS-1</span></div></div>
+      <div class="body">
+        <div class="card">
+          <div class="h">Where you stand</div>
+          <div class="bt">
+            <div class="nm"><b>Comprehension</b><em>from 40 questions</em></div>
+            <div class="track"><i class="band" style="left:52%;width:22%"></i><i class="bm" style="left:71%"></i><i class="bm" style="left:74%"></i><i class="bm" style="left:77%"></i><i class="me" style="left:63%"></i></div>
+            <div class="words">Below all three benchmarks.</div>
+          </div>
+          <div class="bt" style="opacity:.35;filter:blur(2.5px);pointer-events:none">
+            <div class="nm"><b>Attention to Detail</b><em>from 19 questions</em></div>
+            <div class="track"><i class="band" style="left:60%;width:26%"></i><i class="me" style="left:73%"></i></div>
+          </div>
+          <div class="bt" style="opacity:.35;filter:blur(2.5px)">
+            <div class="nm"><b>Critical &amp; Analytical</b><em>from 31 questions</em></div>
+            <div class="track"><i class="band" style="left:44%;width:24%"></i><i class="me" style="left:56%"></i></div>
+          </div>
+        </div>
+        <div class="card" style="background:var(--cream3);box-shadow:none">
+          <div style="font-size:12.5px;color:#7a6a5c;line-height:1.55">You're seeing 1 of 5 abilities. Complete your payment to see the rest, plus your trajectory.</div>
+          <a class="cta" style="margin-top:10px" href="#">Complete payment</a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S16<small>generation failed — <span style="color:#1d6b34">NEW</span></small></div>
+    <div class="phone"><div class="pv">
+      <div class="top"><div class="tl"><span class="q">Ability profile</span><span class="who">ANANYA R</span></div></div>
+      <div class="body">
+        <div class="card" style="text-align:center;padding:22px 15px">
+          <div style="font:800 15px Montserrat;margin-bottom:7px">We couldn't build your profile</div>
+          <div style="font-size:13px;color:var(--mut);line-height:1.55">Something went wrong on our side — not with your papers. Our team has been alerted and is on it.</div>
+          <div class="rule" style="margin-top:13px">Your attempts are safe. Nothing is lost.</div>
+        </div>
+        <a class="cta ghost" href="#s09">See your marks meanwhile</a>
+        <a class="cta quiet" href="#">Contact support</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">S17<small>offline mid-paper</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top">
+        <div class="tl"><span class="q">Q 64 <span>/ 100</span></span><span class="clock">41:12 left</span></div>
+        <div class="pace"><i class="fill" style="width:58%"></i><i class="tick" style="left:66%"></i></div>
+        <div class="pacelbl"><span>58 ANSWERED</span><span>PACE</span></div>
+      </div>
+      <div style="background:#fdf6e6;border-bottom:1px solid #f0e0bb;padding:8px 13px;font:600 11.5px Montserrat;color:#8a5a00;text-align:center">
+        Offline — your answers are saved on this device and will sync
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="qtag">GEOGRAPHY</div>
+          <div class="stem">The Western Ghats run through how many states?</div>
+          <div class="opt"><b>A</b><span>Four</span></div>
+          <div class="opt sel"><b>B</b><span>Six</span></div>
+          <div class="opt"><b>C</b><span>Five</span></div>
+          <div class="opt"><b>D</b><span>Seven</span></div>
+        </div>
+        <a class="cta" href="#">Next →</a>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<h2>6 · Desktop</h2>
+<p class="cap">The same Blade views. Wider viewport puts the palette permanently beside the question instead of behind a tap.</p>
+<div class="row"><div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/mobile/mcq/gs-1/attempt/3</span></div>
+  <div style="background:var(--cream)">
+    <div class="top" style="padding:11px 20px">
+      <div class="tl"><span class="q">GS-1 · attempt 3 &nbsp;<span>—</span>&nbsp; Q 38 / 100</span><span class="clock">1:02:14 left</span></div>
+      <div class="pace"><i class="fill" style="width:38%"></i><i class="tick" style="left:48%"></i></div>
+      <div class="pacelbl"><span>38 ANSWERED · 5 BLANK · 3 MARKED</span><span>PACE</span></div>
+    </div>
+    <div style="display:flex;gap:16px;padding:16px 20px 20px">
+      <div style="flex:1.9">
+        <div class="card">
+          <div class="qtag">INDIAN NATIONAL MOVEMENT</div>
+          <div class="stem" style="font-size:15.5px">The Non-Cooperation Movement was withdrawn after:</div>
+          <div class="opt"><b>A</b><span>the Partition of India</span></div>
+          <div class="opt sel"><b>B</b><span>the Chauri Chaura incident</span></div>
+          <div class="opt"><b>C</b><span>the Jallianwala Bagh massacre</span></div>
+          <div class="opt"><b>D</b><span>the Royal Indian Navy revolt</span></div>
+        </div>
+        <div style="display:flex;gap:9px">
+          <a class="cta quiet" style="flex:1;margin:0;padding:11px" href="#">← Back</a>
+          <a class="cta ghost" style="flex:1;margin:0;padding:11px" href="#">⚑ Mark for review</a>
+          <a class="cta" style="flex:1.6;margin:0;padding:11px" href="#">Next →</a>
+        </div>
+      </div>
+      <div style="flex:1">
+        <div class="card" style="padding:12px">
+          <div class="pal" style="grid-template-columns:repeat(8,1fr)">
+            <i class="done">1</i><i class="done">2</i><i class="done">3</i><i>4</i><i class="done">5</i><i class="mark">6</i><i class="done">7</i><i class="done">8</i>
+            <i>9</i><i class="done">10</i><i class="done">11</i><i class="done">12</i><i class="mark">13</i><i class="done">14</i><i class="done">15</i><i class="done">16</i>
+            <i>17</i><i class="done">18</i><i class="done">19</i><i class="done">20</i><i class="mark">21</i><i class="done">22</i><i class="done">23</i><i>24</i>
+            <i class="done">25</i><i class="done">26</i><i class="done">27</i><i class="done">28</i><i class="done">29</i><i class="done">30</i><i class="done">31</i><i>32</i>
+            <i class="done">33</i><i class="done">34</i><i class="done">35</i><i class="done">36</i><i class="done">37</i><i class="done now">38</i><i>39</i><i>40</i>
+          </div>
+          <div class="leg" style="margin-top:11px">
+            <span><u style="background:var(--o)"></u>answered</span>
+            <span><u style="border:1.5px solid #ece2d8"></u>blank</span>
+            <span><u style="border:1.5px solid var(--amber);background:#fdf6e6"></u>marked</span>
+          </div>
+        </div>
+        <div class="rule">+2 correct · −0.66 wrong · 0 blank</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<h2>7 · What changed, and why</h2>
+<table>
+<tr><th>First pass</th><th>Now</th><th>Because</th></tr>
+<tr><td><code>00:47</code> per-question badge</td><td>wall clock + pace bar with a tick</td><td>ambiguous; and the inherited timer voids the exam at zero</td></tr>
+<tr><td>Skip / Next only</td><td>Back · Mark · Next · palette</td><td>"⚑ Mark for review" was a promise with nowhere to go</td></tr>
+<tr><td>straight to submit on Q100</td><td>S06 confirm with blanks named</td><td>an irreversible, attempt-consuming action on the 100th press of the same button</td></tr>
+<tr><td>no marking rule anywhere</td><td>S03 brief + persistent strip</td><td>the product measures decision-making under a penalty it never disclosed</td></tr>
+<tr><td><code>128 / 71 attempted / 82% accuracy</code></td><td>107.4 with its derivation; coverage, not accuracy-over-attempted</td><td>the three numbers were arithmetically impossible, and accuracy-over-attempted rewards the exact skipping strategy the skip rule exists to punish</td></tr>
+<tr><td>colour-only answer grid</td><td>✓ ✗ – glyphs, coloured legend, tappable</td><td>the legend rendered three identical grey squares; ~1 in 12 male aspirants couldn't read their own sheet</td></tr>
+<tr><td>no review screen</td><td>S10</td><td>2,200 authored misconceptions had no delivery surface</td></tr>
+<tr><td>🔒 padlock on ineligible</td><td>S12, no lock, "ready now" promoted</td><td>a padlock is the visual grammar of a paywall; the gate is protection and must read as protection</td></tr>
+<tr><td>one benchmark, five red numbers</td><td>three marks on one track, direction in words</td><td>the locked decision is all three tiers — and the sign convention is contradicted across two docs from the same week, so a bare signed integer is unsafe</td></tr>
+<tr><td>every ability rendered equal</td><td>evidence count per ability + <i>insufficient</i> state</td><td>the scariest number (−38) rested on 7 questions; the calmest on 40</td></tr>
+<tr><td>fake confidence bar</td><td>interval band + benchmark marks on a real track</td><td>the drawn width tracked the gap magnitude — it encoded the value it decorated</td></tr>
+<tr><td>"the explanations aren't landing here"</td><td>"no change we can distinguish yet"</td><td>z = 0.20, and the app must not tell a paying student whose fault it is</td></tr>
+<tr><td>no PREPARING / FAILED / LOCKED / resume / expiry / offline</td><td>S07 S08 S11 S15 S16 S17</td><td>every one is a state a real student reaches</td></tr>
+</table>
+
+<h2>8 · Still open</h2>
+<p class="cap">Eight decisions the screens are drawn <i>around</i> rather than <i>on</i>. Each changes what ships.</p>
+<table>
+<tr><th>#</th><th>Question</th><th>Owner</th></tr>
+<tr><td>1</td><td>Which estimand does an ability score name — performance on <i>this paper's</i> slots, or ability in general? Until answered, <code>min_attempts = 3</code> has no statistical basis.</td><td>kmm</td></tr>
+<tr><td>2</td><td>Is risk-taking part of the ability construct? Guessing is currently worth +10 to +14pp — 2.5 to 3.5 benchmark tiers.</td><td>kmm</td></tr>
+<tr><td>3</td><td>Does "never show an Event Score" forbid a paper mark, or only a per-question one?</td><td>kmm / founder</td></tr>
+<tr><td>4</td><td>Three benchmark tiers or one — the instrument resolves none of them separately (needs k ≥ 4,268; largest ability has 40).</td><td>kmm</td></tr>
+<tr><td>5</td><td>Rank on MCQ: yes or no. Silence ships the existing leaderboard tab, padded with <code>Sample A</code> filler rows.</td><td>founder</td></tr>
+<tr><td>6</td><td>Does familiarity-driven speed count as improved time management? It rises for every student regardless of ability.</td><td>kmm</td></tr>
+<tr><td>7</td><td><code>pace_signal</code> default — <code>ambient</code> or <code>ambient_plus_overspend</code>.</td><td>founder</td></tr>
+<tr><td>8</td><td>Bilingual or English-only — decide before 2,200 forms are authored, not after.</td><td>founder</td></tr>
+</table>
+
+</div>
