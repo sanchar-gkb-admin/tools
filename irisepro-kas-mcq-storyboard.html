@@ -117,6 +117,29 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .langs a.done i{background:#2c7a44}
 .langs a.todo i{background:#e0a99c}
 .lk{font:600 11px Montserrat;color:#a9a19a;display:flex;gap:5px;align-items:center}
+.wsp{display:flex;gap:12px;align-items:flex-start}
+.rail{width:150px;flex:none}
+.rail .blk{background:#fbf9f7;border:1px solid var(--line);border-radius:9px;padding:9px 10px;margin-bottom:8px}
+.rail h5{font:800 9.5px Montserrat;letter-spacing:.08em;color:#a9a19a;margin:0 0 5px}
+.rail .k{font-size:11px;color:#6b7280;line-height:1.55}
+.meter{height:6px;border-radius:99px;background:#eee7e0;overflow:hidden;margin:5px 0 3px}
+.meter i{display:block;height:100%;background:#2c7a44}
+.meter.over i{background:#c9622f}
+.fcard{border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin-bottom:6px;background:#fff;
+  display:flex;gap:9px;align-items:center;font-size:12.5px}
+.fcard.done{background:#f8fbf8;border-color:#dceadd}
+.fcard.now{border-color:var(--o-deep);border-width:2px;display:block;background:#fff}
+.fcard b.n{width:19px;height:19px;border-radius:99px;background:var(--cream2);color:var(--o-deep);
+  font:800 9.5px Montserrat;display:grid;place-items:center;flex:none}
+.fcard code{font-size:10.5px;color:#8a7f76;background:#f4f2f0;padding:1px 5px;border-radius:4px}
+.tr{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 0;border-top:1px solid var(--line);align-items:start}
+.tr .en{font-size:12px;color:#6b7280;padding:5px 8px;background:#f8f7f5;border-radius:6px}
+.tr .kn{display:flex;gap:5px;align-items:flex-start}
+.tr .kn input{flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:400 12px Montserrat}
+.tr .kn input.mt{background:#fdfaf3;border-color:#f0e0bb}
+.tick{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);display:grid;place-items:center;
+  font-size:11px;color:#c9c1b9;flex:none;background:#fff}
+.tick.on{background:#2c7a44;border-color:#2c7a44;color:#fff}
 .rq .who{font:600 11px Montserrat;color:#a9a19a;width:74px;flex:none}
 .rq .st{font:800 10px Montserrat;padding:3px 8px;border-radius:99px;flex:none}
 .wrow{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:4px 0}
@@ -546,6 +569,152 @@ passes a one-sided ceiling while making "never pick the longest" worth roughly 2
 No per-form verdict — a single item's rank carries no information. A04 shows a running budget instead, and the whole
 discipline is one sentence an author can hold: <b>roughly one question in four should have the shortest option
 correct.</b></div>
+
+<h3>A08 &middot; Slot workspace &mdash; the screen the author actually lives in</h3>
+<p class="cap">The unit of work is <b>a slot</b>, not a form. Nine forms that share an area, a demand, a
+difficulty and a weight vector, differing only in concept. You fill a slot in one sitting, on one screen.</p>
+<div class="row"><div>
+<div class="step">A08</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/fill</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
+    <span style="font:600 11px Montserrat;color:#6b7280">Slot 22 &middot; 6 of 9 &middot; <span class="saved">saved 8s ago</span></span></div>
+  <div class="a-body"><div class="wsp">
+
+    <div class="rail">
+      <div class="blk">
+        <h5>SLOT 22</h5>
+        <div class="k">Indian National Movement<br>recall a precise date<br>moderate &middot; 60s</div>
+      </div>
+      <div class="blk">
+        <h5>WEIGHTS &middot; KMM</h5>
+        <div class="k">AtD <b>50</b> &middot; Comp <b>26</b><br>DM <b>12</b><br><span style="color:#a9a19a">+12 more at 1</span></div>
+      </div>
+      <div class="blk">
+        <h5>LENGTH BUDGET</h5>
+        <div class="meter"><i style="width:33%"></i></div>
+        <div class="k">correct is longest in <b>2 of 6</b><br>room for <b>1 more</b> in this slot</div>
+      </div>
+      <div class="blk">
+        <h5>CONCEPTS USED</h5>
+        <div class="k" style="font-size:10px;line-height:1.7">withdrawal-trigger<br>khilafat-link<br>calcutta-session<br>bardoli-resolution<br>swadeshi-overlap<br>gandhi-arrest-1922</div>
+      </div>
+    </div>
+
+    <div style="flex:1">
+      <div class="fcard done"><b class="n">1</b><span style="flex:1">Withdrawn after Chauri Chaura</span><code>withdrawal-trigger</code><span class="saved">&#10003;</span></div>
+      <div class="fcard done"><b class="n">2</b><span style="flex:1">Khilafat linkage &mdash; which leader</span><code>khilafat-link</code><span class="saved">&#10003;</span></div>
+      <div class="fcard done"><b class="n">3</b><span style="flex:1">Calcutta session &mdash; year</span><code>calcutta-session</code><span class="saved">&#10003;</span></div>
+      <div class="fcard done" style="opacity:.55"><b class="n">4</b><span style="flex:1">Bardoli resolution</span><code>bardoli-resolution</code><span class="saved">&#10003;</span></div>
+      <div class="fcard done" style="opacity:.55"><b class="n">5</b><span style="flex:1">Swadeshi overlap</span><code>swadeshi-overlap</code><span class="saved">&#10003;</span></div>
+      <div class="fcard done" style="opacity:.55"><b class="n">6</b><span style="flex:1">Gandhi&rsquo;s arrest, 1922</span><code>gandhi-arrest-1922</code><span class="saved">&#10003;</span></div>
+
+      <div class="fcard now">
+        <div style="display:flex;gap:9px;align-items:center;margin-bottom:8px">
+          <b class="n">7</b><span style="font:700 11px Montserrat;color:var(--o-deep);flex:1">WRITING</span>
+          <span class="lk">&#9998; keep the correct option short &mdash; budget</span>
+        </div>
+        <input class="fld" style="font-weight:600" placeholder="stem &mdash; a concept none of the six above cover">
+        <div style="display:flex;gap:6px;margin-bottom:7px">
+          <select class="sel"><option>&mdash; misconception &mdash;</option><option>cause / trigger</option><option>era confusion</option><option>actor confusion</option><option>State vs Union</option></select>
+          <select class="sel"><option>&mdash; misconception &mdash;</option></select>
+          <select class="sel"><option>&mdash; misconception &mdash;</option></select>
+        </div>
+        <div style="font:600 10.5px Montserrat;color:#a9a19a;margin-bottom:7px">pick the three errors first &mdash; the options write themselves from them</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <a class="btn btn-g" href="#a08" style="padding:7px 14px;font-size:11px">Save &amp; write form 8 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
+          <a class="btn" href="#a08" style="padding:7px 14px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate form 3&rsquo;s shape</a>
+        </div>
+      </div>
+
+      <div class="fcard" style="opacity:.4"><b class="n">8</b><span style="flex:1">&mdash;</span></div>
+      <div class="fcard" style="opacity:.4"><b class="n">9</b><span style="flex:1">&mdash; spare</span></div>
+
+      <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+        <a class="btn" href="#a08" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Slot 22 done &rarr; next starved slot (slot 47, 0 of 9)</a>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+
+<div class="note"><b>Four things this screen does that a per-form create page cannot.</b><br><br>
+<b>It removes 3,400 page loads.</b> Nine forms via a create-page-and-return costs 18 navigations per slot;
+across 200 slots that is <b>3,600</b>. Filling in place costs one load per slot &mdash; <b>200</b>. Nothing about
+the writing got easier, but 18&times; of the sitting-down-and-getting-back went away.<br><br>
+<b>The six siblings are on screen while you write the seventh.</b> The near-duplicate warning in A04 fires after
+you have written the question; the concept list in the rail prevents you writing it. Same invariant, one
+prevents and one scolds.<br><br>
+<b>It asks for the three misconceptions before the three options.</b> The stem is not what takes fifteen minutes
+&mdash; three <i>real</i> beliefs a candidate holds is. Choosing them from a list that has learned this topic&rsquo;s
+recurring errors turns the hardest step into a pick, and it is the same closed <code>error_type</code> enum that makes
+the student&rsquo;s &ldquo;you made this error 4 times&rdquo; line possible. One decision paying twice.<br><br>
+<b>It answers &ldquo;what next&rdquo; without a menu.</b> 200 slots is not a choice anyone should make 200 times. The
+next-starved-slot button is the same least-served-first ordering the draw already uses.</div>
+
+<div class="note bad"><b>And one correction to my own design, forced by arithmetic.</b> I had the length-rank
+budget as a per-slot meter. <b>Per slot it is unmanageable.</b> The target is the correct option being longest
+about a quarter of the time &mdash; <b>2.25 of 9</b>. An author who reaches form 8 at <b>5 of 8</b> cannot recover:
+finishing perfectly still lands at <b>5 of 9 = 56%</b>, against a 25% target. By the time a slot-level meter shows
+a problem, the slot is already spent.<br><br>
+So the budget is <b>tracked at bank level and spent as an instruction</b>: the rail does not report a slot verdict,
+it says <i>&ldquo;keep this one short&rdquo;</i> before the form is written. Same measurement, opposite direction &mdash; a
+gate that fires after the fact would simply quarantine work that is already paid for.</div>
+
+<h3>A09 &middot; Translation desk &mdash; a different job, so a different screen</h3>
+<p class="cap">9,000 text units per language. A translator makes no structural decisions and should never
+see a structural control.</p>
+<div class="row"><div>
+<div class="step">A09</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/translate?lang=kn&amp;slot=22</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
+    <span style="font:600 11px Montserrat;color:#6b7280">KANNADA &middot; slot 22 &middot; 31 of 45 lines ticked</span></div>
+  <div class="a-body">
+    <div class="card" style="background:#fdf6e6;border-color:#f0e0bb">
+      <div style="font-size:12.5px;color:#8a5a00">Every line starts as a <b>machine draft</b> and counts for nothing until
+        a Kannada reader ticks it. Nothing here can go live untouched &mdash; that is the same rule as review, not a new one.</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+        <div class="slot-m">FORM 19 &middot; <code style="font-size:10px">withdrawal-trigger</code></div>
+        <span style="font:600 10.5px Montserrat;color:#a9a19a">ENGLISH &mdash; locked &nbsp;|&nbsp; ಕನ್ನಡ</span>
+      </div>
+      <div class="tr"><div class="en">The Non-Cooperation Movement was withdrawn after:</div>
+        <div class="kn"><input value="ಅಸಹಕಾರ ಚಳವಳಿಯನ್ನು ಯಾವುದರ ನಂತರ ಹಿಂಪಡೆಯಲಾಯಿತು:"><span class="tick on">&#10003;</span></div></div>
+      <div class="tr"><div class="en">A &middot; the Chauri Chaura incident</div>
+        <div class="kn"><input value="ಚೌರಿ ಚೌರಾ ಘಟನೆ"><span class="tick on">&#10003;</span></div></div>
+      <div class="tr"><div class="en">B &middot; the Jallianwala Bagh massacre</div>
+        <div class="kn"><input value="ಜಲಿಯನ್‌ವಾಲಾ ಬಾಗ್ ಹತ್ಯಾಕಾಂಡ"><span class="tick on">&#10003;</span></div></div>
+      <div class="tr"><div class="en">C &middot; the Partition of India</div>
+        <div class="kn"><input class="mt" value="ಭಾರತದ ವಿಭಜನೆ"><span class="tick">&#10003;</span></div></div>
+      <div class="tr"><div class="en">D &middot; the Royal Indian Navy revolt</div>
+        <div class="kn"><input class="mt" value="ರಾಯಲ್ ಇಂಡಿಯನ್ ನೌಕಾಪಡೆ ದಂಗೆ"><span class="tick">&#10003;</span></div></div>
+      <div class="gate" style="margin-top:8px"><u class="g-no">&#10007;</u><span>Option length spread in Kannada</span><em>2.17&times; &middot; ceiling 2.0&times;</em></div>
+    </div>
+    <div class="card" style="opacity:.5;padding:9px 12px">
+      <div class="slot-m">FORM 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 5 lines, machine draft</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn btn-g" href="#a07">Send slot 22 (KN) for review</a>
+      <a class="btn" href="#a09" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Next slot needing Kannada</a>
+    </div>
+  </div>
+</div></div>
+
+<div class="note"><b>Translating through the form editor would repeat the mistake A08 just fixed.</b> A04b is the
+right screen for fixing <i>one</i> rendering; it is the wrong screen for 9,000 of them, for the same reason a
+create-page is wrong for 1,800 forms. Here the unit is a <b>line</b>: English left and locked, Kannada right and
+editable, tab moves down, and a slot&rsquo;s 45 lines sit on one screen.<br><br>
+<b>Seeded, not blank.</b> Kannada is typed through transliteration and a blank column is the expensive starting
+state. A machine draft turns 9,000 acts of composition into 9,000 acts of <i>reading and correcting</i>, which is
+a different order of work. The safety is already in the design and needs no new rule: <b>publish requires every
+required language approved by a reader of that language</b>, so an unticked machine line cannot reach a
+candidate. The amber tint and the tick exist so that state is visible rather than inferred.<br><br>
+<b>The Kannada gates run here, where they can still be fixed.</b> Form 19&rsquo;s option spread is 2.17&times; in
+Kannada against 1.32&times; in English &mdash; a failure created by translation, so it has to surface to the
+translator, not to the author who wrote a clean English item weeks earlier.</div>
 
 <h2>3 · The gates</h2>
 
