@@ -1,0 +1,460 @@
+<title>KAS MCQ — Performance & Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Calistoga&display=swap" rel="stylesheet">
+<style>
+:root{
+  --o:#F58321; --o-deep:#E57311; --cream:#FFF9F5; --cream2:#FFF1E6; --cream3:#FFF5E9;
+  --amber:#E8A317; --ink:#1f2937; --mut:#6b7280; --line:#eee6de;
+  --ok:#3f8f4f; --bad:#c0453a;
+  --weak:#c0453a; --avg:#E8A317; --strong:#3f8f4f; --exc:#2f7fa8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#faf7f4;color:var(--ink);font:400 15px/1.6 Montserrat,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1220px;margin:0 auto;padding:40px 22px 100px}
+h1{font:900 40px/1.1 Montserrat;letter-spacing:-.02em;margin:0 0 6px}
+h1 em{font-family:Calistoga,serif;font-style:normal;color:var(--o)}
+.sub{color:var(--mut);margin:0 0 26px;font-size:16px;max-width:78ch}
+h2{font:800 13px/1 Montserrat;letter-spacing:.16em;text-transform:uppercase;color:var(--o-deep);
+   margin:58px 0 8px;padding-top:22px;border-top:2px solid var(--o)}
+h3{font:800 19px/1.3 Montserrat;margin:32px 0 4px}
+.cap{color:var(--mut);font-size:14px;margin:0 0 18px;max-width:80ch}
+.note{background:var(--cream2);border-left:3px solid var(--o);padding:11px 15px;border-radius:0 8px 8px 0;
+      font-size:13.5px;color:#5b4636;margin:16px 0;max-width:90ch}
+.note b{color:#8a4415}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:14px 0}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--cream2);font-weight:700}
+code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;margin:10px 0 6px}
+.step{font:900 11px Montserrat;letter-spacing:.11em;color:var(--o);margin:0 0 7px}
+.step small{display:block;font:600 11px Montserrat;color:var(--mut);letter-spacing:0;margin-top:2px}
+.phone{width:290px;border:9px solid #2a2622;border-radius:34px;overflow:hidden;background:#fff;
+       box-shadow:0 10px 30px rgba(40,25,10,.18);position:relative;flex:none}
+.phone::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+       width:104px;height:19px;background:#2a2622;border-radius:0 0 13px 13px;z-index:5}
+.pv{height:560px;overflow:hidden;background:var(--cream)}
+.browser{width:100%;max-width:780px;border:1px solid #d8d2cc;border-radius:12px;overflow:hidden;
+         background:#fff;box-shadow:0 8px 26px rgba(60,40,20,.10)}
+.chrome{background:#efeae5;padding:8px 11px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #ddd6cf}
+.dot{width:10px;height:10px;border-radius:99px}
+.url{flex:1;background:#fff;border-radius:99px;font:500 11px Montserrat;color:#8a8078;padding:4px 12px;border:1px solid #e2dcd6}
+
+.top{background:#fff;padding:11px 13px 0;border-bottom:1px solid #f2e9e0}
+.tl{display:flex;align-items:baseline;justify-content:space-between}
+.tl .q{font:800 13px Montserrat}
+.who{font:600 10px Montserrat;color:#a9a19a;letter-spacing:.04em}
+/* the level switch — ONE screen, three zooms */
+.seg{display:flex;gap:0;margin:10px 0 0;border-bottom:2px solid #f0e6dd}
+.seg a{flex:1;text-align:center;font:800 10.5px Montserrat;letter-spacing:.05em;padding:8px 0 7px;
+       color:#a9a19a;text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-2px}
+.seg a.on{color:var(--o-deep);border-bottom-color:var(--o)}
+.body{padding:13px}
+.card{background:#fff;border-radius:14px;padding:13px;box-shadow:0 2px 10px rgba(120,80,40,.07);margin-bottom:11px}
+.rung{font:800 9.5px Montserrat;letter-spacing:.13em;color:var(--o-deep);margin:0 0 8px;
+      display:flex;align-items:center;gap:7px}
+.rung u{width:15px;height:15px;border-radius:99px;background:var(--cream2);color:var(--o-deep);
+        font:800 8px Montserrat;display:grid;place-items:center;text-decoration:none;flex:none}
+.big{text-align:center;padding:4px 0 2px}
+.big b{display:block;font:900 32px Montserrat;color:var(--o-deep);line-height:1.05}
+.big span{font:600 10.5px Montserrat;color:var(--mut);letter-spacing:.05em}
+.kv{display:flex;justify-content:space-between;font-size:12.5px;padding:5px 0;border-top:1px solid #f5efe9}
+.kv:first-of-type{border-top:0}
+.kv b{font-weight:700}
+/* area bars */
+.ar{margin:9px 0}
+.ar .nm{display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px}
+.ar .nm b{font-weight:700}
+.ar .nm em{font-style:normal;color:#a9a19a;font-weight:600;font-size:11px}
+.ar .bar{height:9px;background:#f2ece6;border-radius:99px;overflow:hidden;display:flex}
+.ar .bar i{display:block;height:100%}
+.ar .got{background:var(--ok)} .ar .lost{background:#eec4bf}
+/* observations */
+.obs{display:flex;gap:9px;padding:9px 0;border-top:1px solid #f5efe9;font-size:12.5px;line-height:1.5}
+.obs:first-of-type{border-top:0}
+.obs u{width:18px;height:18px;border-radius:99px;flex:none;text-decoration:none;display:grid;
+       place-items:center;font-size:10px;margin-top:1px}
+/* pillar rows */
+.pil{padding:9px 0;border-top:1px solid #f5efe9}
+.pil:first-of-type{border-top:0}
+.pil .hd{display:flex;align-items:center;gap:9px;font-size:13px}
+.pil .hd b{flex:1;font-weight:700}
+.pil .hd span{font:800 12px Montserrat}
+.pil .hd i{font-style:normal;color:#c9c0b8;font-size:11px}
+.pil .track{height:8px;background:#f2ece6;border-radius:99px;position:relative;margin-top:6px}
+.pil .track .fill{position:absolute;left:0;height:100%;border-radius:99px}
+.pil .track .bm{position:absolute;top:-3px;width:1.5px;height:14px;background:#8a7f76}
+.ab{display:flex;align-items:center;gap:8px;font-size:11.5px;padding:5px 0 5px 10px;border-left:2px solid #f0e6dd;margin-left:3px}
+.ab b{flex:1;font-weight:600}
+.ab em{font-style:normal;font:700 11px Montserrat;width:34px;text-align:right}
+.ab i{font-style:normal;font-size:9.5px;color:#c9c0b8;width:52px;text-align:right}
+.bandtag{font:800 8.5px Montserrat;padding:2px 6px;border-radius:99px;color:#fff;letter-spacing:.04em}
+/* progression */
+.tr{display:flex;align-items:flex-end;gap:4px;height:52px;margin:8px 0 2px}
+.tr i{flex:1;background:var(--o);border-radius:2px 2px 0 0;opacity:.8}
+.tr i.now{background:var(--o-deep);opacity:1}
+.mv{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:7px 0;border-top:1px solid #f5efe9}
+.mv:first-of-type{border-top:0}
+.mv b{flex:1;font-weight:600}
+.mv em{font-style:normal;font:800 12px Montserrat}
+.spark{width:54px;height:16px;flex:none;display:flex;align-items:flex-end;gap:1.5px}
+.spark s{flex:1;background:#e2d8cf;border-radius:1px;text-decoration:none}
+.spark s.up{background:var(--ok)} .spark s.dn{background:#e3a9a2}
+.cta{display:block;background:#fff;color:var(--o-deep);text-align:center;font:800 12.5px Montserrat;
+     padding:10px;border-radius:11px;text-decoration:none;border:1.5px solid #f3dcc6;margin-top:3px}
+.ladder{display:flex;flex-direction:column;gap:0;margin:16px 0}
+.lr{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--line)}
+.lr:first-child{border-top:0}
+.lr u{width:26px;height:26px;border-radius:99px;background:var(--o);color:#fff;font:800 12px Montserrat;
+      display:grid;place-items:center;text-decoration:none;flex:none}
+.lr div b{display:block;font:800 15px Montserrat;margin-bottom:2px}
+.lr div span{font-size:13.5px;color:#5b5148}
+.lr div em{font-style:normal;display:block;font-size:12.5px;color:#a9a19a;margin-top:3px}
+</style>
+
+<div class="wrap">
+
+<h1>KAS MCQ — <em>performance &amp; scorecard</em></h1>
+<p class="sub">Marks, areas, behaviour, abilities and pillars — across paper, set and the whole journey. Five kinds of information at three zoom levels is fifteen views if you're careless. This is three.</p>
+
+<h2>1 · The structure</h2>
+<p class="cap">One screen, three zoom levels, five rungs. The rungs never change order, so the student learns the shape once and re-reads it at each level.</p>
+
+<div class="ladder">
+  <div class="lr"><u>1</u><div><b>How did I do?</b><span>Marks, with the derivation and a cutoff reference.</span>
+    <em>Concrete. The number they came for.</em></div></div>
+  <div class="lr"><u>2</u><div><b>Where did I lose it?</b><span>By subject area, sorted by marks lost — not alphabetically, and not all sixteen.</span>
+    <em>Still concrete. This is what they revise from.</em></div></div>
+  <div class="lr"><u>3</u><div><b>What do my answers say?</b><span>Timing and attempt pattern, read back as plain observations before any score.</span>
+    <em>The bridge. Behaviour is observable, so it earns the interpretation that follows.</em></div></div>
+  <div class="lr"><u>4</u><div><b>What does that make me good at?</b><span>Four pillars, each opening to its abilities, against the benchmarks.</span>
+    <em>Interpretive — and only credible because rungs 1–3 came first.</em></div></div>
+  <div class="lr"><u>5</u><div><b>Am I getting better?</b><span>Movement per ability across the sets. Journey level only.</span>
+    <em>The reason to buy eight sets rather than one.</em></div></div>
+</div>
+
+<div class="note"><b>Why this order and not the reverse.</b> The instinct is to lead with the ability profile — it is the
+differentiated thing we sell. But an ability claim with no visible evidence under it reads as an assertion, and a
+candidate who cannot see <i>where</i> they lost marks will not believe a number telling them their Comprehension is
+below benchmark. Each rung earns the next. Marks are checkable, areas are checkable, timing is checkable — by the time
+the abilities appear the student has already agreed with three screens' worth of facts.</div>
+
+<table>
+<tr><th>rung</th><th>paper</th><th>set</th><th>journey</th></tr>
+<tr><td>1 · Marks</td><td>of 200</td><td>of 400, both papers</td><td>trend across sets</td></tr>
+<tr><td>2 · Areas</td><td>16 areas of that paper</td><td>all areas, both papers</td><td>which areas are moving</td></tr>
+<tr><td>3 · Behaviour</td><td>that sitting</td><td>both sittings compared</td><td>habits that persist</td></tr>
+<tr><td>4 · Abilities &amp; pillars</td><td>partial — GS-1 and GS-2 weight abilities differently</td><td><b>authoritative</b></td><td>aggregate</td></tr>
+<tr><td>5 · Progression</td><td>—</td><td>—</td><td><b>only here</b></td></tr>
+</table>
+
+<h2>2 · Set level — the canonical read</h2>
+<p class="cap">One continuous scroll. Shown here as three frames.</p>
+
+<div class="row">
+  <div>
+    <div class="step">P1 · a<small>rungs 1 and 2</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top">
+        <div class="tl"><span class="q">Performance</span><span class="who">ANANYA R</span></div>
+        <div class="seg"><a href="#">PAPER</a><a href="#" class="on">SET 3</a><a href="#">JOURNEY</a></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="rung"><u>1</u>HOW YOU DID</div>
+          <div class="big"><b>230.25</b><span>OF 400 · SET 3</span></div>
+          <div class="kv" style="margin-top:8px"><span>GS-1</span><b>112.75</b></div>
+          <div class="kv"><span>GS-2</span><b>117.50</b></div>
+          <div class="kv"><span>119 correct · 31 wrong · 50 blank</span><b>+238 −7.75</b></div>
+          <div style="font-size:10.5px;color:#a9a19a;text-align:center;margin-top:7px">
+            Last three KAS cutoffs, both papers: 192 · 208 · 224</div>
+        </div>
+        <div class="card">
+          <div class="rung"><u>2</u>WHERE YOU LOST MOST</div>
+          <div class="ar"><div class="nm"><b>Karnataka History &amp; Culture</b><em>10 of 24</em></div>
+            <div class="bar"><i class="got" style="width:42%"></i><i class="lost" style="width:58%"></i></div></div>
+          <div class="ar"><div class="nm"><b>Indian National Movement</b><em>6 of 16</em></div>
+            <div class="bar"><i class="got" style="width:38%"></i><i class="lost" style="width:62%"></i></div></div>
+          <div class="ar"><div class="nm"><b>General Mental Ability</b><em>34 of 60</em></div>
+            <div class="bar"><i class="got" style="width:57%"></i><i class="lost" style="width:43%"></i></div></div>
+          <div style="border-top:1px solid #f5efe9;margin-top:9px;padding-top:8px">
+            <div style="font:800 9.5px Montserrat;color:#2c7a44;letter-spacing:.11em;margin-bottom:6px">STRONGEST</div>
+            <div class="ar" style="margin:0"><div class="nm"><b>Science &amp; Technology</b><em>26 of 30</em></div>
+              <div class="bar"><i class="got" style="width:87%"></i><i class="lost" style="width:13%"></i></div></div>
+          </div>
+          <a class="cta" href="#">All 22 areas →</a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">P1 · b<small>rung 3 — observations before scores</small></div>
+    <div class="phone"><div class="pv">
+      <div class="body" style="padding-top:16px">
+        <div class="card">
+          <div class="rung"><u>3</u>WHAT YOUR ANSWERS SAY</div>
+          <div class="obs"><u style="background:#fdeaea;color:#b03030">↓</u>
+            <span>You answered the last 20 questions of GS-1 in <b>7 minutes</b> — three times your usual pace. Accuracy there fell from 64% to <b>35%</b>.</span></div>
+          <div class="obs"><u style="background:#fdf3e2;color:#8a5a00">○</u>
+            <span>You left <b>50 blank</b>. This paper deducts only 0.25 for a wrong answer, so a guess is worth about <b>+0.31 marks</b> each — those blanks cost you roughly <b>15 marks</b>.</span></div>
+          <div class="obs"><u style="background:#eaf3ec;color:#2c7a44">✓</u>
+            <span>On the questions you did attempt, you were right <b>79%</b> of the time. Your judgement is good; your coverage isn't.</span></div>
+          <div class="obs"><u style="background:#eaf3ec;color:#2c7a44">✓</u>
+            <span>Steady from Q1 to Q78 — no drift until the rush at the end.</span></div>
+        </div>
+        <div class="card">
+          <div class="rung"><u>3</u>MEASURED FROM THAT</div>
+          <div class="ab"><b>Efficiency</b><em>74</em><i>vs 90</i></div>
+          <div class="ab"><b>Steadfastness</b><em>81</em><i>vs 90</i></div>
+          <div class="ab"><b>Time management</b><em>62</em><i>vs 90</i></div>
+          <div class="ab"><b>Discipline</b><em>77</em><i>vs 88</i></div>
+          <div class="ab"><b>Decision-making</b><em>58</em><i>vs 89</i></div>
+          <div style="font-size:10.5px;color:#a9a19a;margin-top:8px;line-height:1.5">
+            These five come from how you answered, not what the questions were about.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">P1 · c<small>rung 4 — pillars summarise, abilities expand</small></div>
+    <div class="phone"><div class="pv">
+      <div class="body" style="padding-top:16px">
+        <div class="card">
+          <div class="rung"><u>4</u>YOUR ABILITIES</div>
+          <div class="pil">
+            <div class="hd"><b>Execution</b><span style="color:var(--avg)">71</span>
+              <span class="bandtag" style="background:var(--avg)">AVERAGE</span><i>▾</i></div>
+            <div class="track"><span class="fill" style="width:71%;background:var(--avg)"></span>
+              <span class="bm" style="left:89%"></span></div>
+            <div class="ab"><b>Comprehension</b><em>76</em><i>from 41</i></div>
+            <div class="ab"><b>Decision-making</b><em>58</em><i>behaviour</i></div>
+            <div class="ab"><b>Time management</b><em>62</em><i>behaviour</i></div>
+            <div class="ab"><b>Efficiency</b><em>74</em><i>behaviour</i></div>
+            <div class="ab"><b>Discipline</b><em>77</em><i>behaviour</i></div>
+            <div class="ab"><b>Conflict Resolution</b><em>—</em><i>too few</i></div>
+            <div class="ab"><b>Leadership Ability</b><em>—</em><i>too few</i></div>
+          </div>
+          <div class="pil">
+            <div class="hd"><b>Aptitude</b><span style="color:var(--avg)">68</span>
+              <span class="bandtag" style="background:var(--avg)">AVERAGE</span><i>▸</i></div>
+            <div class="track"><span class="fill" style="width:68%;background:var(--avg)"></span>
+              <span class="bm" style="left:91%"></span></div>
+          </div>
+          <div class="pil">
+            <div class="hd"><b>Attitude</b><span style="color:var(--strong)">83</span>
+              <span class="bandtag" style="background:var(--strong)">STRONG</span><i>▸</i></div>
+            <div class="track"><span class="fill" style="width:83%;background:var(--strong)"></span>
+              <span class="bm" style="left:90%"></span></div>
+          </div>
+          <div style="font-size:10.5px;color:#a9a19a;margin-top:10px;line-height:1.55">
+            The line on each bar is the KAS Competitive benchmark.<br>
+            <b>Communication is not shown</b> — only one of the fifteen abilities sits in it, so a pillar score would
+            just restate that one number.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="note"><b>Two decisions inside rung 4.</b> <b>Pillars are the summary and abilities the detail</b>, collapsed
+by default — four things to read instead of fifteen, and it matches the existing <code>AACE Breakdown</code> pattern.
+And <b>the Communication pillar does not render.</b> Mapping the KAS Top 15 onto the framework's four pillars gives
+Execution 7, Aptitude 4, Attitude 3, and Communication exactly <b>one</b> — Structure. A pillar score computed from a
+single ability is that ability wearing a hat, and if Structure is thinly weighted the engine computes the pillar as
+<code>0.0</code> and the card tells a candidate their communication is "Weak" on the basis of nothing.</div>
+
+<h2>3 · What changes at the other two zooms</h2>
+
+<div class="row">
+  <div>
+    <div class="step">P2<small>paper level — abilities carry a caveat</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top">
+        <div class="tl"><span class="q">Performance</span><span class="who">SET 3 · GS-1</span></div>
+        <div class="seg"><a href="#" class="on">PAPER</a><a href="#">SET 3</a><a href="#">JOURNEY</a></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="rung"><u>1</u>GS-1</div>
+          <div class="big"><b>112.75</b><span>OF 200</span></div>
+          <div class="kv" style="margin-top:8px"><span>58 correct × +2</span><b>+116.00</b></div>
+          <div class="kv"><span>13 wrong × −0.25</span><b>−3.25</b></div>
+          <div class="kv"><span>29 blank</span><b>0</b></div>
+        </div>
+        <div class="card" style="background:var(--cream3);box-shadow:none">
+          <div style="font-size:12px;color:#7a6a5c;line-height:1.55">
+            <b>Abilities are shown on the set, not the paper.</b> GS-1 and GS-2 weight the fifteen abilities
+            differently by design, so a single paper gives a partial reading. Both together is the honest one.</div>
+          <a class="cta" style="margin-top:9px" href="#">See set 3 →</a>
+        </div>
+        <div class="card">
+          <div class="rung"><u>2</u>WHERE YOU LOST MOST</div>
+          <div class="ar"><div class="nm"><b>Karnataka History &amp; Culture</b><em>10 of 24</em></div>
+            <div class="bar"><i class="got" style="width:42%"></i><i class="lost" style="width:58%"></i></div></div>
+          <div class="ar"><div class="nm"><b>Indian National Movement</b><em>6 of 16</em></div>
+            <div class="bar"><i class="got" style="width:38%"></i><i class="lost" style="width:62%"></i></div></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">P3 · a<small>journey — rung 5 appears</small></div>
+    <div class="phone"><div class="pv">
+      <div class="top">
+        <div class="tl"><span class="q">Performance</span><span class="who">3 OF 8 SETS</span></div>
+        <div class="seg"><a href="#">PAPER</a><a href="#">SET 3</a><a href="#" class="on">JOURNEY</a></div>
+      </div>
+      <div class="body">
+        <div class="card">
+          <div class="rung"><u>1</u>ACROSS 3 SETS</div>
+          <div class="tr">
+            <i style="height:52%"></i><i style="height:78%"></i><i class="now" style="height:71%"></i>
+            <i style="height:4%;opacity:.18"></i><i style="height:4%;opacity:.18"></i>
+            <i style="height:4%;opacity:.18"></i><i style="height:4%;opacity:.18"></i><i style="height:4%;opacity:.18"></i>
+          </div>
+          <div style="display:flex;justify-content:space-between;font:600 10px Montserrat;color:#a9a19a">
+            <span>186</span><span>247</span><span style="color:var(--o-deep)">230</span><span>set 8</span></div>
+          <div style="font-size:11.5px;color:#5b5148;margin-top:8px">
+            Up 44 marks from set 1. Set 3 dipped 17 — within the range these scores normally vary by.</div>
+        </div>
+        <div class="card">
+          <div class="rung"><u>5</u>WHAT'S MOVING</div>
+          <div class="mv"><b>Attention to Detail</b>
+            <span class="spark"><s style="height:38%"></s><s style="height:62%" class="up"></s><s style="height:81%" class="up"></s></span>
+            <em style="color:#2c7a44">+19</em></div>
+          <div class="mv"><b>Comprehension</b>
+            <span class="spark"><s style="height:58%"></s><s style="height:66%" class="up"></s><s style="height:76%" class="up"></s></span>
+            <em style="color:#2c7a44">+11</em></div>
+          <div class="mv"><b>Time management</b>
+            <span class="spark"><s style="height:60%"></s><s style="height:48%" class="dn"></s><s style="height:44%" class="dn"></s></span>
+            <em style="color:#b03030">−12</em></div>
+          <div class="mv"><b>Problem-solving</b>
+            <span class="spark"><s style="height:52%"></s><s style="height:55%"></s><s style="height:51%"></s></span>
+            <em style="color:#8a7f76">no change<br>we can see</em></div>
+          <div style="font-size:10.5px;color:#a9a19a;margin-top:9px;line-height:1.5">
+            Only movements larger than their own margin of error are called a change.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div>
+    <div class="step">P3 · b<small>journey — the one thing to do next</small></div>
+    <div class="phone"><div class="pv">
+      <div class="body" style="padding-top:16px">
+        <div class="card" style="background:var(--cream3);box-shadow:none">
+          <div class="rung"><u>!</u>IF YOU CHANGE ONE THING</div>
+          <div style="font-size:13px;line-height:1.6;color:#5b4636">
+            <b>Time management</b> is the only ability moving the wrong way, and it costs you twice — you rush the
+            last 20 questions, and the 50 you leave blank are worth about 15 marks.<br><br>
+            You get <b>79%</b> of what you attempt right. Attempting more is worth more to you than knowing more.
+          </div>
+          <a class="cta" style="margin-top:11px" href="#">Practise pacing →</a>
+        </div>
+        <div class="card">
+          <div class="rung"><u>3</u>HABITS ACROSS ALL 3 SETS</div>
+          <div class="obs"><u style="background:#fdeaea;color:#b03030">↓</u>
+            <span>You have rushed the final stretch in <b>all three sets</b>. This is a habit, not a bad day.</span></div>
+          <div class="obs"><u style="background:#eaf3ec;color:#2c7a44">✓</u>
+            <span>Your accuracy on attempted questions has never dropped below 76%.</span></div>
+        </div>
+        <div style="font:600 9.5px Montserrat;color:#b5aca4;line-height:1.6;text-align:center">
+          ACROSS 3 SETS · 600 QUESTIONS · BENCHMARKS V3 · WEIGHTS KMM-2026-08
+        </div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<div class="note"><b>Rung 5 is where the monthly plan justifies itself</b> — and the sparklines do more work than the
+numbers. A student reading "Attention to Detail 81" learns nothing they can act on; one seeing three rising bars and
+one falling learns exactly where to put the next hour. The falling one is deliberately not hidden.<br><br>
+<b>"If you change one thing"</b> is the only place the card gives an instruction, and it is assembled from the rungs
+above rather than generated — the rush is rung 3, the blanks are rung 3, the 79% is rung 1. Nothing new is asserted.</div>
+
+<h2>4 · Desktop</h2>
+<p class="cap">Same Blade views. The width lets rungs 1–2 and 4 sit side by side instead of stacking.</p>
+<div class="row"><div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/mobile/mcq/performance?scope=set&amp;set=3</span></div>
+  <div style="background:var(--cream)">
+    <div class="top" style="padding:12px 20px 0">
+      <div class="tl"><span class="q">Performance · Set 3</span><span class="who">ANANYA R · 3 OF 8 SETS</span></div>
+      <div class="seg" style="max-width:340px"><a href="#">PAPER</a><a href="#" class="on">SET 3</a><a href="#">JOURNEY</a></div>
+    </div>
+    <div style="display:flex;gap:15px;padding:16px 20px 20px">
+      <div style="flex:1">
+        <div class="card">
+          <div class="rung"><u>1</u>HOW YOU DID</div>
+          <div class="big"><b>230.25</b><span>OF 400</span></div>
+          <div class="kv" style="margin-top:8px"><span>GS-1</span><b>112.75</b></div>
+          <div class="kv"><span>GS-2</span><b>117.50</b></div>
+          <div style="font-size:10.5px;color:#a9a19a;text-align:center;margin-top:7px">Cutoffs: 192 · 208 · 224</div>
+        </div>
+        <div class="card">
+          <div class="rung"><u>2</u>WHERE YOU LOST MOST</div>
+          <div class="ar"><div class="nm"><b>Karnataka History</b><em>10 of 24</em></div>
+            <div class="bar"><i class="got" style="width:42%"></i><i class="lost" style="width:58%"></i></div></div>
+          <div class="ar"><div class="nm"><b>National Movement</b><em>6 of 16</em></div>
+            <div class="bar"><i class="got" style="width:38%"></i><i class="lost" style="width:62%"></i></div></div>
+          <div class="ar"><div class="nm"><b>Mental Ability</b><em>34 of 60</em></div>
+            <div class="bar"><i class="got" style="width:57%"></i><i class="lost" style="width:43%"></i></div></div>
+        </div>
+      </div>
+      <div style="flex:1.15">
+        <div class="card">
+          <div class="rung"><u>3</u>WHAT YOUR ANSWERS SAY</div>
+          <div class="obs"><u style="background:#fdeaea;color:#b03030">↓</u>
+            <span>Last 20 questions of GS-1 in <b>7 minutes</b>. Accuracy fell 64% → <b>35%</b>.</span></div>
+          <div class="obs"><u style="background:#fdf3e2;color:#8a5a00">○</u>
+            <span><b>50 blank</b> — worth about <b>15 marks</b> at this paper's marking.</span></div>
+          <div class="obs"><u style="background:#eaf3ec;color:#2c7a44">✓</u>
+            <span>Right <b>79%</b> of what you attempted. Judgement good, coverage isn't.</span></div>
+        </div>
+      </div>
+      <div style="flex:1">
+        <div class="card">
+          <div class="rung"><u>4</u>ABILITIES</div>
+          <div class="pil"><div class="hd"><b>Execution</b><span style="color:var(--avg)">71</span></div>
+            <div class="track"><span class="fill" style="width:71%;background:var(--avg)"></span><span class="bm" style="left:89%"></span></div></div>
+          <div class="pil"><div class="hd"><b>Aptitude</b><span style="color:var(--avg)">68</span></div>
+            <div class="track"><span class="fill" style="width:68%;background:var(--avg)"></span><span class="bm" style="left:91%"></span></div></div>
+          <div class="pil"><div class="hd"><b>Attitude</b><span style="color:var(--strong)">83</span></div>
+            <div class="track"><span class="fill" style="width:83%;background:var(--strong)"></span><span class="bm" style="left:90%"></span></div></div>
+          <div style="font-size:10.5px;color:#a9a19a;margin-top:9px">Line = KAS Competitive benchmark</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<h2>5 · What this reuses, and what is new</h2>
+<table>
+<tr><th>element</th><th>status</th></tr>
+<tr><td>Four pillars — Aptitude, Attitude, Communication, Execution</td><td><b>EXISTS</b> — same as <code>performance.blade.php</code>'s AACE Breakdown</td></tr>
+<tr><td>Four bands — Weak / Average / Strong / Excellent</td><td><b>EXISTS</b> — <code>PerformanceBand</code>, same colours and thresholds</td></tr>
+<tr><td>Pillar bar with abilities underneath</td><td><b>EXISTS</b> — the pattern, reused</td></tr>
+<tr><td>Benchmark marker on the bar</td><td><b>EXTENDS</b> — the task card compares to benchmarks in §4; here it is on the bar itself</td></tr>
+<tr><td><b>Area breakdown</b></td><td><b>NEW</b> — nothing in the codebase carries a subject-area split. It is the single most actionable block for an exam candidate and it does not exist today</td></tr>
+<tr><td><b>Behavioural observations</b></td><td><b>NEW</b> — plain-language reads of timing and attempt pattern, before any score</td></tr>
+<tr><td><b>Level switch</b> (paper / set / journey)</td><td><b>NEW</b></td></tr>
+<tr><td>Progression sparklines</td><td><b>NEW</b></td></tr>
+<tr><td>IntelliGraph, performance zones, career pathways (§3, §7)</td><td><b>DROPPED</b> — the HLD's D0 decision; probes showed all three were already wrong for MCQ</td></tr>
+</table>
+
+<h2>6 · Open</h2>
+<table>
+<tr><th>question</th><th>blocks</th></tr>
+<tr><td><b>Does the Communication pillar render at all?</b> One of fifteen abilities sits in it.</td><td>rung 4 at every level</td></tr>
+<tr><td><b>Guessing correction</b> — the ability score currently rewards guessing by ~10pp, and this paper's marking makes guessing correct on every question.</td><td>every number in rung 4</td></tr>
+<tr><td><b><code>k_min</code></b> — how much evidence before an ability shows a number instead of "too few".</td><td>which rows render</td></tr>
+<tr><td><b>How many areas</b> in rung 2 before "all 22 areas"? Drawn at 3 + 1.</td><td>rung 2</td></tr>
+<tr><td><b>Behavioural formulas</b> need per-question timing capture and per-slot difficulty, neither of which exists yet.</td><td>rung 3</td></tr>
+</table>
+
+</div>
