@@ -267,17 +267,17 @@ at the same attempt index.</div>
     </div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:3px">ABILITY WEIGHTS — <span style="color:#8a4415">authored by KMM, validated here</span></div>
-      <div style="font-size:11.5px;color:#6b7280;margin-bottom:9px">All 15 KAS abilities. Σ = 1.000. Read-only — edits go back to the source file.</div>
-      <div class="wrow"><span>Attention to Detail</span><i><b style="width:44%"></b></i><em>0.435</em></div>
-      <div class="wrow"><span>Comprehension</span><i><b style="width:44%"></b></i><em>0.435</em></div>
-      <div class="wrow"><span>Decision-making</span><i><b style="width:5%"></b></i><em>0.048</em></div>
-      <div class="wrow"><span>Critical &amp; Analytical Thinking</span><i><b style="width:1.4%"></b></i><em>0.014</em></div>
-      <div class="wrow dim"><span>Problem-solving</span><i><b style="width:1%"></b></i><em>0.010</em></div>
-      <div class="wrow dim"><span>Accountability</span><i><b style="width:1%"></b></i><em>0.010</em></div>
-      <div class="wrow dim"><span>+ 9 more at 0.010</span><i></i><em>0.090</em></div>
+      <div style="font-size:11.5px;color:#6b7280;margin-bottom:9px">All 15 KAS abilities. Integer percent, Σ = 100 exactly. Read-only — edits go back to the source file.</div>
+      <div class="wrow"><span>Attention to Detail</span><i><b style="width:44%"></b></i><em>44%</em></div>
+      <div class="wrow"><span>Comprehension</span><i><b style="width:44%"></b></i><em>44%</em></div>
+      <div class="wrow"><span>Decision-making</span><i><b style="width:5%"></b></i><em>5%</em></div>
+      <div class="wrow"><span>Critical &amp; Analytical Thinking</span><i><b style="width:1.4%"></b></i><em>1%</em></div>
+      <div class="wrow dim"><span>Problem-solving</span><i><b style="width:1%"></b></i><em>1%</em></div>
+      <div class="wrow dim"><span>Accountability</span><i><b style="width:1%"></b></i><em>1%</em></div>
+      <div class="wrow dim"><span>+ 11 more at 1%</span><i></i><em>13%</em></div>
       <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);
                   margin-top:8px;padding-top:8px;font:800 12px Montserrat">
-        <span>15 abilities</span><span style="color:#2c7a44">Σ = 1.000 ✓</span></div>
+        <span>15 abilities</span><span style="color:#2c7a44">Σ = 100 ✓</span></div>
     </div>
     <a class="btn btn-g" href="#a05">See paper-level validation</a>
   </div>
@@ -383,8 +383,8 @@ correct.</b></div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:8px">KMM'S WEIGHT FILE — ON ARRIVAL</div>
       <div class="gate"><u class="g-ok">✓</u><span>Exactly 15 abilities, all on the KAS whitelist</span><em>no bare "Structure"</em></div>
-      <div class="gate"><u class="g-ok">✓</u><span>Σ weights = 1.000 per slot</span><em>100 of 100</em></div>
-      <div class="gate"><u class="g-ok">✓</u><span>Every weight above zero</span><em>1,500 of 1,500</em></div>
+      <div class="gate"><u class="g-ok">✓</u><span>Σ weights = 100 exactly (integer)</span><em>100 of 100</em></div>
+      <div class="gate"><u class="g-ok">✓</u><span>Every weight ≥ 1</span><em>1,500 of 1,500</em></div>
       <div class="gate"><u class="g-no">✗</u><span><b>Each ability's weight varies across slots</b> (CV ≥ 0.5)</span><em>4 abilities at CV 0.00</em></div>
       <div class="gate"><u class="g-no">✗</u><span>Effective evidence per ability ≥ k<sub>min</sub></span><em>k<sub>min</sub> undecided</em></div>
       <div style="font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.5">
