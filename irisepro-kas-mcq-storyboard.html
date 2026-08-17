@@ -288,7 +288,8 @@ runs inside it, once per language on offer.</p>
 
     <div class="loop solo">
       <h6>Once, from KMM</h6>
-      <div class="jst"><b>01</b><a href="#s01">Blueprint lands</a></div>
+      <div class="jst"><b>01</b><a href="#s01">Load KMM&rsquo;s file, fix, make it live</a></div>
+      <div class="jst q"><b>02</b><a href="#s02">See what you have to build</a></div>
       <div style="font-size:11.5px;color:#8a7f76;padding-left:28px;line-height:1.5">
         100 slots &times; 2 papers, each with its 15 weights</div>
       <div class="jout">&rarr; 200 empty slots</div>
@@ -298,11 +299,11 @@ runs inside it, once per language on offer.</p>
 
     <div class="loop">
       <h6>&#8635; Per slot &mdash; 200 times</h6>
-      <div class="jst"><b>02</b><a href="#s02">Take the most starved slot</a></div>
-      <div class="jst"><b>03</b><a href="#s03">Check its weight vector</a></div>
-      <div class="jst"><b>04</b><a href="#s04">Write all 9 questions here</a></div>
-      <div class="jst q"><b>05</b><a href="#s05">Open one to refine it</a></div>
-      <div class="jst"><b>06</b><a href="#s06">A second reader approves</a></div>
+      <div class="jst"><b>03</b><a href="#s03">Take the most starved slot</a></div>
+      <div class="jst"><b>04</b><a href="#s04">Check its weight vector</a></div>
+      <div class="jst"><b>05</b><a href="#s05">Write all 9 questions here</a></div>
+      <div class="jst q"><b>06</b><a href="#s06">Open one to refine it</a></div>
+      <div class="jst"><b>07</b><a href="#s07">A second reader approves</a></div>
       <div class="jout">&rarr; 1,800 questions, English, approved</div>
     </div>
 
@@ -310,9 +311,9 @@ runs inside it, once per language on offer.</p>
 
     <div class="loop">
       <h6>&#8635; Per language &mdash; per slot</h6>
-      <div class="jst"><b>07</b><a href="#s07">Correct the machine draft, 81 lines a slot</a></div>
-      <div class="jst q"><b>08</b><a href="#s08">Open one rendering to fix it</a></div>
-      <div class="jst"><b>06</b><a href="#s06">A reader of that language approves</a></div>
+      <div class="jst"><b>08</b><a href="#s08">Correct the machine draft, 81 lines a slot</a></div>
+      <div class="jst q"><b>09</b><a href="#s09">Open one rendering to fix it</a></div>
+      <div class="jst"><b>07</b><a href="#s07">A reader of that language approves</a></div>
       <div class="jout">&rarr; a slot goes LIVE only when every language is approved</div>
     </div>
 
@@ -320,10 +321,10 @@ runs inside it, once per language on offer.</p>
 
     <div class="loop solo">
       <h6>Alongside, and after</h6>
-      <div class="jst"><b>09</b><a href="#s09">Curate error types</a></div>
-      <div class="jst"><b>10</b><a href="#s10">Curate concepts</a></div>
-      <div class="jst q"><b>11</b><a href="#s11">Bank health</a></div>
-      <div class="jst q"><b>12</b><a href="#s12">Quarantine a bad one</a></div>
+      <div class="jst"><b>10</b><a href="#s10">Curate error types</a></div>
+      <div class="jst"><b>11</b><a href="#s11">Curate concepts</a></div>
+      <div class="jst q"><b>12</b><a href="#s12">Bank health</a></div>
+      <div class="jst q"><b>13</b><a href="#s13">Quarantine a bad one</a></div>
       <div class="jout">&rarr; 09/10 run from question 1 &middot; 11/12 need responses</div>
     </div>
 
@@ -333,7 +334,7 @@ runs inside it, once per language on offer.</p>
     <div><b>200</b>slots &mdash; 100 per paper &times; 2</div>
     <div><b>1,800</b>questions &mdash; 9 per slot (8 sets + 1 spare)</div>
     <div><b>16,200</b>lines per extra language &mdash; 1,800 &times; 9</div>
-    <div><b>~1,700</b>concepts &middot; <b>~14</b>error types</div>
+    <div><b>~1,700</b>facts &middot; <b>~14</b>common mistakes</div>
     <div><b>450&ndash;750 h</b>English authoring, one author</div>
   </div>
 </div>
@@ -348,11 +349,71 @@ same fact twice is counted against that smaller pool.</p>
 <p class="cap" style="color:#8a7f76">Each of the three is refused by the system at the moment you try, not
 hidden behind a greyed-out button.</p>
 
-<h2 id="s01">1 · The paper arrives &mdash; 100 slots &times; 2 papers</h2>
+<h2 id="s01">1 &middot; Load the paper KMM has prepared</h2>
+<div class="howto">
+  <p>Take the file KMM has prepared and load it into the system. Nothing else can start until this is done.</p>
+  <ol>
+    <li>Choose the paper the file is for &mdash; GS-1 or GS-2.</li>
+    <li>Upload the file. It lands as a <b>new version</b>, side by side with whatever is live now. Nothing changes yet.</li>
+    <li>Read the checks. Every problem names the slot and the row, so KMM can be told exactly what to fix.</li>
+    <li>If anything failed, ask KMM for a corrected file and upload it again. Versions are kept, so nothing is lost.</li>
+    <li>When every check passes, press <b>Make this the live version</b>.</li>
+  </ol>
+  <div class="cant">You cannot part-load a file, and you cannot make a version live with a failing check. Either the whole paper is sound or none of it is.</div>
+</div>
+<div class="row"><div>
+<div class="step">01</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/papers/GS-1/versions</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">GS-1 &middot; version 3 &middot; checking</span></div>
+  <div class="a-body">
+
+    <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
+      <div style="font:700 12px Montserrat;color:#8a4415">kas-gs1-v3.xlsx &mdash; uploaded by KMM, 14:22</div>
+      <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">100 slots &middot; 1,500 ability ratings &middot;
+        currently live: <b>version 2</b>, unchanged</div>
+    </div>
+
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:7px">CHECKS</div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>All 100 slots present, none repeated</span><em>100 of 100</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Every ability named is one of our 15</span><em>15 of 15</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Every slot rates all 15 abilities</span><em>1,500 ratings</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>Each slot&rsquo;s 15 ratings add up to 100</span><em>2 slots do not &mdash; slot 47 adds to 99, slot 63 to 101</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>Each ability is demanded more in some slots than others</span><em>4 abilities are the same everywhere</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Every slot has a subject, a difficulty and a time</span><em>100 of 100</em></div>
+    </div>
+
+    <div class="card" style="background:#fdf0ee;border-color:#eec4bf">
+      <div style="font:700 12px Montserrat;color:#8a2f22;margin-bottom:5px">SEND BACK TO KMM</div>
+      <div style="font-size:12.5px;color:#6b3229;line-height:1.6">
+        <b>Slot 47</b> &mdash; ratings add up to 99, one short.<br>
+        <b>Slot 63</b> &mdash; ratings add up to 101, one over.<br>
+        <b>Structure, Time management, Steadfastness, Discipline</b> &mdash; rated the same in all 100 slots.
+        A rating that never changes cannot tell one candidate from another, so nothing can be reported for
+        those four.</div>
+      <div style="display:flex;gap:7px;margin-top:9px">
+        <a class="btn" href="#s01" style="padding:6px 13px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Copy this list</a>
+        <a class="btn" href="#s01" style="padding:6px 13px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Upload a corrected file</a>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span class="btn" style="background:#e8e3de;color:#a9a19a;cursor:not-allowed">Make this the live version</span>
+      <span style="font:600 11px Montserrat;color:#a9a19a">unavailable until every check passes</span>
+    </div>
+  </div>
+</div></div></div>
+
+<p class="cap">Versions sit side by side: uploading never disturbs the live one, and a paper already sat is
+never re-scored by a later upload. <b>September&rsquo;s ratings survive October&rsquo;s file.</b></p>
+
+<h2 id="s02">2 &middot; See what you have to build</h2>
 <p class="cap">The landing screen answers two questions, not one: <i>where is content missing</i>, and <i>what is this paper actually measuring</i>.</p>
 
 <div class="row"><div>
-<div class="step">01</div>
+<div class="step">02</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/papers/GS-1</span></div>
@@ -412,8 +473,8 @@ hidden behind a greyed-out button.</p>
 
 <p class="cap">The ability panel is 01&rsquo;s real job &mdash; a slot list cannot show whether the paper measures fifteen things or one.</p>
 
-<h2>2 · Write the paper &mdash; repeat 200 times</h2>
-<h3 id="s02">02 · Choose what to work on next</h3>
+<h2>3 · Write the questions &mdash; repeat for all 200 slots</h2>
+<h3 id="s03">03 · Choose what to work on next</h3>
 <div class="howto">
   <p>Choose which slot to work on next.</p>
   <ol>
@@ -424,7 +485,7 @@ hidden behind a greyed-out button.</p>
   <div class="cant">You cannot write a question here. This screen only picks where to go.</div>
 </div>
 <div class="row"><div>
-<div class="step">02</div>
+<div class="step">03</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22</span></div>
@@ -437,11 +498,11 @@ hidden behind a greyed-out button.</p>
           <div class="slot-h">Indian National Movement · recall a precise date · medium</div>
           <div class="slot-m">AtD 50 · Comp 26 · DM 12 · +12 more</div>
         </div>
-        <a class="btn btn-g" href="#s03">edit slot</a>
+        <a class="btn btn-g" href="#s04">edit slot</a>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
         <span class="count">6<small> of 9 questions</small></span>
-        <a class="btn" href="#s04">+ add question</a>
+        <a class="btn" href="#s05">+ add question</a>
       </div>
     </div>
     <div class="attn">
@@ -457,7 +518,7 @@ hidden behind a greyed-out button.</p>
 
 <p class="cap">Equivalence is a claim about a distribution, so it needs an n. Below the n its own z-test needs, the screen says <b>too early</b> rather than a number.</p>
 
-<h3 id="s03">03 · Check the abilities set for a slot</h3>
+<h3 id="s04">04 · Check the abilities set for a slot</h3>
 <div class="howto">
   <p>Check the abilities KMM has set for this slot.</p>
   <ol>
@@ -469,7 +530,7 @@ hidden behind a greyed-out button.</p>
   <div class="cant">Nothing on this screen can be edited. It is a check, not a form.</div>
 </div>
 <div class="row"><div>
-<div class="step">03</div>
+<div class="step">04</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/edit</span></div>
@@ -525,13 +586,13 @@ hidden behind a greyed-out button.</p>
         <div class="gate"><u class="g-no">✗</u><span>Structure is weighted <b>1 in every slot</b></span><em>the same in every slot — its score would just repeat the total</em></div>
       </div>
     </div>
-    <a class="btn btn-g" href="#s11">See paper-level validation</a>
+    <a class="btn btn-g" href="#s12">See paper-level validation</a>
   </div>
 </div></div></div>
 
 <p class="cap">One <code>target_n</code> for every student &mdash; <code>8k + question_spare</code>, resolved in one place, never written down.</p>
 
-<h3 id="s04">04 · Write the nine questions for a slot</h3>
+<h3 id="s05">05 · Write the nine questions for a slot</h3>
 <div class="howto">
   <p>Write the nine questions for one slot. This is where most of the work happens.</p>
   <ol>
@@ -546,7 +607,7 @@ hidden behind a greyed-out button.</p>
   <div class="cant">Nine questions is one sitting's work. You can stop and come back — everything saves as you type.</div>
 </div>
 <div class="row"><div>
-<div class="step">04</div>
+<div class="step">05</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/fill</span></div>
@@ -635,8 +696,8 @@ hidden behind a greyed-out button.</p>
         </div>
 
         <div style="display:flex;gap:7px;flex-wrap:wrap">
-          <a class="btn btn-g" href="#s04" style="padding:7px 14px;font-size:11px">Save &amp; write question 8 of 9 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
-          <a class="btn" href="#s04" style="padding:7px 14px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Copy question 3&rsquo;s structure &mdash; clears all text</a>
+          <a class="btn btn-g" href="#s05" style="padding:7px 14px;font-size:11px">Save &amp; write question 8 of 9 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
+          <a class="btn" href="#s05" style="padding:7px 14px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Copy question 3&rsquo;s structure &mdash; clears all text</a>
         </div>
       </div>
 
@@ -645,15 +706,15 @@ hidden behind a greyed-out button.</p>
       <div class="fcard" style="opacity:.4"><b class="n">9</b><span style="flex:1">&mdash; spare</span></div>
 
       <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
-        <a class="btn" href="#s02" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Slot 22 done &rarr; next starved slot: <b>47 of 100</b>, 0 of 9 questions written</a>
+        <a class="btn" href="#s03" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Slot 22 done &rarr; next starved slot: <b>47 of 100</b>, 0 of 9 questions written</a>
       </div>
     </div>
   </div></div>
 </div></div></div>
 
-<p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s05">05</a> is for opening one already written to check its gates and preview it.</p>
+<p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s06">05</a> is for opening one already written to check its gates and preview it.</p>
 
-<h3 id="s05">05 · Check a question you have written</h3>
+<h3 id="s06">06 · Check a question you have written</h3>
 <div class="howto">
   <p>Re-open a question you have already written, to check it or preview it.</p>
   <ol>
@@ -663,7 +724,7 @@ hidden behind a greyed-out button.</p>
   </ol>
 </div>
 <div class="row"><div>
-<div class="step">05</div>
+<div class="step">06</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/7</span></div>
@@ -672,23 +733,23 @@ hidden behind a greyed-out button.</p>
   <div class="a-body">
 
     <div class="langs">
-      <a class="on" href="#s05"><i></i>EN &middot; source</a>
-      <a class="done" href="#s08"><i></i>KN</a>
-      <a class="todo" href="#s08"><i></i>HI</a>
-      <a href="#s05" style="border-style:dashed">+ language</a>
+      <a class="on" href="#s06"><i></i>EN &middot; source</a>
+      <a class="done" href="#s09"><i></i>KN</a>
+      <a class="todo" href="#s09"><i></i>HI</a>
+      <a href="#s06" style="border-style:dashed">+ language</a>
     </div>
 
     <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
       <div style="font:700 12px Montserrat;color:#8a4415">Inherited from slot 22 &mdash; not editable here</div>
       <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">Indian National Movement &middot; recall a precise date &middot; medium &middot; 60s</div>
       <div style="font-size:12.5px;color:#6b4a33;margin-top:4px">Weights &nbsp;<b>Attention to Detail 50 &middot; Comprehension 26 &middot; Decision-making 12</b>
-        &nbsp;<span style="color:#a08b78">+ 12 more at 1</span> &nbsp;<a href="#s03" style="color:#c2571c;font-weight:700">see all 15</a></div>
+        &nbsp;<span style="color:#a08b78">+ 12 more at 1</span> &nbsp;<a href="#s04" style="color:#c2571c;font-weight:700">see all 15</a></div>
     </div>
 
     <div class="warn"><b>Near-duplicate:</b> question 7 of this slot also tests <i>Chauri Chaura &rarr; withdrawal</i>.
       Slot 22 needs <b>8 distinct concepts among drawable questions</b> to fill 8 sets. A second question on this
       concept is allowed &mdash; a student is never given two questions on the same fact anyway &mdash;
-      but it spends the slot&rsquo;s only spare. <a href="#s04" style="color:#8a5a00;font-weight:700">Open question 7</a></div>
+      but it spends the slot&rsquo;s only spare. <a href="#s05" style="color:#8a5a00;font-weight:700">Open question 7</a></div>
 
     <div class="card">
       <div class="slot-m">QUESTION</div>
@@ -732,18 +793,18 @@ hidden behind a greyed-out button.</p>
     </div>
 
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <a class="btn btn-g" href="#s06">Submit for review</a>
-      <a class="btn" href="#s04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Save &amp; add another</a>
-      <a class="btn" href="#s04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate this question</a>
-      <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Preview as student</a>
+      <a class="btn btn-g" href="#s07">Submit for review</a>
+      <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Save &amp; add another</a>
+      <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate this question</a>
+      <a class="btn" href="#s06" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Preview as student</a>
     </div>
   </div>
 </div></div></div>
 
 <p class="cap">Autosave, duplicate-with-cleared-concept, a closed <code>error_type</code> list, and a live duplicate check &mdash; each one &times;1,800.</p>
 
-<h2>3 · Review, then translate &mdash; repeat per language</h2>
-<h3 id="s06">06 · Approve someone else&rsquo;s question</h3>
+<h2>4 · Review, then translate &mdash; repeat per language</h2>
+<h3 id="s07">07 · Approve someone else&rsquo;s question</h3>
 <div class="howto">
   <p>Read someone else's question and decide whether it can go live.</p>
   <ol>
@@ -753,7 +814,7 @@ hidden behind a greyed-out button.</p>
   </ol>
 </div>
 <div class="row"><div>
-<div class="step">06</div>
+<div class="step">07</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/review</span></div>
@@ -780,8 +841,8 @@ hidden behind a greyed-out button.</p>
       <div class="opt"><b>D</b><span>the Royal Indian Navy revolt<br><span style="color:#6b7280;font-size:11.5px">era confusion &mdash; <b style="color:#b4381f">clashes with C</b></span></span></div>
       <input class="fld" style="margin-top:9px" placeholder="a note back to the author (required to send back)">
       <div style="display:flex;gap:8px;margin-top:2px">
-        <a class="btn btn-g" href="#s11">Approve &rarr; published</a>
-        <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Send back</a>
+        <a class="btn btn-g" href="#s12">Approve &rarr; published</a>
+        <a class="btn" href="#s06" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Send back</a>
       </div>
     </div>
   </div>
@@ -789,7 +850,7 @@ hidden behind a greyed-out button.</p>
 
 <p class="cap">Nothing reaches a paying candidate on one person&rsquo;s say-so. You cannot approve your own question &mdash; the system refuses it, it is not just hidden from you.</p>
 
-<h3 id="s07">07 · Translate a slot into another language</h3>
+<h3 id="s08">08 · Translate a slot into another language</h3>
 <div class="howto">
   <p>Translate a whole slot into one language.</p>
   <ol>
@@ -802,7 +863,7 @@ hidden behind a greyed-out button.</p>
   <div class="cant">A reader of that language must approve it. Until then the translation is not live.</div>
 </div>
 <div class="row"><div>
-<div class="step">07</div>
+<div class="step">08</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/translate?lang=kn&amp;slot=22</span></div>
@@ -834,15 +895,15 @@ hidden behind a greyed-out button.</p>
       <div class="slot-m">QUESTION 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 9 lines, machine draft</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="btn btn-g" href="#s06">Send slot 22 (KN) for review</a>
-      <a class="btn" href="#s07" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Next slot needing Kannada (of 100)</a>
+      <a class="btn btn-g" href="#s07">Send slot 22 (KN) for review</a>
+      <a class="btn" href="#s08" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Next slot needing Kannada (of 100)</a>
     </div>
   </div>
 </div></div></div>
 
 <p class="cap">A translator makes no structural decisions and never sees a structural control. The unit here is a <b>line</b>.</p>
 
-<h3 id="s08">08 · Fix one translated question</h3>
+<h3 id="s09">09 · Fix one translated question</h3>
 <div class="howto">
   <p>Fix one translated question in detail.</p>
   <ol>
@@ -852,7 +913,7 @@ hidden behind a greyed-out button.</p>
   </ol>
 </div>
 <div class="row"><div>
-<div class="step">08</div>
+<div class="step">09</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/19?lang=kn</span></div>
@@ -861,10 +922,10 @@ hidden behind a greyed-out button.</p>
   <div class="a-body">
 
     <div class="langs">
-      <a class="done" href="#s05"><i></i>EN &middot; source</a>
-      <a class="on" href="#s08"><i></i>KN</a>
-      <a class="todo" href="#s08"><i></i>HI</a>
-      <a href="#s08" style="border-style:dashed">+ language</a>
+      <a class="done" href="#s06"><i></i>EN &middot; source</a>
+      <a class="on" href="#s09"><i></i>KN</a>
+      <a class="todo" href="#s09"><i></i>HI</a>
+      <a href="#s09" style="border-style:dashed">+ language</a>
     </div>
 
     <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
@@ -906,16 +967,16 @@ hidden behind a greyed-out button.</p>
     </div>
 
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <a class="btn btn-g" href="#s06">Submit KN for review</a>
-      <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Back to source</a>
+      <a class="btn btn-g" href="#s07">Submit KN for review</a>
+      <a class="btn" href="#s06" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Back to source</a>
     </div>
   </div>
 </div></div></div>
 
 <p class="cap">Switching language opens a second <b>rendering</b>, not a second question. Structure is locked; only text is editable.</p>
 
-<h2>4 · Keep the bank honest &mdash; forever</h2>
-<h3 id="s09">09 · Keep the list of common mistakes short</h3>
+<h2>5 · Keep the bank honest &mdash; forever</h2>
+<h3 id="s10">10 · Keep the list of common mistakes short</h3>
 <div class="howto">
   <p>Keep the list of common mistakes short and useful.</p>
   <ol>
@@ -926,7 +987,7 @@ hidden behind a greyed-out button.</p>
   </ol>
 </div>
 <div class="row"><div>
-<div class="step">09</div>
+<div class="step">10</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/vocabulary/error-types</span></div>
@@ -942,8 +1003,8 @@ hidden behind a greyed-out button.</p>
         <div style="font-size:12px;color:#8a5a00;margin-bottom:7px">Closest existing:
           <b>actor confusion</b> (0.71) &middot; <b>cause / trigger</b> (0.44)</div>
         <div style="display:flex;gap:7px">
-          <a class="btn btn-g" href="#s09" style="padding:5px 12px;font-size:10.5px">Merge into &ldquo;actor confusion&rdquo;</a>
-          <a class="btn" href="#s09" style="padding:5px 12px;font-size:10.5px;background:#fff;border:1px solid var(--line);color:var(--ink)">Accept as new</a>
+          <a class="btn btn-g" href="#s10" style="padding:5px 12px;font-size:10.5px">Merge into &ldquo;actor confusion&rdquo;</a>
+          <a class="btn" href="#s10" style="padding:5px 12px;font-size:10.5px;background:#fff;border:1px solid var(--line);color:var(--ink)">Accept as new</a>
         </div>
       </div>
       <div style="font-size:11.5px;color:#8a5a00">Proposals by question written:
@@ -974,7 +1035,7 @@ hidden behind a greyed-out button.</p>
   </div>
 </div></div></div>
 
-<h3 id="s10">10 · Keep the list of facts free of duplicates</h3>
+<h3 id="s11">11 · Keep the list of facts free of duplicates</h3>
 <div class="howto">
   <p>Keep the list of facts clean, so no student meets the same fact twice.</p>
   <ol>
@@ -986,7 +1047,7 @@ hidden behind a greyed-out button.</p>
   <div class="cant">Merging cannot be undone, so read both questions before you decide.</div>
 </div>
 <div class="row"><div>
-<div class="step">10</div>
+<div class="step">11</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/vocabulary/concepts</span></div>
@@ -1005,8 +1066,8 @@ hidden behind a greyed-out button.</p>
       <div style="font-size:11.5px;color:#8a5a00;margin:7px 0">Question-text similarity <b>0.00</b> &mdash;
         the lexical scan cannot see this pair. The shared answer can.</div>
       <div style="display:flex;gap:7px">
-        <a class="btn btn-g" href="#s10" style="padding:5px 12px;font-size:10.5px">Merge &rarr; one concept</a>
-        <a class="btn" href="#s10" style="padding:5px 12px;font-size:10.5px;background:#fff;border:1px solid var(--line);color:var(--ink)">Different facts &mdash; dismiss</a>
+        <a class="btn btn-g" href="#s11" style="padding:5px 12px;font-size:10.5px">Merge &rarr; one concept</a>
+        <a class="btn" href="#s11" style="padding:5px 12px;font-size:10.5px;background:#fff;border:1px solid var(--line);color:var(--ink)">Different facts &mdash; dismiss</a>
       </div>
     </div>
 
@@ -1029,7 +1090,7 @@ hidden behind a greyed-out button.</p>
 </div></div></div>
 
 
-<h3 id="s11">11 · Check the finished bank is sound</h3>
+<h3 id="s12">12 · Check the finished bank is sound</h3>
 <div class="howto">
   <p>Check the finished bank has no pattern a candidate could exploit.</p>
   <ol>
@@ -1039,7 +1100,7 @@ hidden behind a greyed-out button.</p>
   </ol>
 </div>
 <div class="row"><div>
-<div class="step">11</div>
+<div class="step">12</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/papers/GS-1/health</span></div>
@@ -1085,7 +1146,7 @@ hidden behind a greyed-out button.</p>
 
 <p class="cap">Both figures re-derived at <code>target_n = 9</code>. A gate that has never failed is not a gate.</p>
 
-<h3 id="s12">12 · Take a bad question out</h3>
+<h3 id="s13">13 · Take a bad question out</h3>
 <div class="howto">
   <p>Take a bad question out of circulation.</p>
   <ol>
@@ -1096,7 +1157,7 @@ hidden behind a greyed-out button.</p>
   <div class="cant">That second decision is not made here and is not yet settled — see Q2 in the open list.</div>
 </div>
 <div class="row"><div>
-<div class="step">12</div>
+<div class="step">13</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/14/quarantine</span></div>
@@ -1116,39 +1177,39 @@ hidden behind a greyed-out button.</p>
         Note <code>attempts_included[]</code> records which attempts fed a card but <b>not which questions</b> — so
         without <code>questions_included[]</code>, options 1 and 2 are both unimplementable.</div>
     </div>
-    <a class="btn btn-g" href="#s02">Cancel</a>
+    <a class="btn btn-g" href="#s03">Cancel</a>
   </div>
 </div></div></div>
 
 <p class="cap">Quarantine is not retire: papers already sitting keep the question, and nobody new draws it.</p>
 
-<h2>5 · For the engineers</h2>
+<h2>6 · For the engineers</h2>
 <p class="cap">What each screen needs from the system &mdash; which tables it reads, what already exists and
 what has to be built &mdash; is <b>&sect;9a of the LLD</b>, written task by task against these same twelve
 screens. It is kept there rather than here so this document stays readable without knowing the schema.</p>
 
-<h2>6 · Open before build</h2>
+<h2>7 · Open before build</h2>
 <p class="cap">Mirrors <b>§11 of the LLD</b> &mdash; that table is the authority, this is the picture. Every row
 carries an owner, what it blocks, and a <b>default</b>, so silence is a stated assumption rather than a blocker.</p>
 <table>
 <tr><th style="width:38%">Question</th><th style="width:9%">Owner</th><th style="width:20%">Blocks</th><th>Default if unanswered</th></tr>
 <tr><td><b>Q1 &middot; How much evidence is enough</b> to print a number for an ability, and how much an ability must vary between slots to be worth reporting</td>
-    <td>KMM</td><td>G4, G5 &middot; screen <a href="#s11">11</a></td>
+    <td>KMM</td><td>G4, G5 &middot; screen <a href="#s12">11</a></td>
     <td>report an ability only if at least 8 slots demand it, and only if slots differ in how much they demand &mdash; both provisional</td></tr>
 <tr><td><b>Q2 &middot; Quarantine policy</b> &mdash; keep, recompute or disclose, for answers already given</td>
-    <td>Goutam</td><td>screen <a href="#s12">12</a> &middot; <code>questions_included[]</code></td>
+    <td>Goutam</td><td>screen <a href="#s13">12</a> &middot; <code>questions_included[]</code></td>
     <td><b>Recompute abilities and disclose</b>, as a stream-wide constant. Marks follow the board</td></tr>
 <tr><td><b>Q3 &middot; How an MCQ purchase is captured</b> &mdash; our payment records are tied to a programme, and MCQ is not one</td>
     <td>Goutam</td><td>build step 1</td><td>nullable, reconciled by hand for the first cohort</td></tr>
 <tr><td><b>Q4 &middot; The behavioural formulas</b> &mdash; what time-to-answer contributes</td>
     <td>KMM</td><td>build step 10</td><td>ship without them; the data is captured either way</td></tr>
 <tr><td><b>Q5 &middot; The actor model</b> &mdash; roles, and which languages a reviewer reads</td>
-    <td>Goutam</td><td>approving translations &middot; screens <a href="#s06">06</a>, <a href="#s07">07</a></td>
+    <td>Goutam</td><td>approving translations &middot; screens <a href="#s07">06</a>, <a href="#s08">07</a></td>
     <td><code>reviewed_by &ne; translated_by</code>, enforceable today</td></tr>
 <tr><td><b>Q6 &middot; Re-purchase after expiry</b> &mdash; does the aggregate span both entitlements?</td>
     <td>Goutam</td><td>how the overall picture is scoped</td><td>yes, and no &mdash; each entitlement is its own journey</td></tr>
 <tr><td><b>Q7 &middot; One benchmark tier or three</b> on the card</td>
-    <td>Goutam</td><td>screen <a href="#s11">11</a> &middot; card format</td><td>competitive only</td></tr>
+    <td>Goutam</td><td>screen <a href="#s12">11</a> &middot; card format</td><td>competitive only</td></tr>
 <tr><td><b>Q8 &middot; <code>ideal_seconds</code> per band</b> &mdash; 45/60/90 is a placeholder</td>
     <td>KMM</td><td>the pace bar</td><td>45/60/90</td></tr>
 <tr><td><b>Q9 &middot; Does one set satisfy eligibility</b> (200 observations)?</td>
@@ -1158,7 +1219,7 @@ carries an owner, what it blocks, and a <b>default</b>, so silence is a stated a
 </table>
 
 <p class="cap"><b>Closed since the last version of this board</b> &mdash; kept visible so nobody reopens them:
-<s>bilingual or English-only</s> (multilingual, 16-Aug; screens <a href="#s07">07</a>/<a href="#s08">08</a>) &middot;
+<s>bilingual or English-only</s> (multilingual, 16-Aug; screens <a href="#s08">07</a>/<a href="#s09">08</a>) &middot;
 <s>the &le;2.0&times; length rule vs the misconception rule</s> (both satisfiable; rank uniformity <b>supplements</b>
 the ratio ceiling rather than replacing it &mdash; the Kannada rendering of slot 22 q1 still fails the ceiling at
 2.17&times;) &middot; <s>error-type <b>scope</b></s> (one global list, area-<i>ranked</i> picker &mdash; only the
