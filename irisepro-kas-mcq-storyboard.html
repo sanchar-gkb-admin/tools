@@ -460,22 +460,51 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
       <div class="fcard done" style="opacity:.55"><b class="n">6</b><span style="flex:1">Gandhi&rsquo;s arrest, 1922</span><code>gandhi-arrest-1922</code><span class="saved">&#10003;</span></div>
 
       <div class="fcard now">
-        <div style="display:flex;gap:9px;align-items:center;margin-bottom:8px">
+        <div style="display:flex;gap:9px;align-items:center;margin-bottom:9px">
           <b class="n">7</b><span style="font:700 11px Montserrat;color:var(--o-deep);flex:1">WRITING QUESTION 7 OF 9</span>
-          <span class="lk">&#9998; keep the correct option short &mdash; budget</span>
+          <span class="lk">slot 22 &middot; 60s</span>
         </div>
-        <input class="fld" style="font-weight:600" placeholder="stem &mdash; a concept none of the six above cover">
-        <div style="display:flex;gap:6px;margin-bottom:7px">
-          <select class="sel"><option>&mdash; misconception &mdash;</option><option>cause / trigger</option><option>era confusion</option><option>actor confusion</option><option>State vs Union</option></select>
-          <select class="sel"><option>&mdash; misconception &mdash;</option></select>
-          <select class="sel"><option>&mdash; misconception &mdash;</option></select>
+
+        <div style="font:800 9.5px Montserrat;color:#a9a19a;letter-spacing:.06em;margin-bottom:4px">QUESTION</div>
+        <input class="fld" style="font-weight:600" value="In which year was the Non-Cooperation Movement launched?">
+        <div style="display:flex;gap:7px;align-items:center;margin-bottom:11px">
+          <span style="font:800 9.5px Montserrat;color:#a9a19a">CONCEPT</span>
+          <input class="fld" style="margin:0;flex:1;font-size:12px" value="inm.ncm.launch-year">
+          <span class="saved">&#10003; unlike the 6 already in this slot</span>
         </div>
-        <div style="font:600 10.5px Montserrat;color:#a9a19a;margin-bottom:7px">pick the three errors first &mdash; the options write themselves from them</div>
+
+        <div style="font:800 9.5px Montserrat;color:#a9a19a;letter-spacing:.06em;margin-bottom:4px">
+          OPTIONS &mdash; mark one correct; for each wrong one, name the belief that makes it attractive</div>
+
+        <div class="orow ok">
+          <div class="top"><b>A</b><input value="1920"><span class="saved">&#10003; CORRECT</span></div>
+          <div class="why"><span class="lk">&#9998; make this the shortest &mdash; 2 of 6 so far have the longest correct</span></div>
+        </div>
+        <div class="orow">
+          <div class="top"><b>B</b><input value="1919"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
+          <div class="why"><select class="sel"><option>era confusion</option></select>
+            <input value="dates the launch to Jallianwala Bagh"></div>
+        </div>
+        <div class="orow bad">
+          <div class="top"><b>C</b><input value="1922"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
+          <div class="why"><select class="sel empty"><option>&mdash; pick a belief &mdash;</option></select>
+            <input placeholder="what makes a candidate choose this?"></div>
+        </div>
+        <div class="orow bad">
+          <div class="top"><b>D</b><input value="1930"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
+          <div class="why"><select class="sel empty"><option>&mdash; pick a belief &mdash;</option></select>
+            <input placeholder="what makes a candidate choose this?"></div>
+        </div>
+
+        <div class="warn" style="margin:2px 0 9px">The list behind &ldquo;pick a belief&rdquo; <b>does not exist yet</b> &mdash;
+          it is question 1 in &sect;6 below. Until it does, this field cannot be required.</div>
+
         <div style="display:flex;gap:7px;flex-wrap:wrap">
-          <a class="btn btn-g" href="#a08" style="padding:7px 14px;font-size:11px">Save &amp; write question 8 of 9 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
-          <a class="btn" href="#a08" style="padding:7px 14px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate question 3&rsquo;s shape</a>
+          <a class="btn btn-g" href="#s04" style="padding:7px 14px;font-size:11px">Save &amp; write question 8 of 9 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
+          <a class="btn" href="#s04" style="padding:7px 14px;font-size:11px;background:#fff;border:1px solid var(--line);color:var(--ink)">Copy question 3&rsquo;s structure &mdash; clears all text</a>
         </div>
       </div>
+
 
       <div class="fcard" style="opacity:.4"><b class="n">8</b><span style="flex:1">&mdash;</span></div>
       <div class="fcard" style="opacity:.4"><b class="n">9</b><span style="flex:1">&mdash; spare</span></div>
@@ -487,7 +516,7 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
   </div></div>
 </div></div>
 
-<p class="cap">The slot is the unit of work. Nine questions in one screen instead of nine round-trips to the workbench.</p>
+<p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s05">05</a> is for opening one already written to check its gates and preview it.</p>
 
 <h3 id="s05">05 · Question editor — the ONE screen an author actually types in</h3>
 <p class="cap">Everything else on this board is a view or a check. This is the surface where 1,800 questions get
@@ -823,7 +852,7 @@ see a structural control.</p>
 <tr><td><b>Which quarantine policy</b> — recompute, disclose, or keep?</td><td>10 and the <code>questions_included[]</code> schema</td></tr>
 <tr><td style="text-decoration:line-through;color:#9ca3af"><b>Can a contrastive higher-order question pass both</b> the ≤2.0× length rule and the misconception rule?</td><td><b style="color:#2c7a44">ANSWERED</b> — yes, both are satisfiable; the ratio rule was the wrong instrument and is replaced by rank uniformity. See §2, 05.</td></tr>
 <tr><td><b>What is <code>k_min</code></b> — the fewest slots that may back a reported ability? Problem-solving is <b>1 question</b> in GS-1; any number printed for it is noise.</td><td>01's "Blocking" panel, which currently blocks nothing</td></tr>
-<tr><td><b>What are the permitted <code>error_type</code> values?</b> Required on 13,200 wrong options, with no vocabulary defined and a gate whose statistic is <code>non-null</code>.</td><td>05 — a required free-text field is a vacuous-green trap at this volume</td></tr>
+<tr><td><b>What are the permitted <code>error_type</code> values, and at what scope?</b> A required field with no vocabulary across <b>5,400</b> distractors. Free text there is unaggregatable by construction, so the enum is decided &mdash; its <i>contents</i> are not, and nobody is named to author them. <b>Scope matters as much as content:</b> one global list large enough to cover History, Polity, Geography and Economy is too long to pick from; per-area lists of 6&ndash;10 are usable but stop &ldquo;you made this error 4 times&rdquo; from aggregating across areas. This is subject-expert work, not engineering.</td><td>KMM</td><td>screens <a href="#s04">04</a> &amp; <a href="#s05">05</a> &mdash; the field cannot be required until it is answered</td></tr>
 </table>
 
 </div>
