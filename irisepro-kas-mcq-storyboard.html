@@ -491,22 +491,19 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
         </div>
         <div class="orow">
           <div class="top"><b>B</b><input value="1919"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
-          <div class="why"><select class="sel"><option>era confusion</option></select>
+          <div class="why"><select class="sel"><option>era confusion</option><option>&#43; propose a new one&hellip;</option></select>
             <input value="dates the launch to Jallianwala Bagh"></div>
         </div>
         <div class="orow bad">
           <div class="top"><b>C</b><input value="1922"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
-          <div class="why"><select class="sel empty"><option>&mdash; pick a belief &mdash;</option></select>
+          <div class="why"><select class="sel empty"><option>&mdash; pick a belief &mdash;</option><option>&#43; propose a new one&hellip;</option></select>
             <input placeholder="what makes a candidate choose this?"></div>
         </div>
         <div class="orow bad">
           <div class="top"><b>D</b><input value="1930"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
-          <div class="why"><select class="sel empty"><option>&mdash; pick a belief &mdash;</option></select>
+          <div class="why"><select class="sel empty"><option>&mdash; pick a belief &mdash;</option><option>&#43; propose a new one&hellip;</option></select>
             <input placeholder="what makes a candidate choose this?"></div>
         </div>
-
-        <div class="warn" style="margin:2px 0 9px">The list behind &ldquo;pick a belief&rdquo; <b>does not exist yet</b> &mdash;
-          it is question 1 in &sect;6 below. Until it does, this field cannot be required.</div>
 
         <div style="display:flex;gap:7px;flex-wrap:wrap">
           <a class="btn btn-g" href="#s04" style="padding:7px 14px;font-size:11px">Save &amp; write question 8 of 9 &nbsp;<span style="opacity:.7">&#8984;&#9166;</span></a>
@@ -861,7 +858,7 @@ see a structural control.</p>
 <tr><td><b>Which quarantine policy</b> — recompute, disclose, or keep?</td><td>10 and the <code>questions_included[]</code> schema</td></tr>
 <tr><td style="text-decoration:line-through;color:#9ca3af"><b>Can a contrastive higher-order question pass both</b> the ≤2.0× length rule and the misconception rule?</td><td><b style="color:#2c7a44">ANSWERED</b> — yes, both are satisfiable; the ratio rule was the wrong instrument and is replaced by rank uniformity. See §2, 05.</td></tr>
 <tr><td><b>What is <code>k_min</code></b> — the fewest slots that may back a reported ability? Problem-solving is <b>1 question</b> in GS-1; any number printed for it is noise.</td><td>01's "Blocking" panel, which currently blocks nothing</td></tr>
-<tr><td><b>What are the permitted <code>error_type</code> values, and at what scope?</b> A required field with no vocabulary across <b>5,400</b> distractors. Free text there is unaggregatable by construction, so the enum is decided &mdash; its <i>contents</i> are not, and nobody is named to author them. <b>Scope matters as much as content:</b> one global list large enough to cover History, Polity, Geography and Economy is too long to pick from; per-area lists of 6&ndash;10 are usable but stop &ldquo;you made this error 4 times&rdquo; from aggregating across areas. This is subject-expert work, not engineering.</td><td>KMM</td><td>screens <a href="#s04">04</a> &amp; <a href="#s05">05</a> &mdash; the field cannot be required until it is answered</td></tr>
+<tr><td><b>Seed the <code>error_type</code> list &mdash; about a dozen kinds, and their scope.</b> Not &ldquo;deliver the vocabulary&rdquo;: it starts small and grows by proposal, so it never blocks authoring. What is needed is the <i>seed</i> and the answer to <b>scope</b> &mdash; one global list is too long to pick from, per-area lists of 6&ndash;10 are usable but stop &ldquo;you made this error 4 times&rdquo; aggregating across areas.</td><td>KMM</td><td>screens <a href="#s04">04</a> &amp; <a href="#s05">05</a></td></tr>
 </table>
 
 </div>
