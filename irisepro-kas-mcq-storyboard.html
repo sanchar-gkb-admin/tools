@@ -557,7 +557,7 @@ written, so every second of friction here is multiplied by 1,800.</p>
       <div class="gate"><u class="g-no">&#10007;</u><span>Every wrong option names a real misconception</span><em>2 missing &mdash; C, D</em></div>
       <div class="gate"><u class="g-no">&#10007;</u><span>No two distractors share an error type</span><em>blocked until C and D are typed</em></div>
       <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>slot: longest in 6 of 18 (33%)</em></div>
-      <div class="gate"><u class="g-ok">&#10003;</u><span>Safe to shuffle</span><em>no &ldquo;all of the above&rdquo;</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Shuffle pin</span><em>none needed &mdash; no terminal option</em></div>
     </div>
 
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
@@ -706,7 +706,7 @@ see a structural control.</p>
 
     <div class="card">
       <div class="slot-m" style="margin-bottom:7px">GATES &mdash; RE-RUN FOR KANNADA</div>
-      <div class="gate"><u class="g-ok">&#10003;</u><span>Safe to shuffle</span><em>no positional phrase in KN either</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Pin matches the source</span><em>no terminal phrase in KN either &mdash; correct</em></div>
       <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>3rd of 4 &mdash; same as EN</em></div>
       <div class="gate"><u class="g-no">&#10007;</u><span>Option length spread</span><em>EN 1.32&times; &middot; <b>KN 2.17&times;</b></em></div>
       <div class="gate"><u class="g-no">&#10007;</u><span>Every rendering reviewed by a reader of that language</span><em>KN unreviewed &middot; HI absent</em></div>
@@ -745,8 +745,8 @@ see a structural control.</p>
       <div class="gate"><u class="g-ok">✓</u><span>Option order uniformly random per student, per question</span><em>asserted by test</em></div>
       <div class="gate"><u class="g-no">✗</u><span>Unshuffleable questions capped, and passing the key gates themselves</span><em>31 questions · no cap set</em></div>
       <div style="font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.5">
-        <code>shuffle_safe = false</code> questions render <b>unpermuted</b> — and they are exactly the ones carrying
-        "all of the above" and ordered pairs. That subset is the only place letter leakage can reach a student, and
+        <code>pinned_tail</code> questions keep their last option fixed &mdash; they are the ones carrying
+        &ldquo;all of the above&rdquo;. Only their <b>tail</b> is fixed; the rest still shuffle, and
         it is the only one with no rule.</div>
     </div>
     <div class="card">
@@ -811,7 +811,7 @@ see a structural control.</p>
 <tr><td>06 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>07 translation desk</td><td>a slot&rsquo;s 45 lines in two columns · machine-draft seeding · per-line approval state · per-language gate results</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>08 translation</td><td><code>mcq_question_variants</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>09 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>shuffle_safe</code> population</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>09 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>pinned_tail</code> population · pin-vs-key gate</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>10 quarantine</td><td><code>questions_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
 </table>
 
