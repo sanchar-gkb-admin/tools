@@ -712,7 +712,7 @@ never re-scored by a later upload. <b>September&rsquo;s ratings survive October&
   </div></div>
 </div></div></div>
 
-<p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s06">05</a> is for opening one already written to check its gates and preview it.</p>
+<p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s06">06</a> is for opening one already written to check its gates and preview it.</p>
 
 <h3 id="s06">06 · Check a question you have written</h3>
 <div class="howto">
@@ -1215,22 +1215,25 @@ carries an owner, what it blocks, and a <b>default</b>, so silence is a stated a
 <table>
 <tr><th style="width:38%">Question</th><th style="width:9%">Owner</th><th style="width:20%">Blocks</th><th>Default if unanswered</th></tr>
 <tr><td><b>Q1 &middot; How much evidence is enough</b> to print a number for an ability, and how much an ability must vary between slots to be worth reporting</td>
-    <td>KMM</td><td>G4, G5 &middot; screen <a href="#s12">11</a></td>
+    <td>KMM</td><td>G4, G5 &middot; screen <a href="#s12">12</a></td>
     <td>report an ability only if at least 8 slots demand it, and only if slots differ in how much they demand &mdash; both provisional</td></tr>
 <tr><td><b>Q2 &middot; Quarantine policy</b> &mdash; keep, recompute or disclose, for answers already given</td>
-    <td>Goutam</td><td>screen <a href="#s13">12</a> &middot; <code>questions_included[]</code></td>
+    <td>Goutam</td><td>screen <a href="#s13">13</a> &middot; <code>questions_included[]</code></td>
     <td><b>Recompute abilities and disclose</b>, as a stream-wide constant. Marks follow the board</td></tr>
 <tr><td><b>Q3 &middot; How an MCQ purchase is captured</b> &mdash; our payment records are tied to a programme, and MCQ is not one</td>
     <td>Goutam</td><td>build step 1</td><td>nullable, reconciled by hand for the first cohort</td></tr>
 <tr><td><b>Q4 &middot; The behavioural formulas</b> &mdash; what time-to-answer contributes</td>
     <td>KMM</td><td>build step 10</td><td>ship without them; the data is captured either way</td></tr>
-<tr><td><b>Q5 &middot; The actor model</b> &mdash; roles, and which languages a reviewer reads</td>
-    <td>Goutam</td><td>approving translations &middot; screens <a href="#s07">06</a>, <a href="#s08">07</a></td>
-    <td><code>reviewed_by &ne; translated_by</code>, enforceable today</td></tr>
+<tr><td><b>Q5 &middot; Who is allowed to do what</b> &mdash; there is <b>one login</b> today and no notion of
+      roles at all, so &ldquo;someone else reviews it&rdquo; cannot happen yet even if we wanted it. When there is a
+      team we will need proper access control, and which languages a reviewer can read.</td>
+    <td>Goutam</td><td>reviewing &middot; screens <a href="#s07">07</a>, <a href="#s08">08</a></td>
+    <td>work alone for now. The system records <b>who did what</b> from the first day, so switching review on
+      later is adding a rule, not reconstructing a history</td></tr>
 <tr><td><b>Q6 &middot; Re-purchase after expiry</b> &mdash; does the aggregate span both entitlements?</td>
     <td>Goutam</td><td>how the overall picture is scoped</td><td>yes, and no &mdash; each entitlement is its own journey</td></tr>
 <tr><td><b>Q7 &middot; One benchmark tier or three</b> on the card</td>
-    <td>Goutam</td><td>screen <a href="#s12">11</a> &middot; card format</td><td>competitive only</td></tr>
+    <td>Goutam</td><td>screen <a href="#s12">12</a> &middot; card format</td><td>competitive only</td></tr>
 <tr><td><b>Q8 &middot; <code>ideal_seconds</code> per band</b> &mdash; 45/60/90 is a placeholder</td>
     <td>KMM</td><td>the pace bar</td><td>45/60/90</td></tr>
 <tr><td><b>Q9 &middot; Does one set satisfy eligibility</b> (200 observations)?</td>
@@ -1240,7 +1243,7 @@ carries an owner, what it blocks, and a <b>default</b>, so silence is a stated a
 </table>
 
 <p class="cap"><b>Closed since the last version of this board</b> &mdash; kept visible so nobody reopens them:
-<s>bilingual or English-only</s> (multilingual, 16-Aug; screens <a href="#s08">07</a>/<a href="#s09">08</a>) &middot;
+<s>bilingual or English-only</s> (multilingual, 16-Aug; screens <a href="#s08">08</a>/<a href="#s09">09</a>) &middot;
 <s>the &le;2.0&times; length rule vs the misconception rule</s> (both satisfiable; rank uniformity <b>supplements</b>
 the ratio ceiling rather than replacing it &mdash; the Kannada rendering of slot 22 q1 still fails the ceiling at
 2.17&times;) &middot; <s>error-type <b>scope</b></s> (one global list, area-<i>ranked</i> picker &mdash; only the
