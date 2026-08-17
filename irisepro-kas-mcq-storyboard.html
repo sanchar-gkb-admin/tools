@@ -264,6 +264,21 @@ screens that follow are the tools for doing that without losing your place.</p>
 </div>
 </div>
 
+<h2>Words used on these screens</h2>
+<p class="cap">Everything else is ordinary English. If a screen uses a term that is not here, that is a bug in the screen.</p>
+<div class="gloss">
+  <div><b>Set</b>One sitting of both papers &mdash; GS-1 and GS-2 together. What a student buys.</div>
+  <div><b>Slot</b>A position in the paper. Question 22 is always the same <i>kind</i> of question: same subject, same difficulty, same abilities.</div>
+  <div><b>Question</b>One actual question written for a slot. Nine per slot, each on a <i>different</i> fact.</div>
+  <div><b>Variant</b>The same question in another language. Not a different question.</div>
+  <div><b>Concept</b>The fact a question tests. Two questions asking the same fact in different words share one concept, so a student is only ever given one of them.</div>
+  <div><b>Distractor</b>A wrong option. Each one names the mistaken belief that makes it tempting.</div>
+  <div><b>Weight</b>How much a slot demands of one ability, out of 100. Every slot rates all 15.</div>
+  <div><b>Draw</b>Choosing which of a slot&rsquo;s 9 questions this particular student gets.</div>
+  <div><b>Quarantine</b>Taking a question out of circulation because something is wrong with it.</div>
+  <div><b>Gate</b>An automatic check that stops a question going live.</div>
+</div>
+
 <h2>The author&rsquo;s journey &mdash; one complete GS-1 + GS-2 set, in every language</h2>
 <p class="cap">Two loops, and everything else happens once. The inner loop runs 200 times; the language loop
 runs inside it, once per language on offer.</p>
@@ -327,15 +342,6 @@ runs inside it, once per language on offer.</p>
 slot must demand. English approved before translation, because a translator correcting an unreviewed source
 does the work twice. And a slot is not live until every language has passed &mdash; per-language release would
 quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is arithmetic over that pool.</p>
-
-<h2>0 · How it plugs in</h2>
-<table>
-<tr><th>Layer</th><th>Today</th><th>MCQ</th></tr>
-<tr><td>Admin shell</td><td><code>superadmin.layout</code> — nav, auth, styling</td><td><span class="pill p-ex">EXISTS</span> — but the nav is a flat hardcoded <code>&lt;a&gt;</code> list (<code>:110-334</code>) with no section primitive, and the layout has <b>no <code>@stack('scripts')</code></b>, so MCQ admin JS must inline <code>@once</code></td></tr>
-<tr><td>Ability tagging</td><td><code>partials/skills-picker</code> — membership checklist posting <code>abilities[]</code> as <code>pillar.ability</code></td><td><span class="pill p-new">NOT REUSED</span> — <code>skills-picker</code> is a <i>membership checklist</i>; a slot now carries a 15-value weight vector authored by KMM. Different data, different screen, read-only</td></tr>
-<tr><td>Slot / question authoring</td><td>— <i>(tasks are authored one at a time)</i></td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>Statistical gates</td><td>—</td><td><span class="pill p-new">NEW</span> — and they are the point of this admin, not a report on it</td></tr>
-</table>
 
 <h2 id="s01">1 · The paper arrives &mdash; 100 slots &times; 2 papers</h2>
 <p class="cap">The landing screen answers two questions, not one: <i>where is content missing</i>, and <i>what is this paper actually measuring</i>.</p>
@@ -1018,7 +1024,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 </div></div></div>
 
 
-<h3 id="s11">11 · Is the bank sound — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
+<h3 id="s11">11 · Check the finished bank is sound</h3>
 <div class="howto">
   <p>Check the finished bank has no pattern a candidate could exploit.</p>
   <ol>
@@ -1074,7 +1080,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <p class="cap">Both figures re-derived at <code>target_n = 9</code>. A gate that has never failed is not a gate.</p>
 
-<h3 id="s12">12 · Quarantine — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
+<h3 id="s12">12 · Take a bad question out</h3>
 <div class="howto">
   <p>Take a bad question out of circulation.</p>
   <ol>
@@ -1110,21 +1116,6 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 </div></div></div>
 
 <p class="cap">Quarantine is not retire: papers already sitting keep the question, and nobody new draws it.</p>
-
-<h2>Words used on these screens</h2>
-<p class="cap">Everything else is ordinary English. If a screen uses a term that is not here, that is a bug in the screen.</p>
-<div class="gloss">
-  <div><b>Set</b>One sitting of both papers &mdash; GS-1 and GS-2 together. What a student buys.</div>
-  <div><b>Slot</b>A position in the paper. Question 22 is always the same <i>kind</i> of question: same subject, same difficulty, same abilities.</div>
-  <div><b>Question</b>One actual question written for a slot. Nine per slot, each on a <i>different</i> fact.</div>
-  <div><b>Variant</b>The same question in another language. Not a different question.</div>
-  <div><b>Concept</b>The fact a question tests. Two questions asking the same fact in different words share one concept, so a student is only ever given one of them.</div>
-  <div><b>Distractor</b>A wrong option. Each one names the mistaken belief that makes it tempting.</div>
-  <div><b>Weight</b>How much a slot demands of one ability, out of 100. Every slot rates all 15.</div>
-  <div><b>Draw</b>Choosing which of a slot&rsquo;s 9 questions this particular student gets.</div>
-  <div><b>Quarantine</b>Taking a question out of circulation because something is wrong with it.</div>
-  <div><b>Gate</b>An automatic check that stops a question going live.</div>
-</div>
 
 <h2>5 · For the engineers &mdash; what each screen needs from the system</h2>
 <p class="cap">Nothing below this line is needed to review the screens. It is the wiring, and it uses the system&rsquo;s own words on purpose.</p>
