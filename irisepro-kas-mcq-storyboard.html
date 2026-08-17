@@ -804,51 +804,72 @@ never re-scored by a later upload. <b>September&rsquo;s ratings survive October&
 <p class="cap">Autosave, duplicate-with-cleared-concept, a closed <code>error_type</code> list, and a live duplicate check &mdash; each one &times;1,800.</p>
 
 <h2>4 · Review, then translate &mdash; repeat per language</h2>
-<h3 id="s07">07 · Approve someone else&rsquo;s question</h3>
+<h3 id="s07">07 · Check everything before it goes live</h3>
 <div class="howto">
-  <p>Read someone else's question and decide whether it can go live.</p>
+  <p><b>Today, working alone:</b> read everything the system found before you publish.</p>
   <ol>
-    <li>Pick a question from the list. Your own are greyed out — you cannot approve your own work.</li>
-    <li>Read it as a candidate would: is the marked answer definitely right, and only that one?</li>
-    <li>Approve it, or write a note saying what to change and send it back.</li>
+    <li>Open the question you have finished.</li>
+    <li>Read the full list &mdash; what failed, what is borderline, and what passed. Nothing is hidden from you.</li>
+    <li>Fix what you can.</li>
+    <li>Tick <b>I have read all of the above</b>. You cannot publish without it.</li>
+    <li>Publish. If you published with something still amber, that is recorded against the question.</li>
   </ol>
+  <div class="cant">The system checks the <b>shape</b> of a question &mdash; that every wrong option has a reason,
+  that the right answer is not always the longest, that the translations match. <b>It cannot tell you whether
+  your answer is correct.</b> Working alone, that part rests entirely on you.</div>
+</div>
+<div class="howto" style="border-left-color:#9bb8d4;background:#f6f9fc">
+  <p><b>Later, with a team:</b> the same list, read by someone else.</p>
+  <ol>
+    <li>Questions you wrote no longer appear on your own list.</li>
+    <li>Someone else reads it as a candidate would: is the marked answer definitely right, and only that one?</li>
+    <li>They approve it, or write a note saying what to change and send it back.</li>
+  </ol>
+  <div class="cant">One setting switches this on. Everything already published stays published, and the system
+  can list which questions never had a second reader &mdash; so it becomes a to-do list, not a shutdown.</div>
 </div>
 <div class="row"><div>
 <div class="step">07</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
-    <span class="url">app.irisepro.in/superadmin/mcq/review</span></div>
-  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">14 awaiting review &middot; 3 languages</span></div>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/7/publish</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">Slot 22 &middot; question 7 &middot; working alone</span></div>
   <div class="a-body">
+
     <div class="card">
-      <div class="slot-m" style="margin-bottom:4px">AWAITING REVIEW</div>
-      <div class="rq"><span class="who">R. Menon</span><span style="flex:1">Slot 22 &middot; <i>&ldquo;The Non-Cooperation Movement was withdrawn after&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#f4f2f0;color:#6b7280">EN</span><span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
-      <div class="rq"><span class="who">S. Kulkarni</span><span style="flex:1">Slot 22 &middot; <i>&ldquo;ಅಸಹಕಾರ ಚಳವಳಿಯನ್ನು ಯಾವುದರ ನಂತರ&hellip;&rdquo;</i></span><span class="st" style="background:#f4f2f0;color:#6b7280">KN</span><span class="st" style="background:#fdf6e6;color:#8a5a00">SPREAD 2.17&times;</span></div>
-      <div class="rq"><span class="who">R. Menon</span><span style="flex:1">Slot 23 &middot; <i>&ldquo;Which of the following best describes Article 31C&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#f4f2f0;color:#6b7280">EN</span><span class="st" style="background:#eef6ee;color:#2c7a44">4 GATES PASS</span></div>
-      <div class="rq"><span class="who">A. Shetty</span><span style="flex:1">Slot 41 &middot; <i>&ldquo;The Doctrine of Lapse was applied to&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#f4f2f0;color:#6b7280">EN</span><span class="st" style="background:#fdf6e6;color:#8a5a00">RANK BUDGET</span></div>
-      <div class="rq" style="opacity:.45"><span class="who">You</span><span style="flex:1">Slot 60 &middot; <i>&ldquo;Under the 42nd Amendment, the word&hellip;&rdquo;</i></span>
-        <span class="st" style="background:#f4f2f0;color:#6b7280">HI</span><span class="st" style="background:#f4f2f0;color:#8a7f76">YOUR OWN &mdash; LOCKED</span></div>
+      <div class="slot-m" style="margin-bottom:7px">MUST BE FIXED</div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>Two wrong options blame the same mistake</span><em>C and D both say &ldquo;era confusion&rdquo;</em></div>
     </div>
+
+    <div class="card" style="background:#fdf6e6;border-color:#f0e0bb">
+      <div class="slot-m" style="margin-bottom:7px">WORTH A SECOND LOOK</div>
+      <div class="gate"><u style="background:#f0d9a8;color:#8a5a00">!</u><span>The right answer is the longest option</span><em>3 of the 6 written in this slot &mdash; aim for about 1 in 4</em></div>
+      <div class="gate"><u style="background:#f0d9a8;color:#8a5a00">!</u><span>Kannada is still a machine draft</span><em>0 of 9 lines ticked</em></div>
+    </div>
+
     <div class="card">
-      <div class="slot-m" style="margin-bottom:6px">SLOT 22 &middot; QUESTION 19</div>
-      <div style="font:700 13.5px Montserrat;margin-bottom:8px">The Non-Cooperation Movement was withdrawn after:</div>
-      <div class="opt correct"><b>A</b><span>the Chauri Chaura incident</span></div>
-      <div class="opt"><b>B</b><span>the Jallianwala Bagh massacre<br><span style="color:#6b7280;font-size:11.5px">cause / trigger</span></span></div>
-      <div class="opt"><b>C</b><span>the Partition of India<br><span style="color:#6b7280;font-size:11.5px">era confusion</span></span></div>
-      <div class="opt"><b>D</b><span>the Royal Indian Navy revolt<br><span style="color:#6b7280;font-size:11.5px">era confusion &mdash; <b style="color:#b4381f">clashes with C</b></span></span></div>
-      <input class="fld" style="margin-top:9px" placeholder="a note back to the author (required to send back)">
-      <div style="display:flex;gap:8px;margin-top:2px">
-        <a class="btn btn-g" href="#s12">Approve &rarr; published</a>
-        <a class="btn" href="#s06" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Send back</a>
-      </div>
+      <div class="slot-m" style="margin-bottom:7px">PASSED</div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Every wrong option says why someone would pick it</span><em>3 of 3</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>No other question in this slot tests this fact</span><em>checked against all 6</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Options can be re-ordered</span><em>nothing must stay last</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Abilities for this slot are live</span><em>version 3</em></div>
     </div>
+
+    <div class="card" style="background:#fdf0ee;border-color:#eec4bf;padding:11px 14px">
+      <div style="font-size:12.5px;color:#6b3229;line-height:1.6"><b>Nothing above tells you the answer is right.</b>
+        These checks look at the shape of the question. Whether 1920 is the correct year is yours to be sure of.</div>
+    </div>
+
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <span class="tick" style="width:19px;height:19px">&#10003;</span>
+      <span style="font:600 12.5px Montserrat;color:var(--ink);flex:1">I have read all of the above</span>
+      <span class="btn" style="background:#e8e3de;color:#a9a19a;cursor:not-allowed">Publish</span>
+    </div>
+    <div style="font:600 11px Montserrat;color:#a9a19a;margin-top:5px">Publishing with an amber item is allowed, and is recorded against the question.</div>
   </div>
 </div></div></div>
 
-<p class="cap">Nothing reaches a paying candidate on one person&rsquo;s say-so. You cannot approve your own question &mdash; the system refuses it, it is not just hidden from you.</p>
+<p class="cap">Nothing reaches a paying candidate unchecked. Once there is a team, you cannot approve your own question &mdash; the system refuses it, it is not just hidden from you.</p>
 
 <h3 id="s08">08 · Translate a slot into another language</h3>
 <div class="howto">
