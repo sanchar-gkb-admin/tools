@@ -180,14 +180,14 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .wrow span{width:180px;flex:none}
 .wrow i{flex:1;height:8px;background:#f2ece6;border-radius:99px;overflow:hidden;display:block}
 .wrow i b{display:block;height:100%;background:var(--o);border-radius:99px}
-.wrow em{font-style:normal;font:700 12px Montserrat;width:46px;text-align:right;font-paper-numeric:tabular-nums}
+.wrow em{font-style:normal;font:700 12px Montserrat;width:46px;text-align:right;font-variant-numeric:tabular-nums}
 .wrow.dim{color:#a9a19a} .wrow.dim i b{background:#d8cec5}
 </style>
 
 <div class="wrap">
 
 <h1>KAS MCQ — <em>the authoring admin</em></h1>
-<p class="sub">Six screens. The author's unit of work is a <b>slot</b>: a group of different questions sharing one topic, one cognitive demand, one ability set and one difficulty band.</p>
+<p class="sub">Twelve screens. The author's unit of work is a <b>slot</b>: a group of different questions sharing one topic, one cognitive demand, one ability set and one difficulty band.</p>
 
 <div class="xref"><b>This document is authoring only.</b> The student experience moved to
 <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-kas-mcq-student-storyboard.html">its own storyboard</a>
@@ -290,7 +290,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:9px">
         <div><div class="slot-h">100 slots · 9 questions each</div>
              <div class="slot-m">8 sets + 1 spare · 1,800 questions across both papers</div></div>
-        <div style="text-align:right"><span class="count">137<small> / 900</small></span>
+        <div style="text-align:right"><span class="count">461<small> / 900</small></span>
              <div class="slot-m">GS-1</div></div>
       </div>
       <div class="bar"><i style="background:var(--ok);width:34%"></i><i style="background:var(--warn);width:31%"></i><i style="background:#f0e6dd;width:35%"></i></div>
@@ -301,7 +301,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
         <span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#4CAF50"></span><span class="gs" style="background:#e6ddd5"></span><span class="gs" style="background:#FFC107"></span><span class="gs" style="background:#4CAF50"></span>
       </div>
       <div style="font:600 11.5px Montserrat;color:#6b7280;display:flex;gap:15px">
-        <span>■ full (34)</span><span style="color:#a8541b">■ partial (31)</span><span>■ empty (9)</span></div>
+        <span>■ full (34)</span><span style="color:#a8541b">■ partial (31)</span><span>■ empty (35)</span></div>
     </div>
 
     <div class="card">
@@ -345,28 +345,28 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div>
-          <div class="slot-h">Indian National Movement · recall a precise date · moderate</div>
+          <div class="slot-h">Indian National Movement · recall a precise date · medium</div>
           <div class="slot-m">AtD 50 · Comp 26 · DM 12 · +12 more</div>
         </div>
-        <a class="btn btn-g" href="#a03">edit slot</a>
+        <a class="btn btn-g" href="#s03">edit slot</a>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
         <span class="count">6<small> of 9 questions</small></span>
-        <a class="btn" href="#a04">+ add question</a>
+        <a class="btn" href="#s04">+ add question</a>
       </div>
     </div>
     <div class="attn">
       <h5>Needs attention</h5>
-      <div class="attn-row"><b>question 07</b><span>3 distractors have no explanation</span></div>
-      <div class="attn-row"><b>question 11</b><span>2 distractors have no explanation</span></div>
-      <div class="attn-row"><b>question 14</b><span>88% get it right vs 69% across this slot — <b style="color:#2c7a44">enough data to be sure</b> (412 responses)</span></div>
-      <div class="attn-row"><b>question 19</b><span>91% vs 69% — <span class="tooearly">not yet measurable, 23 of the ~365 responses needed</span></span></div>
+      <div class="attn-row"><b>question 02</b><span>3 distractors have no explanation</span></div>
+      <div class="attn-row"><b>question 04</b><span>2 distractors have no explanation</span></div>
+      <div class="attn-row"><b>question 05</b><span>88% get it right vs 69% across this slot — <b style="color:#2c7a44">enough data to be sure</b> (412 responses)</span></div>
+      <div class="attn-row"><b>question 06</b><span>91% vs 69% — <span class="tooearly">not yet measurable, 23 of the 72 responses needed</span></span></div>
     </div>
-    <div class="okline"><span>14 questions OK</span><span style="font-weight:700;color:#8a4415">show</span></div>
+    <div class="okline"><span>2 questions OK</span><span style="font-weight:700;color:#8a4415">show</span></div>
   </div>
 </div></div></div>
 
-<p class="cap">Equivalence is a claim about a distribution, so it needs an n. Below 30 responses the screen says <b>too early</b> rather than a number.</p>
+<p class="cap">Equivalence is a claim about a distribution, so it needs an n. Below the n its own z-test needs, the screen says <b>too early</b> rather than a number.</p>
 
 <h3 id="s03">03 · Slot settings — a weight CHECK, not an ability picker</h3>
 <p class="cap">This screen changed shape. Previously the author <i>picked</i> a subset of abilities — an input. Now every slot carries all fifteen with weights, <b>KMM authors the vector</b>, and the admin validates it.</p>
@@ -386,7 +386,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
           <span style="color:#a9a19a;font-size:11.5px">&nbsp;— authoring guidance</span></td></tr>
         <tr><th>Area</th><td>History
           <span style="color:#2c7a44;font-size:11.5px">&nbsp;— shuffle boundary &middot; scorecard breakdown</span></td></tr>
-        <tr><th>Difficulty band</th><td>moderate
+        <tr><th>Difficulty band</th><td>medium
           <span style="color:#2c7a44;font-size:11.5px">&nbsp;— sets this slot&rsquo;s 60s benchmark</span></td></tr>
         <tr><th>Slot number <code>seq_no</code></th><td><b>22 &mdash; fixed, permanent</b>
           <span style="color:#a9a19a;font-size:11.5px">&nbsp;— the slot&rsquo;s identity, unique in the paper</span></td></tr>
@@ -397,7 +397,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
     <div class="card">
       <div class="slot-m" style="margin-bottom:8px">QUESTIONS NEEDED</div>
       <table style="margin:0">
-        <tr><th style="width:32%">8 sets + 1 spare</th><td>9 &nbsp;<span style="color:#2c7a44;font-size:12px">✓ have 18</span></td></tr>
+        <tr><th style="width:32%">8 sets + 1 spare</th><td>9 &nbsp;<span style="color:#8a5a00;font-size:12px">6 written &middot; 3 to go</span></td></tr>
       </table>
     </div>
     <div class="card">
@@ -427,7 +427,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
         <div class="gate"><u class="g-no">✗</u><span>Structure is weighted <b>1 in every slot</b></span><em>CV 0.00 — would report the overall score</em></div>
       </div>
     </div>
-    <a class="btn btn-g" href="#a05">See paper-level validation</a>
+    <a class="btn btn-g" href="#s11">See paper-level validation</a>
   </div>
 </div></div></div>
 
@@ -448,12 +448,12 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
     <div class="rail">
       <div class="blk">
         <h5>GS-1 &middot; SLOT 22 OF 100</h5>
-        <div class="k">History<br>Indian National Movement<br>recall a precise date<br>moderate &middot; 60s</div>
+        <div class="k">History<br>Indian National Movement<br>recall a precise date<br>medium &middot; 60s</div>
       </div>
       <div class="blk">
         <h5>THIS PAPER</h5>
-        <div class="meter"><i style="width:41%"></i></div>
-        <div class="k"><b>369 of 900 questions</b><br>41 slots full &middot; 59 to go<br>
+        <div class="meter"><i style="width:51%"></i></div>
+        <div class="k"><b>461 of 900 questions</b><br>34 slots full &middot; 66 to go<br>
           <span style="color:#a9a19a">100 slots &times; 9 questions<br>9 = 8 sets + <b>1 spare</b><br><span style="font-size:9.5px">spare: stream setting</span></span></div>
       </div>
       <div class="blk">
@@ -536,11 +536,11 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
       <div class="fcard" style="opacity:.4"><b class="n">9</b><span style="flex:1">&mdash; spare</span></div>
 
       <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
-        <a class="btn" href="#a08" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Slot 22 done &rarr; next starved slot: <b>47 of 100</b>, 0 of 9 questions written</a>
+        <a class="btn" href="#s02" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Slot 22 done &rarr; next starved slot: <b>47 of 100</b>, 0 of 9 questions written</a>
       </div>
     </div>
   </div></div>
-</div></div>
+</div></div></div>
 
 <p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s05">05</a> is for opening one already written to check its gates and preview it.</p>
 
@@ -551,28 +551,29 @@ written, so every second of friction here is multiplied by 1,800.</p>
 <div class="step">05</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
-    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/new</span></div>
+    <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/7</span></div>
   <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
-    <span style="font:600 11px Montserrat;color:#6b7280">Question 19 of 9 needed &middot; draft &middot; <span class="saved">saved 12s ago</span></span></div>
+    <span style="font:600 11px Montserrat;color:#6b7280">Question 7 of 9 &middot; draft &middot; <span class="saved">saved 12s ago</span></span></div>
   <div class="a-body">
 
     <div class="langs">
-      <a class="on" href="#a04"><i></i>EN &middot; source</a>
-      <a class="done" href="#a04b"><i></i>KN</a>
-      <a class="todo" href="#a04b"><i></i>HI</a>
-      <a href="#a04" style="border-style:dashed">+ language</a>
+      <a class="on" href="#s05"><i></i>EN &middot; source</a>
+      <a class="done" href="#s08"><i></i>KN</a>
+      <a class="todo" href="#s08"><i></i>HI</a>
+      <a href="#s05" style="border-style:dashed">+ language</a>
     </div>
 
     <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
       <div style="font:700 12px Montserrat;color:#8a4415">Inherited from slot 22 &mdash; not editable here</div>
-      <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">Indian National Movement &middot; recall a precise date &middot; moderate &middot; 60s</div>
+      <div style="font-size:12.5px;color:#6b4a33;margin-top:3px">Indian National Movement &middot; recall a precise date &middot; medium &middot; 60s</div>
       <div style="font-size:12.5px;color:#6b4a33;margin-top:4px">Weights &nbsp;<b>Attention to Detail 50 &middot; Comprehension 26 &middot; Decision-making 12</b>
-        &nbsp;<span style="color:#a08b78">+ 12 more at 1</span> &nbsp;<a href="#a03" style="color:#c2571c;font-weight:700">see all 15</a></div>
+        &nbsp;<span style="color:#a08b78">+ 12 more at 1</span> &nbsp;<a href="#s03" style="color:#c2571c;font-weight:700">see all 15</a></div>
     </div>
 
     <div class="warn"><b>Near-duplicate:</b> question 7 of this slot also tests <i>Chauri Chaura &rarr; withdrawal</i>.
-      Two questions of one slot may not carry the same <code>concept_key</code> &mdash; a student could draw both across
-      their 8 sets. <a href="#a02" style="color:#8a5a00;font-weight:700">Open question 7</a></div>
+      Slot 22 needs <b>8 distinct concepts among drawable questions</b> to fill 8 sets. A second question on this
+      concept is allowed &mdash; <code>unique(student_id, concept_id)</code> already stops anyone drawing both &mdash;
+      but it spends the slot&rsquo;s only spare. <a href="#s04" style="color:#8a5a00;font-weight:700">Open question 7</a></div>
 
     <div class="card">
       <div class="slot-m">QUESTION</div>
@@ -611,18 +612,18 @@ written, so every second of friction here is multiplied by 1,800.</p>
       <div class="slot-m" style="margin-bottom:7px">GATES</div>
       <div class="gate"><u class="g-no">&#10007;</u><span>Every wrong option names a real misconception</span><em>2 missing &mdash; C, D</em></div>
       <div class="gate"><u class="g-no">&#10007;</u><span>No two distractors share an error type</span><em>blocked until C and D are typed</em></div>
-      <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>slot: longest in 6 of 18 (33%)</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>bank-wide: longest in 214 of 900 (24%)</em></div>
       <div class="gate"><u class="g-ok">&#10003;</u><span>Shuffle pin</span><em>none needed &mdash; no terminal option</em></div>
     </div>
 
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <a class="btn btn-g" href="#a07">Submit for review</a>
-      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Save &amp; add another</a>
-      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate this question</a>
-      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Preview as student</a>
+      <a class="btn btn-g" href="#s06">Submit for review</a>
+      <a class="btn" href="#s04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Save &amp; add another</a>
+      <a class="btn" href="#s04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Duplicate this question</a>
+      <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Preview as student</a>
     </div>
   </div>
-</div></div>
+</div></div></div>
 
 <p class="cap">Autosave, duplicate-with-cleared-concept, a closed <code>error_type</code> list, and a live duplicate check &mdash; each one &times;1,800.</p>
 
@@ -658,12 +659,12 @@ person&rsquo;s say-so.</p>
       <div class="opt"><b>D</b><span>the Royal Indian Navy revolt<br><span style="color:#6b7280;font-size:11.5px">era confusion &mdash; <b style="color:#b4381f">clashes with C</b></span></span></div>
       <input class="fld" style="margin-top:9px" placeholder="a note back to the author (required to send back)">
       <div style="display:flex;gap:8px;margin-top:2px">
-        <a class="btn btn-g" href="#a05">Approve &amp; go live</a>
-        <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Send back</a>
+        <a class="btn btn-g" href="#s11">Approve &amp; go live</a>
+        <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Send back</a>
       </div>
     </div>
   </div>
-</div></div>
+</div></div></div>
 
 <p class="cap">Nothing reaches a paying candidate on one person&rsquo;s say-so. Reviewer &ne; author, enforced in the transition.</p>
 
@@ -703,11 +704,11 @@ see a structural control.</p>
       <div class="slot-m">QUESTION 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 9 lines, machine draft</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="btn btn-g" href="#a07">Send slot 22 (KN) for review</a>
-      <a class="btn" href="#a09" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Next slot needing Kannada (of 100)</a>
+      <a class="btn btn-g" href="#s06">Send slot 22 (KN) for review</a>
+      <a class="btn" href="#s07" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Next slot needing Kannada (of 100)</a>
     </div>
   </div>
-</div></div>
+</div></div></div>
 
 <p class="cap">A translator makes no structural decisions and never sees a structural control. The unit here is a <b>line</b>.</p>
 
@@ -723,10 +724,10 @@ see a structural control.</p>
   <div class="a-body">
 
     <div class="langs">
-      <a class="done" href="#a04"><i></i>EN &middot; source</a>
-      <a class="on" href="#a04b"><i></i>KN</a>
-      <a class="todo" href="#a04b"><i></i>HI</a>
-      <a href="#a04b" style="border-style:dashed">+ language</a>
+      <a class="done" href="#s05"><i></i>EN &middot; source</a>
+      <a class="on" href="#s08"><i></i>KN</a>
+      <a class="todo" href="#s08"><i></i>HI</a>
+      <a href="#s08" style="border-style:dashed">+ language</a>
     </div>
 
     <div class="card" style="background:var(--cream2);border-color:#f0d7bf">
@@ -768,11 +769,11 @@ see a structural control.</p>
     </div>
 
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <a class="btn btn-g" href="#a07">Submit KN for review</a>
-      <a class="btn" href="#a04" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Back to source</a>
+      <a class="btn btn-g" href="#s06">Submit KN for review</a>
+      <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Back to source</a>
     </div>
   </div>
-</div></div>
+</div></div></div>
 
 <p class="cap">Switching language opens a second <b>rendering</b>, not a second question. Structure is locked; only text is editable.</p>
 
@@ -827,7 +828,7 @@ one list, or &ldquo;you made this error 4 times&rdquo; stops aggregating across 
     <p style="font-size:12px;color:#6b7280;margin:0">Editing a default explanation retranslates <b>one</b> row,
       not the 5,400 distractors that point at it.</p>
   </div>
-</div></div>
+</div></div></div>
 
 <h3 id="s10">10 &middot; Concepts &mdash; 1,700 rows, so never a flat list</h3>
 <p class="cap">Browsed area &rarr; topic &rarr; concept, which is also the scope the author&rsquo;s picker uses.
@@ -873,7 +874,7 @@ Merge is offered; split is not.</p>
       served list</b>, which only ever makes an exclusion set larger. Splitting could un-serve a concept and hand
       someone a repeat, so it is not offered.</p>
   </div>
-</div></div>
+</div></div></div>
 
 
 <h3 id="s11">11 · Bank health — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
@@ -936,7 +937,7 @@ Merge is offered; split is not.</p>
   <div class="a-body">
     <div class="card">
       <div class="slot-h">Question 14 diverges from slot 22</div>
-      <div class="slot-m">88% correct against the slot's 69% · 412 responses · z = 8.3 <span style="color:#2c7a44">(clears the paper-wide 4.24)</span></div>
+      <div class="slot-m">88% correct against the slot's 69% · 412 responses · z = 8.3 <span style="color:#2c7a44">(clears the paper-wide 4.03)</span></div>
     </div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:9px">IT HAS ALREADY BEEN ANSWERED 412 TIMES</div>
@@ -948,7 +949,7 @@ Merge is offered; split is not.</p>
         Note <code>attempts_included[]</code> records which attempts fed a card but <b>not which questions</b> — so
         without <code>questions_included[]</code>, options 1 and 2 are both unimplementable.</div>
     </div>
-    <a class="btn btn-g" href="#a02">Cancel</a>
+    <a class="btn btn-g" href="#s02">Cancel</a>
   </div>
 </div></div></div>
 
@@ -960,8 +961,8 @@ Merge is offered; split is not.</p>
 <tr><td>01 blueprint</td><td>slots · published question counts vs 9 · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>02 workbench</td><td>questions · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>03 slot settings</td><td>KMM's weight vector, read-only · <code>target_n</code> = 9</td><td><span class="pill p-ext">EXTENDS</span></td></tr>
-<tr><td>04 slot workspace</td><td>the slot&rsquo;s sibling <code>concept_key</code>s · bank-wide length-rank budget · the <code>error_type</code> vocabulary for this area · least-served-first next-slot</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>05 question editor</td><td>per-question gate rules live · autosave on the create path · the <code>error_type</code> enum · a <code>concept_key</code> uniqueness probe scoped to the slot</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>04 slot workspace</td><td>the slot&rsquo;s sibling concepts · bank-wide length-rank budget · the <code>error_type</code> vocabulary for this area · least-served-first next-slot</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>05 question editor</td><td>per-question gate rules live · autosave on the create path · the <code>error_type</code> enum · a near-match probe over <code>mcq_concepts</code>, scoped by the slot&rsquo;s topic</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>06 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>07 translation desk</td><td>a slot&rsquo;s 81 lines in two columns · machine-draft seeding · per-line approval state · per-language gate results</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>08 translation</td><td><code>mcq_question_variants</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
