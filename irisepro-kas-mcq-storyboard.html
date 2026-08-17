@@ -125,6 +125,26 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .meter{height:6px;border-radius:99px;background:#eee7e0;overflow:hidden;margin:5px 0 3px}
 .meter i{display:block;height:100%;background:#2c7a44}
 .meter.over i{background:#c9622f}
+.ablist{display:flex;flex-direction:column;gap:3px}
+.arow{display:flex;align-items:center;gap:8px;font-size:12px}
+.arow span{width:150px;flex:none;color:var(--ink)}
+.arow i{flex:1;height:7px;background:#f0ece8;border-radius:99px;overflow:hidden}
+.arow i b{display:block;height:100%}
+.arow u{width:34px;text-align:right;text-decoration:none;font:700 11.5px Montserrat;font-variant-numeric:tabular-nums}
+.arow em{width:58px;text-align:right;font-style:normal;font:600 10px Montserrat}
+.first{background:#fff;border:2px solid var(--o);border-radius:14px;padding:20px 24px;margin:16px 0 22px}
+.first h4{font:900 15px Montserrat;margin:0 0 10px;color:var(--o-deep);text-transform:uppercase;letter-spacing:.04em}
+.first p{font-size:14.5px;line-height:1.65;margin:0 0 10px;color:var(--ink)}
+.first .tree{background:#fbf9f7;border-radius:10px;padding:13px 16px;margin:12px 0;font-size:13.5px;line-height:1.85}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.who>div{border-radius:10px;padding:12px 14px}
+.who .k{background:#fdf6e6;border:1px solid #f0e0bb}
+.who .u{background:#f4f9f4;border:1px solid #cfe4d0}
+.who h6{font:800 10px Montserrat;letter-spacing:.06em;margin:0 0 6px}
+.who ul{margin:0;padding-left:16px;font-size:13px;line-height:1.7}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:9px;margin:12px 0 4px}
+.gloss div{background:#fbf9f7;border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:12.5px;line-height:1.55}
+.gloss b{display:block;font:800 11.5px Montserrat;color:var(--o-deep);margin-bottom:2px}
 .fcard{border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin-bottom:6px;background:#fff;
   display:flex;gap:9px;align-items:center;font-size:12.5px}
 .fcard.done{background:#f8fbf8;border-color:#dceadd}
@@ -199,6 +219,44 @@ parsed from the source papers and reconciled against their own summary tables.</
   <span class="pill p-ex">EXISTS — already in the codebase</span>
   <span class="pill p-ext">EXTENDS — existing thing, changed</span>
   <span class="pill p-new">NEW — built for MCQ</span>
+</div>
+
+<div class="first">
+<h4>Read this first</h4>
+<p>We are building a <b>mock-test engine for KAS Prelims</b>. A student buys a set, sits GS-1 and GS-2, and gets
+back not just a mark but a picture of <i>how they think</i> &mdash; which abilities the paper found strong and which
+it did not.</p>
+<p>To do that honestly, <b>no two students may sit the identical paper</b>, and <b>no student may meet the same
+fact twice</b> across the eight sets they buy. So we do not write &ldquo;one paper&rdquo;. We write a <b>bank</b>,
+and each student&rsquo;s paper is drawn from it.</p>
+
+<div class="tree">
+<b>KAS Prelims</b> has <b>2 papers</b> &mdash; GS-1 and GS-2. Together they are one <b>set</b>.<br>
+&nbsp;&nbsp;Each paper has <b>100 questions</b>. Question 22 is always the same <i>kind</i> of question &mdash;
+same subject, same difficulty, same skills. We call that position a <b>slot</b>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;For each slot we write <b>9 different questions</b> on <i>different</i> facts &mdash; 8 so
+a monthly student never repeats, plus 1 spare.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each question is then <b>translated</b> &mdash; English, Kannada, Hindi. Same
+question, different language.
+</div>
+
+<p>That is <b>100 &times; 9 &times; 2 papers = 1,800 questions</b> to write, and every one of them translated. The
+screens that follow are the tools for doing that without losing your place.</p>
+
+<div class="who">
+  <div class="k"><h6>KMM AUTHORS</h6><ul>
+    <li>the two question papers, slot by slot</li>
+    <li>for each slot: which of the 15 abilities it demands, and how much of each</li>
+    <li>the difficulty band and expected time per question</li>
+    <li>a starter list of the common mistakes candidates make</li>
+  </ul></div>
+  <div class="u"><h6>WE BUILD</h6><ul>
+    <li>the screens for writing and translating</li>
+    <li>the checks that catch a repeated fact or a giveaway answer</li>
+    <li>the draw that gives every student a different paper</li>
+    <li>the scorecard</li>
+  </ul></div>
+</div>
 </div>
 
 <h2>The author&rsquo;s journey &mdash; one complete GS-1 + GS-2 set, in every language</h2>
@@ -305,19 +363,26 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
     </div>
 
     <div class="card">
-      <div class="slot-m" style="margin-bottom:6px">ABILITY SHAPE — WHAT THIS PAPER MEASURES</div>
-      <div class="abgrid">
-        <i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i>
-        <i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i>
-        <i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i><i style="background:#F58321"></i>
-        <i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i>
-        <i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#3f7fb8"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#7a5cb5"></i><i style="background:#a34a7f"></i><i style="background:#a34a7f"></i><i style="background:#6b7280"></i><i style="background:#6b7280"></i><i style="background:#d4574e"></i>
+      <div class="slot-m" style="margin-bottom:6px">ABILITY SHAPE &mdash; ALL 15, BECAUSE EVERY SLOT WEIGHTS ALL 15</div>
+      <div class="ablist">
+        <div class="arow"><span>Comprehension</span><i><b style="width:100%;background:#F58321"></b></i><u>32.7</u><em style="color:#a9a19a">CV 0.71</em></div>
+        <div class="arow"><span>Attention to Detail</span><i><b style="width:88%;background:#F58321"></b></i><u>28.7</u><em style="color:#a9a19a">CV 0.64</em></div>
+        <div class="arow"><span>Critical &amp; Analytical Thinking</span><i><b style="width:31%;background:#F58321"></b></i><u>10.3</u><em style="color:#a9a19a">CV 0.88</em></div>
+        <div class="arow"><span>Decision-making</span><i><b style="width:30%;background:#F58321"></b></i><u>9.7</u><em style="color:#a9a19a">CV 0.83</em></div>
+        <div class="arow"><span>Problem-solving</span><i><b style="width:13%;background:#F58321"></b></i><u>4.1</u><em style="color:#a9a19a">CV 0.92</em></div>
+        <div class="arow"><span>Mental Dexterity</span><i><b style="width:8%;background:#F58321"></b></i><u>2.6</u><em style="color:#a9a19a">CV 0.79</em></div>
+        <div class="arow"><span>Efficiency</span><i><b style="width:6%;background:#F58321"></b></i><u>2.1</u><em style="color:#a9a19a">CV 0.74</em></div>
+        <div class="arow"><span>Accountability</span><i><b style="width:5%;background:#F58321"></b></i><u>1.7</u><em style="color:#a9a19a">CV 0.68</em></div>
+        <div class="arow"><span>Conflict Resolution</span><i><b style="width:4%;background:#F58321"></b></i><u>1.4</u><em style="color:#a9a19a">CV 0.61</em></div>
+        <div class="arow"><span>Growth Mindset</span><i><b style="width:4%;background:#F58321"></b></i><u>1.4</u><em style="color:#a9a19a">CV 0.57</em></div>
+        <div class="arow"><span>Leadership Ability</span><i><b style="width:4%;background:#F58321"></b></i><u>1.3</u><em style="color:#a9a19a">CV 0.52</em></div>
+        <div class="arow"><span>Structure</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
+        <div class="arow"><span>Time management</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
+        <div class="arow"><span>Steadfastness</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
+        <div class="arow"><span>Discipline</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
       </div>
-      <div style="font:600 11px Montserrat;color:#6b7280;display:flex;gap:12px;flex-wrap:wrap">
-        <span style="color:#F58321">■ Comprehension Σw 32.7</span><span style="color:#3f7fb8">■ Attention to Detail 28.7</span>
-        <span style="color:#7a5cb5">■ Critical &amp; Analytical 10.3</span><span style="color:#a34a7f">■ Decision-making 9.7</span>
-        <span style="color:#6b7280">■ 11 others</span></div>
-      <div style="font-size:11px;color:#a9a19a;margin-top:5px">Σ of all 15 weights = 100.0, one unit per slot. Every ability carries some weight in every slot.</div>
+      <div style="display:flex;justify-content:space-between;font:600 11px Montserrat;margin-top:7px;padding-top:6px;border-top:1px solid var(--line)"><span style="color:#6b7280">15 abilities &middot; grey = weighted 1 in every slot</span><span style="color:#2c7a44">&Sigma; = 100.0 &#10003;</span></div>
+      <div class="gate" style="margin-top:6px"><u class="g-no">&#10007;</u><span>4 abilities vary too little to report</span><em>Structure &middot; Time management &middot; Steadfastness &middot; Discipline</em></div>
     </div>
 
     <div class="attn red">
@@ -333,7 +398,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <h2>2 · Write the paper &mdash; repeat 200 times</h2>
 <h3 id="s02">02 · Workbench — calm by default</h3>
-<p class="cap">Four lines when healthy. The absence of a "needs attention" block <i>is</i> the all-clear.</p>
+<p class="cap"><b>Pick a slot to work on.</b> Every slot in the paper, and how many of its 9 questions are written. Red means it is behind.</p>
 <div class="row"><div>
 <div class="step">02</div>
 <div class="browser">
@@ -369,7 +434,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 <p class="cap">Equivalence is a claim about a distribution, so it needs an n. Below the n its own z-test needs, the screen says <b>too early</b> rather than a number.</p>
 
 <h3 id="s03">03 · Slot settings — a weight CHECK, not an ability picker</h3>
-<p class="cap">This screen changed shape. Previously the author <i>picked</i> a subset of abilities — an input. Now every slot carries all fifteen with weights, <b>KMM authors the vector</b>, and the admin validates it.</p>
+<p class="cap"><b>Check the abilities KMM set for this slot.</b> Read-only &mdash; the numbers come from KMM's file. The screen only says whether they add up and whether they vary enough to be worth reporting.</p>
 <div class="row"><div>
 <div class="step">03</div>
 <div class="browser">
@@ -434,8 +499,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 <p class="cap">One <code>target_n</code> for every student &mdash; <code>8k + question_spare</code>, resolved in one place, never written down.</p>
 
 <h3 id="s04">04 · Slot workspace &mdash; the screen the author actually lives in</h3>
-<p class="cap">The unit of work is <b>a slot</b>, not a question. Nine questions that share an area, a demand, a
-difficulty and a weight vector, differing only in concept. You fill a slot in one sitting, on one screen.</p>
+<p class="cap"><b>Write the 9 questions for one slot, without leaving the page.</b> The six you have already written stay on screen so you do not repeat a fact.</p>
 <div class="row"><div>
 <div class="step">04</div>
 <div class="browser">
@@ -545,8 +609,7 @@ difficulty and a weight vector, differing only in concept. You fill a slot in on
 <p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s05">05</a> is for opening one already written to check its gates and preview it.</p>
 
 <h3 id="s05">05 · Question editor — the ONE screen an author actually types in</h3>
-<p class="cap">Everything else on this board is a view or a check. This is the surface where 1,800 questions get
-written, so every second of friction here is multiplied by 1,800.</p>
+<p class="cap"><b>Open one question you have already written</b>, to re-read it, check it against the rules, or see it as a student would.</p>
 <div class="row"><div>
 <div class="step">05</div>
 <div class="browser">
@@ -629,8 +692,7 @@ written, so every second of friction here is multiplied by 1,800.</p>
 
 <h2>3 · Review, then translate &mdash; repeat per language</h2>
 <h3 id="s06">06 · Review queue &mdash; the second pair of eyes</h3>
-<p class="cap">A question goes <b>draft &rarr; gate_passed &rarr; in_review &rarr; published</b>. Nothing reaches a paying candidate on one
-person&rsquo;s say-so.</p>
+<p class="cap"><b>Someone else reads it before it goes live.</b> Never the person who wrote it.</p>
 <div class="row"><div>
 <div class="step">06</div>
 <div class="browser">
@@ -669,8 +731,7 @@ person&rsquo;s say-so.</p>
 <p class="cap">Nothing reaches a paying candidate on one person&rsquo;s say-so. Reviewer &ne; author, enforced in the transition.</p>
 
 <h3 id="s07">07 · Translation desk &mdash; a different job, so a different screen</h3>
-<p class="cap">16,200 text units per language. A translator makes no structural decisions and should never
-see a structural control.</p>
+<p class="cap"><b>Translate a whole slot at once.</b> English on the left, your language on the right, one line at a time. A rough machine draft is already filled in &mdash; you correct it rather than type from nothing.</p>
 <div class="row"><div>
 <div class="step">07</div>
 <div class="browser">
@@ -713,7 +774,7 @@ see a structural control.</p>
 <p class="cap">A translator makes no structural decisions and never sees a structural control. The unit here is a <b>line</b>.</p>
 
 <h3 id="s08">08 · The same question in Kannada &mdash; text is editable, structure is not</h3>
-<p class="cap">Switching language does not open a second question. It opens a second <i>rendering</i> of one question.</p>
+<p class="cap"><b>Fix one translated question in detail.</b> You can change every word; you cannot change which answer is right.</p>
 <div class="row"><div>
 <div class="step">08</div>
 <div class="browser">
@@ -778,9 +839,8 @@ see a structural control.</p>
 <p class="cap">Switching language opens a second <b>rendering</b>, not a second question. Structure is locked; only text is editable.</p>
 
 <h2>4 · Keep the bank honest &mdash; forever</h2>
-<h3 id="s09">09 &middot; Error types &mdash; a dozen rows that 5,400 distractors point at</h3>
-<p class="cap">Small, curated, global. The picker is ranked per area so it reads short; the <b>vocabulary</b> stays
-one list, or &ldquo;you made this error 4 times&rdquo; stops aggregating across areas.</p>
+<h3 id="s09">09 &middot; Common mistakes &mdash; the short list every wrong answer is tagged with</h3>
+<p class="cap"><b>The list of common mistakes</b> that wrong answers are tagged with. Small on purpose. Authors can suggest new ones as they write.</p>
 <div class="row"><div>
 <div class="step">09</div>
 <div class="browser">
@@ -830,9 +890,8 @@ one list, or &ldquo;you made this error 4 times&rdquo; stops aggregating across 
   </div>
 </div></div></div>
 
-<h3 id="s10">10 &middot; Concepts &mdash; 1,700 rows, so never a flat list</h3>
-<p class="cap">Browsed area &rarr; topic &rarr; concept, which is also the scope the author&rsquo;s picker uses.
-Merge is offered; split is not.</p>
+<h3 id="s10">10 &middot; Facts covered &mdash; ~1,700, so browsed by subject</h3>
+<p class="cap"><b>The list of facts the bank covers.</b> Roughly 1,700 of them, so it is browsed by subject and topic, never as one long list.</p>
 <div class="row"><div>
 <div class="step">10</div>
 <div class="browser">
@@ -877,8 +936,8 @@ Merge is offered; split is not.</p>
 </div></div></div>
 
 
-<h3 id="s11">11 · Bank health — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
-<p class="cap">Bank-wide properties no single question can show. Their acceptance test is that they <b>fail</b> on the two source papers.</p>
+<h3 id="s11">11 · Is the bank sound — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
+<p class="cap"><b>Is the finished bank sound?</b> Are the correct answers spread evenly, or is there a pattern a candidate could exploit?</p>
 <div class="row"><div>
 <div class="step">11</div>
 <div class="browser">
@@ -927,7 +986,7 @@ Merge is offered; split is not.</p>
 <p class="cap">Both figures re-derived at <code>target_n = 9</code>. A gate that has never failed is not a gate.</p>
 
 <h3 id="s12">12 · Quarantine — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
-<p class="cap">Quarantine stops a question being drawn. It does not decide what happens to the answers already given to it — and that is a measurement decision, not housekeeping.</p>
+<p class="cap"><b>Pull a bad question out.</b> Nobody new will be given it; the students who already answered it are a separate decision.</p>
 <div class="row"><div>
 <div class="step">12</div>
 <div class="browser">
@@ -955,7 +1014,22 @@ Merge is offered; split is not.</p>
 
 <p class="cap">Quarantine is not retire: papers already sitting keep the question, and nobody new draws it.</p>
 
-<h2>5 · What each screen needs from the backend</h2>
+<h2>Words used on these screens</h2>
+<p class="cap">Everything else is ordinary English. If a screen uses a term that is not here, that is a bug in the screen.</p>
+<div class="gloss">
+  <div><b>Set</b>One sitting of both papers &mdash; GS-1 and GS-2 together. What a student buys.</div>
+  <div><b>Slot</b>A position in the paper. Question 22 is always the same <i>kind</i> of question: same subject, same difficulty, same abilities.</div>
+  <div><b>Question</b>One actual question written for a slot. Nine per slot, each on a <i>different</i> fact.</div>
+  <div><b>Variant</b>The same question in another language. Not a different question.</div>
+  <div><b>Concept</b>The fact a question tests. Two questions asking the same fact in different words share one concept, so a student is only ever given one of them.</div>
+  <div><b>Distractor</b>A wrong option. Each one names the mistaken belief that makes it tempting.</div>
+  <div><b>Weight</b>How much a slot demands of one ability, out of 100. Every slot rates all 15.</div>
+  <div><b>Draw</b>Choosing which of a slot&rsquo;s 9 questions this particular student gets.</div>
+  <div><b>Quarantine</b>Taking a question out of circulation because something is wrong with it.</div>
+  <div><b>Gate</b>An automatic check that stops a question going live.</div>
+</div>
+
+<h2>5 · What each screen needs from the system</h2>
 <table>
 <tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
 <tr><td>01 blueprint</td><td>slots · published question counts vs <code>targetN(slot)</code> · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
