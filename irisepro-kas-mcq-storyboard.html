@@ -215,7 +215,7 @@ runs inside it, once per language on offer.</p>
 
     <div class="loop">
       <h6>&#8635; Per language &mdash; per slot</h6>
-      <div class="jst"><b>07</b><a href="#s07">Correct the machine draft, 45 lines a slot</a></div>
+      <div class="jst"><b>07</b><a href="#s07">Correct the machine draft, 81 lines a slot</a></div>
       <div class="jst q"><b>08</b><a href="#s08">Open one rendering to fix it</a></div>
       <div class="jst"><b>06</b><a href="#s06">A reader of that language approves</a></div>
       <div class="jout">&rarr; a slot goes LIVE only when every language is approved</div>
@@ -235,7 +235,7 @@ runs inside it, once per language on offer.</p>
   <div class="jtot">
     <div><b>200</b>slots &mdash; 100 per paper &times; 2</div>
     <div><b>1,800</b>questions &mdash; 9 per slot (8 sets + 1 spare)</div>
-    <div><b>9,000</b>lines per extra language &mdash; 1,800 &times; 5</div>
+    <div><b>16,200</b>lines per extra language &mdash; 1,800 &times; 9</div>
     <div><b>450&ndash;750 h</b>English authoring, one author</div>
   </div>
 </div>
@@ -651,7 +651,7 @@ person&rsquo;s say-so.</p>
 <p class="cap">Nothing reaches a paying candidate on one person&rsquo;s say-so. Reviewer &ne; author, enforced in the transition.</p>
 
 <h3 id="s07">07 · Translation desk &mdash; a different job, so a different screen</h3>
-<p class="cap">9,000 text units per language. A translator makes no structural decisions and should never
+<p class="cap">16,200 text units per language. A translator makes no structural decisions and should never
 see a structural control.</p>
 <div class="row"><div>
 <div class="step">07</div>
@@ -659,7 +659,7 @@ see a structural control.</p>
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/translate?lang=kn&amp;slot=22</span></div>
   <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span>
-    <span style="font:600 11px Montserrat;color:#6b7280">KANNADA &middot; GS-1 slot <b>22 of 100</b> &middot; 31 of 45 lines ticked <span style="color:#a9a19a">(9 questions &times; 5)</span></span></div>
+    <span style="font:600 11px Montserrat;color:#6b7280">KANNADA &middot; GS-1 slot <b>22 of 100</b> &middot; 58 of 81 lines ticked <span style="color:#a9a19a">(9 questions &times; 9 fields)</span></span></div>
   <div class="a-body">
     <div class="card" style="background:#fdf6e6;border-color:#f0e0bb">
       <div style="font-size:12.5px;color:#8a5a00">Every line starts as a <b>machine draft</b> and counts for nothing until
@@ -683,7 +683,7 @@ see a structural control.</p>
       <div class="gate" style="margin-top:8px"><u class="g-no">&#10007;</u><span>Option length spread in Kannada</span><em>2.17&times; &middot; ceiling 2.0&times;</em></div>
     </div>
     <div class="card" style="opacity:.5;padding:9px 12px">
-      <div class="slot-m">QUESTION 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 5 lines, machine draft</div>
+      <div class="slot-m">QUESTION 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 9 lines, machine draft</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <a class="btn btn-g" href="#a07">Send slot 22 (KN) for review</a>
@@ -847,7 +847,7 @@ see a structural control.</p>
 <tr><td>04 slot workspace</td><td>the slot&rsquo;s sibling <code>concept_key</code>s · bank-wide length-rank budget · the <code>error_type</code> vocabulary for this area · least-served-first next-slot</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>05 question editor</td><td>per-question gate rules live · autosave on the create path · the <code>error_type</code> enum · a <code>concept_key</code> uniqueness probe scoped to the slot</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>06 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>07 translation desk</td><td>a slot&rsquo;s 45 lines in two columns · machine-draft seeding · per-line approval state · per-language gate results</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>07 translation desk</td><td>a slot&rsquo;s 81 lines in two columns · machine-draft seeding · per-line approval state · per-language gate results</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>08 translation</td><td><code>mcq_question_variants</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>09 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>pinned_tail</code> population · pin-vs-key gate</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>10 quarantine</td><td><code>questions_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
