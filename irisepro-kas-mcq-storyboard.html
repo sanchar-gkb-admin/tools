@@ -1117,23 +1117,10 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <p class="cap">Quarantine is not retire: papers already sitting keep the question, and nobody new draws it.</p>
 
-<h2>5 · For the engineers &mdash; what each screen needs from the system</h2>
-<p class="cap">Nothing below this line is needed to review the screens. It is the wiring, and it uses the system&rsquo;s own words on purpose.</p>
-<table>
-<tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
-<tr><td>01 blueprint</td><td>slots · published question counts vs <code>targetN(slot)</code> · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>02 workbench</td><td>questions · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>03 slot settings</td><td>the active weight version, read-only · <code>targetN(slot)</code></td><td><span class="pill p-ext">EXTENDS</span></td></tr>
-<tr><td>04 slot workspace</td><td>the slot&rsquo;s sibling concepts · bank-wide length-rank budget · the <code>error_type</code> vocabulary for this area · least-served-first next-slot</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>05 question editor</td><td>per-question gate rules live · autosave on the create path · the <code>error_type</code> enum · a near-match probe over <code>mcq_concepts</code>, scoped by the slot&rsquo;s topic</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>06 review queue</td><td><code>status</code> draft/gate_passed/in_review/provisional/published · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>07 translation desk</td><td>a slot&rsquo;s 81 lines in two columns · machine-draft seeding · per-line approval state · per-language gate results</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>08 translation</td><td><code>mcq_question_variants</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>09 error types</td><td><code>mcq_error_types</code> + per-language <code>default_explanation</code> · usage counts · the proposal inbox with ranked near-matches · proposal rate by question written</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>10 concepts</td><td><code>mcq_concepts</code> browsed area&rarr;topic · questions and serve counts per concept · the same-answer-in-topic duplicate queue · merge (never split)</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>11 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>pinned_tail</code> population · pin-vs-key gate</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>12 quarantine</td><td><code>questions_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
-</table>
+<h2>5 · For the engineers</h2>
+<p class="cap">What each screen needs from the system &mdash; which tables it reads, what already exists and
+what has to be built &mdash; is <b>&sect;9a of the LLD</b>, written task by task against these same twelve
+screens. It is kept there rather than here so this document stays readable without knowing the schema.</p>
 
 <h2>6 · Open before build</h2>
 <p class="cap">Mirrors <b>§11 of the LLD</b> &mdash; that table is the authority, this is the picture. Every row
