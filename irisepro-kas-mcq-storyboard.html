@@ -140,6 +140,23 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .tick{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);display:grid;place-items:center;
   font-size:11px;color:#c9c1b9;flex:none;background:#fff}
 .tick.on{background:#2c7a44;border-color:#2c7a44;color:#fff}
+.vt{width:100%;border-collapse:collapse;font-size:12.5px}
+.vt th{font:800 9px Montserrat;letter-spacing:.06em;color:#a9a19a;text-align:left;padding:0 8px 5px 0;border:0}
+.vt td{padding:7px 8px 7px 0;border-top:1px solid var(--line);vertical-align:middle}
+.vt tr.warn-row td{background:#fdf6e6}
+.bar{display:inline-block;height:5px;border-radius:99px;background:var(--o-deep);vertical-align:middle}
+.bar.lo{background:#e0a99c}
+.lang{display:inline-flex;gap:3px}
+.lang i{width:16px;height:14px;border-radius:3px;font:800 7.5px Montserrat;display:grid;place-items:center;
+  font-style:normal;background:#eef6ee;color:#2c7a44}
+.lang i.no{background:#fdf0ee;color:#c0453a}
+.prop{border:1px solid #f0e0bb;background:#fdfaf3;border-radius:9px;padding:9px 11px;margin-bottom:7px}
+.tree{font-size:12.5px;line-height:1.9}
+.tree .a{font:800 10px Montserrat;color:#a9a19a;letter-spacing:.05em}
+.tree .t{padding-left:12px;font-weight:600;color:var(--ink)}
+.tree .c{padding-left:26px;color:#6b7280;display:flex;gap:8px;align-items:center}
+.tree .c code{font-size:10.5px;background:#f4f2f0;padding:1px 5px;border-radius:4px}
+.mini{font:600 10px Montserrat;color:#a9a19a}
 .jm{background:#fbf9f7;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0 8px}
 .jrow{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
 .loop{border:2px dashed #e6c9a8;border-radius:12px;padding:9px 11px 11px;background:#fff;position:relative;flex:1;min-width:270px}
@@ -224,10 +241,12 @@ runs inside it, once per language on offer.</p>
     <div class="jarr">&rarr;</div>
 
     <div class="loop solo">
-      <h6>Once responses exist</h6>
-      <div class="jst"><b>09</b><a href="#s09">Bank health</a></div>
-      <div class="jst"><b>10</b><a href="#s10">Quarantine a bad one</a></div>
-      <div class="jout">&rarr; back into the 200-slot loop</div>
+      <h6>Alongside, and after</h6>
+      <div class="jst"><b>09</b><a href="#s09">Curate error types</a></div>
+      <div class="jst"><b>10</b><a href="#s10">Curate concepts</a></div>
+      <div class="jst q"><b>11</b><a href="#s11">Bank health</a></div>
+      <div class="jst q"><b>12</b><a href="#s12">Quarantine a bad one</a></div>
+      <div class="jout">&rarr; 09/10 run from question 1 &middot; 11/12 need responses</div>
     </div>
 
   </div>
@@ -236,6 +255,7 @@ runs inside it, once per language on offer.</p>
     <div><b>200</b>slots &mdash; 100 per paper &times; 2</div>
     <div><b>1,800</b>questions &mdash; 9 per slot (8 sets + 1 spare)</div>
     <div><b>16,200</b>lines per extra language &mdash; 1,800 &times; 9</div>
+    <div><b>~1,700</b>concepts &middot; <b>~14</b>error types</div>
     <div><b>450&ndash;750 h</b>English authoring, one author</div>
   </div>
 </div>
@@ -757,10 +777,109 @@ see a structural control.</p>
 <p class="cap">Switching language opens a second <b>rendering</b>, not a second question. Structure is locked; only text is editable.</p>
 
 <h2>4 · Keep the bank honest &mdash; forever</h2>
-<h3 id="s09">09 · Bank health — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
-<p class="cap">Bank-wide properties no single question can show. Their acceptance test is that they <b>fail</b> on the two source papers.</p>
+<h3 id="s09">09 &middot; Error types &mdash; a dozen rows that 5,400 distractors point at</h3>
+<p class="cap">Small, curated, global. The picker is ranked per area so it reads short; the <b>vocabulary</b> stays
+one list, or &ldquo;you made this error 4 times&rdquo; stops aggregating across areas.</p>
 <div class="row"><div>
 <div class="step">09</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/vocabulary/error-types</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">14 kinds &middot; 3 proposed</span></div>
+  <div class="a-body">
+
+    <div class="card" style="background:#fdf6e6;border-color:#f0e0bb">
+      <div class="slot-m" style="margin-bottom:6px">PROPOSED &mdash; from authors, at the point of writing</div>
+      <div class="prop" style="background:#fff">
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+          <b style="font:700 13px Montserrat">&ldquo;reverses the direction of a treaty&rdquo;</b>
+          <span class="mini">R. Menon &middot; from GS-1 slot 41 question 4</span></div>
+        <div style="font-size:12px;color:#8a5a00;margin-bottom:7px">Closest existing:
+          <b>actor confusion</b> (0.71) &middot; <b>cause / trigger</b> (0.44)</div>
+        <div style="display:flex;gap:7px">
+          <a class="btn btn-g" href="#s09" style="padding:5px 12px;font-size:10.5px">Merge into &ldquo;actor confusion&rdquo;</a>
+          <a class="btn" href="#s09" style="padding:5px 12px;font-size:10.5px;background:#fff;border:1px solid var(--line);color:var(--ink)">Accept as new</a>
+        </div>
+      </div>
+      <div style="font-size:11.5px;color:#8a5a00">Proposals by question written:
+        <b>q1&ndash;50: 9</b> &middot; <b>q51&ndash;150: 4</b> &middot; <b>q151&ndash;300: 3</b>
+        &mdash; still arriving, so the seed missed a class</div>
+    </div>
+
+    <div class="card">
+      <table class="vt">
+        <tr><th style="width:31%">KIND</th><th style="width:12%">USED</th><th style="width:23%">SURFACES FIRST IN</th><th>DEFAULT EXPLANATION</th></tr>
+        <tr><td><b>era confusion</b><br><span class="mini">era_confusion</span></td>
+            <td><i class="bar" style="width:52px"></i> 612</td><td>History &middot; Polity</td>
+            <td><span class="lang"><i>EN</i><i>KN</i><i>HI</i></span> <span class="mini">&ldquo;You dated this to a different period&hellip;&rdquo;</span></td></tr>
+        <tr><td><b>cause / trigger</b><br><span class="mini">cause_trigger</span></td>
+            <td><i class="bar" style="width:40px"></i> 471</td><td>History</td>
+            <td><span class="lang"><i>EN</i><i>KN</i><i class="no">HI</i></span> <span class="mini">&ldquo;You picked what caused it, not what ended it&hellip;&rdquo;</span></td></tr>
+        <tr><td><b>State vs Union</b><br><span class="mini">state_union</span></td>
+            <td><i class="bar" style="width:30px"></i> 358</td><td>Polity &middot; Economy</td>
+            <td><span class="lang"><i>EN</i><i>KN</i><i>HI</i></span> <span class="mini">&ldquo;This power sits with the other tier&hellip;&rdquo;</span></td></tr>
+        <tr class="warn-row"><td><b>scale misread</b><br><span class="mini">scale_misread</span></td>
+            <td><i class="bar lo" style="width:4px"></i> 7</td><td>Geography</td>
+            <td><span class="lang"><i>EN</i><i class="no">KN</i><i class="no">HI</i></span>
+              <span class="mini" style="color:#8a5a00">7 uses in 1,800 &mdash; merge, or it never aggregates</span></td></tr>
+      </table>
+    </div>
+    <p style="font-size:12px;color:#6b7280;margin:0">Editing a default explanation retranslates <b>one</b> row,
+      not the 5,400 distractors that point at it.</p>
+  </div>
+</div></div>
+
+<h3 id="s10">10 &middot; Concepts &mdash; 1,700 rows, so never a flat list</h3>
+<p class="cap">Browsed area &rarr; topic &rarr; concept, which is also the scope the author&rsquo;s picker uses.
+Merge is offered; split is not.</p>
+<div class="row"><div>
+<div class="step">10</div>
+<div class="browser">
+  <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+    <span class="url">app.irisepro.in/superadmin/mcq/vocabulary/concepts</span></div>
+  <div class="a-top"><span class="a-brand">iRisePro &middot; SUPERADMIN</span><span style="font:600 11px Montserrat;color:#6b7280">1,684 concepts &middot; 11 duplicate candidates</span></div>
+  <div class="a-body">
+
+    <div class="card" style="background:#fdf0ee;border-color:#eec4bf">
+      <div class="slot-m" style="margin-bottom:6px">DUPLICATE CANDIDATES &mdash; same correct answer, same topic</div>
+      <div style="font-size:12.5px;line-height:1.75">
+        <b>Non-Cooperation Movement</b> &mdash; both answer <b>1920</b><br>
+        <code style="font-size:11px">inm.ncm.launch-year</code> &nbsp;GS-1 slot 22 q7 &nbsp;
+        <span class="mini">&ldquo;In which year was the NCM launched?&rdquo;</span><br>
+        <code style="font-size:11px">inm.satyagraha.first-mass</code> &nbsp;GS-2 slot 63 q2 &nbsp;
+        <span class="mini">&ldquo;Gandhi announced his first mass satyagraha in:&rdquo;</span>
+      </div>
+      <div style="font-size:11.5px;color:#8a5a00;margin:7px 0">Question-text similarity <b>0.00</b> &mdash;
+        the lexical scan cannot see this pair. The shared answer can.</div>
+      <div style="display:flex;gap:7px">
+        <a class="btn btn-g" href="#s10" style="padding:5px 12px;font-size:10.5px">Merge &rarr; one concept</a>
+        <a class="btn" href="#s10" style="padding:5px 12px;font-size:10.5px;background:#fff;border:1px solid var(--line);color:var(--ink)">Different facts &mdash; dismiss</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slot-m" style="margin-bottom:7px">BROWSE</div>
+      <div class="tree">
+        <div class="a">HISTORY &middot; 412 concepts</div>
+        <div class="t">Indian National Movement &middot; 68</div>
+        <div class="c"><code>inm.ncm.launch-year</code> <span class="mini">1 question &middot; served 340&times;</span></div>
+        <div class="c"><code>inm.ncm.withdrawal-trigger</code> <span class="mini">2 questions &middot; served 512&times;</span></div>
+        <div class="c" style="opacity:.55"><code>inm.ncm.khilafat-link</code> <span class="mini">1 question &middot; served 298&times;</span></div>
+        <div class="t">Doctrine of Lapse &middot; 9</div>
+        <div class="a" style="margin-top:6px">POLITY &middot; 388 concepts</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#6b7280;margin:0"><b>Merge rewrites both the questions and every student&rsquo;s
+      served list</b>, which only ever makes an exclusion set larger. Splitting could un-serve a concept and hand
+      someone a repeat, so it is not offered.</p>
+  </div>
+</div></div>
+
+
+<h3 id="s11">11 · Bank health — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
+<p class="cap">Bank-wide properties no single question can show. Their acceptance test is that they <b>fail</b> on the two source papers.</p>
+<div class="row"><div>
+<div class="step">11</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/papers/GS-1/health</span></div>
@@ -806,10 +925,10 @@ see a structural control.</p>
 
 <p class="cap">Both figures re-derived at <code>target_n = 9</code>. A gate that has never failed is not a gate.</p>
 
-<h3 id="s10">10 · Quarantine — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
+<h3 id="s12">12 · Quarantine — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
 <p class="cap">Quarantine stops a question being drawn. It does not decide what happens to the answers already given to it — and that is a measurement decision, not housekeeping.</p>
 <div class="row"><div>
-<div class="step">10</div>
+<div class="step">12</div>
 <div class="browser">
   <div class="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
     <span class="url">app.irisepro.in/superadmin/mcq/slots/22/questions/14/quarantine</span></div>
@@ -846,8 +965,10 @@ see a structural control.</p>
 <tr><td>06 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>07 translation desk</td><td>a slot&rsquo;s 81 lines in two columns · machine-draft seeding · per-line approval state · per-language gate results</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>08 translation</td><td><code>mcq_question_variants</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>09 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>pinned_tail</code> population · pin-vs-key gate</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>10 quarantine</td><td><code>questions_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>09 error types</td><td><code>mcq_error_types</code> + per-language <code>default_explanation</code> · usage counts · the proposal inbox with ranked near-matches · proposal rate by question written</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>10 concepts</td><td><code>mcq_concepts</code> browsed area&rarr;topic · questions and serve counts per concept · the same-answer-in-topic duplicate queue · merge (never split)</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>11 bank health</td><td>key distribution · autocorrelation · permutation assertion · <code>pinned_tail</code> population · pin-vs-key gate</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>12 quarantine</td><td><code>questions_included[]</code> on the card — <b>does not exist yet</b></td><td><span class="pill p-new">NEW</span></td></tr>
 </table>
 
 <h2>6 · Open before build</h2>
