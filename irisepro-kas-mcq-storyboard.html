@@ -629,7 +629,7 @@ written, so every second of friction here is multiplied by 1,800.</p>
 
 <h2>3 · Review, then translate &mdash; repeat per language</h2>
 <h3 id="s06">06 · Review queue &mdash; the second pair of eyes</h3>
-<p class="cap">A question goes <b>draft &rarr; in review &rarr; live</b>. Nothing reaches a paying candidate on one
+<p class="cap">A question goes <b>draft &rarr; gate_passed &rarr; in_review &rarr; published</b>. Nothing reaches a paying candidate on one
 person&rsquo;s say-so.</p>
 <div class="row"><div>
 <div class="step">06</div>
@@ -659,7 +659,7 @@ person&rsquo;s say-so.</p>
       <div class="opt"><b>D</b><span>the Royal Indian Navy revolt<br><span style="color:#6b7280;font-size:11.5px">era confusion &mdash; <b style="color:#b4381f">clashes with C</b></span></span></div>
       <input class="fld" style="margin-top:9px" placeholder="a note back to the author (required to send back)">
       <div style="display:flex;gap:8px;margin-top:2px">
-        <a class="btn btn-g" href="#s11">Approve &amp; go live</a>
+        <a class="btn btn-g" href="#s11">Approve &rarr; published</a>
         <a class="btn" href="#s05" style="background:#fff;border:1px solid var(--line);color:var(--ink)">Send back</a>
       </div>
     </div>
@@ -958,12 +958,12 @@ Merge is offered; split is not.</p>
 <h2>5 · What each screen needs from the backend</h2>
 <table>
 <tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
-<tr><td>01 blueprint</td><td>slots · published question counts vs 9 · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>01 blueprint</td><td>slots · published question counts vs <code>targetN(slot)</code> · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>02 workbench</td><td>questions · gate results · <code>p_value_by_attempt_index[]</code> · response counts</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>03 slot settings</td><td>KMM's weight vector, read-only · <code>target_n</code> = 9</td><td><span class="pill p-ext">EXTENDS</span></td></tr>
+<tr><td>03 slot settings</td><td>the active weight version, read-only · <code>targetN(slot)</code></td><td><span class="pill p-ext">EXTENDS</span></td></tr>
 <tr><td>04 slot workspace</td><td>the slot&rsquo;s sibling concepts · bank-wide length-rank budget · the <code>error_type</code> vocabulary for this area · least-served-first next-slot</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>05 question editor</td><td>per-question gate rules live · autosave on the create path · the <code>error_type</code> enum · a near-match probe over <code>mcq_concepts</code>, scoped by the slot&rsquo;s topic</td><td><span class="pill p-new">NEW</span></td></tr>
-<tr><td>06 review queue</td><td><code>status</code> draft/in_review/live · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
+<tr><td>06 review queue</td><td><code>status</code> draft/gate_passed/in_review/provisional/published · <code>created_by</code> and <code>reviewed_by</code> · a transition that refuses <code>reviewed_by == created_by</code> · per-language review state, and publish only when every required language has passed</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>07 translation desk</td><td>a slot&rsquo;s 81 lines in two columns · machine-draft seeding · per-line approval state · per-language gate results</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>08 translation</td><td><code>mcq_question_variants</code> keyed <code>(question_id, lang)</code> · per-language gate results · the stream’s ordered <code>languages</code> list</td><td><span class="pill p-new">NEW</span></td></tr>
 <tr><td>09 error types</td><td><code>mcq_error_types</code> + per-language <code>default_explanation</code> · usage counts · the proposal inbox with ranked near-matches · proposal rate by question written</td><td><span class="pill p-new">NEW</span></td></tr>
@@ -975,7 +975,7 @@ Merge is offered; split is not.</p>
 <h2>6 · Open before build</h2>
 <table>
 <tr><th>Question</th><th>Blocks</th></tr>
-<tr><td><b>Bilingual or English-only?</b> KAS Prelims papers are bilingual and <code>Question</code> has no language field.</td><td>Everything — and it now costs nothing, because KMM is authoring fresh papers</td></tr>
+<tr style="opacity:.45"><td><s><b>Bilingual or English-only?</b></s> &mdash; <b>ANSWERED 16-Aug: multilingual</b>, per-stream config; screens <a href="#s07">07</a> and <a href="#s08">08</a> render it</td><td>&mdash;</td></tr>
 <tr><td><b>Does a paper get an ability target</b>, or does the distribution keep accumulating?</td><td>01, and whether 60%-Comprehension is intentional</td></tr>
 <tr><td><b>Which quarantine policy</b> — recompute, disclose, or keep?</td><td>10 and the <code>questions_included[]</code> schema</td></tr>
 <tr><td style="text-decoration:line-through;color:#9ca3af"><b>Can a contrastive higher-order question pass both</b> the ≤2.0× length rule and the misconception rule?</td><td><b style="color:#2c7a44">ANSWERED</b> — yes, both are satisfiable; the ratio rule was the wrong instrument and is replaced by rank uniformity. See §2, 05.</td></tr>
