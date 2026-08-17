@@ -682,7 +682,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
     <div class="warn"><b>Near-duplicate:</b> question 7 of this slot also tests <i>Chauri Chaura &rarr; withdrawal</i>.
       Slot 22 needs <b>8 distinct concepts among drawable questions</b> to fill 8 sets. A second question on this
-      concept is allowed &mdash; <code>unique(student_id, concept_id)</code> already stops anyone drawing both &mdash;
+      concept is allowed &mdash; a student is never given two questions on the same fact anyway &mdash;
       but it spends the slot&rsquo;s only spare. <a href="#s04" style="color:#8a5a00;font-weight:700">Open question 7</a></div>
 
     <div class="card">
@@ -1127,9 +1127,9 @@ screens. It is kept there rather than here so this document stays readable witho
 carries an owner, what it blocks, and a <b>default</b>, so silence is a stated assumption rather than a blocker.</p>
 <table>
 <tr><th style="width:38%">Question</th><th style="width:9%">Owner</th><th style="width:20%">Blocks</th><th>Default if unanswered</th></tr>
-<tr><td><b>Q1 &middot; <code>k_min</code> and the CV threshold</b> &mdash; the least evidence that may back a reported ability</td>
+<tr><td><b>Q1 &middot; How much evidence is enough</b> to print a number for an ability, and how much an ability must vary between slots to be worth reporting</td>
     <td>KMM</td><td>G4, G5 &middot; screen <a href="#s11">11</a></td>
-    <td>CV &ge; 0.5, <code>k_min</code> = 8, both provisional</td></tr>
+    <td>report an ability only if at least 8 slots demand it, and only if slots differ in how much they demand &mdash; both provisional</td></tr>
 <tr><td><b>Q2 &middot; Quarantine policy</b> &mdash; keep, recompute or disclose, for answers already given</td>
     <td>Goutam</td><td>screen <a href="#s12">12</a> &middot; <code>questions_included[]</code></td>
     <td><b>Recompute abilities and disclose</b>, as a stream-wide constant. Marks follow the board</td></tr>
@@ -1149,7 +1149,7 @@ carries an owner, what it blocks, and a <b>default</b>, so silence is a stated a
 <tr><td><b>Q9 &middot; Does one set satisfy eligibility</b> (200 observations)?</td>
     <td>KMM</td><td>card release</td><td>one set</td></tr>
 <tr><td><b>Q10 &middot; Must set <i>n</i> complete before <i>n+1</i> starts?</b></td>
-    <td>Goutam</td><td><code>mcq_sets</code> lifecycle</td><td>concurrent, bounded by <code>sets_per_period</code></td></tr>
+    <td>Goutam</td><td>how sets are opened</td><td>concurrent, bounded by the two-per-week cap</td></tr>
 </table>
 
 <p class="cap"><b>Closed since the last version of this board</b> &mdash; kept visible so nobody reopens them:
