@@ -973,14 +973,40 @@ Merge is offered; split is not.</p>
 </table>
 
 <h2>6 · Open before build</h2>
+<p class="cap">Mirrors <b>§11 of the LLD</b> &mdash; that table is the authority, this is the picture. Every row
+carries an owner, what it blocks, and a <b>default</b>, so silence is a stated assumption rather than a blocker.</p>
 <table>
-<tr><th>Question</th><th>Blocks</th></tr>
-<tr style="opacity:.45"><td><s><b>Bilingual or English-only?</b></s> &mdash; <b>ANSWERED 16-Aug: multilingual</b>, per-stream config; screens <a href="#s07">07</a> and <a href="#s08">08</a> render it</td><td>&mdash;</td></tr>
-<tr><td><b>Does a paper get an ability target</b>, or does the distribution keep accumulating?</td><td>01, and whether 60%-Comprehension is intentional</td></tr>
-<tr><td><b>Which quarantine policy</b> — recompute, disclose, or keep?</td><td>10 and the <code>questions_included[]</code> schema</td></tr>
-<tr><td style="text-decoration:line-through;color:#9ca3af"><b>Can a contrastive higher-order question pass both</b> the ≤2.0× length rule and the misconception rule?</td><td><b style="color:#2c7a44">ANSWERED</b> — yes, both are satisfiable; the ratio rule was the wrong instrument and is replaced by rank uniformity. See §2, 05.</td></tr>
-<tr><td><b>What is <code>k_min</code></b> — the fewest slots that may back a reported ability? Problem-solving is <b>1 question</b> in GS-1; any number printed for it is noise.</td><td>01's "Blocking" panel, which currently blocks nothing</td></tr>
-<tr><td><b>Seed the <code>error_type</code> list &mdash; about a dozen kinds, and their scope.</b> Not &ldquo;deliver the vocabulary&rdquo;: it starts small and grows by proposal, so it never blocks authoring. What is needed is the <i>seed</i> and the answer to <b>scope</b> &mdash; one global list is too long to pick from, per-area lists of 6&ndash;10 are usable but stop &ldquo;you made this error 4 times&rdquo; aggregating across areas.</td><td>KMM</td><td>screens <a href="#s04">04</a> &amp; <a href="#s05">05</a></td></tr>
+<tr><th style="width:38%">Question</th><th style="width:9%">Owner</th><th style="width:20%">Blocks</th><th>Default if unanswered</th></tr>
+<tr><td><b>Q1 &middot; <code>k_min</code> and the CV threshold</b> &mdash; the least evidence that may back a reported ability</td>
+    <td>KMM</td><td>G4, G5 &middot; screen <a href="#s11">11</a></td>
+    <td>CV &ge; 0.5, <code>k_min</code> = 8, both provisional</td></tr>
+<tr><td><b>Q2 &middot; Quarantine policy</b> &mdash; keep, recompute or disclose, for answers already given</td>
+    <td>Goutam</td><td>screen <a href="#s12">12</a> &middot; <code>questions_included[]</code></td>
+    <td><b>Recompute abilities and disclose</b>, as a stream-wide constant. Marks follow the board</td></tr>
+<tr><td><b>Q3 &middot; How an MCQ purchase is captured</b> &mdash; <code>payments</code> keys on <code>challenge_id</code> and MCQ has none</td>
+    <td>Goutam</td><td>build step 1</td><td>nullable, reconciled by hand for the first cohort</td></tr>
+<tr><td><b>Q4 &middot; The behavioural formulas</b> &mdash; what time-to-answer contributes</td>
+    <td>KMM</td><td>build step 10</td><td>ship without them; the data is captured either way</td></tr>
+<tr><td><b>Q5 &middot; The actor model</b> &mdash; roles, and which languages a reviewer reads</td>
+    <td>Goutam</td><td>G9 &middot; screens <a href="#s06">06</a>, <a href="#s07">07</a></td>
+    <td><code>reviewed_by &ne; translated_by</code>, enforceable today</td></tr>
+<tr><td><b>Q6 &middot; Re-purchase after expiry</b> &mdash; does the aggregate span both entitlements?</td>
+    <td>Goutam</td><td><code>scope_id</code> semantics</td><td>yes, and no &mdash; each entitlement is its own journey</td></tr>
+<tr><td><b>Q7 &middot; One benchmark tier or three</b> on the card</td>
+    <td>Goutam</td><td>screen <a href="#s11">11</a> &middot; card format</td><td>competitive only</td></tr>
+<tr><td><b>Q8 &middot; <code>ideal_seconds</code> per band</b> &mdash; 45/60/90 is a placeholder</td>
+    <td>KMM</td><td>the pace bar</td><td>45/60/90</td></tr>
+<tr><td><b>Q9 &middot; Does one set satisfy eligibility</b> (200 observations)?</td>
+    <td>KMM</td><td>card release</td><td>one set</td></tr>
+<tr><td><b>Q10 &middot; Must set <i>n</i> complete before <i>n+1</i> starts?</b></td>
+    <td>Goutam</td><td><code>mcq_sets</code> lifecycle</td><td>concurrent, bounded by <code>sets_per_period</code></td></tr>
 </table>
+
+<p class="cap"><b>Closed since the last version of this board</b> &mdash; kept visible so nobody reopens them:
+<s>bilingual or English-only</s> (multilingual, 16-Aug; screens <a href="#s07">07</a>/<a href="#s08">08</a>) &middot;
+<s>the &le;2.0&times; length rule vs the misconception rule</s> (both satisfiable; rank uniformity <b>supplements</b>
+the ratio ceiling rather than replacing it &mdash; the Kannada rendering of slot 22 q1 still fails the ceiling at
+2.17&times;) &middot; <s>error-type <b>scope</b></s> (one global list, area-<i>ranked</i> picker &mdash; only the
+~12 seed kinds remain, and they block nothing).</p>
 
 </div>
