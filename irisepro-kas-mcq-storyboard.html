@@ -513,7 +513,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
       <div class="wrow dim"><span>Conflict Resolution</span><i><b style="width:1%"></b></i><em>1</em></div>
       <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);
                   margin-top:8px;padding-top:8px;font:800 12px Montserrat">
-        <span>15 abilities · all present</span><span style="color:#2c7a44">Σ = 100 ✓</span></div>
+        <span>15 abilities · all present</span><span style="color:#2c7a44">adds up to 100 ✓</span></div>
       <div style="margin-top:10px;padding-top:9px;border-top:1px solid var(--line)">
         <div class="slot-m" style="margin-bottom:6px">ACROSS THE PAPER — weight version KMM-2026-08</div>
         <div class="gate"><u class="g-ok">✓</u><span>Attention to Detail varies slot to slot</span><em>demanded far more in some slots than others</em></div>
@@ -1061,7 +1061,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
     <div class="card">
       <div class="slot-m" style="margin-bottom:8px">KMM'S WEIGHT FILE — ON ARRIVAL</div>
       <div class="gate"><u class="g-ok">✓</u><span>Exactly 15 abilities, all on the KAS whitelist</span><em>no bare "Structure"</em></div>
-      <div class="gate"><u class="g-ok">✓</u><span>Σ weights = 100 exactly (integer)</span><em>100 of 100</em></div>
+      <div class="gate"><u class="g-ok">✓</u><span>the 15 weights add up to exactly 100</span><em>100 of 100</em></div>
       <div class="gate"><u class="g-ok">✓</u><span>Every weight ≥ 1</span><em>1,500 of 1,500</em></div>
       <div class="gate"><u class="g-no">✗</u><span><b>Each ability is demanded more in some slots than others</b></span><em>4 abilities are flat &mdash; 0.00</em></div>
       <div class="gate"><u class="g-no">✗</u><span>Effective evidence per ability ≥ k<sub>min</sub></span><em>k<sub>min</sub> undecided</em></div>
@@ -1133,7 +1133,7 @@ carries an owner, what it blocks, and a <b>default</b>, so silence is a stated a
 <tr><td><b>Q2 &middot; Quarantine policy</b> &mdash; keep, recompute or disclose, for answers already given</td>
     <td>Goutam</td><td>screen <a href="#s12">12</a> &middot; <code>questions_included[]</code></td>
     <td><b>Recompute abilities and disclose</b>, as a stream-wide constant. Marks follow the board</td></tr>
-<tr><td><b>Q3 &middot; How an MCQ purchase is captured</b> &mdash; <code>payments</code> keys on <code>challenge_id</code> and MCQ has none</td>
+<tr><td><b>Q3 &middot; How an MCQ purchase is captured</b> &mdash; our payment records are tied to a programme, and MCQ is not one</td>
     <td>Goutam</td><td>build step 1</td><td>nullable, reconciled by hand for the first cohort</td></tr>
 <tr><td><b>Q4 &middot; The behavioural formulas</b> &mdash; what time-to-answer contributes</td>
     <td>KMM</td><td>build step 10</td><td>ship without them; the data is captured either way</td></tr>
@@ -1141,7 +1141,7 @@ carries an owner, what it blocks, and a <b>default</b>, so silence is a stated a
     <td>Goutam</td><td>G9 &middot; screens <a href="#s06">06</a>, <a href="#s07">07</a></td>
     <td><code>reviewed_by &ne; translated_by</code>, enforceable today</td></tr>
 <tr><td><b>Q6 &middot; Re-purchase after expiry</b> &mdash; does the aggregate span both entitlements?</td>
-    <td>Goutam</td><td><code>scope_id</code> semantics</td><td>yes, and no &mdash; each entitlement is its own journey</td></tr>
+    <td>Goutam</td><td>how the overall picture is scoped</td><td>yes, and no &mdash; each entitlement is its own journey</td></tr>
 <tr><td><b>Q7 &middot; One benchmark tier or three</b> on the card</td>
     <td>Goutam</td><td>screen <a href="#s11">11</a> &middot; card format</td><td>competitive only</td></tr>
 <tr><td><b>Q8 &middot; <code>ideal_seconds</code> per band</b> &mdash; 45/60/90 is a placeholder</td>
