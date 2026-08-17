@@ -145,6 +145,11 @@ code{background:#f3f0ed;padding:1px 6px;border-radius:4px;font-size:12.5px}
 .gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:9px;margin:12px 0 4px}
 .gloss div{background:#fbf9f7;border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:12.5px;line-height:1.55}
 .gloss b{display:block;font:800 11.5px Montserrat;color:var(--o-deep);margin-bottom:2px}
+.howto{background:#fbf9f7;border-left:3px solid var(--o);border-radius:0 10px 10px 0;padding:12px 16px;margin:8px 0 14px}
+.howto p{margin:0 0 7px;font-size:13.5px;color:#6b4a33;font-weight:600}
+.howto ol{margin:0;padding-left:19px;font-size:13.5px;line-height:1.75;color:var(--ink)}
+.howto ol li{margin-bottom:2px}
+.howto .cant{color:#8a7f76;font-size:12.5px;margin-top:7px;font-style:italic}
 .fcard{border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin-bottom:6px;background:#fff;
   display:flex;gap:9px;align-items:center;font-size:12.5px}
 .fcard.done{background:#f8fbf8;border-color:#dceadd}
@@ -365,30 +370,30 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
     <div class="card">
       <div class="slot-m" style="margin-bottom:6px">ABILITY SHAPE &mdash; ALL 15, BECAUSE EVERY SLOT WEIGHTS ALL 15</div>
       <div class="ablist">
-        <div class="arow"><span>Comprehension</span><i><b style="width:100%;background:#F58321"></b></i><u>32.7</u><em style="color:#a9a19a">CV 0.71</em></div>
-        <div class="arow"><span>Attention to Detail</span><i><b style="width:88%;background:#F58321"></b></i><u>28.7</u><em style="color:#a9a19a">CV 0.64</em></div>
-        <div class="arow"><span>Critical &amp; Analytical Thinking</span><i><b style="width:31%;background:#F58321"></b></i><u>10.3</u><em style="color:#a9a19a">CV 0.88</em></div>
-        <div class="arow"><span>Decision-making</span><i><b style="width:30%;background:#F58321"></b></i><u>9.7</u><em style="color:#a9a19a">CV 0.83</em></div>
-        <div class="arow"><span>Problem-solving</span><i><b style="width:13%;background:#F58321"></b></i><u>4.1</u><em style="color:#a9a19a">CV 0.92</em></div>
-        <div class="arow"><span>Mental Dexterity</span><i><b style="width:8%;background:#F58321"></b></i><u>2.6</u><em style="color:#a9a19a">CV 0.79</em></div>
-        <div class="arow"><span>Efficiency</span><i><b style="width:6%;background:#F58321"></b></i><u>2.1</u><em style="color:#a9a19a">CV 0.74</em></div>
-        <div class="arow"><span>Accountability</span><i><b style="width:5%;background:#F58321"></b></i><u>1.7</u><em style="color:#a9a19a">CV 0.68</em></div>
-        <div class="arow"><span>Conflict Resolution</span><i><b style="width:4%;background:#F58321"></b></i><u>1.4</u><em style="color:#a9a19a">CV 0.61</em></div>
-        <div class="arow"><span>Growth Mindset</span><i><b style="width:4%;background:#F58321"></b></i><u>1.4</u><em style="color:#a9a19a">CV 0.57</em></div>
-        <div class="arow"><span>Leadership Ability</span><i><b style="width:4%;background:#F58321"></b></i><u>1.3</u><em style="color:#a9a19a">CV 0.52</em></div>
-        <div class="arow"><span>Structure</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
-        <div class="arow"><span>Time management</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
-        <div class="arow"><span>Steadfastness</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
-        <div class="arow"><span>Discipline</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">CV 0.00</em></div>
+        <div class="arow"><span>Comprehension</span><i><b style="width:100%;background:#F58321"></b></i><u>32.7</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Attention to Detail</span><i><b style="width:88%;background:#F58321"></b></i><u>28.7</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Critical &amp; Analytical Thinking</span><i><b style="width:31%;background:#F58321"></b></i><u>10.3</u><em style="color:#a9a19a">varies a lot</em></div>
+        <div class="arow"><span>Decision-making</span><i><b style="width:30%;background:#F58321"></b></i><u>9.7</u><em style="color:#a9a19a">varies a lot</em></div>
+        <div class="arow"><span>Problem-solving</span><i><b style="width:13%;background:#F58321"></b></i><u>4.1</u><em style="color:#a9a19a">varies a lot</em></div>
+        <div class="arow"><span>Mental Dexterity</span><i><b style="width:8%;background:#F58321"></b></i><u>2.6</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Efficiency</span><i><b style="width:6%;background:#F58321"></b></i><u>2.1</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Accountability</span><i><b style="width:5%;background:#F58321"></b></i><u>1.7</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Conflict Resolution</span><i><b style="width:4%;background:#F58321"></b></i><u>1.4</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Growth Mindset</span><i><b style="width:4%;background:#F58321"></b></i><u>1.4</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Leadership Ability</span><i><b style="width:4%;background:#F58321"></b></i><u>1.3</u><em style="color:#a9a19a">varies well</em></div>
+        <div class="arow"><span>Structure</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">flat</em></div>
+        <div class="arow"><span>Time management</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">flat</em></div>
+        <div class="arow"><span>Steadfastness</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">flat</em></div>
+        <div class="arow"><span>Discipline</span><i><b style="width:3%;background:#c9c1b9"></b></i><u>1.0</u><em style="color:#b4381f;font-weight:700">flat</em></div>
       </div>
-      <div style="display:flex;justify-content:space-between;font:600 11px Montserrat;margin-top:7px;padding-top:6px;border-top:1px solid var(--line)"><span style="color:#6b7280">15 abilities &middot; grey = weighted 1 in every slot</span><span style="color:#2c7a44">&Sigma; = 100.0 &#10003;</span></div>
-      <div class="gate" style="margin-top:6px"><u class="g-no">&#10007;</u><span>4 abilities vary too little to report</span><em>Structure &middot; Time management &middot; Steadfastness &middot; Discipline</em></div>
+      <div style="display:flex;justify-content:space-between;font:600 11px Montserrat;margin-top:7px;padding-top:6px;border-top:1px solid var(--line)"><span style="color:#6b7280">15 abilities &middot; grey = weighted 1 in every slot</span><span style="color:#2c7a44">adds up to 100 &#10003;</span></div>
+      <div class="gate" style="margin-top:6px"><u class="g-no">&#10007;</u><span>4 abilities are demanded the same everywhere, so they measure nothing</span><em>Structure &middot; Time management &middot; Steadfastness &middot; Discipline</em></div>
     </div>
 
     <div class="attn red">
       <h5>Blocking</h5>
       <div class="attn-row"><b>9 slots</b><span>have no questions — the paper cannot generate</span></div>
-      <div class="attn-row"><b>4 of 15</b><span>Structure, Time management, Steadfastness, Discipline — weight is <b>uniform</b> across all 100 slots (CV = 0.00), so each would report the student's overall score under an ability's name</span></div>
+      <div class="attn-row"><b>4 of 15</b><span>Structure, Time management, Steadfastness, Discipline — every slot demands exactly the same amount of them, so each would report the student's overall score under an ability's name</span></div>
       <div class="attn-row"><b>Comprehension</b><span>32.7% of the paper's total weight — one ability carries a third of it</span></div>
     </div>
   </div>
@@ -397,8 +402,16 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 <p class="cap">The ability panel is 01&rsquo;s real job &mdash; a slot list cannot show whether the paper measures fifteen things or one.</p>
 
 <h2>2 · Write the paper &mdash; repeat 200 times</h2>
-<h3 id="s02">02 · Workbench — calm by default</h3>
-<p class="cap"><b>Pick a slot to work on.</b> Every slot in the paper, and how many of its 9 questions are written. Red means it is behind.</p>
+<h3 id="s02">02 · Choose what to work on next</h3>
+<div class="howto">
+  <p>Choose which slot to work on next.</p>
+  <ol>
+    <li>Look down the list for a slot showing red or amber — those are behind.</li>
+    <li>Click the slot to open it.</li>
+    <li>Or press <b>next slot needing work</b> and let the screen choose for you.</li>
+  </ol>
+  <div class="cant">You cannot write a question here. This screen only picks where to go.</div>
+</div>
 <div class="row"><div>
 <div class="step">02</div>
 <div class="browser">
@@ -433,8 +446,17 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <p class="cap">Equivalence is a claim about a distribution, so it needs an n. Below the n its own z-test needs, the screen says <b>too early</b> rather than a number.</p>
 
-<h3 id="s03">03 · Slot settings — a weight CHECK, not an ability picker</h3>
-<p class="cap"><b>Check the abilities KMM set for this slot.</b> Read-only &mdash; the numbers come from KMM's file. The screen only says whether they add up and whether they vary enough to be worth reporting.</p>
+<h3 id="s03">03 · Check the abilities set for a slot</h3>
+<div class="howto">
+  <p>Check the abilities KMM has set for this slot.</p>
+  <ol>
+    <li>Read the fifteen abilities and how much of each this slot demands.</li>
+    <li>Check the total reads <b>100</b>.</li>
+    <li>Check that no ability is flagged <i>varies too little to report</i>.</li>
+    <li>If something looks wrong, tell KMM — the numbers come from their file.</li>
+  </ol>
+  <div class="cant">Nothing on this screen can be edited. It is a check, not a form.</div>
+</div>
 <div class="row"><div>
 <div class="step">03</div>
 <div class="browser">
@@ -453,7 +475,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
           <span style="color:#2c7a44;font-size:11.5px">&nbsp;— shuffle boundary &middot; scorecard breakdown</span></td></tr>
         <tr><th>Difficulty band</th><td>medium
           <span style="color:#2c7a44;font-size:11.5px">&nbsp;— sets this slot&rsquo;s 60s benchmark</span></td></tr>
-        <tr><th>Slot number <code>seq_no</code></th><td><b>22 &mdash; fixed, permanent</b>
+        <tr><th>Slot number</th><td><b>22 &mdash; fixed, permanent</b>
           <span style="color:#a9a19a;font-size:11.5px">&nbsp;— the slot&rsquo;s identity, unique in the paper</span></td></tr>
         <tr><th>Position on screen</th><td>randomised per student, <b>within History only</b>
           <span style="color:#a9a19a;font-size:11.5px">&nbsp;— a separate number, <code>presentation_order</code></span></td></tr>
@@ -488,8 +510,8 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
         <span>15 abilities · all present</span><span style="color:#2c7a44">Σ = 100 ✓</span></div>
       <div style="margin-top:10px;padding-top:9px;border-top:1px solid var(--line)">
         <div class="slot-m" style="margin-bottom:6px">ACROSS THE PAPER — weight version KMM-2026-08</div>
-        <div class="gate"><u class="g-ok">✓</u><span>Attention to Detail varies slot to slot</span><em>CV 0.84 · k_eff 22</em></div>
-        <div class="gate"><u class="g-no">✗</u><span>Structure is weighted <b>1 in every slot</b></span><em>CV 0.00 — would report the overall score</em></div>
+        <div class="gate"><u class="g-ok">✓</u><span>Attention to Detail varies slot to slot</span><em>demanded far more in some slots than others</em></div>
+        <div class="gate"><u class="g-no">✗</u><span>Structure is weighted <b>1 in every slot</b></span><em>the same in every slot — its score would just repeat the total</em></div>
       </div>
     </div>
     <a class="btn btn-g" href="#s11">See paper-level validation</a>
@@ -498,8 +520,20 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <p class="cap">One <code>target_n</code> for every student &mdash; <code>8k + question_spare</code>, resolved in one place, never written down.</p>
 
-<h3 id="s04">04 · Slot workspace &mdash; the screen the author actually lives in</h3>
-<p class="cap"><b>Write the 9 questions for one slot, without leaving the page.</b> The six you have already written stay on screen so you do not repeat a fact.</p>
+<h3 id="s04">04 · Write the nine questions for a slot</h3>
+<div class="howto">
+  <p>Write the nine questions for one slot. This is where most of the work happens.</p>
+  <ol>
+    <li>Read the slot's subject, difficulty and time limit, top left.</li>
+    <li>Look at the <b>concepts already used</b> — your new question must be about something else.</li>
+    <li>Type the question.</li>
+    <li>Type the four options and mark the correct one.</li>
+    <li>For each wrong option, pick the mistake it represents and write one line on why someone would choose it.</li>
+    <li>Press <b>Save and write the next one</b>. Repeat until all nine are done.</li>
+    <li>Then press <b>next slot</b> and start again.</li>
+  </ol>
+  <div class="cant">Nine questions is one sitting's work. You can stop and come back — everything saves as you type.</div>
+</div>
 <div class="row"><div>
 <div class="step">04</div>
 <div class="browser">
@@ -571,7 +605,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
         <div class="orow ok">
           <div class="top"><b>A</b><input value="1920"><span class="saved">&#10003; CORRECT</span></div>
-          <div class="why"><span class="lk">&#9998; make this the shortest &mdash; 2 of 6 so far have the longest correct</span></div>
+          <div class="why"><span class="lk">&#9998; try to keep this one short &mdash; too many right answers in this slot are the longest</span></div>
         </div>
         <div class="orow">
           <div class="top"><b>B</b><input value="1919"><span style="font:700 10px Montserrat;color:#c9c1b9">SET CORRECT</span></div>
@@ -608,8 +642,15 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <p class="cap">The slot is the unit of work: nine questions in one screen instead of nine round-trips. You compose here; screen <a href="#s05">05</a> is for opening one already written to check its gates and preview it.</p>
 
-<h3 id="s05">05 · Question editor — the ONE screen an author actually types in</h3>
-<p class="cap"><b>Open one question you have already written</b>, to re-read it, check it against the rules, or see it as a student would.</p>
+<h3 id="s05">05 · Check a question you have written</h3>
+<div class="howto">
+  <p>Re-open a question you have already written, to check it or preview it.</p>
+  <ol>
+    <li>Read the checks at the bottom. A red one must be fixed before the question can go anywhere.</li>
+    <li>Press <b>Preview as student</b> to see it the way a candidate will.</li>
+    <li>Press <b>Submit for review</b> when you are happy with it.</li>
+  </ol>
+</div>
 <div class="row"><div>
 <div class="step">05</div>
 <div class="browser">
@@ -642,7 +683,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
       <div class="slot-m">QUESTION</div>
       <input class="fld area" value="The Non-Cooperation Movement was withdrawn after:">
       <div style="display:flex;gap:7px;align-items:center;margin-bottom:11px">
-        <span style="font:700 10px Montserrat;color:#a9a19a">CONCEPT KEY</span>
+        <span style="font:700 10px Montserrat;color:#a9a19a">THE FACT THIS TESTS</span>
         <input class="fld" style="margin:0;flex:1;font-size:12px" value="inm.ncm.withdrawal-trigger">
       </div>
 
@@ -673,10 +714,10 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
     <div class="card">
       <div class="slot-m" style="margin-bottom:7px">GATES</div>
-      <div class="gate"><u class="g-no">&#10007;</u><span>Every wrong option names a real misconception</span><em>2 missing &mdash; C, D</em></div>
-      <div class="gate"><u class="g-no">&#10007;</u><span>No two distractors share an error type</span><em>blocked until C and D are typed</em></div>
-      <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>bank-wide: longest in 214 of 900 (24%)</em></div>
-      <div class="gate"><u class="g-ok">&#10003;</u><span>Shuffle pin</span><em>none needed &mdash; no terminal option</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>Every wrong option says why someone would pick it</span><em>2 missing &mdash; C, D</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>No two wrong options blame the same mistake</span><em>blocked until C and D are typed</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Is the right answer usually the longest?</span><em>right answer is the longest one in about a quarter of the bank &mdash; on target</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Any option that must stay last</span><em>none needed &mdash; no terminal option</em></div>
     </div>
 
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
@@ -691,8 +732,15 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 <p class="cap">Autosave, duplicate-with-cleared-concept, a closed <code>error_type</code> list, and a live duplicate check &mdash; each one &times;1,800.</p>
 
 <h2>3 · Review, then translate &mdash; repeat per language</h2>
-<h3 id="s06">06 · Review queue &mdash; the second pair of eyes</h3>
-<p class="cap"><b>Someone else reads it before it goes live.</b> Never the person who wrote it.</p>
+<h3 id="s06">06 · Approve someone else&rsquo;s question</h3>
+<div class="howto">
+  <p>Read someone else's question and decide whether it can go live.</p>
+  <ol>
+    <li>Pick a question from the list. Your own are greyed out — you cannot approve your own work.</li>
+    <li>Read it as a candidate would: is the marked answer definitely right, and only that one?</li>
+    <li>Approve it, or write a note saying what to change and send it back.</li>
+  </ol>
+</div>
 <div class="row"><div>
 <div class="step">06</div>
 <div class="browser">
@@ -730,8 +778,18 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <p class="cap">Nothing reaches a paying candidate on one person&rsquo;s say-so. Reviewer &ne; author, enforced in the transition.</p>
 
-<h3 id="s07">07 · Translation desk &mdash; a different job, so a different screen</h3>
-<p class="cap"><b>Translate a whole slot at once.</b> English on the left, your language on the right, one line at a time. A rough machine draft is already filled in &mdash; you correct it rather than type from nothing.</p>
+<h3 id="s07">07 · Translate a slot into another language</h3>
+<div class="howto">
+  <p>Translate a whole slot into one language.</p>
+  <ol>
+    <li>Choose the language and the slot.</li>
+    <li>English is on the left and cannot be changed.</li>
+    <li>A rough machine draft is already filled in on the right — <b>correct it</b> rather than typing from nothing.</li>
+    <li>Tick every line you are happy with. An unticked line counts for nothing.</li>
+    <li>When all lines are ticked, send the slot for review.</li>
+  </ol>
+  <div class="cant">A reader of that language must approve it. Until then the translation is not live.</div>
+</div>
 <div class="row"><div>
 <div class="step">07</div>
 <div class="browser">
@@ -759,7 +817,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
         <div class="kn"><input class="mt" value="ಭಾರತದ ವಿಭಜನೆ"><span class="tick">&#10003;</span></div></div>
       <div class="tr"><div class="en">D &middot; the Royal Indian Navy revolt</div>
         <div class="kn"><input class="mt" value="ರಾಯಲ್ ಇಂಡಿಯನ್ ನೌಕಾಪಡೆ ದಂಗೆ"><span class="tick">&#10003;</span></div></div>
-      <div class="gate" style="margin-top:8px"><u class="g-no">&#10007;</u><span>Option length spread in Kannada</span><em>2.17&times; &middot; ceiling 2.0&times;</em></div>
+      <div class="gate" style="margin-top:8px"><u class="g-no">&#10007;</u><span>One option is much longer than the others, in Kannada</span><em>longest option is twice the shortest &mdash; too big a clue</em></div>
     </div>
     <div class="card" style="opacity:.5;padding:9px 12px">
       <div class="slot-m">QUESTION 20 &middot; <code style="font-size:10px">khilafat-link</code> &mdash; 9 lines, machine draft</div>
@@ -773,8 +831,15 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 <p class="cap">A translator makes no structural decisions and never sees a structural control. The unit here is a <b>line</b>.</p>
 
-<h3 id="s08">08 · The same question in Kannada &mdash; text is editable, structure is not</h3>
-<p class="cap"><b>Fix one translated question in detail.</b> You can change every word; you cannot change which answer is right.</p>
+<h3 id="s08">08 · Fix one translated question</h3>
+<div class="howto">
+  <p>Fix one translated question in detail.</p>
+  <ol>
+    <li>Change any of the words — question, options, explanations.</li>
+    <li>You cannot change which answer is correct, or what mistake each wrong option represents. Those belong to the question, not to the language.</li>
+    <li>Save, or go back to the English.</li>
+  </ol>
+</div>
 <div class="row"><div>
 <div class="step">08</div>
 <div class="browser">
@@ -823,9 +888,9 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
     <div class="card">
       <div class="slot-m" style="margin-bottom:7px">GATES &mdash; RE-RUN FOR KANNADA</div>
-      <div class="gate"><u class="g-ok">&#10003;</u><span>Pin matches the source</span><em>no terminal phrase in KN either &mdash; correct</em></div>
-      <div class="gate"><u class="g-ok">&#10003;</u><span>Correct option&rsquo;s length rank</span><em>3rd of 4 &mdash; same as EN</em></div>
-      <div class="gate"><u class="g-no">&#10007;</u><span>Option length spread</span><em>EN 1.32&times; &middot; <b>KN 2.17&times;</b></em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>&ldquo;All of the above&rdquo; still last</span><em>no terminal phrase in KN either &mdash; correct</em></div>
+      <div class="gate"><u class="g-ok">&#10003;</u><span>Is the right answer usually the longest?</span><em>3rd of 4 &mdash; same as EN</em></div>
+      <div class="gate"><u class="g-no">&#10007;</u><span>One option much longer than the others</span><em>fine in English &mdash; in Kannada the longest option is <b>twice</b> the shortest</em></div>
       <div class="gate"><u class="g-no">&#10007;</u><span>Every rendering reviewed by a reader of that language</span><em>KN unreviewed &middot; HI absent</em></div>
     </div>
 
@@ -839,8 +904,16 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 <p class="cap">Switching language opens a second <b>rendering</b>, not a second question. Structure is locked; only text is editable.</p>
 
 <h2>4 · Keep the bank honest &mdash; forever</h2>
-<h3 id="s09">09 &middot; Common mistakes &mdash; the short list every wrong answer is tagged with</h3>
-<p class="cap"><b>The list of common mistakes</b> that wrong answers are tagged with. Small on purpose. Authors can suggest new ones as they write.</p>
+<h3 id="s09">09 · Keep the list of common mistakes short</h3>
+<div class="howto">
+  <p>Keep the list of common mistakes short and useful.</p>
+  <ol>
+    <li>Read the suggestions authors have sent while writing.</li>
+    <li>For each one, either merge it into a mistake already on the list, or accept it as new.</li>
+    <li>Watch the usage counts — one used only a handful of times across the whole bank should be merged away.</li>
+    <li>Edit the explanation once and every question using it is updated.</li>
+  </ol>
+</div>
 <div class="row"><div>
 <div class="step">09</div>
 <div class="browser">
@@ -890,8 +963,17 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
   </div>
 </div></div></div>
 
-<h3 id="s10">10 &middot; Facts covered &mdash; ~1,700, so browsed by subject</h3>
-<p class="cap"><b>The list of facts the bank covers.</b> Roughly 1,700 of them, so it is browsed by subject and topic, never as one long list.</p>
+<h3 id="s10">10 · Keep the list of facts free of duplicates</h3>
+<div class="howto">
+  <p>Keep the list of facts clean, so no student meets the same fact twice.</p>
+  <ol>
+    <li>Start with the <b>duplicate candidates</b> at the top — pairs that look like the same fact in different words.</li>
+    <li>For each pair, decide: same fact, or genuinely different?</li>
+    <li>If the same, merge them.</li>
+    <li>Browse by subject and topic to see what the bank covers and where it is thin.</li>
+  </ol>
+  <div class="cant">Merging cannot be undone, so read both questions before you decide.</div>
+</div>
 <div class="row"><div>
 <div class="step">10</div>
 <div class="browser">
@@ -937,7 +1019,14 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 
 
 <h3 id="s11">11 · Is the bank sound — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
-<p class="cap"><b>Is the finished bank sound?</b> Are the correct answers spread evenly, or is there a pattern a candidate could exploit?</p>
+<div class="howto">
+  <p>Check the finished bank has no pattern a candidate could exploit.</p>
+  <ol>
+    <li>Look at how the correct answers are spread across A, B, C and D.</li>
+    <li>If one letter dominates, a candidate who always picks it scores without reading.</li>
+    <li>Any red check means some questions need rewriting — the screen names them.</li>
+  </ol>
+</div>
 <div class="row"><div>
 <div class="step">11</div>
 <div class="browser">
@@ -959,7 +1048,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
       <div class="gate"><u class="g-ok">✓</u><span>Option order uniformly random per student, per question</span><em>asserted by test</em></div>
       <div class="gate"><u class="g-no">✗</u><span>Unshuffleable questions capped, and passing the key gates themselves</span><em>31 questions · no cap set</em></div>
       <div style="font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.5">
-        <code>pinned_tail</code> questions keep their last option fixed &mdash; they are the ones carrying
+        Questions ending in &ldquo;all of the above&rdquo; keep that option last &mdash; they are the ones carrying
         &ldquo;all of the above&rdquo;. Only their <b>tail</b> is fixed; the rest still shuffle, and
         it is the only one with no rule.</div>
     </div>
@@ -968,7 +1057,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
       <div class="gate"><u class="g-ok">✓</u><span>Exactly 15 abilities, all on the KAS whitelist</span><em>no bare "Structure"</em></div>
       <div class="gate"><u class="g-ok">✓</u><span>Σ weights = 100 exactly (integer)</span><em>100 of 100</em></div>
       <div class="gate"><u class="g-ok">✓</u><span>Every weight ≥ 1</span><em>1,500 of 1,500</em></div>
-      <div class="gate"><u class="g-no">✗</u><span><b>Each ability's weight varies across slots</b> (CV ≥ 0.5)</span><em>4 abilities at CV 0.00</em></div>
+      <div class="gate"><u class="g-no">✗</u><span><b>Each ability is demanded more in some slots than others</b></span><em>4 abilities are flat &mdash; 0.00</em></div>
       <div class="gate"><u class="g-no">✗</u><span>Effective evidence per ability ≥ k<sub>min</sub></span><em>k<sub>min</sub> undecided</em></div>
       <div style="font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.5">
         The fourth gate is the one that will bite, and it needs raising with KMM <b>before</b> they finalise.
@@ -986,7 +1075,15 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
 <p class="cap">Both figures re-derived at <code>target_n = 9</code>. A gate that has never failed is not a gate.</p>
 
 <h3 id="s12">12 · Quarantine — <span style="color:#1d6b34;font:800 14px Montserrat">NEW</span></h3>
-<p class="cap"><b>Pull a bad question out.</b> Nobody new will be given it; the students who already answered it are a separate decision.</p>
+<div class="howto">
+  <p>Take a bad question out of circulation.</p>
+  <ol>
+    <li>Read why it was flagged and how many students have answered it.</li>
+    <li>Decide whether to pull it. Once pulled, nobody new is given it.</li>
+    <li>Then decide separately what happens to the students who already answered it.</li>
+  </ol>
+  <div class="cant">That second decision is not made here and is not yet settled — see Q2 in the open list.</div>
+</div>
 <div class="row"><div>
 <div class="step">12</div>
 <div class="browser">
@@ -996,7 +1093,7 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
   <div class="a-body">
     <div class="card">
       <div class="slot-h">Question 14 diverges from slot 22</div>
-      <div class="slot-m">88% correct against the slot's 69% · 412 responses · z = 8.3 <span style="color:#2c7a44">(clears the paper-wide 4.03)</span></div>
+      <div class="slot-m">88% get this right, against 69% for the rest of the slot · 412 answers <span style="color:#2c7a44">(far too big a gap to be chance3)</span></div>
     </div>
     <div class="card">
       <div class="slot-m" style="margin-bottom:9px">IT HAS ALREADY BEEN ANSWERED 412 TIMES</div>
@@ -1029,7 +1126,8 @@ quietly hand Kannada candidates a smaller pool, and the no-repeat guarantee is a
   <div><b>Gate</b>An automatic check that stops a question going live.</div>
 </div>
 
-<h2>5 · What each screen needs from the system</h2>
+<h2>5 · For the engineers &mdash; what each screen needs from the system</h2>
+<p class="cap">Nothing below this line is needed to review the screens. It is the wiring, and it uses the system&rsquo;s own words on purpose.</p>
 <table>
 <tr><th>Screen</th><th>Reads</th><th>Status</th></tr>
 <tr><td>01 blueprint</td><td>slots · published question counts vs <code>targetN(slot)</code> · the paper's weight distribution and per-ability CV</td><td><span class="pill p-new">NEW</span></td></tr>
