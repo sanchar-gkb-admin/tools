@@ -68,9 +68,32 @@ font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:900;col
 </style>
 <div class="wrap">
 <h1>YASHHO — <em>Empathy Copy</em> + Storyboard</h1>
-
-
-<h2><s>Copy 1</s> — Parent of a school child</h2>
+<style>
+.tabs{display:flex;gap:8px;margin:20px 0 34px;flex-wrap:wrap}
+.tabs input{display:none}
+.tabs label{cursor:pointer;font-family:Anton;font-size:15px;letter-spacing:.03em;text-transform:uppercase;
+padding:11px 20px;border-radius:10px;border:1px solid var(--bd);background:var(--sur);color:var(--mut)}
+#t1:checked~.tabs label[for=t1],#t2:checked~.tabs label[for=t2],#t3:checked~.tabs label[for=t3]{background:var(--acc);color:#160c02;border-color:var(--acc)}
+.pane{display:none}
+#t1:checked~#p1,#t2:checked~#p2,#t3:checked~#p3{display:block}
+.card{background:var(--sur);border:1px solid var(--bd);border-radius:16px;overflow:hidden;margin-bottom:26px;max-width:900px}
+.hdc{padding:15px 22px;background:rgba(245,130,31,.1);border-bottom:1px solid var(--bd);display:flex;gap:12px;flex-wrap:wrap;align-items:baseline}
+.hdc .t{font-family:Anton;font-size:19px;text-transform:uppercase}
+.hdc .who{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.bodyc{padding:18px 22px}
+.hook{background:rgba(63,147,224,.09);border-left:2px solid var(--blue);padding:11px 15px;border-radius:0 8px 8px 0;margin-bottom:14px}
+.hook .lbl{font-size:9.5px;font-weight:900;letter-spacing:.16em;color:var(--blue);text-transform:uppercase}
+.hook p{margin:4px 0 0;font-size:17px;font-weight:700;line-height:1.4}
+.script p{margin:0 0 11px;font-size:15.5px;line-height:1.65}.script p:last-child{margin:0}
+.beat{color:var(--acc);font-weight:800;font-size:12px;letter-spacing:.06em}
+.dir{margin-top:15px;padding-top:14px;border-top:1px solid rgba(29,51,84,.7);font-size:12.5px;color:var(--mut)}
+.dir b{color:var(--fg);font-weight:700}
+.rule{background:linear-gradient(135deg,rgba(245,130,31,.1),transparent);border:1px solid var(--bd);border-left:3px solid var(--acc);border-radius:12px;padding:16px 20px;margin:22px 0 34px;max-width:900px}
+.rule p{margin:0 0 8px;font-size:13.5px;color:var(--mut)}.rule p:last-child{margin:0}.rule b{color:var(--acc3)}
+</style>
+<input type="radio" name="tab" id="t1" checked><input type="radio" name="tab" id="t2"><input type="radio" name="tab" id="t3">
+<div class="tabs"><label for="t1">Ad Copy</label><label for="t2">Film</label><label for="t3">UGC Scripts</label></div>
+<div class="pane" id="p1"><h2><s>Copy 1</s> — Parent of a school child</h2>
 <p class="lead">The primary audience and the biggest volume. The burning problem: <b>my child works hard and the marks don't move, and nobody can tell me why.</b></p>
 <div class="copy">
 <h3>The Light Under the Door</h3>
@@ -126,7 +149,92 @@ font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:900;col
 
 
 
-<h2><s>The narrative arc</s> — and why the visual arc must match it</h2>
+<h2><s>Storyboard</s> — Copy 1 · "The Midnight Study" · 9:16 · ~45 sec</h2>
+<p class="lead">Frames read left to right. Note the background moving from near-black to full orange — the tonal arc <i>is</i> the emotional arc.</p>
+<div class="strip">
+
+<div class="fr"><div class="fnum">FRAME 01 · 0:00</div>
+<div class="pane p1"><div class="vo">No VO · room tone only</div>
+<div class="otxt">She's still<br>awake.</div>
+<div class="shot">Doorway shot, held. A girl at a desk, back to camera, one lamp. Everything else dark. No music yet.</div></div>
+<p class="fcap">Silence for three seconds. Nothing sells. The scroll stops because it doesn't look like an ad.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 02 · 0:04</div>
+<div class="pane p1"><div class="vo">VO — Line 1</div>
+<div class="otxt sm">Have you watched your child study till midnight —</div>
+<div class="shot">Slow push in. Clock on the wall reads 12:40. Her hand keeps writing.</div></div>
+<p class="fcap">Hook. A question, in a mother's own voice, not a narrator's.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 03 · 0:09</div>
+<div class="pane p2"><div class="vo">VO — Line 1 completes</div>
+<div class="otxt sm">— and still opened the report card with your <span class="hl">heart sinking?</span></div>
+<div class="shot">CU: a mother's hands holding a report card. We never see the marks. Only her thumb pressing the paper.</div></div>
+<p class="fcap">Withholding the number is the whole point. Every parent fills it in with their own.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 04 · 0:14</div>
+<div class="pane p2"><div class="vo">VO — Lines 2–3</div>
+<div class="otxt sm">Tuition.<br>New school.<br>Longer hours.<br>No phone.</div>
+<div class="shot">Four fast cuts, one per word, each dimmer than the last. Then black for half a beat.</div></div>
+<p class="fcap">The struggle expansion, cut as rhythm. The half-beat of black is the exhaustion.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 05 · 0:21</div>
+<div class="pane p2"><div class="vo">VO — Line 3</div>
+<div class="otxt sm">And a small voice asks if something is <span class="hl">wrong with her.</span></div>
+<div class="shot">Mother alone at the kitchen table, phone face-down. Not crying. Just still.</div></div>
+<p class="fcap">The guilt line — the one nobody says aloud. This is the frame that gets the ad shared.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 06 · 0:26</div>
+<div class="pane p3"><div class="vo">VO — Line 4</div>
+<div class="otxt sm">"She works so hard.<br>I don't understand."</div>
+<div class="shot">Real parents, three quick faces, saying the same sentence. First light in the film.</div></div>
+<p class="fcap">Empathy through repetition. Hearing your own sentence in someone else's mouth is the release.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 07 · 0:31</div>
+<div class="pane p3"><div class="vo">VO — Lines 5–6</div>
+<div class="otxt sm">What if you could <span class="hl">see</span> what's in the way?</div>
+<div class="g64">
+<i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i>
+<i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i>
+<i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i>
+<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<p class="fcap">The turn. Four squares lit — what school measured. The rest still dark.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 08 · 0:35</div>
+<div class="pane p4"><div class="vo">VO — Lines 7–8</div>
+<div class="otxt sm">90 minutes.<br><span class="hl">64 abilities.</span></div>
+<div class="g64">
+<i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i>
+<i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i>
+<i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i>
+<i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i>
+<i></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i>
+<i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></div></div>
+<p class="fcap">The grid fills, square by square, in time with the VO. The only "effect" in the film.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 09 · 0:39</div>
+<div class="pane p5"><div class="vo">VO — Line 10 · on camera</div>
+<div class="otxt sm">"It was never about how hard they <span class="hl">worked.</span>"</div>
+<div class="shot">The founder. To camera, seated, no set, no title card yet. Then the super: KAS Officer.</div></div>
+<p class="fcap">Personal proof, not statistics. Title appears <i>after</i> he speaks, so it lands as evidence rather than a boast.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 10 · 0:43</div>
+<div class="pane p6"><div class="vo">VO — Lines 11–12</div>
+<div class="otxt">See your daughter the way you always <span class="hl">suspected</span> she was.</div>
+<div class="shot">Full warm. Same girl as Frame 01 — now lit, looking up, faint smile. Not triumphant. Just seen.</div></div>
+<p class="fcap">Closing empathy. The visual rhyme with Frame 01 is the payoff of the whole arc.</p></div>
+
+<div class="fr"><div class="fnum">FRAME 11 · END CARD</div>
+<div class="pane p7"><div class="vo">Static · 3 sec</div>
+<div class="otxt">YASHHO</div>
+<div class="otxt sm" style="margin-top:6px">The world's first <span class="hl">Success Doctor</span></div>
+<div class="shot" style="margin-top:auto">Success Focus Scan · 90 minutes · ₹1,999 + GST<br>SCAN · SHOW · STRENGTHEN</div></div>
+<p class="fcap">Inverted to light — the only frame that looks like a brand. Price stated, no rank promised.</p></div>
+</div>
+
+</div>
+<div class="pane" id="p2"><h2><s>The narrative arc</s> — and why the visual arc must match it</h2>
 <p class="lead">The 12 lines are not a list. They are a <b>descent and a lift</b>. If the visuals stay one tone throughout, the copy's emotional movement is flattened — which is exactly what was wrong with everything I made before.</p>
 <div class="arc">
 <div class="act a1"><div class="no">I</div><h4>Alone in the dark</h4><p>Lines 1–4. Night, close, quiet, no product. The viewer must feel recognised before they will accept anything.</p></div>
@@ -227,4 +335,104 @@ font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:900;col
 <b>The girl in Frame 10 must be the girl in Frame 01.</b> Same room, same desk, same lamp — lit differently. That rhyme is the film's only argument, and it is made without a word.<br>
 <b>Cutdowns:</b> 15s = Frames 01→03→07→11. 6s bumper = Frames 01→10.
 </p>
+</div>
+<div class="pane" id="p3">
+<h2><s>Real words</s> &mdash; what parents actually wrote</h2>
+<p class="lead">Every script below is built from the feedback parents sent in, in their own words. Nothing here is invented. The phrases in orange are verbatim.</p>
+<div class="copy" style="max-width:900px">
+<h3>Verbatim, from the parent feedback</h3>
+<div class="ln"><div class="k">Shyness</div><div class="t">&ldquo;<b>Coming out of shyness nature</b>&rdquo; &mdash; Abhishek's parent &middot; &ldquo;<b>Free in expressing, clarity</b>&rdquo; &mdash; Kanyakumari</div></div>
+<div class="ln"><div class="k">Courage</div><div class="t">&ldquo;<b>Daring nature</b>&hellip; relatively free in expressing her dreams, vision&rdquo; &mdash; Impana's mother &middot; &ldquo;<b>Courage, willingness to face situations</b>&rdquo; &mdash; Amrutha's father</div></div>
+<div class="ln"><div class="k">Temper</div><div class="t">&ldquo;Calming down. <b>Displaying assertiveness instead of aggression</b>&rdquo; &mdash; Rajeshwari's parent</div></div>
+<div class="ln"><div class="k">Home</div><div class="t">&ldquo;<b>Able to bond more and support in many household activities apart from studies</b>&rdquo; &mdash; Bhoomika's mother &middot; &ldquo;Sharing with family, talking to parents on task-related activities&rdquo;</div></div>
+<div class="ln"><div class="k">The tasks</div><div class="t">&ldquo;Tasks are excellent; they expose us to real life challenges&hellip; specifically <b>One Crore Task, Market Vlogger Task, Parent &amp; Kids Interaction on their educational expenditure &mdash; making them aware with difficulties of parents</b>&rdquo; &mdash; Kanyakumari</div></div>
+<div class="ln"><div class="k">Speaking</div><div class="t">&ldquo;<b>My daughter is now able to talk to people confidently</b>; she also started caring about an environment&rdquo; &mdash; Srinidhi's mother</div></div>
+<div class="ln"><div class="k">The one</div><div class="t">&ldquo;It was excellent. <b>I request the whole team to give this opportunity not only to us, but also to poor people's children, because they also want this</b>&rdquo; &mdash; Madhu R, Amrutha's father</div></div>
+</div>
+
+<div class="rule">
+<p><b>THESE ARE PROMPTS, NOT LINES TO RECITE.</b> Give the speaker the hook and the beats, then let them say it their way. The moment it sounds performed it stops being UGC and becomes an ad &mdash; the one thing this format cannot survive.</p>
+<p><b>Shoot vertical, on a phone, in the room it happened in.</b> No lighting, no tripod, no clean audio. Imperfection is the format's credential.</p>
+<p><b>Best of all: these people exist.</b> Where a script is built from someone's own feedback, ask <i>them</i> first. A real parent saying their own sentence beats any performance of it.</p>
+</div>
+
+<h2><s>01</s> &middot; Mother &mdash; built from the shyness responses</h2>
+<div class="card">
+<div class="hdc"><span class="t">&ldquo;She wouldn't talk to anyone&rdquo;</span><span class="who">Mother &middot; 40 sec</span></div>
+<div class="bodyc">
+<div class="hook"><div class="lbl">Hook &middot; 0&ndash;2 sec</div><p>&ldquo;My daughter wouldn't talk to people. Not shy-shy &mdash; she just wouldn't.&rdquo;</p></div>
+<div class="script">
+<p><span class="beat">BEAT 1 &mdash;</span> &ldquo;Teachers said she's quiet. Everyone said she'll grow out of it. Two years, she didn't grow out of it.&rdquo;</p>
+<p><span class="beat">BEAT 2 &mdash;</span> &ldquo;There were these tasks. One of them she had to go to the market and talk to shopkeepers. Record it. I thought &mdash; she will never do this.&rdquo;</p>
+<p><span class="beat">BEAT 3 &mdash;</span> &ldquo;She did it. I don't know how.&rdquo;</p>
+<p><span class="beat">CLOSE &mdash;</span> &ldquo;Now she talks to people confidently. That's the sentence I wrote in their feedback form and I meant it exactly like that.&rdquo;</p>
+</div>
+<div class="dir"><b>Source:</b> Srinidhi's mother &mdash; <i>&ldquo;now able to talk to people confidently&rdquo;</i> &mdash; and the Market Vlogger Task named by Kanyakumari. <b>Shot:</b> Kitchen or sofa, evening. <b>Critical:</b> Beat 3 is four words and a shrug. Do not let her explain it.</div>
+</div></div>
+
+<h2><s>02</s> &middot; Mother &mdash; the one nobody expects</h2>
+<div class="card">
+<div class="hdc"><span class="t">&ldquo;She started helping at home&rdquo;</span><span class="who">Mother &middot; 30 sec</span></div>
+<div class="bodyc">
+<div class="hook"><div class="lbl">Hook &middot; 0&ndash;2 sec</div><p>&ldquo;I'll tell you the strangest part. It had nothing to do with studies.&rdquo;</p></div>
+<div class="script">
+<p><span class="beat">BEAT 1 &mdash;</span> &ldquo;There was a task where the children had to sit with parents and find out what their education actually costs. What we spend.&rdquo;</p>
+<p><span class="beat">BEAT 2 &mdash;</span> &ldquo;She came out of that conversation different. She understood something. I didn't teach it to her &mdash; she worked it out.&rdquo;</p>
+<p><span class="beat">BEAT 3 &mdash;</span> &ldquo;Now she helps at home. Without being asked. She bonds with us more.&rdquo;</p>
+<p><span class="beat">CLOSE &mdash;</span> &ldquo;I signed up for her marks, honestly. I got something else.&rdquo;</p>
+</div>
+<div class="dir"><b>Source:</b> Kanyakumari on the educational-expenditure task &mdash; <i>&ldquo;making them aware with difficulties of parents&rdquo;</i> &mdash; and Bhoomika's mother on bonding and household support. <b>Why it works:</b> the close admits the buyer's real motive and then reports something better. Unbuyable.</div>
+</div></div>
+
+<h2><s>03</s> &middot; Mother &mdash; the temper one</h2>
+<div class="card">
+<div class="hdc"><span class="t">&ldquo;Assertive, not angry&rdquo;</span><span class="who">Mother &middot; 25 sec</span></div>
+<div class="bodyc">
+<div class="hook"><div class="lbl">Hook &middot; 0&ndash;2 sec</div><p>&ldquo;My son used to get angry. Not violent &mdash; just, everything was a fight.&rdquo;</p></div>
+<div class="script">
+<p><span class="beat">BEAT 1 &mdash;</span> &ldquo;And what I've noticed since &mdash; he still says what he wants. He just doesn't shout it any more.&rdquo;</p>
+<p><span class="beat">BEAT 2 &mdash;</span> &ldquo;He's assertive now instead of aggressive. That is the difference. I didn't have those two words before somebody showed me.&rdquo;</p>
+<p><span class="beat">CLOSE &mdash;</span> &ldquo;Nobody puts that on a report card.&rdquo;</p>
+</div>
+<div class="dir"><b>Source:</b> Rajeshwari's parent, verbatim &mdash; <i>&ldquo;displaying assertiveness instead of aggression&rdquo;</i>. <b>Why it works:</b> the closing line is the entire category argument, said by a mother about her own son, with no product in it at all.</div>
+</div></div>
+
+<h2><s>04</s> &middot; Father &mdash; do not script this one</h2>
+<div class="card">
+<div class="hdc"><span class="t">&ldquo;Also for poor people's children&rdquo;</span><span class="who">Father &middot; 30 sec</span></div>
+<div class="bodyc">
+<div class="hook"><div class="lbl">Hook &middot; 0&ndash;2 sec</div><p>&ldquo;They asked me for feedback. I want to ask them for something instead.&rdquo;</p></div>
+<div class="script">
+<p><span class="beat">BEAT 1 &mdash;</span> His daughter, before. In his words, however he tells it.</p>
+<p><span class="beat">BEAT 2 &mdash;</span> What changed. His words.</p>
+<p><span class="beat">CLOSE &mdash; VERBATIM, DO NOT REWRITE &mdash;</span> &ldquo;I request the whole team to give this opportunity not only to us, but also to poor people's children, because they also want this.&rdquo;</p>
+</div>
+<div class="dir"><b>Source:</b> Madhu R, father of Amrutha, Shastry School, Hunsur. <b>This is the strongest asset in the company.</b> A man asked for a review and used it to ask that poorer children get the same thing. Do not write him lines &mdash; find him, put a phone in front of him, and let him say it again. <b>Consent in writing before it goes anywhere near an ad.</b></div>
+</div></div>
+
+<h2><s>05</s> &middot; The street test &mdash; a setup, not a script</h2>
+<div class="card">
+<div class="hdc"><span class="t">&ldquo;Name five things your child is good at&rdquo;</span><span class="who">Vox pop &middot; 30 sec</span></div>
+<div class="bodyc">
+<div class="hook"><div class="lbl">Hook &middot; 0&ndash;2 sec</div><p>On screen, no voice: <b>&ldquo;We asked parents to name five things their child is good at.&rdquo;</b></p></div>
+<div class="script">
+<p><span class="beat">THE SETUP &mdash;</span> Stop real parents. Ask once, warmly. Then say nothing and keep rolling.</p>
+<p><span class="beat">WHAT YOU'LL GET &mdash;</span> Most manage two. Then a pause. Then &ldquo;he's good at&hellip; studies?&rdquo; Then a laugh that isn't quite a laugh.</p>
+<p><span class="beat">THE CUT &mdash;</span> Six or seven parents, back to back, each stalling in the same place. No commentary, no music.</p>
+<p><span class="beat">END CARD &mdash;</span> &ldquo;There are 64. School reports on four.&rdquo;</p>
+</div>
+<div class="dir"><b>Why I'd bet on this one:</b> it makes no claim at all, cannot be accused of manipulating anybody, and it is the only idea here people will send to each other. <b>Ethics:</b> signed consent on the spot &mdash; and if a parent names five, use that clip too. The honesty is the point and it will still land.</div>
+</div></div>
+
+<h2><s>Hooks</s> &mdash; test these before anything else</h2>
+<div class="copy" style="max-width:820px"><div class="ln"><div class="k">6-sec cuts</div><div class="t">
+&ldquo;My daughter wouldn't talk to people.&rdquo;<br>
+&ldquo;I'll tell you the strangest part. It had nothing to do with studies.&rdquo;<br>
+&ldquo;He's assertive now instead of aggressive.&rdquo;<br>
+&ldquo;They asked me for feedback. I want to ask them for something instead.&rdquo;<br>
+&ldquo;We asked parents to name five things their child is good at.&rdquo;
+<div style="color:var(--mut);font-size:13px;margin-top:12px">Run all five against the same audience. The winner earns the full film; the rest are answered questions, not wasted work.</div>
+</div></div></div>
+</div>
+
 </div>
