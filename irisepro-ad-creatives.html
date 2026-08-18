@@ -1,0 +1,255 @@
+<title>YASHHO — Ad Creative Storyboard · 12 variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1626;--surface:#10223c;--accent:#f5821f;--accent-strong:#ff9b3d;--accent-bright:#ffb259;
+--leaf:#3f93e0;--fg:#eaf1f9;--muted:#8ea3bd;--border:#1d3354;--soft:#1d2f4d;
+--kas-bg:#2a0a0c;--kas-surface:#491a1b;--kas-accent:#e2a52d;--kas-gold:#f8d066;--kas-fg:#f3ecd9;--kas-muted:#e3d6ba;--kas-border:#6e2c26}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:48px 20px 90px}
+h1{font-size:clamp(28px,5vw,46px);font-weight:900;letter-spacing:-.02em;margin:0 0 6px;text-transform:uppercase}
+h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:15px;margin:0 0 34px}
+.rules{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin:0 0 44px}
+.rules b{color:var(--accent-bright)}
+.rules p{margin:0 0 10px;font-size:14.5px;color:var(--muted)}
+.rules p:last-child{margin:0}
+h2{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf);
+margin:52px 0 6px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.fw{color:var(--muted);font-size:13.5px;margin:0 0 26px;max-width:760px}
+.row{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start;margin-bottom:10px}
+.unit{margin-bottom:34px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.n{background:var(--accent);color:#1a0e02;font-weight:900;font-size:12px;padding:3px 9px;border-radius:6px}
+.tag{background:var(--soft);color:var(--fg);font-size:11px;font-weight:700;letter-spacing:.08em;
+text-transform:uppercase;padding:4px 9px;border-radius:6px;border:1px solid var(--border)}
+.cap{color:var(--muted);font-size:13.5px;margin:10px 0 0;max-width:520px}
+
+/* ── ad frames ── */
+.sq{width:340px;height:340px}
+.st{width:250px;height:444px}
+.ad{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;
+display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+.ad.k{background:var(--kas-surface);border-color:var(--kas-border);color:var(--kas-fg)}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.ad.k .eyebrow{color:var(--kas-gold)}
+.hd{font-size:26px;font-weight:900;line-height:1.12;letter-spacing:-.02em;margin:12px 0 0}
+.hd.sm{font-size:21px}
+.hd.xs{font-size:18px}
+.hl{color:var(--accent)}
+.ad.k .hl{color:var(--kas-gold)}
+.bd{font-size:14px;color:var(--muted);margin:11px 0 0}
+.ad.k .bd{color:var(--kas-muted)}
+.cta{display:inline-block;background:var(--accent);color:#1a0e02;font-weight:800;font-size:13px;
+padding:11px 18px;border-radius:9px;text-align:center;letter-spacing:.02em}
+.cta.k{background:var(--kas-accent);color:#2a0a0c}
+.cta.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent)}
+.logo{font-size:11px;font-weight:900;letter-spacing:.16em;color:var(--fg);opacity:.75}
+.ssg{font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--leaf);margin-top:7px}
+.ad.k .ssg{color:var(--kas-gold)}
+.glow{position:absolute;width:210px;height:210px;border-radius:50%;background:var(--accent);
+opacity:.13;filter:blur(46px);top:-70px;right:-60px;pointer-events:none}
+.ad.k .glow{background:var(--kas-accent)}
+/* chart mock */
+.bars{display:flex;align-items:flex-end;gap:5px;height:74px;margin:14px 0 0}
+.bar{flex:1;background:var(--leaf);border-radius:3px 3px 0 0;opacity:.55}
+.bar.hi{background:var(--accent);opacity:1}
+.split{display:flex;gap:10px;margin-top:12px}
+.half{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;padding:11px}
+.half .t{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.half .v{font-size:23px;font-weight:900;margin-top:3px}
+.carousel{display:flex;gap:12px;flex-wrap:wrap}
+.card{width:210px;height:210px;background:var(--surface);border:1px solid var(--border);border-radius:13px;
+padding:17px;display:flex;flex-direction:column;justify-content:space-between}
+.card .num{font-size:10px;font-weight:900;color:var(--accent);letter-spacing:.16em}
+.card .txt{font-size:15px;font-weight:800;line-height:1.22}
+@media(max-width:560px){.sq{width:100%;height:auto;min-height:320px}.st{width:100%;height:auto;min-height:400px}}
+</style>
+
+<div class="wrap">
+<h1>YASHHO — <span>Ad Creative Storyboard</span></h1>
+<p class="sub">12 rendered variants · Hormozi value equation · Brunson hook–story–offer &amp; false-belief demolition · empathy-led · 18 August 2026</p>
+
+<div class="rules">
+<p><b>Two brand rules constrain the frameworks, and both are deliberate.</b></p>
+<p><b>ZERO FEAR.</b> Hormozi's playbook leans on pain agitation. Naming a pain the parent already feels is empathy; manufacturing dread is not. Every ad below names an existing frustration and none predicts disaster.</p>
+<p><b>NO OUTCOME GUARANTEE.</b> No ad promises a mark, rank or admission. The proof offered is <i>revelation</i> — what nobody has seen — because that is what we can demonstrate today. Ad 12 turns that restraint into the differentiator.</p>
+<p><b>THE TEST:</b> if a coaching institute could run the ad with their logo on it, it is the wrong ad.</p>
+</div>
+
+<h2>A · Empathy-led — name the pain they already carry</h2>
+<p class="fw">Start where the parent already is, in their own words, and withhold the product until the pain is named accurately. The trust comes from precision, not persuasion.</p>
+
+<div class="row">
+<div class="unit">
+<div class="meta"><span class="n">01</span><span class="tag">Empathy</span><span class="tag">Parent</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">For parents who have stopped asking</div>
+<div class="hd">He studies till midnight.<br>The marks <span class="hl">don't move.</span></div>
+<div class="bd">You have asked the school. You have asked the tuition. Nobody has an answer, so you stopped asking.</div></div>
+<div><div class="bd" style="color:var(--fg);font-weight:700">There is an answer. It has simply never been measured.</div>
+<div class="ssg">SCAN · SHOW · STRENGTHEN</div></div>
+</div>
+<p class="cap">The strongest ad in the set, because it makes no claim at all. It only proves we understand the situation better than anyone who has spoken to them about it.</p>
+</div>
+
+<div class="unit">
+<div class="meta"><span class="n">02</span><span class="tag">Empathy</span><span class="tag">Parent</span><span class="tag">9:16 story</span></div>
+<div class="ad st"><div class="glow"></div>
+<div><div class="eyebrow">A quiet question</div>
+<div class="hd sm">Do you actually know<br>what your child is<br><span class="hl">good at?</span></div>
+<div class="bd">Not what they score. What they are <i>able</i> to do.</div></div>
+<div><div class="bd">School reports on four subjects. Life runs on 64 abilities.</div>
+<div class="cta" style="margin-top:12px">See all 64 — free</div></div>
+</div>
+<p class="cap">Gives away the map. The free 64-ability framework is the lead magnet; the measure stays paid.</p>
+</div>
+
+<div class="unit">
+<div class="meta"><span class="n">03</span><span class="tag">Empathy</span><span class="tag">NEET / JEE</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">Every aspirant knows this feeling</div>
+<div class="hd">You knew it in the class.<br>You <span class="hl">lost it in the hall.</span></div>
+<div class="bd">That gap is not knowledge. It has a name, it has causes, and it can be measured.</div></div>
+<div><div class="cta ghost">Diagnose the gap</div></div>
+</div>
+<p class="cap">Names the single most universal aspirant experience. Coaching cannot address it, which is the point.</p>
+</div>
+</div>
+
+<h2>B · Brunson — false-belief demolition</h2>
+<p class="fw">Your actual problem is misfiling: people drop you into the nearest box they own. Each ad here breaks one specific wrong belief — about the vehicle, about the external alternative, and about themselves.</p>
+
+<div class="row">
+<div class="unit">
+<div class="meta"><span class="n">04</span><span class="tag">False belief · VEHICLE</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">"Isn't this just an aptitude test?"</div>
+<div class="hd sm">An aptitude test asks what you <span class="hl">think</span> you are good at.</div>
+<div class="bd" style="color:var(--fg);font-weight:700;margin-top:14px">We watch what you actually do.</div>
+<div class="bd">64 abilities. Evidence-based tasks. Triangulated across multiple observations — not one self-report on one afternoon.</div></div>
+<div><div class="logo">YASHHO · WORLD'S FIRST SUCCESS DOCTOR</div></div>
+</div>
+<p class="cap">Kills the ₹200-online-quiz comparison that would otherwise destroy the price point.</p>
+</div>
+
+<div class="unit">
+<div class="meta"><span class="n">05</span><span class="tag">False belief · EXTERNAL</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">"We already have coaching"</div>
+<div class="hd">Coaching treats<br>the <span class="hl">subject.</span><br>We diagnose<br>the <span class="hl">student.</span></div>
+<div class="bd">Keep your coaching. A doctor does not compete with your trainer.</div></div>
+<div><div class="ssg">SCAN · SHOW · STRENGTHEN</div></div>
+</div>
+<p class="cap">The complement message, in the one frame where it needs no defending. Removes the "are you replacing coaching?" objection without argument.</p>
+</div>
+
+<div class="unit">
+<div class="meta"><span class="n">06</span><span class="tag">False belief · SELF</span><span class="tag">9:16 story</span></div>
+<div class="ad st"><div class="glow"></div>
+<div><div class="eyebrow">"I know my own child"</div>
+<div class="hd sm">You do know<br>your child.</div>
+<div class="bd">Better than any teacher, any test, anyone.</div>
+<div class="bd" style="color:var(--fg);font-weight:700;margin-top:12px">But 64 abilities are deciding their future — and school reports on four of them.</div></div>
+<div><div class="cta">Show me the other 60</div></div>
+</div>
+<p class="cap">Never contradicts the parent. Agrees completely, then widens the frame. Contradiction here loses the sale and the relationship.</p>
+</div>
+</div>
+
+<h2>C · Brunson — epiphany bridge (the founder's story)</h2>
+<p class="fw">The origin story is the highest-converting asset a new category has, because a category with no proof needs a person. The founder is a KAS officer: the practitioner is real, not a metaphor.</p>
+
+<div class="row">
+<div class="unit">
+<div class="meta"><span class="n">07</span><span class="tag">Epiphany bridge</span><span class="tag">KAS</span><span class="tag">9:16 story</span></div>
+<div class="ad st k"><div class="glow"></div>
+<div><div class="eyebrow">From a serving KAS officer</div>
+<div class="hd sm">I watched brilliant candidates <span class="hl">fail.</span></div>
+<div class="bd">And ordinary ones clear it. For years I assumed it was knowledge, or luck.</div>
+<div class="bd" style="color:var(--kas-fg);font-weight:700;margin-top:11px">It was neither. It was abilities nobody was measuring.</div></div>
+<div><div class="cta k">Hear the full story</div></div>
+</div>
+<p class="cap">Hook–story–offer in one frame. The credibility is unpurchasable and no competitor can copy it.</p>
+</div>
+
+<div class="unit">
+<div class="meta"><span class="n">08</span><span class="tag">Epiphany bridge</span><span class="tag">Carousel</span><span class="tag">4 cards</span></div>
+<div class="carousel">
+<div class="card"><div class="num">01 / 04</div><div class="txt">Two aspirants. Same coaching. Same hours. Same syllabus.</div></div>
+<div class="card"><div class="num">02 / 04</div><div class="txt">One cleared it. One did not. Nobody could tell you why.</div></div>
+<div class="card"><div class="num">03 / 04</div><div class="txt">The difference was never in the syllabus. It was in <span style="color:var(--accent)">64 abilities</span> nobody had ever measured.</div></div>
+<div class="card"><div class="num">04 / 04</div><div class="txt" style="color:var(--accent)">So we built the instrument that measures them.</div><div class="ssg">SCAN · SHOW · STRENGTHEN</div></div>
+</div>
+<p class="cap">Carousels earn dwell time. Each card is one beat; the offer lands only on card four.</p>
+</div>
+</div>
+
+<h2>D · Hormozi — the value equation, made specific</h2>
+<p class="fw">Value = (dream outcome × perceived likelihood) ÷ (time × effort). His real lesson is <i>specificity</i>: exact numbers, exact durations, exact deliverable. Vagueness is what kills conversion.</p>
+
+<div class="row">
+<div class="unit">
+<div class="meta"><span class="n">09</span><span class="tag">Value equation</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">90 minutes · 7 tasks · 15 abilities</div>
+<div class="hd sm">One chart that explains <span class="hl">ten years</span> of report cards.</div>
+<div class="split">
+<div class="half"><div class="t">Time</div><div class="v">90<span style="font-size:13px"> min</span></div></div>
+<div class="half"><div class="t">Abilities</div><div class="v">15</div></div>
+<div class="half"><div class="t">Fee</div><div class="v">₹1,999</div></div>
+</div></div>
+<div><div class="bd" style="font-size:12px">ASLI15 Success Focus Scan · + GST · one-time · no mentoring included</div></div>
+</div>
+<p class="cap">Low time, low effort, low price, high clarity. The exclusions are stated on the ad — the master requires it, and honesty converts better than concealment here.</p>
+</div>
+
+<div class="unit">
+<div class="meta"><span class="n">10</span><span class="tag">Value equation</span><span class="tag">Artefact-led</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">The YASHHO Success Path Chart</div>
+<div class="hd xs">What the marksheet said <span class="hl">vs</span> what was actually there</div>
+<div class="bars">
+<div class="bar" style="height:34%"></div><div class="bar hi" style="height:88%"></div>
+<div class="bar" style="height:46%"></div><div class="bar hi" style="height:72%"></div>
+<div class="bar" style="height:29%"></div><div class="bar" style="height:55%"></div>
+<div class="bar hi" style="height:94%"></div><div class="bar" style="height:41%"></div>
+</div>
+<div class="bd">Four subjects said "average". Sixty-four abilities said something completely different.</div></div>
+<div><div class="cta">See a real chart</div></div>
+</div>
+<p class="cap">Make the artefact famous. Categories are remembered through an object — the blood report, the credit score. This is ours.</p>
+</div>
+</div>
+
+<h2>E · Category creation — the indictment &amp; the restraint</h2>
+<p class="fw">These two sell nothing. They exist to establish the category and to make the brand's honesty legible in a market full of guaranteed-rank advertising.</p>
+
+<div class="row">
+<div class="unit">
+<div class="meta"><span class="n">11</span><span class="tag">The indictment</span><span class="tag">Gurukul heritage</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">Bharat measured the whole person once</div>
+<div class="hd sm">The guru watched for <span class="hl">years.</span> We kept the exam and lost the watching.</div>
+<div class="bd">The gurukul had the right question. We built the instruments to answer it — at scale, for anyone.</div></div>
+<div><div class="bd" style="font-size:11.5px;color:var(--fg)">The gurukul's insight, without the gurukul's gatekeeping.</div></div>
+</div>
+<p class="cap">Heritage only — never claims to <i>be</i> a gurukul, and answers the exclusion criticism inside the ad rather than waiting to be asked.</p>
+</div>
+
+<div class="unit">
+<div class="meta"><span class="n">12</span><span class="tag">Restraint as differentiator</span><span class="tag">1:1 feed</span></div>
+<div class="ad sq"><div class="glow"></div>
+<div><div class="eyebrow">What we will not tell you</div>
+<div class="hd">We will not promise you a <span class="hl">rank.</span></div>
+<div class="bd" style="color:var(--fg);font-weight:700;margin-top:14px">We will show you exactly what is standing in the way of one.</div>
+<div class="bd">No doctor guarantees the outcome. They guarantee the diagnosis is right.</div></div>
+<div><div class="ssg">SCAN · SHOW · STRENGTHEN</div></div>
+</div>
+<p class="cap">In a market of guaranteed-selection advertising, this is the sharpest possible differentiator — and it is the only claim structure the message master permits. Constraint turned into position.</p>
+</div>
+</div>
+
+</div>
