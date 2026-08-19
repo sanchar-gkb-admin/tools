@@ -1,0 +1,330 @@
+<title>YASHHO · How we build and sell things — before &amp; after</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1626; --surface:#10223c; --accent:#f5821f; --accent-strong:#ff9b3d;
+    --accent-bright:#ffb259; --accent-soft:#1d2f4d; --blue:#3f93e0;
+    --text:#eaf1f9; --muted:#8ea3bd; --border:#1d3354;
+    --red:#e0574f; --green:#4fb87a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:Montserrat,system-ui,sans-serif;font-weight:400;line-height:1.55;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1140px;margin:0 auto;padding:48px 20px 90px}
+
+  .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent-strong);font-weight:800;margin:0 0 10px}
+  h1{font-weight:900;text-transform:uppercase;letter-spacing:-.01em;
+    font-size:clamp(2rem,6.5vw,3.3rem);line-height:1.03;margin:0 0 14px}
+  .sub{color:var(--muted);font-size:clamp(1rem,2.4vw,1.18rem);max-width:60ch;margin:0}
+  .rule{height:3px;width:72px;background:linear-gradient(90deg,var(--accent),var(--accent-bright));
+    border-radius:3px;margin:26px 0 0}
+
+  h2{font-weight:900;text-transform:uppercase;font-size:clamp(1.15rem,3.4vw,1.6rem);
+    letter-spacing:.01em;margin:0 0 6px}
+  .num{color:var(--accent);font-weight:900;margin-right:.5ch}
+  .cap{color:var(--muted);font-size:.95rem;margin:0 0 22px;max-width:66ch}
+  section{margin:64px 0 0;scroll-margin-top:20px}
+
+  /* ── panels ─────────────────────────────────────────── */
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:860px){.split{grid-template-columns:1fr}}
+  .tag{display:inline-block;font-size:.66rem;font-weight:900;letter-spacing:.16em;
+    text-transform:uppercase;padding:5px 11px;border-radius:99px;margin-bottom:16px}
+  .tag.before{background:rgba(224,87,79,.14);color:#ff8f88;border:1px solid rgba(224,87,79,.35)}
+  .tag.after{background:rgba(79,184,122,.14);color:#7fe0a6;border:1px solid rgba(79,184,122,.35)}
+
+  /* the tangle */
+  .tangle{border:2px dashed rgba(224,87,79,.5);border-radius:14px;padding:18px;
+    background:rgba(224,87,79,.05)}
+  .tangle .who{font-weight:900;text-transform:uppercase;font-size:.8rem;
+    letter-spacing:.12em;color:#ff8f88;margin-bottom:14px}
+  .jam{display:flex;flex-wrap:wrap;gap:8px}
+  .jam span{background:#16294a;border:1px solid var(--border);border-radius:8px;
+    padding:8px 11px;font-size:.82rem;font-weight:600}
+
+  /* the four homes */
+  .homes{display:grid;gap:10px}
+  .home{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;
+    background:#16294a;border:1px solid var(--border);border-left:3px solid var(--accent);
+    border-radius:10px;padding:13px 15px}
+  .home b{display:block;font-size:.86rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+  .home small{color:var(--muted);font-size:.83rem}
+  .dot{width:26px;height:26px;border-radius:8px;background:var(--accent-soft);
+    color:var(--accent-bright);font-weight:900;font-size:.8rem;
+    display:grid;place-items:center;margin-top:2px}
+
+  /* ── recipe cards (the bundle builder) ──────────────── */
+  .recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.recipes{grid-template-columns:1fr}}
+  .recipe{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:18px;display:flex;flex-direction:column}
+  .recipe h3{margin:0 0 3px;font-size:1rem;font-weight:900;text-transform:uppercase}
+  .price{color:var(--accent-bright);font-weight:900;font-size:1.35rem;margin:0 0 14px}
+  .steps{display:grid;gap:9px;margin-bottom:14px}
+  .step{display:flex;align-items:center;gap:10px;background:#16294a;
+    border:1px solid var(--border);border-radius:9px;padding:9px 11px;font-size:.85rem;font-weight:600}
+  .step i{width:22px;height:22px;border-radius:6px;background:var(--accent);
+    color:#1a0e02;font-style:normal;font-weight:900;font-size:.72rem;
+    display:grid;place-items:center;flex:none}
+  .step.wait i{background:var(--blue);color:#04101f}
+  .step em{font-style:normal;color:var(--muted);font-weight:400;font-size:.78rem;margin-left:auto}
+  .arrowdown{text-align:center;color:var(--blue);font-size:.9rem;margin:-4px 0}
+  .recipe .foot{margin-top:auto;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);
+    padding-top:11px}
+
+  /* ── flow strip ─────────────────────────────────────── */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:stretch}
+  @media(max-width:860px){.flow{grid-template-columns:1fr}}
+  .fnode{background:var(--surface);border:1px solid var(--border);padding:16px;position:relative}
+  .fnode:first-child{border-radius:12px 0 0 12px}
+  .fnode:last-child{border-radius:0 12px 12px 0}
+  @media(max-width:860px){
+    .fnode:first-child{border-radius:12px 12px 0 0}
+    .fnode:last-child{border-radius:0 0 12px 12px}
+  }
+  .fnode .n{color:var(--accent);font-weight:900;font-size:.72rem;letter-spacing:.14em}
+  .fnode b{display:block;margin:5px 0 4px;font-size:.92rem;font-weight:900;text-transform:uppercase}
+  .fnode small{color:var(--muted);font-size:.82rem}
+
+  /* ── segment chips ──────────────────────────────────── */
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{background:var(--accent-soft);border:1px solid var(--border);color:var(--accent-bright);
+    border-radius:99px;padding:8px 15px;font-size:.83rem;font-weight:800}
+  .chip.plus{background:transparent;color:var(--muted);border-style:dashed}
+
+  /* ── before/after one-liner table ───────────────────── */
+  .cmp{width:100%;border-collapse:collapse;font-size:.9rem}
+  .cmp td{padding:13px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp td:first-child{color:var(--muted);width:38%}
+  .cmp td:last-child{font-weight:600}
+  .cmp .x{color:#ff8f88;font-weight:900;margin-right:6px}
+  .cmp .t{color:#7fe0a6;font-weight:900;margin-right:6px}
+  @media(max-width:640px){.cmp td{display:block;border:0;padding:6px 0}
+    .cmp tr{display:block;border-bottom:1px solid var(--border);padding:12px 0}
+    .cmp td:first-child{width:auto}}
+
+  .kicker{background:linear-gradient(135deg,rgba(245,130,31,.14),rgba(63,147,224,.10));
+    border:1px solid rgba(245,130,31,.32);border-radius:16px;padding:26px}
+  .kicker p{margin:0;font-size:clamp(1.05rem,2.8vw,1.35rem);font-weight:800;line-height:1.4}
+  .kicker small{display:block;color:var(--muted);font-weight:400;font-size:.92rem;margin-top:10px}
+  footer{margin-top:70px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);padding-top:18px}
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">YASHHO · 19 August 2026</p>
+  <h1>How we build<br>and sell things</h1>
+  <p class="sub">We changed the way the whole system thinks about what we offer. Same products today —
+    but from now on, launching something new is a decision, not a software project.</p>
+  <div class="rule"></div>
+
+  <!-- 01 -->
+  <section>
+    <h2><span class="num">01</span>Where we were</h2>
+    <p class="cap">Everything about an offering lived in one box. Four different questions,
+      one answer sheet.</p>
+
+    <div class="split">
+      <div class="panel">
+        <span class="tag before">Before</span>
+        <div class="tangle">
+          <div class="who">One box held all of it</div>
+          <div class="jam">
+            <span>What the student does</span>
+            <span>What it costs</span>
+            <span>Who's allowed to buy it</span>
+            <span>How they paid</span>
+            <span>How many tests they get</span>
+            <span>How long they have</span>
+            <span>Whether it's a free trial</span>
+          </div>
+        </div>
+        <p class="cap" style="margin:16px 0 0">
+          Change one thing and you risked the others. Every new offering meant an engineer.</p>
+      </div>
+
+      <div class="panel">
+        <span class="tag before">What that cost us</span>
+        <table class="cmp">
+          <tr><td>Wanted to bundle two things</td><td><span class="x">✕</span>Code change</td></tr>
+          <tr><td>Wanted a school-only version</td><td><span class="x">✕</span>Code change</td></tr>
+          <tr><td>Wanted to give something away</td><td><span class="x">✕</span>Price it at zero — then we
+            couldn't tell "we gifted this" from "this never had a price"</td></tr>
+          <tr><td>Asked "what can this student do?"</td><td><span class="x">✕</span>Three different lists
+            answered, and they disagreed</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section>
+    <h2><span class="num">02</span>The one decision that changed everything</h2>
+    <p class="cap">Stop asking one box four questions. Give each question its own home.</p>
+
+    <div class="split">
+      <div class="panel">
+        <span class="tag after">After</span>
+        <div class="homes">
+          <div class="home"><span class="dot">1</span><div>
+            <b>What you get</b><small>The actual tasks and tests. Nothing else.</small></div></div>
+          <div class="home"><span class="dot">2</span><div>
+            <b>What it costs</b><small>One price list. One place. Nowhere else.</small></div></div>
+          <div class="home"><span class="dot">3</span><div>
+            <b>What you're allowed to do</b><small>How many sets, for how long, at what pace.</small></div></div>
+          <div class="home"><span class="dot">4</span><div>
+            <b>How you got it</b><small>Paid, sponsored, waived, or free — about the person, not the product.</small></div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <span class="tag after">Why it matters</span>
+        <table class="cmp">
+          <tr><td>A gift</td><td><span class="t">✓</span>Real price, marked as given — so we can say what
+            we gave away</td></tr>
+          <tr><td>A school version</td><td><span class="t">✓</span>Same price list, different task set</td></tr>
+          <tr><td>"What can this student do?"</td><td><span class="t">✓</span>One answer, one place</td></tr>
+          <tr><td>A new price</td><td><span class="t">✓</span>Typed in, not coded in</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section>
+    <h2><span class="num">03</span>A bundle is now a recipe</h2>
+    <p class="cap">Pick any parts, in any order. Say what must finish first. That's the whole thing —
+      no two bundles need new software.</p>
+
+    <div class="recipes">
+      <div class="recipe">
+        <h3>Monthly Mock Series</h3>
+        <p class="price">₹4,500</p>
+        <div class="steps">
+          <div class="step"><i>1</i>Mock test sets <em>×8, monthly</em></div>
+        </div>
+        <div class="foot">One part. Nothing waits for anything.</div>
+      </div>
+
+      <div class="recipe">
+        <h3>Double Impact</h3>
+        <p class="price">₹8,999</p>
+        <div class="steps">
+          <div class="step"><i>1</i>Mock test sets <em>×8, monthly</em></div>
+          <div class="arrowdown">↓ then</div>
+          <div class="step wait"><i>2</i>Champion Face-Off <em>live</em></div>
+        </div>
+        <div class="foot">Same test sets as above — reused, not rebuilt.</div>
+      </div>
+
+      <div class="recipe">
+        <h3>Any future bundle</h3>
+        <p class="price">₹ you decide</p>
+        <div class="steps">
+          <div class="step"><i>1</i>Scan</div>
+          <div class="arrowdown">↓ unlocks both</div>
+          <div class="step wait"><i>2</i>Mock tests</div>
+          <div class="step wait"><i>2</i>Weekly coaching <em>repeats</em></div>
+          <div class="arrowdown">↓ after <b>both</b></div>
+          <div class="step wait"><i>3</i>Interview prep</div>
+        </div>
+        <div class="foot">Nobody has built this. It already works.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section>
+    <h2><span class="num">04</span>What a recipe can say</h2>
+    <p class="cap">Four building blocks. Everything we sell — and everything we might — is some
+      arrangement of these.</p>
+
+    <div class="flow">
+      <div class="fnode"><span class="n">BLOCK 01</span><b>A part</b>
+        <small>A scan, a test series, a live event, coaching. Add a new kind any time.</small></div>
+      <div class="fnode"><span class="n">BLOCK 02</span><b>An order</b>
+        <small>All at once, or one after another — or "only once both of these are done".</small></div>
+      <div class="fnode"><span class="n">BLOCK 03</span><b>A repeat</b>
+        <small>Eight sets a month. A task every week. Always with a finish line.</small></div>
+      <div class="fnode"><span class="n">BLOCK 04</span><b>A condition</b>
+        <small>Only for a certain age, or only once a report is ready.</small></div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section>
+    <h2><span class="num">05</span>Who we can sell to</h2>
+    <p class="cap">The buyer is now something we write down, not something baked in.
+      Adding one is a line in a list.</p>
+    <div class="chips">
+      <span class="chip">Families direct</span>
+      <span class="chip">Schools</span>
+      <span class="chip">Colleges</span>
+      <span class="chip">Companies</span>
+      <span class="chip">CSR programmes</span>
+      <span class="chip">Government</span>
+      <span class="chip plus">+ whatever comes next</span>
+    </div>
+    <p class="cap" style="margin-top:20px">And each one can have its own task set, its own starting
+      questions, and its own agreed price — without affecting anybody else.</p>
+  </section>
+
+  <!-- 06 -->
+  <section>
+    <h2><span class="num">06</span>What it takes to launch, now</h2>
+    <div class="flow">
+      <div class="fnode"><span class="n">STEP 01</span><b>Decide it</b>
+        <small>What's in it, what it costs, who it's for.</small></div>
+      <div class="fnode"><span class="n">STEP 02</span><b>Type it in</b>
+        <small>Into the catalogue screen. No engineer.</small></div>
+      <div class="fnode"><span class="n">STEP 03</span><b>It appears</b>
+        <small>On the brochure, priced, ready.</small></div>
+      <div class="fnode"><span class="n">STEP 04</span><b>Change your mind</b>
+        <small>Re-bundle it. People who already bought keep exactly what they bought.</small></div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section>
+    <h2><span class="num">07</span>Honest status</h2>
+    <p class="cap">What is true today, and what is still ahead. Nothing here is hidden in a footnote.</p>
+    <div class="split">
+      <div class="panel">
+        <span class="tag after">Live today</span>
+        <table class="cmp">
+          <tr><td>The full catalogue</td><td><span class="t">✓</span>Every product, one price list</td></tr>
+          <tr><td>The brochure page</td><td><span class="t">✓</span>Public, shareable</td></tr>
+          <tr><td>Editing without an engineer</td><td><span class="t">✓</span>Admin screen</td></tr>
+          <tr><td>The recipe system</td><td><span class="t">✓</span>Built and proven</td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <span class="tag before">Still ahead</span>
+        <table class="cmp">
+          <tr><td>Buying the new bundles online</td><td>Next — the payment side still knows only the
+            older products</td></tr>
+          <tr><td>Monthly &amp; yearly plans</td><td>Needs a renewal decision before we can charge for them</td></tr>
+          <tr><td>Kannada brochure</td><td>Waiting on a native writer. The draft was reviewed and rejected.</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">
+      <p>The point isn't the products we launched. It's that the next twenty don't need us to
+        rebuild anything.</p>
+      <small>Before: a new offering was a software project. Now it's a decision, typed in, live the
+        same day.</small>
+    </div>
+  </section>
+
+  <footer>YASHHO · internal · 19 August 2026 · plain-language summary of the catalogue &amp; delivery
+    model change</footer>
+</div>
