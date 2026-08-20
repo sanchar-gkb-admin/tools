@@ -87,6 +87,27 @@ box-shadow:0 1px 3px rgba(3,49,149,.05)}
 .card .h{font-size:9.5px;font-weight:900;color:var(--blue)}
 .card .t{font-size:7.5px;color:var(--ink-soft);font-weight:600;line-height:1.4;margin-top:3px}
 .pricetag{color:var(--saffron-dark);font-weight:900}
+
+/* CTA system */
+.cta2{position:relative;border-radius:11px;overflow:hidden;text-align:center;
+  background:linear-gradient(180deg,#FF8A2B 0%,#FF7301 55%,#E9600A 100%);
+  box-shadow:0 6px 16px rgba(255,115,1,.42),0 1px 0 rgba(255,255,255,.45) inset;padding:10px 8px 8px}
+.cta2 .lbl{font-size:10px;font-weight:900;letter-spacing:.04em;color:#fff;line-height:1.1;
+  display:flex;align-items:center;justify-content:center;gap:5px}
+.cta2 .sub{font-size:6.5px;font-weight:700;letter-spacing:.05em;color:rgba(255,255,255,.92);margin-top:3px}
+.cta2 .shine{position:absolute;top:0;bottom:0;width:34px;left:-40px;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-18deg)}
+.cta2.big{padding:13px 10px 10px}
+.cta2.big .lbl{font-size:12.5px} .cta2.big .sub{font-size:7.5px}
+.ghost{display:flex;align-items:center;justify-content:center;gap:5px;border-radius:10px;
+  padding:8px 6px;font-size:8px;font-weight:800;letter-spacing:.03em}
+.ghost.wa{background:rgba(37,163,90,.14);border:1px solid rgba(37,163,90,.5);color:#1c8f4c}
+.ghost.wa.inv{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);color:#fff}
+.ghost.web{background:transparent;border:1px solid var(--blue);color:var(--blue)}
+.ghost.web.inv{border-color:rgba(255,255,255,.45);color:#fff}
+.trust{display:flex;gap:8px;justify-content:center;font-size:6px;font-weight:800;letter-spacing:.06em;
+  color:var(--ink-soft);margin-top:6px}
+.trust.inv{color:rgba(255,255,255,.75)}
 /* desktop */
 .browser{border:1px solid var(--dline);border-radius:14px;overflow:hidden;background:#000;
 box-shadow:0 24px 60px rgba(0,0,0,.5)}
@@ -142,8 +163,11 @@ logo floats, controls sit in the bottom safe area.</p>
     <div class="botbar">
       <div class="dots"><i style="background:#FF7301;width:14px"></i><i style="background:rgba(255,255,255,.42);width:5px"></i><i style="background:rgba(255,255,255,.42);width:5px"></i><i style="background:rgba(255,255,255,.42);width:5px"></i><i style="background:rgba(255,255,255,.42);width:5px"></i><i style="background:rgba(255,255,255,.42);width:5px"></i></div>
       <div class="counter">1 / 6 · AUTO-SCROLL · SWIPE</div>
-      <div class="ctarow" style="margin-top:9px">
-        <div class="cta pri">SUCCESS SCAN</div><div class="cta wa">WHATSAPP</div><div class="cta web inv">WEBINAR</div></div>
+      <div class="cta2" style="margin-top:9px"><div class="shine"></div>
+        <div class="lbl">START YOUR SUCCESS SCAN <span>&rarr;</span></div>
+        <div class="sub">FROM &#8377;999 &middot; 90 MINUTES &middot; REPORT SAME DAY</div></div>
+      <div style="display:flex;gap:5px;margin-top:5px"><div class="ghost wa inv" style="flex:1">WhatsApp us</div><div class="ghost web inv" style="flex:1">Join the webinar</div></div>
+      <div class="trust inv"><span>&#10003; NO EXAM</span><span>&#10003; 64 ABILITIES</span><span>&#10003; EVIDENCE-BASED</span></div>
       <div class="scrollhint">⌄</div>
     </div>
   </div>
@@ -222,8 +246,11 @@ Nothing crops. See section D for why <code>cover</code> was wrong.</p></div>
     <div class="botbar">
       <div class="dots"><i style="background:#FF7301;width:14px"></i><i style="background:#cfd6e6;width:5px"></i></div>
       <div class="counter dark">SWIPE · 1 / 2</div>
-      <div class="ctarow" style="margin-top:8px">
-        <div class="cta pri">SUCCESS SCAN</div><div class="cta wa">WHATSAPP</div><div class="cta web">WEBINAR</div></div>
+      <div class="cta2" style="margin-top:8px"><div class="shine"></div>
+        <div class="lbl">START YOUR SUCCESS SCAN <span>&rarr;</span></div>
+        <div class="sub">FROM &#8377;999 &middot; 90 MINUTES &middot; REPORT SAME DAY</div></div>
+      <div style="display:flex;gap:5px;margin-top:5px"><div class="ghost wa" style="flex:1">WhatsApp us</div><div class="ghost web" style="flex:1">Join the webinar</div></div>
+      <div class="trust"><span>&#10003; NO EXAM</span><span>&#10003; 64 ABILITIES</span><span>&#10003; EVIDENCE-BASED</span></div>
       <div class="scrollhint dark">⌄</div>
     </div>
   </div>
@@ -258,8 +285,11 @@ Nothing crops. See section D for why <code>cover</code> was wrong.</p></div>
     <div class="botbar">
       <div class="dots"><i style="background:#cfd6e6;width:5px"></i><i style="background:#FF7301;width:14px"></i></div>
       <div class="counter dark">SWIPE · 2 / 2</div>
-      <div class="ctarow" style="margin-top:8px">
-        <div class="cta pri">SUCCESS SCAN</div><div class="cta wa">WHATSAPP</div><div class="cta web">WEBINAR</div></div>
+      <div class="cta2" style="margin-top:8px"><div class="shine"></div>
+        <div class="lbl">START YOUR SUCCESS SCAN <span>&rarr;</span></div>
+        <div class="sub">FROM &#8377;999 &middot; 90 MINUTES &middot; REPORT SAME DAY</div></div>
+      <div style="display:flex;gap:5px;margin-top:5px"><div class="ghost wa" style="flex:1">WhatsApp us</div><div class="ghost web" style="flex:1">Join the webinar</div></div>
+      <div class="trust"><span>&#10003; NO EXAM</span><span>&#10003; 64 ABILITIES</span><span>&#10003; EVIDENCE-BASED</span></div>
       <div class="scrollhint dark">⌄</div>
     </div>
   </div>
@@ -288,8 +318,10 @@ Nothing crops. See section D for why <code>cover</code> was wrong.</p></div>
   </div>
   <div style="position:absolute;left:0;right:0;bottom:0;padding:8px 11px;
     background:linear-gradient(transparent,var(--cream) 34%)">
-    <div class="ctarow"><div class="cta pri">SUCCESS SCAN</div><div class="cta wa">WHATSAPP</div>
-      <div class="cta web">WEBINAR</div></div></div>
+    <div class="cta2"><div class="shine"></div>
+        <div class="lbl">START YOUR SUCCESS SCAN <span>&rarr;</span></div>
+        <div class="sub">FROM &#8377;999 &middot; 90 MINUTES &middot; REPORT SAME DAY</div></div>
+    <div style="display:flex;gap:5px;margin-top:5px"><div class="ghost wa" style="flex:1">WhatsApp us</div><div class="ghost web" style="flex:1">Join the webinar</div></div></div>
 </div></div>
 <p class="cap">Tabs stick under the logo. Each is a real URL — <code>/regular</code>, <code>/neet-jee</code>,
 <code>/civil-services</code>, <code>/institutions</code>.</p></div>
