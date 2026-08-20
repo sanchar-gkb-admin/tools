@@ -1,0 +1,535 @@
+<title>YASHHO · 7-Chakra Activation — Storyboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* storefront live tokens (src/app/globals.css) */
+  --bg:#0a1626; --surface:#10223c; --forest:#081325; --forest2:#112644;
+  --accent:#f5821f; --accent-strong:#ff9b3d; --accent-bright:#ffb259;
+  --leaf:#3f93e0; --fg:#eaf1f9; --muted:#8ea3bd; --line:#1d3354;
+  /* brochure v29 palette — sampled from the PDF pixels */
+  --bb:#00288f; --bo:#f85000; --bbg:#ffffff; --bsoft:#f2f6fd;
+  --bline:#d8e2f5; --bmute:#5b6b86;
+  /* chakra hues */
+  --c1:#e23b2e; --c2:#f57c1f; --c3:#f5c518; --c4:#35b16a;
+  --c5:#2f8fd6; --c6:#4b4fc4; --c7:#8b5cc7;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;
+     -webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:44px 22px 90px}
+h1{font-size:clamp(28px,5vw,46px);font-weight:900;letter-spacing:-.02em;margin:0 0 6px;text-transform:uppercase}
+h1 .o{color:var(--accent)}
+h2{font-size:15px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+   margin:0 0 4px;display:flex;align-items:center;gap:10px}
+h2 .n{background:var(--accent);color:#1a0e02;border-radius:6px;padding:2px 8px;font-size:13px}
+h3{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf);margin:0 0 14px}
+.sub{color:var(--muted);font-size:15px;max-width:74ch;margin:0 0 8px}
+.cap{color:var(--muted);font-size:13px;max-width:52ch;margin:0 0 16px;line-height:1.45}
+.rule{height:1px;background:var(--line);margin:46px 0 34px;border:0}
+.sec{margin:52px 0 0}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+     padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--forest)}
+
+/* ---- the law card ---- */
+.law{background:linear-gradient(160deg,var(--forest2),var(--forest));border:1px solid var(--line);
+     border-left:4px solid var(--accent);border-radius:16px;padding:26px 28px;margin:26px 0 0}
+.law .k{font-size:11px;font-weight:900;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.law .b{font-size:clamp(19px,2.6vw,27px);font-weight:800;margin:10px 0 12px;line-height:1.3}
+.law .d{color:var(--accent-bright);font-size:16px;font-weight:600}
+.law .t{color:var(--muted);font-size:13px;font-style:italic;margin-top:3px}
+
+/* ---- flow strip ---- */
+.flow{display:flex;gap:14px;align-items:flex-start;overflow-x:auto;padding:8px 2px 22px}
+.step{flex:0 0 auto;position:relative}
+.arw{flex:0 0 auto;align-self:center;color:var(--accent);font-size:26px;font-weight:900;padding:0 2px;margin-top:150px}
+
+/* ---- device frames ---- */
+.phone{width:270px;background:#05101f;border:9px solid #0c1a2e;border-radius:34px;
+       box-shadow:0 24px 60px rgba(0,0,0,.55);position:relative;overflow:hidden}
+.phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:20px;
+              background:#0c1a2e;border-radius:0 0 14px 14px;z-index:5}
+.pv{height:520px;position:relative;overflow:hidden;background:var(--bg)}
+.pv.light{background:var(--bbg)}
+.browser{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--forest);
+         box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.bchrome{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#0b1a2f;border-bottom:1px solid var(--line)}
+.bchrome i{width:10px;height:10px;border-radius:50%;display:block}
+.bchrome .u{flex:1;background:#08182c;border:1px solid var(--line);border-radius:999px;padding:4px 12px;
+            font-size:11px;color:var(--muted);margin-left:6px}
+
+/* ---- brochure page chrome (v29) ---- */
+.b29{height:100%;background:var(--bbg);color:var(--bb);display:flex;flex-direction:column;
+     font-size:11px;position:relative}
+.b29 .topbar{height:7px;background:var(--bb);position:relative;flex:0 0 auto}
+.b29 .topbar:after{content:"";position:absolute;right:0;top:0;width:38%;height:100%;background:var(--bo);
+                   border-bottom-left-radius:7px}
+.b29 .hd{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 13px 0;flex:0 0 auto}
+.logo{font-weight:900;font-size:17px;letter-spacing:-.03em;line-height:1}
+.logo .a{color:var(--bo)} .logo .b{color:var(--bb)}
+.logo small{display:block;color:var(--bb);font-size:6px;font-weight:800;letter-spacing:.01em;margin-top:2px}
+.hd .r{text-align:right;color:var(--bb);font-weight:900;font-size:8px;letter-spacing:.04em;line-height:1.25}
+.b29 .mid{flex:1 1 auto;padding:8px 13px 4px;overflow:hidden}
+.ttl{font-weight:900;font-size:20px;line-height:1.05;letter-spacing:-.02em;text-align:center;margin:6px 0 3px}
+.ttl .o{color:var(--bo)}
+.dek{text-align:center;color:var(--bmute);font-size:8.5px;line-height:1.35;margin:0 0 8px;font-weight:600}
+.star{text-align:center;color:var(--bo);font-size:9px;margin:2px 0}
+.b29 .ft{flex:0 0 auto;background:var(--bb);color:#fff;padding:8px 12px;display:flex;gap:9px;align-items:center}
+.ft .ic{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);flex:0 0 auto;
+        display:flex;align-items:center;justify-content:center;font-size:11px}
+.ft .k{color:var(--bo);font-weight:900;font-size:8px;letter-spacing:.02em}
+.ft .v{font-size:7.5px;font-weight:600;line-height:1.3;opacity:.95}
+
+/* ---- chakra column ---- */
+.col{display:flex;flex-direction:column;gap:3px;position:relative}
+.node{display:flex;align-items:center;gap:7px;position:relative;z-index:2}
+.dot{width:19px;height:19px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+     font-size:8px;font-weight:900;color:#fff;position:relative}
+.dot.on{box-shadow:0 0 0 2.5px rgba(255,255,255,.9),0 0 11px 2px currentColor}
+.dot.off{background:#c9d3e3!important;color:#7c8ba3;box-shadow:0 0 0 2.5px #eef2f9}
+.nm{font-weight:900;font-size:9px;letter-spacing:.03em;color:var(--bb);line-height:1.15}
+.nm .sk{display:block;font-weight:600;font-size:6.5px;letter-spacing:.06em;color:var(--bmute);font-style:italic}
+.ab{font-size:6.5px;color:var(--bmute);font-weight:600;line-height:1.2;margin-left:auto;text-align:right;max-width:112px}
+.node.dim .nm{color:#94a3b8} .node.dim .ab{color:#aab6c7}
+.spine{position:absolute;left:9px;top:8px;bottom:8px;width:3px;border-radius:2px;z-index:1}
+.zone{display:flex;align-items:center;gap:6px;margin:5px 0 3px}
+.zone b{font-size:7px;font-weight:900;letter-spacing:.16em;color:var(--bo)}
+.zone i{flex:1;height:1px;background:var(--bline);display:block}
+
+/* ---- bands / dials ---- */
+.band{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.band .l{font-size:7.5px;font-weight:900;color:var(--bb);width:60px;flex:0 0 auto;letter-spacing:.02em}
+.meter{flex:1;height:7px;border-radius:4px;background:#e6ecf7;overflow:hidden;position:relative}
+.meter span{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.band .p{font-size:7px;font-weight:900;width:52px;text-align:right;flex:0 0 auto;letter-spacing:.03em}
+
+/* ---- misc atoms ---- */
+.card{background:var(--bsoft);border:1px solid var(--bline);border-radius:8px;padding:7px 9px;margin:6px 0}
+.card .h{font-size:8.5px;font-weight:900;color:var(--bb);margin-bottom:2px}
+.card .t{font-size:7.5px;color:var(--bmute);font-weight:600;line-height:1.35}
+.pill{display:inline-block;background:var(--bb);color:#fff;font-size:7px;font-weight:900;letter-spacing:.1em;
+      padding:3px 7px;border-radius:999px}
+.pill.o{background:var(--bo)}
+.cta{background:linear-gradient(180deg,var(--bo),#d94400);color:#fff;text-align:center;font-weight:900;
+     font-size:9px;letter-spacing:.05em;padding:8px;border-radius:7px;margin-top:7px}
+
+/* ---- dark campaign screens ---- */
+.dk{height:100%;background:radial-gradient(ellipse 90% 55% at 50% 12%,#142a4a 0%,var(--bg) 62%);
+    color:var(--fg);display:flex;flex-direction:column;padding:22px 15px 14px;position:relative}
+.dk .kick{font-size:8px;font-weight:900;letter-spacing:.24em;color:var(--accent);text-transform:uppercase}
+.dk .big{font-size:21px;font-weight:900;line-height:1.1;letter-spacing:-.02em;margin:8px 0 6px}
+.dk .big em{font-style:normal;color:var(--accent)}
+.dk .p{font-size:9.5px;color:var(--muted);line-height:1.45;font-weight:500}
+.dbtn{background:linear-gradient(180deg,var(--accent-strong),var(--accent));color:#1a0e02;text-align:center;
+      font-weight:900;font-size:10px;letter-spacing:.04em;padding:10px;border-radius:8px}
+.dcol .nm{color:var(--fg)} .dcol .ab{color:var(--muted)}
+.dcol .node.dim .nm{color:#5b6f8c} .dcol .dot.off{background:#22364f!important;color:#5b6f8c;box-shadow:0 0 0 2.5px #16273f}
+
+/* ---- reference table ---- */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0 0}
+th{text-align:left;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+   padding:9px 10px;border-bottom:1px solid var(--line);font-weight:900}
+td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--fg);vertical-align:top}
+td.m{color:var(--muted);font-size:12px}
+tr:last-child td{border-bottom:0}
+.sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:18px}
+.note{background:var(--forest);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+.note b{color:var(--accent-strong);font-size:12px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.lab{position:absolute;top:-11px;left:12px;background:var(--accent);color:#1a0e02;font-size:9px;font-weight:900;
+     letter-spacing:.12em;padding:3px 9px;border-radius:999px;z-index:6;text-transform:uppercase}
+</style>
+
+<div class="wrap">
+
+<span class="tag">YASHHO · Class 5–7 Marks Booster · brochure v29 + campaign</span>
+<h1>7-Chakra <span class="o">Activation</span></h1>
+<p class="sub">A narrative layer over the existing <b>Roots → Trunk → Fruits</b> model. Measurement is unchanged —
+same AACE64 scan, same four gap bands. Only the explanation changes.</p>
+
+<div class="law">
+  <div class="k">The Root Rule</div>
+  <div class="b">A child performs at the level of their lowest <span style="color:var(--accent)">activated</span> centre —
+  not their highest ability.</div>
+  <div class="d">जड़ बंद है, तो ऊपर कुछ नहीं खुलेगा।</div>
+  <div class="t">If the root is dormant, nothing above it can open.</div>
+</div>
+
+<div class="grid2">
+  <div class="note"><b>Why this makes ASLI64 necessary</b>
+  <p>If performance were an <i>average</i>, a parent could guess where to intervene and tuition would be a fair bet.
+  Because it is a <i>minimum</i>, you cannot know where to act without measuring all 64. The Root Rule is what turns
+  the ₹4,999 scan from “more detail” into “the only way to find the floor”.</p></div>
+  <div class="note"><b>Why “activation”, not “unblocking”</b>
+  <p>“Blocked” is a deficit frame — it says something is wrong with the child, fighting p4’s promise to reduce blame
+  and pressure. <b>Dormant → activated</b> says nothing is broken, something is latent. Same diagnosis, opposite
+  emotional charge. And a seed is never blocked — it is dormant until fed. That is already your tree.</p></div>
+</div>
+
+<hr class="rule">
+
+<!-- ============ THE MODEL ============ -->
+<div class="sec">
+<h2><span class="n">◆</span> The model — 3 + 3 + 1 onto your existing tree</h2>
+<p class="cap">Seven centres land exactly on Roots / Trunk / Fruits. The tree is not replaced — it gains resolution.</p>
+
+<table>
+<tr><th style="width:78px">Zone</th><th style="width:150px">Centre</th><th style="width:118px">Sanskrit</th>
+    <th>Top-15 abilities it holds</th><th style="width:118px">AACE family</th></tr>
+<tr><td class="m"><b style="color:var(--accent)">FRUITS</b></td>
+    <td><span class="sw" style="background:var(--c7)"></span><b>⑦ FRUITION</b></td><td class="m"><i>Sahasrara</i></td>
+    <td class="m">— outcome: marks · ranks · jobs/careers · success · happiness</td><td class="m">outcome</td></tr>
+<tr><td class="m"><b style="color:var(--leaf)">TRUNK</b><br><span style="font-size:11px">= SKLP</span></td>
+    <td><span class="sw" style="background:var(--c6)"></span><b>⑥ INSIGHT</b></td><td class="m"><i>Ajna</i></td>
+    <td>Concentration · Memory · Comprehension · Problem-Solving</td><td class="m">Aptitude (12)</td></tr>
+<tr><td></td><td><span class="sw" style="background:var(--c5)"></span><b>⑤ EXPRESSION</b></td><td class="m"><i>Vishuddha</i></td>
+    <td>Structure–Written · Grammar &amp; Punctuation · Legibility · Attention to Detail</td><td class="m">Communication (21)</td></tr>
+<tr><td></td><td><span class="sw" style="background:var(--c4)"></span><b>④ BALANCE</b></td><td class="m"><i>Anahata</i></td>
+    <td>Self-Regulation</td><td class="m">Attitude</td></tr>
+<tr><td class="m"><b style="color:#8b6a3a">ROOTS</b><br><span style="font-size:11px">invisible</span></td>
+    <td><span class="sw" style="background:var(--c3)"></span><b>③ WILL</b></td><td class="m"><i>Manipura</i></td>
+    <td>Confidence</td><td class="m">Attitude</td></tr>
+<tr><td></td><td><span class="sw" style="background:var(--c2)"></span><b>② CURIOSITY</b></td><td class="m"><i>Svadhisthana</i></td>
+    <td>Curiosity · Growth Mindset</td><td class="m">Attitude (15)</td></tr>
+<tr><td></td><td><span class="sw" style="background:var(--c1)"></span><b>① FOUNDATION</b></td><td class="m"><i>Muladhara</i></td>
+    <td>Discipline · Time Management · Mental Endurance</td><td class="m">Execution (16)</td></tr>
+</table>
+<p class="cap" style="margin-top:12px">All 15 named abilities placed, none duplicated. Families are mapped by
+<i>direction</i>, not headcount — only the Top 15 are named in v29, so exact per-centre counts need the full 64 list.</p>
+</div>
+
+<hr class="rule">
+
+<!-- ============ FLOW A — BROCHURE MOBILE ============ -->
+<div class="sec">
+<h2><span class="n">A</span> Brochure — 3 new mobile pages</h2>
+<p class="cap">Inserted after the existing p5 “From Roots to Fruits”. Flows into the existing Ability Gap (p9)
+and Success Hole (p12) pages. 360×640, v29 template.</p>
+
+<div class="flow">
+
+<!-- B1 -->
+<div class="step"><span class="lab">01 · B1</span>
+<div class="phone"><div class="notch"></div><div class="pv light"><div class="b29">
+  <div class="topbar"></div>
+  <div class="hd"><div class="logo"><span class="a">YASHH</span><span class="b">O</span><small>World's First Success Doctor</small></div>
+       <div class="r">CLASS 5–7<br>MARKS BOOSTER</div></div>
+  <div class="mid">
+    <div class="ttl">The Seven <span class="o">Centres</span></div>
+    <div class="dek">Your child's energy rises through seven centres —<br>from invisible roots to visible fruits.</div>
+    <div class="col" style="margin-top:6px">
+      <div class="spine" style="background:linear-gradient(180deg,var(--c7),var(--c6),var(--c5),var(--c4),var(--c3),var(--c2),var(--c1))"></div>
+      <div class="zone"><b>FRUITS</b><i></i></div>
+      <div class="node"><div class="dot on" style="background:var(--c7);color:var(--c7)">7</div>
+        <div class="nm">FRUITION<span class="sk">Sahasrara</span></div>
+        <div class="ab">marks · ranks · career<br>success · happiness</div></div>
+      <div class="zone"><b>TRUNK · SKLP</b><i></i></div>
+      <div class="node"><div class="dot on" style="background:var(--c6);color:var(--c6)">6</div>
+        <div class="nm">INSIGHT<span class="sk">Ajna</span></div>
+        <div class="ab">concentration · memory<br>comprehension · solving</div></div>
+      <div class="node"><div class="dot on" style="background:var(--c5);color:var(--c5)">5</div>
+        <div class="nm">EXPRESSION<span class="sk">Vishuddha</span></div>
+        <div class="ab">structure–written · grammar<br>legibility · detail</div></div>
+      <div class="node"><div class="dot on" style="background:var(--c4);color:var(--c4)">4</div>
+        <div class="nm">BALANCE<span class="sk">Anahata</span></div>
+        <div class="ab">self-regulation</div></div>
+      <div class="zone"><b>ROOTS · 64 AACE</b><i></i></div>
+      <div class="node"><div class="dot on" style="background:var(--c3);color:var(--c3)">3</div>
+        <div class="nm">WILL<span class="sk">Manipura</span></div>
+        <div class="ab">confidence</div></div>
+      <div class="node"><div class="dot on" style="background:var(--c2);color:var(--c2)">2</div>
+        <div class="nm">CURIOSITY<span class="sk">Svadhisthana</span></div>
+        <div class="ab">curiosity · growth mindset</div></div>
+      <div class="node"><div class="dot on" style="background:var(--c1);color:var(--c1)">1</div>
+        <div class="nm">FOUNDATION<span class="sk">Muladhara</span></div>
+        <div class="ab">discipline · time<br>mental endurance</div></div>
+    </div>
+    <div class="star">★</div>
+    <div style="text-align:center;font-size:8px;font-weight:900;color:var(--bb)">SEVEN CENTRES. <span style="color:var(--bo)">ONE CHILD.</span></div>
+  </div>
+  <div class="ft"><div class="ic">💡</div><div><div class="k">AACE64 Ability • Concentration</div>
+    <div class="v">Concentration helps learning, accuracy and marks become more dependable.</div></div></div>
+</div></div></div>
+<p class="cap" style="width:270px;margin-top:12px">Establishes the column and the 3+3+1 zoning.
+Same tree, higher resolution.</p></div>
+
+<div class="arw">→</div>
+
+<!-- B2 -->
+<div class="step"><span class="lab">02 · B2</span>
+<div class="phone"><div class="notch"></div><div class="pv light"><div class="b29">
+  <div class="topbar"></div>
+  <div class="hd"><div class="logo"><span class="a">YASHH</span><span class="b">O</span><small>World's First Success Doctor</small></div>
+       <div class="r">CLASS 5–7<br>MARKS BOOSTER</div></div>
+  <div class="mid">
+    <div class="ttl">The <span class="o">Root Rule</span></div>
+    <div class="dek">Same child. Same effort. Different marks.<br>One centre is still dormant.</div>
+    <div style="display:flex;gap:7px;margin-top:7px">
+      <div style="flex:1;border:1px solid var(--bline);border-radius:8px;padding:6px 5px;background:#f6fbf7">
+        <div style="text-align:center"><span class="pill" style="background:#35b16a">ALL ACTIVATED</span></div>
+        <div class="col" style="margin-top:6px;gap:2px">
+          <div class="spine" style="left:7px;width:2.5px;background:linear-gradient(180deg,var(--c7),var(--c1))"></div>
+          <div class="node"><div class="dot on" style="width:15px;height:15px;font-size:7px;background:var(--c7);color:var(--c7)">7</div><div class="nm" style="font-size:7.5px">FRUITION</div></div>
+          <div class="node"><div class="dot on" style="width:15px;height:15px;font-size:7px;background:var(--c6);color:var(--c6)">6</div><div class="nm" style="font-size:7.5px">INSIGHT</div></div>
+          <div class="node"><div class="dot on" style="width:15px;height:15px;font-size:7px;background:var(--c5);color:var(--c5)">5</div><div class="nm" style="font-size:7.5px">EXPRESSION</div></div>
+          <div class="node"><div class="dot on" style="width:15px;height:15px;font-size:7px;background:var(--c4);color:var(--c4)">4</div><div class="nm" style="font-size:7.5px">BALANCE</div></div>
+          <div class="node"><div class="dot on" style="width:15px;height:15px;font-size:7px;background:var(--c3);color:var(--c3)">3</div><div class="nm" style="font-size:7.5px">WILL</div></div>
+          <div class="node"><div class="dot on" style="width:15px;height:15px;font-size:7px;background:var(--c2);color:var(--c2)">2</div><div class="nm" style="font-size:7.5px">CURIOSITY</div></div>
+          <div class="node"><div class="dot on" style="width:15px;height:15px;font-size:7px;background:var(--c1);color:var(--c1)">1</div><div class="nm" style="font-size:7.5px">FOUNDATION</div></div>
+        </div>
+        <div style="text-align:center;margin-top:6px;font-size:14px;font-weight:900;color:#2e9e5b">88%</div>
+      </div>
+      <div style="flex:1;border:1px solid var(--bline);border-radius:8px;padding:6px 5px;background:#fdf7f5">
+        <div style="text-align:center"><span class="pill" style="background:#98a6bb">① DORMANT</span></div>
+        <div class="col" style="margin-top:6px;gap:2px">
+          <div class="spine" style="left:7px;width:2.5px;background:linear-gradient(180deg,#d4dce9 84%,var(--c1))"></div>
+          <div class="node dim"><div class="dot off" style="width:15px;height:15px;font-size:7px">7</div><div class="nm" style="font-size:7.5px">FRUITION</div></div>
+          <div class="node dim"><div class="dot off" style="width:15px;height:15px;font-size:7px">6</div><div class="nm" style="font-size:7.5px">INSIGHT</div></div>
+          <div class="node dim"><div class="dot off" style="width:15px;height:15px;font-size:7px">5</div><div class="nm" style="font-size:7.5px">EXPRESSION</div></div>
+          <div class="node dim"><div class="dot off" style="width:15px;height:15px;font-size:7px">4</div><div class="nm" style="font-size:7.5px">BALANCE</div></div>
+          <div class="node dim"><div class="dot off" style="width:15px;height:15px;font-size:7px">3</div><div class="nm" style="font-size:7.5px">WILL</div></div>
+          <div class="node dim"><div class="dot off" style="width:15px;height:15px;font-size:7px">2</div><div class="nm" style="font-size:7.5px">CURIOSITY</div></div>
+          <div class="node"><div class="dot off" style="width:15px;height:15px;font-size:7px">1</div><div class="nm" style="font-size:7.5px;color:#98a6bb">FOUNDATION</div></div>
+        </div>
+        <div style="text-align:center;margin-top:6px;font-size:14px;font-weight:900;color:#98a6bb">54%</div>
+      </div>
+    </div>
+    <div class="card" style="background:#fff4ee;border-color:#f9c9b0;margin-top:7px">
+      <div class="h" style="color:var(--bo)">THE ROOT RULE</div>
+      <div class="t" style="color:var(--bb);font-weight:800">A child performs at the level of their lowest
+      <b style="color:var(--bo)">activated</b> centre — not their highest ability.</div>
+    </div>
+  </div>
+  <div class="ft"><div class="ic">🎯</div><div><div class="k">AACE64 Ability • Discipline</div>
+    <div class="v">Discipline builds the consistency every centre above it depends on.</div></div></div>
+</div></div></div>
+<p class="cap" style="width:270px;margin-top:12px">The gate, shown not told. Identical effort in,
+different marks out.</p></div>
+
+<div class="arw">→</div>
+
+<!-- B3 -->
+<div class="step"><span class="lab">03 · B3</span>
+<div class="phone"><div class="notch"></div><div class="pv light"><div class="b29">
+  <div class="topbar"></div>
+  <div class="hd"><div class="logo"><span class="a">YASHH</span><span class="b">O</span><small>World's First Success Doctor</small></div>
+       <div class="r">CLASS 5–7<br>MARKS BOOSTER</div></div>
+  <div class="mid">
+    <div class="ttl">Which Centre Is <span class="o">Dormant?</span></div>
+    <div class="dek">ASLI64 reads all 64 abilities and shows<br>the activation state of every centre.</div>
+    <div style="margin-top:8px">
+      <div class="band"><div class="l">⑦ FRUITION</div><div class="meter"><span style="width:46%;background:#c9d3e3"></span></div><div class="p" style="color:#98a6bb">CAPPED</div></div>
+      <div class="band"><div class="l">⑥ INSIGHT</div><div class="meter"><span style="width:96%;background:var(--c6)"></span></div><div class="p" style="color:#2e9e5b">4% · ACTIVE</div></div>
+      <div class="band"><div class="l">⑤ EXPRESSION</div><div class="meter"><span style="width:22%;background:#c9d3e3"></span></div><div class="p" style="color:var(--bo)">18% · DORMANT</div></div>
+      <div class="band"><div class="l">④ BALANCE</div><div class="meter"><span style="width:92%;background:var(--c4)"></span></div><div class="p" style="color:#2e9e5b">5% · ACTIVE</div></div>
+      <div class="band"><div class="l">③ WILL</div><div class="meter"><span style="width:88%;background:var(--c3)"></span></div><div class="p" style="color:#2f8fd6">7% · ACTIVATING</div></div>
+      <div class="band"><div class="l">② CURIOSITY</div><div class="meter"><span style="width:95%;background:var(--c2)"></span></div><div class="p" style="color:#2e9e5b">4% · ACTIVE</div></div>
+      <div class="band"><div class="l">① FOUNDATION</div><div class="meter"><span style="width:90%;background:var(--c1)"></span></div><div class="p" style="color:#2e9e5b">5% · ACTIVE</div></div>
+    </div>
+    <div class="card" style="background:#fff4ee;border-color:#f9c9b0">
+      <div class="h" style="color:var(--bo)">THIS IS WHY SHE KNOWS IT BUT DOESN'T SCORE IT</div>
+      <div class="t">Insight is wide awake. <b style="color:var(--bb)">Expression is dormant</b> — so what she
+      understands never reaches the answer sheet. Her ceiling sits at centre ⑤.</div>
+    </div>
+    <div class="cta">ACTIVATE CENTRE ⑤ FIRST →</div>
+  </div>
+  <div class="ft"><div class="ic">📝</div><div><div class="k">AACE64 Ability • Structure — Written</div>
+    <div class="v">Clear structure helps knowledge become marks more effectively.</div></div></div>
+</div></div></div>
+<p class="cap" style="width:270px;margin-top:12px">Same four gap bands as p9 — renamed, not re-measured.
+Hands off to the Ability Gap page.</p></div>
+
+</div>
+</div>
+
+<hr class="rule">
+
+<!-- ============ DESKTOP ============ -->
+<div class="sec">
+<h2><span class="n">A·d</span> Desktop — yashho.com section</h2>
+<p class="cap">The same three beats as one scrolling section on the storefront. Dark theme, live tokens.</p>
+<div class="browser" style="max-width:900px">
+  <div class="bchrome"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+    <div class="u">yashho.com/marks-booster#activation</div></div>
+  <div style="background:radial-gradient(ellipse 80% 60% at 50% 0%,#142a4a,var(--bg) 65%);padding:34px 38px 38px">
+    <div style="font-size:10px;font-weight:900;letter-spacing:.24em;color:var(--accent);text-transform:uppercase">The Root Rule</div>
+    <div style="font-size:30px;font-weight:900;line-height:1.1;letter-spacing:-.02em;margin:10px 0 22px;max-width:19ch">
+      Nothing is missing.<br><span style="color:var(--accent)">Something is dormant.</span></div>
+    <div style="display:grid;grid-template-columns:236px 1fr;gap:30px;align-items:start">
+      <div class="col dcol">
+        <div class="spine" style="background:linear-gradient(180deg,var(--c7),var(--c6),#2b3f5c 40%,#2b3f5c 56%,var(--c3),var(--c2),var(--c1))"></div>
+        <div class="node"><div class="dot on" style="background:var(--c7);color:var(--c7)">7</div><div class="nm">FRUITION<span class="sk">Sahasrara</span></div></div>
+        <div class="node"><div class="dot on" style="background:var(--c6);color:var(--c6)">6</div><div class="nm">INSIGHT<span class="sk">Ajna</span></div></div>
+        <div class="node dim"><div class="dot off">5</div><div class="nm">EXPRESSION<span class="sk">Vishuddha</span></div></div>
+        <div class="node"><div class="dot on" style="background:var(--c4);color:var(--c4)">4</div><div class="nm">BALANCE<span class="sk">Anahata</span></div></div>
+        <div class="node"><div class="dot on" style="background:var(--c3);color:var(--c3)">3</div><div class="nm">WILL<span class="sk">Manipura</span></div></div>
+        <div class="node"><div class="dot on" style="background:var(--c2);color:var(--c2)">2</div><div class="nm">CURIOSITY<span class="sk">Svadhisthana</span></div></div>
+        <div class="node"><div class="dot on" style="background:var(--c1);color:var(--c1)">1</div><div class="nm">FOUNDATION<span class="sk">Muladhara</span></div></div>
+      </div>
+      <div>
+        <p style="color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 16px;max-width:52ch">
+          When a centre is activated, energy flows freely — and the child is unleashed into new possibilities of being.
+          When one is dormant, everything above it is capped, however strong it is.</p>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px">
+          <span class="tag" style="border-color:#2e9e5b;color:#5fd08c">0–5% ACTIVATED</span>
+          <span class="tag" style="border-color:#2f8fd6;color:#6bb6ea">5.1–10% ACTIVATING</span>
+          <span class="tag" style="border-color:#c07a2a;color:#e0a45e">10.1–15% LOW</span>
+          <span class="tag" style="border-color:#5b6f8c;color:#8ea3bd">15.1–20% DORMANT</span>
+        </div>
+        <div style="display:flex;gap:10px"><div class="dbtn" style="padding:12px 26px">FIND THE DORMANT CENTRE — ASLI64 ₹4,999</div></div>
+        <p style="color:var(--muted);font-size:12px;margin:12px 0 0">
+          <b style="color:var(--accent-strong)">SARVASHAKTA</b> = all seven activated.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="rule">
+
+<!-- ============ FLOW B — CAMPAIGN ============ -->
+<div class="sec">
+<h2><span class="n">B</span> Campaign — hero + 3-beat reel</h2>
+<p class="cap">Weighted 1 : 2 : 1 to the middle beat, per the UGC standard. Storefront dark theme.</p>
+
+<div class="flow">
+
+<!-- H1 -->
+<div class="step"><span class="lab">04 · H1 hero</span>
+<div class="phone"><div class="notch"></div><div class="pv"><div class="dk">
+  <div class="kick">The Root Rule</div>
+  <div class="big">Nothing is missing.<br><em>Something is dormant.</em></div>
+  <div class="p">Seven centres carry your child's energy from effort to marks. The lowest one sets the ceiling.</div>
+  <div class="col dcol" style="margin:14px 0 0;flex:1">
+    <div class="spine" style="background:linear-gradient(180deg,var(--c7),var(--c6),#22364f 38%,#22364f 54%,var(--c3),var(--c2),var(--c1))"></div>
+    <div class="node"><div class="dot on" style="background:var(--c7);color:var(--c7)">7</div><div class="nm">FRUITION</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c6);color:var(--c6)">6</div><div class="nm">INSIGHT</div></div>
+    <div class="node dim"><div class="dot off">5</div><div class="nm">EXPRESSION</div><div class="ab" style="color:var(--accent)">dormant</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c4);color:var(--c4)">4</div><div class="nm">BALANCE</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c3);color:var(--c3)">3</div><div class="nm">WILL</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c2);color:var(--c2)">2</div><div class="nm">CURIOSITY</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c1);color:var(--c1)">1</div><div class="nm">FOUNDATION</div></div>
+  </div>
+  <div class="dbtn" style="margin-top:12px">FIND THE DORMANT CENTRE</div>
+</div></div></div>
+<p class="cap" style="width:270px;margin-top:12px">Reframes deficiency as latency. Removes blame,
+which p4 already promises.</p></div>
+
+<div class="arw">→</div>
+
+<!-- H2 -->
+<div class="step"><span class="lab">05 · H2 before</span>
+<div class="phone"><div class="notch"></div><div class="pv"><div class="dk" style="background:radial-gradient(ellipse 90% 50% at 50% 8%,#2a1b2e,var(--bg) 60%)">
+  <div class="kick" style="color:var(--muted)">Beat 1 · Before</div>
+  <div class="big" style="font-size:19px">“She studies all day.<br>The marks never move.”</div>
+  <div class="p" style="margin-top:10px">Extra tuition. Extra hours. Extra worry.<br>Nothing changes — because nothing found the floor.</div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center">
+    <div style="text-align:center;opacity:.6">
+      <div style="font-size:54px">📚</div>
+      <div style="font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.1em;margin-top:8px">EFFORT IN &nbsp;→&nbsp; ??? OUT</div></div>
+  </div>
+  <div style="border-top:1px solid var(--line);padding-top:9px;font-size:8.5px;color:var(--muted);font-weight:700">
+    ~4s · parent piece to camera</div>
+</div></div></div>
+<p class="cap" style="width:270px;margin-top:12px">The recognisable pain. No product yet.</p></div>
+
+<div class="arw">→</div>
+
+<!-- H3 -->
+<div class="step"><span class="lab">06 · H3 during</span>
+<div class="phone"><div class="notch"></div><div class="pv"><div class="dk">
+  <div class="kick">Beat 2 · During &nbsp;<span style="color:var(--muted)">— the long beat</span></div>
+  <div class="big" style="font-size:18px">The scan found<br><em>the floor.</em></div>
+  <div style="background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:11px;margin-top:11px">
+    <div style="font-size:8px;font-weight:900;letter-spacing:.14em;color:var(--leaf);margin-bottom:8px">ASLI64 · 64 ABILITIES READ</div>
+    <div class="band"><div class="l" style="color:var(--fg)">⑥ INSIGHT</div><div class="meter" style="background:#1b2c45"><span style="width:96%;background:var(--c6)"></span></div><div class="p" style="color:#5fd08c">4%</div></div>
+    <div class="band"><div class="l" style="color:var(--fg)">⑤ EXPRESSION</div><div class="meter" style="background:#1b2c45"><span style="width:22%;background:var(--accent)"></span></div><div class="p" style="color:var(--accent)">18%</div></div>
+    <div class="band"><div class="l" style="color:var(--fg)">④ BALANCE</div><div class="meter" style="background:#1b2c45"><span style="width:92%;background:var(--c4)"></span></div><div class="p" style="color:#5fd08c">5%</div></div>
+    <div class="band"><div class="l" style="color:var(--fg)">① FOUNDATION</div><div class="meter" style="background:#1b2c45"><span style="width:90%;background:var(--c1)"></span></div><div class="p" style="color:#5fd08c">5%</div></div>
+    <div style="border-top:1px solid var(--line);margin-top:9px;padding-top:8px;font-size:9px;color:var(--fg);font-weight:700;line-height:1.45">
+      She understands everything.<br><span style="color:var(--accent)">She cannot yet put it on paper.</span></div>
+  </div>
+  <div class="p" style="margin-top:10px;font-size:9px">Not weak. Not lazy. <b style="color:var(--accent-strong)">Centre ⑤ is dormant</b> — and it was capping the six above it.</div>
+  <div style="margin-top:auto;border-top:1px solid var(--line);padding-top:9px;font-size:8.5px;color:var(--muted);font-weight:700">
+    ~8s · screen-record of the real report</div>
+</div></div></div>
+<p class="cap" style="width:270px;margin-top:12px">The double-length beat. Real report on screen —
+the proof, not a claim.</p></div>
+
+<div class="arw">→</div>
+
+<!-- H4 -->
+<div class="step"><span class="lab">07 · H4 after</span>
+<div class="phone"><div class="notch"></div><div class="pv"><div class="dk" style="background:radial-gradient(ellipse 90% 55% at 50% 10%,#1b3a2c,var(--bg) 62%)">
+  <div class="kick" style="color:#5fd08c">Beat 3 · After</div>
+  <div class="big" style="font-size:19px">Energy flows.<br><em style="color:#5fd08c">The ceiling lifts.</em></div>
+  <div class="col dcol" style="margin:12px 0 0;flex:1">
+    <div class="spine" style="background:linear-gradient(180deg,var(--c7),var(--c6),var(--c5),var(--c4),var(--c3),var(--c2),var(--c1))"></div>
+    <div class="node"><div class="dot on" style="background:var(--c7);color:var(--c7)">7</div><div class="nm">FRUITION</div><div class="ab" style="color:#5fd08c">marks · confidence</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c6);color:var(--c6)">6</div><div class="nm">INSIGHT</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c5);color:var(--c5)">5</div><div class="nm">EXPRESSION</div><div class="ab" style="color:#5fd08c">✓ activated</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c4);color:var(--c4)">4</div><div class="nm">BALANCE</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c3);color:var(--c3)">3</div><div class="nm">WILL</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c2);color:var(--c2)">2</div><div class="nm">CURIOSITY</div></div>
+    <div class="node"><div class="dot on" style="background:var(--c1);color:var(--c1)">1</div><div class="nm">FOUNDATION</div></div>
+  </div>
+  <div style="text-align:center;margin-top:10px;font-size:12px;font-weight:900;letter-spacing:.04em">
+    <span style="color:var(--accent)">SARVASHAKTA</span> <span style="color:var(--muted);font-size:9px">= all seven activated</span></div>
+  <div class="dbtn" style="margin-top:10px">START WITH ASLI64 · ₹4,999</div>
+</div></div></div>
+<p class="cap" style="width:270px;margin-top:12px">Closes on “new possibilities of being”, not on marks.
+Ties back to a word you already own.</p></div>
+
+</div>
+</div>
+
+<hr class="rule">
+
+<!-- ============ APPENDIX ============ -->
+<div class="sec">
+<h2><span class="n">◆</span> What changes, what doesn't</h2>
+<div class="grid2">
+  <div class="note"><b>Unchanged</b>
+  <p>AACE64 · the 64 abilities · the ASLI64/15/5 engines · all pricing · the four gap-band thresholds
+  (0–5 / 5.1–10 / 10.1–15 / 15.1–20) · benchmarks · the Roots→Trunk→Fruits tree · Success Hole.
+  <b style="color:var(--accent-strong)">Zero engineering cost.</b></p></div>
+  <div class="note"><b>New — creative only</b>
+  <p>3 brochure pages after p5 · 4 campaign frames · the band <i>names</i> (Activated / Activating / Low / Dormant)
+  · the Root Rule as stated copy · the 7-centre column as a reusable brand asset.</p></div>
+</div>
+
+<h3 style="margin-top:34px">Band rename — same thresholds, new vocabulary</h3>
+<table>
+<tr><th style="width:150px">v29 gap band</th><th style="width:190px">v29 label</th><th>Activation label</th><th>Meaning to a parent</th></tr>
+<tr><td class="m">0–5%</td><td class="m">Low performance leakage risk</td>
+    <td><span class="sw" style="background:#35b16a"></span><b>ACTIVATED</b></td><td class="m">Energy flows freely.</td></tr>
+<tr><td class="m">5.1–10%</td><td class="m">Moderate leakage risk</td>
+    <td><span class="sw" style="background:#2f8fd6"></span><b>ACTIVATING</b></td><td class="m">Opening — keep feeding it.</td></tr>
+<tr><td class="m">10.1–15%</td><td class="m">High leakage risk</td>
+    <td><span class="sw" style="background:#c07a2a"></span><b>LOW</b></td><td class="m">Beginning to cap what sits above.</td></tr>
+<tr><td class="m">15.1–20%</td><td class="m">Very high leakage risk</td>
+    <td><span class="sw" style="background:#8ea3bd"></span><b>DORMANT</b></td><td class="m">This is the ceiling. Start here.</td></tr>
+</table>
+
+<h3 style="margin-top:34px">Open decisions for Goutam</h3>
+<div class="grid2">
+  <div class="note"><b>1 · Tagline</b>
+  <p>v29 runs <i>SCAN • SHOW • STRENGTHEN • SUCCEED</i>. Activation suggests
+  <b style="color:var(--accent-strong)">SCAN • SHOW • ACTIVATE • SUCCEED</b>. Not applied here — your call,
+  since it touches every page.</p></div>
+  <div class="note"><b>2 · Order of ⑤ and ⑥</b>
+  <p>Classically Expression sits below Insight, so the Root Rule asserts a child cannot deepen understanding
+  without articulating it — which makes “fix comprehension first” wrong advice. A useful contrast against
+  tuition, or a fight you don’t want.</p></div>
+  <div class="note"><b>3 · Sanskrit subtitles</b>
+  <p>Shown throughout. They lift cleanly for institutional/CBSE decks without redrawing anything —
+  the English names carry the meaning alone.</p></div>
+  <div class="note"><b>4 · Per-centre ability counts</b>
+  <p>Only the Top 15 are named in v29. Exact counts per centre need the full 64 list before any number
+  goes on a page.</p></div>
+</div>
+</div>
+
+</div>
