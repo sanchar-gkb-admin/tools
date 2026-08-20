@@ -9,6 +9,8 @@
   --saffron:#FF7301; --saffron-dark:#D65E00; --saffron-tint:#FFE7D1;
   --cream:#FFFBF6; --ink:#191919; --ink-soft:#4A4A55; --line:#E7E1D8; --white:#fff;
   /* doc chrome */
+  /* rail heights: DERIVED from the CTA block, not guessed. hero = dots21+counter10+cta50+ghosts33+trust15+pad11 */
+  --rail-h:140px; --rail-tab-h:91px;
   --bg:#0a1626; --surface:#10223c; --forest:#081325; --dline:#1d3354; --fg:#eaf1f9; --muted:#8ea3bd;
 }
 *{box-sizing:border-box}
@@ -230,7 +232,7 @@ Nothing crops. See section D for why <code>cover</code> was wrong.</p></div>
     <div class="topbar"><div class="logo"><span class="a">YASHH</span><span class="b">O</span>
       <small>World's First Success Doctor</small></div><div class="burger">☰</div></div>
     <div class="vh dark">100dvh</div>
-    <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:88px">
+    <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:var(--rail-h)">
       <div class="eyebrow">The YASHHO Promise</div>
       <div class="h1c">Parents give love.<br>Schools and colleges teach.<br>
         <em>YASHHO boosts the 64 inner abilities.</em></div>
@@ -264,7 +266,7 @@ Nothing crops. See section D for why <code>cover</code> was wrong.</p></div>
   <div class="slide" style="background:var(--cream);padding-top:44px">
     <div class="topbar"><div class="logo"><span class="a">YASHH</span><span class="b">O</span></div>
       <div class="burger">☰</div></div>
-    <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:88px">
+    <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:var(--rail-h)">
       <div class="eyebrow">The YASHHO Promise</div>
       <div class="h1c" style="font-size:25px">SARVASHAKTA<br><em>64 × 6</em></div>
       <div class="body">The complete power of all 64 Success Abilities, mapped to 6 Career Pathways — one
@@ -304,7 +306,7 @@ Nothing crops. See section D for why <code>cover</code> was wrong.</p></div>
     <div class="logo"><span class="a">YASHH</span><span class="b">O</span></div><div class="burger">☰</div></div>
   <div class="tabs"><div class="tab on">REGULAR</div><div class="tab">NEET · JEE</div>
     <div class="tab">KAS · IAS</div><div class="tab">INSTITUTIONS</div></div>
-  <div style="overflow:hidden;flex:1;padding-top:9px">
+  <div style="overflow:hidden;flex:1;padding-top:9px;padding-bottom:var(--rail-tab-h)">
     <div class="pad"><div class="eyebrow">Group 1 · General Students</div>
       <div class="h1c" style="font-size:16px">Regular Students Streams</div></div>
     <div class="card"><div class="h">Class 5–7 Marks Booster</div>
