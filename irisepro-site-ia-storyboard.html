@@ -206,14 +206,14 @@ contains, in what order, and what comes off it. Everything below in sections A�
 <div class="note bad" style="margin-top:16px"><b>The CTA rail replaces all three lead-capture surfaces</b>
   <p>The site currently has an inline lead block, an always-on floating button and a timed popup. This storyboard mentions
   <b>none</b> of them — zero hits for FAB, floating, popup, modal or lead capture. It specifies <b>one persistent rail</b>,
-  and the rail does all three jobs: it is sticky and always present, and <b>“Join the webinar” is the second action</b> — a visitor signs up for a webinar, and their details
-  are captured as a consequence. All three surfaces come off.</p>
+  and the rail does all three jobs: it is sticky and always present, and <b>“Join the webinar” is the second action</b> — one name for it, on the button and everywhere else.
+  Details are captured as a consequence of joining, not as the thing being offered. All three surfaces come off.</p>
 </div>
 
 <table style="margin-top:18px">
 <tr><th>The three CTAs</th><th>Weight</th><th>Action</th><th>Mechanism</th></tr>
 <tr><td><b>Start Your Success Scan →</b><br><span class="m">FROM ₹999 · 90 MINUTES · REPORT SAME DAY</span></td><td class="m">primary</td><td><b>Direct purchase</b></td><td class="m">Picker, then checkout.</td></tr>
-<tr><td>Join the webinar</td><td class="m">ghost</td><td><b>Sign up for the webinar</b></td><td class="m">“The natural step for someone not ready to pay.” Registration already built and durable — <code>kas-lead.ts</code> persists to the Laravel webinar-register API.</td></tr>
+<tr><td>Join the webinar</td><td class="m">ghost</td><td><b>Join the webinar</b></td><td class="m">“The natural step for someone not ready to pay.” Registration already built and durable — <code>kas-lead.ts</code> persists to the Laravel webinar-register API.</td></tr>
 <tr><td>WhatsApp us</td><td class="m">ghost</td><td><b>Chat</b></td><td class="m"><code>wa.me</code> to 918062362056 with a <code>[ref:…]</code> tail — see §C3.</td></tr>
 </table>
 
