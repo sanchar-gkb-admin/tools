@@ -110,6 +110,17 @@ box-shadow:0 1px 3px rgba(3,49,149,.05)}
 .trust{display:flex;gap:8px;justify-content:center;font-size:6px;font-weight:800;letter-spacing:.06em;
   color:var(--ink-soft);margin-top:6px}
 .trust.inv{color:rgba(255,255,255,.75)}
+
+.badge{display:inline-block;font-size:6px;font-weight:900;letter-spacing:.1em;padding:3px 6px;border-radius:999px}
+.badge.live{background:#e8f6ee;color:#1c7a45}
+.badge.pre{background:var(--saffron-tint);color:var(--saffron-dark)}
+.badge.wait{background:var(--blue-tint);color:var(--blue)}
+.badge.na{background:#eceff4;color:#7c8ba3}
+.ack{display:flex;gap:6px;align-items:flex-start;background:#fff8f2;border:1px solid #f6c9a3;
+  border-radius:9px;padding:8px 9px;margin-top:7px}
+.ack .box{width:11px;height:11px;border:2px solid var(--saffron-dark);border-radius:3px;flex:0 0 auto;
+  margin-top:1px;background:var(--saffron-dark);color:#fff;font-size:8px;line-height:8px;text-align:center}
+.ack .t{font-size:6.5px;color:var(--ink);line-height:1.45;font-weight:600}
 /* desktop */
 .browser{border:1px solid var(--dline);border-radius:14px;overflow:hidden;background:#000;
 box-shadow:0 24px 60px rgba(0,0,0,.5)}
@@ -674,6 +685,172 @@ not exist yet. The CTA on every frame above lands on step 01.</p>
   <div class="note"><b>What is already true</b>
   <p>The amount is server-authoritative and a signed webhook is the only thing that mints an enrolment &mdash; an admin
   can never set <code>paid</code>. Those two properties are the reason this journey is safe to rebuild around.</p></div>
+</div>
+</div>
+
+
+<hr class="rule">
+
+<div class="sec">
+<h2><span class="n">F</span> Selling the whole catalogue — states, billing, preorders</h2>
+<p class="sub" style="font-size:13.5px">51 product rows. Two independent questions:
+<b>can it be bought</b>, and <b>can it be delivered today</b>. Keeping them separate is what lets
+everything sell without promising what is not built.</p>
+
+<h3>The four card states</h3>
+<div style="display:flex;gap:11px;flex-wrap:wrap;margin-top:6px">
+  <div style="width:196px">
+    <div class="card" style="margin:0;background:var(--white)">
+      <span class="badge live">✓ AVAILABLE NOW</span>
+      <div class="h" style="margin-top:6px">ASLI64 · Master Scan</div>
+      <div class="t">All 64 abilities · dedicated Yashodarshi<br><span class="pricetag">₹4,999</span> + GST</div>
+      <div class="cta2" style="margin-top:7px;padding:7px 6px 6px"><div class="shine"></div>
+        <div class="lbl" style="font-size:8px">START NOW <span>&rarr;</span></div></div></div>
+    <p class="cap" style="width:196px"><b style="color:#5fd08c">live</b> — buy and use immediately.</p></div>
+
+  <div style="width:196px">
+    <div class="card" style="margin:0;background:var(--white);border-color:var(--saffron)">
+      <span class="badge pre">◷ OPENS 15 OCT 2026</span>
+      <div class="h" style="margin-top:6px">All-India Face-Off LIVE</div>
+      <div class="t">Live competitive simulation<br><span class="pricetag">₹1,499</span> + GST · per session</div>
+      <div style="font-size:6px;color:var(--ink-soft);margin-top:4px;line-height:1.4">
+        Book now, first session 15 Oct. Full refund on request if the date moves.</div>
+      <div class="cta2" style="margin-top:6px;padding:7px 6px 6px"><div class="shine"></div>
+        <div class="lbl" style="font-size:8px">PRE-BOOK <span>&rarr;</span></div></div></div>
+    <p class="cap" style="width:196px"><b style="color:#ffb259">preorder</b> — takes money, so it
+    <b>owes a date</b>.</p></div>
+
+  <div style="width:196px">
+    <div class="card" style="margin:0;background:var(--white)">
+      <span class="badge wait">◔ IN DEVELOPMENT</span>
+      <div class="h" style="margin-top:6px">YASHHO GODPARENT</div>
+      <div class="t">Monthly personalised boost<br><span style="color:var(--ink-soft)">Pricing from ₹3,000/month</span></div>
+      <div style="font-size:6px;color:var(--ink-soft);margin-top:4px;line-height:1.4">
+        We will email you the moment enrolment opens.</div>
+      <div class="ghost web" style="margin-top:6px;font-size:7.5px">Notify me</div></div>
+    <p class="cap" style="width:196px"><b style="color:#6bb6ea">waitlist</b> — <b>takes no money.</b>
+    Captures intent when no date can be committed.</p></div>
+
+  <div style="width:196px">
+    <div class="card" style="margin:0;background:#f7f8fa;border-style:dashed">
+      <span class="badge na">NOT APPLICABLE</span>
+      <div class="h" style="margin-top:6px;color:#8b97a8">Exam Hall Booster</div>
+      <div class="t" style="color:#98a4b5">Not offered for Class 5–7 — the exam-hall layer begins at Class 8.</div></div>
+    <p class="cap" style="width:196px"><b style="color:#8ea3bd">not_applicable</b> — <b>shown, not hidden.</b>
+    4 such rows. A printed decline says something an absence cannot.</p></div>
+</div>
+
+<h3 style="margin-top:30px">Preorder — the three moments</h3>
+<p class="cap" style="max-width:60ch">A badge is not informed consent. Only the middle one produces a record.</p>
+<div class="flow">
+
+<div class="step"><span class="lab">01 · the card</span>
+<div class="phone"><div class="notch"></div><div class="pv">
+  <div class="topbar" style="position:relative;padding:26px 13px 8px;background:var(--white)">
+    <div class="logo"><span class="a">YASHH</span><span class="b">O</span></div><div class="burger">☰</div></div>
+  <div class="pad"><div class="eyebrow">NEET · Engines &amp; Price</div>
+    <div class="h1c" style="font-size:16px">Exam Performance<br><em>Boosters</em></div></div>
+  <div class="card"><span class="badge live">✓ AVAILABLE NOW</span>
+    <div class="h" style="margin-top:5px">Marks–Abilities–Exam Hall Booster</div>
+    <div class="t"><span class="pricetag">₹4,999</span> + GST · one-time</div></div>
+  <div class="card" style="border-color:var(--saffron)"><span class="badge pre">◷ OPENS 15 OCT 2026</span>
+    <div class="h" style="margin-top:5px">All-India NEET Face-Off LIVE</div>
+    <div class="t"><span class="pricetag">₹1,499</span> + GST · per session<br>
+      <span style="color:var(--ink-soft)">Book now · first session 15 Oct</span></div></div>
+  <div class="card"><span class="badge wait">◔ IN DEVELOPMENT</span>
+    <div class="h" style="margin-top:5px">YASHHO GODPARENT — NEET</div>
+    <div class="t">From <span class="pricetag">₹4,500</span>/month · notify me</div></div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:8px 11px;background:linear-gradient(transparent,var(--cream) 34%)">
+    <div style="display:flex;gap:5px">
+      <div class="ghost web" style="flex:1">Join the webinar</div>
+      <a class="ghost wa" style="flex:1" href="https://wa.me/918062362056" target="_blank" rel="noopener">WhatsApp us</a></div></div>
+</div></div>
+<p class="cap">Three states side by side. A buyer sees exactly what is ready and what is not.</p></div>
+
+<div class="arw">→</div>
+
+<div class="step"><span class="lab">02 · the acknowledgement</span>
+<div class="phone"><div class="notch"></div><div class="pv">
+  <div class="topbar" style="position:relative;padding:26px 13px 8px;background:var(--white)">
+    <div class="logo"><span class="a">YASHH</span><span class="b">O</span></div><div class="burger">☰</div></div>
+  <div class="pad"><div class="eyebrow">Pre-booking · Face-Off LIVE</div>
+    <div class="h1c" style="font-size:15px">Before you pay</div></div>
+  <div class="card" style="background:var(--white)">
+    <div class="h">All-India NEET Face-Off LIVE</div>
+    <div class="t">1 session · <span class="pricetag">₹1,499</span> + GST = <b>₹1,769</b></div></div>
+  <div style="padding:0 15px">
+    <div class="ack"><div class="box">✓</div><div class="t">
+      I understand this <b>opens on 15 October 2026</b> and is not available before then.</div></div>
+    <div class="ack"><div class="box">✓</div><div class="t">
+      If that date moves, I may request a <b>full refund, no questions asked</b>.</div></div>
+    <div style="font-size:6px;color:var(--ink-soft);margin-top:7px;line-height:1.45">
+      Questions? <b style="color:var(--blue)">WhatsApp</b> or <b style="color:var(--blue)">support@yashho.com</b> —
+      both reach a person, and both know what you booked.</div>
+    <div style="font-size:6px;color:var(--blue);font-weight:900;letter-spacing:.08em;margin-top:6px">
+      ▲ TICKED + STORED WITH THE ORDER</div>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:8px 11px;background:linear-gradient(transparent,var(--cream) 34%)">
+    <div class="cta2"><div class="shine"></div>
+      <div class="lbl">PRE-BOOK · PAY ₹1,769 <span>&rarr;</span></div>
+      <div class="sub">OPENS 15 OCT &middot; FULL REFUND IF IT MOVES</div></div></div>
+</div></div>
+<p class="cap">The load-bearing moment. Without a stored tick there is no record that the buyer knew.</p></div>
+
+<div class="arw">→</div>
+
+<div class="step"><span class="lab">03 · pending entitlement</span>
+<div class="phone"><div class="notch"></div><div class="pv">
+  <div class="topbar" style="position:relative;padding:26px 13px 8px;background:var(--white)">
+    <div class="logo"><span class="a">YASHH</span><span class="b">O</span></div><div class="burger">☰</div></div>
+  <div class="pad"><div class="eyebrow">My YASHHO</div>
+    <div class="h1c" style="font-size:16px">Your bookings</div></div>
+  <div class="card"><span class="badge live">✓ READY</span>
+    <div class="h" style="margin-top:5px">ASLI64 Master Scan</div>
+    <div class="t">Continue where you left off · 2 of 7 tasks done</div></div>
+  <div class="card" style="border-color:var(--saffron)"><span class="badge pre">◷ OPENS 15 OCT 2026</span>
+    <div class="h" style="margin-top:5px">NEET Face-Off LIVE · 1 session</div>
+    <div class="t"><b>Paid ₹1,769 on 21 Aug.</b> Your seat is held. We will email you the joining link
+      before 15 Oct.</div>
+    <div style="display:flex;gap:4px;margin-top:6px">
+      <a class="ghost wa" style="flex:1;font-size:7px;padding:6px 4px" href="https://wa.me/918062362056" target="_blank" rel="noopener">Ask about this</a>
+      <div class="ghost web" style="flex:1;font-size:7px;padding:6px 4px">Request refund</div></div></div>
+  <div style="font-size:6px;color:var(--blue);font-weight:900;letter-spacing:.08em;padding:4px 15px 0">
+    ▲ NEVER AN EMPTY PAGE — PAID + INVISIBLE READS AS A FAILED PAYMENT</div>
+</div></div>
+<p class="cap">A buyer who paid and sees nothing assumes it failed. The next action is a chargeback, not a question.</p></div>
+
+</div>
+
+<h3 style="margin-top:30px">Billing — six units, two checkout paths</h3>
+<table>
+<tr><th style="width:15%">Unit</th><th style="width:8%">Rows</th><th style="width:19%">Checkout</th><th>What the single charge buys</th></tr>
+<tr><td><code>one_time</code></td><td class="m">31</td><td style="color:#5fd08c">CHARGE · exists</td><td class="m">Immediate entitlement</td></tr>
+<tr><td><code>per_session</code></td><td class="m">6</td><td style="color:#5fd08c">CHARGE + quantity</td><td class="m">N sessions. Form asks "how many?"</td></tr>
+<tr><td><code>per_set</code></td><td class="m">1</td><td style="color:#5fd08c">CHARGE + quantity</td><td class="m">N sets</td></tr>
+<tr><td><code>per_program</code></td><td class="m">1</td><td style="color:#5fd08c">CHARGE + window</td><td class="m">Access for ~90 days</td></tr>
+<tr><td><code>per_annum</code></td><td class="m">1</td><td style="color:#5fd08c">CHARGE + window</td><td class="m">Access for a year</td></tr>
+<tr style="background:rgba(255,122,107,.07)"><td><code>per_month</code></td><td class="m"><b>7</b></td>
+  <td style="color:#ff7a6b">MANDATE · <b>not built</b></td>
+  <td class="m">Razorpay <b>Subscriptions</b> — different API, different webhooks, pause/resume/cancel/dunning. The only genuinely new integration.</td></tr>
+</table>
+
+<div class="grid2">
+  <div class="note"><b>44 of 51 rows need no new payment mechanics</b>
+  <p>Quantity and entitlement-window are additions to the charge that already works. A <code>per_annum</code>
+  product is a one-time charge granting a year. <b>Only <code>per_month</code> needs the bank to charge again</b> —
+  so it is its own workstream and must not block the other 44.</p></div>
+  <div class="note bad"><b>The missing half: <code>product_grants</code> has no reader</b>
+  <p>Scans work because the scan <i>is</i> the product. Every other row would take money and provision
+  nothing. Until the webhook resolves a product to its grants, selling the wider catalogue is
+  money-in-no-service — which is terminal and raises no alert.</p></div>
+  <div class="note"><b>One resolver, one field to flip</b>
+  <p><code>ProductSellability::for()</code> is the only thing that decides purchasability, and
+  <code>fulfilment_state</code> the only thing that decides readiness. Picker, form, amount gate, sitemap and
+  route generation all call them — so turning anything on or off is <b>one field, everywhere at once</b>.</p></div>
+  <div class="note bad"><b>A slipped date does not announce itself</b>
+  <p>The page keeps selling, the buyer keeps waiting, nobody finds out until a complaint.
+  <code>PastDatePreordersAreFlaggedTest</code> alarms on any <code>available_from</code> in the past. It is the
+  cheapest guard here and the one most likely to be skipped.</p></div>
 </div>
 </div>
 
