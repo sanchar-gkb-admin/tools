@@ -185,7 +185,7 @@ contains, in what order, and what comes off it. Everything below in sections A�
 <tr><th style="width:34px"></th><th>The new homepage, in order</th><th>Origin</th><th>Why it is there</th></tr>
 <tr><td class="m">1</td><td><b>Carousel A</b> — 6 slides, 100dvh</td><td class="m">§A</td><td class="m">Job · Youth · Education · Career · School · Whole. The sixth holds.</td></tr>
 <tr><td class="m">2</td><td><b>Carousel B</b> — 2 slides</td><td class="m">§A</td><td class="m">The YASHHO Promise, then SARVASHAKTA 64 × 6.</td></tr>
-<tr><td class="m">3</td><td><b>Four group tabs</b> + body</td><td class="m">§A · §C</td><td class="m">Regular · NEET·JEE · KAS·IAS · Institutions.</td></tr>
+<tr><td class="m">3</td><td><b>Four group tabs</b> + body</td><td class="m">§A · §C</td><td class="m">Regular · NEET·JEE · KAS·IAS · Institutions. <b>Each is a real URL</b> — <code>/regular</code>, <code>/neet-jee</code>, <code>/civil-services</code>, <code>/institutions</code>. Tabs stick under the logo.</td></tr>
 <tr><td class="m">4</td><td><b>Founder teaser</b></td><td class="m">carried over · §G</td><td class="m">Who is behind the method. Teaser only — links to <code>/about</code>.</td></tr>
 <tr><td class="m">5</td><td><b>Success stories</b></td><td class="m">carried over</td><td class="m">Real parent &amp; student feedback. <code>json-ld</code> derives Review + AggregateRating from it.</td></tr>
 <tr><td class="m">6</td><td><b>FAQ</b></td><td class="m">carried over</td><td class="m">Six questions. One answer still awaits KMM's verbatim wording.</td></tr>
@@ -206,14 +206,14 @@ contains, in what order, and what comes off it. Everything below in sections A�
 <div class="note bad" style="margin-top:16px"><b>The CTA rail replaces all three lead-capture surfaces</b>
   <p>The site currently has an inline lead block, an always-on floating button and a timed popup. This storyboard mentions
   <b>none</b> of them — zero hits for FAB, floating, popup, modal or lead capture. It specifies <b>one persistent rail</b>,
-  and the rail does all three jobs: it is sticky and always present, and <b>“Join the webinar” is the lead capture</b>,
-  without interrupting anyone. All three surfaces come off.</p>
+  and the rail does all three jobs: it is sticky and always present, and <b>“Join the webinar” is the second action</b> — a visitor signs up for a webinar, and their details
+  are captured as a consequence. All three surfaces come off.</p>
 </div>
 
 <table style="margin-top:18px">
 <tr><th>The three CTAs</th><th>Weight</th><th>Action</th><th>Mechanism</th></tr>
 <tr><td><b>Start Your Success Scan →</b><br><span class="m">FROM ₹999 · 90 MINUTES · REPORT SAME DAY</span></td><td class="m">primary</td><td><b>Direct purchase</b></td><td class="m">Picker, then checkout.</td></tr>
-<tr><td>Join the webinar</td><td class="m">ghost</td><td><b>Lead capture</b></td><td class="m">Already built and durable — <code>kas-lead.ts</code> persists to the Laravel webinar-register API.</td></tr>
+<tr><td>Join the webinar</td><td class="m">ghost</td><td><b>Sign up for the webinar</b></td><td class="m">“The natural step for someone not ready to pay.” Registration already built and durable — <code>kas-lead.ts</code> persists to the Laravel webinar-register API.</td></tr>
 <tr><td>WhatsApp us</td><td class="m">ghost</td><td><b>Chat</b></td><td class="m"><code>wa.me</code> to 918062362056 with a <code>[ref:…]</code> tail — see §C3.</td></tr>
 </table>
 
@@ -222,6 +222,13 @@ contains, in what order, and what comes off it. Everything below in sections A�
   Foundation · StreamExplorer · CareerPaths · Offerings · GodparentTeaser · FeaturedMedia · the YouTube video block ·
   the inline lead block · the floating button · the timed popup · FinalCta. <b>Nothing is deleted</b> — some of these may
   belong on a group tab or a sub-page, and that has not been decided.</p>
+</div>
+
+<div class="note bad" style="margin-top:16px"><b>Still open — tab 4 has nothing to sell</b>
+  <p>Institutions is five brochure pages with <b>no catalogue rows at all</b>. It can ship as content — an
+  enquiry-and-webinar tab with no prices — but it cannot render an Engines &amp; Price band until B2B products exist.
+  <b>This decides whether tab 4 carries a Success Scan CTA or a Talk-to-us CTA</b>, so it has to be answered before the
+  tab is built, not after.</p>
 </div>
 
 <div class="note bad" style="margin-top:16px"><b>Also locked, outside this document</b>
