@@ -1,0 +1,367 @@
+<title>YASHHO · Yashodarshi Monitoring Console — before & after</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --o:#FF8A3D; --o-dark:#E67E35; --o-soft:#FFB380; --cream:#FFF1E6; --cream2:#FFF9F5;
+  --ok:#4CAF50; --info:#2196F3; --warn:#FFC107; --warn-d:#FFA000; --bad:#dc2626;
+  --ink:#111827; --ink2:#374151; --mut:#6b7280; --mut2:#9ca3af; --line:#e5e7eb;
+  --page:#f6f7f9; --white:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:Montserrat,-apple-system,'Segoe UI',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px 90px}
+.mast{background:linear-gradient(135deg,var(--cream2),var(--cream));border-bottom:1px solid rgba(255,138,61,.2);padding:42px 20px 36px;margin-bottom:32px;position:relative;overflow:hidden}
+.mast:after{content:"";position:absolute;top:-90px;right:-60px;width:280px;height:280px;background:rgba(255,138,61,.07);border-radius:50%}
+.mast .inner{max-width:1280px;margin:0 auto;position:relative;z-index:1}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--o-dark)}
+h1{font-size:clamp(25px,4vw,40px);font-weight:900;letter-spacing:-.02em;margin:.28em 0 .18em;line-height:1.08}
+.sub{color:var(--ink2);max-width:76ch;font-size:15px;margin:0}
+.pill{background:#fff;border:1px solid rgba(255,138,61,.3);border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:600;color:var(--o-dark)}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+h2{font-size:19px;font-weight:800;margin:0 0 3px;display:flex;align-items:center;gap:11px}
+h2 .num{background:var(--o);color:#fff;border-radius:8px;font-size:12px;font-weight:800;padding:4px 9px;flex:none}
+.cap{color:var(--mut);font-size:13.5px;margin:0 0 18px;max-width:82ch}
+section{margin:46px 0}
+.rule{height:1px;background:linear-gradient(90deg,rgba(255,138,61,.3),transparent);margin:52px 0 0}
+/* browser frame */
+.browser{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 14px 40px rgba(20,10,0,.13);border:1px solid var(--line)}
+.chrome{background:#eee8e2;padding:9px 13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #ddd4cc}
+.dots{display:flex;gap:5px}.dots i{width:10px;height:10px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.urlpill{flex:1;background:#fff;border-radius:6px;font-size:11px;color:var(--mut);padding:5px 11px;font-family:ui-monospace,Menlo,monospace;white-space:nowrap;overflow:hidden}
+.app{display:flex;min-height:340px}
+.side{width:168px;flex:none;background:#1f2937;padding:14px 0}
+.side .brand{color:#fff;font-weight:800;font-size:12px;padding:0 15px 14px;letter-spacing:.02em}
+.side a{display:block;padding:8px 15px;font-size:11.5px;color:#9ca3af;text-decoration:none}
+.side a.on{background:rgba(255,138,61,.16);color:#fff;border-left:3px solid var(--o);font-weight:700}
+.main{flex:1;padding:20px 22px;background:#fff;overflow:auto}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.ph h3{margin:0;font-size:17px;font-weight:800;color:var(--ink)}
+.btn{background:var(--o);color:#fff;border-radius:6px;padding:7px 13px;font-size:11.5px;font-weight:600;display:inline-block}
+.btn.alt{background:var(--o-dark)}
+.btn.ghost{background:#fff;color:var(--o-dark);border:1px solid rgba(255,138,61,.4)}
+.btn.sm{padding:4px 9px;font-size:10.5px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#f9fafb;text-align:left;padding:9px 11px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);border-bottom:1px solid var(--line)}
+td{padding:10px 11px;border-bottom:1px solid #f3f4f6;color:var(--ink2);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.badge{display:inline-block;font-size:9.5px;font-weight:700;border-radius:999px;padding:2px 9px}
+.b-ok{background:#dcfce7;color:#166534}.b-red{background:#fee2e2;color:#991b1b}
+.b-amber{background:#fef3c7;color:#92400e}.b-blue{background:#dbeafe;color:#1e40af}
+.b-gray{background:#f3f4f6;color:#4b5563}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px}
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:18px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:linear-gradient(135deg,var(--cream2),#fff);border:1px solid var(--line);border-radius:10px;padding:11px 13px;position:relative;overflow:hidden}
+.stat:after{content:"";position:absolute;top:-18px;right:-18px;width:52px;height:52px;background:rgba(255,138,61,.06);border-radius:50%}
+.stat .k{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);position:relative;z-index:1}
+.stat .v{font-size:22px;font-weight:900;color:var(--ink);line-height:1.15;position:relative;z-index:1;font-variant-numeric:tabular-nums}
+.stat .v.red{color:var(--bad)}.stat .v.amber{color:var(--warn-d)}.stat .v.ok{color:var(--ok)}
+.stat .s{font-size:9.5px;color:var(--mut2);position:relative;z-index:1}
+.bar{height:5px;border-radius:3px;background:#f1f3f5;overflow:hidden;min-width:64px}
+.bar i{display:block;height:100%;border-radius:3px}
+.rowflag{border-left:3px solid transparent}
+.rowflag.risk{border-left-color:var(--bad);background:#fffbfb}
+.rowflag.soon{border-left-color:var(--warn);background:#fffdf5}
+/* phone */
+.phone{width:290px;flex:none;background:#111;border-radius:36px;padding:9px;box-shadow:0 16px 40px rgba(20,10,0,.2);position:relative}
+.phone:before{content:"";position:absolute;top:15px;left:50%;transform:translateX(-50%);width:92px;height:19px;background:#111;border-radius:0 0 13px 13px;z-index:5}
+.pv{background:#fff;border-radius:28px;overflow:hidden;height:560px;overflow-y:auto}
+.pbar{background:#1f2937;color:#fff;padding:13px 15px 11px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:9px}
+.pbody{padding:13px}
+.mcard{border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:9px}
+.mcard.risk{border-left:3px solid var(--bad);background:#fffbfb}
+.mcard .n{font-size:12.5px;font-weight:800;color:var(--ink)}
+.mcard .m{font-size:10.5px;color:var(--mut);margin-top:2px}
+.stage{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:960px){.two{grid-template-columns:1fr}}
+.callout{background:#fff;border-left:4px solid var(--o);border-radius:0 11px 11px 0;padding:15px 18px;margin:18px 0;box-shadow:0 1px 3px rgba(20,10,0,.05)}
+.callout h4{margin:0 0 7px;font-size:13px;font-weight:800;color:var(--o-dark)}
+.callout p{margin:0 0 7px;font-size:13px;color:var(--ink2);line-height:1.65}
+.callout p:last-child{margin-bottom:0}
+.note{border-radius:9px;padding:10px 12px;font-size:11.5px;line-height:1.55;margin:12px 0}
+.note.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d}
+.note.warn{background:#fffbeb;border:1px solid #fde68a;color:#78350f}
+.note.bad{background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d}
+.note.info{background:var(--cream2);border:1px solid rgba(255,138,61,.25);color:var(--o-dark)}
+.prov{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;font-size:12.5px}
+.prov th{background:var(--cream2);color:var(--o-dark)}
+.tag{display:inline-block;font-size:9.5px;font-weight:800;border-radius:5px;padding:2px 7px}
+.t-have{background:#dcfce7;color:#166534}.t-new{background:#f5f3ff;color:#5b21b6}
+.scroll{overflow-x:auto}
+.foot{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut2);line-height:1.7}
+.balabel{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px}
+.balabel.b{color:#6b7280}.balabel.a{color:var(--o-dark)}
+</style>
+
+<div class="mast"><div class="inner">
+  <div class="kicker">YASHHO · Superadmin · 23 Aug 2026</div>
+  <h1>Yashodarshi Monitoring Console</h1>
+  <p class="sub">Today you can <b>administer</b> evaluators but you cannot <b>see them working</b>. The screen
+  lists Name · Email · Status · Created. No workload, no pending count, no SLA state, no breach history —
+  so an evaluator falling behind is invisible until a unit is taken off them automatically.</p>
+  <div class="meta">
+    <span class="pill">Before / After</span>
+    <span class="pill">Data already captured</span>
+    <span class="pill">Read-only screen</span>
+    <span class="pill">₹4999 = 12h/task · 7-task = 72h/set</span>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<!-- 01 BEFORE -->
+<section>
+  <div><h2><span class="num">01</span> Today — a CRUD list</h2>
+  <p class="cap"><span class="mono">superadmin/yashodarshis/index.blade.php</span> — five columns, none of
+  which say whether anyone is doing any work.</p></div>
+  <p class="balabel b">Before · live</p>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+      <div class="urlpill">app.irisepro.in/admin/yashodarshis</div></div>
+    <div class="app">
+      <div class="side">
+        <div class="brand">YASHHO ADMIN</div>
+        <a>Dashboard</a><a>Batches</a><a>Students</a><a>Challenges</a>
+        <a class="on">Yashodarshis</a><a>Reports</a><a>Settings</a>
+      </div>
+      <div class="main">
+        <div class="ph"><h3>Yashodarshi Management</h3>
+          <div><span class="btn ghost">Bulk Upload</span> <span class="btn">Add New Yashodarshi</span></div></div>
+        <table>
+          <tr><th>Name</th><th>Email</th><th>Status</th><th>Created</th><th>Actions</th></tr>
+          <tr><td>Kempaiah H</td><td class="mono">kempaiah@…</td><td><span class="badge b-ok">Active</span></td><td>12 Jun 2026</td><td><span style="color:var(--info)">Edit</span> · <span style="color:var(--bad)">Delete</span></td></tr>
+          <tr><td>Meera R</td><td class="mono">meera@…</td><td><span class="badge b-ok">Active</span></td><td>28 Jun 2026</td><td><span style="color:var(--info)">Edit</span> · <span style="color:var(--bad)">Delete</span></td></tr>
+          <tr><td>Anil Kumar</td><td class="mono">anil@…</td><td><span class="badge b-ok">Active</span></td><td>03 Jul 2026</td><td><span style="color:var(--info)">Edit</span> · <span style="color:var(--bad)">Delete</span></td></tr>
+          <tr><td>Sunita B</td><td class="mono">sunita@…</td><td><span class="badge b-red">Inactive</span></td><td>19 Jul 2026</td><td><span style="color:var(--info)">Edit</span> · <span style="color:var(--bad)">Delete</span></td></tr>
+        </table>
+        <div class="note bad" style="margin-top:18px"><b>Nothing here would have shown Nayan M's three
+        ungraded tasks</b>, or that his evaluator was about to breach. The first signal is the unit being
+        reassigned automatically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 02 AFTER -->
+<section>
+  <div><h2><span class="num">02</span> After — the fleet at a glance</h2>
+  <p class="cap">Same route, same theme. Sorted by <b>risk</b>, not alphabetically — the person about to
+  breach is the first row, always.</p></div>
+  <p class="balabel a">After · proposed</p>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+      <div class="urlpill">app.irisepro.in/admin/yashodarshis</div></div>
+    <div class="app">
+      <div class="side">
+        <div class="brand">YASHHO ADMIN</div>
+        <a>Dashboard</a><a>Batches</a><a>Students</a><a>Challenges</a>
+        <a class="on">Yashodarshis</a><a>Reports</a><a>Settings</a>
+      </div>
+      <div class="main">
+        <div class="ph"><h3>Yashodarshi Console</h3>
+          <div><span class="btn ghost">Manage</span> <span class="btn">Add New</span></div></div>
+
+        <div class="stats">
+          <div class="stat"><div class="k">At risk</div><div class="v red">2</div><div class="s">breach &lt; 4h</div></div>
+          <div class="stat"><div class="k">Due soon</div><div class="v amber">9</div><div class="s">next 12h</div></div>
+          <div class="stat"><div class="k">In queue</div><div class="v">41</div><div class="s">awaiting grade</div></div>
+          <div class="stat"><div class="k">Breached 7d</div><div class="v red">3</div><div class="s">reassigned</div></div>
+          <div class="stat"><div class="k">On-time 30d</div><div class="v ok">94%</div><div class="s">median 3h 12m</div></div>
+        </div>
+
+        <table>
+          <tr><th>Evaluator</th><th>Role</th><th>Queue</th><th>Next deadline</th><th>Load</th>
+              <th>On-time 30d</th><th>Median</th><th></th></tr>
+          <tr class="rowflag risk">
+            <td><b>Kempaiah H</b><div style="font-size:9.5px;color:var(--mut)">KN · acharya, kas</div></td>
+            <td><span class="badge b-blue">Senior</span></td>
+            <td><b>7</b> <span style="color:var(--mut2)">pending</span></td>
+            <td><span class="badge b-red">BREACHES 1h 40m</span><div style="font-size:9.5px;color:var(--mut)">Nayan M · 3 tasks</div></td>
+            <td><div class="bar"><i style="width:96%;background:var(--bad)"></i></div><div style="font-size:9.5px;color:var(--mut)">7 / 8</div></td>
+            <td>81%</td><td>9h 40m</td>
+            <td><span class="btn sm alt">Nudge</span> <span class="btn sm ghost">Reassign</span></td></tr>
+          <tr class="rowflag soon">
+            <td><b>Meera R</b><div style="font-size:9.5px;color:var(--mut)">EN/KN · neet, jee</div></td>
+            <td><span class="badge b-blue">Senior</span></td>
+            <td><b>5</b> <span style="color:var(--mut2)">pending</span></td>
+            <td><span class="badge b-amber">due in 6h 10m</span><div style="font-size:9.5px;color:var(--mut)">Divya Kumari · 1 task</div></td>
+            <td><div class="bar"><i style="width:62%;background:var(--warn)"></i></div><div style="font-size:9.5px;color:var(--mut)">5 / 8</div></td>
+            <td>97%</td><td>2h 48m</td>
+            <td><span class="btn sm alt">Nudge</span></td></tr>
+          <tr>
+            <td><b>Anil Kumar</b><div style="font-size:9.5px;color:var(--mut)">EN · board, marks</div></td>
+            <td><span class="badge b-gray">Junior</span></td>
+            <td><b>3</b> <span style="color:var(--mut2)">pending</span></td>
+            <td><span class="badge b-ok">28h</span><div style="font-size:9.5px;color:var(--mut)">7-task set</div></td>
+            <td><div class="bar"><i style="width:38%;background:var(--ok)"></i></div><div style="font-size:9.5px;color:var(--mut)">3 / 8</div></td>
+            <td>100%</td><td>4h 05m</td><td></td></tr>
+          <tr>
+            <td><b>Sunita B</b><div style="font-size:9.5px;color:var(--mut)">KN · acharya</div></td>
+            <td><span class="badge b-gray">Junior</span></td>
+            <td><span style="color:var(--mut2)">0</span></td>
+            <td><span style="color:var(--mut2)">—</span></td>
+            <td><div class="bar"><i style="width:0%"></i></div><div style="font-size:9.5px;color:var(--mut)">unavailable</div></td>
+            <td><span style="color:var(--mut2)">—</span></td><td><span style="color:var(--mut2)">—</span></td><td></td></tr>
+        </table>
+        <div class="note info" style="margin-top:16px"><b>Every column above is derivable today.</b>
+        Queue and deadlines come from <span class="mono">EvaluatorDesk::queueFor()</span> + <span class="mono">EvalSla</span>;
+        on-time and median from the <span class="mono">on_time</span> / <span class="mono">turnaround_minutes</span>
+        columns already written on every evaluation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 03 DRILL -->
+<section>
+  <div><h2><span class="num">03</span> Drill-down — one evaluator's actual queue</h2>
+  <p class="cap">Click a row. The same items the evaluator sees on their own desk, plus what admin needs:
+  how long it has been sitting, and who it belongs to.</p></div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+      <div class="urlpill">app.irisepro.in/admin/yashodarshis/12</div></div>
+    <div class="app">
+      <div class="side"><div class="brand">YASHHO ADMIN</div>
+        <a>Dashboard</a><a>Batches</a><a>Students</a><a>Challenges</a>
+        <a class="on">Yashodarshis</a><a>Reports</a><a>Settings</a></div>
+      <div class="main">
+        <div class="ph"><h3>Kempaiah H <span class="badge b-blue" style="vertical-align:middle">Senior</span></h3>
+          <div><span class="btn ghost">Email</span> <span class="btn alt">Reassign all</span></div></div>
+        <div class="stats" style="grid-template-columns:repeat(4,1fr)">
+          <div class="stat"><div class="k">In queue</div><div class="v red">7</div><div class="s">oldest 31h</div></div>
+          <div class="stat"><div class="k">Done today</div><div class="v">4</div><div class="s">of 12 capacity</div></div>
+          <div class="stat"><div class="k">On-time 30d</div><div class="v amber">81%</div><div class="s">17 of 21</div></div>
+          <div class="stat"><div class="k">Breaches 7d</div><div class="v red">2</div><div class="s">both reassigned</div></div>
+        </div>
+        <table>
+          <tr><th>Learner</th><th>Stream</th><th>Item</th><th>Submitted</th><th>Waiting</th><th>SLA</th><th></th></tr>
+          <tr class="rowflag risk"><td>Nayan M</td><td>Marks ₹999</td><td>7-task set · 3 ungraded</td>
+              <td>20 Aug 14:05</td><td><b>31h</b></td>
+              <td><span class="badge b-red">BREACH 1h 40m</span></td>
+              <td><span class="btn sm ghost">Reassign</span></td></tr>
+          <tr class="rowflag soon"><td>Aditya R</td><td>Marks ₹4999</td><td>task 204</td>
+              <td>23 Aug 02:10</td><td>7h</td><td><span class="badge b-amber">5h left</span></td><td></td></tr>
+          <tr><td>Heeti Daga</td><td>Marks ₹4999</td><td>task 218</td>
+              <td>23 Aug 06:40</td><td>2h</td><td><span class="badge b-ok">10h left</span></td><td></td></tr>
+          <tr><td colspan="7" style="color:var(--mut2);text-align:center">…4 more</td></tr>
+        </table>
+        <div class="note warn" style="margin-top:15px"><b>Blind-eval preserved.</b> Admin sees the learner's
+        name because admin allocates work. The <b>evaluator's own</b> desk keeps
+        <span class="mono">blindView()</span> — this screen must not become a way around it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 04 MOBILE -->
+<section>
+  <div><h2><span class="num">04</span> Mobile — triage from a phone</h2>
+  <p class="cap">Admin checks this on the move. Only the at-risk rows, with the one action that matters.</p></div>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="pbar"><i class="fas fa-chevron-left"></i> Yashodarshi Console</div>
+      <div class="pbody">
+        <div class="stats" style="grid-template-columns:1fr 1fr;gap:8px">
+          <div class="stat"><div class="k">At risk</div><div class="v red">2</div></div>
+          <div class="stat"><div class="k">Due soon</div><div class="v amber">9</div></div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:14px 0 8px">Needs attention</div>
+        <div class="mcard risk">
+          <div class="n">Kempaiah H</div>
+          <div class="m">7 pending · oldest 31h</div>
+          <div style="margin-top:8px"><span class="badge b-red">BREACHES 1h 40m</span></div>
+          <div class="m" style="margin-top:6px">Nayan M · 3 ungraded tasks</div>
+          <div style="margin-top:10px;display:flex;gap:7px">
+            <span class="btn sm alt" style="flex:1;text-align:center">Nudge</span>
+            <span class="btn sm ghost" style="flex:1;text-align:center">Reassign</span></div>
+        </div>
+        <div class="mcard" style="border-left:3px solid var(--warn);background:#fffdf5">
+          <div class="n">Meera R</div>
+          <div class="m">5 pending · due in 6h 10m</div>
+          <div style="margin-top:10px"><span class="btn sm alt" style="display:block;text-align:center">Nudge</span></div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:14px 0 8px">Healthy</div>
+        <div class="mcard"><div class="n">Anil Kumar</div><div class="m">3 pending · 28h left · 100% on-time</div></div>
+        <div class="mcard"><div class="n">Sunita B</div><div class="m">unavailable · no queue</div></div>
+      </div>
+    </div></div>
+    <div style="flex:1;min-width:340px">
+      <div class="callout" style="margin-top:0">
+        <h4>Why sorted by risk, never by name</h4>
+        <p>The list exists to answer one question — <b>who needs me right now</b>. Alphabetical order answers
+        a question nobody asks. Healthy evaluators collapse to a single quiet line.</p>
+      </div>
+      <div class="callout">
+        <h4>Two actions, and only two</h4>
+        <p><b>Nudge</b> sends the evaluator the deadline email — the missing last hop, since today both the
+        warning and the breach go only to ops via <span class="mono">OpsAlert</span> and the evaluator is
+        never told.</p>
+        <p><b>Reassign</b> is the same re-allocation <span class="mono">EvaluationsSlaScan</span> already
+        performs automatically on breach — made available <i>before</i> the breach, by a human who can see it coming.</p>
+      </div>
+      <div class="note bad"><b>Not on this screen:</b> grading. Admin monitors; the Yashodarshi evaluates.
+      Putting a score box here would put an unqualified marker one click from a learner's result.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- PROVENANCE -->
+<section>
+  <div><h2><span class="num">DATA</span> Every column already exists</h2>
+  <p class="cap">This is a <b>view</b>, not new instrumentation. Nothing below needs a new measurement.</p></div>
+  <div class="scroll"><table class="prov">
+    <tr><th>Column</th><th>Source</th><th></th></tr>
+    <tr><td>In queue · Due soon · Done today</td><td><span class="mono">EvaluatorDesk::queueFor()</span> → <span class="mono">stats</span> (<span class="mono">DUE_SOON_MINUTES = 240</span>)</td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Next deadline · SLA left</td><td><span class="mono">EvalSla::taskDeadline()</span> — 12h/task (₹4999·₹5999) · 72h/set (7-task)</td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>On-time % · Median turnaround</td><td><span class="mono">yashodarshi_evaluation_results.on_time</span> + <span class="mono">turnaround_minutes</span>, stamped by <span class="mono">EvalSla::flags()</span></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Breaches (7d)</td><td><span class="mono">EvaluationsSlaScan</span> already detects + re-allocates; needs persisting to be shown as history</td><td><span class="tag t-new">SMALL</span></td></tr>
+    <tr><td>Role · Pool · Load</td><td><span class="mono">yashodarshis.role · pool · max_load · capacity_hours_per_day · is_available</span></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Languages · Streams</td><td><span class="mono">yashodarshis.languages · streams</span></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Nudge action</td><td>new <span class="mono">EvaluationDueSoonMail</span> — no Mail class targets an evaluator today</td><td><span class="tag t-new">NEW</span></td></tr>
+    <tr><td>Reassign action</td><td>the re-allocation <span class="mono">EvaluationsSlaScan</span> already runs on breach</td><td><span class="tag t-have">EXISTS</span></td></tr>
+  </table></div>
+
+  <div class="two" style="margin-top:20px">
+    <div class="callout" style="margin:0">
+      <h4>One thing to measure before building</h4>
+      <p><b>Is <span class="mono">on_time</span> actually populated in prod?</b> <span class="mono">EvalSla</span>
+      returns null whenever the clock start can't be resolved — a 7-task set still in window, a missing
+      deadline — and the row stamps null.</p>
+      <p>If most rows are null, the two history columns are empty and the screen loses half its value. One
+      count settles it, and it should be run <b>before</b> the screen is built, not discovered on it.</p>
+    </div>
+    <div class="callout" style="margin:0">
+      <h4>Why this matters beyond today's incident</h4>
+      <p>27 Acharyas, 300 units, a <b>12-hour</b> per-task SLA. "Which evaluators are keeping up?" is a
+      weekly question with no screen that answers it.</p>
+      <p>It also decides allocation: only <b>senior</b> evaluators may take ₹4999 work
+      (<span class="mono">abort_unless($y-&gt;isSenior(), 403)</span>), so knowing which seniors are
+      reliable is the difference between a smooth cohort close and another Nayan M.</p>
+    </div>
+  </div>
+</section>
+
+<p class="foot">
+  Storyboard · 23 Aug 2026 · YASHHO / iRisePro superadmin.<br>
+  Theme pulled from <span class="mono">superadmin/layout.blade.php</span> — Montserrat, Tailwind CDN,
+  <span class="mono">#FF8A3D</span> accent, <span class="mono">#FFF1E6</span> cream.<br>
+  "Before" reproduces <span class="mono">superadmin/yashodarshis/index.blade.php</span> (Name · Email ·
+  Status · Created · Actions) as it renders today.<br>
+  Not verified: whether <span class="mono">on_time</span> / <span class="mono">turnaround_minutes</span>
+  are populated in production — that is the one measurement to take before building.
+</p>
+</div>
