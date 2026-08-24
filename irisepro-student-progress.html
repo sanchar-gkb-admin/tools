@@ -1,0 +1,364 @@
+<title>YASHHO · Student Progress — before &amp; after</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--o:#FF8A3D;--o-dark:#E67E35;--cream:#FFF1E6;--cream2:#FFF9F5;--ok:#4CAF50;--info:#2196F3;
+ --warn:#FFC107;--warn-d:#FFA000;--bad:#dc2626;--ink:#111827;--ink2:#374151;--mut:#6b7280;
+ --mut2:#9ca3af;--line:#e5e7eb;--page:#f6f7f9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:Montserrat,-apple-system,'Segoe UI',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px 90px}
+.mast{background:linear-gradient(135deg,var(--cream2),var(--cream));border-bottom:1px solid rgba(255,138,61,.2);padding:42px 20px 36px;margin-bottom:32px;position:relative;overflow:hidden}
+.mast:after{content:"";position:absolute;top:-90px;right:-60px;width:280px;height:280px;background:rgba(255,138,61,.07);border-radius:50%}
+.mast .inner{max-width:1280px;margin:0 auto;position:relative;z-index:1}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--o-dark)}
+h1{font-size:clamp(25px,4vw,40px);font-weight:900;letter-spacing:-.02em;margin:.28em 0 .18em;line-height:1.08}
+.sub{color:var(--ink2);max-width:76ch;font-size:15px;margin:0}
+.pill{background:#fff;border:1px solid rgba(255,138,61,.3);border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:600;color:var(--o-dark)}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+h2{font-size:19px;font-weight:800;margin:0 0 3px;display:flex;align-items:center;gap:11px}
+h2 .num{background:var(--o);color:#fff;border-radius:8px;font-size:12px;font-weight:800;padding:4px 9px;flex:none}
+.cap{color:var(--mut);font-size:13.5px;margin:0 0 18px;max-width:84ch}
+section{margin:46px 0}
+.rule{height:1px;background:linear-gradient(90deg,rgba(255,138,61,.3),transparent);margin:52px 0 0}
+.browser{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 14px 40px rgba(20,10,0,.13);border:1px solid var(--line)}
+.chrome{background:#eee8e2;padding:9px 13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #ddd4cc}
+.dots{display:flex;gap:5px}.dots i{width:10px;height:10px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.urlpill{flex:1;background:#fff;border-radius:6px;font-size:11px;color:var(--mut);padding:5px 11px;font-family:ui-monospace,Menlo,monospace;white-space:nowrap;overflow:hidden}
+.app{display:flex;min-height:340px}
+.side{width:168px;flex:none;background:#1f2937;padding:14px 0}
+.side .brand{color:#fff;font-weight:800;font-size:12px;padding:0 15px 14px}
+.side a{display:block;padding:8px 15px;font-size:11.5px;color:#9ca3af;text-decoration:none}
+.side a.on{background:rgba(255,138,61,.16);color:#fff;border-left:3px solid var(--o);font-weight:700}
+.main{flex:1;padding:20px 22px;background:#fff;overflow:auto}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.ph h3{margin:0;font-size:17px;font-weight:800}
+.btn{background:var(--o);color:#fff;border-radius:6px;padding:7px 13px;font-size:11.5px;font-weight:600;display:inline-block}
+.btn.ghost{background:#fff;color:var(--o-dark);border:1px solid rgba(255,138,61,.4)}
+.btn.sm{padding:4px 9px;font-size:10.5px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#f9fafb;text-align:left;padding:9px 11px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);border-bottom:1px solid var(--line)}
+td{padding:10px 11px;border-bottom:1px solid #f3f4f6;color:var(--ink2);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.badge{display:inline-block;font-size:9.5px;font-weight:700;border-radius:999px;padding:2px 9px}
+.b-ok{background:#dcfce7;color:#166534}.b-red{background:#fee2e2;color:#991b1b}
+.b-amber{background:#fef3c7;color:#92400e}.b-blue{background:#dbeafe;color:#1e40af}
+.b-gray{background:#f3f4f6;color:#4b5563}.b-purple{background:#f5f3ff;color:#5b21b6}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:18px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:linear-gradient(135deg,var(--cream2),#fff);border:1px solid var(--line);border-radius:10px;padding:11px 13px;position:relative;overflow:hidden}
+.stat:after{content:"";position:absolute;top:-18px;right:-18px;width:52px;height:52px;background:rgba(255,138,61,.06);border-radius:50%}
+.stat .k{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);position:relative;z-index:1}
+.stat .v{font-size:22px;font-weight:900;line-height:1.15;position:relative;z-index:1;font-variant-numeric:tabular-nums}
+.stat .v.red{color:var(--bad)}.stat .v.amber{color:var(--warn-d)}.stat .v.ok{color:var(--ok)}.stat .v.blue{color:var(--info)}
+.stat .s{font-size:9.5px;color:var(--mut2);position:relative;z-index:1}
+/* the split progress bar — the whole idea of this screen */
+.pbar{display:flex;height:9px;border-radius:5px;overflow:hidden;background:#eef0f2;min-width:130px}
+.pbar i{display:block;height:100%}
+.pbar .ev{background:var(--ok)}
+.pbar .sub{background:var(--info)}
+.pkey{font-size:9px;color:var(--mut2);margin-top:3px;white-space:nowrap}
+.rowflag{border-left:3px solid transparent}
+.rowflag.us{border-left-color:var(--info);background:#f5faff}
+.rowflag.them{border-left-color:var(--warn);background:#fffdf5}
+.rowflag.stall{border-left-color:var(--bad);background:#fffbfb}
+.phone{width:290px;flex:none;background:#111;border-radius:36px;padding:9px;box-shadow:0 16px 40px rgba(20,10,0,.2);position:relative}
+.phone:before{content:"";position:absolute;top:15px;left:50%;transform:translateX(-50%);width:92px;height:19px;background:#111;border-radius:0 0 13px 13px;z-index:5}
+.pv{background:#fff;border-radius:28px;overflow:hidden;height:560px;overflow-y:auto}
+.pbarr{background:#1f2937;color:#fff;padding:13px 15px 11px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:9px}
+.pbody{padding:13px}
+.mcard{border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:9px}
+.mcard.us{border-left:3px solid var(--info);background:#f5faff}
+.mcard.stall{border-left:3px solid var(--bad);background:#fffbfb}
+.mcard .n{font-size:12.5px;font-weight:800;color:var(--ink)}
+.mcard .m{font-size:10.5px;color:var(--mut);margin-top:2px}
+.stage{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:960px){.two{grid-template-columns:1fr}}
+.callout{background:#fff;border-left:4px solid var(--o);border-radius:0 11px 11px 0;padding:15px 18px;margin:18px 0;box-shadow:0 1px 3px rgba(20,10,0,.05)}
+.callout h4{margin:0 0 7px;font-size:13px;font-weight:800;color:var(--o-dark)}
+.callout p{margin:0 0 7px;font-size:13px;color:var(--ink2);line-height:1.65}
+.callout p:last-child{margin-bottom:0}
+.note{border-radius:9px;padding:10px 12px;font-size:11.5px;line-height:1.55;margin:12px 0}
+.note.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d}
+.note.warn{background:#fffbeb;border:1px solid #fde68a;color:#78350f}
+.note.bad{background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d}
+.note.info{background:var(--cream2);border:1px solid rgba(255,138,61,.25);color:var(--o-dark)}
+.balabel{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px}
+.balabel.b{color:#6b7280}.balabel.a{color:var(--o-dark)}
+.prov{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;font-size:12.5px}
+.prov th{background:var(--cream2);color:var(--o-dark)}
+.tag{display:inline-block;font-size:9.5px;font-weight:800;border-radius:5px;padding:2px 7px}
+.t-have{background:#dcfce7;color:#166534}.t-new{background:#f5f3ff;color:#5b21b6}
+.scroll{overflow-x:auto}
+.foot{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut2);line-height:1.7}
+</style>
+
+<div class="mast"><div class="inner">
+  <div class="kicker">YASHHO · Superadmin · 24 Aug 2026</div>
+  <h1>Student Progress</h1>
+  <p class="sub">Sutirtha asked for “how many tasks they have submitted and how many of those have been
+  evaluated”. The useful version of that answers a sharper question: <b>is this learner waiting on
+  themselves, or on us?</b></p>
+  <div class="meta">
+    <span class="pill">Before / After</span>
+    <span class="pill">Blocked-on, not just counts</span>
+    <span class="pill">Read-only</span>
+    <span class="pill">Sibling of the Yashodarshi console</span>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<!-- 01 -->
+<section>
+  <h2><span class="num">01</span> Today — a contact list</h2>
+  <p class="cap"><span class="mono">superadmin/students/index.blade.php</span>. Eight columns, none of
+  which say whether the learner has done anything.</p>
+  <p class="balabel b">Before · live</p>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+      <div class="urlpill">app.irisepro.in/admin/students</div></div>
+    <div class="app">
+      <div class="side"><div class="brand">YASHHO ADMIN</div>
+        <a>Dashboard</a><a>Batches</a><a class="on">Students</a><a>Challenges</a>
+        <a>Yashodarshis</a><a>Reports</a></div>
+      <div class="main">
+        <div class="ph"><h3>Students</h3><span class="btn">Add Student</span></div>
+        <table>
+          <tr><th>Name</th><th>Email</th><th>Phone</th><th>Status</th><th>Batch</th><th>Source</th><th>Actions</th></tr>
+          <tr><td>Divya Kumari</td><td class="mono">bhumika…</td><td class="mono">98•••</td><td><span class="badge b-ok">Active</span></td><td>MISSION ACHARYA PU/UG</td><td>roster</td><td style="color:var(--info)">View</td></tr>
+          <tr><td>Nayan M</td><td class="mono">nayan…</td><td class="mono">99•••</td><td><span class="badge b-ok">Active</span></td><td>Marks ₹999</td><td>roster</td><td style="color:var(--info)">View</td></tr>
+          <tr><td>Sumalatha</td><td class="mono">suma…</td><td class="mono">90•••</td><td><span class="badge b-ok">Active</span></td><td>MISSION ACHARYA 5–10</td><td>roster</td><td style="color:var(--info)">View</td></tr>
+          <tr><td>ASHIK K</td><td class="mono">ashu…</td><td class="mono">97•••</td><td><span class="badge b-ok">Active</span></td><td>NEET-JEE ₹5999</td><td>storefront</td><td style="color:var(--info)">View</td></tr>
+        </table>
+        <div class="note bad" style="margin-top:18px"><b>Nothing here distinguishes ASHIK K — who has
+        done one task and stopped — from Divya Kumari, who has done 21 and is waiting on her evaluator.</b>
+        Both read “Active”.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 02 -->
+<section>
+  <h2><span class="num">02</span> After — who is waiting on whom</h2>
+  <p class="cap">One bar per learner: <span style="color:var(--ok);font-weight:700">evaluated</span> ·
+  <span style="color:var(--info);font-weight:700">submitted, awaiting evaluation</span> · untouched.
+  Sorted so the people we are keeping waiting come first.</p>
+  <p class="balabel a">After · proposed</p>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+      <div class="urlpill">app.irisepro.in/admin/students/progress</div></div>
+    <div class="app">
+      <div class="side"><div class="brand">YASHHO ADMIN</div>
+        <a>Dashboard</a><a>Batches</a><a class="on">Students</a><a>Challenges</a>
+        <a>Yashodarshis</a><a>Reports</a></div>
+      <div class="main">
+        <div class="ph"><h3>Student Progress</h3>
+          <div><span class="btn ghost">All students</span> <span class="btn">Export</span></div></div>
+
+        <div class="stats">
+          <div class="stat"><div class="k">Waiting on US</div><div class="v blue">7</div><div class="s">submitted, ungraded</div></div>
+          <div class="stat"><div class="k">Stalled</div><div class="v red">12</div><div class="s">no activity 7d+</div></div>
+          <div class="stat"><div class="k">Never started</div><div class="v amber">42</div><div class="s">0 tasks</div></div>
+          <div class="stat"><div class="k">In progress</div><div class="v">31</div><div class="s">on track</div></div>
+          <div class="stat"><div class="k">Cards issued</div><div class="v ok">14</div><div class="s">complete</div></div>
+        </div>
+
+        <table>
+          <tr><th>Learner</th><th>Challenge</th><th>Progress</th><th>Blocked on</th><th>Last activity</th><th>Evaluator</th><th></th></tr>
+          <tr class="rowflag us">
+            <td><b>Nayan M</b></td><td>Marks ₹999</td>
+            <td><div class="pbar"><i class="ev" style="width:57%"></i><i class="sub" style="width:43%"></i></div>
+                <div class="pkey">4 evaluated · 3 awaiting · 0 left</div></td>
+            <td><span class="badge b-blue">US — evaluator</span></td>
+            <td>20 Aug</td><td>Sutirtha (YD)</td>
+            <td><span class="btn sm ghost">Nudge YD</span></td></tr>
+          <tr class="rowflag us">
+            <td><b>Divya Kumari</b></td><td>ACHARYA PU/UG</td>
+            <td><div class="pbar"><i class="ev" style="width:86%"></i><i class="sub" style="width:14%"></i></div>
+                <div class="pkey">18 evaluated · 3 awaiting · 0 left</div></td>
+            <td><span class="badge b-blue">US — evaluator</span></td>
+            <td>23 Aug</td><td>Sutirtha (YD)</td>
+            <td><span class="btn sm ghost">Nudge YD</span></td></tr>
+          <tr class="rowflag stall">
+            <td><b>ASHIK K</b></td><td>NEET-JEE ₹5999</td>
+            <td><div class="pbar"><i class="ev" style="width:0%"></i><i class="sub" style="width:5%"></i></div>
+                <div class="pkey">0 evaluated · 1 awaiting · 20 left</div></td>
+            <td><span class="badge b-red">STALLED 9d</span></td>
+            <td>15 Aug</td><td>Meera R</td>
+            <td><span class="btn sm">Remind</span></td></tr>
+          <tr class="rowflag them">
+            <td><b>Sumalatha</b></td><td>ACHARYA 5–10</td>
+            <td><div class="pbar"><i class="ev" style="width:43%"></i><i class="sub" style="width:0%"></i></div>
+                <div class="pkey">9 evaluated · 0 awaiting · 12 left</div></td>
+            <td><span class="badge b-amber">LEARNER</span></td>
+            <td>22 Aug</td><td>Sutirtha (YD)</td>
+            <td><span class="btn sm">Remind</span></td></tr>
+          <tr>
+            <td><b>Aruna A</b></td><td>ACHARYA PU/UG</td>
+            <td><div class="pbar"><i class="ev" style="width:100%"></i></div>
+                <div class="pkey">21 evaluated · scorecard issued</div></td>
+            <td><span class="badge b-ok">Complete</span></td>
+            <td>19 Aug</td><td>Sutirtha (YD)</td><td></td></tr>
+        </table>
+        <div class="note info" style="margin-top:16px"><b>“Blocked on” is the column Sutirtha actually
+        needs.</b> Submitted-vs-evaluated counts are the raw material; the answer is whether to chase the
+        learner or the evaluator — and those are different people and different messages.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 03 -->
+<section>
+  <h2><span class="num">03</span> Drill-down — one learner, task by task</h2>
+  <p class="cap">Click a name. The same shape as the evaluator drill-down, so admin learns one screen,
+  not two.</p>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+      <div class="urlpill">app.irisepro.in/admin/students/896/progress</div></div>
+    <div class="app">
+      <div class="side"><div class="brand">YASHHO ADMIN</div>
+        <a>Dashboard</a><a>Batches</a><a class="on">Students</a><a>Challenges</a>
+        <a>Yashodarshis</a><a>Reports</a></div>
+      <div class="main">
+        <div class="ph"><h3>Nayan M <span class="badge b-blue" style="vertical-align:middle">Waiting on us</span></h3>
+          <span class="btn ghost">Back</span></div>
+        <div class="stats" style="grid-template-columns:repeat(4,1fr)">
+          <div class="stat"><div class="k">Submitted</div><div class="v">7</div><div class="s">of 7</div></div>
+          <div class="stat"><div class="k">Evaluated</div><div class="v ok">4</div><div class="s">57%</div></div>
+          <div class="stat"><div class="k">Awaiting</div><div class="v blue">3</div><div class="s">oldest 4d</div></div>
+          <div class="stat"><div class="k">Scorecard</div><div class="v red">—</div><div class="s">blocked</div></div>
+        </div>
+        <table>
+          <tr><th>#</th><th>Task</th><th>Submitted</th><th>Status</th><th>Score</th></tr>
+          <tr><td>1</td><td>Self-Awareness Challenge</td><td>20 Aug</td><td><span class="badge b-ok">Reviewed</span></td><td>72.0</td></tr>
+          <tr><td>2</td><td>Picture Comprehension</td><td>20 Aug</td><td><span class="badge b-ok">Reviewed</span></td><td>65.5</td></tr>
+          <tr class="rowflag us"><td>4</td><td>Dream Curriculum — Part 1</td><td>20 Aug</td><td><span class="badge b-blue">Awaiting evaluation</span></td><td>—</td></tr>
+          <tr class="rowflag us"><td>5</td><td>Dream Curriculum — Part 2</td><td>20 Aug</td><td><span class="badge b-blue">Awaiting evaluation</span></td><td>—</td></tr>
+          <tr class="rowflag us"><td>6</td><td>My Everyday Role Model</td><td>20 Aug</td><td><span class="badge b-blue">Awaiting evaluation</span></td><td>—</td></tr>
+          <tr><td>7</td><td>Looking Back, Moving Forward</td><td>—</td><td><span class="badge b-gray">Expired</span></td><td>0.0</td></tr>
+        </table>
+        <div class="note bad" style="margin-top:15px"><b>This screen makes Nayan M's situation legible in
+        one look.</b> Three tasks submitted on 20 Aug, never graded; window closed; scorecard blocked. Right
+        now that state is only discoverable by running a script.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- 04 -->
+<section>
+  <h2><span class="num">04</span> Mobile — chase the right person</h2>
+  <p class="cap">Cards, ordered by who is waiting longest on us. One action each, and the action differs
+  by who is blocking.</p>
+  <div class="stage">
+    <div class="phone"><div class="pv">
+      <div class="pbarr"><i class="fas fa-chevron-left"></i> Student Progress</div>
+      <div class="pbody">
+        <div class="stats" style="grid-template-columns:1fr 1fr;gap:8px">
+          <div class="stat"><div class="k">On us</div><div class="v blue">7</div></div>
+          <div class="stat"><div class="k">Stalled</div><div class="v red">12</div></div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:14px 0 8px">Waiting on us</div>
+        <div class="mcard us">
+          <div class="n">Nayan M</div>
+          <div class="m">4 evaluated · 3 awaiting · oldest 4d</div>
+          <div class="pbar" style="margin-top:8px"><i class="ev" style="width:57%"></i><i class="sub" style="width:43%"></i></div>
+          <div class="m" style="margin-top:6px">Evaluator: Sutirtha (YD)</div>
+          <div style="margin-top:9px"><span class="btn sm ghost" style="display:block;text-align:center">Nudge evaluator</span></div>
+        </div>
+        <div class="mcard us">
+          <div class="n">Divya Kumari</div>
+          <div class="m">18 evaluated · 3 awaiting</div>
+          <div class="pbar" style="margin-top:8px"><i class="ev" style="width:86%"></i><i class="sub" style="width:14%"></i></div>
+          <div style="margin-top:9px"><span class="btn sm ghost" style="display:block;text-align:center">Nudge evaluator</span></div>
+        </div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:14px 0 8px">Stalled</div>
+        <div class="mcard stall">
+          <div class="n">ASHIK K</div>
+          <div class="m">1 submitted · 20 untouched · quiet 9d</div>
+          <div style="margin-top:9px"><span class="btn sm" style="display:block;text-align:center">Remind learner</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div style="flex:1;min-width:330px">
+      <div class="callout" style="margin-top:0">
+        <h4>Why “blocked on” beats a completion percentage</h4>
+        <p>A single percentage hides the only thing that changes what you do. 4-of-7 because the learner
+        stopped, and 4-of-7 because we have not graded, look identical — and need opposite responses.</p>
+        <p>Splitting the bar into <b>evaluated</b> and <b>submitted-awaiting</b> makes our own backlog
+        visible in the learner's row, where it is embarrassing enough to act on.</p>
+      </div>
+      <div class="callout">
+        <h4>Two actions, and they go to different people</h4>
+        <p><b>Nudge evaluator</b> reuses the mail already built for the Yashodarshi console — the same
+        message, so an evaluator never gets two accounts of one deadline.</p>
+        <p><b>Remind learner</b> should reuse the window-nudge that already exists
+        (<span class="mono">tasks:nudge-window</span>), not a third reminder system.</p>
+      </div>
+      <div class="note warn"><b>Not on this screen:</b> anything that mutates a learner's work. It reads
+      and it messages. Re-enabling a task or moving a seat already has deliberate, guarded tools
+      (<span class="mono">reenable-media-tasks.sh</span>) and should not become a button next to a
+      progress bar.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- DATA -->
+<section>
+  <h2><span class="num">DATA</span> What this needs that does not exist yet</h2>
+  <p class="cap">Most of it is a join away. Two things are genuinely new.</p>
+  <div class="scroll"><table class="prov">
+    <tr><th>Column</th><th>Source</th><th></th></tr>
+    <tr><td>Submitted / evaluated / total</td><td><code>student_task_responses.status</code> + <code>yashodarshi_evaluation_results</code> + <code>unit.task_snapshot</code></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Scorecard issued?</td><td><code>scorecards</code> row · <code>ScorecardCompleteness</code></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Evaluator</td><td><code>unit.yashodarshi_id</code></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Nudge evaluator</td><td><code>EvaluationDueSoonMail</code> — already built</td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td>Remind learner</td><td><code>WindowNudgeMail</code> / <code>tasks:nudge-window</code></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td><b>Blocked-on classifier</b></td><td>US (submitted &amp; ungraded) · LEARNER (tasks left, recent activity) · STALLED (quiet N days) · COMPLETE</td><td><span class="tag t-new">NEW</span></td></tr>
+    <tr><td><b>Last activity</b></td><td>max(<code>submitted_at</code>, <code>started_at</code>) per learner — cheap, but nothing computes it today</td><td><span class="tag t-new">NEW</span></td></tr>
+  </table></div>
+
+  <div class="two" style="margin-top:20px">
+    <div class="callout" style="margin:0">
+      <h4>The classifier is the whole feature</h4>
+      <p>Everything else is a count. <b>US · LEARNER · STALLED · COMPLETE</b> is the judgement, so it
+      belongs in one place with its own tests — the same shape as <code>TaskScreen</code>, which exists
+      because seven surfaces once answered “what state is this task in?” differently.</p>
+      <p>Its closed set must include <b>NOT STARTED</b> as distinct from STALLED: 42 learners who never
+      began is a sales problem, 12 who began and stopped is a product one.</p>
+    </div>
+    <div class="callout" style="margin:0">
+      <h4>Measured, from the 23-Aug audit</h4>
+      <p>Of 69 paid learners with no scorecard, <b>57 had ≤1 attempt</b> — they enrolled and never
+      really started. Only a handful were blocked on us.</p>
+      <p>So on real data this screen is mostly a <b>non-engagement</b> report, and the “waiting on us”
+      rows are the rare, urgent minority. Worth designing the empty-ish state honestly rather than
+      assuming a busy board.</p>
+    </div>
+  </div>
+</section>
+
+<p class="foot">
+  Storyboard · 24 Aug 2026 · YASHHO / iRisePro superadmin.<br>
+  Theme from <span class="mono">superadmin/layout.blade.php</span> — Montserrat, Tailwind CDN,
+  <span class="mono">#FF8A3D</span>, cream <span class="mono">#FFF1E6</span>.<br>
+  “Before” reproduces <span class="mono">superadmin/students/index.blade.php</span> as it renders today
+  (Name · Email · Phone · Status · Batch · Source · Adv. Commission · Actions).<br>
+  Sibling of the Yashodarshi console storyboard — same atoms, same risk-first ordering, deliberately so.
+</p>
+</div>
