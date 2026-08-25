@@ -203,12 +203,53 @@ code{background:#0c1c33;padding:1px 6px;border-radius:4px;font-size:.82em;color:
   </div>
 </div>
 
+<h2>06 · ONE enrolment form, for every product 1A–3B</h2>
+<p class="cap">Goutam, 25-Aug: <i>"we must upgrade the enrolment form to support all products from 1A-1C, 2A-2C, 3A-3B; 4-6 remains not direct sale."</i> One form, one payments authority — not a scan form with special cases bolted on.</p>
+<div class="row">
+  <div class="phone"><div class="pv">
+    <div style="font-weight:900;font-size:1.02rem;margin-bottom:3px">Enrol — Master Exam Performance Booster</div>
+    <p class="pdet">KAS · 2A · ₹4,999 +GST · opens 5 Sep</p>
+    <div class="field"><b>Parent name</b>Priya Sharma</div>
+    <div class="field"><b>Learner name</b>Aarav Sharma</div>
+    <div class="field"><b>Email</b>priya@example.com</div>
+    <div class="field"><b>WhatsApp</b>+91 98••• •••21</div>
+    <div class="field"><b>Class / stage</b>Class 9</div>
+    <button class="cta pre">Pre-book ₹5,899 →</button>
+    <p class="pdet" style="text-align:center;margin-top:8px">Opens 5 Sep · we'll message you</p>
+  </div></div>
+  <div class="phone"><div class="pv">
+    <div style="font-weight:900;font-size:1.02rem;margin-bottom:3px">Enrol — Triple Impact Booster</div>
+    <p class="pdet">KAS · 3B · ₹11,999 +GST</p>
+    <div class="field"><b>Parent name</b>Priya Sharma</div>
+    <div class="field"><b>Learner name</b>Aarav Sharma</div>
+    <div class="field"><b>Email</b>priya@example.com</div>
+    <div class="field"><b>WhatsApp</b>+91 98••• •••21</div>
+    <div class="field"><b>Class / stage</b>Class 9</div>
+    <div class="sheet" style="text-align:left;padding:10px;margin-bottom:9px">
+      <div class="eyebrow" style="margin-bottom:5px">INCLUDES</div>
+      <div class="step"><i>1</i><span>ASLI64 Master Success Scan (1A)</span></div>
+      <div class="step"><i>2</i><span>Master Exam Performance Booster (2A)</span></div>
+      <div class="step"><i>3</i><span>Monthly Exam Paper Series (2B)</span></div>
+    </div>
+    <button class="cta buy">Pay ₹14,159 →</button>
+  </div></div>
+  <div style="flex:1 1 330px;min-width:290px">
+    <div class="note"><b>The form is the same form.</b> Identity fields never vary by product — a parent, a learner, a contact. Only the header, the amount and the "what's included" block are driven by the product.</div>
+    <div class="note"><b>A bundle shows its legs.</b> 3A/3B are packaging over existing products, so the form lists what the buyer is actually getting rather than a name they must decode.</div>
+    <div class="note no"><b>The URL carries a PRODUCT, not a price.</b> <code>?product=kas_2a</code> replaces <code>?plan=&lt;slug&gt;</code>. A price in a URL is tamperable and a tier is not an identity — the same defect that let a ₹5,999 learner be treated as a ₹4,999 one.</div>
+  </div>
+</div>
+
 <h2>What this needs, honestly</h2>
 <table>
-  <tr><th>Products</th><th>Status</th><th>Work</th></tr>
-  <tr><td><b>22 scans</b> (1A/1B/1C + NEET+JEE)</td><td>checkout works today</td><td>the CTA only — ~1 day</td></tr>
-  <tr><td><b>26 pre-books</b> (2A/2B/2C, 3A/3B)</td><td>no checkout possible</td><td>order API must take a <b>product key</b>; a purchase must record as a <b>grant</b>, not a challenge — ~1 week</td></tr>
-  <tr><td><b>11 GODPARENT</b> (4/5/6)</td><td>live — Enquire → WhatsApp</td><td>none. In-app purchase later, after 1A+2A</td></tr>
+  <tr><th>Products</th><th>Today</th><th>Work</th></tr>
+  <tr><td><b>1A / 1B / 1C</b> + NEET+JEE — 22</td><td>checkout works, no button</td><td>CTA + repoint the form at a product key</td></tr>
+  <tr><td><b>2A / 2B / 2C</b> — 16</td><td>no checkout possible</td><td>order API takes a product key; purchase records as a <b>grant</b>, not a challenge</td></tr>
+  <tr><td><b>3A / 3B</b> — 10</td><td>no checkout possible</td><td>same, plus the bundle's legs rendered on the form</td></tr>
+  <tr><td><b>4 / 5 / 6</b> — 11</td><td><b>correct already</b> — Enquire → WhatsApp</td><td>none. In-app purchase later, after 1A+2A</td></tr>
 </table>
-<div class="note no"><b>Ship the 22 first.</b> They are fully sellable right now and have no button. That is the cheapest revenue change on the site, and it needs no new payment mechanics at all.</div>
+
+<div class="note"><b>Why one form and not two.</b> A scan form plus a "booster form" would mean two places that mint an order, two that resolve a price, and two to keep in step with the catalogue. The single-authority rule exists because that divergence is silent — it shows up as a learner charged the wrong amount, months later.</div>
+
+<div class="note no"><b>The blocker is not the form — it is what a purchase IS.</b> Today a purchase is recorded as <code>payments.challenge_id</code>, and there is <b>no challenge for 2A–3B</b>. The form can be upgraded in a day; the money path has to be able to say "this person bought <code>kas_2a</code>" before that day is worth anything. <code>payment_grants</code> already has exactly that shape and has never been written in production.</div>
 </div>
