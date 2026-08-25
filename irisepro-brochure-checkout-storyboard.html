@@ -241,6 +241,62 @@ code{background:#0c1c33;padding:1px 6px;border-radius:4px;font-size:.82em;color:
   </div>
 </div>
 
+<h2>07 · Coexistence — nothing breaks while the new site is built</h2>
+<p class="cap">Goutam, 25-Aug: <i>"very important to not break the current enrolment paths till we have the new website live on prod."</i> Both URL shapes work at once; the old one is retired by traffic, not by a switch.</p>
+<div class="row">
+  <div style="flex:1 1 420px;min-width:320px">
+    <table>
+      <tr><th>Entry</th><th>Carries</th><th>Stream</th><th>Lifetime</th></tr>
+      <tr><td><code>?plan=ultimate-champion-64</code></td><td>a TIER</td><td><b>still asked</b></td><td>legacy — live ad links</td></tr>
+      <tr><td><code>?product=kas_1a</code></td><td>a PRODUCT</td><td><b>fixed</b></td><td>the new path</td></tr>
+      <tr><td><code>/enrollment_form</code> (bare)</td><td>nothing</td><td>—</td><td>→ redirect to <code>/brochure</code></td></tr>
+    </table>
+    <div class="note"><b>The legacy path keeps its stream question, and only it.</b> A tier genuinely does not know its stream, so asking is correct there. The question does not disappear from the product because we hid it — it disappears because a product answers it.</div>
+    <div class="note no"><b>Retire by traffic, never by date.</b> A live ad link that 404s is money already spent and thrown away. <code>?plan=</code> is removed when the analytics show nothing arriving on it — and the removal is a separate change with its own decision, not a side effect of this one.</div>
+  </div>
+  <div class="phone"><div class="pv">
+    <div class="card" style="border-color:var(--accent)">
+      <div class="eyebrow">LEGACY AD LINK</div>
+      <div class="pname" style="font-size:.86rem">?plan=ultimate-champion-64</div>
+      <div class="field" style="margin-top:8px"><b>Stream</b>Choose your stream ▾</div>
+      <p class="pdet">Still asks. Correct — a tier has no stream.</p>
+    </div>
+    <div class="card" style="border-color:#63e08d">
+      <div class="eyebrow">NEW PATH</div>
+      <div class="pname" style="font-size:.86rem">?product=kas_1a</div>
+      <div class="field" style="margin-top:8px;opacity:.45"><b>Stream</b>KAS — from the product ✓</div>
+      <p class="pdet">Fixed, with a link back to the brochure.</p>
+    </div>
+  </div></div>
+</div>
+
+<h2>08 · How the NEW website links to this</h2>
+<p class="cap">The new site is 3 surfaces and 4 group tabs. It does <b>not</b> get its own checkout — it links to the same plan pages the brochure does.</p>
+<div class="row">
+  <div class="browser">
+    <div class="chrome"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="url">yashho.com/civil-services</div></div>
+    <div class="bv">
+      <div class="flowbar" style="margin-bottom:16px">
+        <span>/regular</span><span><b>/civil-services</b></span><span>/neet-jee</span><span>/institutions</span>
+      </div>
+      <div style="font-weight:900;font-size:1.4rem;margin-bottom:4px">KAS / Civil Services</div>
+      <p class="pdet">Scan · Recognise · Activate · Realise</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px">
+        <div class="card"><span class="tag t-live">BUY NOW</span><div class="pname">ASLI64 Master Success Scan</div><div class="price">₹4,999</div><button class="cta buy">Enrol now</button></div>
+        <div class="card"><span class="tag t-pre">PRE-BOOK</span><div class="pname">Master Exam Performance Booster</div><div class="price">₹4,999</div><button class="cta pre">Pre-book · opens 5 Sep</button></div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1 1 330px;min-width:290px">
+    <div class="step"><i>1</i><span>Group tab already knows the stream group</span></div>
+    <div class="step"><i>2</i><span>Cards read from <code>/api/catalog</code> — same source as the brochure</span></div>
+    <div class="step"><i>3</i><span>CTA → <code>/plans/&lt;stream&gt;/&lt;kind&gt;/&lt;variant&gt;</code></span></div>
+    <div class="step"><i>4</i><span>Plan page → form with <code>?product=</code></span></div>
+    <div class="note"><b>The plan pages are the SEAM.</b> Brochure, new site, an ad, a WhatsApp share — all point at one URL per product. Whatever the front end becomes, the purchase path underneath does not move again.</div>
+    <div class="note no"><b>Which is why the new site must NOT get its own checkout.</b> A second buy flow built for the new IA would be a second payments authority, and it would diverge from the brochure's the first time a price or a readiness rule changed. The IA storyboard's single CTA rail routes here rather than replacing it.</div>
+  </div>
+</div>
+
 <h2>What this needs, honestly</h2>
 <table>
   <tr><th>Products</th><th>Today</th><th>Work</th></tr>
