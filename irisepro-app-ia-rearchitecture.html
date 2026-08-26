@@ -1,0 +1,384 @@
+<title>YASHHO — app IA re-architecture: one scan → many delivery vehicles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF1E6; --paper:#FFFFFF; --ink:#2B1B10; --muted:#8A7160;
+  --orange:#FF8A3D; --orange-dk:#E67E35; --orange-lt:#FFB380; --sand:#EFCAA6;
+  --green:#4CAF50; --blue:#2196F3; --amber:#FFA000; --red:#D9483B;
+  --line:#EADBCB; --shadow:0 6px 24px rgba(80,45,20,.10);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Montserrat,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:48px 22px 100px}
+h1{font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1.02;letter-spacing:-.03em;margin:0 0 14px;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--orange-dk)}
+h2{font-size:clamp(19px,2.6vw,27px);font-weight:800;letter-spacing:-.02em;margin:66px 0 6px;padding-top:22px;border-top:3px solid var(--ink)}
+h3{font-size:16px;font-weight:800;margin:34px 0 8px;letter-spacing:-.01em}
+p{margin:0 0 14px;max-width:78ch}
+.sub{font-size:17px;color:#6D5545;max-width:74ch;margin-bottom:6px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange-dk);font-weight:600;margin-bottom:12px}
+code{font-family:var(--mono);font-size:.88em;background:#fff;border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.cap{font-size:14px;color:#6D5545;margin:8px 0 0;max-width:62ch}
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px;background:#fff;box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--ink);color:var(--cream);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+tbody tr:last-child td{border-bottom:0}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.box{background:#fff;border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:10px;padding:16px 18px;margin:18px 0;box-shadow:var(--shadow)}
+.box.bad{border-left-color:var(--red)}
+.box.good{border-left-color:var(--green)}
+.box b{font-weight:800}
+.grid{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin:22px 0}
+/* ── device frames ─────────────────────────────────────────────── */
+.phone{width:272px;flex:0 0 272px;background:#1b1208;border-radius:34px;padding:9px;box-shadow:0 14px 40px rgba(60,32,12,.24);position:relative}
+.phone::before{content:'';position:absolute;top:15px;left:50%;transform:translateX(-50%);width:74px;height:5px;background:#3a2a1c;border-radius:4px;z-index:5}
+.pv{background:var(--cream);border-radius:26px;height:520px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.pv.scroll{overflow-y:auto}
+.browser{flex:1 1 480px;min-width:320px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 14px 40px rgba(60,32,12,.18);border:1px solid var(--line)}
+.chrome{background:#EDE0D2;padding:9px 12px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--line)}
+.dot{width:10px;height:10px;border-radius:50%}
+.url{flex:1;background:#fff;border-radius:20px;padding:4px 12px;font-family:var(--mono);font-size:10.5px;color:#7a6252;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ── in-screen UI atoms ────────────────────────────────────────── */
+.appbar{background:var(--paper);padding:26px 14px 11px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);flex:0 0 auto}
+.appbar .t{font-weight:800;font-size:14px;letter-spacing:-.01em}
+.appbar .r{font-size:11px;color:var(--muted)}
+.body{padding:13px;flex:1 1 auto;overflow-y:auto}
+.tabs{display:flex;background:var(--paper);border-top:1px solid var(--line);flex:0 0 auto}
+.tab{flex:1;text-align:center;padding:9px 2px 12px;font-size:9px;font-weight:600;color:#B09B8B}
+.tab.on{color:var(--orange-dk)}
+.tab .ic{display:block;font-size:16px;margin-bottom:2px;line-height:1}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(80,45,20,.05)}
+.card .ttl{font-weight:800;font-size:13px;letter-spacing:-.01em;margin-bottom:2px}
+.card .meta{font-size:10.5px;color:var(--muted);line-height:1.45}
+.pill{display:inline-block;font-size:9px;font-weight:700;padding:2.5px 8px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.pill.live{background:#E6F5E7;color:#2E7D32}
+.pill.soon{background:#FFF3E0;color:#B35309}
+.pill.lock{background:#EFE7E0;color:#8A7160}
+.pill.done{background:#E3F2FD;color:#1565C0}
+.btn{display:block;background:linear-gradient(135deg,var(--orange),var(--orange-dk));color:#fff;text-align:center;font-weight:700;font-size:12px;padding:10px;border-radius:9px;margin-top:9px;letter-spacing:.01em}
+.btn.ghost{background:none;border:1.5px solid var(--sand);color:var(--orange-dk)}
+.prog{height:5px;background:#F0E2D4;border-radius:4px;overflow:hidden;margin:7px 0}
+.prog i{display:block;height:100%;background:var(--orange);border-radius:4px}
+.sect{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B09B8B;margin:14px 0 7px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:11px;font-weight:600;margin-right:9px;flex:0 0 auto}
+.sh{display:flex;align-items:center;margin:44px 0 4px}
+.sh h3{margin:0;font-size:17px;font-weight:800}
+.qgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:8px}
+.q{aspect-ratio:1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:700;font-family:var(--mono)}
+.q.a{background:var(--green);color:#fff}.q.b{background:#F0E2D4;color:#9A8474}.q.c{background:var(--amber);color:#fff}.q.d{background:var(--ink);color:#fff}
+.clock{font-family:var(--mono);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.arrow{align-self:center;font-size:26px;color:var(--sand);font-weight:300;flex:0 0 auto}
+.lay{display:flex;gap:9px;align-items:stretch;margin:20px 0;flex-wrap:wrap}
+.lay .l{flex:1 1 190px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px;box-shadow:var(--shadow)}
+.lay .l .n{font-family:var(--mono);font-size:10px;color:var(--orange-dk);font-weight:600;letter-spacing:.1em}
+.lay .l .h{font-weight:800;font-size:15px;margin:3px 0 6px}
+.lay .l p{font-size:13px;margin:0;color:#6D5545}
+.foot{margin-top:80px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+@media(max-width:700px){.phone{flex:0 0 100%;width:100%;max-width:300px;margin:0 auto}}
+</style>
+
+<div class="wrap">
+
+<div class="kicker">Design proposal · 26 August 2026</div>
+<h1>One scan, many vehicles<br><em>an IA re-architecture</em></h1>
+<p class="sub">The learner app was built to deliver one thing: a scan. It now has to deliver papers, sets, combos and boosters — each with its own unit of work, its own clock and its own idea of "done". This is where they live, and how onboarding bends to fit.</p>
+
+<h2>1 · Where we are</h2>
+<p>Measured in the codebase, not remembered. The learner app carries a four-tab footer, and <b>tab one is the scan task list</b>.</p>
+
+<div class="grid">
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">Hi, Ananya</div><div class="r">Marks Booster · Day 6 of 25</div></div><div class="r">◔ 🔔</div></div>
+    <div class="body">
+      <div class="sect">Today</div>
+      <div class="card"><div class="ttl">Task 6 · The Mirror Test</div><div class="meta">Record a 90-second answer · 12h to evaluate</div><div class="btn">Start task</div></div>
+      <div class="sect">Coming up</div>
+      <div class="card"><div class="ttl">Task 7 · One Small Promise</div><div class="meta">Unlocks when Task 6 is submitted</div></div>
+      <div class="card"><div class="ttl">Task 8 · The Hard Conversation</div><div class="meta">Locked</div></div>
+      <div class="prog"><i style="width:24%"></i></div>
+      <div class="meta" style="font-size:10px;color:#8A7160">5 of 21 submitted</div>
+    </div>
+    <div class="tabs"><div class="tab on"><span class="ic">▦</span>Dashboard</div><div class="tab"><span class="ic">◔</span>Performance</div><div class="tab"><span class="ic">⚑</span>Leaderboard</div><div class="tab"><span class="ic">★</span>Achievements</div></div>
+  </div><p class="cap"><b>Today.</b> <code>mobile.dashboard</code> — 2,686 lines of Blade. It is not a dashboard; it is the task list of the one scan you bought.</p></div>
+
+  <div style="flex:1 1 340px;min-width:300px">
+    <div class="box bad"><b>The constraint, stated exactly.</b><br><br>There is <b>no layer between "the app" and "the tasks of my one scan."</b> Home <em>is</em> the scan. So a second delivery vehicle has nowhere to go — it can only be jammed into the same list, or bolted on as a fifth tab, and both are wrong for the same reason: they treat a different <em>kind</em> of thing as another row of the same kind.</div>
+    <p style="font-size:14px">Everything downstream inherits the assumption. One active unit. One progress bar. One notion of "next". The task card, the timer, the media recorder and the submit flow are all shaped around <em>record something, a human marks it, wait</em>.</p>
+    <p style="font-size:14px">None of that is wrong. It is simply <b>one vehicle's</b> shape, sitting where the app's shape should be.</p>
+  </div>
+</div>
+
+<h2>2 · What has to fit now</h2>
+<p>Four delivery vehicles, and they disagree about the most basic questions: what a unit of work is, who marks it, and what a clock means.</p>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Vehicle</th><th>Unit of work</th><th>Who scores</th><th>The clock</th><th>"Done" means</th></tr></thead>
+<tbody>
+<tr><td><b>Scan</b> · 1A–1C</td><td>a task — recorded answer</td><td>a YASHODARSHI, 0–5 on a 0.5 grid</td><td>learner-paced; per-task SLA</td><td>all tasks submitted &amp; evaluated</td></tr>
+<tr><td><b>Exam hall</b> · 2A</td><td>a paper (100 Q) + pre/post tasks</td><td><b>machine</b> for the paper, human for the tasks</td><td><b>a hard wall clock</b> — it ends whether you do or not</td><td>the paper closed; both papers sat</td></tr>
+<tr><td><b>Test series</b> · 2B</td><td>a <b>set</b> = Paper 1 + Paper 2</td><td>machine</td><td>a fixed monthly calendar</td><td>the month's sets attempted</td></tr>
+<tr><td><b>Combo</b> · 3A/3B</td><td>a <b>sequence</b> of the above</td><td>composed</td><td>each leg keeps its own</td><td>every leg complete, in order</td></tr>
+</tbody></table></div>
+
+<div class="box"><b>The one thing they must NOT disagree about.</b> Every vehicle resolves to <b>one canonical scorecard</b> for the learner. That is already the locked north star for MCQ — all paper variants yield one scorecard — and it is what stops the app fragmenting into four products that happen to share a login. <b>Progress is about the learner. Delivery is about the purchase.</b> Keep them on different axes and the architecture holds.</div>
+
+<h2>3 · The architecture — insert exactly one layer</h2>
+
+<div class="lay">
+  <div class="l"><div class="n">LAYER 1</div><div class="h">Shelf</div><p><b>What's mine.</b> One card per entitlement. New — this is the layer that does not exist today.</p></div>
+  <div class="arrow">→</div>
+  <div class="l"><div class="n">LAYER 2</div><div class="h">Vehicle</div><p><b>What's open now.</b> Each product's own home, in its own vocabulary. Today's dashboard becomes the <em>scan</em> vehicle, unchanged.</p></div>
+  <div class="arrow">→</div>
+  <div class="l"><div class="n">LAYER 3</div><div class="h">The work</div><p><b>Do it.</b> A task screen, or a paper screen. Deliberately different — one is paced, one is invigilated.</p></div>
+</div>
+
+<div class="box good"><b>The rule that keeps the new layer from costing anything.</b> A learner with exactly <b>one</b> active entitlement never sees the shelf — Home forwards straight into the vehicle, and their app is identical to today's, tap for tap. The shelf appears the moment there are two. <b>The layer is charged only to the learners who need it.</b></div>
+
+<div class="sh"><span class="num">01</span><h3>Shelf — the new Home</h3></div>
+<p class="cap">Cards, not tasks. Each card says what it is, where you are in it, and whether it is open. Nothing here knows how any vehicle works.</p>
+<div class="grid">
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">Hi, Ananya</div><div class="r">2 active · 1 upcoming</div></div><div class="r">◔ 🔔</div></div>
+    <div class="body">
+      <div class="sect">Active now</div>
+      <div class="card"><span class="pill live">In progress</span><div class="ttl" style="margin-top:6px">KAS Success Scan</div><div class="meta">21 tasks · evaluated by a YASHODARSHI</div><div class="prog"><i style="width:24%"></i></div><div class="meta">5 of 21 · next task open now</div><div class="btn">Continue</div></div>
+      <div class="card"><span class="pill live">Set 3 open</span><div class="ttl" style="margin-top:6px">KAS Test Series</div><div class="meta">Paper 1 + Paper 2 · closes Sun 21:00</div><div class="prog"><i style="width:50%"></i></div><div class="meta">2 of 4 sets this month</div><div class="btn ghost">Open set list</div></div>
+      <div class="sect">Coming up</div>
+      <div class="card"><span class="pill soon">Opens 20 Sep</span><div class="ttl" style="margin-top:6px">Exam Hall Booster</div><div class="meta">Full mock · Paper 1 + Paper 2 + 28 tasks</div></div>
+    </div>
+    <div class="tabs"><div class="tab on"><span class="ic">▦</span>Home</div><div class="tab"><span class="ic">◔</span>Progress</div><div class="tab"><span class="ic">⚑</span>Standing</div><div class="tab"><span class="ic">☺</span>Me</div></div>
+  </div><p class="cap"><b>Mobile.</b> The footer keeps four tabs. <b>Dashboard → Home</b> is the only change that matters; Performance becomes <b>Progress</b> and absorbs the scorecard, Leaderboard + Achievements merge into <b>Standing</b>, freeing the slot Profile/Support needed all along.</p></div>
+
+  <div class="browser">
+    <div class="chrome"><span class="dot" style="background:#ff6058"></span><span class="dot" style="background:#ffbe2f"></span><span class="dot" style="background:#28ca42"></span><span class="url">app.irisepro.in/mobile/home</span></div>
+    <div style="background:var(--cream);padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-weight:800;font-size:17px">Your programmes</div><div style="font-size:12px;color:var(--muted)">Ananya R · KAS</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card" style="margin:0"><span class="pill live">In progress</span><div class="ttl" style="margin-top:6px;font-size:14px">KAS Success Scan</div><div class="meta">21 tasks · YASHODARSHI-evaluated</div><div class="prog"><i style="width:24%"></i></div><div class="meta">5 of 21 · next task open now</div><div class="btn">Continue</div></div>
+        <div class="card" style="margin:0"><span class="pill live">Set 3 open</span><div class="ttl" style="margin-top:6px;font-size:14px">KAS Test Series</div><div class="meta">Paper 1 + Paper 2 · closes Sun 21:00</div><div class="prog"><i style="width:50%"></i></div><div class="meta">2 of 4 sets this month</div><div class="btn ghost">Open set list</div></div>
+        <div class="card" style="margin:0;opacity:.75"><span class="pill soon">Opens 20 Sep</span><div class="ttl" style="margin-top:6px;font-size:14px">Exam Hall Booster</div><div class="meta">Full mock · both papers + 28 tasks</div></div>
+        <div class="card" style="margin:0;border-style:dashed;display:flex;align-items:center;justify-content:center;min-height:110px"><div style="text-align:center"><div style="font-size:22px;color:var(--sand)">＋</div><div class="meta">Explore programmes</div></div></div>
+      </div>
+    </div></div>
+</div>
+
+<div class="sh"><span class="num">02</span><h3>Vehicle homes — same three questions, different vocabulary</h3></div>
+<p class="cap">Every vehicle home answers: <b>what's open now · what's my clock · what have I done</b>. Only the words and the units change.</p>
+<div class="grid">
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">← KAS Success Scan</div><div class="r">Day 6 of 25 · self-paced</div></div></div>
+    <div class="body">
+      <div class="sect">Open now</div>
+      <div class="card"><div class="ttl">Task 6 · The Mirror Test</div><div class="meta">Record 90 seconds · evaluated within 12h</div><div class="btn">Start task</div></div>
+      <div class="sect">Next</div>
+      <div class="card"><div class="ttl">Task 7 · One Small Promise</div><div class="meta">Unlocks on submit</div></div>
+      <div class="card"><div class="ttl">Task 8</div><div class="meta">Locked</div></div>
+    </div>
+    <div class="tabs"><div class="tab on"><span class="ic">▦</span>Home</div><div class="tab"><span class="ic">◔</span>Progress</div><div class="tab"><span class="ic">⚑</span>Standing</div><div class="tab"><span class="ic">☺</span>Me</div></div>
+  </div><p class="cap"><b>Scan vehicle.</b> This <em>is</em> today's dashboard, moved down one level. Zero redesign — it was always a vehicle home wearing the app's name.</p></div>
+
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">← KAS Test Series</div><div class="r">August · 2 of 4 sets</div></div></div>
+    <div class="body">
+      <div class="sect">Open now</div>
+      <div class="card"><span class="pill live">Closes Sun 21:00</span><div class="ttl" style="margin-top:6px">Set 3</div><div class="meta">Paper 1 · 100 Q · 120 min<br>Paper 2 · 100 Q · 120 min</div><div class="btn">Start Paper 1</div></div>
+      <div class="sect">Done</div>
+      <div class="card"><span class="pill done">Scored</span><div class="ttl" style="margin-top:6px">Set 2</div><div class="meta">P1 128.5 / 200 · P2 141.0 / 200</div></div>
+      <div class="card"><span class="pill done">Scored</span><div class="ttl" style="margin-top:6px">Set 1</div><div class="meta">P1 119.0 / 200 · P2 126.5 / 200</div></div>
+      <div class="sect">Later</div>
+      <div class="card"><span class="pill lock">Unlocks after Set 3</span><div class="ttl" style="margin-top:6px">Set 4</div></div>
+    </div>
+    <div class="tabs"><div class="tab on"><span class="ic">▦</span>Home</div><div class="tab"><span class="ic">◔</span>Progress</div><div class="tab"><span class="ic">⚑</span>Standing</div><div class="tab"><span class="ic">☺</span>Me</div></div>
+  </div><p class="cap"><b>Test-series vehicle.</b> The set list from the KAS MCQ storyboard (S02), unchanged. A <b>set = Paper 1 + Paper 2</b>; the set is the unit, the paper is the sitting.</p></div>
+
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">← Exam Hall Booster</div><div class="r">Mock 1 · 4 stages</div></div></div>
+    <div class="body">
+      <div class="card"><span class="pill done">Complete</span><div class="ttl" style="margin-top:6px">1 · Before Paper 1</div><div class="meta">6 tasks · 6 of 6 submitted</div></div>
+      <div class="card"><span class="pill live">Sitting now</span><div class="ttl" style="margin-top:6px">2 · Paper 1</div><div class="meta">100 Q · 120 min · wrong = −0.50</div><div class="btn">Resume — 47:12 left</div></div>
+      <div class="card"><span class="pill lock">Opens on submit</span><div class="ttl" style="margin-top:6px">3 · After Paper 1</div><div class="meta">8 tasks · reflection on the sitting</div></div>
+      <div class="card"><span class="pill lock">Locked</span><div class="ttl" style="margin-top:6px">4 · Paper 2 + after</div><div class="meta">100 Q + 8 tasks</div></div>
+    </div>
+    <div class="tabs"><div class="tab on"><span class="ic">▦</span>Home</div><div class="tab"><span class="ic">◔</span>Progress</div><div class="tab"><span class="ic">⚑</span>Standing</div><div class="tab"><span class="ic">☺</span>Me</div></div>
+  </div><p class="cap"><b>Exam-hall vehicle.</b> The one genuinely new home: it interleaves <em>tasks</em> and <em>papers</em> in a fixed sequence. 28 tasks + 2 papers, one dedicated YASHODARSHI, one composed scorecard.</p></div>
+</div>
+
+<div class="sh"><span class="num">03</span><h3>The work — two screens that must not converge</h3></div>
+<p class="cap">This is the pair the current app cannot express. Left: paced, forgiving, human-marked. Right: invigilated, penalised, machine-marked.</p>
+<div class="grid">
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">Task 6 of 21</div><div class="r">The Mirror Test</div></div><div class="r">✕</div></div>
+    <div class="body">
+      <div style="font-size:12.5px;line-height:1.65;margin-bottom:12px">Describe a moment this week when you saw yourself clearly — and did not like what you saw.</div>
+      <div style="background:#fff;border:1px dashed var(--sand);border-radius:12px;padding:22px;text-align:center">
+        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--orange-dk));margin:0 auto 9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:21px">●</div>
+        <div style="font-size:11px;font-weight:700">Tap to record</div>
+        <div class="meta">up to 90 seconds · or write instead</div>
+      </div>
+      <div class="meta" style="margin-top:12px">Take your time. Your window closes in <b>3 days</b>.</div>
+      <div class="btn ghost">Save draft</div>
+    </div>
+  </div><p class="cap"><b>Scan task.</b> The clock is a courtesy. Drafts are durable. There is no penalty for thinking.</p></div>
+
+  <div class="phone"><div class="pv">
+    <div class="appbar" style="background:var(--ink);color:var(--cream);border-color:#3a2a1c"><div><div class="t" style="color:var(--cream)">Paper 1 · Q64</div><div class="r" style="color:#C9B4A2">GS-1 · General Studies</div></div><div class="clock" style="color:#FFB380">47:12</div></div>
+    <div class="body">
+      <div class="prog" style="background:#EFE2D6"><i style="width:64%"></i></div>
+      <div class="meta" style="margin-bottom:10px">64 of 100 · <b style="color:var(--amber)">3 min behind pace</b></div>
+      <div style="font-size:12px;line-height:1.6;margin-bottom:10px">Which of the following was <b>not</b> a recommendation of the Second Administrative Reforms Commission?</div>
+      <div class="card" style="padding:9px;font-size:11px">A · Right to Information as a citizen entitlement</div>
+      <div class="card" style="padding:9px;font-size:11px;border-color:var(--orange);border-width:2px">B · A unified civil service cadre across states</div>
+      <div class="card" style="padding:9px;font-size:11px">C · Local government empowerment</div>
+      <div class="card" style="padding:9px;font-size:11px">D · Ethics in governance framework</div>
+      <div style="display:flex;gap:6px;margin-top:9px"><div class="btn ghost" style="flex:1;margin:0">Skip</div><div class="btn" style="flex:1;margin:0">Save &amp; next</div></div>
+      <div class="meta" style="margin-top:8px;text-align:center">Wrong answer = <b style="color:var(--red)">−0.50</b></div>
+    </div>
+  </div><p class="cap"><b>Exam paper.</b> Dark, deliberately — a different world. The wall clock is exact and it does not stop. The penalty is stamped on the screen, not buried in terms.</p></div>
+
+  <div class="phone"><div class="pv">
+    <div class="appbar" style="background:var(--ink);color:var(--cream);border-color:#3a2a1c"><div><div class="t" style="color:var(--cream)">Palette</div><div class="r" style="color:#C9B4A2">Paper 1 · 100 questions</div></div><div class="clock" style="color:#FFB380">47:12</div></div>
+    <div class="body">
+      <div style="display:flex;gap:11px;font-size:9.5px;margin-bottom:8px;flex-wrap:wrap"><span><b style="color:var(--green)">■</b> answered 58</span><span><b style="color:var(--amber)">■</b> flagged 6</span><span><b style="color:#C0AB9A">■</b> blank 36</span></div>
+      <div class="qgrid">
+        <div class="q a">1</div><div class="q a">2</div><div class="q c">3</div><div class="q a">4</div><div class="q a">5</div><div class="q b">6</div>
+        <div class="q a">7</div><div class="q a">8</div><div class="q a">9</div><div class="q c">10</div><div class="q a">11</div><div class="q a">12</div>
+        <div class="q b">13</div><div class="q a">14</div><div class="q a">15</div><div class="q a">16</div><div class="q c">17</div><div class="q a">18</div>
+        <div class="q a">19</div><div class="q b">20</div><div class="q a">21</div><div class="q a">22</div><div class="q a">23</div><div class="q d">64</div>
+      </div>
+      <div class="btn" style="margin-top:12px">Back to Q64</div>
+      <div class="btn ghost">Submit paper</div>
+    </div>
+  </div><p class="cap"><b>Palette.</b> S05. Has no counterpart in the scan world and needs none — 100 questions is a navigation problem 21 tasks never had.</p></div>
+</div>
+
+<div class="sh"><span class="num">04</span><h3>Progress — the one surface that must never fragment</h3></div>
+<p class="cap">Four vehicles feed it. The learner sees one profile of themselves, with each ability's evidence traceable to where it came from.</p>
+<div class="grid">
+  <div class="phone"><div class="pv scroll">
+    <div class="appbar"><div><div class="t">Your abilities</div><div class="r">Ananya R · KAS · updated today</div></div></div>
+    <div class="body">
+      <div class="card"><div class="sect" style="margin-top:0">Overall</div><div style="font-family:var(--mono);font-size:34px;font-weight:600;letter-spacing:-.03em">3.4<span style="font-size:14px;color:var(--muted)"> / 5</span></div><div class="meta">across 11 critical + 4 behavioural abilities</div></div>
+      <div class="sect">Where the evidence came from</div>
+      <div class="card" style="padding:10px"><div class="meta"><b>Success Scan</b> · 5 tasks · human-evaluated</div><div class="prog"><i style="width:24%"></i></div></div>
+      <div class="card" style="padding:10px"><div class="meta"><b>Test Series</b> · 4 papers · machine-scored</div><div class="prog"><i style="width:50%"></i></div></div>
+      <div class="card" style="padding:10px;opacity:.6"><div class="meta"><b>Exam Hall</b> · not yet sat</div><div class="prog"><i style="width:0%"></i></div></div>
+      <div class="sect">Abilities</div>
+      <div class="card" style="padding:10px"><div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700"><span>Analytical reasoning</span><span class="clock" style="font-size:13px">3.8</span></div><div class="prog"><i style="width:76%"></i></div><div class="meta">12 pieces of evidence · scan + papers</div></div>
+      <div class="card" style="padding:10px"><div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700"><span>Decision under pressure</span><span class="clock" style="font-size:13px">2.9</span></div><div class="prog"><i style="width:58%"></i></div><div class="meta">4 pieces · papers only</div></div>
+      <div class="card" style="padding:10px;opacity:.65"><div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700"><span>Ethical judgement</span><span class="pill lock">Not enough yet</span></div><div class="meta">needs one more paper</div></div>
+    </div>
+    <div class="tabs"><div class="tab"><span class="ic">▦</span>Home</div><div class="tab on"><span class="ic">◔</span>Progress</div><div class="tab"><span class="ic">⚑</span>Standing</div><div class="tab"><span class="ic">☺</span>Me</div></div>
+  </div><p class="cap"><b>One scorecard, many sources.</b> "Where the evidence came from" is the join that lets four vehicles stay four vehicles without the learner having four selves.</p></div>
+
+  <div style="flex:1 1 340px;min-width:300px">
+    <div class="box"><b>Why this screen decides the architecture.</b> If Progress is per-product, the app is a folder of four products and every cross-sell is a new login-shaped problem. If Progress is per-learner, the products become <em>ways of gathering evidence about one person</em> — which is the actual proposition, and the reason a combo is worth more than its legs.<br><br><b>"Not enough yet" is a feature.</b> S12 already establishes the padlock for an ability with insufficient evidence. Reuse it verbatim rather than showing a number the evidence cannot carry.</div>
+    <div class="box good"><b>Free consequence.</b> With Progress global, <code>mobile.scorecard</code> and <code>mobile.performance</code> stop being two answers to one question and become one screen at two zooms — which is what the scorecard-at-three-zooms storyboard already specifies.</div>
+  </div>
+</div>
+
+<h2>4 · Onboarding — it already adapts, on the wrong axis</h2>
+
+<p>This is the part worth being precise about, because the machinery exists and is good. <code>OnboardingFamily</code> shapes onboarding by <b>audience</b> — <code>student</code>, <code>exam</code>, <code>aspirant</code>, <code>transition</code> — each with its own profile fields, field options and study-guide variant, keyed off <code>program_key</code>.</p>
+
+<div class="box bad"><b>What it does not vary by is the delivery vehicle.</b> The one step that <em>is</em> shape-dependent — the pace chooser — resolves off <b>tier</b>:
+<pre style="font-family:var(--mono);font-size:11.5px;background:#2B1B10;color:#FFD9B8;padding:12px;border-radius:8px;overflow-x:auto;margin:10px 0">$tier = $this->challenge?->tier;
+if ($tier === null) { return []; }          // ← no modes
+
+$group = config('enrolment.mode_tier_groups')[$tier] ?? null;
+if ($group === null) { return []; }         // ← no modes</pre>
+<code>mode_tier_groups</code> knows <code>999 · 1999 · 4999 · 5999</code>. <b>Exam hall carries <code>tier = NULL</code>, so a 2A learner gets zero paces and cannot complete onboarding at all.</b></div>
+
+<p><b>Two axes, not one.</b> Onboarding needs both, and they are genuinely independent — a KAS aspirant buying a scan and a KAS aspirant buying a mock are the same person meeting two different instruments.</p>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Step</th><th>Varies by</th><th>Scan</th><th>Exam hall</th><th>Test series</th></tr></thead>
+<tbody>
+<tr><td>Identity &amp; profile</td><td><b>WHO</b> — family</td><td colspan="3">Already correct. Class + board for a school student; target exam + attempt for an aspirant.</td></tr>
+<tr><td>Consent</td><td>—</td><td colspan="3">Same for all. Once per learner, not once per purchase.</td></tr>
+<tr><td>Rules of the instrument</td><td><b>WHAT SHAPE</b></td><td>how evaluation works, what a 0–5 means</td><td><b>negative marking, wall clock, no re-entry</b> (S03)</td><td>same as exam hall</td></tr>
+<tr><td>Commitment</td><td><b>WHAT SHAPE</b></td><td>pick a pace — 25 / 8 / 3 day</td><td>confirm the sitting date</td><td><b>nothing</b> — the calendar is fixed</td></tr>
+<tr><td>Sequence preview</td><td><b>WHAT SHAPE</b></td><td>n/a</td><td>n/a</td><td>n/a — combos only, see below</td></tr>
+</tbody></table></div>
+
+<div class="box"><b>The seam already exists; point it at the right column.</b> <code>OnboardingFamily::shapeForChallenge()</code> is the right shape of solution — a declared step-shape resolved from the product. Add the second resolver beside it, keyed on the product's <b>kind</b> (<code>scan · mcq · exam_hall · combo</code>), and delete the tier lookup. Consistent with the catalogue's north star: <b>bundling a new product must be an INSERT, not a code change.</b></div>
+
+<div class="sh"><span class="num">05</span><h3>Onboarding, side by side</h3></div>
+<p class="cap">Same learner, same family, same profile step — then the paths separate at exactly one screen.</p>
+<div class="grid">
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">Set your pace</div><div class="r">Step 3 of 4 · KAS Success Scan</div></div></div>
+    <div class="body">
+      <div class="meta" style="margin-bottom:11px">21 tasks. You choose how long you take — the clock starts when you finish setting up, not when you paid.</div>
+      <div class="card" style="border-color:var(--orange);border-width:2px"><div class="ttl">25-Day Steady</div><div class="meta">Pace the 21 tasks comfortably. <b>Recommended</b></div></div>
+      <div class="card"><div class="ttl">8-Day Intensive</div><div class="meta">All 21 tasks in a sprint.</div></div>
+      <div class="btn">Continue</div>
+    </div>
+  </div><p class="cap"><b>Scan.</b> The pace chooser as it stands today — correct, and staying.</p></div>
+
+  <div class="arrow" style="align-self:center">vs</div>
+
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">Before you start</div><div class="r">Step 3 of 4 · Exam Hall Booster</div></div></div>
+    <div class="body">
+      <div class="card" style="border-left:4px solid var(--red)"><div class="ttl">Wrong answers cost you</div><div class="meta">Every wrong answer is <b style="color:var(--red)">−0.50</b>. A blank is 0. Guessing is a decision, and we measure it.</div></div>
+      <div class="card" style="border-left:4px solid var(--ink)"><div class="ttl">The clock is a wall clock</div><div class="meta">120 minutes per paper. It runs whether the app is open or not.</div></div>
+      <div class="card" style="border-left:4px solid var(--orange)"><div class="ttl">Two papers make one score</div><div class="meta">Paper 1 and Paper 2 together are one exam. Your profile appears after both.</div></div>
+      <div class="sect">Your sitting</div>
+      <div class="card"><div class="ttl">Sat 21 Sep · 10:00</div><div class="meta">Tap to change</div></div>
+      <div class="btn">I understand — continue</div>
+    </div>
+  </div><p class="cap"><b>Exam hall.</b> S03, promoted into onboarding. Not a pace question at all — a <em>rules</em> question, then a date. The storyboard's own words: the product had been measuring decisions under a penalty it never disclosed.</p></div>
+</div>
+
+<div class="sh"><span class="num">06</span><h3>Combos — show the whole journey, onboard only the first leg</h3></div>
+<div class="grid">
+  <div class="phone"><div class="pv">
+    <div class="appbar"><div><div class="t">Your KAS journey</div><div class="r">Triple Combo · 3 stages</div></div></div>
+    <div class="body">
+      <div class="meta" style="margin-bottom:11px">You bought three programmes. They run in order — here is the whole path, so nothing arrives as a surprise.</div>
+      <div class="card" style="border-color:var(--orange);border-width:2px"><span class="pill live">Set up now</span><div class="ttl" style="margin-top:6px">1 · Success Scan</div><div class="meta">21 tasks · about 25 days</div></div>
+      <div class="card"><span class="pill lock">Sets up when stage 1 ends</span><div class="ttl" style="margin-top:6px">2 · Test Series</div><div class="meta">4 sets a month · fixed calendar</div></div>
+      <div class="card"><span class="pill lock">Sets up before your exam</span><div class="ttl" style="margin-top:6px">3 · Exam Hall Booster</div><div class="meta">Full mock · both papers + 28 tasks</div></div>
+      <div class="btn">Set up stage 1</div>
+    </div>
+  </div><p class="cap"><b>Onboard just-in-time.</b> Setting up all three now means three pace/rules screens the learner will not remember by the time they matter — and a date chosen for a mock three months out.</p></div>
+
+  <div style="flex:1 1 340px;min-width:300px">
+    <div class="box"><b>The sequencing rule.</b> A combo is a <b>recipe, not a basket</b> — its legs are ordered and the order carries meaning (measure → practise → rehearse). So: <b>show all, onboard one, open the next when its predecessor closes.</b> The shelf already renders "Coming up", so a queued leg needs no new surface.</div>
+    <div class="box"><b>One thing this does not settle.</b> Whether a learner may re-order or run legs in parallel. Doing it in the bought order is the safe default and what the pricing assumes; anything else is a product decision, not an implementation detail.</div>
+  </div>
+</div>
+
+<h2>5 · What has to change in code</h2>
+<p>Three defects, all the same root: <b>tier standing in for product shape</b>. Each one blocks exam hall independently, and each is cheap now and expensive after the first sale.</p>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Where</th><th>Reads</th><th>What happens at <code>tier = NULL</code></th></tr></thead>
+<tbody>
+<tr><td><code>Challenge::pool()</code></td><td><code>tier ∈ ['4999','5999']</code></td><td>falls through to <code>seven_task</code> — the ₹4,999 flagship routed to the cheapest evaluator pool, silently</td></tr>
+<tr><td><code>AllocationLoad::perTaskMinutes(<b>string</b> $tier)</code></td><td><code>tier</code></td><td><b>TypeError.</b> And because the candidate sweep costs every live unit, one assigned exam-hall unit breaks allocation for <em>all</em> products</td></tr>
+<tr><td><code>Enrollment::availableModes()</code></td><td><code>mode_tier_groups[$tier]</code></td><td>zero paces ⇒ <b>onboarding cannot complete</b></td></tr>
+</tbody></table></div>
+
+<div class="box good"><b>One fix, three defects.</b> Derive from the product's <b>kind</b>, not its price. The catalogue already carries stream + plan for all 59 products; identity is <code>(stream, plan)</code> and tier is retired everywhere else. These three are the stragglers.</div>
+
+<h2>6 · Decisions this needs</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Question</th><th>Why it changes the build</th></tr></thead>
+<tbody>
+<tr><td>D1</td><td>Does the footer become <b>Home · Progress · Standing · Me</b>, or stay as it is with Home simply re-pointed?</td><td>Merging Leaderboard + Achievements frees the slot Profile and Support need. Cosmetic on its own; it decides how many screens move.</td></tr>
+<tr><td>D2</td><td>Confirm <b>Progress is per learner</b>, never per product.</td><td>The load-bearing decision. Everything else follows from it, and reversing it later means re-cutting every screen in §4.</td></tr>
+<tr><td>D3</td><td>Combo legs: strictly sequential, or may a learner start leg 2 early?</td><td>Sequential is assumed above and is what the pricing implies. Parallel needs a different shelf and a different scorecard join.</td></tr>
+<tr><td>D4</td><td>Is the exam-hall <b>sitting date</b> learner-chosen, or fixed by cohort?</td><td>Decides whether onboarding step 4 is a date picker or a confirmation — and whether YASHODARSHI capacity can be planned at all.</td></tr>
+<tr><td>D5</td><td>For a learner with one product, does Home forward straight into the vehicle?</td><td>Recommended yes. It is what keeps this re-arch free for the majority of today's learners.</td></tr>
+</tbody></table></div>
+
+<div class="foot">
+Grounded in the current codebase, 26 Aug 2026 — the four-tab footer, <code>mobile.dashboard</code>, <code>OnboardingFamily</code>, <code>Enrollment::availableModes()</code> and the KAS MCQ student storyboard (S01–S17).<br>
+Theme and type match the learner app: Montserrat, cream <code>#FFF1E6</code>, orange <code>#FF8A3D</code>.
+</div>
+
+</div>
