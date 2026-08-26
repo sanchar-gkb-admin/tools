@@ -55,7 +55,16 @@ pre{background:#0c1c33;border:1px solid var(--line);border-radius:8px;padding:11
 <tr><td><b>Marks ↔ tasks join</b> (Scorecard 5)</td><td>❌ <b>unspecified</b></td></tr>
 </table>
 
-<h2>3 · Questions</h2>
+<h2>3 · Allocation — a routing defect to fix before the first exam-hall challenge exists</h2>
+<p class="lead">Separate from the scorecard questions, and it needs fixing regardless of how they are answered.</p>
+<pre>Challenge::pool()  →  in_array($this->tier, ['4999','5999']) ? 'premium_4999' : 'seven_task'
+exam_hall challenges carry  tier = NULL   →  falls through to 'seven_task'</pre>
+<div class="gap"><b>Every exam-hall challenge would route to the ASLI15 / ASLI5 pool</b> — the cheapest work in the system. It will not fail, because all seven YASHODARSHIs sit in <code>premium_4999 / senior</code> with overflow configured, so they cover <code>seven_task</code> today. It will silently classify the ₹4,999 flagship — a <b>dedicated</b> YASHODARSHI, 28 tasks, five scorecards — as bottom-tier work for capacity, SLA and queue priority.<br><br>
+This is <b>tier standing in for product shape</b>: the pool is derived from price, and exam hall has no price tier. The fix is to derive the pool from <b>type</b>.</div>
+<p class="lead"><b>Current staffing:</b> 7 YASHODARSHIs, all <code>premium_4999 / senior</code>, all with overflow pools set. The Jr/Sr classification exists as a column; nobody is a junior today. <b>A separate <code>exam_hall</code> pool implies no hiring</b> — a pool is a routing and capacity concept, and the same seven people would carry it in <code>overflow_pools</code> exactly as they carry <code>seven_task</code>.</p>
+<p class="lead">Three reasons the storyboard's separate pool is right beyond the bug: the <b>SLA differs</b> (a scan is 12h/task or 72h/set; exam hall may sit between Paper 1 and Paper 2 on the candidate's critical path) · the <b>allocation grain differs</b> (a dedicated evaluator holds all four task groups, where scans bind per unit) · and <b>capacity is only readable if separate</b> (28 tasks per candidate against 21 or 7).</p>
+
+<h2>4 · Questions</h2>
 
 <div class="q"><span class="n">Q1</span><span class="blocks">BLOCKS 2A</span>
 <div class="t">Do the 28 tasks measure the <b>same 15 abilities</b> as the papers — the 11 Critical + 4 Behavioural — or a different set?</div>
@@ -86,10 +95,18 @@ pre{background:#0c1c33;border:1px solid var(--line);border-radius:8px;padding:11
 <div class="why">§8 reports every ability with a number and a gap. A partially-evidenced ability reported as a low score is a measurement error the candidate cannot see. Tab 24 has no "insufficient evidence" state.</div></div>
 
 <div class="q"><span class="n">Q8</span>
-<div class="t">Does <b>one</b> YASHODARSHI evaluate all 28 tasks, and what is the SLA?</div>
-<div class="why">"A dedicated YASHODARSHI" is locked, but four challenges means four units and the allocator binds one evaluator per unit. The exam-hall pool's SLA is marked <code>TBD</code> in the storyboard. <b>Changes:</b> whether human turnaround sits between Paper 1 and Paper 2 on the candidate's critical path.</div></div>
+<div class="t">Does <b>one</b> YASHODARSHI evaluate all 28 tasks of an engagement?</div>
+<div class="why">"A dedicated YASHODARSHI" is locked, but four challenges means four units and the allocator binds one evaluator <b>per unit</b>. If one person must see all four, allocation moves to engagement level — otherwise four people each see a quarter of the instrument and nobody sees the Pre → Post shift.</div></div>
 
-<h2>4 · Answer order</h2>
-<p class="lead"><b>Q1 → Q2 → Q3</b> in that order. Q1 decides whether there is one instrument or two; Q2 the arithmetic; Q3 whether the arithmetic is even possible in shared units. <b>Q5</b> next, because the Pre→Post shift may be the headline of 2A and has no home in the current format.</p>
+<div class="q"><span class="n">Q9</span><span class="blocks">SLA IS TBD</span>
+<div class="t">What is the exam-hall evaluation <b>SLA</b>, and must Paper 1's Post tasks be evaluated before Paper 2 is sat?</div>
+<div class="why">Scan pools run 12h/task and 72h/set; the exam-hall pool is marked <code>TBD</code>. <b>Changes:</b> whether human turnaround sits on the candidate's critical path between the two papers, and therefore whether the SLA is an internal target or a delivery promise.</div></div>
+
+<div class="q"><span class="n">Q10</span>
+<div class="t">Do exam-hall evaluators need <b>different qualification</b> from scan evaluators — or is it the same seven people, differently routed?</div>
+<div class="why">The rubric is the same 5-point scale, but the tasks wrap a timed competitive-exam paper rather than a scan. If the qualification is the same, a separate pool is purely routing and capacity. If not, it is a staffing decision with a lead time — and 20 Sep is the date it lands on.</div></div>
+
+<h2>5 · Answer order</h2>
+<p class="lead"><b>Q1 → Q2 → Q3</b> in that order — Q1 decides whether there is one instrument or two, Q2 the arithmetic, Q3 whether that arithmetic is possible in shared units. <b>Q5</b> next, because the Pre → Post shift may be the headline of 2A and has no home in the current format. <b>Q9 and Q10</b> are ops rather than scoring, but Q10 has a staffing lead time, so it should not wait.</p>
 <div class="ok"><b>Nothing here blocks 05 Sep.</b> 2C and 2B are pure MCQ, and tab 24 specifies the MCQ scorecard completely — including the Paper 1 + Paper 2 combination. These questions are 2A questions, needed for <b>20 Sep</b>.</div>
 </div>
