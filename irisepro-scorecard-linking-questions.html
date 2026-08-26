@@ -1,133 +1,113 @@
-<title>Exam Hall — scorecard generation & linking: questions for Sutirtha</title>
+<title>Exam Hall scorecards — what the architecture does today, the gaps, and the questions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a1626;--surface:#10223c;--accent:#f5821f;--accent-strong:#ff9b3d;--soft:#1d2f4d;--text:#eaf1f9;--muted:#8ea3bd;--line:#1d3354;--ok:#63e08d;--no:#ff8b9c}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Montserrat,system-ui,sans-serif;line-height:1.55}
-.w{max-width:1000px;margin:0 auto;padding:40px 20px 80px}
-h1{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(1.7rem,4.6vw,2.6rem);margin:0 0 6px}
-.sub{color:var(--muted);max-width:78ch;margin:0 0 8px}
+.w{max-width:1020px;margin:0 auto;padding:40px 20px 80px}
+h1{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(1.6rem,4.4vw,2.4rem);margin:0 0 6px}
+.sub{color:var(--muted);max-width:80ch;margin:0 0 8px}
 .rule{height:3px;width:78px;background:var(--accent);margin:18px 0 30px;border-radius:2px}
 h2{font-weight:900;text-transform:uppercase;font-size:1rem;letter-spacing:.05em;margin:44px 0 4px;color:var(--accent-strong)}
-.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px;max-width:80ch}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px;max-width:82ch}
 .q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:12px}
-.q .n{display:inline-block;background:var(--soft);color:var(--accent-strong);font-weight:900;font-size:.7rem;padding:2px 9px;border-radius:99px;margin-bottom:7px}
-.q .t{font-weight:700;margin-bottom:7px}
+.q .n{display:inline-block;background:var(--soft);color:var(--accent-strong);font-weight:900;font-size:.7rem;padding:2px 9px;border-radius:99px}
+.q .t{font-weight:700;margin:7px 0}
 .q .why{font-size:.87rem;color:var(--muted)}
 .q .why b{color:var(--text)}
-.blocks{display:inline-block;font-size:.66rem;font-weight:800;padding:2px 8px;border-radius:99px;margin-left:7px;background:rgba(255,139,156,.15);color:var(--no)}
-.settled{border-left:3px solid var(--ok);background:rgba(99,224,141,.06);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.88rem}
-.settled b{color:var(--ok)}
+.blocks{display:inline-block;font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:99px;margin-left:7px;background:rgba(255,139,156,.15);color:var(--no)}
+.meas{border-left:3px solid var(--ok);background:rgba(99,224,141,.06);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.88rem}
+.meas b{color:var(--ok)}
+.gap{border-left:3px solid var(--no);background:rgba(255,139,156,.07);padding:12px 15px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.89rem}
+.gap b{color:var(--no)}
 table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.87rem}
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:.67rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+th{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
 code{background:#0c1c33;padding:1px 6px;border-radius:4px;font-size:.85em;color:var(--accent-strong)}
+pre{background:#0c1c33;border:1px solid var(--line);border-radius:8px;padding:11px 13px;overflow-x:auto;font-size:.8rem;color:var(--muted)}
 </style>
 <div class="w">
-<h1>Scorecard generation &amp; linking</h1>
-<p class="sub">Questions for <b>Sutirtha</b> on Engine <b>2A — Master Exam Performance Booster</b>. Everything already settled by the locked master or the exam-hall storyboard is listed first, so nothing here is a question that has an answer.</p>
+<h1>Exam Hall scorecards</h1>
+<p class="sub">What the architecture does <b>today</b>, the gaps that follow, and the questions only <b>Sutirtha</b> can close. Every fact below was measured against production on 26-Aug — none of it is inferred from the spec.</p>
 <div class="rule"></div>
 
-<h2>Already settled — not asking these</h2>
-<div class="settled">
-<b>From the locked master and the exam-hall storyboard:</b><br>
-• <b>5 scorecards</b>, not more. 1 = Paper 1 (app) · 2 = Paper 2 (app) · 3 = cumulative, derived from 1+2 (app) · 4 = <b>all 28 tasks</b>, rubric-evaluated (YASHODARSHI) · 5 = the Master scorecard, <b>app-assembled, delivered in a mentoring session</b>.<br>
-• A <b>set = Paper 1 + Paper 2</b>. 28 tasks = <b>4 × 7</b>, each in a <b>15-minute window</b>; papers are 120 min each.<br>
-• Four purposes: <code>pre_test</code>/<code>post_test</code> × Paper 1/Paper 2. Type <code>exam_hall</code>, tier <code>NULL</code>.<br>
-• A <b>separate <code>exam_hall</code> evaluator pool</b>, and a <b>dedicated</b> YASHODARSHI for the engagement.<br>
-• Rubric stays a <b>5-point scale</b>. Wrong answers are <b>−0.50</b>.
+<h2>1 · Measured — what exists today</h2>
+<div class="meas">
+<b>A scorecard is keyed to a CHALLENGE.</b>
+<pre>scorecards: id · student_id · challenge_id · unit_id · program_key · tier · json · …
+            challenge_id  NOT NULL          unit_id  NULLABLE</pre>
+• <b>87 scorecards across 54 units</b> in production.<br>
+• <b>Nothing composes a scorecard from other scorecards.</b> No such service exists — every scorecard is generated from evaluated task submissions for one challenge.<br>
+• <b>MCQ has no scorecard path at all.</b> <code>mcq_attempts</code> does not exist; <code>mcq_papers/questions/sets/policies</code> are migrated and <b>empty</b>.<br>
+• 2A is authored as <b>four challenges</b> — <code>pre_test.1 · post_test.1 · pre_test.2 · post_test.2</code>, 7 tasks each, one 15-minute window per set.
 </div>
 
-<h2>The problem in one line</h2>
-<p class="lead">In our current architecture each of the four task groups is <b>its own challenge</b>, and a challenge generates <b>its own scorecard</b>. That is four task scorecards. The product specifies <b>one</b> — Scorecard 4. So either Scorecard 4 is a composition of four, or the four never become learner-visible artifacts. Everything below follows from which.</p>
+<h2>2 · The gaps that follow</h2>
+<p class="lead">Five scorecards are specified. Under today's schema, <b>three of them have nowhere to live</b> and <b>one produces four artifacts instead of one</b>.</p>
+
 <table>
-<tr><th>Challenge</th><th>Purpose</th><th>Tasks</th><th>Produces today</th><th>Product wants</th></tr>
-<tr><td>Paper 1 Pre-Exam</td><td><code>pre_test.1</code></td><td>7</td><td>a scorecard</td><td rowspan="4" style="vertical-align:middle"><b>Scorecard 4</b><br>one, across all 28</td></tr>
-<tr><td>Paper 1 Post-Exam</td><td><code>post_test.1</code></td><td>7</td><td>a scorecard</td></tr>
-<tr><td>Paper 2 Pre-Exam</td><td><code>pre_test.2</code></td><td>7</td><td>a scorecard</td></tr>
-<tr><td>Paper 2 Post-Exam</td><td><code>post_test.2</code></td><td>7</td><td>a scorecard</td></tr>
+<tr><th>Scorecard</th><th>Source</th><th>What today's architecture does</th><th>Gap</th></tr>
+<tr><td><b>1</b> — Paper 1</td><td>an MCQ paper</td><td><code>challenge_id</code> is NOT NULL and a paper is <b>not a challenge</b></td><td>no valid key</td></tr>
+<tr><td><b>2</b> — Paper 2</td><td>an MCQ paper</td><td>same</td><td>no valid key</td></tr>
+<tr><td><b>3</b> — cumulative</td><td>1 + 2</td><td>no composition exists; belongs to no single challenge</td><td><b>no mechanism</b></td></tr>
+<tr><td><b>4</b> — all 28 tasks</td><td>4 challenges</td><td>generates <b>one per challenge = 4 scorecards</b></td><td><b>4, not 1</b></td></tr>
+<tr><td><b>5</b> — Master</td><td>links 1–4</td><td>no composition exists; belongs to no single challenge</td><td><b>no mechanism</b></td></tr>
 </table>
 
-<h2>A · What Scorecard 4 actually is</h2>
-<p class="lead">These decide the data model. Nothing downstream can be built until A1 is answered.</p>
+<div class="gap"><b>The single missing primitive is COMPOSITION.</b> Scorecards 3 and 5 are both defined as derived from other scorecards, and nothing in the system can do that. It is not an Engine-2A gap — <b>Scorecard 3 is needed by 2C, the very first thing that ships on 05 Sep.</b></div>
+<div class="gap"><b>And a second: a scorecard cannot exist without a challenge.</b> So either papers become challenges, or <code>challenge_id</code> stops being mandatory, or paper results are not "scorecards" in this table at all. That is an architecture decision, and it is upstream of everything below.</div>
 
-<div class="q"><span class="n">A1</span><span class="blocks">BLOCKS EVERYTHING</span>
-<div class="t">Is Scorecard 4 a <i>composition</i> of the four challenge scorecards, or does the learner never see per-challenge scorecards at all?</div>
-<div class="why">Three shapes are possible and they are not interchangeable: <b>(a)</b> four scorecards exist and Scorecard 4 aggregates them; <b>(b)</b> the four are internal only and Scorecard 4 is generated directly from 28 task evaluations; <b>(c)</b> the learner sees all four <i>and</i> a fifth summary. <b>Changes:</b> the data model, what the app stores, and how many artifacts a mentoring session walks through.</div></div>
+<h2>3 · Questions — grounded in those gaps</h2>
 
-<div class="q"><span class="n">A2</span>
-<div class="t">If a composition — is it arithmetic (aggregate the ability scores), or narrative (a YASHODARSHI writes it)?</div>
-<div class="why">The master says Scorecard 4 is <b>YASHODARSHI-generated</b> but Scorecard 5 is <b>app-assembled</b>. If 4 is also assembled by the app from four rubric outputs, then the human's unit of work is the <b>task</b>, not the scorecard — which changes what the evaluator console asks them to produce.</div></div>
+<div class="q"><span class="n">Q1</span><span class="blocks">BLOCKS 05 SEP</span>
+<div class="t">Is Scorecard 3 (cumulative) a <b>stored artifact</b>, or a <b>view</b> computed at read time from 1 and 2?</div>
+<div class="why">This decides whether we build a composition primitive at all. <b>Stored</b> means a new scorecard row that belongs to no challenge — schema change. <b>A view</b> means it is assembled when the learner opens it and never persisted, which sidesteps the key problem entirely. <b>Needed for 2C on 05 Sep</b>, before any 2A work.</div></div>
 
-<div class="q"><span class="n">A3</span>
-<div class="t">Can a partial Scorecard 4 exist — say, after Paper 1's Pre and Post only?</div>
-<div class="why">A learner will finish Paper 1's four-week-apart tasks long before Paper 2's. <b>Changes:</b> whether the app shows progress or withholds until all 28 are in. The MCQ side already has a designed answer for this shape (S12, "one paper to go").</div></div>
+<div class="q"><span class="n">Q2</span><span class="blocks">BLOCKS 05 SEP</span>
+<div class="t">What is a paper's result keyed to — do the two papers of a set become <b>challenges</b>, or does a paper result live outside the <code>scorecards</code> table?</div>
+<div class="why">Today <code>challenge_id</code> is NOT NULL. If papers become challenges, a 2C purchase mints two challenges and the existing scorecard path works unchanged. If not, MCQ results need their own home and the learner then has two kinds of "scorecard" with different plumbing.</div></div>
 
-<h2>B · The basis of linking — the part that must be decided first</h2>
-<p class="lead">Goutam: <i>"we first need to understand the basis of this linking."</i> These four are that basis.</p>
+<div class="q"><span class="n">Q3</span><span class="blocks">BLOCKS 2A</span>
+<div class="t">Scorecard 4 is specified as one across 28 tasks, but four challenges produce four. Which is real: <b>(a)</b> four stored, one composed view · <b>(b)</b> four internal, only the composition shown · <b>(c)</b> all four shown to the learner and no Scorecard 4 as such?</div>
+<div class="why">Goutam, 26-Aug: <i>"we have 4 challenges so it will produce 4 scorecards."</i> That is what the code does. The spec says one. <b>Changes:</b> what is stored, what is versioned, and how many artifacts a mentoring session walks through.</div></div>
 
-<div class="q"><span class="n">B1</span><span class="blocks">BLOCKS SCORECARD 5</span>
-<div class="t">Do Pre and Post measure the <b>same abilities</b> — so the link is a before/after <b>shift</b> — or different abilities, so they are separate readings?</div>
-<div class="why">This is the single most consequential question. If the same, the instrument's headline is the <b>delta</b> and the app must pair every Pre ability to its Post counterpart. If different, there is no delta at all and Scorecard 4 is a union, not a comparison. <b>Everything about how 4 and 5 are drawn depends on it.</b></div></div>
+<div class="q"><span class="n">Q4</span><span class="blocks">BLOCKS SC 4 AND 5</span>
+<div class="t">Do Pre and Post measure the <b>same abilities</b> — making the link a before/after <b>shift</b> — or different abilities, making it a union?</div>
+<div class="why">The most consequential question here. If the same, the headline of the instrument is the <b>delta</b>, and every Pre ability must pair to its Post counterpart. If different, there is no delta and Scorecard 4 is an aggregate. Nothing about how 4 or 5 are drawn can be decided before this.</div></div>
 
-<div class="q"><span class="n">B2</span>
-<div class="t">Is the shift measured <b>per paper</b> (Pre1→Post1, Pre2→Post2) or <b>across the engagement</b> (Pre1→Post2)?</div>
-<div class="why">Per paper gives two independent deltas; across gives one longer arc with the middle two as waypoints. <b>Changes:</b> whether a learner who does only Paper 1 gets a complete story or half of one.</div></div>
+<div class="q"><span class="n">Q5</span>
+<div class="t">Is the shift <b>per paper</b> (Pre1→Post1, Pre2→Post2) or <b>across the engagement</b> (Pre1→Post2)?</div>
+<div class="why">Per paper gives two independent deltas; across gives one arc with two waypoints. <b>Changes:</b> whether a learner who completes only Paper 1 has a whole result or half of one.</div></div>
 
-<div class="q"><span class="n">B3</span>
-<div class="t">Do the four challenges map to the <b>same ability set</b>, or does each have its own?</div>
-<div class="why">If each has its own, an ability may appear in only one of the four and the aggregate is uneven — some abilities backed by 7 tasks, others by 28. The MCQ storyboard already refuses to report an ability below sufficient evidence; the task side needs the same rule.</div></div>
+<div class="q"><span class="n">Q6</span>
+<div class="t">When an ability appears in more than one of the four challenges, how is it combined — latest, mean, weighted, or kept separate?</div>
+<div class="why">A mean makes improvement invisible; latest discards the Pre evidence. Today each challenge scores independently and nothing reconciles them.</div></div>
 
-<div class="q"><span class="n">B4</span>
-<div class="t">When one ability appears in more than one challenge, how is it combined — latest, mean, weighted, or kept separate?</div>
-<div class="why"><b>Changes:</b> whether a strong Post can mask a weak Pre. If it is a mean, improvement is invisible; if latest, the Pre evidence is discarded.</div></div>
+<div class="q"><span class="n">Q7</span><span class="blocks">BLOCKS SC 5</span>
+<div class="t">How do <b>marks out of 200</b> (Scorecards 1–3) join <b>5-point ability scores</b> (Scorecard 4)?</div>
+<div class="why">Different units. A "link" could be a composite number, a stated relationship (<i>"low Attention to Detail cost you −12 marks to negative marking"</i>), or two panels with no arithmetic between them. <b>Changes:</b> whether a conversion exists that can be silently wrong.</div></div>
 
-<h2>C · Scorecard 5 — joining marks to abilities</h2>
+<div class="q"><span class="n">Q8</span>
+<div class="t">Is Scorecard 5 <b>generated and stored</b>, or assembled for the mentoring session and not persisted?</div>
+<div class="why">The master says app-assembled, delivered in a session. If it is never stored it is a view and needs no key — which removes the second gap for it entirely.</div></div>
 
-<div class="q"><span class="n">C1</span><span class="blocks">BLOCKS SCORECARD 5</span>
-<div class="t">How do <b>MCQ marks</b> (Scorecards 1–3) and <b>ability scores</b> (Scorecard 4) combine? They are different units.</div>
-<div class="why">One is marks out of 200 with negative marking; the other is a 5-point rubric across abilities. Scorecard 5 "links 1–4" — but a link can be <b>a single composite number</b>, <b>a correlation</b> ("your low Attention to Detail shows up as −12 marks lost to negative marking"), or <b>two panels side by side with no arithmetic between them</b>. <b>Changes:</b> whether we need a conversion, and whether a wrong one can be shipped invisibly.</div></div>
+<div class="q"><span class="n">Q9</span>
+<div class="t">Does <b>one</b> YASHODARSHI evaluate all 28 tasks?</div>
+<div class="why">"Dedicated" is locked for the engagement, but four challenges means four units, and <code>EvaluatorAllocator</code> binds one evaluator <b>per unit</b>. If one person must see all four, allocation has to move to engagement level — otherwise four people each see a quarter and nobody sees the shift.</div></div>
 
-<div class="q"><span class="n">C2</span>
-<div class="t">Does Scorecard 5 carry a single headline number, or is it explicitly a narrative?</div>
-<div class="why">It is delivered in a mentoring session, which suggests narrative. But if there is a number, it needs a definition that survives a parent asking "out of what?".</div></div>
+<div class="q"><span class="n">Q10</span>
+<div class="t">What is the exam-hall evaluation <b>SLA</b>? The storyboard marks it <code>TBD</code>.</div>
+<div class="why">Scan pools run 12h/task and 72h/set. <b>Changes:</b> whether Paper 1's Post tasks must be evaluated before Paper 2 is sat — i.e. whether human turnaround sits on the learner's critical path.</div></div>
 
-<div class="q"><span class="n">C3</span>
-<div class="t">What does Scorecard 5 show that 1–4 do not?</div>
-<div class="why">If it is only a cover page over four existing artifacts, it is a view rather than a scorecard — and should not be generated, stored or versioned as one.</div></div>
+<div class="q"><span class="n">Q11</span>
+<div class="t">Is the order <b>enforced</b> — Pre → Paper → Post?</div>
+<div class="why">A Post-Paper Analysis taken before the paper measures nothing. <b>Changes:</b> whether challenges lock until the preceding step completes.</div></div>
 
-<h2>D · Evaluation logistics</h2>
+<div class="q"><span class="n">Q12</span>
+<div class="t">A 15-minute window closes with 5 of 7 tasks done. Are the missing abilities <b>low</b>, or <b>no evidence</b>?</div>
+<div class="why">Reporting them as low is a measurement error the learner cannot see. The MCQ side already suppresses a verdict below significance and shows an evidence count per ability; the task side needs the same floor or one scorecard applies two standards.</div></div>
 
-<div class="q"><span class="n">D1</span>
-<div class="t">Does <b>one</b> YASHODARSHI evaluate all 28 tasks, or one per challenge?</div>
-<div class="why">"A dedicated YASHODARSHI" is locked for the engagement, but four challenges means four units, and the allocator binds one evaluator per unit. If it must be one person, allocation has to work at engagement level — otherwise four people each see a quarter of the instrument and nobody sees the shift.</div></div>
-
-<div class="q"><span class="n">D2</span>
-<div class="t">What is the <b>SLA</b> for exam-hall evaluation? The storyboard says <code>TBD</code>.</div>
-<div class="why">The scan pools are 12h/task and 72h/set. <b>Changes:</b> whether Paper 1's Post tasks must be evaluated before Paper 2 is sat — and therefore whether evaluation is on the learner's critical path.</div></div>
-
-<div class="q"><span class="n">D3</span>
-<div class="t">May a learner sit Paper 2 before Paper 1's tasks are evaluated?</div>
-<div class="why">If not, human turnaround gates the product and the SLA becomes a delivery promise rather than an internal target.</div></div>
-
-<h2>E · Sequencing and edge cases</h2>
-
-<div class="q"><span class="n">E1</span>
-<div class="t">Is the order <b>enforced</b> — Pre → Paper → Post — or advisory?</div>
-<div class="why">A Post-Paper Analysis attempted before the paper measures nothing. <b>Changes:</b> whether the app must lock challenges until the preceding step completes.</div></div>
-
-<div class="q"><span class="n">E2</span>
-<div class="t">What happens to a challenge left <b>partially complete</b> — 5 of 7 tasks in the 15-minute window?</div>
-<div class="why">The window is one countdown for the set. <b>Changes:</b> whether the abilities behind the missing tasks are reported as low, or as no evidence. Reporting them as low is a measurement error the learner cannot see.</div></div>
-
-<div class="q"><span class="n">E3</span>
-<div class="t">If a learner skips Pre entirely but does Post, is the Post still evaluated and reported?</div>
-<div class="why">A Post with no Pre has no baseline. It can still be scored as a standalone reading, but not as a shift.</div></div>
-
-<div class="q"><span class="n">E4</span>
-<div class="t">Minimum evidence — what is the fewest tasks that may back a reported ability?</div>
-<div class="why">The MCQ side already suppresses a verdict below significance and shows an evidence count per ability. The task side needs the same floor, or the two halves of one scorecard will apply different standards.</div></div>
-
-<h2>Answer order</h2>
-<p class="lead">If time is short, these four unlock the most: <b>A1</b> (what Scorecard 4 is) → <b>B1</b> (same abilities or not) → <b>C1</b> (how marks join abilities) → <b>D2</b> (the SLA). Everything else can be decided while building.</p>
+<h2>4 · Answer order</h2>
+<p class="lead"><b>Q1 and Q2 are needed for 05 Sep</b> — they are 2C questions, not 2A ones, and they decide whether a composition primitive gets built at all. <b>Q3, Q4 and Q7</b> unlock 2A. Everything else can be settled during the build.</p>
+<div class="gap"><b>If Q1 and Q2 are not answered this week, 05 Sep ships a set with two paper results and no cumulative</b> — which is the one artifact a learner buying a "set" is actually paying for.</div>
 </div>
