@@ -179,14 +179,14 @@ tr:last-child td{border-bottom:none}
 
         <table>
           <tr><th>Evaluator</th><th>Role</th><th>Queue</th><th>Next deadline</th><th>Load</th>
-              <th>On-time 30d</th><th>Median</th><th></th></tr>
+              <th>On-time 30d</th><th>Wait<div style="font-size:9px;font-weight:400;color:var(--mut)">learner waited</div></th><th>Hands-on<div style="font-size:9px;font-weight:400;color:var(--mut)">per task</div></th><th></th></tr>
           <tr class="rowflag risk">
             <td><b>Kempaiah H</b><div style="font-size:9.5px;color:var(--mut)">KN · acharya, kas</div></td>
             <td><span class="badge b-blue">Senior</span></td>
             <td><b>7</b> <span style="color:var(--mut2)">pending</span></td>
             <td><span class="badge b-red">BREACHES 1h 40m</span><div style="font-size:9.5px;color:var(--mut)">Nayan M · 3 tasks</div></td>
             <td><div class="bar"><i style="width:96%;background:var(--bad)"></i></div><div style="font-size:9.5px;color:var(--mut)">7 / 8</div></td>
-            <td>81%</td><td>9h 40m</td>
+            <td>81%</td><td>9h 40m</td><td>11.2 min<div style="font-size:9px;color:var(--bad)">slow per task</div></td>
             <td><span class="btn sm alt">Nudge</span> <span class="btn sm ghost">Reassign</span></td></tr>
           <tr class="rowflag soon">
             <td><b>Meera R</b><div style="font-size:9.5px;color:var(--mut)">EN/KN · neet, jee</div></td>
@@ -194,7 +194,7 @@ tr:last-child td{border-bottom:none}
             <td><b>5</b> <span style="color:var(--mut2)">pending</span></td>
             <td><span class="badge b-amber">due in 6h 10m</span><div style="font-size:9.5px;color:var(--mut)">Divya Kumari · 1 task</div></td>
             <td><div class="bar"><i style="width:62%;background:var(--warn)"></i></div><div style="font-size:9.5px;color:var(--mut)">5 / 8</div></td>
-            <td>97%</td><td>2h 48m</td>
+            <td>97%</td><td>2h 48m</td><td>3.4 min</td>
             <td><span class="btn sm alt">Nudge</span></td></tr>
           <tr>
             <td><b>Anil Kumar</b><div style="font-size:9.5px;color:var(--mut)">EN · board, marks</div></td>
@@ -202,7 +202,7 @@ tr:last-child td{border-bottom:none}
             <td><b>3</b> <span style="color:var(--mut2)">pending</span></td>
             <td><span class="badge b-ok">28h</span><div style="font-size:9.5px;color:var(--mut)">7-task set</div></td>
             <td><div class="bar"><i style="width:38%;background:var(--ok)"></i></div><div style="font-size:9.5px;color:var(--mut)">3 / 8</div></td>
-            <td>100%</td><td>4h 05m</td><td></td></tr>
+            <td>100%</td><td>4h 05m</td><td>1.1 min<div style="font-size:9px;color:var(--bad)">suspiciously fast</div></td><td></td></tr>
           <tr>
             <td><b>Sunita B</b><div style="font-size:9.5px;color:var(--mut)">KN · acharya</div></td>
             <td><span class="badge b-gray">Junior</span></td>
@@ -321,13 +321,57 @@ tr:last-child td{border-bottom:none}
 
 <!-- PROVENANCE -->
 <section>
-  <div><h2><span class="num">DATA</span> Every column already exists</h2>
+  <div><h2><span class="n">05</span> The two clocks — and what the Chief Yashodarshi watches</h2>
+<p class="cap">Added 26 Aug 2026. This console carried one "Median" for a year, and it was the wrong one to
+plan with. There are two clocks and they answer different questions.</p>
+
+<div class="scroll"><table class="prov">
+  <tr><th>Column</th><th>Question it answers</th><th>Who it is about</th></tr>
+  <tr><td><b>Wait</b></td><td>How long did the learner sit there before anyone looked?</td><td>the <b>learner's</b> experience — this is the SLA</td></tr>
+  <tr><td><b>Hands-on</b></td><td>How long did the evaluator actually spend on this task?</td><td>the <b>evaluator's</b> effort — this is capacity</td></tr>
+</table></div>
+
+<p class="cap"><b>Why it matters.</b> Before this, the only per-task figure in the whole system was a
+guess — 90 seconds of watching plus 22.5 seconds per ability, about 12.75 minutes. Nobody had ever timed
+it. Measured against real evaluations it was roughly <b>four times too high</b>, and it was keyed on
+ability count rather than on submission type, which is what actually moves the number: a video takes
+about 2.2× an audio.</p>
+
+<p class="cap"><b>Idle is excluded at source.</b> Hands-on time accumulates only while heartbeats keep
+arriving. Step away for twenty minutes and the returning beat adds nothing — so a cockpit left open on a
+second monitor is not counted as marking. There is no outlier rule to argue about afterwards.</p>
+
+<h3 style="margin-top:22px">What the Chief Yashodarshi looks for</h3>
+<div class="scroll"><table class="prov">
+  <tr><th>Pattern</th><th>What it usually means</th><th>What to do</th></tr>
+  <tr><td><b>Hands-on well BELOW the team median</b><div style="font-size:9.5px;color:var(--mut)">e.g. 1.1 min against a 3.4 min norm</div></td>
+      <td>Not speed — usually the rubric is being skimmed. Thirty ability dials cannot be judged in a minute.</td>
+      <td>Read two of their scorecards yourself before congratulating anyone on throughput.</td></tr>
+  <tr><td><b>Hands-on well ABOVE it</b></td>
+      <td>Either genuinely hard submissions, or someone who has not been shown the fast path through the cockpit.</td>
+      <td>Sit with them once. This is a coaching signal, not a performance one.</td></tr>
+  <tr><td><b>Wait high, hands-on normal</b></td>
+      <td>A queue problem, not a person problem. They are marking at a fine pace; the work reached them late or in a burst.</td>
+      <td>Look at allocation, not the evaluator.</td></tr>
+  <tr><td><b>Wait normal, hands-on rising over weeks</b></td>
+      <td>Fatigue, or the task mix has shifted toward video.</td>
+      <td>Check the mode split before assuming it is the person.</td></tr>
+  <tr><td><b>Hands-on shows <span class="mono">—</span></b></td>
+      <td>Fewer than 10 sittings recorded. NOT zero, and not "instant".</td>
+      <td>Nothing. Wait for evidence. A number built on three sittings is how the last guess survived a year.</td></tr>
+</table></div>
+
+<p class="cap"><b>One caution.</b> Hands-on is a measure of time, not of quality. It tells you where to
+look, never what to conclude. Every row above ends in "go and read the work" for that reason.</p>
+
+<h2><span class="num">DATA</span> Every column already exists</h2>
   <p class="cap">This is a <b>view</b>, not new instrumentation. Nothing below needs a new measurement.</p></div>
   <div class="scroll"><table class="prov">
     <tr><th>Column</th><th>Source</th><th></th></tr>
     <tr><td>In queue · Due soon · Done today</td><td><span class="mono">EvaluatorDesk::queueFor()</span> → <span class="mono">stats</span> (<span class="mono">DUE_SOON_MINUTES = 240</span>)</td><td><span class="tag t-have">EXISTS</span></td></tr>
     <tr><td>Next deadline · SLA left</td><td><span class="mono">EvalSla::taskDeadline()</span> — 12h/task (₹4999·₹5999) · 72h/set (7-task)</td><td><span class="tag t-have">EXISTS</span></td></tr>
     <tr><td>On-time % · Median turnaround</td><td><span class="mono">yashodarshi_evaluation_results.on_time</span> + <span class="mono">turnaround_minutes</span>, stamped by <span class="mono">EvalSla::flags()</span></td><td><span class="tag t-have">EXISTS</span></td></tr>
+    <tr><td><b>Hands-on minutes</b> · per task</td><td><span class="mono">yashodarshi_task_sessions.active_seconds</span> — the cockpit beacon. Accumulates only between FRESH heartbeats, so idle is excluded at source, not filtered after. Shows <span class="mono">—</span> below 10 sittings, never 0.</td><td><span class="tag t-new">NEW · 26-Aug</span></td></tr>
     <tr><td>Breaches (7d)</td><td><span class="mono">EvaluationsSlaScan</span> already detects + re-allocates; needs persisting to be shown as history</td><td><span class="tag t-new">SMALL</span></td></tr>
     <tr><td>Role · Pool · Load</td><td><span class="mono">yashodarshis.role · pool · max_load · capacity_hours_per_day · is_available</span></td><td><span class="tag t-have">EXISTS</span></td></tr>
     <tr><td>Languages · Streams</td><td><span class="mono">yashodarshis.languages · streams</span></td><td><span class="tag t-have">EXISTS</span></td></tr>
