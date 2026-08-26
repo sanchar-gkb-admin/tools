@@ -1,0 +1,133 @@
+<title>Exam Hall — scorecard generation & linking: questions for Sutirtha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1626;--surface:#10223c;--accent:#f5821f;--accent-strong:#ff9b3d;--soft:#1d2f4d;--text:#eaf1f9;--muted:#8ea3bd;--line:#1d3354;--ok:#63e08d;--no:#ff8b9c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Montserrat,system-ui,sans-serif;line-height:1.55}
+.w{max-width:1000px;margin:0 auto;padding:40px 20px 80px}
+h1{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(1.7rem,4.6vw,2.6rem);margin:0 0 6px}
+.sub{color:var(--muted);max-width:78ch;margin:0 0 8px}
+.rule{height:3px;width:78px;background:var(--accent);margin:18px 0 30px;border-radius:2px}
+h2{font-weight:900;text-transform:uppercase;font-size:1rem;letter-spacing:.05em;margin:44px 0 4px;color:var(--accent-strong)}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px;max-width:80ch}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:12px}
+.q .n{display:inline-block;background:var(--soft);color:var(--accent-strong);font-weight:900;font-size:.7rem;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+.q .t{font-weight:700;margin-bottom:7px}
+.q .why{font-size:.87rem;color:var(--muted)}
+.q .why b{color:var(--text)}
+.blocks{display:inline-block;font-size:.66rem;font-weight:800;padding:2px 8px;border-radius:99px;margin-left:7px;background:rgba(255,139,156,.15);color:var(--no)}
+.settled{border-left:3px solid var(--ok);background:rgba(99,224,141,.06);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.88rem}
+.settled b{color:var(--ok)}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.87rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.67rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+code{background:#0c1c33;padding:1px 6px;border-radius:4px;font-size:.85em;color:var(--accent-strong)}
+</style>
+<div class="w">
+<h1>Scorecard generation &amp; linking</h1>
+<p class="sub">Questions for <b>Sutirtha</b> on Engine <b>2A — Master Exam Performance Booster</b>. Everything already settled by the locked master or the exam-hall storyboard is listed first, so nothing here is a question that has an answer.</p>
+<div class="rule"></div>
+
+<h2>Already settled — not asking these</h2>
+<div class="settled">
+<b>From the locked master and the exam-hall storyboard:</b><br>
+• <b>5 scorecards</b>, not more. 1 = Paper 1 (app) · 2 = Paper 2 (app) · 3 = cumulative, derived from 1+2 (app) · 4 = <b>all 28 tasks</b>, rubric-evaluated (YASHODARSHI) · 5 = the Master scorecard, <b>app-assembled, delivered in a mentoring session</b>.<br>
+• A <b>set = Paper 1 + Paper 2</b>. 28 tasks = <b>4 × 7</b>, each in a <b>15-minute window</b>; papers are 120 min each.<br>
+• Four purposes: <code>pre_test</code>/<code>post_test</code> × Paper 1/Paper 2. Type <code>exam_hall</code>, tier <code>NULL</code>.<br>
+• A <b>separate <code>exam_hall</code> evaluator pool</b>, and a <b>dedicated</b> YASHODARSHI for the engagement.<br>
+• Rubric stays a <b>5-point scale</b>. Wrong answers are <b>−0.50</b>.
+</div>
+
+<h2>The problem in one line</h2>
+<p class="lead">In our current architecture each of the four task groups is <b>its own challenge</b>, and a challenge generates <b>its own scorecard</b>. That is four task scorecards. The product specifies <b>one</b> — Scorecard 4. So either Scorecard 4 is a composition of four, or the four never become learner-visible artifacts. Everything below follows from which.</p>
+<table>
+<tr><th>Challenge</th><th>Purpose</th><th>Tasks</th><th>Produces today</th><th>Product wants</th></tr>
+<tr><td>Paper 1 Pre-Exam</td><td><code>pre_test.1</code></td><td>7</td><td>a scorecard</td><td rowspan="4" style="vertical-align:middle"><b>Scorecard 4</b><br>one, across all 28</td></tr>
+<tr><td>Paper 1 Post-Exam</td><td><code>post_test.1</code></td><td>7</td><td>a scorecard</td></tr>
+<tr><td>Paper 2 Pre-Exam</td><td><code>pre_test.2</code></td><td>7</td><td>a scorecard</td></tr>
+<tr><td>Paper 2 Post-Exam</td><td><code>post_test.2</code></td><td>7</td><td>a scorecard</td></tr>
+</table>
+
+<h2>A · What Scorecard 4 actually is</h2>
+<p class="lead">These decide the data model. Nothing downstream can be built until A1 is answered.</p>
+
+<div class="q"><span class="n">A1</span><span class="blocks">BLOCKS EVERYTHING</span>
+<div class="t">Is Scorecard 4 a <i>composition</i> of the four challenge scorecards, or does the learner never see per-challenge scorecards at all?</div>
+<div class="why">Three shapes are possible and they are not interchangeable: <b>(a)</b> four scorecards exist and Scorecard 4 aggregates them; <b>(b)</b> the four are internal only and Scorecard 4 is generated directly from 28 task evaluations; <b>(c)</b> the learner sees all four <i>and</i> a fifth summary. <b>Changes:</b> the data model, what the app stores, and how many artifacts a mentoring session walks through.</div></div>
+
+<div class="q"><span class="n">A2</span>
+<div class="t">If a composition — is it arithmetic (aggregate the ability scores), or narrative (a YASHODARSHI writes it)?</div>
+<div class="why">The master says Scorecard 4 is <b>YASHODARSHI-generated</b> but Scorecard 5 is <b>app-assembled</b>. If 4 is also assembled by the app from four rubric outputs, then the human's unit of work is the <b>task</b>, not the scorecard — which changes what the evaluator console asks them to produce.</div></div>
+
+<div class="q"><span class="n">A3</span>
+<div class="t">Can a partial Scorecard 4 exist — say, after Paper 1's Pre and Post only?</div>
+<div class="why">A learner will finish Paper 1's four-week-apart tasks long before Paper 2's. <b>Changes:</b> whether the app shows progress or withholds until all 28 are in. The MCQ side already has a designed answer for this shape (S12, "one paper to go").</div></div>
+
+<h2>B · The basis of linking — the part that must be decided first</h2>
+<p class="lead">Goutam: <i>"we first need to understand the basis of this linking."</i> These four are that basis.</p>
+
+<div class="q"><span class="n">B1</span><span class="blocks">BLOCKS SCORECARD 5</span>
+<div class="t">Do Pre and Post measure the <b>same abilities</b> — so the link is a before/after <b>shift</b> — or different abilities, so they are separate readings?</div>
+<div class="why">This is the single most consequential question. If the same, the instrument's headline is the <b>delta</b> and the app must pair every Pre ability to its Post counterpart. If different, there is no delta at all and Scorecard 4 is a union, not a comparison. <b>Everything about how 4 and 5 are drawn depends on it.</b></div></div>
+
+<div class="q"><span class="n">B2</span>
+<div class="t">Is the shift measured <b>per paper</b> (Pre1→Post1, Pre2→Post2) or <b>across the engagement</b> (Pre1→Post2)?</div>
+<div class="why">Per paper gives two independent deltas; across gives one longer arc with the middle two as waypoints. <b>Changes:</b> whether a learner who does only Paper 1 gets a complete story or half of one.</div></div>
+
+<div class="q"><span class="n">B3</span>
+<div class="t">Do the four challenges map to the <b>same ability set</b>, or does each have its own?</div>
+<div class="why">If each has its own, an ability may appear in only one of the four and the aggregate is uneven — some abilities backed by 7 tasks, others by 28. The MCQ storyboard already refuses to report an ability below sufficient evidence; the task side needs the same rule.</div></div>
+
+<div class="q"><span class="n">B4</span>
+<div class="t">When one ability appears in more than one challenge, how is it combined — latest, mean, weighted, or kept separate?</div>
+<div class="why"><b>Changes:</b> whether a strong Post can mask a weak Pre. If it is a mean, improvement is invisible; if latest, the Pre evidence is discarded.</div></div>
+
+<h2>C · Scorecard 5 — joining marks to abilities</h2>
+
+<div class="q"><span class="n">C1</span><span class="blocks">BLOCKS SCORECARD 5</span>
+<div class="t">How do <b>MCQ marks</b> (Scorecards 1–3) and <b>ability scores</b> (Scorecard 4) combine? They are different units.</div>
+<div class="why">One is marks out of 200 with negative marking; the other is a 5-point rubric across abilities. Scorecard 5 "links 1–4" — but a link can be <b>a single composite number</b>, <b>a correlation</b> ("your low Attention to Detail shows up as −12 marks lost to negative marking"), or <b>two panels side by side with no arithmetic between them</b>. <b>Changes:</b> whether we need a conversion, and whether a wrong one can be shipped invisibly.</div></div>
+
+<div class="q"><span class="n">C2</span>
+<div class="t">Does Scorecard 5 carry a single headline number, or is it explicitly a narrative?</div>
+<div class="why">It is delivered in a mentoring session, which suggests narrative. But if there is a number, it needs a definition that survives a parent asking "out of what?".</div></div>
+
+<div class="q"><span class="n">C3</span>
+<div class="t">What does Scorecard 5 show that 1–4 do not?</div>
+<div class="why">If it is only a cover page over four existing artifacts, it is a view rather than a scorecard — and should not be generated, stored or versioned as one.</div></div>
+
+<h2>D · Evaluation logistics</h2>
+
+<div class="q"><span class="n">D1</span>
+<div class="t">Does <b>one</b> YASHODARSHI evaluate all 28 tasks, or one per challenge?</div>
+<div class="why">"A dedicated YASHODARSHI" is locked for the engagement, but four challenges means four units, and the allocator binds one evaluator per unit. If it must be one person, allocation has to work at engagement level — otherwise four people each see a quarter of the instrument and nobody sees the shift.</div></div>
+
+<div class="q"><span class="n">D2</span>
+<div class="t">What is the <b>SLA</b> for exam-hall evaluation? The storyboard says <code>TBD</code>.</div>
+<div class="why">The scan pools are 12h/task and 72h/set. <b>Changes:</b> whether Paper 1's Post tasks must be evaluated before Paper 2 is sat — and therefore whether evaluation is on the learner's critical path.</div></div>
+
+<div class="q"><span class="n">D3</span>
+<div class="t">May a learner sit Paper 2 before Paper 1's tasks are evaluated?</div>
+<div class="why">If not, human turnaround gates the product and the SLA becomes a delivery promise rather than an internal target.</div></div>
+
+<h2>E · Sequencing and edge cases</h2>
+
+<div class="q"><span class="n">E1</span>
+<div class="t">Is the order <b>enforced</b> — Pre → Paper → Post — or advisory?</div>
+<div class="why">A Post-Paper Analysis attempted before the paper measures nothing. <b>Changes:</b> whether the app must lock challenges until the preceding step completes.</div></div>
+
+<div class="q"><span class="n">E2</span>
+<div class="t">What happens to a challenge left <b>partially complete</b> — 5 of 7 tasks in the 15-minute window?</div>
+<div class="why">The window is one countdown for the set. <b>Changes:</b> whether the abilities behind the missing tasks are reported as low, or as no evidence. Reporting them as low is a measurement error the learner cannot see.</div></div>
+
+<div class="q"><span class="n">E3</span>
+<div class="t">If a learner skips Pre entirely but does Post, is the Post still evaluated and reported?</div>
+<div class="why">A Post with no Pre has no baseline. It can still be scored as a standalone reading, but not as a shift.</div></div>
+
+<div class="q"><span class="n">E4</span>
+<div class="t">Minimum evidence — what is the fewest tasks that may back a reported ability?</div>
+<div class="why">The MCQ side already suppresses a verdict below significance and shows an evidence count per ability. The task side needs the same floor, or the two halves of one scorecard will apply different standards.</div></div>
+
+<h2>Answer order</h2>
+<p class="lead">If time is short, these four unlock the most: <b>A1</b> (what Scorecard 4 is) → <b>B1</b> (same abilities or not) → <b>C1</b> (how marks join abilities) → <b>D2</b> (the SLA). Everything else can be decided while building.</p>
+</div>
