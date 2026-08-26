@@ -1,4 +1,4 @@
-<title>Exam Hall scorecards — what the architecture does today, the gaps, and the questions</title>
+<title>Exam Hall scorecards — what is specified, what is not, and the questions for Sutirtha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -6,21 +6,21 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Montserrat,system-ui,sans-serif;line-height:1.55}
 .w{max-width:1020px;margin:0 auto;padding:40px 20px 80px}
 h1{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(1.6rem,4.4vw,2.4rem);margin:0 0 6px}
-.sub{color:var(--muted);max-width:80ch;margin:0 0 8px}
+.sub{color:var(--muted);max-width:82ch;margin:0 0 8px}
 .rule{height:3px;width:78px;background:var(--accent);margin:18px 0 30px;border-radius:2px}
 h2{font-weight:900;text-transform:uppercase;font-size:1rem;letter-spacing:.05em;margin:44px 0 4px;color:var(--accent-strong)}
-.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px;max-width:82ch}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px;max-width:84ch}
 .q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:12px}
 .q .n{display:inline-block;background:var(--soft);color:var(--accent-strong);font-weight:900;font-size:.7rem;padding:2px 9px;border-radius:99px}
 .q .t{font-weight:700;margin:7px 0}
 .q .why{font-size:.87rem;color:var(--muted)}
 .q .why b{color:var(--text)}
 .blocks{display:inline-block;font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:99px;margin-left:7px;background:rgba(255,139,156,.15);color:var(--no)}
-.meas{border-left:3px solid var(--ok);background:rgba(99,224,141,.06);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.88rem}
-.meas b{color:var(--ok)}
+.ok{border-left:3px solid var(--ok);background:rgba(99,224,141,.06);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.88rem}
+.ok b{color:var(--ok)}
 .gap{border-left:3px solid var(--no);background:rgba(255,139,156,.07);padding:12px 15px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.89rem}
 .gap b{color:var(--no)}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.87rem}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.86rem}
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
 code{background:#0c1c33;padding:1px 6px;border-radius:4px;font-size:.85em;color:var(--accent-strong)}
@@ -28,86 +28,71 @@ pre{background:#0c1c33;border:1px solid var(--line);border-radius:8px;padding:11
 </style>
 <div class="w">
 <h1>Exam Hall scorecards</h1>
-<p class="sub">What the architecture does <b>today</b>, the gaps that follow, and the questions only <b>Sutirtha</b> can close. Every fact below was measured against production on 26-Aug — none of it is inferred from the spec.</p>
+<p class="sub">The MCQ scorecard is <b>already fully specified</b> in <code>KAS ASALI SUCCESS SCORECARD™</code> (tab 24 of the KAS Real Test Series capture). This page separates what that document settles from what it does not, and asks <b>Sutirtha</b> only the second kind.</p>
 <div class="rule"></div>
 
-<h2>1 · Measured — what exists today</h2>
-<div class="meas">
-<b>A scorecard is keyed to a CHALLENGE.</b>
-<pre>scorecards: id · student_id · challenge_id · unit_id · program_key · tier · json · …
-            challenge_id  NOT NULL          unit_id  NULLABLE</pre>
-• <b>87 scorecards across 54 units</b> in production.<br>
-• <b>Nothing composes a scorecard from other scorecards.</b> No such service exists — every scorecard is generated from evaluated task submissions for one challenge.<br>
-• <b>MCQ has no scorecard path at all.</b> <code>mcq_attempts</code> does not exist; <code>mcq_papers/questions/sets/policies</code> are migrated and <b>empty</b>.<br>
-• 2A is authored as <b>four challenges</b> — <code>pre_test.1 · post_test.1 · pre_test.2 · post_test.2</code>, 7 tasks each, one 15-minute window per set.
+<h2>1 · Already specified — tab 24, do not re-ask</h2>
+<div class="ok">
+<b>One scorecard per exam, where an exam = GS1 + GS2 (a set).</b> Twelve sections, not three separate artifacts.<br><br>
+• <b>§1 at-a-glance</b> — GS1 / GS2 / Overall: max marks, net, %, attempted, correct, incorrect, left, negative marks, accuracy. <code>Combined Accuracy = Total Correct ÷ Total Attempted × 100</code>.<br>
+• <b>§2–§7</b> — per paper: performance, 11 Critical Success Abilities, 4 Behavioural Success Abilities.<br>
+• <b>§8–§9 the combining rule, explicitly:</b> <code>Overall Ability Score = (GS1 + GS2) ÷ 2</code>, for both the 11 critical and the 4 behavioural abilities.<br>
+• <b>Three benchmarks retained</b> — Developmental · ASALI Champion · KAS ASALI Champion — each with a signed gap per ability.<br>
+• <b>§10</b> — benchmark achievement summary X/11, X/4, <b>X/15</b>, plus closest and largest gap.<br>
+• <b>§11</b> — exam-to-exam progress, <b>from Exam 2 onward only</b>; comparison unit is <code>Exam = GS1 + GS2</code>.<br>
+• <b>§12</b> — Success Doctor's Summary &amp; Recommended Success Path™.
 </div>
+<p class="lead">⇒ This corrects an earlier version of this page, which claimed the cumulative scorecard had "no mechanism". <b>It has a fully specified one.</b> The combining rule is a straight mean of the two papers, per ability, against three benchmarks.</p>
 
-<h2>2 · The gaps that follow</h2>
-<p class="lead">Five scorecards are specified. Under today's schema, <b>three of them have nowhere to live</b> and <b>one produces four artifacts instead of one</b>.</p>
+<h2>2 · The actual gap</h2>
+<div class="gap"><b>Tab 24 mentions tasks ZERO times.</b> Not "task", not "Pre-Paper", not "Post-Paper", not "YASHODARSHI", not "rubric" — measured, zero occurrences.<br><br>
+It is a complete specification of the <b>MCQ half</b> of the instrument. The <b>28 tasks</b> (Scorecard 4) and the <b>join between marks and tasks</b> (Scorecard 5) are specified nowhere — not in tab 24, not in the locked master beyond a one-line table row, not in the exam-hall storyboard.</div>
 
 <table>
-<tr><th>Scorecard</th><th>Source</th><th>What today's architecture does</th><th>Gap</th></tr>
-<tr><td><b>1</b> — Paper 1</td><td>an MCQ paper</td><td><code>challenge_id</code> is NOT NULL and a paper is <b>not a challenge</b></td><td>no valid key</td></tr>
-<tr><td><b>2</b> — Paper 2</td><td>an MCQ paper</td><td>same</td><td>no valid key</td></tr>
-<tr><td><b>3</b> — cumulative</td><td>1 + 2</td><td>no composition exists; belongs to no single challenge</td><td><b>no mechanism</b></td></tr>
-<tr><td><b>4</b> — all 28 tasks</td><td>4 challenges</td><td>generates <b>one per challenge = 4 scorecards</b></td><td><b>4, not 1</b></td></tr>
-<tr><td><b>5</b> — Master</td><td>links 1–4</td><td>no composition exists; belongs to no single challenge</td><td><b>no mechanism</b></td></tr>
+<tr><th>Artifact</th><th>Status</th></tr>
+<tr><td>Per-paper performance and abilities</td><td>✅ specified — tab 24 §2–§7</td></tr>
+<tr><td>GS1 + GS2 combined abilities</td><td>✅ specified — <code>(GS1 + GS2) ÷ 2</code>, §8–§9</td></tr>
+<tr><td>Benchmarks and gaps</td><td>✅ specified — 3 benchmarks, §8–§10</td></tr>
+<tr><td>Across-exam progression</td><td>✅ specified — §11, unit = the set</td></tr>
+<tr><td><b>The 28 tasks</b> (Scorecard 4)</td><td>❌ <b>unspecified</b></td></tr>
+<tr><td><b>Marks ↔ tasks join</b> (Scorecard 5)</td><td>❌ <b>unspecified</b></td></tr>
 </table>
 
-<div class="gap"><b>The single missing primitive is COMPOSITION.</b> Scorecards 3 and 5 are both defined as derived from other scorecards, and nothing in the system can do that. It is not an Engine-2A gap — <b>Scorecard 3 is needed by 2C, the very first thing that ships on 05 Sep.</b></div>
-<div class="gap"><b>And a second: a scorecard cannot exist without a challenge.</b> So either papers become challenges, or <code>challenge_id</code> stops being mandatory, or paper results are not "scorecards" in this table at all. That is an architecture decision, and it is upstream of everything below.</div>
+<h2>3 · Questions</h2>
 
-<h2>3 · Questions — grounded in those gaps</h2>
+<div class="q"><span class="n">Q1</span><span class="blocks">BLOCKS 2A</span>
+<div class="t">Do the 28 tasks measure the <b>same 15 abilities</b> as the papers — the 11 Critical + 4 Behavioural — or a different set?</div>
+<div class="why">If the same, the tasks are a second reading of one instrument and everything in §8–§10 extends naturally. If different, 2A's scorecard carries two ability vocabularies and §10's "X/15" no longer describes the whole picture. <b>Everything else here depends on this answer.</b></div></div>
 
-<div class="q"><span class="n">Q1</span><span class="blocks">BLOCKS 05 SEP</span>
-<div class="t">Is Scorecard 3 (cumulative) a <b>stored artifact</b>, or a <b>view</b> computed at read time from 1 and 2?</div>
-<div class="why">This decides whether we build a composition primitive at all. <b>Stored</b> means a new scorecard row that belongs to no challenge — schema change. <b>A view</b> means it is assembled when the learner opens it and never persisted, which sidesteps the key problem entirely. <b>Needed for 2C on 05 Sep</b>, before any 2A work.</div></div>
-
-<div class="q"><span class="n">Q2</span><span class="blocks">BLOCKS 05 SEP</span>
-<div class="t">What is a paper's result keyed to — do the two papers of a set become <b>challenges</b>, or does a paper result live outside the <code>scorecards</code> table?</div>
-<div class="why">Today <code>challenge_id</code> is NOT NULL. If papers become challenges, a 2C purchase mints two challenges and the existing scorecard path works unchanged. If not, MCQ results need their own home and the learner then has two kinds of "scorecard" with different plumbing.</div></div>
+<div class="q"><span class="n">Q2</span><span class="blocks">BLOCKS 2A</span>
+<div class="t">If the same 15 — how does a <b>task</b> ability score combine with the <b>paper</b> ability score?</div>
+<div class="why">§8 gives the paper rule: <code>(GS1 + GS2) ÷ 2</code>. Is the overall then <code>(MCQ + Task) ÷ 2</code>, a weighted blend, or do they stay side by side and never merge? <b>Changes:</b> whether one number can be reported per ability, or two must be.</div></div>
 
 <div class="q"><span class="n">Q3</span><span class="blocks">BLOCKS 2A</span>
-<div class="t">Scorecard 4 is specified as one across 28 tasks, but four challenges produce four. Which is real: <b>(a)</b> four stored, one composed view · <b>(b)</b> four internal, only the composition shown · <b>(c)</b> all four shown to the learner and no Scorecard 4 as such?</div>
-<div class="why">Goutam, 26-Aug: <i>"we have 4 challenges so it will produce 4 scorecards."</i> That is what the code does. The spec says one. <b>Changes:</b> what is stored, what is versioned, and how many artifacts a mentoring session walks through.</div></div>
+<div class="t">Unit conversion: paper abilities are reported as <b>percentages</b> (84, 90, 87.0%). The task rubric is a <b>5-point scale</b>. What is the mapping?</div>
+<div class="why">A 5-point rubric cannot be averaged with a percentage without a stated conversion, and an implicit one (×20) is a modelling decision, not arithmetic. <b>Changes:</b> whether task and paper abilities can share a row in §8 at all.</div></div>
 
-<div class="q"><span class="n">Q4</span><span class="blocks">BLOCKS SC 4 AND 5</span>
-<div class="t">Do Pre and Post measure the <b>same abilities</b> — making the link a before/after <b>shift</b> — or different abilities, making it a union?</div>
-<div class="why">The most consequential question here. If the same, the headline of the instrument is the <b>delta</b>, and every Pre ability must pair to its Post counterpart. If different, there is no delta and Scorecard 4 is an aggregate. Nothing about how 4 or 5 are drawn can be decided before this.</div></div>
+<div class="q"><span class="n">Q4</span>
+<div class="t">Do the 28 tasks carry the <b>same three benchmarks</b> — Developmental, ASALI Champion, KAS ASALI Champion — with signed gaps?</div>
+<div class="why">§8–§10 are built entirely on those three. If tasks have no benchmarks, the task rows in the scorecard have empty gap columns and §10's X/15 counts only the MCQ half.</div></div>
 
-<div class="q"><span class="n">Q5</span>
-<div class="t">Is the shift <b>per paper</b> (Pre1→Post1, Pre2→Post2) or <b>across the engagement</b> (Pre1→Post2)?</div>
-<div class="why">Per paper gives two independent deltas; across gives one arc with two waypoints. <b>Changes:</b> whether a learner who completes only Paper 1 has a whole result or half of one.</div></div>
+<div class="q"><span class="n">Q5</span><span class="blocks">BLOCKS 2A</span>
+<div class="t">Is the <b>Pre → Post shift</b> a reported measure, and if so where does it sit?</div>
+<div class="why">§11 exists for <b>exam-to-exam</b> progression, from Exam 2 onward. But 2A is a <b>single</b> exam containing four task groups — Pre1, Post1, Pre2, Post2. That is a within-exam progression §11 does not describe. If the Pre→Post delta is the thing 2A sells, it needs its own section, and a rule for whether it is Pre1→Post1 and Pre2→Post2, or Pre1→Post2.</div></div>
 
 <div class="q"><span class="n">Q6</span>
-<div class="t">When an ability appears in more than one of the four challenges, how is it combined — latest, mean, weighted, or kept separate?</div>
-<div class="why">A mean makes improvement invisible; latest discards the Pre evidence. Today each challenge scores independently and nothing reconciles them.</div></div>
+<div class="t">Is Scorecard 4 a <b>section of the same document</b>, or a separate scorecard?</div>
+<div class="why">Tab 24 is one document with twelve sections. If the tasks become §13–§15 of it, there is one scorecard per exam and "5 scorecards" is a description of sections. <b>Goutam, 26-Aug:</b> <i>"we have 4 challenges so it will produce 4 scorecards"</i> — that is what the code does today, one per challenge, so the answer decides whether four stored artifacts get composed into one view or replaced by it.</div></div>
 
-<div class="q"><span class="n">Q7</span><span class="blocks">BLOCKS SC 5</span>
-<div class="t">How do <b>marks out of 200</b> (Scorecards 1–3) join <b>5-point ability scores</b> (Scorecard 4)?</div>
-<div class="why">Different units. A "link" could be a composite number, a stated relationship (<i>"low Attention to Detail cost you −12 marks to negative marking"</i>), or two panels with no arithmetic between them. <b>Changes:</b> whether a conversion exists that can be silently wrong.</div></div>
+<div class="q"><span class="n">Q7</span>
+<div class="t">A 15-minute window closes with 5 of 7 tasks done. Are the missing abilities <b>weak</b>, or <b>no evidence</b>?</div>
+<div class="why">§8 reports every ability with a number and a gap. A partially-evidenced ability reported as a low score is a measurement error the candidate cannot see. Tab 24 has no "insufficient evidence" state.</div></div>
 
 <div class="q"><span class="n">Q8</span>
-<div class="t">Is Scorecard 5 <b>generated and stored</b>, or assembled for the mentoring session and not persisted?</div>
-<div class="why">The master says app-assembled, delivered in a session. If it is never stored it is a view and needs no key — which removes the second gap for it entirely.</div></div>
-
-<div class="q"><span class="n">Q9</span>
-<div class="t">Does <b>one</b> YASHODARSHI evaluate all 28 tasks?</div>
-<div class="why">"Dedicated" is locked for the engagement, but four challenges means four units, and <code>EvaluatorAllocator</code> binds one evaluator <b>per unit</b>. If one person must see all four, allocation has to move to engagement level — otherwise four people each see a quarter and nobody sees the shift.</div></div>
-
-<div class="q"><span class="n">Q10</span>
-<div class="t">What is the exam-hall evaluation <b>SLA</b>? The storyboard marks it <code>TBD</code>.</div>
-<div class="why">Scan pools run 12h/task and 72h/set. <b>Changes:</b> whether Paper 1's Post tasks must be evaluated before Paper 2 is sat — i.e. whether human turnaround sits on the learner's critical path.</div></div>
-
-<div class="q"><span class="n">Q11</span>
-<div class="t">Is the order <b>enforced</b> — Pre → Paper → Post?</div>
-<div class="why">A Post-Paper Analysis taken before the paper measures nothing. <b>Changes:</b> whether challenges lock until the preceding step completes.</div></div>
-
-<div class="q"><span class="n">Q12</span>
-<div class="t">A 15-minute window closes with 5 of 7 tasks done. Are the missing abilities <b>low</b>, or <b>no evidence</b>?</div>
-<div class="why">Reporting them as low is a measurement error the learner cannot see. The MCQ side already suppresses a verdict below significance and shows an evidence count per ability; the task side needs the same floor or one scorecard applies two standards.</div></div>
+<div class="t">Does <b>one</b> YASHODARSHI evaluate all 28 tasks, and what is the SLA?</div>
+<div class="why">"A dedicated YASHODARSHI" is locked, but four challenges means four units and the allocator binds one evaluator per unit. The exam-hall pool's SLA is marked <code>TBD</code> in the storyboard. <b>Changes:</b> whether human turnaround sits between Paper 1 and Paper 2 on the candidate's critical path.</div></div>
 
 <h2>4 · Answer order</h2>
-<p class="lead"><b>Q1 and Q2 are needed for 05 Sep</b> — they are 2C questions, not 2A ones, and they decide whether a composition primitive gets built at all. <b>Q3, Q4 and Q7</b> unlock 2A. Everything else can be settled during the build.</p>
-<div class="gap"><b>If Q1 and Q2 are not answered this week, 05 Sep ships a set with two paper results and no cumulative</b> — which is the one artifact a learner buying a "set" is actually paying for.</div>
+<p class="lead"><b>Q1 → Q2 → Q3</b> in that order. Q1 decides whether there is one instrument or two; Q2 the arithmetic; Q3 whether the arithmetic is even possible in shared units. <b>Q5</b> next, because the Pre→Post shift may be the headline of 2A and has no home in the current format.</p>
+<div class="ok"><b>Nothing here blocks 05 Sep.</b> 2C and 2B are pure MCQ, and tab 24 specifies the MCQ scorecard completely — including the GS1+GS2 combination. These questions are 2A questions, needed for <b>20 Sep</b>.</div>
 </div>
