@@ -62,7 +62,9 @@ exam_hall challenges carry  tier = NULL   →  falls through to 'seven_task'</pr
 <div class="gap"><b>Every exam-hall challenge would route to the ASLI15 / ASLI5 pool</b> — the cheapest work in the system. It will not fail, because all seven YASHODARSHIs sit in <code>premium_4999 / senior</code> with overflow configured, so they cover <code>seven_task</code> today. It will silently classify the ₹4,999 flagship — a <b>dedicated</b> YASHODARSHI, 28 tasks, five scorecards — as bottom-tier work for capacity, SLA and queue priority.<br><br>
 This is <b>tier standing in for product shape</b>: the pool is derived from price, and exam hall has no price tier. The fix is to derive the pool from <b>type</b>.</div>
 <p class="lead"><b>Current staffing:</b> 7 YASHODARSHIs, all <code>premium_4999 / senior</code>, all with overflow pools set. The Jr/Sr classification exists as a column; nobody is a junior today. <b>A separate <code>exam_hall</code> pool implies no hiring</b> — a pool is a routing and capacity concept, and the same seven people would carry it in <code>overflow_pools</code> exactly as they carry <code>seven_task</code>.</p>
-<p class="lead">Three reasons the storyboard's separate pool is right beyond the bug: the <b>SLA differs</b> (a scan is 12h/task or 72h/set; exam hall may sit between Paper 1 and Paper 2 on the candidate's critical path) · the <b>allocation grain differs</b> (a dedicated evaluator holds all four task groups, where scans bind per unit) · and <b>capacity is only readable if separate</b> (28 tasks per candidate against 21 or 7).</p>
+<div class="ok"><b>DECIDED — <code>exam_hall</code> is its own pool.</b> Separate from <code>premium_4999</code> (21-task scan) and <code>seven_task</code> (7-task scan). 2A carries a <b>dedicated</b> YASHODARSHI, and a dedicated evaluator must be drawn from a pool that exists for that purpose — not overflowed out of a scan queue.<br><br>
+It earns the separation three ways: the <b>SLA differs</b> (a scan runs 12h/task or 72h/set; exam hall may sit between Paper 1 and Paper 2 on the candidate's critical path) · the <b>allocation grain differs</b> (one evaluator holds all four task groups, where scans bind per unit) · and <b>capacity is only readable when separate</b> — 28 tasks per candidate mixed into 21- and 7-task queues makes "open work" meaningless.</div>
+<p class="lead">⇒ <code>Challenge::pool()</code> gains a third return value and derives from <b>type</b>: <code>exam_hall → exam_hall</code>, scans continue to derive from tier as they do today.</p>
 
 <h2>4 · Questions</h2>
 
@@ -103,8 +105,8 @@ This is <b>tier standing in for product shape</b>: the pool is derived from pric
 <div class="why">Scan pools run 12h/task and 72h/set; the exam-hall pool is marked <code>TBD</code>. <b>Changes:</b> whether human turnaround sits on the candidate's critical path between the two papers, and therefore whether the SLA is an internal target or a delivery promise.</div></div>
 
 <div class="q"><span class="n">Q10</span>
-<div class="t">Do exam-hall evaluators need <b>different qualification</b> from scan evaluators — or is it the same seven people, differently routed?</div>
-<div class="why">The rubric is the same 5-point scale, but the tasks wrap a timed competitive-exam paper rather than a scan. If the qualification is the same, a separate pool is purely routing and capacity. If not, it is a staffing decision with a lead time — and 20 Sep is the date it lands on.</div></div>
+<div class="t">Who staffs the <code>exam_hall</code> pool — the same seven, or people qualified separately?</div>
+<div class="why">The pool is decided; who sits in it is not. The rubric is the same 5-point scale, but these tasks wrap a timed competitive-exam paper rather than a scan. <b>Same seven</b> makes it pure routing, live immediately. <b>Separate qualification</b> is a staffing decision with a lead time, and 20 Sep is the date it lands on.</div></div>
 
 <h2>5 · Answer order</h2>
 <p class="lead"><b>Q1 → Q2 → Q3</b> in that order — Q1 decides whether there is one instrument or two, Q2 the arithmetic, Q3 whether that arithmetic is possible in shared units. <b>Q5</b> next, because the Pre → Post shift may be the headline of 2A and has no home in the current format. <b>Q9 and Q10</b> are ops rather than scoring, but Q10 has a staffing lead time, so it should not wait.</p>
