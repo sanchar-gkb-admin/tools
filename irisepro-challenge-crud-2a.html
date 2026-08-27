@@ -341,7 +341,71 @@
   </div>
 </div>
 
-<h2><span class="num">09</span> What this changes, in one table</h2>
+<h2><span class="num">09</span> Editing an EXISTING 1A–1C challenge, after the change</h2>
+<p class="cap">A legacy scan opens with no product and no purpose. It stays that way unless someone deliberately migrates it — saving must never stamp one silently.</p>
+<div class="row">
+  <div class="col">
+    <div class="lbl">Edit · legacy scan (product_id = NULL)</div>
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/challenges/66/edit</div></div>
+      <div class="view">
+        <div class="banner g" style="background:#f4ece0;border-color:var(--line);border-left-color:var(--muted)"><b>Legacy scan · resolves by tier</b>This challenge predates products. Everything below behaves exactly as it did before.</div>
+        <div class="field"><span class="fl req">Title</span><span class="fv">KAS Booster — Ultimate Asli Champion 64</span></div>
+        <div class="sel"><span><span class="fl">Product</span><span class="fv" style="color:#b3a48d">— none · legacy scan —</span></span><span class="caret">▾</span></div>
+        <div class="field" style="background:#f7f2e9"><span class="fl">Purpose</span><span class="fv" style="color:#b3a48d">— n/a for a legacy scan —</span></div>
+        <div class="field"><span class="fl req">Tier</span><span class="fv">4999 <span class="pill n">still the identity</span></span></div>
+        <div class="field" style="background:#f7f2e9"><span class="fl">Yashodarshi pool</span><span class="fv">premium_4999 <span class="pill n">from tier</span></span></div>
+        <div class="field" style="background:#f7f2e9"><span class="fl">Ability cap</span><span class="fv">64 <span class="pill n">from tier_map</span></span></div>
+        <button class="btn">Save</button> <button class="btn ghost">Attach to a product…</button>
+      </div>
+    </div>
+    <div class="note good"><b>Saving changes nothing about resolution.</b> Tier stays populated, so every reader takes the tier branch — the same code path as before the change. Attaching a product is a separate, deliberate action.</div>
+  </div>
+  <div class="col">
+    <div class="lbl">Why editing is safe — the resolver ordering</div>
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">Challenge::pool() · the ONLY safe shape</div></div>
+      <div class="view">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;font-family:ui-monospace,monospace;font-size:11.5px;line-height:1.8">
+          <div style="color:var(--green);font-weight:700">✅ TIER-FIRST, product fallback</div>
+          <div>if (tier maps) return &lt;today's answer&gt;;  <span style="color:var(--muted)">← every existing scan</span></div>
+          <div>return fromProduct(...);              <span style="color:var(--muted)">← only a tier-less challenge</span></div>
+          <div style="height:10px"></div>
+          <div style="color:var(--red);font-weight:700">⛔ PRODUCT-FIRST — the regression</div>
+          <div style="opacity:.6">fromProduct(product_id) ?? fromTier(tier);</div>
+          <div style="color:var(--red);font-size:10.5px">every scan has product_id NULL → misses branch 1<br>→ falls into a branch nothing has exercised</div>
+        </div>
+        <div class="note bad"><b>Pool names are PERSISTED ON EVALUATOR ROWS.</b> A scan whose pool silently changes orphans live Yashodarshi assignments on paid work. Tier-first makes that impossible by control flow, not by review.</div>
+        <div class="note good"><b>Pinned before the change, not after.</b> <code>ScanChallengesResolveExactlyAsTheyDoTodayTest</code> — 4 tests, 22 assertions, green — records today's pool, mode and ability cap for every seeded challenge. Falsified: breaking one tier's pool turns it red naming the tier.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2><span class="num">10</span> Migrating the existing 22 — and why it changes nothing</h2>
+<p class="cap">Yes, all existing challenges move to the new world — as a separate, reversible step that is behaviour-neutral by construction.</p>
+<div class="browser">
+  <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">php artisan challenges:backfill-product-id --dry-run</div></div>
+  <div class="view">
+    <table>
+      <tr><th>Challenge</th><th>tier</th><th>→ product_id</th><th>→ purpose</th><th>Pool after</th><th>Cap after</th></tr>
+      <tr><td>KAS — Ultimate Asli Champion 64</td><td>4999</td><td>kas_1a</td><td><span class="pill p">scan</span></td><td>premium_4999 <span class="pill ok">same</span></td><td>64 <span class="pill ok">same</span></td></tr>
+      <tr><td>KAS — Asli Success Champion 15</td><td>1999</td><td>kas_1b</td><td><span class="pill p">scan</span></td><td>seven_task <span class="pill ok">same</span></td><td>15 <span class="pill ok">same</span></td></tr>
+      <tr><td>KAS — Asli Success Champion 5</td><td>999</td><td>kas_1c</td><td><span class="pill p">scan</span></td><td>seven_task <span class="pill ok">same</span></td><td>5 <span class="pill ok">same</span></td></tr>
+      <tr><td colspan="6" style="color:var(--muted);font-style:italic">…22 sellable challenges stamped · 9 demo / institutional / Acharya left NULL (they have no catalogue product, and already carry sellable_key NULL today)</td></tr>
+    </table>
+    <div class="note good"><b>Behaviour-neutral BECAUSE the readers are tier-first.</b> A stamped scan still has its tier, so it still takes branch one. The backfill records a fact; it does not change an answer. That is what makes it safe to run — and trivially reversible: <code>UPDATE challenges SET product_id = NULL</code>.</div>
+    <div class="note"><b>Why <code>purpose = 'scan'</code> and not NULL.</b> MySQL permits unlimited NULLs inside a UNIQUE, so <code>UNIQUE(product_id, purpose)</code> with NULL purposes would sit there looking enforced and constrain nothing — a product could quietly acquire two scan challenges. This repo has already been burned by exactly that shape once.</div>
+    <div class="note bad"><b>The command must refuse to report success on a zero.</b> "backfilled 0" reading as "backfilled everything" is how three separate measurements produced confident wrong answers on 27-Aug. Expected: 22 stamped, 9 NULL — and it prints the 9 by name.</div>
+  </div>
+</div>
+
+<div class="flow" style="margin-top:22px">
+  <span>readers go tier-first</span><i>→</i><span>differential proves parity</span><i>→</i><span>backfill 22</span><i>→</i><span>mint 2A's 20</span><i>→</i><span>later: contract</span>
+</div>
+<div class="note bad"><b>That order is not negotiable.</b> Backfilling before the readers are tier-first, or minting before the readers exist, both produce challenges that cannot onboard, allocate to the cheapest pool, and never generate a scorecard.</div>
+
+<h2><span class="num">11</span> What this changes, in one table</h2>
 <div class="browser"><div class="view">
 <table>
   <tr><th>Field / screen</th><th>Today</th><th>After</th></tr>
