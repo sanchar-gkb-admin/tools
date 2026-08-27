@@ -1,0 +1,366 @@
+<title>YASHHO · Challenge CRUD — authoring 2A's pre/post challenges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fdf8f1; --card:#ffffff; --ink:#1f1508; --muted:#7a6a55; --line:#e7dcc9;
+    --orange:#f5821f; --orange-dk:#d96d0c; --orange-soft:#fff1e0;
+    --green:#0d7a4f; --green-soft:#e6f5ee; --red:#b3261e; --red-soft:#fdeceb;
+    --blue:#1e5fa8; --blue-soft:#e8f0fa; --shadow:0 1px 2px rgba(31,21,8,.06),0 8px 24px rgba(31,21,8,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:Montserrat,system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 20px 80px}
+  header.hero{padding:34px 0 12px;border-bottom:3px solid var(--ink);margin-bottom:34px}
+  .kicker{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--orange-dk)}
+  h1{font-size:clamp(26px,4vw,40px);font-weight:900;letter-spacing:-.02em;margin:8px 0 10px;text-transform:uppercase}
+  .sub{color:var(--muted);max-width:70ch;margin:0}
+  .quote{margin:18px 0 0;padding:12px 16px;background:var(--orange-soft);border-left:4px solid var(--orange);font-size:14px}
+  h2{font-size:13px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;margin:52px 0 4px;padding-top:20px;border-top:1px solid var(--line)}
+  h2 .num{display:inline-block;background:var(--ink);color:var(--cream);padding:3px 9px;border-radius:4px;margin-right:10px;letter-spacing:.06em}
+  .cap{color:var(--muted);font-size:14px;margin:6px 0 18px;max-width:78ch}
+  .note{font-size:13px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);padding:11px 14px;margin:14px 0 0;border-radius:0 6px 6px 0}
+  .note.bad{border-left-color:var(--red);background:var(--red-soft)}
+  .note.good{border-left-color:var(--green);background:var(--green-soft)}
+  .row{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+  .col{flex:1 1 460px;min-width:330px}
+  .lbl{font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+
+  /* device frames */
+  .browser{background:#e9e0d0;border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:var(--shadow)}
+  .chrome{display:flex;align-items:center;gap:7px;padding:9px 12px;background:#ded2be}
+  .dot{width:10px;height:10px;border-radius:50%;background:#bfae95}
+  .url{flex:1;background:#fffdf9;border-radius:20px;padding:4px 12px;font-size:11px;color:var(--muted);margin-left:8px}
+  .view{background:var(--cream);padding:16px}
+  .phone{width:290px;background:#1f1508;border-radius:30px;padding:9px;box-shadow:var(--shadow)}
+  .notch{width:96px;height:17px;background:#1f1508;border-radius:0 0 12px 12px;margin:0 auto 4px}
+  .pv{background:var(--cream);border-radius:22px;padding:13px;max-height:600px;overflow:auto}
+
+  /* admin atoms */
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+  .h{font-size:16px;font-weight:900;text-transform:uppercase;letter-spacing:.02em}
+  .btn{background:var(--orange);color:#fff;border:0;border-radius:7px;padding:9px 14px;font:700 12px Montserrat,sans-serif;letter-spacing:.03em;cursor:pointer;white-space:nowrap}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn.dark{background:var(--ink)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:9px;overflow:hidden;font-size:12px}
+  th{background:#f4ece0;text-align:left;padding:9px 10px;font-size:9.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:middle}
+  .strike{position:relative;opacity:.45}
+  .strike::after{content:"";position:absolute;left:2px;right:2px;top:50%;height:2px;background:var(--red)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.04em}
+  .pill.ok{background:var(--green-soft);color:var(--green)}
+  .pill.no{background:var(--red-soft);color:var(--red)}
+  .pill.p{background:var(--blue-soft);color:var(--blue);font-family:ui-monospace,monospace;letter-spacing:0}
+  .pill.n{background:#f0e8db;color:var(--muted)}
+  .grp{background:var(--orange-soft);font-weight:900;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+  .field{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;font-size:12px;margin-bottom:10px}
+  .field .fl{font-size:9.5px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+  .field .fv{color:var(--ink)}
+  .field .ph{color:#b3a48d}
+  .req::after{content:"·";color:var(--red);font-weight:900;margin-left:3px}
+  .sel{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;font-size:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+  .sel.on{border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-soft)}
+  .caret{color:var(--muted);font-size:10px}
+  .opt{background:#fff;border:1px solid var(--orange);border-top:0;border-radius:0 0 7px 7px;margin:-10px 0 10px;font-size:12px;overflow:hidden}
+  .opt div{padding:7px 10px;border-top:1px solid var(--line)}
+  .opt div:first-child{border-top:0}
+  .opt div.hl{background:var(--orange-soft);font-weight:700}
+  .opt .dis{color:#c0b19a}
+  .banner{background:var(--red-soft);border:1px solid #f0c9c6;border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:11px 13px;margin-bottom:13px;font-size:12px}
+  .banner.g{background:var(--green-soft);border-color:#bfe3d2;border-left-color:var(--green)}
+  .banner b{display:block;font-size:12.5px;margin-bottom:2px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:20px;padding:3px 10px;font-size:10.5px;font-family:ui-monospace,monospace}
+  .chip.a{background:var(--blue-soft);border-color:#c4d9f0;color:var(--blue)}
+  .ov{position:relative;background:rgba(31,21,8,.55);border-radius:9px;padding:22px 14px}
+  .sheet{background:var(--card);border-radius:11px;box-shadow:0 18px 50px rgba(31,21,8,.3);padding:15px}
+  .seq{display:flex;align-items:stretch;gap:0;margin:10px 0 0;font-size:10.5px;flex-wrap:wrap}
+  .seq .s{background:#fff;border:1px solid var(--line);padding:7px 9px;text-align:center;flex:1 1 0;min-width:74px}
+  .seq .s.r{background:#f4ece0;color:var(--muted)}
+  .seq .s.m{background:var(--orange-soft);border-color:var(--orange);font-weight:700}
+  .seq .s b{display:block;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:26px 0 6px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  .flow span{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 12px}
+  .flow i{color:var(--orange);font-style:normal;font-weight:900}
+  footer{margin-top:60px;padding-top:20px;border-top:3px solid var(--ink);font-size:12px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">YASHHO · Admin console · 27 Aug 2026</div>
+  <h1>Authoring 2A's pre &amp; post challenges</h1>
+  <p class="sub">The challenge CRUD is scan-shaped: one challenge per <code>(program_key, tier)</code>, with price columns it no longer owns. 2A needs <b>four challenges per stream, across five streams — 20 challenges, 140 tasks</b>. This is what has to change so Sutirtha ji can author them.</p>
+  <p class="quote"><b>Goutam, 27-Aug:</b> “Sutirtha should be able to author this… that will unblock sutirtha and allow us to create these challenges and tasks with abilities mapping.”</p>
+</header>
+
+<div class="flow">
+  <span>01 Index today</span><i>→</i><span>02 Form today</span><i>→</i><span>03 Index grouped</span><i>→</i><span>04 Gap banner</span><i>→</i><span>05 Bulk create</span><i>→</i><span>06 Product + purpose</span><i>→</i><span>07 Tasks + abilities</span><i>→</i><span>08 Mobile</span>
+</div>
+
+<h2><span class="num">01</span> Today — the index</h2>
+<p class="cap">Flat list. No product, no purpose, no grouping — and three money columns a challenge stopped owning when the catalogue landed.</p>
+<div class="browser">
+  <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">app.irisepro.in/superadmin/challenges</div></div>
+  <div class="view">
+    <div class="bar"><div class="h">Challenges</div><button class="btn">+ New challenge</button></div>
+    <table>
+      <tr><th>ID</th><th>Thumb</th><th>Title</th><th>Status</th><th>Tasks</th><th>Class levels</th><th class="strike">Cost</th><th class="strike">Selling</th><th class="strike">Special</th><th>Actions</th></tr>
+      <tr><td>66</td><td>▣</td><td>KAS Booster — Ultimate Asli Champion 64</td><td><span class="pill ok">active</span></td><td>21</td><td>—</td><td>0</td><td>4999</td><td>4999</td><td>Edit</td></tr>
+      <tr><td>67</td><td>▣</td><td>KAS Booster — Asli Success Champion 15</td><td><span class="pill ok">active</span></td><td>7</td><td>—</td><td>0</td><td>1999</td><td>1999</td><td>Edit</td></tr>
+      <tr><td>68</td><td>▣</td><td>KAS Booster — Asli Success Champion 5</td><td><span class="pill ok">active</span></td><td>7</td><td>—</td><td>0</td><td>999</td><td>999</td><td>Edit</td></tr>
+      <tr><td colspan="10" style="text-align:center;color:#b3a48d;font-style:italic">…and nowhere to put 2A's four. A challenge can only be reached as (program_key, tier), and 2A is not a tier.</td></tr>
+    </table>
+    <div class="note bad"><b>Two defects visible on one screen.</b> The price columns contradict “challenges stopped owning money”, and there is no way to express <i>four challenges belonging to one product</i>.</div>
+  </div>
+</div>
+
+<h2><span class="num">02</span> Today — the create form</h2>
+<p class="cap">Identity is <code>program_key</code> + <code>tier</code>. Every field assumes a scan.</p>
+<div class="row">
+  <div class="col">
+    <div class="lbl">Current form</div>
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/challenges/create</div></div>
+      <div class="view">
+        <div class="field"><span class="fl req">Title</span><span class="ph">e.g. KAS Booster — Ultimate Asli Champion 64</span></div>
+        <div class="field"><span class="fl req">Program key</span><span class="fv">kas</span></div>
+        <div class="field"><span class="fl req">Tier</span><span class="fv">4999</span></div>
+        <div class="field"><span class="fl">Class levels</span><span class="ph">multi-select</span></div>
+        <div class="field strike"><span class="fl">Cost price</span><span class="fv">0</span></div>
+        <div class="field strike"><span class="fl">Selling price</span><span class="fv">4999</span></div>
+        <div class="field strike"><span class="fl">Special price</span><span class="fv">4999</span></div>
+        <div class="field"><span class="fl">Tasks</span><span class="ph">pick existing tasks…</span></div>
+        <button class="btn">Save challenge</button>
+      </div>
+    </div>
+    <div class="note bad"><b>tier is doing three jobs.</b> Identity, the Yashodarshi pool, and a stand-in for price. An MCQ challenge has none of the three.</div>
+  </div>
+  <div class="col">
+    <div class="lbl">What 2A actually needs</div>
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">2A · one sitting = 180 minutes</div></div>
+      <div class="view">
+        <div class="seq">
+          <div class="s"><b>challenge</b>pre_test.1<br>7 tasks · 15m</div>
+          <div class="s r"><b>recess</b>15m</div>
+          <div class="s m"><b>mcq paper 1</b>120m</div>
+          <div class="s r"><b>recess</b>15m</div>
+          <div class="s"><b>challenge</b>post_test.1<br>7 tasks · 15m</div>
+        </div>
+        <div class="seq" style="margin-top:8px">
+          <div class="s"><b>challenge</b>pre_test.2<br>7 tasks · 15m</div>
+          <div class="s r"><b>recess</b>15m</div>
+          <div class="s m"><b>mcq paper 2</b>120m</div>
+          <div class="s r"><b>recess</b>15m</div>
+          <div class="s"><b>challenge</b>post_test.2<br>7 tasks · 15m</div>
+        </div>
+        <div class="note"><b>4 challenges × 7 tasks × 5 streams</b> — KAS, IAS, NEET, JEE, Board = <b>20 challenges, 140 tasks</b>. Two sittings, 180 minutes each, booked ≥72h ahead, max 2 per calendar week.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2><span class="num">03</span> New — the index groups by PRODUCT</h2>
+<p class="cap">Purpose becomes the distinguishing column. Money columns are gone — the catalogue owns price.</p>
+<div class="browser">
+  <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/challenges?stream=kas</div></div>
+  <div class="view">
+    <div class="bar"><div class="h">Challenges · KAS</div><div style="display:flex;gap:8px"><button class="btn ghost">Stream: KAS ▾</button><button class="btn">+ New challenge</button></div></div>
+    <table>
+      <tr><th>Product</th><th>Purpose</th><th>Title</th><th>Tasks</th><th>Pool</th><th>Status</th><th>Actions</th></tr>
+      <tr><td class="grp" colspan="7">1A · ASLI64 KAS Scan</td></tr>
+      <tr><td>—</td><td><span class="pill n">scan</span></td><td>KAS Booster — Ultimate Asli Champion 64</td><td>21</td><td>premium_4999</td><td><span class="pill ok">active</span></td><td>Edit</td></tr>
+      <tr><td class="grp" colspan="7">2A · Master Exam Performance Booster <span class="pill no" style="margin-left:8px">0 of 4 authored</span></td></tr>
+      <tr><td>—</td><td><span class="pill p">pre_test.1</span></td><td colspan="5" style="color:#b3a48d;font-style:italic">not yet authored</td></tr>
+      <tr><td>—</td><td><span class="pill p">pre_test.2</span></td><td colspan="5" style="color:#b3a48d;font-style:italic">not yet authored</td></tr>
+      <tr><td>—</td><td><span class="pill p">post_test.1</span></td><td colspan="5" style="color:#b3a48d;font-style:italic">not yet authored</td></tr>
+      <tr><td>—</td><td><span class="pill p">post_test.2</span></td><td colspan="5" style="color:#b3a48d;font-style:italic">not yet authored</td></tr>
+    </table>
+    <div class="note good"><b>The missing rows are RENDERED, not absent.</b> The four purposes are declared on the product, so the screen can show what is owed. An empty list would say “nothing to do”; this says “four to author”.</div>
+  </div>
+</div>
+
+<h2><span class="num">04</span> New — the gap is stated, with one way to close it</h2>
+<p class="cap">A banner counts what the product declares against what exists, per stream.</p>
+<div class="browser">
+  <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/challenges?product=kas_2a</div></div>
+  <div class="view">
+    <div class="banner"><b>2A declares 4 challenges. 0 exist.</b>
+      Buyers can pre-order 2A today and the obligation is recorded — but nothing can be delivered until these are authored.
+      <div class="chips"><span class="chip">pre_test.1</span><span class="chip">pre_test.2</span><span class="chip">post_test.1</span><span class="chip">post_test.2</span></div>
+      <div style="margin-top:10px"><button class="btn">Create the 4 missing challenges</button> <button class="btn ghost">Create one manually</button></div>
+    </div>
+    <div class="note"><b>One action, not four.</b> Four manual creates is four chances to typo a purpose into an orphan nothing can reach.</div>
+  </div>
+</div>
+
+<h2><span class="num">05</span> New — bulk create, idempotent</h2>
+<p class="cap">Pre-filled from the product's declared legs. Fills only what is absent.</p>
+<div class="row">
+  <div class="col">
+    <div class="lbl">Desktop · confirmation sheet</div>
+    <div class="ov">
+      <div class="sheet">
+        <div class="h" style="margin-bottom:9px">Create 4 challenges for 2A · KAS</div>
+        <table>
+          <tr><th>Purpose</th><th>Title (editable)</th><th>Tasks</th></tr>
+          <tr><td><span class="pill p">pre_test.1</span></td><td>KAS 2A — Pre-test, Paper 1</td><td>7</td></tr>
+          <tr><td><span class="pill p">pre_test.2</span></td><td>KAS 2A — Pre-test, Paper 2</td><td>7</td></tr>
+          <tr><td><span class="pill p">post_test.1</span></td><td>KAS 2A — Post-test, Paper 1</td><td>7</td></tr>
+          <tr><td><span class="pill p">post_test.2</span></td><td>KAS 2A — Post-test, Paper 2</td><td>7</td></tr>
+        </table>
+        <div class="note" style="margin:11px 0">Yashodarshi pool <b>exam_hall</b>, derived from the product — <b>not</b> from tier.</div>
+        <button class="btn">Create 4</button> <button class="btn ghost">Cancel</button>
+      </div>
+    </div>
+    <div class="note bad"><b>Without the pool fix these land in <code>seven_task</code></b> — the cheapest pool — because <code>Challenge::pool()</code> reads <code>tier</code> and these have none. ₹4,999 exam-hall work routed to the wrong reviewers, silently.</div>
+  </div>
+  <div class="col">
+    <div class="lbl">After · the gap is closed</div>
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/challenges?product=kas_2a</div></div>
+      <div class="view">
+        <div class="banner g"><b>2A · 4 of 4 authored.</b> 28 tasks mapped to abilities.</div>
+        <table>
+          <tr><th>Purpose</th><th>Title</th><th>Tasks</th><th>Pool</th><th>Status</th></tr>
+          <tr><td><span class="pill p">pre_test.1</span></td><td>KAS 2A — Pre-test, Paper 1</td><td>7</td><td>exam_hall</td><td><span class="pill ok">active</span></td></tr>
+          <tr><td><span class="pill p">pre_test.2</span></td><td>KAS 2A — Pre-test, Paper 2</td><td>7</td><td>exam_hall</td><td><span class="pill ok">active</span></td></tr>
+          <tr><td><span class="pill p">post_test.1</span></td><td>KAS 2A — Post-test, Paper 1</td><td>7</td><td>exam_hall</td><td><span class="pill ok">active</span></td></tr>
+          <tr><td><span class="pill p">post_test.2</span></td><td>KAS 2A — Post-test, Paper 2</td><td>7</td><td>exam_hall</td><td><span class="pill ok">active</span></td></tr>
+        </table>
+        <div class="note good"><b>Re-running creates nothing.</b> Idempotent on (product, purpose) — so it is safe to press after authoring one by hand.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2><span class="num">06</span> New — the form: product picker, then a constrained purpose</h2>
+<p class="cap">Stream derives from the product. Purpose is a select, never free text.</p>
+<div class="row">
+  <div class="col">
+    <div class="lbl">Choose the product</div>
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/challenges/create</div></div>
+      <div class="view">
+        <div class="field"><span class="fl req">Title</span><span class="ph">KAS 2A — Pre-test, Paper 1</span></div>
+        <div class="sel on"><span><span class="fl">Product</span><span class="fv">2A · Master Exam Performance Booster — KAS</span></span><span class="caret">▾</span></div>
+        <div class="field" style="background:#f7f2e9"><span class="fl">Stream</span><span class="fv">kas &nbsp;<span class="pill n">derived from product</span></span></div>
+        <div class="field" style="background:#f7f2e9"><span class="fl">Tier</span><span class="fv" style="color:#b3a48d">— not applicable to an MCQ challenge —</span></div>
+      </div>
+    </div>
+    <div class="note"><b>Stream is shown, not asked.</b> Two fields that must agree are two authorities that can disagree.</div>
+  </div>
+  <div class="col">
+    <div class="lbl">Purpose — only what the product declares</div>
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/challenges/create</div></div>
+      <div class="view">
+        <div class="sel on"><span><span class="fl req">Purpose</span><span class="fv">pre_test.1</span></span><span class="caret">▴</span></div>
+        <div class="opt">
+          <div class="hl">pre_test.1 &nbsp;— Pre-test, Paper 1</div>
+          <div>pre_test.2 &nbsp;— Pre-test, Paper 2</div>
+          <div class="dis">post_test.1 — already authored ✓</div>
+          <div>post_test.2 — Post-test, Paper 2</div>
+        </div>
+        <div class="field"><span class="fl req">Tasks</span><span class="fv">7 &nbsp;<span class="pill n">default from the leg</span></span></div>
+        <div class="field" style="background:#f7f2e9"><span class="fl">Yashodarshi pool</span><span class="fv">exam_hall <span class="pill n">from the product</span></span></div>
+        <button class="btn">Save challenge</button>
+      </div>
+    </div>
+    <div class="note good"><b>Already-authored purposes are shown and disabled.</b> A duplicate <code>(product, purpose)</code> is refused at the form — the DB unique comes later, and the window between them must not be a hole.</div>
+  </div>
+</div>
+
+<h2><span class="num">07</span> Tasks + abilities — this already works</h2>
+<p class="cap">The skills picker exists today. Sutirtha ji is blocked on the challenge side only, not on task authoring.</p>
+<div class="browser">
+  <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">/superadmin/tasks/create</div></div>
+  <div class="view">
+    <div class="field"><span class="fl req">Task title</span><span class="fv">Read the stem and mark the exact demand</span></div>
+    <div class="field"><span class="fl">Objective</span><span class="ph">what this task is evidence for…</span></div>
+    <div class="field"><span class="fl">Mini timer</span><span class="fv">enabled · 15 min</span></div>
+    <div class="field"><span class="fl">Headline abilities</span>
+      <div class="chips"><span class="chip a">Comprehension</span><span class="chip a">Attention to Detail</span></div>
+    </div>
+    <div class="field"><span class="fl">Abilities</span>
+      <div class="chips"><span class="chip a">Concentration</span><span class="chip a">Critical &amp; Analytical Thinking</span><span class="chip a">Decision Making</span><span class="chip a">Time Management</span></div>
+    </div>
+    <button class="btn">Save task</button> <button class="btn ghost">Attach to challenge…</button>
+  </div>
+  </div>
+<div class="note good"><b>Existing machinery, reused.</b> <code>skills-picker.blade.php</code> already provides <code>abilities[]</code> and <code>headline_abilities[]</code>. Nothing new is needed here — which is why the 140 tasks are authoring work, not engineering work.</div>
+
+<h2><span class="num">08</span> Mobile — the same three moments</h2>
+<p class="cap">Sutirtha ji reviews on a phone; authoring long-form stays desktop. Grouping and the gap banner must survive the narrow column.</p>
+<div class="row">
+  <div class="col" style="flex:0 0 auto">
+    <div class="lbl">Grouped index</div>
+    <div class="phone"><div class="notch"></div><div class="pv">
+      <div class="bar"><div class="h" style="font-size:13px">Challenges · KAS</div></div>
+      <div style="background:var(--orange-soft);padding:6px 9px;border-radius:6px;font-size:10.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;margin-bottom:7px">1A · ASLI64 KAS Scan</div>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:7px;padding:9px;font-size:11.5px;margin-bottom:11px">Ultimate Asli Champion 64<br><span class="pill n">scan</span> <span class="pill n">21 tasks</span></div>
+      <div style="background:var(--orange-soft);padding:6px 9px;border-radius:6px;font-size:10.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;margin-bottom:7px">2A · Exam Performance <span class="pill no">0/4</span></div>
+      <div style="background:#fff;border:1px dashed var(--line);border-radius:7px;padding:9px;font-size:11.5px;color:#b3a48d">
+        <span class="pill p">pre_test.1</span> not authored<br>
+        <span class="pill p">pre_test.2</span> not authored<br>
+        <span class="pill p">post_test.1</span> not authored<br>
+        <span class="pill p">post_test.2</span> not authored
+      </div>
+    </div></div>
+  </div>
+  <div class="col" style="flex:0 0 auto">
+    <div class="lbl">Gap banner · bottom sheet</div>
+    <div class="phone"><div class="notch"></div><div class="pv" style="padding:0">
+      <div style="padding:13px;filter:blur(1.5px);opacity:.5">
+        <div class="h" style="font-size:13px">Challenges · KAS</div>
+        <table><tr><th>Purpose</th><th>Tasks</th></tr><tr><td>pre_test.1</td><td>—</td></tr><tr><td>pre_test.2</td><td>—</td></tr></table>
+      </div>
+      <div style="background:#fff;border-top:3px solid var(--orange);border-radius:14px 14px 0 0;padding:14px;margin-top:-40px;position:relative">
+        <div style="width:36px;height:4px;background:var(--line);border-radius:4px;margin:0 auto 11px"></div>
+        <b style="font-size:13px">2A declares 4. 0 exist.</b>
+        <div style="font-size:11.5px;color:var(--muted);margin:5px 0 9px">Pre-orders are being taken and the obligation is recorded. Nothing ships until these are authored.</div>
+        <button class="btn" style="width:100%;padding:12px">Create the 4 missing</button>
+        <button class="btn ghost" style="width:100%;padding:12px;margin-top:7px">Not now</button>
+      </div>
+    </div></div>
+  </div>
+  <div class="col" style="flex:0 0 auto">
+    <div class="lbl">Purpose select</div>
+    <div class="phone"><div class="notch"></div><div class="pv">
+      <div class="field"><span class="fl req">Title</span><span class="ph">KAS 2A — Pre-test, P1</span></div>
+      <div class="sel on"><span><span class="fl">Product</span><span class="fv" style="font-size:11px">2A · KAS</span></span><span class="caret">▾</span></div>
+      <div class="sel on"><span><span class="fl req">Purpose</span><span class="fv">pre_test.1</span></span><span class="caret">▴</span></div>
+      <div class="opt">
+        <div class="hl">pre_test.1</div><div>pre_test.2</div>
+        <div class="dis">post_test.1 ✓ authored</div><div>post_test.2</div>
+      </div>
+      <div class="field"><span class="fl">Tasks</span><span class="fv">7</span></div>
+      <button class="btn" style="width:100%;padding:12px">Save</button>
+    </div></div>
+  </div>
+</div>
+
+<h2><span class="num">09</span> What this changes, in one table</h2>
+<div class="browser"><div class="view">
+<table>
+  <tr><th>Field / screen</th><th>Today</th><th>After</th></tr>
+  <tr><td>Identity</td><td><code>program_key</code> + <code>tier</code></td><td><code>product_id</code> + <code>purpose</code></td></tr>
+  <tr><td>Stream</td><td>asked</td><td>derived from the product</td></tr>
+  <tr><td>Tier</td><td>required</td><td>not required — legacy scans only</td></tr>
+  <tr><td>Purpose</td><td>—</td><td>constrained select from the product's declared legs</td></tr>
+  <tr><td>Cost / Selling / Special</td><td>on the challenge</td><td><b>removed</b> — the catalogue owns price</td></tr>
+  <tr><td>Index</td><td>flat, one row per scan</td><td>grouped by product; purpose column; missing rows shown</td></tr>
+  <tr><td>Creating a set</td><td>—</td><td>one idempotent action per product</td></tr>
+  <tr><td>Yashodarshi pool</td><td>derived from <code>tier</code></td><td>derived from the product — <b>must ship together</b></td></tr>
+  <tr><td>Delete</td><td>allowed</td><td><code>RESTRICT</code> — retire, never delete</td></tr>
+  <tr><td>Tasks + abilities</td><td>works</td><td>unchanged — reuse <code>skills-picker</code></td></tr>
+</table>
+</div></div>
+
+<div class="note bad" style="margin-top:16px"><b>The one that must not ship alone.</b> Creating tier-less challenges without fixing <code>Challenge::pool()</code> routes all 20 to <code>seven_task</code>, the cheapest pool. Pin it with a test that a pre/post challenge lands in <code>exam_hall</code> — and falsify that test against a scan first.</div>
+
+<footer>
+  Source: <code>docs/2026-08-27-challenge-crud-storyboard.html</code> · Specs: <code>docs/2026-08-27-2a-sitting-and-slot-booking-spec.md</code>, <code>docs/2026-08-27-challenges-belong-to-products-transition.md</code> · Declaration: <code>database/seeders/data/combo-compositions.json</code>
+</footer>
+</div>
