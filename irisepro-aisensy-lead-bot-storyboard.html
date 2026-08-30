@@ -294,25 +294,49 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
   <div class="arrow">→</div>
 
   <div class="step">
-    <div class="steplab">B · Click-to-WA ad — <span style="color:var(--accent-bright)">message-match</span></div>
+    <div class="steplab">B · Click-to-WA ad — <span style="color:var(--accent-bright)">the prefill IS the router</span></div>
     <div class="phone"><div class="notch"></div><div class="screen">
       <div class="wahead"><div class="ava">Y</div>
         <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
         <div class="wabadge">window open</div></div>
       <div class="pv tall">
-        <div class="sys">from ad set · board_booster · hook = "knew_it_lost_marks"</div>
-        <div class="bub out">Hi <span class="t">9:12 am <span class="tk">✓✓</span></span></div>
-        <div class="bub in">She knew it. She still lost the marks. 💔<br><br>That's the ad you tapped — and it's the most common thing we measure, and the most fixable.<br><br>It means the knowledge is there, and something between <b>knowing</b> and <b>writing</b> is leaking marks.
+        <div class="sys">ad set "knew-it-lost-marks" · prefill set in Meta Ads Manager</div>
+        <div class="bub out">She knew it, she still lost the marks — tell me more [ref:board-knewit]
+          <span class="t">9:12 am <span class="tk">✓✓</span></span></div>
+        <div class="sys">keyword <b>board-knewit</b> → opener #2 of 4 · static, pre-authored</div>
+        <div class="bub in">That's the most common one we see — and the most fixable. 💔<br><br>It means the knowledge <b>is</b> there, and something between <b>knowing</b> and <b>writing</b> is leaking marks.
           <span class="t">9:12 am</span></div>
         <div class="qr"><div class="qrbody">Was that your experience too?</div>
           <span class="b">Yes, exactly that</span>
           <span class="b">Something else</span>
           <span class="b">Just looking</span></div>
-        <div class="sys">→ joins the trunk at §04 · S2</div>
+        <div class="sys">→ enters the flow at §04 · S2</div>
       </div>
       <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
     </div></div>
-    <p class="stepcap"><b>Never re-greet an ad click.</b> The creative already made a promise and the tap accepted it. A generic "Namaskara, who is this for?" breaks that promise — and the click still counted, so the leak is invisible in the numbers.</p>
+    <p class="stepcap"><b>No dynamic messaging.</b> Meta's prefilled text is written per ad set; it arrives as the user's own first message and selects one of <b>N static, pre-authored openers</b> by keyword. Exactly the <code>[ref:]</code> trick the website widget already uses.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">B-fallback · they edited the prefill</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#ffb0a8;background:#3a1512;border-color:#6b2822">degraded</div></div>
+      <div class="pv tall">
+        <div class="sys warn">prefill deleted before sending — no keyword, no ref</div>
+        <div class="bub out">hi <span class="t">9:12 am <span class="tk">✓✓</span></span></div>
+        <div class="bub in">Namaskara 🙏 Welcome to <b>YASHHO</b>.<br><br>We measure the <b>64 Success Abilities</b> that marks, exams and careers are actually built on — and a trained <b>Yashodarshi</b> scores every task personally.
+          <span class="t">9:12 am</span></div>
+        <div class="qr"><div class="qrbody">So I point you at the right thing — who is this for?</div>
+          <span class="b">🎒 School · Class 5–10</span><span class="b">🔬 NEET / JEE</span><span class="b">🏛 KAS / IAS</span></div>
+        <div class="sys">→ falls through to lane A</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">The prefill is <b>editable and deletable</b> — some people will just type "hi". Every keyword-routed lane must degrade to the generic greeting rather than to nothing. The website widget has exactly the same property.</p>
   </div>
 
   <div class="arrow">→</div>
@@ -1076,6 +1100,57 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
 <div class="note stopn"><b>Read gate 5 as written.</b> "It's a chatbot platform, of course it can branch" is a guess, not a check — and a confident guess about this vendor's API surface is exactly what produced a decision table and four published decks that all had to be withdrawn. The rule that came out of it applies here unchanged: <b>enumerate the capability from their own docs and show the list</b>, or record it as unverified. Their docs are a JS-rendered SPA, so this needs a browser — a fetch returns only the shell.</div>
 
 <div class="note okn"><b>Already green — don't rebuild these.</b> The AiSensy widget is live on the storefront (<code>aabm07</code>, number unchanged so attribution is continuous) · all scan URLs resolve — <code>/plans/kas/scan/master</code>, <code>/plans/marks-booster/scan/starter</code>, <code>/plans/neet/scan/master</code> all return 200 · the number <code>918062362056</code> is confirmed live on WABA · every message sent to it already lands in the AiSensy team inbox, with nothing to integrate.</div>
+</section>
+
+<!-- ═══════════════ 11 TEMPLATES ═══════════════ -->
+<section>
+<h2><span class="num">11</span>Template inventory — the real timeline</h2>
+<p class="lead">Assume everything must be pre-authored and pre-approved. Then the only question that matters is: how many objects, and can we cut them?</p>
+<p class="cap">Every bubble in this storyboard is <b>static copy already</b> — no variables except a name — so treating them all as templates costs the design nothing. It costs <b>approval time</b>, and each language is a separate submission because bilingual templates are rejected.</p>
+
+<div class="grid2">
+  <div class="card"><h4>Two regimes — only one is expensive</h4>
+    <div style="font-size:.85rem;color:#cfdcea">
+      <div style="padding:10px 12px;border-radius:8px;background:#0f2e22;border:1px solid #1d5340;margin-bottom:9px">
+        <b style="color:#7fe8b0">Inside the 24h window — cheap</b><br>
+        They messaged first: website "Hi", ad tap, or any reply. Meta permits free-form and interactive button/list messages here with <b>no template approval</b>.<br>
+        <span style="color:var(--muted);font-size:.8rem">Covers lanes A and B — and the entire qualification trunk, because by then they have replied.</span></div>
+      <div style="padding:10px 12px;border-radius:8px;background:#3a1512;border:1px solid #6b2822">
+        <b style="color:#ffb0a8">Outside it — approved template only</b><br>
+        Business-initiated. Ordered params, 24–48h per submission, ×2 for Kannada.<br>
+        <span style="color:var(--muted);font-size:.8rem">Covers lanes C (broadcast), D (webinar), E (checkout recovery) — message 1 only. After they reply, the window opens and the rest is cheap again.</span></div>
+      <div style="margin-top:11px;font-size:.8rem;color:#ffb0a8">⛔ That split is <b>Meta's</b> rule. Whether the AiSensy builder exposes free-form session messages, or forces every node to be a template object, is the <b>vendor</b> question — and it is unverified. Ask them directly; it changes the number below by about 3×.</div>
+    </div></div>
+
+  <div class="card blue"><h4>As drawn · ~35 objects — too many for v1</h4>
+    <table style="font-size:.78rem">
+      <tr><th>Block</th><th>Count</th></tr>
+      <tr><td>Lane openers (A, ad hooks ×4, C, D×2, E)</td><td>9</td></tr>
+      <tr><td>Group tap · parent-learner tap · minor reroute</td><td>3</td></tr>
+      <tr><td>S1 × 3 groups</td><td>3</td></tr>
+      <tr><td>S2 × 6 stream variants</td><td>6</td></tr>
+      <tr><td>S3 × 2 (exam clock, career clock)</td><td>2</td></tr>
+      <tr><td>The give × 3 groups</td><td>3</td></tr>
+      <tr><td>Fork: scan picker · pre-book · waitlist handover</td><td>3</td></tr>
+      <tr><td>Ladder: webinar offer · community · registration · call-me deflect</td><td>4</td></tr>
+      <tr><td>STOP confirmation</td><td>1</td></tr>
+      <tr style="background:#241708"><td><b>Total</b></td><td><b>34</b> → <b>68</b> with Kannada</td></tr>
+    </table></div>
+</div>
+
+<h3 style="margin-top:30px">The v1 cut — five decisions that halve it</h3>
+<table style="max-width:1000px">
+<tr><th>Cut</th><th>From → to</th><th>Why it's safe</th></tr>
+<tr><td><b>Kannada only where it earns its place</b></td><td>×2 → ×1 + <b>KAS lane only</b></td><td>Kannada is a KAS asset. <code>/kas/kn</code> is the surface that has it; <code>neet_jee</code> and <code>ias</code> have zero Kannada in the catalogue today. Launch EN everywhere, KN on the civil-services lane, add the rest when the catalogue translation lands.</td></tr>
+<tr><td><b>One S2 list per group, not per stream</b></td><td>6 → <b>3</b></td><td>The Class 5–7 and 8–10 lists differ; NEET and JEE share one mock-symptom list; KAS and IAS already share theirs. The stream is still tagged — only the <i>question</i> is shared.</td></tr>
+<tr><td><b>One "give", parameterised by the symptom they picked</b></td><td>3 → <b>1</b></td><td>The structure is identical in all three: name the symptom back, say it has a name, say a Yashodarshi measures it. Only the symptom noun changes.</td></tr>
+<tr><td><b>Start with one ad hook, not four</b></td><td>4 → <b>1</b></td><td>Four hooks is an optimisation on a funnel that has never run. Ship one, measure, then author the second from what actually converted.</td></tr>
+<tr><td><b>Lanes C and E are not v1</b></td><td>−3</td><td>Broadcast and checkout-recovery are separate campaigns with their own approval cycles and their own opt-in evidence problem. They do not have to ship with the bot, and lane C is worthless until the bot has produced records worth broadcasting to.</td></tr>
+</table>
+
+<div class="note okn"><b>v1 lands at roughly 18 objects, English, plus the KAS lane in Kannada.</b> That is one approval cycle, not a programme. Lanes A, B, D · the trunk · the fork · the ladder — the complete cold-to-paid path, with nothing cut that a lead actually walks through.</div>
+
+<div class="note"><b>And keep the canonical text in our repo, not in the AiSensy console.</b> Same rule already applied to comms templates. Two consequences, both cheap now and expensive later: switching BSP becomes a <b>re-submission rather than a rewrite</b>, and the bot's words can be diffed and reviewed like anything else we ship. A console is not a source of record.</div>
 </section>
 
 <footer>
