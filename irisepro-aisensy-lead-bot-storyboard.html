@@ -182,7 +182,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
 <header class="hero"><div class="hero-in">
   <div class="eyebrow">YASHHO · AiSensy WhatsApp Bot · Conversation Storyboard</div>
   <h1>Cold lead → qualified → paid</h1>
-  <p class="sub">One trunk, many doors. Every entry channel — website widget, click-to-WhatsApp ad, broadcast, webinar registration, post-payment — normalises to the same conversation. Three taps to qualify, three-way readiness fork, and a human on the two paths a bot must never close alone.</p>
+  <p class="sub">One flow, many doors. Website widget, click-to-WhatsApp ad, broadcast, webinar registration — every channel enters the same conversation at a different point. Three taps to qualify, an express lane for anyone who came to buy, a three-way readiness fork, and a human on the two paths a bot must never close alone.<br><b style="color:var(--accent-bright)">Scope ends at payment. Everything after it happens in the app.</b></p>
   <div class="meta">
     <span class="pill">918062362056 · AiSensy</span>
     <span class="pill b">3 groups · 8 streams · 58 products</span>
@@ -207,7 +207,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
     <div class="node sys">C · List broadcast<small>joins at the DELTA — never re-ask</small></div>
     <div class="node sys">D · Webinar signup<small>joins at §05 — skip qualify</small></div>
     <div class="node stop">E · Abandoned checkout<small>skips everything → human, ≤1h</small></div>
-    <div class="node money">F · Post-payment<small>leaves the trunk — activation</small></div>
+    <div class="node human">F · Existing customer<small>steps aside → the app</small></div>
     <div class="node stop">No opt-in<small>cannot be messaged at all</small></div>
   </div>
   <div class="mcol"><div class="mhead">Route</div>
@@ -239,7 +239,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
     <div class="node ask">not now → ladder</div>
   </div>
   <div class="mcol"><div class="mhead">Outcome</div>
-    <div class="node money">PAID<small>/plans link · Razorpay</small></div>
+    <div class="node money">PAID<small>→ the APP takes over. Bot's scope ends here.</small></div>
     <div class="node human">Human agent<small>hot + wants a person</small></div>
     <div class="node sys">Community joined<small>always first</small></div>
     <div class="node sys">Webinar registered<small>only if asked</small></div>
@@ -268,8 +268,35 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
 <tr><td><b>C · List broadcast</b></td><td style="color:#ffb0a8">closed</td><td>The whole record — stream, role, prior answers, webinar attendance</td><td>Template on <b>the delta only</b></td><td><b>Wherever they left off.</b> Never re-ask a known answer</td></tr>
 <tr><td><b>D · Webinar registration</b></td><td style="color:#ffb0a8">closed</td><td>Name, group, role, consent — and high declared intent</td><td>Confirm the seat, then give</td><td><b>§05</b> — qualification is largely already earned</td></tr>
 <tr><td><b>E · Abandoned checkout</b></td><td style="color:#ffb0a8">closed</td><td>The exact product and amount they didn't pay</td><td>Recovery within the hour</td><td><b>Skips the trunk</b> → §07c, human</td></tr>
-<tr><td><b>F · Post-payment</b></td><td style="color:#7fe8b0">open</td><td>Everything. They bought.</td><td>Activation, not qualification</td><td><b>Leaves the trunk entirely</b></td></tr>
+<tr style="background:#1a0f0d"><td><b>F · An existing customer messages us</b></td><td style="color:#7fe8b0">open</td><td>They already paid. Everything is in the app.</td><td><b>Decline the job.</b> Point at the app; human if the app can't answer it.</td><td><b>Never enters the trunk</b></td></tr>
 </table>
+
+<div class="note stopn"><b>⛔ THE BOT'S SCOPE ENDS AT PAYMENT. All post-payment support happens in the app.</b>
+<span style="display:block;margin-top:8px">There is no activation lane, no onboarding nudge, no progress chasing here. The app owns the customer; this bot owns the stranger.</span>
+<span style="display:block;margin-top:8px"><b>Lane F exists anyway, and only to prevent one thing.</b> <code>918062362056</code> is printed on every buyer-facing surface, so paying customers <i>will</i> message it. With no state for that they fall into the qualification trunk — and the bot asks someone who paid ₹4,999 last week <i>"who is this for?"</i>. Recognising a known number and stepping aside costs one object and prevents the single worst message in the flow.</span></div>
+
+<div class="rail" style="margin-top:20px">
+  <div class="step">
+    <div class="steplab">F · known customer → step aside</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#d3b8fb;background:#211436;border-color:#4b3070">customer</div></div>
+      <div class="pv">
+        <div class="sys">number matches a paid enrolment — trunk suppressed</div>
+        <div class="bub out">My daughter can't see her tasks
+          <span class="t">4:12 pm <span class="tk">✓✓</span></span></div>
+        <div class="bub in">Namaskara 🙏 Everything for her programme lives in the app — tasks, timings and her scorecard.
+          <div class="cardlink"><div class="h">Open the app</div><div class="u">app.irisepro.in</div></div>
+          If it still isn't showing, tell me and I'll put a person on it right away.
+          <span class="t">4:12 pm</span></div>
+        <div class="sys">no qualification · no scoring · human on request</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">One object. It exists to <b>not</b> do something — the cheapest guard in the flow, protecting the people who already paid us.</p>
+  </div>
+</div>
 
 <div class="rail">
   <div class="step">
@@ -556,7 +583,12 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
   </div>
 </div>
 
-<div class="note okn"><b>Qualify AFTER payment, not before.</b> The three taps are not abandoned — they move. Asked of a <i>customer</i> during onboarding they are welcome and useful: they give the Yashodarshi context and the scorecard its framing. Asked of a <i>lead</i> holding a card they are an obstacle between us and money.</div>
+<div class="note okn"><b>A buyer is never qualified — not before payment, and not after it either.</b>
+<span style="display:block;margin-top:8px">Qualification exists to decide <b>whether and what to sell</b>. Once that is decided it has no remaining job, so the three taps are not deferred — they are <b>dropped</b>.</span>
+<span style="display:block;margin-top:8px"><b>Onboarding already owns what delivery needs, and it is the authority.</b> <code>OnboardingFamily::SHAPES</code> requires <code>date_of_birth</code>, <code>student_class</code> and <code>preferred_language</code>, plus board and pace — with a hard invariant that every family includes <code>date_of_birth</code>, because the minor-consent gate computes age from it. Asking any of that again on WhatsApp is a <b>second door to one question</b>.</span>
+<span style="display:block;margin-top:8px"><b>After payment the bot's only job is activation</b> — into onboarding, into task 1. That is what decides whether they get value and tell anyone. Anything else is friction on the one thing that matters at that moment.</span></div>
+
+<div class="note"><b>And the analytics argument for asking anyway does not survive contact.</b> Answers given <i>after</i> buying are post-purchase rationalisation, not the signal that answers given <i>while deciding</i> carry. Express-lane buyers also converted without answering at all — so they were never in the set the scoring weights could be fitted against. Collecting it would produce data that looks like the training set and isn't.</div>
 
 <div class="note"><b>The express lane needs no minor guard, and that is deliberate.</b> Guardian consent here is <b>payment-corroborated</b> — the checkout collects the buyer and the payment itself is the corroboration. Duplicating that gate in the bot would add a tap, catch nothing the checkout doesn't already catch, and put a compliance decision in two places. §03's guard exists because <i>qualification</i> profiles a person; buying does not.</div>
 
@@ -1220,7 +1252,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
   <div class="card blue"><h4>As drawn · ~35 objects — too many for v1</h4>
     <table style="font-size:.78rem">
       <tr><th>Block</th><th>Count</th></tr>
-      <tr><td>Lane openers (A, ad hooks ×4, C, D×2, E)</td><td>9</td></tr>
+      <tr><td>Lane openers (A, ad hooks ×4, C, D×2, E) + F step-aside</td><td>10</td></tr>
       <tr style="background:#0f2e22"><td><b>Express lane (§02b) — link · picker · unbuyable handover</b></td><td><b>3</b></td></tr>
       <tr><td>Group tap · parent-learner tap · minor reroute</td><td>3</td></tr>
       <tr><td>S1 × 3 groups</td><td>3</td></tr>
@@ -1230,7 +1262,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
       <tr><td>Fork: scan picker · pre-book · waitlist handover</td><td>3</td></tr>
       <tr><td>Ladder: webinar offer · community · registration · call-me deflect</td><td>4</td></tr>
       <tr><td>STOP confirmation</td><td>1</td></tr>
-      <tr style="background:#241708"><td><b>Total</b></td><td><b>37</b> → <b>74</b> with Kannada</td></tr>
+      <tr style="background:#241708"><td><b>Total</b></td><td><b>38</b> → <b>76</b> with Kannada</td></tr>
     </table>
     <div style="margin-top:10px;font-size:.8rem;color:#7fe8b0">⚡ The 3 express-lane objects are the <b>last</b> ones to cut. They are the only path in the whole flow that reaches money without a single qualifying question.</div></div>
 </div>
@@ -1245,7 +1277,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
 <tr><td><b>Lanes C and E are not v1</b></td><td>−3</td><td>Broadcast and checkout-recovery are separate campaigns with their own approval cycles and their own opt-in evidence problem. They do not have to ship with the bot, and lane C is worthless until the bot has produced records worth broadcasting to.</td></tr>
 </table>
 
-<div class="note okn"><b>v1 lands at roughly 21 objects, English, plus the KAS lane in Kannada.</b> That is one approval cycle, not a programme. Lanes A, B, D · <b>the express lane</b> · the trunk · the fork · the ladder — the complete cold-to-paid path <i>and</i> the already-decided-to-buy path, with nothing cut that anyone actually walks through.</div>
+<div class="note okn"><b>v1 lands at roughly 22 objects, English, plus the KAS lane in Kannada.</b> That is one approval cycle, not a programme. Lanes A, B, D · <b>the express lane</b> · the trunk · the fork · the ladder — the complete cold-to-paid path <i>and</i> the already-decided-to-buy path, with nothing cut that anyone actually walks through.</div>
 
 <div class="note"><b>And keep the canonical text in our repo, not in the AiSensy console.</b> Same rule already applied to comms templates. Two consequences, both cheap now and expensive later: switching BSP becomes a <b>re-submission rather than a rewrite</b>, and the bot's words can be diffed and reviewed like anything else we ship. A console is not a source of record.</div>
 </section>
