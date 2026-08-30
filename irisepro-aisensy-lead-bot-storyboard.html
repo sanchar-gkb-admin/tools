@@ -1,0 +1,1078 @@
+<title>YASHHO — AiSensy Lead Bot · Conversation Storyboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#f5821f; --accent-strong:#ff9b3d; --accent-bright:#ffb259; --accent-fg:#1a0e02;
+  --accent-soft:#1d2f4d; --leaf:#3f93e0; --leaf-soft:#16294a;
+  --forest:#081325; --forest-2:#112644;
+  --bg:#0a1626; --fg:#eaf1f9; --surface:#10223c; --muted:#8ea3bd; --border:#1d3354;
+  /* real WhatsApp dark, used INSIDE the phone so the mock is truthful */
+  --wa-bg:#0b141a; --wa-head:#1f2c34; --wa-in:#1f2c34; --wa-out:#005c4b;
+  --wa-link:#53bdeb; --wa-green:#25d366; --wa-tick:#53bdeb; --wa-muted:#8696a0;
+  --stop:#e0574f; --human:#b98cf0; --money:#38c172;
+  --radius:1rem;
+  --shadow:0 1px 2px rgb(0 0 0/.30), 0 14px 34px -14px rgb(0 0 0/.55);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;
+     -webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1360px;margin:0 auto;padding:0 20px 100px}
+
+/* ── page chrome ───────────────────────────────────────────── */
+header.hero{background:linear-gradient(160deg,var(--forest) 0%,#0d1c33 60%,var(--bg) 100%);
+  border-bottom:1px solid var(--border);padding:44px 20px 34px;margin-bottom:8px}
+.hero-in{max-width:1360px;margin:0 auto}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-strong)}
+h1{font-size:clamp(1.9rem,4.6vw,3rem);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;margin:.28em 0 .18em}
+.sub{color:var(--muted);max-width:70ch;font-size:1.02rem}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pill{font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:6px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent-bright);
+  border:1px solid #2b4468}
+.pill.b{background:var(--leaf-soft);color:#8fc4f2;border-color:#20406b}
+.pill.g{background:#0f2e22;color:#6ee7a8;border-color:#1d5340}
+.pill.r{background:#3a1512;color:#ffa79f;border-color:#6b2822}
+
+h2{font-size:1.42rem;font-weight:900;text-transform:uppercase;letter-spacing:.01em;margin:0 0 4px}
+h2 .num{color:var(--accent);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h3{font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-bright);margin:0 0 10px}
+section{padding:54px 0 10px;border-top:1px solid var(--border);margin-top:44px}
+section:first-of-type{border-top:none}
+.cap{color:var(--muted);max-width:74ch;margin:0 0 26px;font-size:.97rem}
+.lead{color:var(--fg);font-weight:600;max-width:74ch;margin:0 0 8px}
+
+/* ── flow map ──────────────────────────────────────────────── */
+.map{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;
+  background:var(--forest);border:1px solid var(--border);border-radius:var(--radius);padding:16px;overflow-x:auto}
+.mcol{min-width:132px}
+.mhead{font-size:.62rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);padding:0 0 9px;border-bottom:1px solid var(--border);margin-bottom:10px;text-align:center}
+.node{font-size:.7rem;font-weight:700;line-height:1.35;padding:8px 9px;border-radius:8px;margin-bottom:7px;
+  border:1px solid var(--border);background:var(--surface);color:var(--fg);position:relative}
+.node small{display:block;font-weight:500;font-size:.63rem;color:var(--muted);margin-top:3px;text-transform:none;letter-spacing:0}
+.node.ask{border-color:#7a4512;background:#241708;color:var(--accent-bright)}
+.node.sys{border-color:#20406b;background:var(--leaf-soft);color:#9ccdf5}
+.node.money{border-color:#1d5340;background:#0f2e22;color:#7fe8b0}
+.node.stop{border-color:#6b2822;background:#3a1512;color:#ffb0a8}
+.node.human{border-color:#4b3070;background:#211436;color:#d3b8fb}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:.72rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* ── device frames ─────────────────────────────────────────── */
+.rail{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.step{flex:0 0 auto;max-width:300px}
+.steplab{font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.stepcap{font-size:.76rem;color:var(--muted);margin-top:10px;line-height:1.45;max-width:280px}
+.arrow{align-self:center;color:var(--accent);font-size:1.5rem;font-weight:900;padding:0 2px;flex:0 0 auto}
+
+.phone{width:282px;background:#000;border-radius:34px;padding:9px;box-shadow:var(--shadow);border:1px solid #26374f}
+.notch{width:92px;height:17px;background:#000;border-radius:0 0 11px 11px;margin:0 auto 0;position:relative;top:-1px;z-index:3}
+.screen{background:var(--wa-bg);border-radius:26px;overflow:hidden;margin-top:-17px;padding-top:17px}
+
+.wahead{background:var(--wa-head);display:flex;align-items:center;gap:9px;padding:9px 11px;border-bottom:1px solid #0b141a}
+.ava{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#c85f0a);
+  display:grid;place-items:center;font-weight:900;font-size:.85rem;color:#1a0e02;flex:0 0 auto}
+.waname{font-size:.79rem;font-weight:700;color:#e9edef;line-height:1.15}
+.wasub{font-size:.6rem;color:var(--wa-muted);line-height:1.2}
+.wabadge{margin-left:auto;font-size:.53rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:#6ee7a8;border:1px solid #1d5340;background:#0f2e22;border-radius:4px;padding:2px 5px}
+
+.pv{height:452px;overflow:hidden;padding:11px 9px 12px;
+  background:var(--wa-bg) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><g fill='none' stroke='%23142029' stroke-width='1'><circle cx='14' cy='14' r='4'/><path d='M38 10l6 6M44 10l-6 6'/><circle cx='30' cy='42' r='3'/><path d='M8 46h9'/></g></svg>")}
+.pv.tall{height:530px}
+.pv.xtall{height:600px}
+.pv.short{height:360px}
+
+.bub{max-width:87%;padding:7px 9px 5px;border-radius:9px;margin-bottom:7px;font-size:.73rem;
+  line-height:1.42;color:#e9edef;position:relative;word-wrap:break-word}
+.bub.in{background:var(--wa-in);border-top-left-radius:2px}
+.bub.out{background:var(--wa-out);margin-left:auto;border-top-right-radius:2px}
+.bub b{font-weight:700}
+.bub .t{display:block;text-align:right;font-size:.55rem;color:var(--wa-muted);margin-top:2px}
+.bub.out .t{color:#a8d6c8}
+.bub .t .tk{color:var(--wa-tick);font-weight:700}
+.bub ul{margin:5px 0 2px;padding-left:14px}
+.bub li{margin-bottom:2px}
+.sys{text-align:center;font-size:.58rem;color:var(--wa-muted);background:#182229;border-radius:6px;
+  padding:4px 8px;margin:0 auto 8px;width:fit-content;max-width:94%}
+.sys.warn{color:#ffb0a8;background:#2a1210}
+
+/* interactive buttons + list, WhatsApp-accurate */
+.qr{max-width:87%;background:var(--wa-in);border-radius:9px;border-top-left-radius:2px;overflow:hidden;margin-bottom:7px}
+.qr .qrbody{padding:7px 9px 6px;font-size:.73rem;line-height:1.42;color:#e9edef}
+.qr .b{display:block;text-align:center;font-size:.72rem;font-weight:600;color:var(--wa-link);
+  padding:7px 6px;border-top:1px solid #2a3942;cursor:default}
+.qr .b.pick{background:#12303a}
+.lst{max-width:87%;background:var(--wa-in);border-radius:9px;border-top-left-radius:2px;overflow:hidden;margin-bottom:7px}
+.lst .r{font-size:.69rem;color:#e9edef;padding:6px 9px;border-top:1px solid #2a3942;display:flex;gap:6px}
+.lst .r:first-of-type{border-top:none}
+.lst .r i{color:var(--wa-muted);font-style:normal;flex:0 0 auto}
+.lst .open{display:block;text-align:center;font-size:.72rem;font-weight:600;color:var(--wa-link);padding:7px;border-top:1px solid #2a3942}
+.tmpl{font-size:.53rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#9ccdf5;
+  background:var(--leaf-soft);border:1px solid #20406b;border-radius:4px;padding:2px 5px;display:inline-block;margin-bottom:6px}
+.tmpl.mkt{color:var(--accent-bright);background:#241708;border-color:#7a4512}
+.cardlink{background:#111b21;border:1px solid #2a3942;border-radius:7px;padding:7px 8px;margin:5px 0 0}
+.cardlink .u{font-size:.6rem;color:var(--wa-link);word-break:break-all}
+.cardlink .h{font-size:.68rem;font-weight:700;color:#e9edef}
+
+.wainput{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--wa-head)}
+.wainput .box{flex:1;background:#2a3942;border-radius:999px;padding:6px 11px;font-size:.68rem;color:var(--wa-muted)}
+.wainput .snd{width:26px;height:26px;border-radius:50%;background:var(--wa-green);display:grid;place-items:center;
+  font-size:.7rem;color:#0b141a;font-weight:900}
+
+/* desktop browser frame */
+.browser{width:100%;max-width:860px;background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.bchrome{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#0d1c33;border-bottom:1px solid var(--border)}
+.dot{width:9px;height:9px;border-radius:50%;background:#2b4468}
+.urlpill{flex:1;background:#0a1626;border:1px solid var(--border);border-radius:999px;
+  padding:4px 12px;font-size:.7rem;color:var(--muted);margin-left:6px}
+.bbody{display:flex;min-height:330px}
+
+/* AiSensy inbox mock */
+.inbox{display:flex;width:100%;font-size:.72rem}
+.ilist{width:36%;border-right:1px solid var(--border);background:#0d1c33}
+.irow{padding:9px 11px;border-bottom:1px solid var(--border)}
+.irow.act{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.irow .n{font-weight:700;font-size:.74rem}
+.irow .p{color:var(--muted);font-size:.66rem;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.tag{font-size:.56rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+  padding:2px 6px;border-radius:4px;background:var(--leaf-soft);color:#9ccdf5;border:1px solid #20406b}
+.tag.hot{background:#3a1512;color:#ffb0a8;border-color:#6b2822}
+.tag.warm{background:#241708;color:var(--accent-bright);border-color:#7a4512}
+.tag.cold{background:#16294a;color:#8fc4f2;border-color:#20406b}
+.tag.m{background:#211436;color:#d3b8fb;border-color:#4b3070}
+.ithread{flex:1;padding:12px 14px;background:var(--wa-bg)}
+.iattr{width:0}
+
+/* tables + notes */
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin:6px 0 4px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-size:.66rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+td b{color:var(--accent-bright)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;
+  background:var(--forest);border:1px solid var(--border);border-radius:4px;padding:1px 5px;color:#9ccdf5}
+
+.note{border-left:3px solid var(--accent);background:var(--forest);border-radius:0 10px 10px 0;
+  padding:12px 15px;margin:18px 0;font-size:.86rem;color:#cfdcea;max-width:86ch}
+.note.stopn{border-left-color:var(--stop)}
+.note.okn{border-left-color:var(--money)}
+.note b{color:var(--accent-bright)}
+.note.stopn b{color:#ffb0a8}
+.note.okn b{color:#7fe8b0}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:8px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+.card h4{margin:0 0 8px;font-size:.8rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-bright)}
+.card.blue h4{color:#9ccdf5}
+.card ul{margin:0;padding-left:17px;font-size:.83rem;color:#cfdcea}
+.card li{margin-bottom:5px}
+.kv{font-size:.8rem;color:#cfdcea}
+.kv div{padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:10px}
+.kv div:last-child{border-bottom:none}
+.kv span:first-child{flex:0 0 132px;color:var(--muted);font-weight:600}
+
+footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color:var(--muted);font-size:.78rem}
+@media(max-width:760px){.map{grid-template-columns:repeat(3,minmax(130px,1fr))}}
+</style>
+
+<header class="hero"><div class="hero-in">
+  <div class="eyebrow">YASHHO · AiSensy WhatsApp Bot · Conversation Storyboard</div>
+  <h1>Cold lead → qualified → paid</h1>
+  <p class="sub">One trunk, many doors. Every entry channel — website widget, click-to-WhatsApp ad, broadcast, webinar registration, post-payment — normalises to the same conversation. Three taps to qualify, three-way readiness fork, and a human on the two paths a bot must never close alone.</p>
+  <div class="meta">
+    <span class="pill">918062362056 · AiSensy</span>
+    <span class="pill b">3 groups · 8 streams · 58 products</span>
+    <span class="pill g">22 buyable today — all scans</span>
+    <span class="pill r">36 need a date or a human</span>
+    <span class="pill">CEO live 8:30–9:30 AM daily</span>
+    <span class="pill b">30 Aug 2026</span>
+  </div>
+</div></header>
+
+<div class="wrap">
+
+<!-- ═══════════════ 00 MAP ═══════════════ -->
+<section>
+<h2><span class="num">00</span>The whole flow at a glance</h2>
+<p class="cap">Left to right. Orange = the bot asks. Blue = the system decides, silently. Green = money moves. Purple = a human takes over. Red = it stops here.</p>
+
+<div class="map">
+  <div class="mcol"><div class="mhead">On-ramps</div>
+    <div class="node sys">A · Website "Hi"<small>joins at §02 — greet + group</small></div>
+    <div class="node sys">B · Click-to-WA ad<small>joins at §04 S2 — ad asked S1</small></div>
+    <div class="node sys">C · List broadcast<small>joins at the DELTA — never re-ask</small></div>
+    <div class="node sys">D · Webinar signup<small>joins at §05 — skip qualify</small></div>
+    <div class="node stop">E · Abandoned checkout<small>skips everything → human, ≤1h</small></div>
+    <div class="node money">F · Post-payment<small>leaves the trunk — activation</small></div>
+    <div class="node stop">No opt-in<small>cannot be messaged at all</small></div>
+  </div>
+  <div class="mcol"><div class="mhead">Route</div>
+    <div class="node sys">Normaliser<small>window? consent? what do we already know?</small></div>
+    <div class="node ask">Greet + group<small>School · NEET/JEE · KAS/IAS</small></div>
+    <div class="node sys">already known<small>→ confirm, never re-ask</small></div>
+  </div>
+  <div class="mcol"><div class="mhead">Guard</div>
+    <div class="node ask">Parent or learner?<small>sets role</small></div>
+    <div class="node stop">Learner &amp; minor<small>no score · ask for guardian</small></div>
+  </div>
+  <div class="mcol"><div class="mhead">Qualify · 3 taps</div>
+    <div class="node ask">S1 · stage<small>where they are</small></div>
+    <div class="node ask">S2 · the symptom<small>the one that sells</small></div>
+    <div class="node ask">S3 · the clock<small>when it matters</small></div>
+    <div class="node sys">The give<small>never ask without giving</small></div>
+  </div>
+  <div class="mcol"><div class="mhead">Score</div>
+    <div class="node stop">HOT ≥10</div>
+    <div class="node ask">WARM 5–9</div>
+    <div class="node sys">COLD &lt;5</div>
+    <div class="node stop">NOT INTERESTED<small>terminal · suppress</small></div>
+  </div>
+  <div class="mcol"><div class="mhead">Fork · readiness</div>
+    <div class="node money">live → buy now<small>scans only</small></div>
+    <div class="node ask">preorder → pre-book<small>5 Sep · 20 Sep · 5 Oct</small></div>
+    <div class="node human">waitlist → enquire<small>all 11 Godparent</small></div>
+    <div class="node ask">not now → ladder</div>
+  </div>
+  <div class="mcol"><div class="mhead">Outcome</div>
+    <div class="node money">PAID<small>/plans link · Razorpay</small></div>
+    <div class="node human">Human agent<small>hot + wants a person</small></div>
+    <div class="node sys">Community joined<small>always first</small></div>
+    <div class="node sys">Webinar registered<small>only if asked</small></div>
+    <div class="node stop">STOP<small>opt-out honoured</small></div>
+  </div>
+</div>
+<div class="legend">
+  <span><i style="background:#241708;border:1px solid #7a4512"></i>bot asks</span>
+  <span><i style="background:#16294a;border:1px solid #20406b"></i>system decides</span>
+  <span><i style="background:#0f2e22;border:1px solid #1d5340"></i>money</span>
+  <span><i style="background:#211436;border:1px solid #4b3070"></i>human</span>
+  <span><i style="background:#3a1512;border:1px solid #6b2822"></i>stop / hot</span>
+</div>
+</section>
+
+<!-- ═══════════════ 01 ENTRY ═══════════════ -->
+<section>
+<h2><span class="num">01</span>Six on-ramps, one trunk</h2>
+<p class="lead">The context changes the opening move and how much you skip. It does not change the flow.</p>
+<p class="cap">A "Hi" from the website, a click on an ad, and a broadcast to a list are three different conversations at message 1 — and the same conversation by message 3. So each lane gets its own opening and its own <b>join point</b>, then merges. Five parallel flows would mean editing the 5 Sep MCQ date in five places, and it would get edited in four.</p>
+
+<table style="max-width:1080px;margin-bottom:26px">
+<tr><th>On-ramp</th><th>Window</th><th>What we already know</th><th>Opening move</th><th>Joins the trunk at</th></tr>
+<tr><td><b>A · Website "Hi"</b><br><span style="color:var(--muted);font-size:.78rem">widget · wa.me · footer CTA</span></td><td style="color:#7fe8b0">open</td><td>The page they left. <code>[ref:]</code> may carry the stream.</td><td>Brand greet + the group tap</td><td><b>§02</b> — or §03 if the ref already answered it</td></tr>
+<tr><td><b>B · Click-to-WhatsApp ad</b></td><td style="color:#7fe8b0">open</td><td>Stream, <b>and the hook the ad promised</b></td><td><b>Continue the ad.</b> Never re-greet.</td><td><b>§04 · S2</b> — the ad set already asked S1</td></tr>
+<tr><td><b>C · List broadcast</b></td><td style="color:#ffb0a8">closed</td><td>The whole record — stream, role, prior answers, webinar attendance</td><td>Template on <b>the delta only</b></td><td><b>Wherever they left off.</b> Never re-ask a known answer</td></tr>
+<tr><td><b>D · Webinar registration</b></td><td style="color:#ffb0a8">closed</td><td>Name, group, role, consent — and high declared intent</td><td>Confirm the seat, then give</td><td><b>§05</b> — qualification is largely already earned</td></tr>
+<tr><td><b>E · Abandoned checkout</b></td><td style="color:#ffb0a8">closed</td><td>The exact product and amount they didn't pay</td><td>Recovery within the hour</td><td><b>Skips the trunk</b> → §07c, human</td></tr>
+<tr><td><b>F · Post-payment</b></td><td style="color:#7fe8b0">open</td><td>Everything. They bought.</td><td>Activation, not qualification</td><td><b>Leaves the trunk entirely</b></td></tr>
+</table>
+
+<div class="rail">
+  <div class="step">
+    <div class="steplab">A · Website "Hi" — desktop widget</div>
+    <div class="browser" style="max-width:420px">
+      <div class="bchrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="urlpill">yashho.com/plans/kas/scan/master</span></div>
+      <div style="background:var(--bg);padding:20px 18px 16px;position:relative;min-height:210px">
+        <div style="font-size:.62rem;font-weight:800;letter-spacing:.13em;color:var(--accent-strong);text-transform:uppercase">Group 3 · KAS</div>
+        <div style="font-size:1.05rem;font-weight:900;text-transform:uppercase;margin:5px 0 3px">ASLI64 KAS Scan</div>
+        <div style="font-size:.75rem;color:var(--muted)">Dedicated Yashodarshi · 64 abilities measured</div>
+        <div style="font-size:1.5rem;font-weight:900;color:var(--accent);margin-top:9px">₹4,999<span style="font-size:.66rem;color:var(--muted);font-weight:600"> +GST · one-time</span></div>
+        <div style="position:absolute;right:16px;bottom:16px;display:flex;align-items:center;gap:8px">
+          <div style="background:#111b21;border:1px solid #2a3942;border-radius:8px;padding:7px 10px;font-size:.66rem;color:#e9edef;max-width:150px">
+            <b style="color:var(--wa-green)">YASHHO</b><br><span style="color:var(--wa-muted);font-size:.6rem">World's First Success Doctor</span></div>
+          <div style="width:42px;height:42px;border-radius:50%;background:var(--wa-green);display:grid;place-items:center;font-size:1.2rem">💬</div>
+        </div>
+      </div>
+    </div>
+    <p class="stepcap">Widget <code>aabm07</code>, already live. Tapping it opens WhatsApp with <code>?text=Hi … [ref:kas]</code> — the prefilled text is the <b>only</b> thing that survives the hop, so it is the attribution channel.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">B · Click-to-WA ad — <span style="color:var(--accent-bright)">message-match</span></div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge">window open</div></div>
+      <div class="pv tall">
+        <div class="sys">from ad set · board_booster · hook = "knew_it_lost_marks"</div>
+        <div class="bub out">Hi <span class="t">9:12 am <span class="tk">✓✓</span></span></div>
+        <div class="bub in">She knew it. She still lost the marks. 💔<br><br>That's the ad you tapped — and it's the most common thing we measure, and the most fixable.<br><br>It means the knowledge is there, and something between <b>knowing</b> and <b>writing</b> is leaking marks.
+          <span class="t">9:12 am</span></div>
+        <div class="qr"><div class="qrbody">Was that your experience too?</div>
+          <span class="b">Yes, exactly that</span>
+          <span class="b">Something else</span>
+          <span class="b">Just looking</span></div>
+        <div class="sys">→ joins the trunk at §04 · S2</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap"><b>Never re-greet an ad click.</b> The creative already made a promise and the tap accepted it. A generic "Namaskara, who is this for?" breaks that promise — and the click still counted, so the leak is invisible in the numbers.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">C · List broadcast — the delta only</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#9ccdf5;background:var(--leaf-soft);border-color:#20406b">template</div></div>
+      <div class="pv tall">
+        <div class="sys">record: kas · 2nd attempt · within 6 months · warm 8 · opt-in ✓</div>
+        <span class="tmpl mkt">marketing · kas_mcq_opens_v1</span>
+        <div class="bub in">Manjunath — you told us your next KAS attempt is within six months. 🗓<br><br>The <b>Monthly Exam Paper Series</b> opens for KAS and IAS first, on <b>5 September</b>. 4 sets, 8 papers, scored the way the real paper is.<br><br>Want me to hold a place?
+          <span class="t">8:02 am</span></div>
+        <div class="sys warn">no reply yet → free-form BLOCKED until they answer</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">We already hold their answers. A broadcast that re-asks "which attempt is this?" tells them nobody was listening the first time. Open on <b>what changed</b> — and join the trunk wherever they left off.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">D · Webinar signup — skip qualify</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#9ccdf5;background:var(--leaf-soft);border-color:#20406b">template</div></div>
+      <div class="pv tall">
+        <div class="sys">name · group · role · consent — all already captured by the form</div>
+        <span class="tmpl">utility · webinar_seat_confirmed_v1</span>
+        <div class="bub in">Sowmya — your seat is confirmed. ✅<br><br><b>Tomorrow, 8:30 – 9:30 AM</b>, live with <b>Krishnaraj M Manjunath</b> — ex-Karnataka Civil Services officer, founder of YASHHO, inventor of the AACE64 framework.<br><br>Ask him anything. Parents and aspirants both welcome.
+          <div class="cardlink"><div class="h">Joining link</div><div class="u">sent 15 minutes before we start</div></div>
+          <span class="t">6:40 pm</span></div>
+        <div class="sys">→ joins the trunk at §05 · the give</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">They filled a form. Asking the same three things again on WhatsApp is the fastest way to waste the highest-intent lead we have. <b>Attendance is worth +4</b> — more than anything they can say.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">E · Abandoned checkout — skips everything</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#ffb0a8;background:#3a1512;border-color:#6b2822">hot</div></div>
+      <div class="pv tall">
+        <div class="sys warn">reached /plans/neet/scan/master · did not pay · 41 min ago</div>
+        <span class="tmpl">utility · checkout_recovery_v1</span>
+        <div class="bub in">Arjun — looks like something interrupted you at the last step. 🙂<br><br>Nothing was charged. Your <b>ASLI64 NEET Scan</b> is still held.<br><br>Shall I have someone finish it with you, or send the link again?
+          <span class="t">9:25 am</span></div>
+        <div class="sys">bypasses scoring entirely → HOT → human, within the hour</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">The hottest lead in the file. They chose a product and reached the payment page. <b>Never</b> drop them into a nurture sequence — that is a demotion.</p>
+  </div>
+</div>
+
+<div class="note"><b>What the normaliser resolves before any copy runs — the same three questions in every lane.</b>
+<span style="display:block;margin-top:8px"><b>1 · Is the window open?</b> They messaged first → free-form. Otherwise → approved template only, and the wording is a 24–48h decision, not a draft.</span>
+<span style="display:block;margin-top:4px"><b>2 · Is there consent on record?</b> No <code>whatsapp_opt_in</code> for this E.164 and business-initiated → <b>blocked</b>, not "send anyway". An old spreadsheet is not opt-in.</span>
+<span style="display:block;margin-top:4px"><b>3 · What do we already know?</b> This is the one that sets the join point. Every fact we hold is a question we must not ask — stream from the ref, hook from the ad set, prior answers from the record, name and group from the form.</span></div>
+
+<div class="note okn"><b>Why on-ramps and not five flows.</b> Everything after the join point is identical in all six lanes: the three qualification taps, the scoring, the three-way readiness fork, the community-then-webinar ladder. Duplicate those and the <b>5 September</b> MCQ date lives in five places — and the day it moves, one of them will still say 5 September. Same rule you already enforce on resolvers: one question, one answer.</div>
+
+<div class="note stopn"><b>Why consent is a gate and not a warning.</b> A Meta block is <b>per-number and permanent</b>. One unconsented blast on <code>918062362056</code> can kill OTP and login delivery to a paying customer forever — on the same number the whole platform depends on.</div>
+</section>
+
+<!-- ═══════════════ 02 GREET ═══════════════ -->
+<section>
+<h2><span class="num">02</span>Greet, then one tap: which group</h2>
+<p class="cap">Brand message and exactly one question — because <code>stream</code> is a hard-required field on the lead spine. Nothing downstream persists without it.</p>
+
+<div class="rail">
+  <div class="step">
+    <div class="steplab">02 · The opener</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv tall">
+        <div class="bub out">Hi 👋 <span class="t">9:12 am <span class="tk">✓✓</span></span></div>
+        <div class="bub in">Namaskara 🙏 Welcome to <b>YASHHO</b>.<br><br>We measure the <b>64 Success Abilities</b> that marks, exams and careers are actually built on — and a trained <b>Yashodarshi</b> scores every task personally.<br><br>Not coaching. Not a test. A measurement.
+          <span class="t">9:12 am</span></div>
+        <div class="qr">
+          <div class="qrbody">So I point you at the right thing — who is this for?</div>
+          <span class="b">🎒 School · Class 5–10</span>
+          <span class="b">🔬 NEET / JEE</span>
+          <span class="b">🏛 KAS / IAS / State Civil Services</span>
+        </div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Three buttons is WhatsApp's hard cap — and it happens to be exactly the three groups. Career Readiness sits inside "School" and is resolved one tap later by class.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">02-skip · ref already known</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv tall">
+        <div class="bub out">Hi, I'd like to know about the KAS scan [ref:kas] <span class="t">9:12 am <span class="tk">✓✓</span></span></div>
+        <div class="sys">ref:kas → stream = kas · group = civil-services</div>
+        <div class="bub in">Namaskara 🙏 Welcome to <b>YASHHO</b>.<br><br>You're looking at <b>KAS / State Civil Services</b> — good, that's the one Krishnaraj sir built first, and he sat the exam himself.<br><br>We measure the 64 Success Abilities behind a KAS result. A trained Yashodarshi scores every task personally.
+          <span class="t">9:12 am</span></div>
+        <div class="sys">→ straight to §03</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">A question you already know the answer to is a tax on the lead. When the ref carries the stream, the greeting <b>confirms</b> it instead of asking.</p>
+  </div>
+</div>
+
+<div class="note"><b>Name is not asked here.</b> WhatsApp already gives us the profile name and the number. Asking for a name before giving anything is the single fastest way to look automated — and the lead spine only needs it at the point money or a handover happens. It is confirmed once, in §07, not collected up front.</div>
+</section>
+
+<!-- ═══════════════ 03 GUARD ═══════════════ -->
+<section>
+<h2><span class="num">03</span>Who am I speaking to — the §9(3) guard</h2>
+<p class="cap">DPDPA §9(3) prohibits behavioural monitoring of under-18s and is <b>not curable by consent</b> — a guardian cannot sign it away. So this tap runs before any scoring, not after.</p>
+
+<div class="rail">
+  <div class="step">
+    <div class="steplab">03a · The tap</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="bub out">🎒 School · Class 5–10 <span class="t">9:13 am <span class="tk">✓✓</span></span></div>
+        <div class="qr">
+          <div class="qrbody">And who am I speaking with?</div>
+          <span class="b">I'm the parent</span>
+          <span class="b">It's for me</span>
+        </div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Sets <code>role = parent | aspirant</code> — a field the lead spine already has. No new vocabulary invented.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">03b · Parent → continue</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="bub out">I'm the parent <span class="t">9:13 am <span class="tk">✓✓</span></span></div>
+        <div class="sys">role = parent · scoring keys off the GUARDIAN's actions</div>
+        <div class="bub in">Perfect. Then let's start with where your child is.
+          <span class="t">9:13 am</span></div>
+        <div class="sys">→ §04 · S1</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">The guardian is the contactable party. The child is a data attribute on their record — never a lead in their own right.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">03c · Minor → reroute, don't score</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div>
+        <div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#ffb0a8;background:#3a1512;border-color:#6b2822">guarded</div></div>
+      <div class="pv short">
+        <div class="bub out">It's for me <span class="t">9:13 am <span class="tk">✓✓</span></span></div>
+        <div class="qr"><div class="qrbody">Which class are you in?</div>
+          <span class="b pick">Class 5–7</span><span class="b">Class 8–10</span><span class="b">Class 11 / PU +</span></div>
+        <div class="sys warn">minor → qualification STOPS · no score · no tags · no profiling</div>
+        <div class="bub in">Thanks 🙏 For this we'll need a parent or guardian with us.<br><br>Could you ask them to message us here — or share their number and we'll reach out?
+          <span class="t">9:14 am</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Tagged <code>minor-blocked</code>. The bot stays warm and helpful — it just stops <b>measuring</b>. Class 11/PU+ continues normally as an adult path.</p>
+  </div>
+</div>
+
+<div class="note stopn"><b>Do not conflate §9(1) with §9(3).</b> We hold verifiable parental consent, which satisfies §9(1) for <i>processing</i>. §9(3) is a separate prohibition on tracking and behavioural monitoring, and consent does not unlock it. "We have guardian consent, therefore scoring the child is fine" is the exact argument that fails.</div>
+</section>
+
+<!-- ═══════════════ 04 QUALIFY ═══════════════ -->
+<section>
+<h2><span class="num">04</span>Qualify — three taps, one skeleton, three dialects</h2>
+<p class="lead">S1 = stage · S2 = the symptom · S3 = the clock.</p>
+<p class="cap">Every slot does two jobs: it scores, and it sells. The middle one converts, because it hands them their own experience back in their own words. A qualifier that does not teach is a tax on the lead.</p>
+
+<h3>Group 1 · School &amp; Career</h3>
+<div class="rail">
+  <div class="step">
+    <div class="steplab">S1 — also resolves the stream</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="qr"><div class="qrbody">Which class is the learner in?</div>
+          <span class="b">Class 5–7</span>
+          <span class="b pick">Class 8–10</span>
+          <span class="b">Class 11 / PU / college / working</span></div>
+        <div class="sys">→ marks_booster · board_booster · career_readiness</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Class here is <b>routing</b>, not profiling. It is the only branch where class decides which product exists.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S2 · Class 5–7 — zero-fear option set</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv">
+        <div class="lst">
+          <div class="qrbody" style="padding:7px 9px 6px;font-size:.73rem;color:#e9edef">What do you notice most at home?</div>
+          <div class="r"><i>›</i>Studies, but marks don't show it</div>
+          <div class="r"><i>›</i>Forgets what's learnt</div>
+          <div class="r"><i>›</i>Hesitates, low confidence</div>
+          <div class="r"><i>›</i>Doesn't know what they're good at</div>
+          <div class="r" style="color:var(--accent-bright)"><i>›</i>Nothing's wrong — I just want to understand them better</div>
+          <span class="open">Choose one</span>
+        </div>
+        <div class="sys">5 options → List, not Buttons (cap is 3)</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">The last option is <b>not padding</b>. Zero-fear rule: no creative may imply a deficit in any child. An option set where every answer is a problem breaks it. It also scores <b>0</b> — which is correct.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S2 · Class 8–10 — the marks-loss list</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv">
+        <div class="lst">
+          <div class="qrbody" style="padding:7px 9px 6px;font-size:.73rem;color:#e9edef">In the last exam, which one was it?</div>
+          <div class="r"><i>›</i>Knew the answer, still lost marks</div>
+          <div class="r"><i>›</i>Ran out of time</div>
+          <div class="r"><i>›</i>Blanked in the hall</div>
+          <div class="r"><i>›</i>Revision didn't hold</div>
+          <div class="r" style="color:var(--accent-bright)"><i>›</i>Marks are fine — I want to protect them for Boards</div>
+          <span class="open">Choose one</span>
+        </div>
+        <div class="sys">names the ability gap · segments · and sells, in one tap</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Lifted from the Board Booster page's own promise — <i>"why knowledge and study effort may not convert into marks."</i> The bot and the site say the same sentence.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S3 · the clock</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="qr"><div class="qrbody">When does this matter most?</div>
+          <span class="b pick">Exams within 3 months</span>
+          <span class="b">This academic year</span>
+          <span class="b">Just exploring</span></div>
+        <div class="sys">Class 11+/career variant: "Placement / interviews within 3 months"</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Urgency is the third scoring input and the natural hinge into the readiness fork.</p>
+  </div>
+</div>
+
+<h3 style="margin-top:34px">Group 2 · NEET &amp; JEE</h3>
+<div class="rail">
+  <div class="step">
+    <div class="steplab">Route</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="qr"><div class="qrbody">Which are you preparing for?</div>
+          <span class="b">NEET</span><span class="b">JEE</span><span class="b pick">Both</span></div>
+        <div class="sys">neet · jee · neet_jee (₹5,999 combo scan)</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">"Both" is a real catalogue row, not a convenience — <b>NEET-JEE 2X Booster</b>, its own stream.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S1 · stage</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="qr"><div class="qrbody">Where are you right now?</div>
+          <span class="b">First attempt</span>
+          <span class="b pick">Repeat / dropper</span>
+          <span class="b">Class 8–11, building up</span></div>
+        <div class="sys">repeat +4 · first +1 · building up +1</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">A repeat attempter has already proved more books did not work. They are pre-sold on something else being wrong — the strongest single predictor in the file.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S2 · the symptom</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv">
+        <div class="lst">
+          <div class="qrbody" style="padding:7px 9px 6px;font-size:.73rem;color:#e9edef">In your last mock — which was you?</div>
+          <div class="r"><i>›</i>Knew the concept, marked wrong</div>
+          <div class="r"><i>›</i>Eliminated two, still chose wrong</div>
+          <div class="r"><i>›</i>Ran out of time</div>
+          <div class="r"><i>›</i>Negative marking eating the score</div>
+          <div class="r"><i>›</i>Studying hard, score won't move</div>
+          <span class="open">Choose one</span>
+        </div>
+        <div class="sys">any specific answer +3</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Straight off the NEET/JEE page's own focus list — speed–accuracy, question selection, negative-marking control.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S3 · the clock</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="qr"><div class="qrbody">When is your attempt?</div>
+          <span class="b pick">Within 6 months</span><span class="b">Next year</span><span class="b">Still deciding</span></div>
+        <div class="sys">+3 · +2 · 0</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Same three-way shape as every group, so one scoring function serves all of them.</p>
+  </div>
+</div>
+
+<h3 style="margin-top:34px">Group 3 · KAS / IAS — reuse the approved copy, unchanged</h3>
+<div class="rail">
+  <div class="step">
+    <div class="steplab">Route</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="qr"><div class="qrbody">Which service?</div>
+          <span class="b pick">KAS · Karnataka</span><span class="b">IAS / UPSC</span><span class="b">Another state service</span></div>
+        <div class="sys warn">KAS and IAS never canonicalised together — same name, same ₹1,499, different exam</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Kannada is a KAS asset. IAS is all-India but its <b>audience</b> is not — an all-India exam does not mean an all-English aspirant.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S1 · attempt</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="bub in">Two quick questions so we point you at the right thing.<br><br>Which attempt is this for you? <span class="t">6:48 pm</span></div>
+        <div class="qr"><div class="qrbody">&nbsp;</div>
+          <span class="b">First attempt</span><span class="b pick">Second attempt</span><span class="b">Third or more</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Verbatim from the KAS drip flow published 12 Aug. Already approved — re-writing it would only create a second authority.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S2 · repeat branch</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv">
+        <div class="bub out">Second attempt <span class="t">6:49 pm <span class="tk">✓✓</span></span></div>
+        <div class="lst">
+          <div class="qrbody" style="padding:7px 9px 6px;font-size:.73rem;color:#e9edef">Which of these happened last time?</div>
+          <div class="r"><i>›</i>Knew the topic, marked the wrong answer</div>
+          <div class="r"><i>›</i>Eliminated two options, chose wrong</div>
+          <div class="r"><i>›</i>Left easy questions</div>
+          <div class="r"><i>›</i>Lost focus in the second half</div>
+          <div class="r"><i>›</i>Panicked after a doubtful question</div>
+          <div class="r"><i>›</i>Scored low despite studying</div>
+          <span class="open">Select one</span>
+        </div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Four jobs at once — qualifies (only an attempter can answer), segments, sells (it is their exact experience), teaches.</p>
+  </div>
+  <div class="arrow">→</div>
+  <div class="step">
+    <div class="steplab">S2 · first-timer branch</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv short">
+        <div class="bub out">First attempt <span class="t">6:49 pm <span class="tk">✓✓</span></span></div>
+        <div class="qr"><div class="qrbody">Then you have no exam story yet — which is its own advantage. Where are you right now?</div>
+          <span class="b">Just starting</span><span class="b pick">Mid-preparation</span><span class="b">Revision stage</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Asking a first-timer what went wrong last time is the fastest way to look automated. The branch is the point.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════ 05 GIVE ═══════════════ -->
+<section>
+<h2><span class="num">05</span>Give before you ask again</h2>
+<p class="cap">Three questions and then a price is an interrogation with an invoice at the end. One message that names their answer back to them, and says what we do about it. Only then §07.</p>
+
+<div class="rail">
+  <div class="step">
+    <div class="steplab">05 · the recognition message</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv xtall">
+        <div class="bub out">Knew the topic, marked the wrong answer <span class="t">6:50 pm <span class="tk">✓✓</span></span></div>
+        <div class="bub in">That one has a name. 🎯<br><br>It isn't syllabus and it isn't effort — it's <b>decision-making under pressure</b>, and it is measurable.<br><br>Five abilities decide a KAS result more than any book does:<ul><li>Critical &amp; Analytical Thinking</li><li>Comprehension</li><li>Written Structure</li><li>Decision-Making</li><li>Steadfastness</li></ul>Most aspirants have never seen their own number against the benchmark.
+          <span class="t">6:50 pm</span></div>
+        <div class="bub in">Marks tell you <i>what</i> happened.<br>We tell you <b>why</b> it happened.
+          <span class="t">6:50 pm</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Give the <b>map</b>, never the <b>measure</b>. Naming the 64 is free; the scoring instrument, the tasks and the Yashodarshi's judgment are the invention and stay behind the price.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">05b · what a parent gets</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv xtall">
+        <div class="bub out">Knew the answer, still lost marks <span class="t">9:15 am <span class="tk">✓✓</span></span></div>
+        <div class="bub in">That's the most common one — and the most fixable. 🎯<br><br>It means the knowledge is there and something between knowing and writing is leaking marks.<br><br>Your child completes a set of tasks from home, at their own pace. A trained <b>Yashodarshi</b> scores every one personally — a real person, not software.<br><br>You get a scorecard showing where the leak is.
+          <span class="t">9:15 am</span></div>
+        <div class="bub in">No labels. No comparison with anyone else. Just evidence you can act on. 🙏
+          <span class="t">9:15 am</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">"A real person, not software" is the strongest line we own — the answer to <i>"who judged my child?"</i> is the weakest term in every competitor's value equation.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════ 06 SCORE ═══════════════ -->
+<section>
+<h2><span class="num">06</span>Temperature — derived, never declared</h2>
+<p class="cap">Declared answers score. Behaviour scores higher, because people misreport intent and attendance is a fact.</p>
+
+<div class="grid2">
+  <div class="card"><h4>Declared · what they said</h4>
+    <table>
+      <tr><td>Repeat / 3rd+ / stuck</td><td><b>+4</b></td></tr>
+      <tr><td>2nd attempt / mid-stage</td><td><b>+3</b></td></tr>
+      <tr><td>First / building up / exploring</td><td><b>+1</b></td></tr>
+      <tr><td>Named a specific symptom</td><td><b>+3</b></td></tr>
+      <tr><td>"Nothing's wrong — just curious"</td><td><b>0</b></td></tr>
+      <tr><td>Deadline ≤ 3–6 months</td><td><b>+3</b></td></tr>
+      <tr><td>This year</td><td><b>+2</b></td></tr>
+      <tr><td>Still deciding</td><td><b>0</b></td></tr>
+    </table></div>
+  <div class="card blue"><h4>Behaviour · what happened — weighted higher</h4>
+    <table>
+      <tr><td>Attended the webinar</td><td><b>+4</b></td></tr>
+      <tr><td>Clicked a <code>/plans</code> link</td><td><b>+2</b></td></tr>
+      <tr><td>Replied at all</td><td><b>+2</b></td></tr>
+      <tr><td>Joined the community</td><td><b>+2</b></td></tr>
+    </table>
+    <div style="margin-top:12px;font-size:.8rem;color:#cfdcea">
+      <div style="padding:7px 9px;border-radius:7px;background:#3a1512;border:1px solid #6b2822;color:#ffb0a8;margin-bottom:6px"><b>≥ 10 · HOT</b> — human where possible, priority in the queue</div>
+      <div style="padding:7px 9px;border-radius:7px;background:#241708;border:1px solid #7a4512;color:var(--accent-bright);margin-bottom:6px"><b>5–9 · WARM</b> — the scan path, normal cadence</div>
+      <div style="padding:7px 9px;border-radius:7px;background:#16294a;border:1px solid #20406b;color:#8fc4f2;margin-bottom:6px"><b>&lt; 5 · COLD</b> — long cycle, standing invitation, no sequence</div>
+      <div style="padding:7px 9px;border-radius:7px;background:#2a1210;border:1px solid #6b2822;color:#ffb0a8"><b>NOT INTERESTED</b> — terminal, suppress everything</div>
+    </div></div>
+</div>
+
+<div class="note stopn"><b>Two things bypass the score entirely.</b><br>
+<b>Abandoned checkout → HOT, immediately.</b> They reached the payment page and did not pay — the hottest lead in the file. Recover within the hour, by voice. Never drop them into a nurture sequence.<br>
+<b>"Not interested" / STOP → terminal.</b> It is not a low score, it is a suppression flag. A Meta block is per-number and permanent, so an honoured opt-out is cheaper than any campaign it costs us.</div>
+
+<div class="note"><b>These weights are a hypothesis, not a finding.</b> They were written before there was any conversion history to fit them against. Re-fit them once roughly fifty enrolments exist — which is only possible if the raw answers still exist. See the data note in §10.</div>
+</section>
+
+<!-- ═══════════════ 07 FORK ═══════════════ -->
+<section>
+<h2><span class="num">07</span>The readiness fork is three-way, not two</h2>
+<p class="lead">"Ready to buy?" is unanswerable for 36 of 58 products.</p>
+<p class="cap">Measured live from the catalogue: only <b>22</b> rows are <code>live</code> and every one of them is a scan. The bot branches on <code>fulfilment_state</code>, using the storefront's own words so the bot and the site cannot disagree.</p>
+
+<table style="max-width:900px">
+<tr><th>State</th><th>Rows</th><th>What it is</th><th>What the bot does</th></tr>
+<tr><td><b style="color:#7fe8b0">live</b></td><td>22</td><td>Scans only — ₹999 / ₹1,999 / ₹4,999 (₹5,999 NEET+JEE)</td><td><b>Closes it.</b> Sends <code>/plans/&lt;stream&gt;/scan/&lt;variant&gt;</code></td></tr>
+<tr><td><b style="color:var(--accent-bright)">preorder</b></td><td>25</td><td>MCQ <b>5 Sep</b> (KAS/IAS first) · boosters + combos <b>20 Sep</b> · NEET/JEE MCQ <b>5 Oct</b></td><td>"<b>Pre-book · opens 5 Sep</b>" — captures intent + date, <b>a human confirms</b></td></tr>
+<tr><td><b style="color:#d3b8fb">waitlist</b></td><td>11</td><td>Every Godparent — ₹3,000/mo → ₹1,50,000/yr</td><td>"<b>Enquire</b>" → <b>human agent.</b> Their own note says <i>"Talk to us on WhatsApp to enrol"</i></td></tr>
+</table>
+
+<div class="rail" style="margin-top:26px">
+  <div class="step">
+    <div class="steplab">07a · live → the bot closes it</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge">hot</div></div>
+      <div class="pv xtall">
+        <div class="qr"><div class="qrbody">Would you like to start with a scan now, or see how it works first?</div>
+          <span class="b pick">Start now</span><span class="b">Show me how it works</span><span class="b">Talk to a person</span></div>
+        <div class="bub out">Start now <span class="t">6:52 pm <span class="tk">✓✓</span></span></div>
+        <div class="lst">
+          <div class="qrbody" style="padding:7px 9px 6px;font-size:.73rem;color:#e9edef">Three depths. Same Yashodarshi, different coverage.</div>
+          <div class="r" style="color:var(--accent-bright)"><i>★</i><span><b>ASLI64 KAS Scan — ₹4,999</b><br><span style="color:var(--wa-muted);font-size:.63rem">All 64 abilities · dedicated Yashodarshi · 1-to-1</span></span></div>
+          <div class="r"><i>›</i><span>ASLI15 KAS Scan — ₹1,999<br><span style="color:var(--wa-muted);font-size:.63rem">15 focus abilities</span></span></div>
+          <div class="r"><i>›</i><span>ASLI5 KAS Scan — ₹999<br><span style="color:var(--wa-muted);font-size:.63rem">Top 5 · "am I built for this race?"</span></span></div>
+          <span class="open">Choose one</span>
+        </div>
+        <div class="bub in">Here you go 👇 All prices <b>+ GST</b>.
+          <div class="cardlink"><div class="h">ASLI64 KAS Scan · ₹4,999</div>
+            <div class="u">yashho.com/plans/kas/scan/master</div></div>
+          <span class="t">6:53 pm</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">₹4,999 is the hero — the Yashodarshi and the 1-to-1 are what justify it. ₹999 is the step-down, offered later, never first.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">07b · preorder → pre-book, dated</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv tall">
+        <div class="bub out">I want the monthly test series <span class="t">6:55 pm <span class="tk">✓✓</span></span></div>
+        <div class="bub in">Good choice — that's the <b>Monthly Exam Paper Series</b>, ₹4,500 + GST for a month (4 sets, 8 papers).<br><br>It opens for <b>KAS and IAS first, on 5 September</b>.<br><br>I'll reserve your place and someone from our team will confirm it with you — nothing else for you to do until then.
+          <span class="t">6:55 pm</span></div>
+        <div class="qr"><div class="qrbody">Reserve a place?</div>
+          <span class="b pick">Yes, reserve it</span><span class="b">Tell me more first</span></div>
+        <div class="sys">tag: preorder-intent · product: kas_2b · opens 2026-09-05</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">A preorder <b>owes a date</b>. The date is the promise, not decoration — so the bot always states it, and never takes the money without a human confirming.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">07c · waitlist → human, always</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#d3b8fb;background:#211436;border-color:#4b3070">handover</div></div>
+      <div class="pv tall">
+        <div class="bub out">What about the full mentoring package? <span class="t">7:01 pm <span class="tk">✓✓</span></span></div>
+        <div class="bub in">That's <b>KAS GODPARENT</b> — monthly test series with personalised mentoring, from ₹7,500/month, and a full Prelims package at ₹45,000.<br><br>These are placed by our team personally, because we match you to a Yashodarshi rather than sell you a seat.<br><br>May I confirm your name and put a person on this?
+          <span class="t">7:01 pm</span></div>
+        <div class="bub out">Yes — Manjunath S <span class="t">7:02 pm <span class="tk">✓✓</span></span></div>
+        <div class="sys">tag: waitlist-enquiry · wants-human · HOT → AiSensy team inbox</div>
+        <div class="bub in">Thank you 🙏 <b>Geeta</b> from our team will message you here within the hour.
+          <span class="t">7:02 pm</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">All 11 Godparent rows, ₹3,000/mo → ₹1,50,000/yr. This bot is their <b>only</b> enrolment door — and also the point where the name is finally worth asking for.</p>
+  </div>
+</div>
+
+<div class="note okn"><b>The two branches a bot must never close alone.</b> A ₹1,50,000 annual programme and a dated pre-order both carry a promise the bot cannot keep by itself. Everything the bot <i>can</i> close — the 22 live scans — it closes in one link, with no handover and no delay.</div>
+</section>
+
+<!-- ═══════════════ 08 LADDER ═══════════════ -->
+<section>
+<h2><span class="num">08</span>Not ready → the ladder</h2>
+<p class="cap">Community first, always. Webinar link only if they ask. That ordering is deliberate: the 24-hour service window closes, and a community join does not.</p>
+
+<div class="rail">
+  <div class="step">
+    <div class="steplab">08a · offer the CEO webinar</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv tall">
+        <div class="bub out">Not right now <span class="t">9:20 am <span class="tk">✓✓</span></span></div>
+        <div class="bub in">Completely fine 🙏 No rush at all.<br><br>Would you like to join our <b>CEO webinar</b> instead? It's live on Google Meet, free, and you can ask <b>anything</b> — Krishnaraj sir answers directly.<br><br>He was a Karnataka Civil Services officer himself, and he invented the framework.
+          <span class="t">9:20 am</span></div>
+        <div class="qr"><div class="qrbody">Runs every day, <b>8:30 – 9:30 AM</b>.</div>
+          <span class="b">Yes, I'd like that</span><span class="b pick">Maybe later</span></div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">Daily is the credibility. A missed session is simply another morning — which is exactly why no countdown timer is ever used.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">08b · community link — FIRST</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv tall">
+        <div class="bub in">And either way — come and stand with us. 🙏<br><br>Our <b>WhatsApp community</b> is where aspirants, parents and our Yashodarshis talk. No selling. Ask what you like, whenever you like.
+          <div class="cardlink"><div class="h">YASHHO Community</div>
+            <div class="u">chat.whatsapp.com/CLsrPgCRhMMIAA0ROeJ6AX</div></div>
+          <span class="t">9:21 am</span></div>
+        <div class="sys">tag: joined-community · +2 · survives the 24h window</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">The permanent owned channel. Once the service window closes we can only send approved templates — a community join is reach that never expires.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">08c · webinar link — only if asked</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div>
+        <div class="wabadge" style="color:#ffb0a8;background:#3a1512;border-color:#6b2822">gate</div></div>
+      <div class="pv tall">
+        <div class="bub out">Can you send the webinar link? <span class="t">9:23 am <span class="tk">✓✓</span></span></div>
+        <div class="bub in">Of course 🙏 Register here and the joining link reaches you on WhatsApp before the session.
+          <div class="cardlink"><div class="h">Join the CEO Webinar · free · 60 min</div>
+            <div class="u">yashho.com/webinar</div></div>
+          In English and Kannada. Bring your questions.
+          <span class="t">9:23 am</span></div>
+        <div class="sys warn">NEVER meet.google.com/… — that is the ROOM, and it forwards</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap"><b>Registration page, never the room.</b> The Meet link is a door anyone holding it can walk through, with no way to withdraw it. Only a registrant gets it, and only in their confirmation.</p>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="step">
+    <div class="steplab">08d · "call me" → deflect, unless HOT</div>
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="wahead"><div class="ava">Y</div><div><div class="waname">YASHHO</div><div class="wasub">World's First Success Doctor</div></div></div>
+      <div class="pv tall">
+        <div class="bub out">Just call me <span class="t">9:25 am <span class="tk">✓✓</span></span></div>
+        <div class="sys">score &lt; 10 → deflect to the webinar</div>
+        <div class="bub in">I'd rather do one better than a call 🙂<br><br>Krishnaraj sir is live <b>every day, 8:30 – 9:30 AM</b> — you can ask him directly, and you'll hear the answers he gives everyone else too.<br><br>Shall I put your name down for tomorrow?
+          <span class="t">9:25 am</span></div>
+        <div class="sys" style="color:#ffb0a8;background:#2a1210">score ≥ 10 → skip this entirely, hand to a human</div>
+      </div>
+      <div class="wainput"><div class="box">Message</div><div class="snd">➤</div></div>
+    </div></div>
+    <p class="stepcap">The deflection is <b>conditional on temperature</b>. A hot lead asking for a person gets a person — deflecting them to a webinar is how the best lead in the file goes cold.</p>
+  </div>
+</div>
+
+<div class="note stopn"><b>Terminal states, drawn explicitly.</b>
+<span style="display:block;margin-top:6px">· <b>STOP / "don't message me"</b> → suppress every future send, confirm once, never again. Not a cold score — a flag.</span>
+<span style="display:block;margin-top:3px">· <b>minor-blocked</b> → conversation stays open and friendly, measurement stops.</span>
+<span style="display:block;margin-top:3px">· <b>no opt-in</b> → cannot be entered into any sequence at all, whatever the list says.</span></div>
+</section>
+
+<!-- ═══════════════ 09 DESKTOP ═══════════════ -->
+<section>
+<h2><span class="num">09</span>Desktop — the handover, from the other side</h2>
+<p class="cap">Everything above is what the lead sees. This is what Geeta sees when the bot hands over: WhatsApp Web on the left, and the AiSensy team inbox with the tags the flow has been setting all along.</p>
+
+<div class="browser">
+  <div class="bchrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="urlpill">app.aisensy.com/inbox · YASHHO · +91 80 6236 2056</span></div>
+  <div class="bbody"><div class="inbox">
+    <div class="ilist">
+      <div class="irow act"><div class="n">Manjunath S</div><div class="p">+91 98••• ••432 · KAS · 7:02 pm</div>
+        <div class="tags"><span class="tag hot">hot · 13</span><span class="tag">stream:kas</span><span class="tag">role:aspirant</span><span class="tag m">wants-human</span><span class="tag m">waitlist-enquiry</span></div></div>
+      <div class="irow"><div class="n">Sowmya R</div><div class="p">+91 91••• ••118 · Board · 9:21 am</div>
+        <div class="tags"><span class="tag warm">warm · 8</span><span class="tag">role:parent</span><span class="tag">joined-community</span></div></div>
+      <div class="irow"><div class="n">Arjun K</div><div class="p">+91 88••• ••907 · NEET · 8:44 am</div>
+        <div class="tags"><span class="tag hot">hot · abandoned</span><span class="tag">clicked /plans</span></div></div>
+      <div class="irow"><div class="n">(learner)</div><div class="p">+91 74••• ••220 · Class 6 · 9:14 am</div>
+        <div class="tags"><span class="tag m">minor-blocked</span><span class="tag cold">no score</span></div></div>
+      <div class="irow"><div class="n">Prakash B</div><div class="p">+91 99••• ••651 · IAS · yesterday</div>
+        <div class="tags"><span class="tag cold">cold · 3</span><span class="tag">still deciding</span></div></div>
+    </div>
+    <div class="ithread">
+      <div class="bub in" style="max-width:78%">…May I confirm your name and put a person on this?<span class="t">7:01 pm</span></div>
+      <div class="bub out" style="max-width:78%">Yes — Manjunath S<span class="t">7:02 pm <span class="tk">✓✓</span></span></div>
+      <div class="sys">bot paused · assigned to Geeta · 7:02 pm</div>
+      <div class="bub out" style="max-width:78%;background:#134d3f">Namaskara Manjunath, Geeta here from YASHHO. I saw you're on your second KAS attempt and asked about GODPARENT — shall I call you, or is here easier?<span class="t">7:06 pm <span class="tk">✓✓</span></span></div>
+      <div style="margin-top:14px;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:9px">
+        <div style="font-size:.6rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Contact attributes — set by the flow</div>
+        <div class="kv" style="font-size:.7rem">
+          <div><span>stream</span><span><code>kas</code></span></div>
+          <div><span>role</span><span><code>aspirant</code></span></div>
+          <div><span>q_stage</span><span><code>second_attempt</code></span></div>
+          <div><span>q_symptom</span><span><code>knew_topic_marked_wrong</code></span></div>
+          <div><span>q_timing</span><span><code>within_6_months</code></span></div>
+          <div><span>score / temperature</span><span><code>13</code> · <code>hot</code></span></div>
+          <div><span>product_interest</span><span><code>kas_4</code> · waitlist</span></div>
+          <div><span>entry_lane / ref</span><span><code>widget</code> · <code>kas</code></span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div class="note"><b>The agent never re-asks what the bot already knows.</b> Geeta opens on "second attempt, knew the topic, marked wrong, six months out" — so her first message is a continuation, not an introduction. That is the entire return on three taps.</div>
+</section>
+
+<!-- ═══════════════ 10 DATA + GATES ═══════════════ -->
+<section>
+<h2><span class="num">10</span>Data model, and what must be true before launch</h2>
+
+<div class="grid2">
+  <div class="card"><h4>Attributes — the contact record</h4>
+    <div class="kv">
+      <div><span>stream</span><span>marks_booster · board_booster · career_readiness · neet · jee · neet_jee · kas · ias</span></div>
+      <div><span>group</span><span>regular · neet-jee · civil-services</span></div>
+      <div><span>role</span><span>parent · aspirant</span></div>
+      <div><span>is_minor</span><span>true · false</span></div>
+      <div><span>q_stage / q_symptom / q_timing</span><span>the three taps, as given</span></div>
+      <div><span>score / temperature</span><span>int · hot · warm · cold · not_interested</span></div>
+      <div><span>product_interest</span><span>catalogue key — <code>kas_4</code>, <code>neet_2b</code></span></div>
+      <div><span>entry_lane / ref</span><span>widget · ad · broadcast · webinar · post-payment</span></div>
+      <div><span>wa_optin</span><span>true · false — the gate, not a preference</span></div>
+    </div></div>
+  <div class="card blue"><h4>Tags — what the inbox filters on</h4>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px">
+      <span class="tag hot">hot</span><span class="tag warm">warm</span><span class="tag cold">cold</span>
+      <span class="tag" style="background:#2a1210;color:#ffb0a8;border-color:#6b2822">not-interested</span>
+      <span class="tag m">minor-blocked</span><span class="tag m">wants-human</span>
+      <span class="tag">stream:kas</span><span class="tag">joined-community</span>
+      <span class="tag">webinar-registered</span><span class="tag">preorder-intent</span>
+      <span class="tag m">waitlist-enquiry</span><span class="tag hot">abandoned-checkout</span>
+    </div>
+    <div style="margin-top:14px;font-size:.82rem;color:#cfdcea">
+      Answers, score and temperature live in <b>AiSensy attributes and tags</b> — no <code>lead_answers</code> table. Decided 30 Aug.</div>
+    </div>
+</div>
+
+<div class="note"><b>Two cheap insurances against that decision, neither of which changes it.</b><br>
+<b>1 · Keep the tag and attribute vocabulary canonical in our repo</b>, exactly as we already do for template text. Switching BSP then becomes a re-submission, not a rewrite — and two surfaces can never drift into two spellings of <code>hot</code>.<br>
+<b>2 · Export the attribute set on a schedule.</b> The scoring weights above are a hypothesis; re-fitting them against real enrolments needs the raw answers to still exist somewhere we control.</div>
+
+<h3 style="margin-top:34px">Pre-launch gates — all four must be green</h3>
+<table style="max-width:900px">
+<tr><th>#</th><th>Gate</th><th>State today</th></tr>
+<tr><td>1</td><td><code>yashho.com/webinar</code> must resolve</td><td><b style="color:#ffb0a8">404 — page is on <code>preview-v2</code>, not <code>main</code></b>. §08c points at a dead link until it ships.</td></tr>
+<tr><td>2</td><td>Templates approved, EN + KN</td><td>Each language is a <b>separate submission</b>; bilingual templates are rejected. 24–48h each. Message 1 of every business-initiated lane depends on this.</td></tr>
+<tr><td>3</td><td>Correct the published KAS drip flow</td><td>It states <b>"Webinar 8–9 PM nightly"</b>. Canonical is <b>8:30–9:30 AM daily</b>. Two artefacts contradicting each other in front of the team is worse than one being silent.</td></tr>
+<tr><td>4</td><td>Opt-in evidenced per number, before any broadcast</td><td>A spreadsheet is not opt-in. Numbers without it cannot enter a sequence at all.</td></tr>
+</table>
+
+<div class="note okn"><b>Already green — don't rebuild these.</b> The AiSensy widget is live on the storefront (<code>aabm07</code>, number unchanged so attribution is continuous) · all scan URLs resolve — <code>/plans/kas/scan/master</code>, <code>/plans/marks-booster/scan/starter</code>, <code>/plans/neet/scan/master</code> all return 200 · the number <code>918062362056</code> is confirmed live on WABA · every message sent to it already lands in the AiSensy team inbox, with nothing to integrate.</div>
+</section>
+
+<footer>
+  <b>YASHHO — AiSensy Lead Bot · conversation storyboard · 30 Aug 2026.</b><br>
+  Catalogue figures measured live from <code>app.irisepro.in/api/catalog</code> on 30 Aug 2026: 58 products · 22 live · 25 preorder · 11 waitlist.
+  URL states verified against <code>yashho.com</code> the same day. KAS qualification copy reused verbatim from the KAS drip flow published 12 Aug 2026.<br>
+  Not a spec. A design to argue with.
+</footer>
+
+</div>
