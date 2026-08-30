@@ -182,7 +182,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
 <header class="hero"><div class="hero-in">
   <div class="eyebrow">YASHHO · AiSensy WhatsApp Bot · Conversation Storyboard</div>
   <h1>Cold lead → qualified → paid</h1>
-  <p class="sub">One flow, many doors. Website widget, click-to-WhatsApp ad, broadcast, webinar registration — every channel enters the same conversation at a different point. Three taps to qualify, an express lane for anyone who came to buy, a three-way readiness fork, and a human on the two paths a bot must never close alone.<br><b style="color:var(--accent-bright)">Scope ends at payment. Everything after it happens in the app.</b></p>
+  <p class="sub">One flow, many doors. Website widget, click-to-WhatsApp ad, broadcast, webinar registration — every channel enters the same conversation at a different point. Three taps to qualify, an express lane for anyone who came to buy, a three-way readiness fork, and a human on the two paths a bot must never close alone.<br><b style="color:var(--accent-bright)">The bot's job ends the moment the payment link is handed over. Everything after that is the app.</b></p>
   <div class="meta">
     <span class="pill">918062362056 · AiSensy</span>
     <span class="pill b">3 groups · 8 streams · 58 products</span>
@@ -206,7 +206,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
     <div class="node sys">B · Click-to-WA ad<small>joins at §04 S2 — ad asked S1</small></div>
     <div class="node sys">C · List broadcast<small>joins at the DELTA — never re-ask</small></div>
     <div class="node sys">D · Webinar signup<small>joins at §05 — skip qualify</small></div>
-    <div class="node stop">E · Abandoned checkout<small>skips everything → human, ≤1h</small></div>
+    <div class="node stop">E · Abandoned checkout<small>NOT this bot — separate campaign</small></div>
     <div class="node human">F · Existing customer<small>steps aside → the app</small></div>
     <div class="node stop">No opt-in<small>cannot be messaged at all</small></div>
   </div>
@@ -239,7 +239,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
     <div class="node ask">not now → ladder</div>
   </div>
   <div class="mcol"><div class="mhead">Outcome</div>
-    <div class="node money">PAID<small>→ the APP takes over. Bot's scope ends here.</small></div>
+    <div class="node money">LINK HANDED OVER<small>job done. The bot never waits.</small></div>
     <div class="node human">Human agent<small>hot + wants a person</small></div>
     <div class="node sys">Community joined<small>always first</small></div>
     <div class="node sys">Webinar registered<small>only if asked</small></div>
@@ -267,12 +267,12 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
 <tr><td><b>B · Click-to-WhatsApp ad</b></td><td style="color:#7fe8b0">open</td><td>Stream, <b>and the hook the ad promised</b></td><td><b>Continue the ad.</b> Never re-greet.</td><td><b>§04 · S2</b> — the ad set already asked S1</td></tr>
 <tr><td><b>C · List broadcast</b></td><td style="color:#ffb0a8">closed</td><td>The whole record — stream, role, prior answers, webinar attendance</td><td>Template on <b>the delta only</b></td><td><b>Wherever they left off.</b> Never re-ask a known answer</td></tr>
 <tr><td><b>D · Webinar registration</b></td><td style="color:#ffb0a8">closed</td><td>Name, group, role, consent — and high declared intent</td><td>Confirm the seat, then give</td><td><b>§05</b> — qualification is largely already earned</td></tr>
-<tr><td><b>E · Abandoned checkout</b></td><td style="color:#ffb0a8">closed</td><td>The exact product and amount they didn't pay</td><td>Recovery within the hour</td><td><b>Skips the trunk</b> → §07c, human</td></tr>
+<tr style="background:#1a0f0d"><td><b>E · Abandoned checkout</b></td><td style="color:#ffb0a8">closed</td><td>The exact product and amount they didn't pay</td><td><b style="color:#ffb0a8">NOT THIS BOT.</b> The link was handed over — the job was done. Recovery is its own campaign.</td><td><b>Never</b></td></tr>
 <tr style="background:#1a0f0d"><td><b>F · An existing customer messages us</b></td><td style="color:#7fe8b0">open</td><td>They already paid. Everything is in the app.</td><td><b>Decline the job.</b> Point at the app; human if the app can't answer it.</td><td><b>Never enters the trunk</b></td></tr>
 </table>
 
 <div class="note stopn"><b>⛔ THE BOT'S SCOPE ENDS AT PAYMENT. All post-payment support happens in the app.</b>
-<span style="display:block;margin-top:8px">There is no activation lane, no onboarding nudge, no progress chasing here. The app owns the customer; this bot owns the stranger.</span>
+<span style="display:block;margin-top:8px">Sharper still: the job ends the moment the <b>payment link is handed over</b> — not when payment lands. No confirmation message, no "did you pay?", no chasing. The app owns the customer; this bot owns the stranger, and it lets go at the door.</span>
 <span style="display:block;margin-top:8px"><b>Lane F exists anyway, and only to prevent one thing.</b> <code>918062362056</code> is printed on every buyer-facing surface, so paying customers <i>will</i> message it. With no state for that they fall into the qualification trunk — and the bot asks someone who paid ₹4,999 last week <i>"who is this for?"</i>. Recognising a known number and stepping aside costs one object and prevents the single worst message in the flow.</span></div>
 
 <div class="rail" style="margin-top:20px">
@@ -1127,6 +1127,10 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
   </div>
 </div>
 
+<div class="note okn"><b>Every terminal state is a HANDOVER. The bot never waits.</b>
+<span style="display:block;margin-top:8px">· <b>Link handed over</b> → the app · · <b>Handed to a human</b> → the team inbox · · <b>Community joined</b> → the community · · <b>Webinar registered</b> → the session · · <b>Stopped</b> → nobody.</span>
+<span style="display:block;margin-top:8px">Not one of them is a pending state. Nothing in this flow sits waiting for an outcome it cannot see — which is why there is no payment confirmation, no "did you pay?", and no abandoned-checkout recovery inside the bot. A conversation that waits is a conversation that has to be reconciled, and reconciliation is where a chatbot starts lying about state it does not own.</span></div>
+
 <div class="note stopn"><b>Terminal states, drawn explicitly.</b>
 <span style="display:block;margin-top:6px">· <b>STOP / "don't message me"</b> → suppress every future send, confirm once, never again. Not a cold score — a flag.</span>
 <span style="display:block;margin-top:3px">· <b>minor-blocked</b> → conversation stays open and friendly, measurement stops.</span>
@@ -1252,7 +1256,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
   <div class="card blue"><h4>As drawn · ~35 objects — too many for v1</h4>
     <table style="font-size:.78rem">
       <tr><th>Block</th><th>Count</th></tr>
-      <tr><td>Lane openers (A, ad hooks ×4, C, D×2, E) + F step-aside</td><td>10</td></tr>
+      <tr><td>Lane openers (A, ad hooks ×4, C, D×2) + F step-aside</td><td>9</td></tr>
       <tr style="background:#0f2e22"><td><b>Express lane (§02b) — link · picker · unbuyable handover</b></td><td><b>3</b></td></tr>
       <tr><td>Group tap · parent-learner tap · minor reroute</td><td>3</td></tr>
       <tr><td>S1 × 3 groups</td><td>3</td></tr>
@@ -1262,7 +1266,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
       <tr><td>Fork: scan picker · pre-book · waitlist handover</td><td>3</td></tr>
       <tr><td>Ladder: webinar offer · community · registration · call-me deflect</td><td>4</td></tr>
       <tr><td>STOP confirmation</td><td>1</td></tr>
-      <tr style="background:#241708"><td><b>Total</b></td><td><b>38</b> → <b>76</b> with Kannada</td></tr>
+      <tr style="background:#241708"><td><b>Total</b></td><td><b>37</b> → <b>74</b> with Kannada</td></tr>
     </table>
     <div style="margin-top:10px;font-size:.8rem;color:#7fe8b0">⚡ The 3 express-lane objects are the <b>last</b> ones to cut. They are the only path in the whole flow that reaches money without a single qualifying question.</div></div>
 </div>
@@ -1274,10 +1278,10 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--border);color
 <tr><td><b>One S2 list per group, not per stream</b></td><td>6 → <b>3</b></td><td>The Class 5–7 and 8–10 lists differ; NEET and JEE share one mock-symptom list; KAS and IAS already share theirs. The stream is still tagged — only the <i>question</i> is shared.</td></tr>
 <tr><td><b>One "give", parameterised by the symptom they picked</b></td><td>3 → <b>1</b></td><td>The structure is identical in all three: name the symptom back, say it has a name, say a Yashodarshi measures it. Only the symptom noun changes.</td></tr>
 <tr><td><b>Start with one ad hook, not four</b></td><td>4 → <b>1</b></td><td>Four hooks is an optimisation on a funnel that has never run. Ship one, measure, then author the second from what actually converted.</td></tr>
-<tr><td><b>Lanes C and E are not v1</b></td><td>−3</td><td>Broadcast and checkout-recovery are separate campaigns with their own approval cycles and their own opt-in evidence problem. They do not have to ship with the bot, and lane C is worthless until the bot has produced records worth broadcasting to.</td></tr>
+<tr><td><b>Lane C is not v1</b> — and lane E is not this bot at all</td><td>−2</td><td>Broadcast has its own approval cycle and its own opt-in evidence problem, and is worthless until the bot has produced records worth broadcasting to. <b>Checkout recovery is out of scope entirely</b>: the bot's job ended when it handed over the link.</td></tr>
 </table>
 
-<div class="note okn"><b>v1 lands at roughly 22 objects, English, plus the KAS lane in Kannada.</b> That is one approval cycle, not a programme. Lanes A, B, D · <b>the express lane</b> · the trunk · the fork · the ladder — the complete cold-to-paid path <i>and</i> the already-decided-to-buy path, with nothing cut that anyone actually walks through.</div>
+<div class="note okn"><b>v1 lands at roughly 21 objects, English, plus the KAS lane in Kannada.</b> That is one approval cycle, not a programme. Lanes A, B, D · <b>the express lane</b> · the trunk · the fork · the ladder — the complete cold-to-paid path <i>and</i> the already-decided-to-buy path, with nothing cut that anyone actually walks through.</div>
 
 <div class="note"><b>And keep the canonical text in our repo, not in the AiSensy console.</b> Same rule already applied to comms templates. Two consequences, both cheap now and expensive later: switching BSP becomes a <b>re-submission rather than a rewrite</b>, and the bot's words can be diffed and reviewed like anything else we ship. A console is not a source of record.</div>
 </section>
