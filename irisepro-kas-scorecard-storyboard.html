@@ -194,6 +194,23 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
   font:400 13.5px/1.6 Montserrat,sans-serif}
 .gapneg{color:#e06b6b;font-weight:600}
 .gappos{color:#5fbf7f;font-weight:600}
+
+.blt{display:grid;grid-template-columns:186px 30px 1fr 30px 38px;gap:9px;align-items:center;
+  margin:6px 0;font:500 12.5px/1.3 var(--sans,inherit)}
+.blt-n{color:var(--ink2)}
+.blt-v{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+.blt-b{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink3);font-size:11.5px}
+.blt-g{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:var(--loss);font-size:11.5px}
+.blt-t{position:relative;height:12px;background:var(--bar-bg);border-radius:7px}
+.blt-gap{position:absolute;top:0;bottom:0;background:var(--loss-soft)}
+.blt-fill{position:absolute;top:0;bottom:0;left:0;background:var(--saffron);border-radius:7px 0 0 7px}
+.blt-bm{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--loss);border-radius:1px}
+.blt-hd{display:grid;grid-template-columns:186px 30px 1fr 30px 38px;gap:9px;
+  font:600 10px/1 var(--sans,inherit);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:9px}
+.blt-hd i{font-style:normal;text-align:right}
+.blt-key{margin-top:14px;font:400 11.5px/1.5 var(--sans,inherit);color:var(--ink3)}
+.blt-key b{display:inline-block;width:2px;height:10px;background:var(--loss);vertical-align:-1px;margin:0 3px}
 </style>
 
 <div class="wrap">
@@ -463,17 +480,12 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
   </table>
   </div>
 
-  <div class="tblwrap" style="margin-top:26px">
-  <table class="tbl">
-    <thead><tr><th>Exam behaviour</th><th>Your %</th><th>Benchmark</th><th>Gap</th><th>What it is made of</th></tr></thead>
-    <tbody>
-      <tr><td>Time-Management</td><td class="n">73</td><td class="n">94</td><td class="n gapneg">-21</td><td>60% coverage · 20% accuracy · 20% net marks</td></tr>
-      <tr><td>Discipline</td><td class="n">68</td><td class="n">94</td><td class="n gapneg">-26</td><td>35% coverage · 45% accuracy · 20% net marks</td></tr>
-      <tr><td>Accountability</td><td class="n">65</td><td class="n">94</td><td class="n gapneg">-29</td><td>25% coverage · 50% accuracy · 25% net marks</td></tr>
-      <tr><td>Efficiency</td><td class="n">61</td><td class="n">93</td><td class="n gapneg">-32</td><td>25% coverage · 30% accuracy · 45% net marks</td></tr>
-    </tbody>
-  </table>
-  </div>
+  <div style="margin-top:30px"><div class="blt-hd"><span>Four exam behaviours</span><i>you</i><span></span><i>bm</i><i>gap</i></div>
+<div class="blt"><span class="blt-n">Time-Management</span><span class="blt-v">73</span><span class="blt-t"><i class="blt-gap" style="left:73%;width:21%"></i><i class="blt-fill" style="width:73%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-21</span></div>
+<div class="blt"><span class="blt-n">Discipline</span><span class="blt-v">68</span><span class="blt-t"><i class="blt-gap" style="left:68%;width:26%"></i><i class="blt-fill" style="width:68%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-26</span></div>
+<div class="blt"><span class="blt-n">Accountability</span><span class="blt-v">65</span><span class="blt-t"><i class="blt-gap" style="left:65%;width:29%"></i><i class="blt-fill" style="width:65%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-29</span></div>
+<div class="blt"><span class="blt-n">Efficiency</span><span class="blt-v">61</span><span class="blt-t"><i class="blt-gap" style="left:61%;width:32%"></i><i class="blt-fill" style="width:61%"></i><i class="blt-bm" style="left:93%"></i></span><span class="blt-b">93</span><span class="blt-g">-32</span></div>
+<p class="blt-key">Bar is your score · <b></b> is the benchmark · the tinted band is the gap you would need to close.</p></div>
 </div>
 
 <footer>
