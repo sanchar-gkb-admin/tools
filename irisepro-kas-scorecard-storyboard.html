@@ -12,27 +12,16 @@
 <body>
 <style>
 :root{
-  --paper:#FCFAF6; --card:#FFFFFF; --sunk:#F3EFE6;
-  --ink:#171310; --ink2:#514941; --ink3:#8A7F72;
+  --paper:#faf7f2; --card:#FFFFFF; --sunk:#F3EFE6;
+  --ink:#2a2320; --ink2:#514941; --ink3:#8A7F72;
   --rule:#E7E0D3; --rule2:#D3C9B7;
-  --saffron:#D26B12; --saffron-soft:#FBEDDF;
+  --saffron:#F5821F; --saffron-soft:#FBEDDF;
   --gain:#2C6B43; --gain-soft:#E3EFE7;
   --loss:#A02A20; --loss-soft:#F8E4E1;
   --bar-bg:#ECE5D8;
   --shadow:0 1px 2px rgba(0,0,0,.03),0 10px 34px rgba(0,0,0,.045);
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#100E0B; --card:#191611; --sunk:#211D16;
-    --ink:#F6F2E9; --ink2:#C8BFB0; --ink3:#8E8375;
-    --rule:#2D2720; --rule2:#463D30;
-    --saffron:#F2A055; --saffron-soft:#2B1F14;
-    --gain:#7FC095; --gain-soft:#16261C;
-    --loss:#EF8C80; --loss-soft:#2A1714;
-    --bar-bg:#282219;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.35);
-  }
-}
+/* no dark block: resources/views/scorecard/* has none — the card is always light */
 :root[data-theme="dark"]{
   --paper:#100E0B; --card:#191611; --sunk:#211D16;
   --ink:#F6F2E9; --ink2:#C8BFB0; --ink3:#8E8375;
@@ -216,6 +205,7 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
 .sec-stack i{display:block;height:100%}
 .s-c{background:var(--saffron)}.s-w{background:var(--loss)}.s-l{background:var(--rule2)}
 .k{display:inline-block;width:9px;height:9px;border-radius:2px;vertical-align:-1px;margin:0 2px}
+.totrow{border-top:2px solid var(--rule2)}
 </style>
 
 <div class="wrap">
@@ -444,12 +434,12 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
   <div class="step">Full detail</div>
   <p class="because" style="font-size:.92rem">Everything behind the findings above. Nothing here changes the conclusion — it is the evidence for it.</p>
 
-  <div><div class="blt-hd" style="grid-template-columns:206px 1fr 52px 34px"><span>Section</span><span></span><i>net</i><i>%</i></div>
-<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">I · Current Events</span><span class="sec-stack" style="width:100.0%"><i class="s-c" style="flex:23"></i><i class="s-w" style="flex:13"></i><i class="s-l" style="flex:4"></i></span><span class="blt-b">42 / 80</span><span class="blt-v">53</span></div>
-<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">II · History &amp; National Movement</span><span class="sec-stack" style="width:50.0%"><i class="s-c" style="flex:11"></i><i class="s-w" style="flex:6"></i><i class="s-l" style="flex:3"></i></span><span class="blt-b">20 / 40</span><span class="blt-v">50</span></div>
-<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">III · Geography</span><span class="sec-stack" style="width:37.5%"><i class="s-c" style="flex:7"></i><i class="s-w" style="flex:6"></i><i class="s-l" style="flex:2"></i></span><span class="blt-b">12 / 30</span><span class="blt-v">40</span></div>
-<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">IV · Polity, Economy &amp; Social Dev.</span><span class="sec-stack" style="width:62.5%"><i class="s-c" style="flex:13"></i><i class="s-w" style="flex:7"></i><i class="s-l" style="flex:5"></i></span><span class="blt-b">18 / 50</span><span class="blt-v">36</span></div>
-<p class="blt-key">Bar length is the section's share of the paper · <i class="s-c k"></i> correct · <i class="s-w k"></i> wrong · <i class="s-l k"></i> not reached.</p></div>
+  <div><div class="tblwrap"><table class="tbl"><thead><tr><th>Section</th><th>Qs</th><th>Max</th><th>Att.</th><th>Correct</th><th>Wrong</th><th>Left</th><th style="min-width:110px">Composition</th><th>Net</th><th>%</th></tr></thead><tbody>
+<tr><td>I · Current Events</td><td class="n">40</td><td class="n">80</td><td class="n">36</td><td class="n">23</td><td class="n">13</td><td class="n">4</td><td><span class="sec-stack" style="width:100%"><i class="s-c" style="flex:23"></i><i class="s-w" style="flex:13"></i><i class="s-l" style="flex:4"></i></span></td><td class="n">42</td><td class="n">53</td></tr>
+<tr><td>II · History &amp; National Movement</td><td class="n">20</td><td class="n">40</td><td class="n">17</td><td class="n">11</td><td class="n">6</td><td class="n">3</td><td><span class="sec-stack" style="width:50%"><i class="s-c" style="flex:11"></i><i class="s-w" style="flex:6"></i><i class="s-l" style="flex:3"></i></span></td><td class="n">20</td><td class="n">50</td></tr>
+<tr><td>III · Geography</td><td class="n">15</td><td class="n">30</td><td class="n">13</td><td class="n">7</td><td class="n">6</td><td class="n">2</td><td><span class="sec-stack" style="width:38%"><i class="s-c" style="flex:7"></i><i class="s-w" style="flex:6"></i><i class="s-l" style="flex:2"></i></span></td><td class="n">12</td><td class="n">40</td></tr>
+<tr><td>IV · Polity, Economy &amp; Social Dev.</td><td class="n">25</td><td class="n">50</td><td class="n">20</td><td class="n">13</td><td class="n">7</td><td class="n">5</td><td><span class="sec-stack" style="width:62%"><i class="s-c" style="flex:13"></i><i class="s-w" style="flex:7"></i><i class="s-l" style="flex:5"></i></span></td><td class="n">18</td><td class="n">36</td></tr>
+<tr class="totrow"><td><b>Total</b></td><td class="n">100</td><td class="n">200</td><td class="n">86</td><td class="n">54</td><td class="n">32</td><td class="n">14</td><td></td><td class="n">92</td><td class="n">46</td></tr></tbody></table><p class="blt-key">Bar length is the section’s share of the paper · <i class="s-c k"></i> correct · <i class="s-w k"></i> wrong · <i class="s-l k"></i> not reached.</p></div>
 
   
   <p class="because" style="margin-top:12px">
