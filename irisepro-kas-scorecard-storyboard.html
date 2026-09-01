@@ -178,6 +178,20 @@ em{font-style:italic}
 .tbl td.n{font-family:"JetBrains Mono",monospace;text-align:right;font-variant-numeric:tabular-nums}
 .tblwrap{overflow-x:auto}
 footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
+
+.mixhd{font:600 11px/1.4 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted,#8ea3bd);margin:26px 0 4px}
+.mixnote{font:400 13px/1.55 Montserrat,sans-serif;color:var(--muted,#8ea3bd);margin:0 0 14px}
+.mixrow{display:grid;grid-template-columns:132px 34px 1fr;gap:10px;align-items:center;margin:9px 0}
+.mixname{font:600 12.5px/1.3 Montserrat,sans-serif}
+.mixval{font:700 15px/1 Montserrat,sans-serif;text-align:right;font-variant-numeric:tabular-nums}
+.mixbar{display:flex;height:9px;border-radius:5px;overflow:hidden}
+.mixbar i{display:block;height:100%}
+.mixbar i.c{background:#f5821f}.mixbar i.a{background:#3f93e0}.mixbar i.n{background:#5c6f88}
+.mixkey{display:flex;gap:16px;margin-top:12px;font:500 11px/1 Montserrat,sans-serif;color:var(--muted,#8ea3bd)}
+.mixkey b{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.mixspread{margin-top:16px;padding:11px 13px;border-left:3px solid #f5821f;
+  font:400 13.5px/1.6 Montserrat,sans-serif}
 </style>
 
 <div class="wrap">
@@ -358,6 +372,37 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
     <div class="fn" style="width:46%;background:var(--sunk)"><span>Converted into marks<small>net marks conversion</small></span><span class="n tab">46%</span></div>
   </div>
 
+
+  <div class="mixhd">Your four behaviour scores</div>
+  <p class="mixnote">These are not four more measurements. They are four ways of weighting the three
+  numbers above — the bar shows the recipe for each.</p>
+  <div class="mixrow">
+    <span class="mixname">Time-Management</span><span class="mixval">73</span>
+    <span class="mixbar"><i class="c" style="width:60%"></i><i class="a" style="width:20%"></i><i class="n" style="width:20%"></i></span>
+  </div>
+  <div class="mixrow">
+    <span class="mixname">Discipline</span><span class="mixval">68</span>
+    <span class="mixbar"><i class="c" style="width:35%"></i><i class="a" style="width:45%"></i><i class="n" style="width:20%"></i></span>
+  </div>
+  <div class="mixrow">
+    <span class="mixname">Accountability</span><span class="mixval">65</span>
+    <span class="mixbar"><i class="c" style="width:25%"></i><i class="a" style="width:50%"></i><i class="n" style="width:25%"></i></span>
+  </div>
+  <div class="mixrow">
+    <span class="mixname">Efficiency</span><span class="mixval">61</span>
+    <span class="mixbar"><i class="c" style="width:25%"></i><i class="a" style="width:30%"></i><i class="n" style="width:45%"></i></span>
+  </div>
+  <div class="mixkey">
+    <span><b style="background:#f5821f"></b>coverage</span>
+    <span><b style="background:#3f93e0"></b>accuracy</span>
+    <span><b style="background:#5c6f88"></b>net marks</span>
+  </div>
+  <div class="mixspread"><b>All four sit between 61 and 73</b>, and they always will sit close
+  together — because all four are built from the same three numbers. The one that moves them is
+  <b>accuracy</b>. Lift that and every one of them rises.</div>
+  <p class="because" style="margin-top:14px"><b>Strongest: Time-Management.</b> You covered the paper.
+  <b>To boost: Efficiency</b> — it leans hardest on marks kept, which is where your paper leaked.</p>
+
   <div class="verdict">Your pace is not the problem. Your precision is.</div>
   <p class="because">You finished with time in hand. The drop happens between attempting and being right — which is the better problem to have, because precision improves faster than coverage ever does.</p>
 </div>
@@ -409,12 +454,12 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
 
   <div class="tblwrap" style="margin-top:26px">
   <table class="tbl">
-    <thead><tr><th>Exam behaviour</th><th>Your %</th><th>What it reflects</th></tr></thead>
+    <thead><tr><th>Exam behaviour</th><th>Your %</th><th>What it is made of</th></tr></thead>
     <tbody>
-      <tr><td>Time-Management</td><td class="n">81</td><td>Finished with time in hand</td></tr>
-      <tr><td>Discipline</td><td class="n">62</td><td>Held to a section order</td></tr>
-      <tr><td>Efficiency</td><td class="n">58</td><td>Marks earned per minute spent</td></tr>
-      <tr><td>Accountability</td><td class="n">44</td><td>Restraint on uncertain answers</td></tr>
+      <tr><td>Time-Management</td><td class="n">73</td><td>60% coverage · 20% accuracy · 20% net marks</td></tr>
+      <tr><td>Discipline</td><td class="n">68</td><td>35% coverage · 45% accuracy · 20% net marks</td></tr>
+      <tr><td>Accountability</td><td class="n">65</td><td>25% coverage · 50% accuracy · 25% net marks</td></tr>
+      <tr><td>Efficiency</td><td class="n">61</td><td>25% coverage · 30% accuracy · 45% net marks</td></tr>
     </tbody>
   </table>
   </div>
