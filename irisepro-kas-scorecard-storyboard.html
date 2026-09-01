@@ -190,10 +190,10 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
 .blt-v{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
 .blt-b{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink3);font-size:11.5px}
 .blt-g{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:var(--loss);font-size:11.5px}
-.blt-t{position:relative;height:12px;background:var(--bar-bg);border-radius:7px}
+.blt-t{display:block;position:relative;width:100%;min-width:110px;height:12px;background:var(--bar-bg);border-radius:7px}
 .blt-gap{position:absolute;top:0;bottom:0;background:var(--loss-soft)}
-.blt-fill{position:absolute;top:0;bottom:0;left:0;background:var(--saffron);border-radius:7px 0 0 7px}
-.blt-bm{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--loss);border-radius:1px}
+.blt-fill{z-index:1;position:absolute;top:0;bottom:0;left:0;background:var(--saffron);border-radius:7px 0 0 7px}
+.blt-bm{z-index:2;position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--loss);border-radius:1px}
 .blt-hd{display:grid;grid-template-columns:186px 30px 1fr 30px 38px;gap:9px;
   font:600 10px/1 var(--sans,inherit);letter-spacing:.09em;text-transform:uppercase;
   color:var(--ink3);margin-bottom:9px}
@@ -444,7 +444,7 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
   
   <p class="because" style="margin-top:12px"><b>Abilities above benchmark: 0 / 11.</b> Below: <b>11 / 11</b>. Biggest ability gap: <b>Attention-to-Detail, −61</b>. Benchmarks shown are the <b>competitive</b> tier.</p>
 
-  <div style="margin-top:26px"><div class="tblwrap" style="margin-top:26px"><table class="tbl"><thead><tr><th>All eleven success abilities</th><th>Max</th><th>Weight</th><th>Your marks</th><th>Your %</th><th style="min-width:140px">Against benchmark</th><th>BM<br><small style="font-weight:400;opacity:.7">competitive</small></th><th>Gap</th><th>Marks at stake</th></tr></thead><tbody>
+  <div style="margin-top:26px"><div class="tblwrap" style="margin-top:26px"><table class="tbl"><thead><tr><th>All eleven success abilities</th><th>Max</th><th>Weight</th><th>Your marks</th><th>Your %</th><th style="min-width:150px;width:150px">Against benchmark</th><th>BM<br><small style="font-weight:400;opacity:.7">competitive</small></th><th>Gap</th><th>Marks at stake</th></tr></thead><tbody>
 <tr><td>Critical &amp; Analytical Thinking</td><td class="n">26.00</td><td class="n">13.0%</td><td class="n">13.5</td><td class="n">52</td><td><span class="blt-t"><i class="blt-gap" style="left:52%;width:42%"></i><i class="blt-fill" style="width:52%"></i><i class="blt-bm" style="left:94%"></i></span></td><td class="n">94</td><td class="n gapneg">-42</td><td class="n"><b>10.9</b></td></tr>
 <tr><td>Decision-Making</td><td class="n">20.00</td><td class="n">10.0%</td><td class="n">8.2</td><td class="n">41</td><td><span class="blt-t"><i class="blt-gap" style="left:41%;width:53%"></i><i class="blt-fill" style="width:41%"></i><i class="blt-bm" style="left:94%"></i></span></td><td class="n">94</td><td class="n gapneg">-53</td><td class="n"><b>10.6</b></td></tr>
 <tr><td>Attention-to-Detail</td><td class="n">16.00</td><td class="n">8.0%</td><td class="n">5.4</td><td class="n">34</td><td><span class="blt-t"><i class="blt-gap" style="left:34%;width:61%"></i><i class="blt-fill" style="width:34%"></i><i class="blt-bm" style="left:95%"></i></span></td><td class="n">95</td><td class="n gapneg">-61</td><td class="n"><b>9.8</b></td></tr>
