@@ -105,7 +105,9 @@ learner can be in, including the ones that have no screen today.</p>
   whose <b>language</b> we cannot serve, or who holds <b>a scan and an exam series at once</b>.
   Those are not edge cases — each is a real person on a real day, and a journey without them is a
   demo. <br><br>
-  <b>Shelf → Vehicle → Work</b> is the spine: what's mine · what's open now · do it.
+  <b>Shelf → Vehicle → Work</b> is the spine: what's mine · what's open now · do it.<br><br>
+  <b>Booking is one act with two picks.</b> A set is Paper 1 <i>and</i> Paper 2 — the second list is
+  filtered by the first choice, and both seats are taken together or neither is (B1a–B1c).
 </div>
 
 <!-- ─────────────────────────────────────────────────────────────── A · SHELF -->
@@ -193,25 +195,63 @@ onboarded. Bolting it on afterwards would create a second definition of "ready t
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>9:41</span><span>Book Set 1</span></div>
+    <div class="bar"><span>9:41</span><span>Set 1 · Paper 1</span></div>
     <div class="body">
-      <div class="h">Book Set 1 — both papers</div>
-      <p class="p">A set is Paper 1 <b>and</b> Paper 2. You book them together, in the same week.</p>
-      <div class="s" style="font-weight:800;margin-bottom:5px">Paper 1</div>
+      <div class="h">Book Set 1</div>
+      <p class="p">A set is <b>both papers</b>. Pick Paper 1 first — Paper 2 follows in the same week.</p>
       <div class="slot sel"><span><b>Tue 8 Sep</b> · 10:00</span><span class="pill o">PICKED</span></div>
-      <div class="s" style="font-weight:800;margin:9px 0 5px">Paper 2 <span style="font-weight:600">·
-        must be after Paper 1, same week</span></div>
+      <div class="slot"><span><b>Tue 8 Sep</b> · 14:00</span><span class="s">62 seats</span></div>
+      <div class="slot"><span><b>Wed 9 Sep</b> · 08:00</span><span class="s">88 seats</span></div>
+      <div class="slot off"><span><b>Wed 9 Sep</b> · 10:00</span><span class="pill r">FULL</span></div>
+      <p class="p" style="font-size:10.5px">Earliest is 72 hours out — sittings are proctored and the
+      roster closes in advance.</p>
+      <div class="btn">Next: Paper 2</div>
+    </div>
+  </div></div>
+  <div class="cap">B1a · pick Paper 1<span class="new">NEW</span></div>
+  <div class="why">Only bookable slots appear — ≥72h out, inside your window, on the grid.
+  <code>SlotCalendar</code> computes them.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:41</span><span>Set 1 · Paper 2</span></div>
+    <div class="body">
+      <div class="h">Now Paper 2</div>
+      <div class="card sel" style="padding:9px 11px">
+        <div class="s">Paper 1 — <b>Tue 8 Sep, 10:00</b></div>
+      </div>
+      <p class="p" style="margin-top:10px">Same week, after Paper 1. That's what makes it one set.</p>
       <div class="slot sel"><span><b>Thu 10 Sep</b> · 10:00</span><span class="pill o">PICKED</span></div>
       <div class="slot"><span><b>Fri 11 Sep</b> · 08:00</span><span class="s">88 seats</span></div>
+      <div class="slot off"><span><b>Mon 7 Sep</b> · 10:00</span><span class="s">before Paper 1</span></div>
       <div class="slot off"><span><b>Sun 13 Sep</b> · 10:00</span><span class="s">next week</span></div>
-      <p class="p" style="font-size:10.5px">Both are 72h+ away — sittings are proctored and the roster
-      closes in advance.</p>
       <div class="btn">Book both</div>
     </div>
   </div></div>
-  <div class="cap">B1 · book the SET <i>—</i> both papers, one act<span class="new">NEW</span></div>
-  <div class="why"><b>The set is the booking unit</b> — you cannot book half of one. Paper 2's list is
-  already filtered to "after Paper 1, same Sun–Sat week"; only legal slots are ever shown.</div>
+  <div class="cap">B1b · pick Paper 2 <i>—</i> filtered by your first pick<span class="new">NEW</span></div>
+  <div class="why">Three rules narrow this list: after Paper 1, same Sun–Sat week, and a gap if it's the
+  same day. Unavailable slots say <b>why</b> rather than vanishing.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:41</span><span>Couldn't book</span></div>
+    <div class="body">
+      <div class="card bad" style="margin-top:6px">
+        <div class="t">Thursday 10:00 filled while you were choosing</div>
+        <div class="s">Someone took the last seat. <b>Neither paper has been booked.</b></div>
+      </div>
+      <p class="p" style="margin-top:12px">We book a set as one thing — both papers or neither. A
+      half-booked set can't be moved and can't produce a profile, so we don't create one.</p>
+      <div class="card"><div class="t">Tuesday 10:00 is still free</div>
+        <div class="s">Pick a new Paper 2 and we'll take both together.</div></div>
+      <div class="btn">Choose again</div>
+    </div>
+  </div></div>
+  <div class="cap">B1c · the seat went <i>—</i> both released<span class="new">NEW</span></div>
+  <div class="why"><b>The rollback, made visible.</b> If Paper 2 can't be reserved, Paper 1's hold is
+  released. Silently keeping Paper 1 would strand them in a state with no legal moves.</div>
 </div>
 
 <div class="cell">
@@ -255,7 +295,7 @@ onboarded. Bolting it on afterwards would create a second definition of "ready t
       <div class="btn">Take the 14:00</div>
     </div>
   </div></div>
-  <div class="cap">B2b · both papers, one day<span class="new">NEW</span></div>
+  <div class="cap">B1d · both papers, one day<span class="new">NEW</span></div>
   <div class="why">Allowed, with an enforced gap. The rule existed in the design and nowhere a learner
   could see it.</div>
 </div>
