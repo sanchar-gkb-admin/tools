@@ -1,0 +1,143 @@
+<title>YASHHO — Error kinds, for review</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#2a2320;--ink2:#514941;--ink3:#8A7F72;
+--rule:#E7E0D3;--rule2:#D3C9B7;--saffron:#F5821F;--saffron-soft:#FDF0E2;
+--loss:#A02A20;--loss-soft:#F8E4E1;--gain:#2C6B43;--gain-soft:#E3EFE7;
+--shadow:0 1px 2px rgba(0,0,0,.03),0 10px 34px rgba(0,0,0,.045)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.65 Montserrat,sans-serif}
+.wrap{max-width:940px;margin:0 auto;padding:38px 20px 90px}
+.mast{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px}
+.mast h1{font:900 27px/1.15 Montserrat,sans-serif;margin:0 0 6px;letter-spacing:-.01em}
+.mast p{margin:0;color:var(--ink3);font-size:13.5px}
+.ask{background:var(--saffron-soft);border-left:4px solid var(--saffron);padding:16px 18px;
+  margin:26px 0;border-radius:0 10px 10px 0}
+.ask b{display:block;margin-bottom:4px}
+.grp{font:600 11px/1 Montserrat,sans-serif;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink3);margin:34px 0 4px}
+.grp em{font-style:normal;text-transform:none;letter-spacing:0;font-weight:400;font-size:12.5px}
+.k{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:15px 17px;
+  margin:10px 0;box-shadow:var(--shadow)}
+.k-h{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.k-n{font:700 15.5px/1.3 Montserrat,sans-serif}
+.k-c{font:500 10.5px/1 ui-monospace,monospace;color:var(--ink3);background:var(--bg);
+  border:1px solid var(--rule);border-radius:5px;padding:3px 6px}
+.k-eg{margin:8px 0 0;font-size:13.5px;color:var(--ink2)}
+.k-eg b{color:var(--ink)}
+.sent{margin-top:11px;padding:10px 12px;border-radius:8px;font-size:13.5px}
+.sent.have{background:var(--gain-soft);border-left:3px solid var(--gain)}
+.sent.miss{background:var(--loss-soft);border-left:3px solid var(--loss);color:var(--loss);font-weight:600}
+.note{background:var(--card);border:1px dashed var(--rule2);border-radius:12px;padding:16px 18px;margin:26px 0}
+.tally{display:flex;gap:26px;margin:22px 0 4px;flex-wrap:wrap}
+.tally div{flex:1;min-width:150px;background:var(--card);border:1px solid var(--rule);
+  border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.tally .n{font:900 30px/1 Montserrat,sans-serif;display:block}
+.tally small{color:var(--ink3);font-size:12px}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);color:var(--ink3);font-size:12.5px}
+</style>
+<div class="wrap">
+<div class="mast">
+  <h1>The eleven kinds of mistake</h1>
+  <p>For Sutirtha ji and Krishnaraja sir · seeded as <b>proposed</b>, nothing is agreed · 1 September 2026</p>
+</div>
+
+<p>These are now rows in the system, so questions can be labelled against them. They are seeded with
+status <b>proposed</b> — nothing treats them as agreed, nothing is shown to a candidate, and renaming
+or removing any of them costs nothing today. Once you approve the list, that status changes and the
+labelling work can start.</p>
+
+<div class="tally">
+  <div><span class="n">11</span><small>kinds seeded, all <b>proposed</b></small></div>
+  <div><span class="n" style="color:var(--loss)">10</span><small>still have <b>no sentence</b> for the candidate to read</small></div>
+  <div><span class="n">0</span><small>questions labelled yet — nothing can be, until the list is agreed</small></div>
+</div>
+
+<div class="ask">
+  <b>Question A — are these the right eleven?</b>
+  Should any be merged, split, renamed or removed? Is anything missing that you know you build into
+  your distractors?
+</div>
+
+<div class="grp">Mistakes of memory <em>— the candidate knew the topic but attached the wrong detail</em></div>
+
+<div class="k"><div class="k-h"><span class="k-n">1 · Right event, wrong date</span><span class="k-c">right_event_wrong_date</span></div>
+<p class="k-eg">The <b>Monsoon Session</b> question: 13 August is correct, and 19 August, 20 July and 31 July are all genuine 2026 parliamentary dates.</p>
+<div class="sent have">“You knew the event but attached the wrong date. Check the date in the question before choosing.”</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">2 · Right series, wrong reference year</span><span class="k-c">right_series_wrong_year</span></div>
+<p class="k-eg">The <b>GDP base year</b> question: 2011-12 is correct, and the others are all real series years.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">3 · Right indicator, wrong size</span><span class="k-c">right_indicator_wrong_size</span></div>
+<p class="k-eg">The <b>GDP growth</b> question, where every option is a plausible range. Also durations — six months, one year, fifteen days.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">4 · Right law or scheme, wrong purpose</span><span class="k-c">right_law_wrong_purpose</span></div>
+<p class="k-eg">The <b>Jan Vishwas Bill</b> question, where the wrong options are all real legislative actions, just not that Bill’s.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">5 · Confused two institutions</span><span class="k-c">confused_two_institutions</span></div>
+<p class="k-eg">The <b>online gaming regulator</b> question, where the distractors are the National Green Tribunal, the Finance Commission and the Inter-State Council.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">6 · Right era, wrong person</span><span class="k-c">right_era_wrong_person</span></div>
+<p class="k-eg">The <b>token currency</b> question — Alauddin Khalji, Iltutmish and Balban are all contemporaries of the correct answer.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">7 · Confused two similar schemes</span><span class="k-c">confused_two_schemes</span></div>
+<p class="k-eg">Where two welfare programmes have adjacent names or overlapping aims.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="grp">Mistakes of reasoning <em>— the candidate had the facts but drew the wrong conclusion</em></div>
+
+<div class="k"><div class="k-h"><span class="k-n">8 · Mistook spending for outcome</span><span class="k-c">spending_for_outcome</span></div>
+<p class="k-eg">The programme evaluation questions in GS-2, where one option asks whether the money was spent and another asks whether the programme actually achieved anything.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">9 · Missed a qualifying word</span><span class="k-c">missed_qualifier</span></div>
+<p class="k-eg">Where the stem says <b>“primarily”</b>, <b>“most appropriate”</b> or <b>“except”</b>, and the chosen option is perfectly true but not what was asked.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">10 · Over-generalised</span><span class="k-c">over_generalised</span></div>
+<p class="k-eg">A correct statement, applied more widely than the question allows.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="k"><div class="k-h"><span class="k-n">11 · Partially right</span><span class="k-c">partially_right</span></div>
+<p class="k-eg">The right direction, but incomplete or overstated.</p>
+<div class="sent miss">No sentence yet — Question B</div></div>
+
+<div class="note">
+  <p style="margin:0 0 8px"><b>“Rushed” is deliberately not on this list.</b></p>
+  <p style="margin:0;font-size:14px;color:var(--ink2)">It was twelfth in the draft, marked
+  <i>detected automatically</i>. It is — but it is not something an author chooses for an option, it is
+  something the system works out from how long the question took. Putting it here would let it be
+  assigned by hand as well as computed, which is two answers to one question. It lives with the other
+  timing-derived findings instead, and still reaches the candidate.
+  <br><br><b>One correction we owe you:</b> the note said “we <i>already</i> record how long a candidate
+  spent on each question”. We do not yet — that table was created on 1 September and nothing writes to
+  it. It is coming, but it should not be planned against as though it were finished.</p>
+</div>
+
+<div class="ask">
+  <b>Question B — one sentence per kind, for the candidate.</b>
+  Ten of the eleven are still blank above. The sentence appears every time that kind of mistake occurs,
+  so it has to stand on its own without the question beside it.
+</div>
+
+<div class="ask">
+  <b>Question C — Krishnaraja sir, do these sit correctly against the ability model?</b>
+  Our reading is that memory mistakes surface in Attention-to-Detail, Comprehension and Memory, while
+  reasoning mistakes surface in Critical &amp; Analytical Thinking, Decision-Making and Problem-Solving.
+  This is only to help a reader interpret the report — it calculates nothing.
+</div>
+
+<p><b>What happens after you approve.</b> New questions, including GS-1 Set 6, carry the label as one
+more column beside the ability table you already fill in — recording a decision you have just made
+rather than reconstructing one later. For questions already written, a spreadsheet with one row per
+wrong option and a dropdown of the agreed kinds; the five sets we serve first are worth doing first.
+An unlabelled question simply shows no note. We would rather show nothing than show a guess.</p>
+
+<footer>Corrections are more useful to us than agreement. Nothing on this page is live, and no
+candidate has seen any of it.</footer>
+</div>
