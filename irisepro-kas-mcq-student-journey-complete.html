@@ -193,30 +193,34 @@ onboarded. Bolting it on afterwards would create a second definition of "ready t
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>9:41</span><span>Book · 1 of 2</span></div>
+    <div class="bar"><span>9:41</span><span>Book Set 1</span></div>
     <div class="body">
-      <div class="h">When suits you?</div>
-      <p class="p">Pick Paper 1. We'll lay the rest of the series out from your choice.</p>
+      <div class="h">Book Set 1 — both papers</div>
+      <p class="p">A set is Paper 1 <b>and</b> Paper 2. You book them together, in the same week.</p>
+      <div class="s" style="font-weight:800;margin-bottom:5px">Paper 1</div>
       <div class="slot sel"><span><b>Tue 8 Sep</b> · 10:00</span><span class="pill o">PICKED</span></div>
-      <div class="slot"><span><b>Tue 8 Sep</b> · 14:00</span><span class="s">62 seats</span></div>
-      <div class="slot"><span><b>Wed 9 Sep</b> · 08:00</span><span class="s">88 seats</span></div>
-      <div class="slot off"><span><b>Wed 9 Sep</b> · 10:00</span><span class="pill r">FULL</span></div>
-      <p class="p" style="font-size:10.5px">Earliest is 72 hours away — sittings are proctored and the
-      roster closes in advance.</p>
-      <div class="btn">Continue</div>
+      <div class="s" style="font-weight:800;margin:9px 0 5px">Paper 2 <span style="font-weight:600">·
+        must be after Paper 1, same week</span></div>
+      <div class="slot sel"><span><b>Thu 10 Sep</b> · 10:00</span><span class="pill o">PICKED</span></div>
+      <div class="slot"><span><b>Fri 11 Sep</b> · 08:00</span><span class="s">88 seats</span></div>
+      <div class="slot off"><span><b>Sun 13 Sep</b> · 10:00</span><span class="s">next week</span></div>
+      <p class="p" style="font-size:10.5px">Both are 72h+ away — sittings are proctored and the roster
+      closes in advance.</p>
+      <div class="btn">Book both</div>
     </div>
   </div></div>
-  <div class="cap">B1 · pick your first sitting <i>—</i> hinted, not a menu<span class="new">NEW</span></div>
-  <div class="why">Only legal slots are offered. <code>SlotCalendar</code> already computes them; the
-  screen renders what it permits.</div>
+  <div class="cap">B1 · book the SET <i>—</i> both papers, one act<span class="new">NEW</span></div>
+  <div class="why"><b>The set is the booking unit</b> — you cannot book half of one. Paper 2's list is
+  already filtered to "after Paper 1, same Sun–Sat week"; only legal slots are ever shown.</div>
 </div>
 
 <div class="cell">
   <div class="phone"><div class="pv">
     <div class="bar"><span>9:41</span><span>Book · 2 of 2</span></div>
     <div class="body">
-      <div class="h">Your series</div>
-      <p class="p">One set a week, both papers in the same week. Change any of them later.</p>
+      <div class="h">Sets 2, 3 and 4</div>
+      <p class="p">We've repeated your Set 1 rhythm — same days, same times, a week apart. Change any
+      of them later.</p>
       <div class="card sel"><div class="t">Set 1</div>
         <div class="s">P1 Tue 8 Sep 10:00 · P2 Thu 10 Sep 10:00</div></div>
       <div class="card"><div class="t">Set 2</div>
@@ -228,9 +232,32 @@ onboarded. Bolting it on afterwards would create a second definition of "ready t
       <div class="btn">Confirm all four</div>
     </div>
   </div></div>
-  <div class="cap">B2 · the system lays out the series<span class="new">NEW</span></div>
-  <div class="why">Their chosen rhythm repeats. <code>SchedulePlanner</code> refuses a first pick that
-  can't fit all four rather than silently booking two.</div>
+  <div class="cap">B2 · the rest of the series, laid out<span class="new">NEW</span></div>
+  <div class="why">Their Set 1 choice repeats at the pacing interval. <code>SchedulePlanner</code>
+  refuses a first pick that can't fit all four rather than silently booking two — a short series looks
+  like success while forfeiting sets they paid for.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:41</span><span>Same day?</span></div>
+    <div class="body">
+      <div class="h">Both papers on Tuesday?</div>
+      <p class="p">You can — but not back to back.</p>
+      <div class="slot sel"><span><b>Paper 1</b> · Tue 10:00</span><span class="pill o">PICKED</span></div>
+      <div class="slot off"><span><b>Paper 2</b> · Tue 12:00</span><span class="pill r">TOO SOON</span></div>
+      <div class="slot"><span><b>Paper 2</b> · Tue 14:00</span><span class="s">2h break</span></div>
+      <div class="card warn" style="margin-top:10px">
+        <div class="t">At least one slot between them</div>
+        <div class="s">That's a two-hour break. Four hours of exam with no gap measures stamina, not
+        ability.</div>
+      </div>
+      <div class="btn">Take the 14:00</div>
+    </div>
+  </div></div>
+  <div class="cap">B2b · both papers, one day<span class="new">NEW</span></div>
+  <div class="why">Allowed, with an enforced gap. The rule existed in the design and nowhere a learner
+  could see it.</div>
 </div>
 
 <div class="cell">
