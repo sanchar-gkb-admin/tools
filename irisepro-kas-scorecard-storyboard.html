@@ -211,6 +211,11 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
 .blt-hd i{font-style:normal;text-align:right}
 .blt-key{margin-top:14px;font:400 11.5px/1.5 var(--sans,inherit);color:var(--ink3)}
 .blt-key b{display:inline-block;width:2px;height:10px;background:var(--loss);vertical-align:-1px;margin:0 3px}
+
+.sec-stack{display:flex;height:12px;border-radius:7px;overflow:hidden;background:var(--bar-bg)}
+.sec-stack i{display:block;height:100%}
+.s-c{background:var(--saffron)}.s-w{background:var(--loss)}.s-l{background:var(--rule2)}
+.k{display:inline-block;width:9px;height:9px;border-radius:2px;vertical-align:-1px;margin:0 2px}
 </style>
 
 <div class="wrap">
@@ -439,18 +444,12 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
   <div class="step">Full detail</div>
   <p class="because" style="font-size:.92rem">Everything behind the findings above. Nothing here changes the conclusion — it is the evidence for it.</p>
 
-  <div class="tblwrap">
-  <table class="tbl">
-    <thead><tr><th>Section</th><th>Qs</th><th>Max</th><th>Att.</th><th>Correct</th><th>Wrong</th><th>Left</th><th>Net</th><th>%</th></tr></thead>
-    <tbody>
-      <tr><td>I · Current Events</td><td class="n">40</td><td class="n">80</td><td class="n">36</td><td class="n">23</td><td class="n">13</td><td class="n">4</td><td class="n">42</td><td class="n">53</td></tr>
-      <tr><td>II · History &amp; National Movement</td><td class="n">20</td><td class="n">40</td><td class="n">17</td><td class="n">11</td><td class="n">6</td><td class="n">3</td><td class="n">20</td><td class="n">50</td></tr>
-      <tr><td>III · Geography</td><td class="n">15</td><td class="n">30</td><td class="n">13</td><td class="n">7</td><td class="n">6</td><td class="n">2</td><td class="n">12</td><td class="n">40</td></tr>
-      <tr><td>IV · Polity, Economy &amp; Social Dev.</td><td class="n">25</td><td class="n">50</td><td class="n">20</td><td class="n">13</td><td class="n">7</td><td class="n">5</td><td class="n">18</td><td class="n">36</td></tr>
-      <tr><td><strong>Total</strong></td><td class="n"><strong>100</strong></td><td class="n"><strong>200</strong></td><td class="n"><strong>86</strong></td><td class="n"><strong>54</strong></td><td class="n"><strong>32</strong></td><td class="n"><strong>14</strong></td><td class="n"><strong>92</strong></td><td class="n"><strong>46</strong></td></tr>
-    </tbody>
-  </table>
-  </div>
+  <div><div class="blt-hd" style="grid-template-columns:206px 1fr 52px 34px"><span>Section</span><span></span><i>net</i><i>%</i></div>
+<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">I · Current Events</span><span class="sec-stack" style="width:100.0%"><i class="s-c" style="flex:23"></i><i class="s-w" style="flex:13"></i><i class="s-l" style="flex:4"></i></span><span class="blt-b">42 / 80</span><span class="blt-v">53</span></div>
+<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">II · History &amp; National Movement</span><span class="sec-stack" style="width:50.0%"><i class="s-c" style="flex:11"></i><i class="s-w" style="flex:6"></i><i class="s-l" style="flex:3"></i></span><span class="blt-b">20 / 40</span><span class="blt-v">50</span></div>
+<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">III · Geography</span><span class="sec-stack" style="width:37.5%"><i class="s-c" style="flex:7"></i><i class="s-w" style="flex:6"></i><i class="s-l" style="flex:2"></i></span><span class="blt-b">12 / 30</span><span class="blt-v">40</span></div>
+<div class="blt" style="grid-template-columns:206px 1fr 52px 34px"><span class="blt-n">IV · Polity, Economy &amp; Social Dev.</span><span class="sec-stack" style="width:62.5%"><i class="s-c" style="flex:13"></i><i class="s-w" style="flex:7"></i><i class="s-l" style="flex:5"></i></span><span class="blt-b">18 / 50</span><span class="blt-v">36</span></div>
+<p class="blt-key">Bar length is the section's share of the paper · <i class="s-c k"></i> correct · <i class="s-w k"></i> wrong · <i class="s-l k"></i> not reached.</p></div>
 
   
   <p class="because" style="margin-top:12px">
@@ -461,24 +460,19 @@ footer{margin-top:52px;color:var(--ink3);font-size:.8rem;line-height:1.7}
     is not eleven separate pieces of bad news.
   </p>
 
-  <div class="tblwrap" style="margin-top:26px">
-  <table class="tbl">
-    <thead><tr><th>All eleven success abilities</th><th>Weight</th><th>Your %</th><th>Benchmark</th><th>Gap</th></tr></thead>
-    <tbody>
-      <tr><td>Steadfastness</td><td class="n">9.5%</td><td class="n">78</td><td class="n">95</td><td class="n gapneg">-17</td></tr>
-      <tr><td>Comprehension</td><td class="n">11.5%</td><td class="n">71</td><td class="n">95</td><td class="n gapneg">-24</td></tr>
-      <tr><td>Growth Mindset</td><td class="n">6.5%</td><td class="n">64</td><td class="n">92</td><td class="n gapneg">-28</td></tr>
-      <tr><td>Conflict Resolution</td><td class="n">8.5%</td><td class="n">58</td><td class="n">92</td><td class="n gapneg">-34</td></tr>
-      <tr><td>Structure / Information Organisation</td><td class="n">10.5%</td><td class="n">55</td><td class="n">94</td><td class="n gapneg">-39</td></tr>
-      <tr><td>Leadership Ability</td><td class="n">9.0%</td><td class="n">54</td><td class="n">92</td><td class="n gapneg">-38</td></tr>
-      <tr><td>Critical &amp; Analytical Thinking</td><td class="n">13.0%</td><td class="n">52</td><td class="n">94</td><td class="n gapneg">-42</td></tr>
-      <tr><td>Problem-Solving</td><td class="n">7.5%</td><td class="n">49</td><td class="n">94</td><td class="n gapneg">-45</td></tr>
-      <tr><td>Mental Dexterity</td><td class="n">6.0%</td><td class="n">44</td><td class="n">94</td><td class="n gapneg">-50</td></tr>
-      <tr><td>Decision-Making</td><td class="n">10.0%</td><td class="n">41</td><td class="n">94</td><td class="n gapneg">-53</td></tr>
-      <tr><td>Attention-to-Detail</td><td class="n">8.0%</td><td class="n">34</td><td class="n">95</td><td class="n gapneg">-61</td></tr>
-    </tbody>
-  </table>
-  </div>
+  <div style="margin-top:26px"><div class="blt-hd"><span>All eleven success abilities</span><i>you</i><span></span><i>bm</i><i>gap</i></div>
+<div class="blt"><span class="blt-n">Steadfastness</span><span class="blt-v">78</span><span class="blt-t"><i class="blt-gap" style="left:78%;width:17%"></i><i class="blt-fill" style="width:78%"></i><i class="blt-bm" style="left:95%"></i></span><span class="blt-b">95</span><span class="blt-g">-17</span></div>
+<div class="blt"><span class="blt-n">Comprehension</span><span class="blt-v">71</span><span class="blt-t"><i class="blt-gap" style="left:71%;width:24%"></i><i class="blt-fill" style="width:71%"></i><i class="blt-bm" style="left:95%"></i></span><span class="blt-b">95</span><span class="blt-g">-24</span></div>
+<div class="blt"><span class="blt-n">Growth Mindset</span><span class="blt-v">64</span><span class="blt-t"><i class="blt-gap" style="left:64%;width:28%"></i><i class="blt-fill" style="width:64%"></i><i class="blt-bm" style="left:92%"></i></span><span class="blt-b">92</span><span class="blt-g">-28</span></div>
+<div class="blt"><span class="blt-n">Conflict Resolution</span><span class="blt-v">58</span><span class="blt-t"><i class="blt-gap" style="left:58%;width:34%"></i><i class="blt-fill" style="width:58%"></i><i class="blt-bm" style="left:92%"></i></span><span class="blt-b">92</span><span class="blt-g">-34</span></div>
+<div class="blt"><span class="blt-n">Structure / Information Org.</span><span class="blt-v">55</span><span class="blt-t"><i class="blt-gap" style="left:55%;width:39%"></i><i class="blt-fill" style="width:55%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-39</span></div>
+<div class="blt"><span class="blt-n">Leadership Ability</span><span class="blt-v">54</span><span class="blt-t"><i class="blt-gap" style="left:54%;width:38%"></i><i class="blt-fill" style="width:54%"></i><i class="blt-bm" style="left:92%"></i></span><span class="blt-b">92</span><span class="blt-g">-38</span></div>
+<div class="blt"><span class="blt-n">Critical &amp; Analytical Thinking</span><span class="blt-v">52</span><span class="blt-t"><i class="blt-gap" style="left:52%;width:42%"></i><i class="blt-fill" style="width:52%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-42</span></div>
+<div class="blt"><span class="blt-n">Problem-Solving</span><span class="blt-v">49</span><span class="blt-t"><i class="blt-gap" style="left:49%;width:45%"></i><i class="blt-fill" style="width:49%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-45</span></div>
+<div class="blt"><span class="blt-n">Mental Dexterity</span><span class="blt-v">44</span><span class="blt-t"><i class="blt-gap" style="left:44%;width:50%"></i><i class="blt-fill" style="width:44%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-50</span></div>
+<div class="blt"><span class="blt-n">Decision-Making</span><span class="blt-v">41</span><span class="blt-t"><i class="blt-gap" style="left:41%;width:53%"></i><i class="blt-fill" style="width:41%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-53</span></div>
+<div class="blt"><span class="blt-n">Attention-to-Detail</span><span class="blt-v">34</span><span class="blt-t"><i class="blt-gap" style="left:34%;width:61%"></i><i class="blt-fill" style="width:34%"></i><i class="blt-bm" style="left:95%"></i></span><span class="blt-b">95</span><span class="blt-g">-61</span></div>
+<p class="blt-key">Bar is your score · <b></b> is the benchmark · the tinted band is the gap you would need to close. Ordered strongest first.</p></div>
 
   <div style="margin-top:30px"><div class="blt-hd"><span>Four exam behaviours</span><i>you</i><span></span><i>bm</i><i>gap</i></div>
 <div class="blt"><span class="blt-n">Time-Management</span><span class="blt-v">73</span><span class="blt-t"><i class="blt-gap" style="left:73%;width:21%"></i><i class="blt-fill" style="width:73%"></i><i class="blt-bm" style="left:94%"></i></span><span class="blt-b">94</span><span class="blt-g">-21</span></div>
