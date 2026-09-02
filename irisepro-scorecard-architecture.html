@@ -1,0 +1,170 @@
+<title>YASHHO — Scorecard component architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7f2;--card:#fff;--sunk:#F3EFE6;--ink:#2a2320;--ink2:#514941;--ink3:#6E6459;
+--rule:#E7E0D3;--rule2:#D3C9B7;--saffron:#F5821F;--saffron-ink:#B4570D;--saffron-soft:#FDF0E2;
+--gain:#2C6B43;--gain-soft:#E3EFE7;--loss:#A02A20;--loss-soft:#F8E4E1;--bar:#ECE5D8;
+--shadow:0 1px 2px rgba(0,0,0,.03),0 10px 34px rgba(0,0,0,.045)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.6 Montserrat,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:34px 20px 90px}
+h1{font:900 28px/1.15 Montserrat,sans-serif;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--ink3);font-size:13.5px;margin:0 0 22px}
+.panelrow{display:grid;grid-template-columns:1fr 340px;gap:26px;align-items:start}
+@media(max-width:900px){.panelrow{grid-template-columns:1fr}}
+.ctl{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:18px;
+ box-shadow:var(--shadow);position:sticky;top:18px}
+.ctl h3{font:700 12px/1 Montserrat,sans-serif;letter-spacing:.09em;text-transform:uppercase;
+ color:var(--ink3);margin:0 0 10px}
+.opt{display:block;padding:9px 11px;border:1px solid var(--rule);border-radius:9px;margin-bottom:7px;
+ cursor:pointer;font-size:13.5px;transition:.15s}
+.opt:hover{border-color:var(--rule2)}
+.opt.on{background:var(--saffron-soft);border-color:var(--saffron);font-weight:600}
+.opt small{display:block;color:var(--ink3);font-weight:400;font-size:11.5px;margin-top:2px}
+.tog{display:flex;align-items:center;gap:9px;padding:8px 0;font-size:13px;cursor:pointer}
+.tog input{width:16px;height:16px;accent-color:var(--saffron)}
+.cfg{margin-top:14px;padding:11px;background:var(--sunk);border-radius:9px;
+ font:500 11px/1.6 ui-monospace,Menlo,monospace;color:var(--ink2);white-space:pre-wrap}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;overflow:hidden;
+ box-shadow:var(--shadow)}
+.p{padding:16px 20px;border-bottom:1px solid var(--rule)}
+.p:last-child{border-bottom:0}
+.p-h{display:flex;align-items:baseline;gap:9px;margin-bottom:9px;flex-wrap:wrap}
+.p-n{font:700 12.5px/1 Montserrat,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--saffron-ink)}
+.p-c{font:500 10px/1 ui-monospace,monospace;color:var(--ink3);background:var(--sunk);
+ border-radius:4px;padding:3px 6px}
+.p-b{font-size:14px;color:var(--ink2)}
+.big{font:900 34px/1 Montserrat,sans-serif;color:var(--ink)}
+.miss{background:repeating-linear-gradient(45deg,#fbf6f5,#fbf6f5 8px,#f7eceb 8px,#f7eceb 16px);
+ border-left:3px solid var(--loss)}
+.miss .p-n{color:var(--loss)}
+.miss .why{font-size:12.5px;color:var(--loss);font-weight:600;margin-top:5px}
+.bar{height:11px;background:var(--bar);border-radius:6px;position:relative;margin:5px 0}
+.bar i{position:absolute;top:0;bottom:0;left:0;background:var(--saffron);border-radius:6px}
+.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--loss)}
+.row{display:grid;grid-template-columns:150px 30px 1fr;gap:9px;align-items:center;font-size:12.5px;margin:5px 0}
+.spark{display:flex;gap:4px;align-items:flex-end;height:44px}
+.spark i{flex:1;background:var(--saffron);border-radius:3px 3px 0 0;display:block}
+.tag{display:inline-block;font:600 10px/1 Montserrat,sans-serif;letter-spacing:.05em;
+ text-transform:uppercase;padding:4px 7px;border-radius:5px;margin-right:5px}
+.t-h{background:var(--saffron-soft);color:var(--saffron-ink)}
+.t-c{background:var(--gain-soft);color:var(--gain)}
+.legend{margin-top:26px;font-size:13px;color:var(--ink3)}
+.legend b{color:var(--ink)}
+</style>
+<div class="wrap">
+<h1>Scorecard component architecture</h1>
+<p class="sub">One panel library. Every product is a list of panel names and nothing else. Change the
+configuration on the right and the card rebuilds &mdash; no template is edited, no code is added.</p>
+
+<div class="panelrow">
+  <div id="card" class="card"></div>
+
+  <div class="ctl">
+    <h3>Product</h3>
+    <div id="prods"></div>
+    <h3 style="margin-top:18px">Data available</h3>
+    <label class="tog"><input type="checkbox" id="d_area" checked> subject mapping works</label>
+    <label class="tog"><input type="checkbox" id="d_kinds"> error kinds approved &amp; labelled</label>
+    <label class="tog"><input type="checkbox" id="d_time"> per-question timing captured</label>
+    <label class="tog"><input type="checkbox" id="d_bm" checked> benchmarks loaded</label>
+    <h3 style="margin-top:18px">Resulting configuration</h3>
+    <div id="cfg" class="cfg"></div>
+  </div>
+</div>
+
+<div class="legend">
+  <p><b>The rule that matters:</b> a panel whose data contract is unmet is rendered as
+  <span style="border-left:3px solid var(--loss);padding-left:6px">visibly unavailable, with the reason</span>
+  &mdash; never silently dropped. Otherwise a broken import looks exactly like a product that does not
+  include that panel, and we would ship a card missing its most useful section without noticing.</p>
+  <p>Untick <b>subject mapping works</b> to see today's real state.</p>
+</div>
+</div>
+
+<script>
+const PANELS = {
+  masthead:    {name:'Masthead',            needs:[],                body:c=>`<div class="p-b">Ananya S. &middot; KAS &middot; ${c.unit}</div>`},
+  net_marks:   {name:'What you scored',     needs:['responses'],     body:c=>`<div class="big">${c.score}</div><div class="p-b">of ${c.max} &middot; cut-off ${c.cut}</div>`},
+  marks_flow:  {name:'Where the marks went',needs:['responses'],     body:_=>`<div class="p-b"><b>+108</b> earned &nbsp;&middot;&nbsp; <b style="color:var(--loss)">&minus;16</b> given back &nbsp;&middot;&nbsp; <b>92</b> kept</div>`},
+  finding:     {name:'What you keep doing', needs:['kinds'],         body:c=>`<div class="p-b"><span class="tag ${c.sets>=3?'t-c':'t-h'}">${c.sets>=3?'confirmed':'hypothesis'}</span>
+                 In <b>Polity</b>, seven of your nine losses were the same mistake &mdash; you answered the un-negated question.
+                 ${c.sets>=3?`Seen in ${Math.min(c.sets,4)} of ${c.sets} sets.`:'One more set will tell us whether this is a habit.'}</div>`},
+  closest:     {name:'The questions that decided it', needs:['kinds'], body:_=>`<div class="p-b">Q17 &middot; Q41 &middot; Q63 &mdash; each turns on a qualifier: <i>not</i>, <i>most accurately</i>, <i>except</i>.</div>`},
+  restraint:   {name:'What restraint would have done', needs:['responses'], body:_=>`<div class="p-b">92 &rarr; <b>101</b> by leaving your six least-certain blank.</div>`},
+  subject:     {name:'Which subject leaked',needs:['area'],          body:_=>`<div class="p-b">Polity <b>36%</b> &middot; Geography 40% &middot; History 50% &middot; Current Events 53%</div>`},
+  abilities:   {name:'Your success abilities', needs:['benchmarks'], body:_=>`
+                 <div class="row"><span>Attention-to-Detail</span><b>28</b><span class="bar"><i style="width:28%"></i><u style="left:95%"></u></span></div>
+                 <div class="row"><span>Comprehension</span><b>59</b><span class="bar"><i style="width:59%"></i><u style="left:95%"></u></span></div>
+                 <div class="row"><span>Critical &amp; Analytical</span><b>43</b><span class="bar"><i style="width:43%"></i><u style="left:94%"></u></span></div>`},
+  execution:   {name:'How you played it',   needs:['responses'],     body:_=>`<div class="p-b">Completion 86% &middot; Accuracy 63% &middot; Net conversion 46%</div>`},
+  behaviours:  {name:'Four exam behaviours',needs:['responses'],     body:_=>`<div class="p-b">Time-Mgmt 73 &middot; Discipline 68 &middot; Accountability 65 &middot; Efficiency 61
+                 <br><small style="color:var(--ink3)">All four are the three numbers above, weighted differently.</small></div>`},
+  pace:        {name:'How you spent the clock', needs:['timing'],    body:_=>`<div class="p-b">Four overruns in Polity &mdash; all four wrong anyway. Stop rule: 90 seconds.</div>`},
+  trajectory:  {name:'Across your sets',    needs:['multi'],         body:c=>{
+                 const v=[61,74,83,92,95,99,104,110,113,118,121,126].slice(0,c.sets);
+                 return `<div class="spark">${v.map(x=>`<i style="height:${x/130*100}%"></i>`).join('')}</div>
+                 <div class="p-b" style="margin-top:7px">+${v[v.length-1]-v[0]} marks across ${c.sets} sets.</div>`}},
+  proof:       {name:'What you have stopped doing', needs:['eight'], body:_=>`<div class="p-b"><span class="tag t-c">proven</span>
+                 Present in your first four sets, absent in the last four. That is not luck.</div>`},
+  next:        {name:'Before your next set',needs:['kinds'],         body:_=>`<div class="p-b">Attempt six fewer. Read the qualifier twice. Start with Polity.</div>`},
+  appendix:    {name:'Full detail',         needs:[],                body:_=>`<div class="p-b">Every section, all eleven abilities, four behaviours.</div>`},
+};
+
+const REASON = {
+  responses:'no attempt captured',
+  area:'subject mapping is unavailable — every question imports as “unclassified”',
+  kinds:'error kinds are still proposed, and no option is labelled yet',
+  timing:'per-question timing is not captured yet',
+  benchmarks:'benchmarks not loaded',
+  multi:'needs at least two completed sets',
+  eight:'needs at least eight completed sets',
+};
+
+const PRODUCTS = [
+  {id:'scan', label:'1A/1B/1C · Scan', note:'a different instrument — shown for completeness',
+   unit:'Scan', sets:0, score:'—', max:'—', cut:'—',
+   panels:['masthead','abilities','next','appendix']},
+  {id:'2c', label:'2C · one set', note:'200 questions · findings are suspicions',
+   unit:'Set 1 · GS-1 + GS-2', sets:1, score:184, max:400, cut:196,
+   panels:['masthead','net_marks','marks_flow','finding','closest','restraint','subject','abilities','execution','behaviours','pace','next','appendix']},
+  {id:'2b', label:'2B · four sets', note:'adds the journey · findings get confirmed',
+   unit:'Month · sets 1–4', sets:4, score:'—', max:400, cut:196,
+   panels:['masthead','trajectory','finding','subject','abilities','behaviours','pace','next','appendix']},
+  {id:'2x8', label:'2X · eight sets', note:'first plan that can prove a change',
+   unit:'Sets 1–8', sets:8, score:'—', max:400, cut:196,
+   panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
+  {id:'2x12',label:'2X · twelve sets', note:'per subject, with a full trajectory',
+   unit:'Sets 1–12', sets:12, score:'—', max:400, cut:196,
+   panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
+  {id:'yd', label:'Yashodarshi brief', note:'not a candidate card — a counselling view',
+   unit:'Ananya S. · since scan', sets:4, score:'—', max:400, cut:196,
+   panels:['masthead','trajectory','finding','proof','subject','pace','appendix']},
+];
+
+let cur = PRODUCTS[1];
+function have(){return {responses:true, area:d_area.checked, kinds:d_kinds.checked,
+  timing:d_time.checked, benchmarks:d_bm.checked,
+  multi:cur.sets>=2, eight:cur.sets>=8};}
+
+function render(){
+  const h = have();
+  document.getElementById('card').innerHTML = cur.panels.map(k=>{
+    const p = PANELS[k];
+    const missing = p.needs.filter(n=>!h[n]);
+    if (missing.length) return `<div class="p miss"><div class="p-h"><span class="p-n">${p.name}</span>
+      <span class="p-c">${k}</span></div><div class="why">Not shown — ${REASON[missing[0]]}</div></div>`;
+    return `<div class="p"><div class="p-h"><span class="p-n">${p.name}</span><span class="p-c">${k}</span></div>${p.body(cur)}</div>`;
+  }).join('');
+  const shown = cur.panels.filter(k=>PANELS[k].needs.every(n=>h[n])).length;
+  document.getElementById('cfg').textContent =
+    `product: ${cur.id}\npanels:\n` + cur.panels.map(k=>'  - '+k).join('\n') +
+    `\n\nrendered ${shown} of ${cur.panels.length}`;
+  document.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on', o.dataset.id===cur.id));
+}
+document.getElementById('prods').innerHTML = PRODUCTS.map(p=>
+  `<div class="opt" data-id="${p.id}">${p.label}<small>${p.note}</small></div>`).join('');
+document.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{cur=PRODUCTS.find(p=>p.id===o.dataset.id);render();});
+['d_area','d_kinds','d_time','d_bm'].forEach(i=>document.getElementById(i).onchange=render);
+render();
+</script>
