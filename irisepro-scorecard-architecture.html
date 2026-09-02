@@ -74,6 +74,7 @@ starting a second one.</p>
     <label class="tog"><input type="checkbox" id="d_kinds"> error kinds approved &amp; labelled</label>
     <label class="tog"><input type="checkbox" id="d_time"> per-question timing captured</label>
     <label class="tog"><input type="checkbox" id="d_bm" checked> benchmarks loaded</label>
+    <label class="tog"><input type="checkbox" id="d_set" checked> both papers of the set submitted</label>
     <h3 style="margin-top:18px">Resulting configuration</h3>
     <div id="cfg" class="cfg"></div>
   </div>
@@ -185,6 +186,10 @@ const PANELS = {
   hold_back:   {name:'Do NOT raise yet', needs:['kinds'], body:_=>`<div class="p-b">
                  <span class="tag t-h">hypothesis</span> Possible weakness in date recall &mdash; seen once.
                  One sighting is what randomness looks like. Say nothing until a third.</div>`},
+  set_link:    {name:'Across all four sets', needs:['multi'], body:_=>`<div class="p-b">
+                 The <b>Monthly Progression Report</b> &mdash; one card over sets 1&ndash;4, week by week,
+                 start&rarr;end deltas, <i>Above Benchmark __/11</i>.
+                 <br><small style="color:var(--ink3)">2B produces this IN ADDITION to the three per-set cards, ×4.</small></div>`},
   appendix:    {name:'Full detail',         needs:[],                body:_=>`<div class="p-b">Every section, all eleven abilities, four behaviours.</div>`},
 };
 
@@ -197,6 +202,7 @@ const REASON = {
   multi:'needs at least two completed sets',
   scan:'this learner has no scan on their shelf',
   eight:'needs at least eight completed sets',
+  set_complete:'the set is not finished — nothing is released until paper 2 is in',
 };
 
 const PRODUCTS = [
@@ -209,26 +215,26 @@ const PRODUCTS = [
   {id:'1a', label:'1A &middot; Scan \u20b94,999', note:'engine tier 64 \u2014 64 measured, 15 spotlighted \u00b7 LIVE today',
    unit:'Scan \u00b7 21 tasks', sets:0, spot:15,
    panels:['s_declaration','s1_intro','s2_perf','s3_graph','s4_gap','s5_strength','s6_improve','s7_paths','s8_summary']},
-  {id:'2c', label:'2C · one set', note:'200 questions · findings are suspicions',
+  {id:'2c', setGate:true, label:'2C · one set', note:'200 questions · findings are suspicions',
    unit:'Set 1 · GS-1 + GS-2', sets:1, score:184, max:400, cut:196,
    panels:['masthead','net_marks','marks_flow','finding','closest','restraint','subject','abilities','execution','behaviours','pace','next','appendix']},
-  {id:'2b', label:'2B · four sets', note:'adds the journey · findings get confirmed',
+  {id:'2b', label:'2B · four sets', note:'per-set cards ×4 + ONE card linking all four', setGate:true,
    unit:'Month · sets 1–4', sets:4, score:'—', max:400, cut:196,
-   panels:['masthead','trajectory','finding','subject','abilities','behaviours','pace','next','appendix']},
-  {id:'2x8', label:'2X · eight sets', note:'first plan that can prove a change',
+   panels:['masthead','set_link','trajectory','finding','subject','abilities','behaviours','pace','next','appendix']},
+  {id:'2x8', setGate:true, label:'2X · eight sets', note:'first plan that can prove a change',
    unit:'Sets 1–8', sets:8, score:'—', max:400, cut:196,
    panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
-  {id:'3x12',label:'3X · twelve sets', note:'per subject, with a full trajectory',
+  {id:'3x12', setGate:true,label:'3X · twelve sets', note:'per subject, with a full trajectory',
    unit:'Sets 1–12', sets:12, score:'—', max:400, cut:196,
    panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
-  {id:'yd', label:'Yashodarshi brief', note:'NOT in the app — read on a laptop during a Google Meet',
-   unit:'Ananya S. · since her scan, 12 Jun', sets:4, score:'—', max:400, cut:196, surface:'call',
+  {id:'yd', label:'2A · Yashodarshi brief', note:'2A ONLY — 2C and 2B have ZERO Yashodarshi. Exclusive exam-hall pool.',
+   unit:'Ananya S. · exam-hall day, 28 pre/post tasks', sets:4, score:'—', max:400, cut:196, surface:'call',
    panels:['masthead','since_last','scan_link','to_raise','hold_back','trajectory','subject','pace','appendix']},
 ];
 
 let cur = PRODUCTS.find(p=>p.id==='2c');
 function have(){return {responses:true, area:d_area.checked, kinds:d_kinds.checked,
-  timing:d_time.checked, benchmarks:d_bm.checked,
+  timing:d_time.checked, benchmarks:d_bm.checked, set_complete:d_set.checked,
   multi:cur.sets>=2, eight:cur.sets>=8, scan:true};}
 
 function render(){
@@ -238,6 +244,19 @@ function render(){
       a Google Meet, while talking. One screen, no drill-downs, nothing to click. Density is a feature
       here and a bug on the learner's phone.</div>`
    : `<div class="surface app"><b>Learner surface &mdash; in the app, phone first.</b></div>`;
+  if (cur.setGate && !h.set_complete) {
+    document.getElementById('card').innerHTML =
+      `<div class="p miss"><div class="p-h"><span class="p-n">Nothing is released yet</span>
+       <span class="p-c">reveal gate · the SET is the unit</span></div>
+       <div class="p-b">Paper 1 is submitted and scored. <b>The learner sees none of it.</b>
+       No card, no ability mapping, no benchmarks &mdash; the entire set is generated in one go once
+       paper 2 is in.</div>
+       <div class="why">Marks are computed and stored on submission; only RELEASE is gated.</div></div>`;
+    document.getElementById('cfg').textContent =
+      `product: ${cur.id}\nreveal: BLOCKED — set incomplete\n\nrendered 0 of ${cur.panels.length}`;
+    document.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on', o.dataset.id===cur.id));
+    return;
+  }
   document.getElementById('card').innerHTML = cur.panels.map(k=>{
     const p = PANELS[k];
     const missing = p.needs.filter(n=>!h[n]);
@@ -254,6 +273,6 @@ function render(){
 document.getElementById('prods').innerHTML = PRODUCTS.map(p=>
   `<div class="opt" data-id="${p.id}">${p.label}<small>${p.note}</small></div>`).join('');
 document.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{cur=PRODUCTS.find(p=>p.id===o.dataset.id);render();});
-['d_area','d_kinds','d_time','d_bm'].forEach(i=>document.getElementById(i).onchange=render);
+['d_area','d_kinds','d_time','d_bm','d_set'].forEach(i=>document.getElementById(i).onchange=render);
 render();
 </script>
