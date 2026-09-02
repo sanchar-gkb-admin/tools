@@ -51,14 +51,17 @@ h1{font:900 28px/1.15 Montserrat,sans-serif;margin:0 0 4px;letter-spacing:-.01em
 .t-c{background:var(--gain-soft);color:var(--gain)}
 .legend{margin-top:26px;font-size:13px;color:var(--ink3)}
 .legend b{color:var(--ink)}
+.surface{border-radius:11px;padding:11px 14px;margin-bottom:12px;font-size:13px;line-height:1.55}
+.surface.app{background:var(--sunk);color:var(--ink2)}
+.surface.call{background:#EAF1F8;border-left:3px solid #3f93e0;color:#24405e}
 </style>
 <div class="wrap">
 <h1>Scorecard component architecture</h1>
-<p class="sub">One panel library. Every product is a list of panel names and nothing else. Change the
+<p class="sub">One panel library, two surfaces. Every product is a list of panel names and nothing else. Change the
 configuration on the right and the card rebuilds &mdash; no template is edited, no code is added.</p>
 
 <div class="panelrow">
-  <div id="card" class="card"></div>
+  <div><div id="surf"></div><div id="card" class="card"></div></div>
 
   <div class="ctl">
     <h3>Product</h3>
@@ -108,6 +111,18 @@ const PANELS = {
   proof:       {name:'What you have stopped doing', needs:['eight'], body:_=>`<div class="p-b"><span class="tag t-c">proven</span>
                  Present in your first four sets, absent in the last four. That is not luck.</div>`},
   next:        {name:'Before your next set',needs:['kinds'],         body:_=>`<div class="p-b">Attempt six fewer. Read the qualifier twice. Start with Polity.</div>`},
+  since_last:  {name:'Since your last session', needs:['multi'], body:c=>`<div class="p-b">
+                 Two sets sat since 4 Aug. Net marks <b>+18</b>. Accuracy up, coverage flat.</div>`},
+  scan_link:   {name:'Scan said / papers say', needs:['scan'], body:_=>`<div class="p-b">
+                 Attention-to-Detail read <b>strong</b> in her scan and <b>28%</b> under time pressure.
+                 <br><small style="color:var(--ink3)">The gap between a calm setting and a timed one is the thing to explore.</small></div>`},
+  to_raise:    {name:'Raise in this session', needs:['kinds'], body:_=>`<div class="p-b">
+                 1 &middot; The qualifier habit &mdash; confirmed across four sets.<br>
+                 2 &middot; Overruns in Polity &mdash; all four wrong anyway.<br>
+                 3 &middot; Ask whether she is practising under a clock.</div>`},
+  hold_back:   {name:'Do NOT raise yet', needs:['kinds'], body:_=>`<div class="p-b">
+                 <span class="tag t-h">hypothesis</span> Possible weakness in date recall &mdash; seen once.
+                 One sighting is what randomness looks like. Say nothing until a third.</div>`},
   appendix:    {name:'Full detail',         needs:[],                body:_=>`<div class="p-b">Every section, all eleven abilities, four behaviours.</div>`},
 };
 
@@ -118,6 +133,7 @@ const REASON = {
   timing:'per-question timing is not captured yet',
   benchmarks:'benchmarks not loaded',
   multi:'needs at least two completed sets',
+  scan:'this learner has no scan on their shelf',
   eight:'needs at least eight completed sets',
 };
 
@@ -137,18 +153,23 @@ const PRODUCTS = [
   {id:'2x12',label:'2X · twelve sets', note:'per subject, with a full trajectory',
    unit:'Sets 1–12', sets:12, score:'—', max:400, cut:196,
    panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
-  {id:'yd', label:'Yashodarshi brief', note:'not a candidate card — a counselling view',
-   unit:'Ananya S. · since scan', sets:4, score:'—', max:400, cut:196,
-   panels:['masthead','trajectory','finding','proof','subject','pace','appendix']},
+  {id:'yd', label:'Yashodarshi brief', note:'NOT in the app — read on a laptop during a Google Meet',
+   unit:'Ananya S. · since her scan, 12 Jun', sets:4, score:'—', max:400, cut:196, surface:'call',
+   panels:['masthead','since_last','scan_link','to_raise','hold_back','trajectory','subject','pace','appendix']},
 ];
 
 let cur = PRODUCTS[1];
 function have(){return {responses:true, area:d_area.checked, kinds:d_kinds.checked,
   timing:d_time.checked, benchmarks:d_bm.checked,
-  multi:cur.sets>=2, eight:cur.sets>=8};}
+  multi:cur.sets>=2, eight:cur.sets>=8, scan:true};}
 
 function render(){
   const h = have();
+  document.getElementById('surf').innerHTML = cur.surface==='call'
+   ? `<div class="surface call"><b>Counsellor surface &mdash; not in the app.</b> Read on a laptop during
+      a Google Meet, while talking. One screen, no drill-downs, nothing to click. Density is a feature
+      here and a bug on the learner's phone.</div>`
+   : `<div class="surface app"><b>Learner surface &mdash; in the app, phone first.</b></div>`;
   document.getElementById('card').innerHTML = cur.panels.map(k=>{
     const p = PANELS[k];
     const missing = p.needs.filter(n=>!h[n]);
