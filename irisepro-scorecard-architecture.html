@@ -186,6 +186,11 @@ const PANELS = {
   hold_back:   {name:'Do NOT raise yet', needs:['kinds'], body:_=>`<div class="p-b">
                  <span class="tag t-h">hypothesis</span> Possible weakness in date recall &mdash; seen once.
                  One sighting is what randomness looks like. Say nothing until a third.</div>`},
+  combo_legs:  {name:'What this combo contains', needs:[], body:c=>`<div class="p-b">
+                 A combo does <b>not</b> get its own card shape &mdash; it inherits the cards of its legs:
+                 <br>${c.combo.map(x=>`<span class="tag t-h">${x.toUpperCase()}</span>`).join(' ')}
+                 <br><small style="color:var(--ink3)">3A = 1A + 2A · 3B = 1A + 2A + 2B. The only thing a
+                 combo adds is the ability to read one against the other &mdash; the scan/exam link below.</small></div>`},
   set_link:    {name:'Across all four sets', needs:['multi'], body:_=>`<div class="p-b">
                  The <b>Monthly Progression Report</b> &mdash; one card over sets 1&ndash;4, week by week,
                  start&rarr;end deltas, <i>Above Benchmark __/11</i>.
@@ -221,12 +226,12 @@ const PRODUCTS = [
   {id:'2b', label:'2B · four sets', note:'per-set cards ×4 + ONE card linking all four', setGate:true,
    unit:'Month · sets 1–4', sets:4, score:'—', max:400, cut:196,
    panels:['masthead','set_link','trajectory','finding','subject','abilities','behaviours','pace','next','appendix']},
-  {id:'2x8', setGate:true, label:'2X · eight sets', note:'first plan that can prove a change',
-   unit:'Sets 1–8', sets:8, score:'—', max:400, cut:196,
-   panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
-  {id:'3x12', setGate:true,label:'3X · twelve sets', note:'per subject, with a full trajectory',
-   unit:'Sets 1–12', sets:12, score:'—', max:400, cut:196,
-   panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
+  {id:'3a', label:'3A · Double Impact', note:'₹8,999 combo — 1A + 2A. A composition, not a new card shape.',
+   unit:'1A scan + 2A exam hall', sets:1, score:'—', max:400, cut:196, combo:['1a','2a'],
+   panels:['masthead','combo_legs','scan_link','next','appendix']},
+  {id:'3b', label:'3B · Triple Impact', note:'₹11,999 combo — 1A + 2A + 2B.', setGate:true,
+   unit:'1A scan + 2A exam hall + 2B month', sets:4, score:'—', max:400, cut:196, combo:['1a','2a','2b'],
+   panels:['masthead','combo_legs','scan_link','set_link','trajectory','next','appendix']},
   {id:'yd', label:'2A · Yashodarshi brief', note:'2A ONLY — 2C and 2B have ZERO Yashodarshi. Exclusive exam-hall pool.',
    unit:'Ananya S. · exam-hall day, 28 pre/post tasks', sets:4, score:'—', max:400, cut:196, surface:'call',
    panels:['masthead','since_last','scan_link','to_raise','hold_back','trajectory','subject','pace','appendix']},
