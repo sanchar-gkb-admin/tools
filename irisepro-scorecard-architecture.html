@@ -58,7 +58,10 @@ h1{font:900 28px/1.15 Montserrat,sans-serif;margin:0 0 4px;letter-spacing:-.01em
 <div class="wrap">
 <h1>Scorecard component architecture</h1>
 <p class="sub">One panel library, two surfaces. Every product is a list of panel names and nothing else. Change the
-configuration on the right and the card rebuilds &mdash; no template is edited, no code is added.</p>
+configuration on the right and the card rebuilds &mdash; no template is edited, no code is added.<br>
+<b>The scan already works this way.</b> 1A/1B/1C are not three cards &mdash; they are one engine template
+branching on a single value, <code>tier</code> (5 / 15 / 64). The MCQ card extends that grammar rather than
+starting a second one.</p>
 
 <div class="panelrow">
   <div><div id="surf"></div><div id="card" class="card"></div></div>
@@ -77,6 +80,27 @@ configuration on the right and the card rebuilds &mdash; no template is edited, 
 </div>
 
 <div class="legend">
+  <p><b>THE FINDING &mdash; the scan and the MCQ share one ability vocabulary, and it is 15 = 11 + 4.</b>
+  The scan's &sect;4 spotlights <b>15</b> abilities for KAS. The MCQ papers carry <b>11</b>. Ten of the eleven
+  match the scan's names <i>exactly</i>; the eleventh is one ability under two surface names
+  (&ldquo;Structure / Information Organisation&rdquo; on the paper, &ldquo;Structure (Written)&rdquo; on the scan).
+  The four the scan has and the papers do not are <b>Discipline, Time-Management, Efficiency,
+  Accountability</b> &mdash; exactly the four exam-behavioural abilities we score from observed behaviour.
+  So the split was designed in from the start: <b>eleven measured from answers, four from behaviour,
+  fifteen on the card.</b></p>
+  <p>Two consequences. First, the <span class="p-c">scan_link</span> panel is sound &mdash; the two instruments
+  can be put side by side on the same row, because they name the same thing. Second, Sutirtha ji's note
+  (&ldquo;benchmark for 15 abilities are missing sir, as well as the Gap&rdquo;) was not a request for something
+  new: the scan card has carried student-vs-developmental-vs-champion-vs-competitive plus three gap
+  columns for all fifteen since day one. The MCQ card was missing a panel that already exists.</p>
+  <p style="font-size:12px;color:var(--ink3)"><b>Provenance</b> &mdash;
+  <code>scorecard-engine/design/scorecard-full.html:1437</code> (the tier branch),
+  <code>design/samples/sample-kas-{999,1999}.json</code> and <code>sample-kas.json</code> (the per-tier
+  section sets), <code>tests/test_render_contract.py</code> (the 15-row &sect;4 and 15-ability &sect;1-F contract).
+  Panel keys in the library above are the engine's own JSON keys.</p>
+</div>
+
+<div class="legend">
   <p><b>The rule that matters:</b> a panel whose data contract is unmet is rendered as
   <span style="border-left:3px solid var(--loss);padding-left:6px">visibly unavailable, with the reason</span>
   &mdash; never silently dropped. Otherwise a broken import looks exactly like a product that does not
@@ -87,6 +111,41 @@ configuration on the right and the card rebuilds &mdash; no template is edited, 
 
 <script>
 const PANELS = {
+  // ── THE SCAN CARD'S REAL PANELS ────────────────────────────────────────────────
+  // Not invented here. Read from scorecard-engine/design/scorecard-full.html (the ONE template)
+  // and the generated samples in design/samples/. Keys below ARE the engine's JSON keys, so a
+  // panel name in this library is greppable in the engine. The scan is LIVE — these render today.
+  s_declaration:{name:'Declaration', needs:[], body:_=>`<div class="p-b">Analysis of the AACE64&trade;&copy;
+                 &mdash; issued in good faith by iRisePro&trade; Academy.</div>`},
+  s1_zones:   {name:'\u00a71 &middot; Performance zones', needs:[], body:_=>`<div class="p-b">Weak &lt;50 &nbsp;&middot;&nbsp; Average 50&ndash;69
+                 &nbsp;&middot;&nbsp; <b>Strong 70&ndash;89</b> &nbsp;&middot;&nbsp; Excellent 90+</div>`},
+  s1_intro:   {name:'\u00a71 &middot; Framework intro', needs:[], body:c=>`<div class="p-b">The AACE64&trade; framework
+                 &mdash; 4 pillars, 64 essential success abilities. Carries the 3-layer benchmark model.
+                 <br><small style="color:var(--ink3)">Spotlights <b>${c.spot}</b> abilities at this tier &mdash;
+                 the ONE config value the whole card branches on.</small></div>`},
+  s2_pillars: {name:'\u00a72 &middot; Pillar performance', needs:[], body:_=>`<div class="p-b">Attitude <b>73.5</b>
+                 &middot; Aptitude 71.8 &middot; Communication 70.5 &middot; Execution 76.3
+                 &nbsp;&rarr;&nbsp; Overall <b>72.9</b></div>`},
+  s2_parta:   {name:'\u00a72 Part A &middot; per task', needs:[], body:_=>`<div class="p-b">One row per task, scored on the four pillars.</div>`},
+  s2_perf:    {name:'\u00a72 &middot; Performance (21 tasks)', needs:[], body:_=>`<div class="p-b">21 task rows &times; 4 pillars,
+                 then Part B &mdash; benchmark gap per pillar and overall.</div>`},
+  s3_graph:   {name:'\u00a73 &middot; IntelliGraph', needs:[], body:_=>`<div class="p-b">Zone distribution per pillar,
+                 against all three benchmark layers.</div>`},
+  s4_gap:     {name:'\u00a74 &middot; Benchmark &amp; gap', needs:['benchmarks'], body:_=>`
+                 <div class="row"><span>Critical &amp; Analytical</span><b>90</b><span class="bar"><i style="width:90%"></i><u style="left:94%"></u></span></div>
+                 <div class="row"><span>Comprehension</span><b>90</b><span class="bar"><i style="width:90%"></i><u style="left:95%"></u></span></div>
+                 <div class="row"><span>Attention-to-Detail</span><b>70</b><span class="bar"><i style="width:70%"></i><u style="left:95%"></u></span></div>
+                 <div class="p-b" style="margin-top:8px"><b>15 rows</b>, each with student vs developmental &middot;
+                 champion &middot; competitive, and a gap against all three.
+                 <br><small style="color:var(--ink3)">This is the panel Sutirtha ji flagged as missing from the MCQ card.</small></div>`},
+  s5_strength:{name:'\u00a75 &middot; Pillar strengths', needs:[], body:_=>`<div class="p-b">Strongest pillar, with the engine's note. <span class="p-c">+ section5_note</span></div>`},
+  s6_improve: {name:'\u00a76 &middot; Priority areas', needs:[], body:_=>`<div class="p-b">Where to work, ranked.</div>`},
+  s7_paths:   {name:'\u00a77 &middot; The 6 career pathways', needs:[], body:_=>`<div class="p-b">IAS&ndash;KAS <b>89.2</b>
+                 &middot; Entrepreneurship 79.3 &middot; Corporate 78.9 &middot; Media/Law 74.2 &middot; Finance 72.4 &middot; STEM 69.2
+                 <br><small style="color:var(--ink3)">Five abilities each, with a named benchmark figure.</small></div>`},
+  s8_summary: {name:'\u00a78 &middot; Conclusion &amp; readiness', needs:[], body:_=>`<div class="p-b">The closing read. <span class="p-c">+ section8_clinical</span></div>`},
+  s_promo:    {name:'Promotional', needs:[], body:_=>`<div class="p-b">Upsell to the next tier. Present on
+                 \u20b9999 and \u20b91,999 &mdash; <b>absent</b> on \u20b94,999, where \u00a77 career pathways takes its slot.</div>`},
   masthead:    {name:'Masthead',            needs:[],                body:c=>`<div class="p-b">Ananya S. &middot; KAS &middot; ${c.unit}</div>`},
   net_marks:   {name:'What you scored',     needs:['responses'],     body:c=>`<div class="big">${c.score}</div><div class="p-b">of ${c.max} &middot; cut-off ${c.cut}</div>`},
   marks_flow:  {name:'Where the marks went',needs:['responses'],     body:_=>`<div class="p-b"><b>+108</b> earned &nbsp;&middot;&nbsp; <b style="color:var(--loss)">&minus;16</b> given back &nbsp;&middot;&nbsp; <b>92</b> kept</div>`},
@@ -99,7 +158,10 @@ const PANELS = {
   abilities:   {name:'Your success abilities', needs:['benchmarks'], body:_=>`
                  <div class="row"><span>Attention-to-Detail</span><b>28</b><span class="bar"><i style="width:28%"></i><u style="left:95%"></u></span></div>
                  <div class="row"><span>Comprehension</span><b>59</b><span class="bar"><i style="width:59%"></i><u style="left:95%"></u></span></div>
-                 <div class="row"><span>Critical &amp; Analytical</span><b>43</b><span class="bar"><i style="width:43%"></i><u style="left:94%"></u></span></div>`},
+                 <div class="row"><span>Critical &amp; Analytical</span><b>43</b><span class="bar"><i style="width:43%"></i><u style="left:94%"></u></span></div>
+                 <div class="p-b" style="margin-top:8px"><small style="color:var(--ink3)">Eleven rows, each against the same
+                 three benchmark layers the scan uses &mdash; the red mark is <i>competitive</i>. Same panel shape as
+                 the scan's \u00a74, same ability names.</small></div>`},
   execution:   {name:'How you played it',   needs:['responses'],     body:_=>`<div class="p-b">Completion 86% &middot; Accuracy 63% &middot; Net conversion 46%</div>`},
   behaviours:  {name:'Four exam behaviours',needs:['responses'],     body:_=>`<div class="p-b">Time-Mgmt 73 &middot; Discipline 68 &middot; Accountability 65 &middot; Efficiency 61
                  <br><small style="color:var(--ink3)">All four are the three numbers above, weighted differently.</small></div>`},
@@ -138,9 +200,15 @@ const REASON = {
 };
 
 const PRODUCTS = [
-  {id:'scan', label:'1A/1B/1C · Scan', note:'a different instrument — shown for completeness',
-   unit:'Scan', sets:0, score:'—', max:'—', cut:'—',
-   panels:['masthead','abilities','next','appendix']},
+  {id:'1c', label:'1C &middot; Scan \u20b9999', note:'engine tier 5 \u2014 5 spotlighted abilities \u00b7 LIVE today',
+   unit:'Scan', sets:0, spot:5,
+   panels:['s_declaration','s1_zones','s1_intro','s2_pillars','s2_parta','s3_graph','s4_gap','s_promo']},
+  {id:'1b', label:'1B &middot; Scan \u20b91,999', note:'engine tier 15 \u2014 same panels, 15 spotlighted \u00b7 LIVE today',
+   unit:'Scan', sets:0, spot:15,
+   panels:['s_declaration','s1_zones','s1_intro','s2_pillars','s2_parta','s3_graph','s4_gap','s_promo']},
+  {id:'1a', label:'1A &middot; Scan \u20b94,999', note:'engine tier 64 \u2014 64 measured, 15 spotlighted \u00b7 LIVE today',
+   unit:'Scan \u00b7 21 tasks', sets:0, spot:15,
+   panels:['s_declaration','s1_intro','s2_perf','s3_graph','s4_gap','s5_strength','s6_improve','s7_paths','s8_summary']},
   {id:'2c', label:'2C · one set', note:'200 questions · findings are suspicions',
    unit:'Set 1 · GS-1 + GS-2', sets:1, score:184, max:400, cut:196,
    panels:['masthead','net_marks','marks_flow','finding','closest','restraint','subject','abilities','execution','behaviours','pace','next','appendix']},
@@ -150,7 +218,7 @@ const PRODUCTS = [
   {id:'2x8', label:'2X · eight sets', note:'first plan that can prove a change',
    unit:'Sets 1–8', sets:8, score:'—', max:400, cut:196,
    panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
-  {id:'2x12',label:'2X · twelve sets', note:'per subject, with a full trajectory',
+  {id:'3x12',label:'3X · twelve sets', note:'per subject, with a full trajectory',
    unit:'Sets 1–12', sets:12, score:'—', max:400, cut:196,
    panels:['masthead','trajectory','proof','finding','subject','abilities','behaviours','pace','next','appendix']},
   {id:'yd', label:'Yashodarshi brief', note:'NOT in the app — read on a laptop during a Google Meet',
@@ -158,7 +226,7 @@ const PRODUCTS = [
    panels:['masthead','since_last','scan_link','to_raise','hold_back','trajectory','subject','pace','appendix']},
 ];
 
-let cur = PRODUCTS[1];
+let cur = PRODUCTS.find(p=>p.id==='2c');
 function have(){return {responses:true, area:d_area.checked, kinds:d_kinds.checked,
   timing:d_time.checked, benchmarks:d_bm.checked,
   multi:cur.sets>=2, eight:cur.sets>=8, scan:true};}
