@@ -618,6 +618,14 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 <!-- ══════════════ TRACK C ══════════════ -->
 <section class="track">
   <div class="track-h"><span class="track-k">Track C</span><h2>Wallet &amp; KYC</h2></div>
+  <div style="background:var(--badbg);border-left:3px solid var(--bad);padding:11px 13px;margin:0 0 14px;font-size:12.5px;line-height:1.6">
+    <b>⛔ C2 and C3 below are the flow as it exists TODAY, and it is being replaced.</b>
+    Goutam decided on 4-Sep that the NDA is <b>e-signed in the app</b> — no download, no printing, no
+    upload. The screens are kept here because they are what the code still does, and because the
+    defect in them is the reason for the change: re-uploading <b>purges the previous signed
+    agreement</b>. The replacement is <b>Track H2</b>.
+  </div>
+  <div style="display:none"></div>
   <p class="track-note">
     Withdrawal is gated behind a five-step wizard: read the NDA, download it, sign it, upload it
     with both sides of an Aadhaar card, then wait 24–48h for verification.
@@ -662,7 +670,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
     <div class="cell">
       <div class="cap"><div class="cap-n">C2</div><div class="cap-t">Activating Wallet — 5-step wizard</div>
-      <div class="cap-d">Alpine.js stepper. Step 1 renders the full NDA inline.</div>
+      <div class="cap-d"><span style="display:inline-block;background:var(--badbg);color:var(--bad);font-weight:700;font-size:9.5px;letter-spacing:.05em;padding:2px 6px;border-radius:4px;margin-bottom:5px">SUPERSEDED 4-SEP</span><br>The download / print / sign / scan / upload steps are replaced by e-signing in the app. See <b>Track H2</b>.<br><span style="opacity:.7">Alpine.js stepper. Step 1 renders the full NDA inline.</span></div>
       <div class="cap-u">GET /partners/nda-form</div>
       <span class="flag f-bad">500 when logged out</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
@@ -681,7 +689,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
     <div class="cell">
       <div class="cap"><div class="cap-n">C3</div><div class="cap-t">KYC upload</div>
-      <div class="cap-d">Signed PDF + both Aadhaar sides → private S3, encrypted at rest.</div>
+      <div class="cap-d"><span style="display:inline-block;background:var(--badbg);color:var(--bad);font-weight:700;font-size:9.5px;letter-spacing:.05em;padding:2px 6px;border-radius:4px;margin-bottom:5px">SUPERSEDED 4-SEP</span><br>NDA upload is gone. Aadhaar capture is a separate, still-open decision. See <b>Track H2</b>.<br><span style="opacity:.7">Signed PDF + both Aadhaar sides → private S3, encrypted at rest.</span></div>
       <div class="cap-u">POST /partners/igp/wallet/upload</div>
       <span class="flag f-ok">the media lane is correct</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
@@ -1398,7 +1406,7 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
   <div class="flow">
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">E1</div><div class="cap-t">The agreement, in the page</div>
+      <div class="cap"><div class="cap-n">S1</div><div class="cap-t">The agreement, in the page</div>
       <div class="cap-d">One artefact — the same file <code>LegalNotice</code> hashes. No separate static PDF for the two to disagree about.</div>
       <div class="cap-u">GET /partners/igp/nda</div></div>
       <div class="phone"><div class="notch"></div><div class="pv">
@@ -1427,7 +1435,7 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">E2</div><div class="cap-t">She reaches the end</div>
+      <div class="cap"><div class="cap-n">S2</div><div class="cap-t">She reaches the end</div>
       <div class="cap-d"><b>The button unlocks only here.</b> Dwell and scroll are recorded — see E5 for why that is the evidence that matters.</div>
       <div class="cap-u">client-side gate</div></div>
       <div class="phone"><div class="notch"></div><div class="pv">
@@ -1456,7 +1464,7 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">E3</div><div class="cap-t">Signed — and told what that means</div>
+      <div class="cap"><div class="cap-n">S3</div><div class="cap-t">Signed — and told what that means</div>
       <div class="cap-d">No admin approval for the NDA itself. Approval, if still wanted, belongs to KYC — a different question.</div>
       <div class="cap-u">POST /partners/igp/nda/sign</div></div>
       <div class="phone"><div class="notch"></div><div class="pv">
@@ -1482,7 +1490,7 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">E4</div><div class="cap-t">The PDF is a receipt, not the agreement</div>
+      <div class="cap"><div class="cap-n">S4</div><div class="cap-t">The PDF is a receipt, not the agreement</div>
       <div class="cap-d">Generated <b>from the sealed row</b>, after the fact. The row is the evidence; the PDF is her copy.</div>
       <div class="cap-u">queued mail · renders from the row</div></div>
       <div class="browser"><div class="bh"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">mail — YASHOMARGI Agreement</div></div>
@@ -1503,7 +1511,7 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">E5</div><div class="cap-t">What is actually sealed</div>
+      <div class="cap"><div class="cap-n">S5</div><div class="cap-t">What is actually sealed</div>
       <div class="cap-d">Everything below is inside <code>record_hash</code>, which KMS signs. Editing any of it breaks the chain and <code>consent:verify</code> fails that night.</div>
       <div class="cap-u">consents · purpose = partner_nda</div></div>
       <div class="browser"><div class="bh"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">superadmin — agreement record</div></div>
