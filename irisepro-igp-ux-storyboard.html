@@ -1,4 +1,5 @@
-<title>IGP Partner App — Screen Flow</title>
+<meta charset="utf-8">
+<title>YASHOMARGI Partner Journey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
@@ -92,6 +93,7 @@ h1{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-.03em;line-hei
 .f-bad{background:var(--badbg);color:var(--bad);border:1px solid var(--bad)}
 .f-warn{background:var(--warnbg);color:var(--warn);border:1px solid var(--warn)}
 .f-ok{background:var(--okbg);color:var(--ok);border:1px solid var(--ok)}
+.f-fixed{background:#EEF6F1;color:#146B45;border:1px dashed #146B45;margin-left:5px}
 
 /* ══ DEVICE FRAMES ══════════════════════════════════ */
 .phone{
@@ -491,7 +493,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
       <div class="cap"><div class="cap-n">C2</div><div class="cap-t">Activating Wallet — 5-step wizard</div>
       <div class="cap-d">Alpine.js stepper. Step 1 renders the full NDA inline.</div>
       <div class="cap-u">GET /partners/nda-form</div>
-      <span class="flag f-bad">500 when logged out</span></div>
+      <span class="flag f-bad">500 when logged out</span><span class="flag f-fixed">fixed 4 Sep &middot; not yet on prod</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
         <div class="ttl">Activating Wallet</div>
         <div class="steps"><div class="stp done">1</div><div class="stp now">2</div><div class="stp">3</div><div class="stp">4</div><div class="stp">5</div></div>
@@ -642,7 +644,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
       <div class="cap"><div class="cap-n">B5</div><div class="cap-t">Leaderboard</div>
       <div class="cap-d">Podium + list. Other partners' names, photos and counts.</div>
       <div class="cap-u">GET /partners/leaderboard-screen</div>
-      <span class="flag f-bad">500 when logged out</span></div>
+      <span class="flag f-bad">500 when logged out</span><span class="flag f-fixed">fixed 4 Sep &middot; not yet on prod</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;position:relative">
         <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
         <div class="ttl">Leaderboard</div>
@@ -681,7 +683,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
       <div class="cap"><div class="cap-n">E2</div><div class="cap-t">Leaderboard, logged out</div>
       <div class="cap-d">Outside <code>igp.auth</code>; the null user is dereferenced.</div>
       <div class="cap-u">GET /partners/leaderboard-screen</div>
-      <span class="flag f-bad">HTTP 500 unauthenticated</span></div>
+      <span class="flag f-bad">HTTP 500 unauthenticated</span><span class="flag f-fixed">fixed 4 Sep &middot; not yet on prod</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="err500">
         <div class="code">500</div>
         <div class="msg">Attempt to read property on null<br><br>Auth::guard('igp')-&gt;user() returned null and was dereferenced.</div>
@@ -711,7 +713,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
       <div class="cap"><div class="cap-n">E4</div><div class="cap-t">Paid-waiting</div>
       <div class="cap-d"><code>@extends('frontendapp.partials.app')</code> — the student layout.</div>
       <div class="cap-u">GET /partners/paid-waiting</div>
-      <span class="flag f-bad">wrong product · 200 in prod</span></div>
+      <span class="flag f-bad">wrong product · 200 in prod</span><span class="flag f-fixed">fixed 4 Sep &middot; not yet on prod</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="wrongscr">
         <div class="wrongtag">⚠ STUDENT SCREEN ON A PARTNER ROUTE</div>
         <div style="font-size:14px;font-weight:800;line-height:1.3;margin-bottom:9px">Welcome to the Performance Dashboard</div>
@@ -773,7 +775,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
       <div class="cap"><div class="cap-n">D2</div><div class="cap-t">Marketing &amp; Promotional Tools</div>
       <div class="cap-d">Downloadable creatives, PDFs and videos from <code>igp_marketings</code>.</div>
       <div class="cap-u">GET /partners/marketing</div>
-      <span class="flag f-bad">200 without login</span></div>
+      <span class="flag f-bad">200 without login</span><span class="flag f-fixed">fixed 4 Sep &middot; not yet on prod</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;position:relative">
         <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
         <div class="ttl" style="font-size:14px">Marketing &amp; Promotional Tools</div>
@@ -1146,7 +1148,111 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-new"><div class="era-k">Proposed · 2</div><h2>Getting paid</h2><p>The wallet stops promising a withdraw button that does not exist, and starts telling the partner when they will be paid, how much, and what arrived.</p></div>
+<section class="track"><div class="era era-new"><div class="era-k">Proposed · 2</div><h2>Cleared to sell</h2><p>Verification answers <i>is this really you</i>. This answers a different question &mdash; <i>do we want you selling on our behalf</i> &mdash; and it is the one thing the app has never explained. Today a partner is told &ldquo;Pending Approval&rdquo; and nothing else: not what is being decided, not by whom, not how long, not what to do meanwhile. Three states, each one honest about what is happening to their link <b>and to their money</b>.</p></div>
+<div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">N1</div><div class="cap-t">Waiting to be cleared</div>
+      <div class="cap-d">Replaces &ldquo;Referral Locked &middot; Pending Approval&rdquo;, which told a person nothing.</div>
+      <div class="cap-u">GET /yashomargi/dashboard</div>
+      <span class="flag f-warn">the turnaround number is a product call &mdash; not invented here</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="hdr" style="padding-top:26px"><a href="#">Home</a><div class="bell"><i class="fa-solid fa-bell"></i></div></div>
+        <div class="pv-scroll"><div class="scr" style="padding-top:8px">
+          <div class="earn"><div class="lbl">Total Earnings</div><div class="amt">&#8377;0.00</div>
+          <div class="hint">Nothing to collect yet &mdash; your link is not live.</div><span class="pill">Verified</span></div>
+          <div class="lockcard">
+            <div class="lockicon"><i class="fa-regular fa-clock"></i></div>
+            <h4>We are reviewing your application</h4>
+            <p>Your details all checked out. Someone is now reading your application to promote YASHHO in your area &mdash; usually within <b>{N} working days</b>. <b>We will message you either way.</b></p>
+            <span class="badge-y">In review since 4 Sep</span>
+          </div>
+          <div class="card peach" style="padding:9px 11px">
+            <div style="font-size:10.5px;color:#146B45;font-weight:700;line-height:1.5"><i class="fa-solid fa-circle-check"></i> &nbsp;Tax number &middot; Identity &middot; Bank account &middot; Agreement &mdash; all verified</div>
+          </div>
+          <div class="card">
+            <h4 style="font-size:12.5px">While you wait</h4>
+            <p style="font-size:10.5px;color:#666;margin:5px 0 0;line-height:1.55">Read the material and get to know the programmes. If a sale comes through you before your link is live, <b>it still counts</b> &mdash; it is held for you and released the day you are cleared.</p>
+            <button class="btn ghost" style="margin-top:9px">Browse the material</button>
+          </div>
+        </div></div>
+        <div class="nav"><a class="on"><i class="fas fa-home"></i><span>Home</span></a><a><i class="fas fa-user-friends"></i><span>Referral</span></a><a><i class="fas fa-wallet"></i><span>Wallet</span></a><a><i class="fas fa-cog"></i><span>Settings</span></a></div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">N2</div><div class="cap-t">Cleared &mdash; the link goes live</div>
+      <div class="cap-d">One message, one screen, and anything held is released.</div>
+      <div class="cap-u">push + GET /yashomargi/dashboard</div>
+      <span class="flag f-ok">the moment the programme actually starts</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="hdr" style="padding-top:26px"><a href="#">Home</a><div class="bell"><i class="fa-solid fa-bell"></i></div></div>
+        <div class="pv-scroll"><div class="scr" style="padding-top:8px">
+          <div class="earn" style="background:linear-gradient(135deg,#10B981,#5BC896)"><div class="lbl">You are cleared to sell</div><div class="amt">&#8377;900.00</div>
+          <div class="hint" style="opacity:.95">Held while you waited &mdash; now yours.</div><span class="pill">Active</span></div>
+          <div class="card peach">
+            <h4>Your Referral Link</h4>
+            <div class="linkbox"><span>yashho.com/r/IN5600YM4821</span><i class="fa-regular fa-copy"></i></div>
+            <button class="btn round">Share Your Link</button>
+            <div class="qr">
+              <svg width="60" height="60" viewBox="0 0 21 21" shape-rendering="crispEdges">
+                <rect width="21" height="21" fill="#fff"/>
+                <g fill="#111">
+                  <rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
+                  <rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
+                  <rect x="2" y="2" width="3" height="3"/>
+                  <rect x="14" y="0" width="7" height="1"/><rect x="14" y="6" width="7" height="1"/>
+                  <rect x="14" y="0" width="1" height="7"/><rect x="20" y="0" width="1" height="7"/>
+                  <rect x="16" y="2" width="3" height="3"/>
+                  <rect x="0" y="14" width="7" height="1"/><rect x="0" y="20" width="7" height="1"/>
+                  <rect x="0" y="14" width="1" height="7"/><rect x="6" y="14" width="1" height="7"/>
+                  <rect x="2" y="16" width="3" height="3"/>
+                  <rect x="9" y="1" width="1" height="2"/><rect x="10" y="4" width="1" height="3"/>
+                  <rect x="8" y="8" width="5" height="1"/><rect x="12" y="10" width="1" height="4"/>
+                  <rect x="9" y="12" width="2" height="1"/><rect x="15" y="9" width="1" height="3"/>
+                  <rect x="17" y="11" width="3" height="1"/><rect x="14" y="15" width="1" height="4"/>
+                  <rect x="16" y="14" width="4" height="1"/><rect x="18" y="17" width="1" height="3"/>
+                  <rect x="16" y="19" width="3" height="1"/><rect x="9" y="16" width="2" height="2"/>
+                </g>
+              </svg>
+            </div>
+            <button class="btn round" style="margin-top:9px">Download QR</button>
+          </div>
+        </div></div>
+        <div class="nav"><a class="on"><i class="fas fa-home"></i><span>Home</span></a><a><i class="fas fa-user-friends"></i><span>Referral</span></a><a><i class="fas fa-wallet"></i><span>Wallet</span></a><a><i class="fas fa-cog"></i><span>Settings</span></a></div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">N3</div><div class="cap-t">Paused &mdash; and the money is safe</div>
+      <div class="cap-d">The state that does not exist anywhere today &mdash; not in the app, not in this storyboard until now.</div>
+      <div class="cap-u">GET /yashomargi/dashboard</div>
+      <span class="flag f-bad">silence here is what creates a dispute we cannot answer</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="hdr" style="padding-top:26px"><a href="#">Home</a><div class="bell"><i class="fa-solid fa-bell"></i></div></div>
+        <div class="pv-scroll"><div class="scr" style="padding-top:8px">
+          <div class="earn" style="background:linear-gradient(135deg,#8A94A6,#AEB6C2)"><div class="lbl">Balance held</div><div class="amt">&#8377;4,300.00</div>
+          <div class="hint" style="opacity:.95">Safe. Not lost, not reduced.</div><span class="pill">Paused</span></div>
+          <div class="card" style="border:1.5px solid var(--bad);background:#FFF6F5">
+            <div style="display:flex;gap:9px;align-items:flex-start">
+              <div style="width:30px;height:30px;border-radius:50%;background:#FBEAE8;display:grid;place-items:center;color:#B3261E;flex:0 0 auto"><i class="fa-solid fa-pause" style="font-size:11px"></i></div>
+              <div><div style="font-size:12.5px;font-weight:700;color:#B3261E">Your referral link is paused</div>
+              <p style="font-size:10.5px;color:#666;margin:5px 0 0;line-height:1.55">We have paused new referrals while we look into something on your account. <b>Your &#8377;4,300 is safe and held</b> &mdash; it is not cancelled. Nothing you have already earned goes away.</p></div>
+            </div>
+            <div class="tot" style="margin-top:11px"><span>Reason given</span><b style="font-weight:600">Address could not be confirmed</b></div>
+            <button class="btn" style="margin-top:11px">Talk to us</button>
+          </div>
+          <div class="card">
+            <p style="font-size:10.5px;color:#666;margin:0;line-height:1.55">A pause can be lifted. When it is, your link works again and your balance goes back into the next payout run.</p>
+          </div>
+        </div></div>
+        <div class="nav"><a class="on"><i class="fas fa-home"></i><span>Home</span></a><a><i class="fas fa-user-friends"></i><span>Referral</span></a><a><i class="fas fa-wallet"></i><span>Wallet</span></a><a><i class="fas fa-cog"></i><span>Settings</span></a></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+<section class="track"><div class="era era-new"><div class="era-k">Proposed · 3</div><h2>Getting paid</h2><p>The wallet stops promising a withdraw button that does not exist, and starts telling the partner when they will be paid, how much, and what arrived.</p></div>
 <div class="flow">
 
     <div class="cell">
@@ -1218,7 +1324,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-adm"><div class="era-k">Proposed · 3</div><h2>The other user — an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p></div>
+<section class="track"><div class="era era-adm"><div class="era-k">Proposed · 4</div><h2>The other user — an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p></div>
 <div class="admgrid">
     <div>
       <div class="cap"><div class="cap-n">F0</div><div class="cap-t">The verification queue</div>
@@ -1272,7 +1378,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
     <div>
       <div class="cap"><div class="cap-n">F2</div><div class="cap-t">Partner detail — KYC &amp; payout</div>
       <div class="cap-d">Aadhaar review, ledger, manual payout entry.</div>
-      <span class="flag f-bad">these actions are also routed unauthenticated</span></div>
+      <span class="flag f-bad">these actions are also routed unauthenticated</span><span class="flag f-fixed">fixed 4 Sep &middot; not yet on prod</span></div>
       <div class="browser">
         <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/igp/12</div></div>
         <div class="bbody">
