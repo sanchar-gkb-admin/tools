@@ -1,0 +1,1073 @@
+<title>IGP Partner App — Screen Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ══ REAL IGP TOKENS — grepped from resources/views/frontendapp/igp/** ══ */
+:root{
+  --o:#F97216;            /* 111 uses — the dominant orange */
+  --o2:#FF8A3D;           /* tailwind 'primary' */
+  --o-dark:#E67E35;
+  --o-tag:#F58321;        /* splash tagline */
+  --peach:#FFF1E6;        /* 'secondary' */
+  --peach2:#FFE5D3;
+  --peach3:#FFD8B1;
+  --cream:#FFF9F5;
+  --amber:#FFC107;
+  --green:#389E09;
+  --ink:#000000;
+  --ink2:#333333;
+  --grey:#666666;
+  --field:#F6F6F6;
+
+  /* page chrome (the storyboard itself, not the product) */
+  --pg:#F3F0EC;
+  --pg2:#FFFFFF;
+  --pgink:#1A1512;
+  --pgmute:#786C63;
+  --pgline:#E0D9D1;
+  --bad:#B3261E;
+  --badbg:#FBEAE8;
+  --warn:#8A5A00;
+  --warnbg:#FBF1DC;
+  --ok:#146B45;
+  --okbg:#E4F1EA;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --pg:#14110E; --pg2:#1D1915; --pgink:#F0EBE5; --pgmute:#9E938A; --pgline:#2E2822;
+    --bad:#F2756A; --badbg:#2E1614; --warn:#E0AC53; --warnbg:#2C2213; --ok:#5BC896; --okbg:#12271D;
+  }
+}
+:root[data-theme="dark"]{
+  --pg:#14110E; --pg2:#1D1915; --pgink:#F0EBE5; --pgmute:#9E938A; --pgline:#2E2822;
+  --bad:#F2756A; --badbg:#2E1614; --warn:#E0AC53; --warnbg:#2C2213; --ok:#5BC896; --okbg:#12271D;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;padding:0 20px 90px;background:var(--pg);color:var(--pgink);
+  font-family:Montserrat,system-ui,sans-serif;font-size:15.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto}
+
+/* ── masthead ─────────────────────────────────────── */
+header.mast{padding:64px 0 30px;border-bottom:3px solid var(--o)}
+.brow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--o);margin-bottom:16px}
+h1{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:0 0 16px;text-wrap:balance}
+.sub{font-size:19px;color:var(--pgmute);max-width:62ch;margin:0;line-height:1.5}
+.sub b{color:var(--pgink);font-weight:600}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--pgline);border:1px solid var(--pgline);margin-top:30px}
+.stats>div{background:var(--pg2);padding:14px 16px}
+.stats dt{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--pgmute);margin:0 0 5px}
+.stats dd{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stats dd small{display:block;font-size:11.5px;font-weight:500;color:var(--pgmute);margin-top:2px;letter-spacing:0}
+.s-bad dd{color:var(--bad)} .s-warn dd{color:var(--warn)} .s-ok dd{color:var(--ok)}
+
+/* ── track headers ────────────────────────────────── */
+.track{margin-top:70px}
+.track-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--pgink);padding-bottom:10px;margin-bottom:8px}
+.track-k{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--o);background:var(--peach);padding:5px 10px;border-radius:2px}
+:root[data-theme="dark"] .track-k,
+:root:not([data-theme="light"]) .track-k{background:#33210F}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .track-k{background:var(--peach)}}
+.track-h h2{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:0;flex:1 1 260px}
+.track-note{font-size:14.5px;color:var(--pgmute);max-width:76ch;margin:0 0 24px}
+
+/* ── the flow rail ────────────────────────────────── */
+.flow{display:flex;gap:20px;overflow-x:auto;padding:10px 4px 26px;align-items:flex-start;scrollbar-width:thin}
+.cell{flex:0 0 auto;width:296px}
+.cap{margin-bottom:10px;min-height:74px}
+.cap-n{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--o);margin-bottom:3px}
+.cap-t{font-size:15.5px;font-weight:700;letter-spacing:-.01em;line-height:1.25;margin-bottom:4px}
+.cap-d{font-size:12.8px;color:var(--pgmute);line-height:1.42}
+.cap-u{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--pgmute);margin-top:4px;word-break:break-all}
+
+.flag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-top:6px}
+.f-bad{background:var(--badbg);color:var(--bad);border:1px solid var(--bad)}
+.f-warn{background:var(--warnbg);color:var(--warn);border:1px solid var(--warn)}
+.f-ok{background:var(--okbg);color:var(--ok);border:1px solid var(--ok)}
+
+/* ══ DEVICE FRAMES ══════════════════════════════════ */
+.phone{
+  width:296px;height:604px;background:#111;border-radius:34px;padding:9px;
+  box-shadow:0 12px 34px -12px rgba(0,0,0,.5);position:relative;
+}
+.notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:96px;height:19px;background:#111;border-radius:0 0 13px 13px;z-index:9}
+.pv{
+  width:100%;height:100%;background:#fff;border-radius:26px;overflow:hidden;
+  position:relative;font-family:Montserrat,sans-serif;color:#111;
+  display:flex;flex-direction:column;
+}
+.pv-scroll{flex:1;overflow-y:auto;overflow-x:hidden}
+.pv-scroll::-webkit-scrollbar{width:0}
+
+.browser{width:100%;background:#fff;border-radius:9px;overflow:hidden;box-shadow:0 12px 34px -14px rgba(0,0,0,.4);border:1px solid rgba(0,0,0,.14)}
+.bbar{background:#E9EAEC;padding:8px 12px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #D5D7DA}
+.bdot{width:10px;height:10px;border-radius:50%}
+.burl{flex:1;background:#fff;border-radius:11px;padding:3px 11px;font-family:ui-monospace,monospace;font-size:11px;color:#555;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bbody{background:#F6F6F6;padding:16px;font-family:Montserrat,sans-serif;color:#111;min-height:300px}
+
+/* ══ PRODUCT ATOMS — rebuilt from the real blades ══ */
+.hdr{background:linear-gradient(160deg,var(--peach),#fff);padding:13px 15px;border-radius:0 0 22px 22px;display:flex;justify-content:space-between;align-items:center;flex:0 0 auto}
+.hdr a{color:#111;text-decoration:none;font-size:13px;font-weight:600}
+.bell{width:32px;height:32px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.08);color:#8b8b8b;font-size:13px}
+
+.nav{flex:0 0 auto;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:7px 0 9px;box-shadow:0 -3px 10px rgba(0,0,0,.05)}
+.nav i{font-size:17px}
+.nav span{font-size:9.5px;margin-top:3px;font-weight:500}
+.nav a{display:flex;flex-direction:column;align-items:center;color:#B4B4B4;text-decoration:none;width:44px}
+.nav a.on{color:var(--o)}
+
+.scr{padding:14px 15px 18px}
+.ttl{font-size:17px;font-weight:700;text-align:center;margin:2px 0 12px;font-family:Inter,sans-serif}
+.back{position:absolute;left:15px;top:14px;font-size:16px;color:#555}
+
+.earn{background:linear-gradient(135deg,#FF9933,#FFC080);border-radius:18px;padding:16px;color:#fff;box-shadow:0 8px 18px -8px rgba(249,114,22,.6)}
+.earn .lbl{font-size:11px;opacity:.92;font-weight:500}
+.earn .amt{font-size:31px;font-weight:800;letter-spacing:-.02em;margin:2px 0 4px;font-variant-numeric:tabular-nums}
+.earn .hint{font-size:10.5px;opacity:.9;line-height:1.35}
+.pill{display:inline-block;background:rgba(255,255,255,.26);border-radius:20px;padding:3px 9px;font-size:9.5px;font-weight:700;margin-top:8px}
+
+.card{background:#fff;border-radius:18px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,.07);margin-top:13px}
+.card.peach{background:var(--peach2);box-shadow:0 5px 14px rgba(0,0,0,.06)}
+.card h4{font-size:14.5px;font-weight:700;margin:0 0 9px;color:#2b2b2b}
+.card p{font-size:11.5px;color:#7a7a7a;margin:0 0 9px;line-height:1.45}
+
+.linkbox{display:flex;align-items:center;background:var(--peach3);border-radius:9px;padding:9px 11px;font-size:10.5px;color:var(--o);font-weight:600;gap:8px}
+.linkbox span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn{display:block;width:100%;background:var(--o2);color:#fff;border:0;border-radius:10px;padding:11px;font-size:13.5px;font-weight:700;text-align:center;font-family:Montserrat,sans-serif;box-shadow:0 3px 9px rgba(255,138,61,.4);margin-top:11px}
+.btn.round{border-radius:22px}
+.btn.ghost{background:#fff;color:var(--o);border:1.5px solid var(--o);box-shadow:none}
+.field{background:var(--field);border:1px solid #ececec;border-radius:11px;padding:10px 12px;display:flex;align-items:center;gap:9px;font-size:12.5px;color:#9a9a9a;margin-top:6px}
+.field i{color:#b5b5b5;font-size:13px}
+.flabel{font-size:12px;color:#3a3a3a;font-weight:500;margin-top:11px;font-family:Inter,sans-serif}
+
+.qr{width:78px;height:78px;background:#fff;border:1px solid #eee;border-radius:9px;margin:11px auto 0;display:grid;place-items:center;box-shadow:0 3px 9px rgba(0,0,0,.09)}
+.qr svg{display:block}
+
+.lockcard{background:var(--peach2);border-radius:22px;padding:20px 16px;text-align:center;margin-top:13px}
+.lockicon{width:50px;height:50px;background:var(--peach3);border-radius:50%;display:grid;place-items:center;margin:0 auto 10px;font-size:19px;color:var(--o)}
+.lockcard h4{font-size:15px;font-weight:700;margin:0 0 6px}
+.lockcard p{font-size:11.5px;color:#6f6f6f;margin:0 0 10px;line-height:1.45}
+.badge-y{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px}
+
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f2f2f2;font-size:12px}
+.row:last-child{border-bottom:0}
+.row .nm{font-weight:600;color:#2b2b2b}
+.row .dt{font-size:10px;color:#a0a0a0;margin-top:2px}
+.row .amt{font-weight:700;color:var(--green);font-variant-numeric:tabular-nums}
+
+.otpbox{display:flex;gap:7px;justify-content:center;margin:16px 0}
+.otpd{width:37px;height:44px;border:2px solid #e5e7eb;border-radius:9px;display:grid;place-items:center;font-size:19px;font-weight:600;color:#333}
+.otpd.on{border-color:var(--o2);box-shadow:0 0 0 3px rgba(255,138,61,.13)}
+
+.steps{display:flex;align-items:center;justify-content:space-between;margin:14px 0 16px;position:relative}
+.steps::before{content:"";position:absolute;left:6%;right:6%;top:14px;height:3px;background:#eee;border-radius:3px}
+.steps::after{content:"";position:absolute;left:6%;width:30%;top:14px;height:3px;background:#5BC47E;border-radius:3px}
+.stp{width:29px;height:29px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;position:relative;z-index:2;background:#fff;border:1px solid #ddd;color:#999}
+.stp.done{background:#8ED7A5;border-color:#8ED7A5;color:#fff}
+.stp.now{background:#FFE2C6;border:1px solid #FFC08A;color:var(--o)}
+
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:9px;margin:14px 0 6px}
+.pod{text-align:center}
+.pod .av{border-radius:50%;background:#eee;display:grid;place-items:center;font-size:15px;color:#aaa;margin:0 auto 5px}
+.pod.p1 .av{width:52px;height:52px;border:3px solid #FACC15}
+.pod.p2 .av{width:42px;height:42px;border:3px solid #D4D4D8}
+.pod.p3 .av{width:42px;height:42px;border:3px solid #FDBA74}
+.pod .nm{font-size:10px;font-weight:700}
+.pod .ct{font-size:8.5px;color:#9a9a9a}
+.tabs{display:flex;background:#F1F1F1;border-radius:20px;padding:3px;margin:0 auto;width:150px}
+.tabs div{flex:1;text-align:center;font-size:11px;font-weight:600;padding:5px;border-radius:17px;color:#8a8a8a}
+.tabs div.on{background:#fff;color:var(--o);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+
+.tier{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:12px;background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.06);margin-top:8px}
+.tier .md{width:29px;height:29px;border-radius:50%;display:grid;place-items:center;font-size:12px;color:#fff}
+.tier .tn{font-size:11.5px;font-weight:700}
+.tier .ts{font-size:9.5px;color:#a0a0a0}
+.tier .tr{margin-left:auto;font-size:12px;font-weight:800;color:var(--o);font-variant-numeric:tabular-nums}
+.tier.lock{opacity:.55}
+
+.notif{display:flex;gap:9px;padding:11px 0;border-bottom:1px solid #f3f3f3}
+.notif .ic{width:30px;height:30px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:var(--o);font-size:12px;flex:0 0 auto}
+.notif .tx{font-size:11px;line-height:1.42;color:#3a3a3a}
+.notif .tm{font-size:9px;color:#b0b0b0;margin-top:3px}
+
+.err500{background:#fff;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center;font-family:ui-monospace,Menlo,monospace}
+.err500 .code{font-size:47px;font-weight:800;color:var(--bad);font-family:Montserrat,sans-serif}
+.err500 .msg{font-size:11px;color:#666;margin-top:9px;line-height:1.55;word-break:break-word}
+
+.wrongscr{background:#fff;padding:16px;height:100%}
+.wrongtag{background:var(--badbg);border:1px dashed var(--bad);color:var(--bad);font-size:9.5px;font-weight:700;padding:5px 8px;border-radius:4px;margin-bottom:11px;text-align:center;letter-spacing:.05em}
+
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:17px 15px 20px;box-shadow:0 -8px 26px rgba(0,0,0,.22);z-index:20}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:15}
+.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:82%;background:#fff;border-radius:16px;padding:18px 15px;text-align:center;z-index:20;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+
+.swal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84%;background:#fff;border-radius:14px;padding:22px 16px;text-align:center;z-index:20;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+.swal .tick{width:52px;height:52px;border-radius:50%;border:3px solid #A5DC86;color:#A5DC86;display:grid;place-items:center;font-size:26px;margin:0 auto 12px}
+
+/* ── prose blocks ─────────────────────────────────── */
+.note{background:var(--pg2);border:1px solid var(--pgline);border-left:4px solid var(--o);padding:15px 18px;margin:20px 0;font-size:14.5px;line-height:1.55;max-width:82ch}
+.note b{font-weight:700}
+.note.bad{border-left-color:var(--bad)}
+.note .k{display:block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--o);margin-bottom:6px}
+.note.bad .k{color:var(--bad)}
+
+.tw{overflow-x:auto;border:1px solid var(--pgline);background:var(--pg2);margin:20px 0}
+table{border-collapse:collapse;width:100%;font-size:13.4px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--pgline);vertical-align:top}
+thead th{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pgmute);background:var(--pg);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.m,th.m{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.x{color:var(--bad);font-weight:700}
+.q{color:var(--warn);font-weight:700}
+.v{color:var(--ok);font-weight:700}
+
+ol.qs{counter-reset:q;list-style:none;padding:0;max-width:82ch}
+ol.qs li{counter-increment:q;position:relative;padding:14px 0 14px 46px;border-bottom:1px solid var(--pgline)}
+ol.qs li::before{content:"Q" counter(q);position:absolute;left:0;top:14px;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--o);background:var(--pg2);border:1px solid var(--o);border-radius:3px;padding:2px 6px}
+ol.qs b{display:block;font-size:15.5px;font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+ol.qs span{font-size:14px;color:var(--pgmute);line-height:1.5}
+
+footer.end{margin-top:72px;padding-top:24px;border-top:3px solid var(--o);font-size:13px;color:var(--pgmute)}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--pg);border:1px solid var(--pgline);border-radius:3px;padding:.08em .32em}
+
+@media(max-width:640px){body{padding:0 13px 70px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="brow">YASHHO Growth Partner · IGP &nbsp;·&nbsp; reconstructed from code · 4 Sep 2026</div>
+  <h1>IGP Partner App — Screen Flow</h1>
+  <p class="sub">
+    Every screen below is drawn from the actual Blade files in
+    <b>resources/views/frontendapp/igp/**</b> — real palette, real copy, real nav.
+    <b>27 partner screens exist.</b> Four are reachable from the navigation. Six have no
+    inbound link at all. Three belong to a different product.
+  </p>
+
+  <dl class="stats">
+    <div><dt>Screens built</dt><dd>27<small>10,990 lines of Blade</small></dd></div>
+    <div class="s-ok"><dt>In the bottom nav</dt><dd>4<small>Home·Referral·Wallet·Settings</small></dd></div>
+    <div class="s-warn"><dt>Zero inbound links</dt><dd>6<small>reachable by URL only</small></dd></div>
+    <div class="s-bad"><dt>Wrong product</dt><dd>3<small>student / email templates</small></dd></div>
+    <div class="s-bad"><dt>500 in production</dt><dd>3<small>probed 4 Sep</small></dd></div>
+  </dl>
+</header>
+
+<!-- ══════════════ TRACK A ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track A</span><h2>Becoming a partner</h2></div>
+  <p class="track-note">
+    Splash auto-advances after 3s (or on any touch). Login is <b>email OTP only</b> — there is no
+    password column on <code>igps</code>. Signup ends on a promise the code does not keep.
+  </p>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A1</div><div class="cap-t">Splash</div>
+      <div class="cap-d">Auto-redirects to login after 3s; any touch skips.</div>
+      <div class="cap-u">GET /partners</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll" style="background:linear-gradient(180deg,#FEECDD,#fff);display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div style="font-family:Montserrat;font-size:34px;font-weight:800;color:var(--o);letter-spacing:-.02em">YASHHO</div>
+          <div style="font-size:15px;font-weight:600;color:var(--o-tag);text-align:center;margin:26px 22px 44px;line-height:1.5">Rise As One,<br>Rise For India</div>
+          <div style="display:flex;gap:7px">
+            <span style="width:9px;height:9px;border-radius:50%;background:var(--o2);opacity:.5"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:var(--o2);opacity:.75"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:var(--o2)"></span>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A2</div><div class="cap-t">Login</div>
+      <div class="cap-d">One email field. Registers an FCM device token silently.</div>
+      <div class="cap-u">GET /partners/login</div>
+      <span class="flag f-bad">no rate limit on send</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:34px">
+        <div class="ttl" style="font-size:20px">Login</div>
+        <p style="font-size:12px;color:#666;text-align:center;font-family:Inter;margin:0 0 22px">Enter your email to receive an OTP for login.</p>
+        <div class="flabel">Email Address</div>
+        <div class="field"><i class="fa-solid fa-envelope"></i>Enter your email</div>
+        <button class="btn" style="margin-top:22px">Send OTP</button>
+        <p style="text-align:center;font-size:12px;color:#666;margin-top:22px;font-family:Inter">Don't have an account? <b style="color:#000">Create Account</b></p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A3</div><div class="cap-t">OTP verification</div>
+      <div class="cap-d">6 digits, hashed at rest, 10-minute expiry.</div>
+      <div class="cap-u">GET /partners/otp-verification</div>
+      <span class="flag f-bad">unlimited guesses</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:34px">
+        <div class="ttl" style="font-size:20px">Verify OTP</div>
+        <p style="font-size:12px;color:#666;text-align:center;font-family:Inter;margin:0 0 6px">Code sent to</p>
+        <p style="font-size:12.5px;font-weight:700;text-align:center;margin:0">partner@example.com</p>
+        <div class="otpbox">
+          <div class="otpd">4</div><div class="otpd">9</div><div class="otpd">2</div>
+          <div class="otpd on"></div><div class="otpd"></div><div class="otpd"></div>
+        </div>
+        <p style="text-align:center;font-size:11px;color:#999">Expires in 09:41</p>
+        <button class="btn" style="margin-top:16px">Verify &amp; Continue</button>
+        <p style="text-align:center;font-size:11.5px;color:#666;margin-top:16px">Didn't get it? <b style="color:var(--o)">Resend</b></p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A4</div><div class="cap-t">Create account</div>
+      <div class="cap-d">7 fields. The UPI field is <b>commented out</b> in the markup.</div>
+      <div class="cap-u">GET /partners/signup</div>
+      <span class="flag f-bad">UPI never collected</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr">
+        <div class="ttl">Create Account</div>
+        <p style="font-size:11px;color:#777;text-align:center;margin:0 0 14px;line-height:1.5">Join the YASHHO platform and start your journey to earn <b style="color:var(--o)">BIG</b>, <b style="color:var(--o)">GROW</b> and transform lives.</p>
+        <div class="field"><i class="fa-solid fa-user"></i>Full Name *</div>
+        <div class="field"><i class="fa-solid fa-envelope"></i>Email Address *</div>
+        <div class="field"><i class="fa-solid fa-phone"></i>Mobile Number *</div>
+        <div class="field"><i class="fa-solid fa-cake-candles"></i>Age *</div>
+        <div class="field"><i class="fa-solid fa-briefcase"></i>Occupation *</div>
+        <div class="field"><i class="fa-solid fa-location-dot"></i>Pin Code *</div>
+        <div class="field" style="opacity:.34;border-style:dashed"><i class="fa-solid fa-indian-rupee-sign"></i>UPI Id * &nbsp;<span style="font-size:9px;color:var(--bad)">(commented out)</span></div>
+        <button class="btn" style="margin-top:14px">Create Account</button>
+        <p style="text-align:center;font-size:11px;color:#666;margin-top:12px">Already have an account? <b style="color:#000">Login with User ID &amp; Password</b></p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A5</div><div class="cap-t">Signup success</div>
+      <div class="cap-d">SweetAlert promises an approval step for the account.</div>
+      <div class="cap-u">POST /partners/signup</div>
+      <span class="flag f-bad">copy contradicts the code</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv" style="position:relative">
+        <div class="pv-scroll"><div class="scr" style="filter:blur(1.6px);opacity:.5">
+          <div class="ttl">Create Account</div>
+          <div class="field">Full Name *</div><div class="field">Email Address *</div>
+          <div class="field">Mobile Number *</div><div class="field">Age *</div>
+        </div></div>
+        <div class="dim"></div>
+        <div class="swal">
+          <div class="tick"><i class="fa-solid fa-check"></i></div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:8px">Account Created!</div>
+          <div style="font-size:11.5px;color:#666;line-height:1.5">Your account has been created successfully. <b>Please wait for Admin Approval.</b></div>
+          <button class="btn" style="margin-top:15px">OK</button>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <div class="note bad">
+    <span class="k">Gap A-1 — the approval the copy promises is not the approval the code performs</span>
+    <code>MobileIgpController::signup()</code> writes <code>'status' =&gt; $request-&gt;status ?? 1</code>
+    — the account is <b>active immediately</b> and can log in at once. The thing that actually stays
+    locked is <code>referral_status</code>, which gates the referral link (screen B1). So "wait for
+    Admin Approval" is true about the link and false about the account. Meanwhile
+    <code>IgpController::store()</code>, the admin's create form, defaults the same field to
+    <b>0</b> — two doors onto one object with opposite defaults.
+  </div>
+
+  <div class="note bad">
+    <span class="k">Gap A-2 — a partner can never enter payout details</span>
+    The UPI field on signup is commented out (<code>signup.blade.php:110</code>); the dashboard's
+    "Payment Details" card is wrapped in <code>@if(false)</code>
+    (<code>dashboard.blade.php:38–203</code>); the profile screen shows only Name, Mobile and IGP
+    Code. So <code>igps.upi_id</code> and <code>account_number</code> have <b>no live entry point
+    in the UI</b> — while <code>storePayout</code> exists to pay against them and the wallet flow
+    promises withdrawal. Admin CRUD is the only way in.
+  </div>
+</section>
+
+<!-- ══════════════ TRACK B ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track B</span><h2>Home — the earning loop</h2></div>
+  <p class="track-note">
+    Live bottom nav is exactly four tabs: <b>Home · Referral · Wallet · Settings</b>. Everything
+    else in this track is reachable only by typing the URL.
+  </p>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">B1</div><div class="cap-t">Dashboard — referral locked</div>
+      <div class="cap-d">What every new partner sees. <code>referral_status = 0</code>.</div>
+      <div class="cap-u">GET /partners/dashboard</div>
+      <span class="flag f-ok">the real default state</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="hdr" style="padding-top:26px"><a href="#">Home</a><div class="bell"><i class="fa-solid fa-bell"></i></div></div>
+        <div class="pv-scroll"><div class="scr" style="padding-top:8px">
+          <div class="earn">
+            <div class="lbl">Total Earnings</div>
+            <div class="amt">₹0.00</div>
+            <div class="hint">Unlock more rewards by inviting students for Enrollments.</div>
+            <span class="pill">Wallet Activated</span>
+          </div>
+          <div class="lockcard">
+            <div class="lockicon"><i class="fa-solid fa-lock"></i></div>
+            <h4>Referral Locked</h4>
+            <p>Your referral link will be unlocked after <b>admin approval</b>.</p>
+            <span class="badge-y">Pending Approval</span>
+          </div>
+        </div></div>
+        <div class="nav">
+          <a class="on"><i class="fas fa-home"></i><span>Home</span></a>
+          <a><i class="fas fa-user-friends"></i><span>Referral</span></a>
+          <a><i class="fas fa-wallet"></i><span>Wallet</span></a>
+          <a><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">B2</div><div class="cap-t">Dashboard — referral unlocked</div>
+      <div class="cap-d">Link + QR + 11 programme-specific links.</div>
+      <div class="cap-u">GET /partners/dashboard</div>
+      <span class="flag f-bad">all 12 links 301 to a dead path</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="hdr" style="padding-top:26px"><a href="#">Home</a><div class="bell"><i class="fa-solid fa-bell"></i></div></div>
+        <div class="pv-scroll"><div class="scr" style="padding-top:8px">
+          <div class="earn"><div class="lbl">Total Earnings</div><div class="amt">₹4,300.00</div>
+          <div class="hint">Unlock more rewards by inviting students for Enrollments.</div><span class="pill">Wallet Activated</span></div>
+          <div class="card peach">
+            <h4>Your Referral Link</h4>
+            <p style="margin-bottom:5px">Your Unique Referral Link</p>
+            <div class="linkbox"><span>irisepro.in/ref/IN5600IGP4821</span><i class="fa-regular fa-copy"></i></div>
+            <button class="btn round">Share Your Link</button>
+            <div class="qr">
+              <svg width="60" height="60" viewBox="0 0 21 21" shape-rendering="crispEdges">
+                <rect width="21" height="21" fill="#fff"/>
+                <g fill="#111">
+                  <rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
+                  <rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
+                  <rect x="2" y="2" width="3" height="3"/>
+                  <rect x="14" y="0" width="7" height="1"/><rect x="14" y="6" width="7" height="1"/>
+                  <rect x="14" y="0" width="1" height="7"/><rect x="20" y="0" width="1" height="7"/>
+                  <rect x="16" y="2" width="3" height="3"/>
+                  <rect x="0" y="14" width="7" height="1"/><rect x="0" y="20" width="7" height="1"/>
+                  <rect x="0" y="14" width="1" height="7"/><rect x="6" y="14" width="1" height="7"/>
+                  <rect x="2" y="16" width="3" height="3"/>
+                  <rect x="9" y="1" width="1" height="2"/><rect x="10" y="4" width="1" height="3"/>
+                  <rect x="8" y="8" width="5" height="1"/><rect x="12" y="10" width="1" height="4"/>
+                  <rect x="9" y="12" width="2" height="1"/><rect x="15" y="9" width="1" height="3"/>
+                  <rect x="17" y="11" width="3" height="1"/><rect x="14" y="15" width="1" height="4"/>
+                  <rect x="16" y="14" width="4" height="1"/><rect x="18" y="17" width="1" height="3"/>
+                  <rect x="16" y="19" width="3" height="1"/><rect x="9" y="16" width="2" height="2"/>
+                </g>
+              </svg>
+            </div>
+            <button class="btn round" style="margin-top:9px">Download QR</button>
+          </div>
+          <div class="card peach">
+            <h4>Specific Links</h4>
+            <p>Share these targeted referral links with students based on which program they are interested in.</p>
+            <div style="font-size:10.5px;font-weight:700;margin-bottom:5px">Rise360</div>
+            <div class="linkbox" style="margin-bottom:6px"><span>Landing Page: irisepro.in/rise-360?ref=…</span><i class="fa-regular fa-copy"></i></div>
+            <div class="linkbox"><span>Direct Form: irisepro.in/enrollment_form?…</span><i class="fa-regular fa-copy"></i></div>
+          </div>
+        </div></div>
+        <div class="nav">
+          <a class="on"><i class="fas fa-home"></i><span>Home</span></a>
+          <a><i class="fas fa-user-friends"></i><span>Referral</span></a>
+          <a><i class="fas fa-wallet"></i><span>Wallet</span></a>
+          <a><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">B3</div><div class="cap-t">Referrals</div>
+      <div class="cap-d">Flat list of reward rows with the student's name.</div>
+      <div class="cap-u">GET /partners/referrals</div>
+      <span class="flag f-warn">capped at 500, no paging</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="hdr" style="padding-top:26px"><a href="#">Home</a><div class="bell"><i class="fa-solid fa-bell"></i></div></div>
+        <div class="pv-scroll"><div class="scr" style="padding-top:10px;background:linear-gradient(135deg,#fff7ed,#ffe9cc);min-height:100%">
+          <div class="ttl">Referrals</div>
+          <div class="card" style="margin-top:4px">
+            <div style="font-size:12.5px;font-weight:700;margin-bottom:4px">Total Enrollment: 6</div>
+          </div>
+          <div class="card">
+            <div class="row"><div><div class="nm">Ananya R — 300</div><div class="dt">(Enrollment Reward) · 28 Aug 2026, 4:12pm</div></div></div>
+            <div class="row"><div><div class="nm">Vikram S — 300</div><div class="dt">(Enrollment Reward) · 26 Aug 2026, 11:02am</div></div></div>
+            <div class="row"><div><div class="nm">Student Not Found — 1000</div><div class="dt">(Bronze Bonus) · 26 Aug 2026, 11:02am</div></div></div>
+            <div class="row"><div><div class="nm">Meera K — 300</div><div class="dt">(Enrollment Reward) · 21 Aug 2026, 9:30am</div></div></div>
+          </div>
+        </div></div>
+        <div class="nav">
+          <a><i class="fas fa-home"></i><span>Home</span></a>
+          <a class="on"><i class="fas fa-user-friends"></i><span>Referral</span></a>
+          <a><i class="fas fa-wallet"></i><span>Wallet</span></a>
+          <a><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">B4</div><div class="cap-t">Progress — badge ladder</div>
+      <div class="cap-d">Tier ladder with unlock thresholds and ₹ rewards.</div>
+      <div class="cap-u">GET /partners/streak-screen</div>
+      <span class="flag f-warn">1 inbound link · not in nav</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;position:relative">
+        <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="ttl">Progress Screen</div>
+        <div style="text-align:center;margin-bottom:12px">
+          <div style="width:56px;height:56px;border-radius:50%;background:#eee;margin:0 auto 8px;display:grid;place-items:center;color:#bbb"><i class="fa-solid fa-user" style="font-size:20px"></i></div>
+          <div style="font-size:13.5px;font-weight:700">Your Badge: Bronze</div>
+          <div style="font-size:10.5px;color:#8a8a8a;margin-top:2px">19 Enrollments away from silver badge</div>
+          <div style="font-size:11px;color:#666;margin-top:8px">Total Enrollments <b style="font-size:15px;color:var(--o)">6</b></div>
+        </div>
+        <div class="tier"><div class="md" style="background:#CD7F32"><i class="fa-solid fa-medal"></i></div><div><div class="tn">BRONZE</div><div class="ts">Tier Unlocked</div></div><div class="tr">₹1,000</div></div>
+        <div class="tier lock"><div class="md" style="background:#C0C0C0"><i class="fa-solid fa-medal"></i></div><div><div class="tn">SILVER</div><div class="ts">Need 19 Enrollments</div></div><div class="tr">₹3,000</div></div>
+        <div class="tier lock"><div class="md" style="background:#FFD700"><i class="fa-solid fa-medal"></i></div><div><div class="tn">GOLD</div><div class="ts">Need 44 Enrollments</div></div><div class="tr">₹4,000</div></div>
+        <div class="tier lock"><div class="md" style="background:#8ED4E8"><i class="fa-solid fa-gem"></i></div><div><div class="tn">DIAMOND</div><div class="ts">Need 69 Enrollments</div></div><div class="tr">₹4,500</div></div>
+        <div class="tier lock"><div class="md" style="background:#B9B9C9"><i class="fa-solid fa-crown"></i></div><div><div class="tn">PLATINUM</div><div class="ts">Need 94 Enrollments</div></div><div class="tr" style="color:var(--bad)">₹7,500</div></div>
+        <div style="font-size:9.5px;color:var(--bad);margin-top:7px;text-align:right">↑ writer pays ₹7,000</div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">B5</div><div class="cap-t">Leaderboard</div>
+      <div class="cap-d">Podium + list. Other partners' names, photos and counts.</div>
+      <div class="cap-u">GET /partners/leaderboard-screen</div>
+      <span class="flag f-bad">500 when logged out</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;position:relative">
+        <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="ttl">Leaderboard</div>
+        <div class="tabs"><div class="on">Overall</div><div>Daily</div></div>
+        <div class="podium">
+          <div class="pod p2"><div class="av"><i class="fa-solid fa-user"></i></div><div class="nm">Rekha M</div><div class="ct">18 Enrollments</div></div>
+          <div class="pod p1"><div class="av"><i class="fa-solid fa-user"></i></div><div class="nm">Suresh P</div><div class="ct">27 Enrollments</div></div>
+          <div class="pod p3"><div class="av"><i class="fa-solid fa-user"></i></div><div class="nm">Anil K</div><div class="ct">14 Enrollments</div></div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <div style="display:flex;font-size:9.5px;color:#a0a0a0;font-weight:700;padding-bottom:6px;border-bottom:1px solid #f0f0f0"><span style="flex:1">Profile Details</span><span style="width:44px">Badge</span><span style="width:44px;text-align:right">Progress</span></div>
+          <div class="row"><div style="flex:1"><div class="nm">4 · Deepa N</div></div><span style="font-size:10px;color:#999">Silver</span><span style="width:44px;text-align:right;font-weight:700;font-size:11px">11</span></div>
+          <div class="row"><div style="flex:1"><div class="nm">5 · You</div></div><span style="font-size:10px;color:var(--o);font-weight:700">Bronze</span><span style="width:44px;text-align:right;font-weight:700;font-size:11px">6</span></div>
+          <div class="row"><div style="flex:1"><div class="nm">6 · Farhan A</div></div><span style="font-size:10px;color:#999">Bronze</span><span style="width:44px;text-align:right;font-weight:700;font-size:11px">5</span></div>
+        </div>
+      </div></div></div></div>
+    </div>
+
+  </div>
+
+  <div class="note bad">
+    <span class="k">Gap B-1 — the share toolkit is the feature, and it is entirely dead</span>
+    All 12 links plus the QR code are hardcoded <code>https://irisepro.in/…</code>. Probed 4 Sep:
+    the primary link and QR resolve to <b>404</b>; <code>NIECCE</code> is <b>404</b>;
+    <code>rise-360</code> and <code>career-rise</code> land on <code>/plans</code> with the code
+    ignored; <code>enrollment_form?ref=</code> returns 200 but the storefront never reads
+    <code>ref</code>. There is no path by which a shared link produces an attributed sale.
+  </div>
+
+  <div class="note">
+    <span class="k">Gap B-2 — the badge ladder shows a number the system will not pay</span>
+    Platinum reads <b>₹7,500</b> on B4, on the wallet and on the rewards screen. The live writer in
+    <code>PaymentController</code> credits <b>₹7,000</b>. The reward-journey screen's headline
+    "Bonus Rewards up to ₹20,000" is the UI table's sum; the writer's sum is ₹19,500.
+  </div>
+</section>
+
+<!-- ══════════════ TRACK C ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track C</span><h2>Wallet &amp; KYC</h2></div>
+  <p class="track-note">
+    Withdrawal is gated behind a five-step wizard: read the NDA, download it, sign it, upload it
+    with both sides of an Aadhaar card, then wait 24–48h for verification.
+  </p>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">C1</div><div class="cap-t">Wallet — locked</div>
+      <div class="cap-d">Balance visible; withdrawal blocked until KYC clears.</div>
+      <div class="cap-u">GET /partners/wallet-screen</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll"><div class="scr" style="padding-top:16px;background:#FFF7F4;min-height:100%;position:relative">
+          <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+          <div class="ttl">Wallet</div>
+          <div class="earn" style="margin-top:6px">
+            <div class="lbl">Available Balance</div><div class="amt">₹4,300.00</div>
+            <div style="display:flex;gap:16px;margin-top:8px;font-size:9.5px;opacity:.95">
+              <div>Next Payment<br><b style="font-size:12px">—</b></div>
+              <div>Total Earned<br><b style="font-size:12px">₹4,300</b></div>
+            </div>
+          </div>
+          <div class="card">
+            <h4 style="font-size:13px;color:var(--bad)">You can not withdraw amount now!</h4>
+            <p>To withdraw amount follow these steps mentioned below.</p>
+            <div style="font-size:10.5px;font-weight:700;margin-bottom:5px">Steps to withdraw amount:</div>
+            <ol style="font-size:10px;color:#777;padding-left:15px;margin:0;line-height:1.6">
+              <li>Click on the Sign-up to withdraw button.</li>
+              <li>Download the agreement, sign it, then upload the signed document.</li>
+              <li>Upload your Aadhaar card.</li>
+              <li>24–48 hours for verification. Once confirmed, you can withdraw.</li>
+            </ol>
+            <button class="btn round">Sign-up to withdraw</button>
+          </div>
+        </div></div>
+        <div class="nav">
+          <a><i class="fas fa-home"></i><span>Home</span></a><a><i class="fas fa-user-friends"></i><span>Referral</span></a>
+          <a class="on"><i class="fas fa-wallet"></i><span>Wallet</span></a><a><i class="fas fa-cog"></i><span>Settings</span></a>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">C2</div><div class="cap-t">Activating Wallet — 5-step wizard</div>
+      <div class="cap-d">Alpine.js stepper. Step 1 renders the full NDA inline.</div>
+      <div class="cap-u">GET /partners/nda-form</div>
+      <span class="flag f-bad">500 when logged out</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Activating Wallet</div>
+        <div class="steps"><div class="stp done">1</div><div class="stp now">2</div><div class="stp">3</div><div class="stp">4</div><div class="stp">5</div></div>
+        <div style="font-size:12px;font-weight:700;margin-bottom:8px">Step 1: Download the PDF of Non Disclosure Agreement</div>
+        <div class="card" style="margin-top:0;max-height:186px;overflow:hidden;position:relative">
+          <div style="font-size:11px;font-weight:700;text-align:center;margin-bottom:8px">Non-Disclosure Agreement (NDA)</div>
+          <div style="font-size:8.5px;color:#666;line-height:1.55">This Agreement is made between iRisePro International Edtech and Career Solutions Private Limited ("Company") and the undersigned YASHHO Growth Partner (IGP) ("Partner").<br><br><b>1. Purpose</b><br>The Company is engaging Partners to promote its Holistic transformation educational programs and empower students…<br><br><b>2. Confidential Information</b><br>Student data, parent details, and enrollment information. Internal marketing materials, scripts, posters…</div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:44px;background:linear-gradient(transparent,#fff)"></div>
+        </div>
+        <button class="btn"><i class="fa-solid fa-download"></i> &nbsp;Download NDA PDF</button>
+        <button class="btn ghost">Upload Signed NDA</button>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">C3</div><div class="cap-t">KYC upload</div>
+      <div class="cap-d">Signed PDF + both Aadhaar sides → private S3, encrypted at rest.</div>
+      <div class="cap-u">POST /partners/igp/wallet/upload</div>
+      <span class="flag f-ok">the media lane is correct</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Activating Wallet</div>
+        <div class="steps"><div class="stp done">1</div><div class="stp done">2</div><div class="stp done">3</div><div class="stp now">4</div><div class="stp">5</div></div>
+        <div style="font-size:12px;font-weight:700;margin-bottom:10px">Step 4: Upload your documents</div>
+        <div class="flabel">Signed NDA (PDF, max 2 MB)</div>
+        <div class="field" style="border-style:dashed;justify-content:center;padding:15px"><i class="fa-solid fa-file-pdf"></i> nda-signed.pdf</div>
+        <div class="flabel">Aadhaar — front</div>
+        <div class="field" style="border-style:dashed;justify-content:center;padding:15px"><i class="fa-solid fa-id-card"></i> Choose image</div>
+        <div class="flabel">Aadhaar — back</div>
+        <div class="field" style="border-style:dashed;justify-content:center;padding:15px"><i class="fa-solid fa-id-card"></i> Choose image</div>
+        <button class="btn">Submit for Verification</button>
+        <p style="font-size:9.5px;color:#999;text-align:center;margin-top:9px">Verification takes 24–48 hours.</p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">C4</div><div class="cap-t">Wallet — verified</div>
+      <div class="cap-d">Transaction history. Badge name comes from matching the <b>amount</b>.</div>
+      <div class="cap-u">GET /partners/wallet-screen</div>
+      <span class="flag f-warn">₹7,000 bonus loses its tier name</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll"><div class="scr" style="padding-top:16px;background:#FFF7F4;min-height:100%">
+          <div class="ttl">Wallet</div>
+          <div class="earn" style="margin-top:6px"><div class="lbl">Available Balance</div><div class="amt">₹4,300.00</div>
+          <div style="display:flex;gap:16px;margin-top:8px;font-size:9.5px;opacity:.95"><div>Next Payment<br><b style="font-size:12px">—</b></div><div>Total Earned<br><b style="font-size:12px">₹4,300</b></div></div></div>
+          <div class="card">
+            <h4>Transaction History</h4>
+            <div class="row"><div><div class="nm">Enrollment Reward</div><div class="dt">28 Aug 2026, 4:12pm</div></div><div class="amt">+300</div></div>
+            <div class="row"><div><div class="nm">Bronze Badge Bonus</div><div class="dt">26 Aug 2026, 11:02am</div></div><div class="amt">+1000</div></div>
+            <div class="row"><div><div class="nm" style="color:var(--bad)">Badge Bonus</div><div class="dt" style="color:var(--bad)">tier name lost — ₹7,000 matches no UI tier</div></div><div class="amt">+7000</div></div>
+            <div class="row"><div><div class="nm">Payout Amount</div><div class="dt">18 Aug 2026, 2:00pm</div></div><div class="amt" style="color:var(--bad)">−2000</div></div>
+          </div>
+        </div></div>
+        <div class="nav"><a><i class="fas fa-home"></i><span>Home</span></a><a><i class="fas fa-user-friends"></i><span>Referral</span></a><a class="on"><i class="fas fa-wallet"></i><span>Wallet</span></a><a><i class="fas fa-cog"></i><span>Settings</span></a></div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <div class="note bad">
+    <span class="k">Gap C-1 — the wizard ends in a promise nothing can fulfil</span>
+    "Once you get Verification confirmation, you can withdraw the amount." There is <b>no withdraw
+    control anywhere in the partner UI</b>. <code>storePayout</code> is admin-initiated only, it
+    pays to <code>upi_id</code> / <code>account_number</code>, and per Gap A-2 the partner has no
+    way to supply either. The loop closes only if an admin fills the bank details by hand.
+  </div>
+</section>
+
+<!-- ══════════════ TRACK D ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track D</span><h2>Secondary surfaces</h2></div>
+  <p class="track-note">
+    Of these five, only Settings sits in the nav. Rewards and Terms of Service have <b>zero
+    inbound links</b> anywhere in the product.
+  </p>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">D1</div><div class="cap-t">Notifications</div>
+      <div class="cap-d">Unread / Read tabs. Reached from the header bell.</div>
+      <div class="cap-u">GET /partners/notification</div>
+      <span class="flag f-warn">unread dot permanently dead</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Notifications</div>
+        <div class="tabs" style="width:150px;margin-bottom:12px"><div class="on">Unread</div><div>Read</div></div>
+        <div class="notif"><div class="ic"><i class="fa-solid fa-indian-rupee-sign"></i></div><div><div class="tx">Congratulations!! Your referral <b>Ananya R</b> has enrolled successfully. <b>₹300</b> has been added to your wallet</div><div class="tm">4:12 PM</div></div></div>
+        <div class="notif"><div class="ic"><i class="fa-solid fa-medal"></i></div><div><div class="tx">Bronze Badge Achieved — you've reached bronze badge level and received a bonus of ₹1,000.</div><div class="tm">11:02 AM</div></div></div>
+        <div class="notif"><div class="ic"><i class="fa-solid fa-user-pen"></i></div><div><div class="tx">Your profile was successfully updated. View changes in your settings.</div><div class="tm">6:00 PM</div></div></div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">D2</div><div class="cap-t">Marketing &amp; Promotional Tools</div>
+      <div class="cap-d">Downloadable creatives, PDFs and videos from <code>igp_marketings</code>.</div>
+      <div class="cap-u">GET /partners/marketing</div>
+      <span class="flag f-bad">200 without login</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;position:relative">
+        <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="ttl" style="font-size:14px">Marketing &amp; Promotional Tools</div>
+        <div class="card" style="margin-top:6px">
+          <h4 style="font-size:12.5px">Rise360 Poster — Kannada</h4>
+          <p style="font-size:10px">Print-ready A4 poster for local circulation.</p>
+          <div style="height:96px;background:linear-gradient(135deg,var(--peach2),var(--peach3));border-radius:10px;display:grid;place-items:center;color:var(--o);font-size:11px;font-weight:700">Marketing Asset</div>
+          <button class="btn round" style="margin-top:9px">Download</button>
+        </div>
+        <div class="card">
+          <h4 style="font-size:12.5px">Partner Pitch Video</h4>
+          <div style="height:76px;background:#222;border-radius:10px;display:grid;place-items:center;color:#fff;font-size:19px"><i class="fa-solid fa-play"></i></div>
+        </div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">D3</div><div class="cap-t">QR modal</div>
+      <div class="cap-d">"Scan to Visit Website" → <b>www.igpnetwork.in</b>, a third-party host.</div>
+      <div class="cap-u">GET /partners/marketing</div>
+      <span class="flag f-bad">unexplained external domain</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv" style="position:relative">
+        <div class="pv-scroll"><div class="scr" style="padding-top:16px;filter:blur(1.6px);opacity:.5">
+          <div class="ttl" style="font-size:14px">Marketing &amp; Promotional Tools</div>
+          <div class="card"><h4 style="font-size:12.5px">Rise360 Poster</h4><div style="height:96px;background:var(--peach2);border-radius:10px"></div></div>
+        </div></div>
+        <div class="dim"></div>
+        <div class="modal">
+          <div style="font-size:14px;font-weight:700;margin-bottom:11px">Scan to Visit Website</div>
+          <div style="width:104px;height:104px;background:#fff;border:1px solid #eee;border-radius:9px;margin:0 auto;display:grid;place-items:center">
+            <svg width="82" height="82" viewBox="0 0 21 21" shape-rendering="crispEdges"><rect width="21" height="21" fill="#fff"/><g fill="#111"><rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/><rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/><rect x="2" y="2" width="3" height="3"/><rect x="14" y="0" width="7" height="1"/><rect x="14" y="6" width="7" height="1"/><rect x="14" y="0" width="1" height="7"/><rect x="20" y="0" width="1" height="7"/><rect x="16" y="2" width="3" height="3"/><rect x="0" y="14" width="7" height="1"/><rect x="0" y="20" width="7" height="1"/><rect x="0" y="14" width="1" height="7"/><rect x="6" y="14" width="1" height="7"/><rect x="2" y="16" width="3" height="3"/><rect x="9" y="2" width="1" height="3"/><rect x="11" y="5" width="1" height="2"/><rect x="8" y="9" width="4" height="1"/><rect x="12" y="11" width="1" height="3"/><rect x="9" y="13" width="2" height="1"/><rect x="15" y="10" width="1" height="3"/><rect x="17" y="12" width="3" height="1"/><rect x="14" y="16" width="1" height="4"/><rect x="16" y="15" width="4" height="1"/><rect x="18" y="18" width="1" height="2"/><rect x="9" y="17" width="2" height="2"/></g></svg>
+          </div>
+          <div style="font-size:10.5px;color:#777;margin-top:11px;line-height:1.45">Scan this code with your phone camera to visit:<br><b style="color:var(--o)">www.igpnetwork.in</b></div>
+          <button class="btn round" style="margin-top:12px">Close</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">D4</div><div class="cap-t">Settings</div>
+      <div class="cap-d">A nav tab leading to one link. That is the whole screen.</div>
+      <div class="cap-u">GET /partners/settings</div>
+      <span class="flag f-warn">a tab worth of nothing</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll"><div class="scr" style="padding-top:16px">
+          <div class="ttl">Settings</div>
+          <div style="font-size:10.5px;font-weight:700;color:#999;letter-spacing:.08em;text-transform:uppercase;margin:14px 0 7px">Account</div>
+          <div class="card" style="margin-top:0;padding:0">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 15px;font-size:13px;font-weight:600">Profile <span style="color:#c4c4c4">›</span></div>
+          </div>
+          <div style="text-align:center;color:#c8c8c8;font-size:11px;margin-top:44px">No other settings exist.</div>
+        </div></div>
+        <div class="nav"><a><i class="fas fa-home"></i><span>Home</span></a><a><i class="fas fa-user-friends"></i><span>Referral</span></a><a><i class="fas fa-wallet"></i><span>Wallet</span></a><a class="on"><i class="fas fa-cog"></i><span>Settings</span></a></div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">D5</div><div class="cap-t">Profile</div>
+      <div class="cap-d">Avatar upload, name, mobile, IGP code, logout. No UPI field.</div>
+      <div class="cap-u">GET /partners/profile</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;position:relative">
+        <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="ttl">Profile</div>
+        <div style="text-align:center;margin:6px 0 14px">
+          <div style="width:88px;height:88px;border-radius:50%;background:#eee;margin:0 auto;display:grid;place-items:center;color:#c0c0c0;border:4px solid #fff;box-shadow:0 3px 12px rgba(0,0,0,.13)"><i class="fa-solid fa-user" style="font-size:32px"></i></div>
+          <div style="font-size:10.5px;color:var(--o);font-weight:700;margin-top:8px">Change photo</div>
+        </div>
+        <div class="flabel">Name</div><div class="field" style="color:#333">Ravi Kumar</div>
+        <div class="flabel">Mobile Number</div><div class="field" style="color:#333">+91 98450 12345</div>
+        <div class="flabel">IGP Code</div><div class="field" style="color:#333">IN5600IGP4821</div>
+        <button class="btn">Update Profile</button>
+        <button class="btn ghost" style="color:#C0362C;border-color:#C0362C">Logout</button>
+      </div></div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ TRACK E ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track E</span><h2>Broken &amp; misfiled screens</h2></div>
+  <p class="track-note">
+    All were probed in production on 4 September, unauthenticated. Three partner routes return <b>500</b> to a logged-out visitor: <code>/partners/nda</code>, <code>/partners/nda-form</code> and <code>/partners/leaderboard-screen</code> — each a null <code>Auth::guard('igp')->user()</code> dereferenced, or a missing view. Task submission, AACE
+    scores and batches are <b>student</b> concepts — a Growth Partner has none of them.
+  </p>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E1</div><div class="cap-t">NDA status page</div>
+      <div class="cap-d">Renders <code>frontendapp.igp.nda.index</code> — the directory does not exist.</div>
+      <div class="cap-u">GET /partners/nda</div>
+      <span class="flag f-bad">HTTP 500 · zero inbound links</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="err500">
+        <div class="code">500</div>
+        <div class="msg">InvalidArgumentException<br><br>View [frontendapp.igp.nda.index] not found.</div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E2</div><div class="cap-t">Leaderboard, logged out</div>
+      <div class="cap-d">Outside <code>igp.auth</code>; the null user is dereferenced.</div>
+      <div class="cap-u">GET /partners/leaderboard-screen</div>
+      <span class="flag f-bad">HTTP 500 unauthenticated</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="err500">
+        <div class="code">500</div>
+        <div class="msg">Attempt to read property on null<br><br>Auth::guard('igp')-&gt;user() returned null and was dereferenced.</div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E3</div><div class="cap-t">Certificate</div>
+      <div class="cap-d">A student's AACE certificate. The controller passes no variables.</div>
+      <div class="cap-u">GET /partners/certificate</div>
+      <span class="flag f-bad">wrong product · 200 in prod</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="wrongscr">
+        <div class="wrongtag">⚠ STUDENT ARTIFACT ON A PARTNER ROUTE</div>
+        <div style="border:3px double #C9A227;border-radius:7px;padding:15px 12px;text-align:center;background:#FFFDF6">
+          <div style="font-size:9px;letter-spacing:.2em;color:#B08D2A;font-weight:700">CERTIFICATION</div>
+          <div style="font-size:15px;font-weight:800;margin:11px 0;color:var(--bad)">Candidate Name</div>
+          <div style="font-size:8.5px;color:#666;line-height:1.6">has successfully completed our copyrighted and revolutionary <b>PESPHAT-GROWPRO</b> assessment, self-awareness and transformation journey and has secured</div>
+          <div style="font-size:20px;font-weight:800;color:var(--o);margin:9px 0">— %</div>
+          <div style="font-size:8px;color:#777;line-height:1.55">Overall AACE64 % based on all four AACE Pillars: Attitude, Aptitude, Communication and Execution.</div>
+        </div>
+        <button class="btn round" style="margin-top:11px">Download Certificate</button>
+        <p style="font-size:9px;color:var(--bad);margin-top:9px;line-height:1.5"><b>$userName is never passed</b> — the fallback literal always renders.</p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E4</div><div class="cap-t">Paid-waiting</div>
+      <div class="cap-d"><code>@extends('frontendapp.partials.app')</code> — the student layout.</div>
+      <div class="cap-u">GET /partners/paid-waiting</div>
+      <span class="flag f-bad">wrong product · 200 in prod</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="wrongscr">
+        <div class="wrongtag">⚠ STUDENT SCREEN ON A PARTNER ROUTE</div>
+        <div style="font-size:14px;font-weight:800;line-height:1.3;margin-bottom:9px">Welcome to the Performance Dashboard</div>
+        <p style="font-size:10px;color:#666;line-height:1.55">Submit <b>Task 1</b> after your batch begins — and unlock your personalized <b>AACE Performance Score</b> — the ultimate measure of your Attitude, Aptitude, Communication, and Execution.</p>
+        <div class="card" style="margin-top:11px">
+          <h4 style="font-size:12px">What you'll see:</h4>
+          <ul style="font-size:9.5px;color:#777;padding-left:15px;margin:0;line-height:1.75">
+            <li>Your overall performance scores</li><li>AACE breakdown</li>
+            <li>Deep insights into strengths and focus areas</li><li>Task completion history and detailed scores</li>
+          </ul>
+        </div>
+        <div class="card"><h4 style="font-size:12px">Awaiting Batch Start</h4><p style="font-size:9.5px">Your batch starts soon — get set for an amazing journey. 🚀</p></div>
+        <button class="btn round">Go to Dashboard</button>
+      </div></div></div></div>
+    </div>
+
+  </div>
+
+  <div class="note bad">
+    <span class="k">Gap E-1 — there is no boundary between the student app and the partner app</span>
+    Both live under <code>resources/views/frontendapp/</code>, one folder apart, so nothing stops a
+    partner view from extending the student layout or a partner controller from rendering a student
+    view. Four files currently cross it: <code>wallet/paid-waiting</code> and
+    <code>wallet/mobile-dashboard</code> extend <code>frontendapp.partials.app</code>;
+    <code>wallet/confirmation</code> and <code>wallet/welcomMail</code> extend
+    <code>emails.layouts.app</code> — email templates served as web pages. A fifth symptom is
+    quieter: <code>partials/header.blade.php:14</code> reads
+    <code>$studentData['unread_notifications']</code>, a variable no IGP controller sets, so the
+    bell's unread dot can never light.
+    <br><br>
+    The ratchet that would hold this: assert every view under <code>frontendapp/igp/</code> extends
+    <code>frontendapp.igp.partials.app</code>, and that no <code>Igp*Controller</code> resolves a
+    view outside that tree.
+  </div>
+</section>
+
+<!-- ══════════════ TRACK F ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track F</span><h2>Admin — desktop</h2></div>
+  <p class="track-note">
+    Two surfaces, and they do not agree on where they live.
+    <code>/superadmin/igp</code> is correctly behind <code>superadmin.auth</code>. A parallel set of
+    admin actions is registered inside <code>routes/igp.php</code>, behind nothing.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px">
+
+    <div>
+      <div class="cap"><div class="cap-n">F1</div><div class="cap-t">Partner list</div>
+      <div class="cap-d">Filter by pin code, sort by enrolments, NDA status inline.</div>
+      <span class="flag f-ok">behind superadmin.auth</span></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/igp</div></div>
+        <div class="bbody">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div style="font-size:17px;font-weight:700">Growth Partners</div>
+            <div style="display:flex;gap:7px"><span style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:5px 10px;font-size:11px;color:#888">Pin code…</span><span style="background:var(--o2);color:#fff;border-radius:6px;padding:5px 11px;font-size:11px;font-weight:600">Bulk Upload</span></div>
+          </div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;overflow:hidden">
+            <div style="display:flex;background:#FAFAFA;padding:8px 11px;font-size:9.5px;font-weight:700;color:#999;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #eee">
+              <span style="flex:2">Name</span><span style="flex:2">Referral code</span><span style="flex:1">Enrol.</span><span style="flex:1">NDA</span><span style="flex:1">Referral</span>
+            </div>
+            <div style="display:flex;padding:9px 11px;font-size:11.5px;border-bottom:1px solid #f3f3f3;align-items:center"><span style="flex:2;font-weight:600">Suresh P</span><span style="flex:2;font-family:monospace;font-size:10.5px">IN5600IGP4821</span><span style="flex:1">27</span><span style="flex:1"><span style="background:#E4F1EA;color:#146B45;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">approved</span></span><span style="flex:1"><span style="background:#E4F1EA;color:#146B45;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">on</span></span></div>
+            <div style="display:flex;padding:9px 11px;font-size:11.5px;border-bottom:1px solid #f3f3f3;align-items:center"><span style="flex:2;font-weight:600">Rekha M</span><span style="flex:2;font-family:monospace;font-size:10.5px">IN5600IGP1177</span><span style="flex:1">18</span><span style="flex:1"><span style="background:#FBF1DC;color:#8A5A00;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">pending</span></span><span style="flex:1"><span style="background:#FBF1DC;color:#8A5A00;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">off</span></span></div>
+            <div style="display:flex;padding:9px 11px;font-size:11.5px;align-items:center"><span style="flex:2;font-weight:600">Anil K</span><span style="flex:2;font-family:monospace;font-size:10.5px">IN5600IGP9034</span><span style="flex:1">14</span><span style="flex:1"><span style="background:#E4F1EA;color:#146B45;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">approved</span></span><span style="flex:1"><span style="background:#E4F1EA;color:#146B45;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">on</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="cap"><div class="cap-n">F2</div><div class="cap-t">Partner detail — KYC &amp; payout</div>
+      <div class="cap-d">Aadhaar review, ledger, manual payout entry.</div>
+      <span class="flag f-bad">these actions are also routed unauthenticated</span></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/igp/12</div></div>
+        <div class="bbody">
+          <div style="font-size:16px;font-weight:700;margin-bottom:11px">Suresh P <span style="font-family:monospace;font-size:11px;color:#999;font-weight:400">· IN5600IGP4821</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+            <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;padding:11px">
+              <div style="font-size:10px;font-weight:700;color:#999;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">KYC documents</div>
+              <div style="display:flex;gap:6px;margin-bottom:8px">
+                <div style="flex:1;height:52px;background:#F0F0F0;border-radius:5px;display:grid;place-items:center;font-size:9px;color:#888">Aadhaar front</div>
+                <div style="flex:1;height:52px;background:#F0F0F0;border-radius:5px;display:grid;place-items:center;font-size:9px;color:#888">Aadhaar back</div>
+              </div>
+              <div style="height:30px;background:#F0F0F0;border-radius:5px;display:grid;place-items:center;font-size:9px;color:#888;margin-bottom:9px">Signed NDA.pdf</div>
+              <div style="display:flex;gap:6px"><span style="flex:1;background:#146B45;color:#fff;text-align:center;border-radius:5px;padding:5px;font-size:10px;font-weight:600">Approve</span><span style="flex:1;background:#fff;border:1px solid #B3261E;color:#B3261E;text-align:center;border-radius:5px;padding:5px;font-size:10px;font-weight:600">Reject</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;padding:11px">
+              <div style="font-size:10px;font-weight:700;color:#999;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">Wallet</div>
+              <div style="font-size:22px;font-weight:800;color:var(--o)">₹4,300</div>
+              <div style="font-size:9.5px;color:#999;margin-bottom:9px">approved balance</div>
+              <div style="background:#F6F6F6;border:1px solid #eee;border-radius:5px;padding:6px 9px;font-size:10.5px;color:#aaa;margin-bottom:6px">Payout amount</div>
+              <div style="background:var(--o2);color:#fff;text-align:center;border-radius:5px;padding:6px;font-size:10.5px;font-weight:700">Process payout</div>
+              <div style="font-size:9px;color:var(--bad);margin-top:7px;line-height:1.4">UPI / account are blank — the partner UI has no field for them.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ IA MAP ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">IA</span><h2>Reachability map</h2></div>
+  <p class="track-note">
+    Every partner-facing route, and how a real partner would get to it. "Inbound links" counts
+    <code>route()</code> references plus raw paths across all 27 Blade files.
+  </p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Screen</th><th class="m">Route</th><th>In nav?</th><th>Inbound links</th><th>Prod status</th></tr></thead>
+      <tbody>
+        <tr><td>Dashboard</td><td class="m">/partners/dashboard</td><td class="v">Home tab</td><td>2</td><td class="v">302 → login</td></tr>
+        <tr><td>Referrals</td><td class="m">/partners/referrals</td><td class="v">Referral tab</td><td>1</td><td class="v">302 → login</td></tr>
+        <tr><td>Wallet</td><td class="m">/partners/wallet-screen</td><td class="v">Wallet tab</td><td>1</td><td class="v">302 → login</td></tr>
+        <tr><td>Settings</td><td class="m">/partners/settings</td><td class="v">Settings tab</td><td>1</td><td class="q">200 unauth</td></tr>
+        <tr><td>Profile</td><td class="m">/partners/profile</td><td>—</td><td>via Settings</td><td class="v">302 → login</td></tr>
+        <tr><td>Notifications</td><td class="m">/partners/notification</td><td>—</td><td>header bell</td><td class="q">200 unauth</td></tr>
+        <tr><td>Activate wallet / NDA</td><td class="m">/partners/nda-form</td><td>—</td><td>2</td><td class="x">500</td></tr>
+        <tr><td>Progress / badges</td><td class="m">/partners/streak-screen</td><td class="x">no</td><td>1</td><td class="v">302 → login</td></tr>
+        <tr><td>Leaderboard</td><td class="m">/partners/leaderboard-screen</td><td class="x">no</td><td>2</td><td class="x">500</td></tr>
+        <tr><td>Marketing tools</td><td class="m">/partners/marketing</td><td class="x">no</td><td>1</td><td class="x">200 unauth</td></tr>
+        <tr style="background:var(--warnbg)"><td>Reward journey</td><td class="m">/partners/rewards</td><td class="x">no</td><td class="x">0</td><td class="v">302 → login</td></tr>
+        <tr style="background:var(--warnbg)"><td>Terms of Service</td><td class="m">/partners/termsOfService</td><td class="x">no</td><td class="x">0</td><td class="q">200 unauth</td></tr>
+        <tr style="background:var(--warnbg)"><td>Programme overview</td><td class="m">/partners/programs/overview</td><td class="x">no</td><td class="x">0</td><td class="q">200 unauth</td></tr>
+        <tr style="background:var(--warnbg)"><td>Live Q&amp;A</td><td class="m">/partners/programs/live</td><td class="x">no</td><td class="x">0</td><td class="q">200 unauth</td></tr>
+        <tr style="background:var(--badbg)"><td>NDA status</td><td class="m">/partners/nda</td><td class="x">no</td><td class="x">0</td><td class="x">500</td></tr>
+        <tr style="background:var(--badbg)"><td>Certificate <span class="x">(student)</span></td><td class="m">/partners/certificate</td><td class="x">no</td><td class="x">0</td><td class="x">200 unauth</td></tr>
+        <tr style="background:var(--badbg)"><td>Paid-waiting <span class="x">(student)</span></td><td class="m">/partners/paid-waiting</td><td class="x">no</td><td class="x">0</td><td class="x">200 unauth</td></tr>
+        <tr style="background:var(--badbg)"><td>Mobile-dashboard <span class="x">(student)</span></td><td class="m">/partners/mobile-dashboard</td><td class="x">no</td><td class="x">0</td><td class="x">200 unauth</td></tr>
+        <tr style="background:var(--badbg)"><td>Confirmation <span class="x">(email)</span></td><td class="m">— not routed</td><td class="x">no</td><td class="x">0</td><td>dead</td></tr>
+        <tr style="background:var(--badbg)"><td>Welcome mail <span class="x">(email)</span></td><td class="m">— not routed</td><td class="x">no</td><td class="x">0</td><td>dead</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════ QUESTIONS ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Open</span><h2>Questions only you can answer</h2></div>
+  <p class="track-note">
+    These are product calls, not code calls. Each one changes what gets built, so none of them
+    should be guessed.
+  </p>
+
+  <ol class="qs">
+    <li><b>What is <code>www.igpnetwork.in</code>?</b>
+      <span>The marketing screen's QR code points there and the modal names it in copy. It resolves —
+      200, Hostinger CDN, on IPs unrelated to our infrastructure. Is it ours, a partner-agency
+      microsite, or something abandoned? If it is not ours, the QR should not be shipping.</span></li>
+
+    <li><b>Does the partner enter their own payout details, or does an admin?</b>
+      <span>Today neither works: the signup UPI field is commented out, the dashboard card is
+      <code>@if(false)</code>, and the profile screen has no field. If partners self-serve, the
+      dashboard block needs unhiding and <code>update-payment</code> needs authentication. If admin
+      captures it, the wizard's "you can withdraw" promise must be rewritten.</span></li>
+
+    <li><b>Is withdrawal partner-initiated or admin-initiated?</b>
+      <span>The wallet screen tells the partner they will be able to withdraw after verification.
+      The only payout code is <code>storePayout</code>, an admin form. There is no request-payout
+      control anywhere. One of the two has to change.</span></li>
+
+    <li><b>Two approval gates or one?</b>
+      <span><code>status</code> gates login; <code>referral_status</code> gates the referral link.
+      Self-signup sets status active + referral locked; admin-create sets status inactive. Is the
+      intended model "log in immediately, earn after approval", or "approved before anything"?</span></li>
+
+    <li><b>Which Platinum number is real — ₹7,000 or ₹7,500?</b>
+      <span>The writer pays 7,000; four screens promise 7,500 and the reward journey advertises "up
+      to ₹20,000", which only adds up at 7,500. Whichever is correct, the other three copies have
+      to be deleted rather than corrected — one table, one place.</span></li>
+
+    <li><b>Is the "90-Day Clock" a real mechanic?</b>
+      <span>The rewards screen describes a 90-day window to reach 100 enrolments. Nothing in the
+      code ever compares <code>now()</code> to <code>cycle_started_at</code>; the cycle only
+      advances when Platinum is hit, which resets the badge to none and enrolments to zero. Either
+      the clock needs building or the copy needs removing.</span></li>
+
+    <li><b>Should partners see each other?</b>
+      <span>The leaderboard shows other partners' names, photos and enrolment counts. That is a
+      deliberate motivational choice in most affiliate programmes and a privacy question in
+      some — but it should be a decision, and right now it is a default.</span></li>
+
+    <li><b>What happens to a partner's ledger when they are deleted?</b>
+      <span><code>destroy()</code> is a hard delete with no soft-deletes and no foreign keys, so
+      rewards, transactions, badge history and the KYC row survive as orphans and the private S3
+      Aadhaar objects are never purged. Retention and erasure both need a stated rule.</span></li>
+
+    <li><b>Do the six orphaned screens ship or get deleted?</b>
+      <span>Reward journey, Terms of Service, programme overview, live Q&amp;A, NDA status and
+      certificate have zero inbound links. Each is either a nav item we forgot to add or dead
+      weight to remove — but leaving them URL-only is the one option that helps nobody.</span></li>
+
+    <li><b>Where does the referral link point once attribution is rebuilt?</b>
+      <span>The partner surface is Laravel at <code>app.irisepro.in/partners</code>; the buyer
+      surface is Next.js at <code>yashho.com</code>. The link has to land on the storefront and the
+      code has to survive into the Razorpay order notes. That is a storefront change, and it should
+      ship together with the double-credit fix.</span></li>
+  </ol>
+</section>
+
+<footer class="end">
+  Reconstructed 4 September 2026 from <code>irisepro-stack/Backend-laravel</code> @ <code>7150f1e9</code>
+  — 27 Blade files under <code>resources/views/frontendapp/igp/</code>, <code>routes/igp.php</code>,
+  and the four <code>Igp*Controller</code> classes. Palette and fonts are the product's own,
+  grepped from those files. Production checks were read-only <code>GET</code>s against
+  <code>app.irisepro.in</code>; no write endpoint was called and no real partner's KYC document was fetched.
+</footer>
+
+</div>
