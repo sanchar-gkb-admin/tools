@@ -204,6 +204,19 @@ h1{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-.03em;line-hei
 
 .wrongscr{background:#fff;padding:16px;height:100%}
 .r-bad{background:var(--badbg)}
+
+/* ── payout run: admin table atoms ── */
+.arow{display:flex;padding:9px 11px;font-size:11.5px;border-bottom:1px solid #f3f3f3;align-items:center}
+.ahead{display:flex;background:#FAFAFA;padding:8px 11px;font-size:9.5px;font-weight:700;color:#999;
+  letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #eee}
+.pill2{font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap}
+.p-ok{background:#E4F1EA;color:#146B45}
+.p-wait{background:#FBF1DC;color:#8A5A00}
+.p-bad{background:#FBEAE8;color:#B3261E}
+.p-tr{background:#E7EEF7;color:#2C5282}
+.tot{display:flex;justify-content:space-between;padding:6px 0;font-size:11.5px;border-bottom:1px dashed #e8e8e8}
+.tot b{font-variant-numeric:tabular-nums}
+.tot.grand{border-bottom:0;border-top:2px solid #333;margin-top:4px;padding-top:8px;font-weight:800;font-size:13px}
 .wrongtag{background:var(--badbg);border:1px dashed var(--bad);color:var(--bad);font-size:9.5px;font-weight:700;padding:5px 8px;border-radius:4px;margin-bottom:11px;text-align:center;letter-spacing:.05em}
 
 .sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:17px 15px 20px;box-shadow:0 -8px 26px rgba(0,0,0,.22);z-index:20}
@@ -1635,6 +1648,409 @@ LANE E · attribution       T12 first/last touch ─┐
     <b>1.</b> Confirm the 8 stream&rarr;page mappings (T2). &nbsp;<b>2.</b> Measure the Razorpay
     <code>notes</code> cap (T11). &nbsp;<b>3.</b> Platinum &mdash; &#8377;7,000 or &#8377;7,500?
     (T16) &nbsp;<b>4.</b> Payout details &mdash; partner self-serve or admin-entered? (T17)
+  </div>
+</section>
+
+
+<!-- ══════════════ TRACK L — PAYOUT RUNS ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track L</span><h2>Payout runs &mdash; RazorpayX &middot; phase 2</h2></div>
+  <p class="track-note">
+    Deferred by decision on 4 Sep &mdash; payouts stay admin-initiated for now, routed through the
+    ledger with a reference and an actor. This is the shape for when the three prerequisites land.
+    &#9888; RazorpayX API specifics are <b>UNVERIFIED</b> (from training, not measured); TDS needs a CA.
+  </p>
+
+  <div class="note bad">
+    <span class="k">Three long-lead prerequisites &mdash; none is a sprint task</span>
+    <b>1. RazorpayX onboarding</b> &mdash; a separate product from the payment gateway, needing a
+    current account or partner bank. &nbsp;<b>2. PAN + TDS &sect;194H</b> &mdash; we collect Aadhaar
+    and <b>no PAN</b>; if 194H applies the transfer is net of TDS and the ledger needs a
+    <code>tds_withheld</code> leg or the books will not tie to the bank. &nbsp;<b>3. A live UPI entry
+    point</b> &mdash; today <code>upi_id</code> has none (Gap A-2); the only capture is a handwritten
+    line on the signed NDA.
+  </div>
+
+  <h3 style="font-size:23px;font-weight:700;margin:30px 0 12px">Partner side &mdash; what replaces the dead Withdraw button</h3>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">L1</div><div class="cap-t">Add payout details</div>
+      <div class="cap-d">The entry point that does not exist today (Gap A-2).</div>
+      <div class="cap-u">GET /yashomargi/payout-details</div>
+      <span class="flag f-bad">missing today</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Payout Details</div>
+        <p style="font-size:11px;color:#777;margin:0 0 14px;line-height:1.5">We pay your commission here. Verify once &mdash; you can change it later.</p>
+        <div class="flabel">UPI ID</div>
+        <div class="field"><i class="fa-solid fa-indian-rupee-sign"></i>name@bank</div>
+        <p style="font-size:9.5px;color:#999;margin:6px 0 0">Or use a bank account instead</p>
+        <button class="btn">Verify UPI</button>
+        <div class="card peach" style="margin-top:16px">
+          <p style="font-size:10.5px;margin:0;line-height:1.55">We send <b>&#8377;1</b> to confirm the ID belongs to you. It is yours to keep.</p>
+        </div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">L2</div><div class="cap-t">UPI verified</div>
+      <div class="cap-d">Name returned by the rail must match the NDA name.</div>
+      <div class="cap-u">fund-account validation</div>
+      <span class="flag f-ok">blocks paying a stranger</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Payout Details</div>
+        <div class="card" style="border:1.5px solid #10B981">
+          <div style="display:flex;align-items:center;gap:9px">
+            <div style="width:32px;height:32px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
+            <div><div style="font-size:12.5px;font-weight:700">ravi@okhdfcbank</div>
+            <div style="font-size:9.5px;color:#888">Verified &middot; RAVI KUMAR</div></div>
+          </div>
+        </div>
+        <div class="card peach">
+          <h4 style="font-size:12.5px">Next payout</h4>
+          <p style="font-size:10.5px;margin:0">Runs on the 1st of each month for balances over &#8377;1,000.</p>
+        </div>
+        <button class="btn ghost">Change UPI ID</button>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">L3</div><div class="cap-t">Wallet &mdash; payout scheduled</div>
+      <div class="cap-d">Replaces &ldquo;you can withdraw&rdquo;, which was never true.</div>
+      <div class="cap-u">GET /yashomargi/wallet</div>
+      <span class="flag f-warn">copy fix, ships now</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll"><div class="scr" style="padding-top:16px;background:#FFF7F4;min-height:100%">
+          <div class="ttl">Wallet</div>
+          <div class="earn" style="margin-top:6px"><div class="lbl">Available Balance</div><div class="amt">&#8377;4,300.00</div>
+          <div style="display:flex;gap:16px;margin-top:8px;font-size:9.5px;opacity:.95">
+            <div>Next Payout<br><b style="font-size:12px">1 Oct</b></div>
+            <div>Pending<br><b style="font-size:12px">&#8377;900</b></div></div></div>
+          <div class="card">
+            <h4 style="font-size:13px">Your next payout</h4>
+            <div class="tot"><span>Approved balance</span><b>&#8377;4,300</b></div>
+            <div class="tot"><span>TDS (&sect;194H)<span style="color:var(--bad)"> *</span></span><b>&minus;&#8377;215</b></div>
+            <div class="tot grand"><span>You receive</span><b>&#8377;4,085</b></div>
+            <p style="font-size:9px;color:#999;margin:9px 0 0">* rate pending CA confirmation &mdash; illustrative</p>
+          </div>
+          <div class="card peach">
+            <p style="font-size:10.5px;margin:0;line-height:1.55">Paid to <b>ravi@okhdfcbank</b> on <b>1 Oct</b>. Balances under &#8377;1,000 roll to the next run.</p>
+          </div>
+        </div></div>
+        <div class="nav"><a><i class="fas fa-home"></i><span>Home</span></a><a><i class="fas fa-user-friends"></i><span>Referral</span></a><a class="on"><i class="fas fa-wallet"></i><span>Wallet</span></a><a><i class="fas fa-cog"></i><span>Settings</span></a></div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">L4</div><div class="cap-t">Paid &mdash; with a reference</div>
+      <div class="cap-d">The UTR is what makes A6 reconcilable.</div>
+      <div class="cap-u">webhook payout.processed</div>
+      <span class="flag f-ok">closes the loop</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;background:#FFF7F4;min-height:100%">
+        <div class="ttl">Wallet</div>
+        <div class="earn" style="margin-top:6px;background:linear-gradient(135deg,#10B981,#5BC896)"><div class="lbl">Paid on 1 Oct</div><div class="amt">&#8377;4,085.00</div>
+        <div style="font-size:9.5px;opacity:.95">to ravi@okhdfcbank</div></div>
+        <div class="card">
+          <h4 style="font-size:12.5px">Payout receipt</h4>
+          <div class="tot"><span>Commission</span><b>&#8377;3,300</b></div>
+          <div class="tot"><span>Bronze badge bonus</span><b>&#8377;1,000</b></div>
+          <div class="tot"><span>TDS withheld</span><b>&minus;&#8377;215</b></div>
+          <div class="tot grand"><span>Transferred</span><b>&#8377;4,085</b></div>
+          <div style="font-size:9.5px;color:#888;margin-top:10px;font-family:ui-monospace,monospace">UTR &middot; N123456789012345</div>
+          <button class="btn ghost" style="margin-top:9px">Download statement</button>
+        </div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">L5</div><div class="cap-t">Payout failed</div>
+      <div class="cap-d">Money returns to the balance &mdash; never silently lost.</div>
+      <div class="cap-u">webhook payout.failed / reversed</div>
+      <span class="flag f-bad">the two-phase leg exists for this</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px;background:#FFF7F4;min-height:100%">
+        <div class="ttl">Wallet</div>
+        <div class="card" style="border:1.5px solid var(--bad);background:#FFF6F5">
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:30px;height:30px;border-radius:50%;background:#FBEAE8;display:grid;place-items:center;color:#B3261E;flex:0 0 auto"><i class="fa-solid fa-triangle-exclamation" style="font-size:12px"></i></div>
+            <div><div style="font-size:12.5px;font-weight:700;color:#B3261E">Payout could not be completed</div>
+            <p style="font-size:10.5px;color:#666;margin:5px 0 0;line-height:1.5">Your UPI ID was not reachable. <b>&#8377;4,085 is back in your balance</b> &mdash; nothing was lost. Update your UPI and we will retry on the next run.</p></div>
+          </div>
+          <button class="btn" style="margin-top:11px">Update UPI ID</button>
+        </div>
+        <div class="earn" style="margin-top:13px"><div class="lbl">Available Balance</div><div class="amt">&#8377;4,300.00</div></div>
+      </div></div></div></div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:23px;font-weight:700;margin:34px 0 12px">Admin side &mdash; the run</h3>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:22px">
+
+    <div>
+      <div class="cap"><div class="cap-n">L6</div><div class="cap-t">Build the batch</div>
+      <div class="cap-d">Threshold + cutoff select who is in. Nothing moves yet.</div></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/payout-runs/new</div></div>
+        <div class="bbody">
+          <div style="font-size:16px;font-weight:700;margin-bottom:10px">Payout run &mdash; October</div>
+          <div style="display:flex;gap:9px;margin-bottom:12px;font-size:11px">
+            <span style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:5px 10px">Cutoff: 30 Sep</span>
+            <span style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:5px 10px">Min: &#8377;1,000</span>
+            <span style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:5px 10px">Rail: UPI</span>
+          </div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;overflow:hidden">
+            <div class="ahead"><span style="flex:2">Partner</span><span style="flex:2">Fund account</span><span style="flex:1">Payable</span><span style="flex:1">TDS</span><span style="flex:1">Net</span></div>
+            <div class="arow"><span style="flex:2;font-weight:600">Suresh P</span><span style="flex:2;font-size:10px;color:#777">suresh@oksbi <span class="pill2 p-ok">verified</span></span><span style="flex:1">4,300</span><span style="flex:1">215</span><span style="flex:1;font-weight:700">4,085</span></div>
+            <div class="arow"><span style="flex:2;font-weight:600">Rekha M</span><span style="flex:2;font-size:10px;color:#777">rekha@ybl <span class="pill2 p-ok">verified</span></span><span style="flex:1">2,600</span><span style="flex:1">130</span><span style="flex:1;font-weight:700">2,470</span></div>
+            <div class="arow" style="opacity:.5"><span style="flex:2;font-weight:600">Anil K</span><span style="flex:2;font-size:10px;color:#777">&mdash; <span class="pill2 p-bad">no UPI</span></span><span style="flex:1">1,900</span><span style="flex:1">&mdash;</span><span style="flex:1">excluded</span></div>
+            <div class="arow" style="opacity:.5"><span style="flex:2;font-weight:600">Deepa N</span><span style="flex:2;font-size:10px;color:#777">deepa@upi <span class="pill2 p-wait">KYC pending</span></span><span style="flex:1">640</span><span style="flex:1">&mdash;</span><span style="flex:1">below min</span></div>
+          </div>
+          <div style="margin-top:11px;font-size:11px;color:#777">2 of 4 eligible &middot; 2 excluded, and <b>the reason is shown</b> &mdash; a silently dropped partner is a support ticket.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="cap"><div class="cap-n">L7</div><div class="cap-t">Approval &mdash; maker &ne; checker</div>
+      <div class="cap-d">The identity that BUILT the run cannot approve it. Corrected 4&nbsp;Sep.</div>
+      <span class="flag f-bad">was single-approver — wrong</span></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/payout-runs/12/approve</div></div>
+        <div class="bbody">
+          <div style="font-size:16px;font-weight:700;margin-bottom:11px">Approve run #12</div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;padding:14px;max-width:320px">
+            <div class="tot"><span>Partners</span><b>2</b></div>
+            <div class="tot"><span>Gross payable</span><b>&#8377;6,900</b></div>
+            <div class="tot"><span>TDS withheld</span><b>&minus;&#8377;345</b></div>
+            <div class="tot grand"><span>Bank debit</span><b>&#8377;6,555</b></div>
+            <div style="margin-top:13px;display:flex;gap:8px">
+              <span style="flex:1;background:#146B45;color:#fff;text-align:center;border-radius:6px;padding:8px;font-size:11.5px;font-weight:700">Approve &amp; initiate</span>
+              <span style="flex:1;background:#fff;border:1px solid #999;color:#555;text-align:center;border-radius:6px;padding:8px;font-size:11.5px;font-weight:600">Cancel</span>
+            </div>
+            <div style="margin-top:11px;padding:9px 11px;background:#FBEAE8;border-left:3px solid #B3261E;font-size:10px;line-height:1.5">
+              <b>Built by</b> Priya S &middot; 1 Oct 08:52<br>
+              <b>Approving as</b> Goutam &mdash; a different identity, enforced in code.
+              <span style="color:#B3261E">Priya cannot approve her own run.</span>
+            </div>
+            <p style="font-size:9.5px;color:#999;margin:9px 0 0;line-height:1.5">Both identities are written to every entry in this run.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="cap"><div class="cap-n">L8</div><div class="cap-t">In flight &mdash; two-phase</div>
+      <div class="cap-d">Ledger says <i>in transit</i>, not <i>paid</i>, until the webhook confirms.</div></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/payout-runs/12</div></div>
+        <div class="bbody">
+          <div style="font-size:16px;font-weight:700;margin-bottom:10px">Run #12 &middot; in progress</div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;overflow:hidden">
+            <div class="ahead"><span style="flex:2">Partner</span><span style="flex:1">Net</span><span style="flex:2">State</span><span style="flex:2">Reference</span></div>
+            <div class="arow"><span style="flex:2;font-weight:600">Suresh P</span><span style="flex:1">4,085</span><span style="flex:2"><span class="pill2 p-ok">settled</span></span><span style="flex:2;font-family:ui-monospace,monospace;font-size:9.5px">N1234567890123</span></div>
+            <div class="arow"><span style="flex:2;font-weight:600">Rekha M</span><span style="flex:1">2,470</span><span style="flex:2"><span class="pill2 p-tr">in transit</span></span><span style="flex:2;color:#aaa;font-size:10px">awaiting webhook</span></div>
+          </div>
+          <div style="margin-top:12px;background:#E7EEF7;border-left:3px solid #2C5282;padding:9px 12px;font-size:10.5px;line-height:1.5">
+            <b>A10</b> &mdash; <code>payouts_in_transit</code> must be zero outside an open run. Anything
+            stuck here is a payout that neither settled nor reversed, which is exactly the state that
+            goes unnoticed.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="cap"><div class="cap-n">L9</div><div class="cap-t">Reconciled</div>
+      <div class="cap-d">Run total ties to one bank debit. A6 becomes real.</div></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/payout-runs/12</div></div>
+        <div class="bbody">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:11px">
+            <div style="width:30px;height:30px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
+            <div style="font-size:16px;font-weight:700">Run #12 &middot; reconciled</div>
+          </div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;padding:14px;max-width:340px">
+            <div class="tot"><span>Ledger &mdash; settled debits</span><b>&#8377;6,555</b></div>
+            <div class="tot"><span>Bank statement debit</span><b>&#8377;6,555</b></div>
+            <div class="tot grand" style="color:#146B45"><span>Difference</span><b>&#8377;0</b></div>
+            <div style="margin-top:12px;font-size:10.5px;color:#666;line-height:1.55">
+              Approved by <b>Goutam</b> &middot; 1 Oct 09:14 &middot; 2 payouts &middot; 0 reversed<br>
+              <code style="font-size:9.5px">partner:ledger-verify</code> exit 0
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <span class="k">The state machine every screen above is rendering</span>
+    <code>ACCRUED</code> &rarr; <code>APPROVED</code> &rarr; <code>QUEUED</code> &rarr;
+    <code>IN&nbsp;TRANSIT</code> &rarr; <code>SETTLED</code>, with <code>REVERSED</code> returning to
+    <code>APPROVED</code>. Initiation posts <code>partner_payable &rarr; payouts_in_transit</code>;
+    only the <b>webhook</b> posts <code>in_transit &rarr; bank</code>. A single-phase debit would let
+    a failed transfer vanish from a partner's balance with nothing detecting it &mdash; which is
+    exactly what screen L5 exists to make impossible.
+  </div>
+
+  <div class="note bad">
+    <span class="k">Idempotency &mdash; the one that cannot be got wrong</span>
+    A payout call that times out must <b>never</b> be retried blindly. A duplicate payout cannot be
+    clawed back the way a duplicate charge can. Use the provider's idempotency key <b>and</b> key the
+    ledger entry on the same value, so a retry is a no-op on both sides.
+  </div>
+</section>
+
+
+<!-- ══════════════ TRACK M — KYC ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track M</span><h2>KYC &mdash; three checks, zero retained numbers</h2></div>
+  <p class="track-note">
+    Verify three things; store only what has a purpose we can name. &#9888; Regulatory footing is
+    <b>unconfirmed</b> &mdash; &sect;194H needs a CA, and Aadhaar authentication by a non-notified
+    entity needs counsel. Build K1+K2 first; they are needed either way.
+  </p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Check</th><th>Answers</th><th>Method</th><th>What we STORE</th></tr></thead>
+      <tbody>
+        <tr class="r-go"><td><b>PAN</b></td><td>tax identity &mdash; &sect;194H withholding</td><td>online partner service, name match</td><td class="v">mask <code>XXXXX234F</code> + ref</td></tr>
+        <tr class="r-go"><td><b>Fund account</b></td><td><i>&ldquo;is this account theirs?&rdquo;</i></td><td>penny-drop &rarr; bank returns the holder name</td><td class="v">VPA + verification ref + returned name</td></tr>
+        <tr class="r-go"><td><b>Aadhaar</b> <span class="c-mute">(conditional)</span></td><td>identity assurance</td><td>online partner service &mdash; <b>no upload</b></td><td class="v">mask <code>XXXX XXXX 4821</code> + ref</td></tr>
+        <tr class="r-bad"><td colspan="3"><b>Never stored, in any of the three</b></td><td class="x">a full PAN &middot; a full Aadhaar number &middot; any image &middot; any OTP &middot; any raw vendor payload</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note bad">
+    <span class="k">Masks only &mdash; settled 4 Sep [Goutam]</span>
+    <i>"so there is no way anyone can misuse these ever."</i> A database dump then contains nothing
+    usable. Verification runs through an online partner service; we keep the <b>mask and the
+    reference</b>, and the vendor is the custodian of record.
+    <br><br>
+    ⛔ <b>One consequence to decide, not discover:</b> a TDS return needs the deductee's <b>full</b>
+    PAN &mdash; Form 26Q cannot be filed against a mask. So someone holds it at filing time. Best
+    answer: the KYC vendor, exchanged via the reference and never persisted. Alternatives: a
+    tokenisation vault, or the CA directly. Deciding in January is too late.
+    <br><br>
+    And the rule is a <b>ratchet, not a promise</b>: a test scans every column of the partner tables
+    &mdash; plus the ledger's JSON <code>trace</code>, the likeliest leak &mdash; for a PAN-shaped or
+    12-digit value, and is seeded to prove it can go red.
+  </div>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M1</div><div class="cap-t">Why we ask</div>
+      <div class="cap-d">Purpose stated before collection &mdash; DPDPA, not decoration.</div>
+      <div class="cap-u">GET /yashomargi/verify</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Before we can pay you</div>
+        <p style="font-size:11px;color:#777;margin:0 0 14px;line-height:1.55">Three quick checks. We tell you exactly what we keep.</p>
+        <div class="card" style="margin-top:0">
+          <div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:11px">
+            <div style="width:26px;height:26px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:var(--o);font-size:11px;font-weight:800;flex:0 0 auto">1</div>
+            <div><div style="font-size:12px;font-weight:700">PAN</div><div style="font-size:10px;color:#888;line-height:1.45">Required by tax law before we can pay commission.</div></div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:11px">
+            <div style="width:26px;height:26px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:var(--o);font-size:11px;font-weight:800;flex:0 0 auto">2</div>
+            <div><div style="font-size:12px;font-weight:700">Your UPI</div><div style="font-size:10px;color:#888;line-height:1.45">We send &#8377;1 to confirm it is yours. Keep it.</div></div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:26px;height:26px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:var(--o);font-size:11px;font-weight:800;flex:0 0 auto">3</div>
+            <div><div style="font-size:12px;font-weight:700">Identity</div><div style="font-size:10px;color:#888;line-height:1.45">Via DigiLocker. <b>No documents to upload.</b></div></div>
+          </div>
+        </div>
+        <div class="card peach">
+          <p style="font-size:10px;margin:0;line-height:1.6"><b>We do not store</b> your Aadhaar number, any photo of it, or any OTP. Only a confirmation that the check passed.</p>
+        </div>
+        <button class="btn">Start</button>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M2</div><div class="cap-t">PAN &mdash; verified by name match</div>
+      <div class="cap-d">A mismatch is refused, not warned.</div>
+      <div class="cap-u">K1</div>
+      <span class="flag f-ok">the only retained number</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Step 1 of 3 &middot; PAN</div>
+        <div class="flabel">PAN number</div>
+        <div class="field" style="color:#333;letter-spacing:.08em">ABCDE1234F</div>
+        <p style="font-size:9px;color:#999;margin:5px 0 0">Checked with our verification partner. We keep only <b>XXXXX234F</b>.</p>
+        <div class="card" style="border:1.5px solid #10B981;margin-top:14px">
+          <div style="display:flex;gap:9px;align-items:center">
+            <div style="width:30px;height:30px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
+            <div><div style="font-size:12px;font-weight:700">RAVI KUMAR</div>
+            <div style="font-size:9.5px;color:#888">Matches your agreement name</div></div>
+          </div>
+        </div>
+        <div class="card peach">
+          <p style="font-size:10px;margin:0;line-height:1.55">Tax may be deducted at source on your commission. Your PAN keeps that at the lower rate.</p>
+        </div>
+        <button class="btn">Continue</button>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M3</div><div class="cap-t">Identity &mdash; DigiLocker handoff</div>
+      <div class="cap-d">OAuth. Nothing is uploaded, nothing is stored.</div>
+      <div class="cap-u">K3 &mdash; conditional on counsel</div>
+      <span class="flag f-warn">may be deleted, not deferred</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Step 3 of 3 &middot; Identity</div>
+        <div class="card" style="margin-top:6px;text-align:center;padding:20px 15px">
+          <div style="width:52px;height:52px;border-radius:12px;background:#1B4F9C;display:grid;place-items:center;margin:0 auto 11px;color:#fff;font-size:20px"><i class="fa-solid fa-id-badge"></i></div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px">Verify with DigiLocker</div>
+          <p style="font-size:10.5px;color:#777;margin:0;line-height:1.55">You will sign in to DigiLocker and approve sharing your name and last 4 digits. You never send us a document.</p>
+        </div>
+        <div class="card peach">
+          <div style="font-size:10.5px;font-weight:700;margin-bottom:6px">What we receive</div>
+          <div style="font-size:10px;color:#666;line-height:1.7">&#10003; Name &nbsp;&#10003; Last 4 digits &nbsp;&#10003; A confirmation reference<br><span style="color:var(--bad)">&#10007; Not the full number &nbsp;&#10007; Not any image</span></div>
+        </div>
+        <button class="btn">Open DigiLocker</button>
+        <p style="text-align:center;font-size:10px;color:#999;margin-top:11px">Prefer not to? <b style="color:var(--o)">Talk to us</b></p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M4</div><div class="cap-t">Done &mdash; and we show what we kept</div>
+      <div class="cap-d">Transparency is the DPDPA posture, and it is cheap.</div>
+      <div class="cap-u">GET /yashomargi/verify/complete</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">You're verified</div>
+        <div style="text-align:center;margin:10px 0 16px">
+          <div style="width:62px;height:62px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;margin:0 auto;color:#146B45;font-size:26px"><i class="fa-solid fa-check"></i></div>
+        </div>
+        <div class="card" style="margin-top:0">
+          <div style="font-size:11px;font-weight:700;margin-bottom:9px">What we hold</div>
+          <div class="tot" style="font-size:10.5px"><span>PAN</span><b>XXXXX234F</b></div>
+          <div class="tot" style="font-size:10.5px"><span>UPI</span><b>ravi@okhdfcbank</b></div>
+          <div class="tot" style="font-size:10.5px"><span>Aadhaar</span><b>XXXX XXXX 4821</b></div>
+          <div class="tot" style="font-size:10.5px"><span>Verified on</span><b>4 Sep 2026</b></div>
+        </div>
+        <div class="card" style="background:#FFF6F5;border:1px solid #F3C9C4">
+          <div style="font-size:11px;font-weight:700;margin-bottom:7px;color:#B3261E">What we deleted</div>
+          <div style="font-size:10px;color:#7a5a58;line-height:1.7">Your full PAN<br>Your full Aadhaar number<br>Every document image<br>The one-time codes</div>
+        </div>
+        <button class="btn ghost">Download my data</button>
+      </div></div></div></div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <span class="k">Who is actually obliged to do KYC here?</span>
+    PMLA / RBI KYC obligations bind <b>regulated entities</b> &mdash; banks, NBFCs, payment
+    aggregators. An edtech company paying an affiliate is not one, and when payouts run through
+    RazorpayX the regulated party in the chain runs its own KYC on the fund account. So our purpose
+    for holding identity data must be <b>stated</b>, not assumed. That is a question for counsel, and
+    if the answer is &ldquo;theirs, not ours&rdquo;, M3 is deleted and M2 + the penny-drop stand as
+    the whole KYC.
   </div>
 </section>
 
