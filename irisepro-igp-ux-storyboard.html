@@ -1707,44 +1707,14 @@ P5 · CLEANUPS              T16 badge table · T17 payout details · T17b withdr
 
   <div class="flow">
 
-    <div class="cell">
-      <div class="cap"><div class="cap-n">L1</div><div class="cap-t">Add payout details</div>
-      <div class="cap-d">The entry point that does not exist today (Gap A-2).</div>
-      <div class="cap-u">GET /yashomargi/payout-details</div>
-      <span class="flag f-bad">missing today</span></div>
-      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Payout Details</div>
-        <p style="font-size:11px;color:#777;margin:0 0 14px;line-height:1.5">We pay your commission here. Verify once &mdash; you can change it later.</p>
-        <div class="flabel">UPI ID</div>
-        <div class="field"><i class="fa-solid fa-indian-rupee-sign"></i>name@bank</div>
-        <p style="font-size:9.5px;color:#999;margin:6px 0 0">Or use a bank account instead</p>
-        <button class="btn">Verify UPI</button>
-        <div class="card peach" style="margin-top:16px">
-          <p style="font-size:10.5px;margin:0;line-height:1.55">We send <b>&#8377;1</b> to confirm the ID belongs to you. It is yours to keep.</p>
-        </div>
-      </div></div></div></div>
-    </div>
-
-    <div class="cell">
-      <div class="cap"><div class="cap-n">L2</div><div class="cap-t">UPI verified</div>
-      <div class="cap-d">Name returned by the rail must match the NDA name.</div>
-      <div class="cap-u">fund-account validation</div>
-      <span class="flag f-ok">blocks paying a stranger</span></div>
-      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Payout Details</div>
-        <div class="card" style="border:1.5px solid #10B981">
-          <div style="display:flex;align-items:center;gap:9px">
-            <div style="width:32px;height:32px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
-            <div><div style="font-size:12.5px;font-weight:700">ravi@okhdfcbank</div>
-            <div style="font-size:9.5px;color:#888">Verified &middot; RAVI KUMAR</div></div>
-          </div>
-        </div>
-        <div class="card peach">
-          <h4 style="font-size:12.5px">Next payout</h4>
-          <p style="font-size:10.5px;margin:0">Runs on the 1st of each month for balances over &#8377;1,000.</p>
-        </div>
-        <button class="btn ghost">Change UPI ID</button>
-      </div></div></div></div>
+    <div class="cell" style="width:296px">
+      <div class="cap"><div class="cap-n">&nbsp;</div><div class="cap-t">Onboarding lives in Track M</div>
+      <div class="cap-d">Adding a UPI and confirming the bank's name are <b>Step 3 of onboarding</b>, not part of a payout run.</div></div>
+      <div style="height:604px;border:2px dashed var(--pgline);border-radius:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center;background:var(--pg2)">
+        <div style="font-size:26px;color:var(--o);margin-bottom:14px"><i class="fa-solid fa-arrow-right-long"></i></div>
+        <div style="font-family:Archivo,sans-serif;font-size:15px;font-weight:700;margin-bottom:9px">See M4 &middot; Step 3</div>
+        <p style="font-size:13px;color:var(--pgmute);line-height:1.55;margin:0">Two screens that used to sit here were removed on 4&nbsp;Sep. They duplicated M4 &mdash; and one still said the bank name must match the <b>NDA</b> name, which is the <b>old</b> ordering. Under verify-first-sign-second the anchor is the <b>PAN</b> name, and signing happens after.</p>
+      </div>
     </div>
 
     <div class="cell">
