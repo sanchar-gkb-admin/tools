@@ -618,14 +618,6 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 <!-- ══════════════ TRACK C ══════════════ -->
 <section class="track">
   <div class="track-h"><span class="track-k">Track C</span><h2>Wallet &amp; KYC</h2></div>
-  <div style="background:var(--badbg);border-left:3px solid var(--bad);padding:11px 13px;margin:0 0 14px;font-size:12.5px;line-height:1.6">
-    <b>⛔ C2 and C3 below are the flow as it exists TODAY, and it is being replaced.</b>
-    Goutam decided on 4-Sep that the NDA is <b>e-signed in the app</b> — no download, no printing, no
-    upload. The screens are kept here because they are what the code still does, and because the
-    defect in them is the reason for the change: re-uploading <b>purges the previous signed
-    agreement</b>. The replacement is <b>Track H2</b>.
-  </div>
-  <div style="display:none"></div>
   <p class="track-note">
     Withdrawal is gated behind a five-step wizard: read the NDA, download it, sign it, upload it
     with both sides of an Aadhaar card, then wait 24–48h for verification.
@@ -670,10 +662,10 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
     <div class="cell">
       <div class="cap"><div class="cap-n">C2</div><div class="cap-t">Activating Wallet — 5-step wizard</div>
-      <div class="cap-d"><span style="display:inline-block;background:var(--badbg);color:var(--bad);font-weight:700;font-size:9.5px;letter-spacing:.05em;padding:2px 6px;border-radius:4px;margin-bottom:5px">SUPERSEDED 4-SEP</span><br>The download / print / sign / scan / upload steps are replaced by e-signing in the app. See <b>Track H2</b>.<br><span style="opacity:.7">Alpine.js stepper. Step 1 renders the full NDA inline.</span></div>
+      <div class="cap-d">Alpine.js stepper. Step 1 renders the full NDA inline.</div>
       <div class="cap-u">GET /partners/nda-form</div>
       <span class="flag f-bad">500 when logged out</span></div>
-      <div class="phone" style="position:relative"><div style="position:absolute;inset:0;z-index:9;background:rgba(120,110,105,.34);border-radius:26px;display:flex;align-items:center;justify-content:center;pointer-events:none"><div style="transform:rotate(-13deg);background:#B3261E;color:#fff;font-family:Montserrat,sans-serif;font-weight:900;font-size:14px;letter-spacing:.09em;padding:8px 16px;border-radius:6px;box-shadow:0 8px 22px -8px rgba(0,0,0,.6);text-align:center;line-height:1.35">REPLACED<br><span style="font-size:9px;font-weight:700;letter-spacing:.04em">e-signed now — Track H2</span></div></div><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
         <div class="ttl">Activating Wallet</div>
         <div class="steps"><div class="stp done">1</div><div class="stp now">2</div><div class="stp">3</div><div class="stp">4</div><div class="stp">5</div></div>
         <div style="font-size:12px;font-weight:700;margin-bottom:8px">Step 1: Download the PDF of Non Disclosure Agreement</div>
@@ -689,10 +681,10 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
     <div class="cell">
       <div class="cap"><div class="cap-n">C3</div><div class="cap-t">KYC upload</div>
-      <div class="cap-d"><span style="display:inline-block;background:var(--badbg);color:var(--bad);font-weight:700;font-size:9.5px;letter-spacing:.05em;padding:2px 6px;border-radius:4px;margin-bottom:5px">SUPERSEDED 4-SEP</span><br>NDA upload is gone. Aadhaar capture is a separate, still-open decision. See <b>Track H2</b>.<br><span style="opacity:.7">Signed PDF + both Aadhaar sides → private S3, encrypted at rest.</span></div>
+      <div class="cap-d">Signed PDF + both Aadhaar sides → private S3, encrypted at rest.</div>
       <div class="cap-u">POST /partners/igp/wallet/upload</div>
       <span class="flag f-ok">the media lane is correct</span></div>
-      <div class="phone" style="position:relative"><div style="position:absolute;inset:0;z-index:9;background:rgba(120,110,105,.34);border-radius:26px;display:flex;align-items:center;justify-content:center;pointer-events:none"><div style="transform:rotate(-13deg);background:#B3261E;color:#fff;font-family:Montserrat,sans-serif;font-weight:900;font-size:14px;letter-spacing:.09em;padding:8px 16px;border-radius:6px;box-shadow:0 8px 22px -8px rgba(0,0,0,.6);text-align:center;line-height:1.35">REPLACED<br><span style="font-size:9px;font-weight:700;letter-spacing:.04em">e-signed now — Track H2</span></div></div><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
         <div class="ttl">Activating Wallet</div>
         <div class="steps"><div class="stp done">1</div><div class="stp done">2</div><div class="stp done">3</div><div class="stp now">4</div><div class="stp">5</div></div>
         <div style="font-size:12px;font-weight:700;margin-bottom:10px">Step 4: Upload your documents</div>
@@ -1392,184 +1384,6 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
 </section>
 
 
-<!-- ══════════════ TRACK H2 — E-SIGN, THE DECIDED FLOW ══════════════ -->
-<section class="track">
-  <div class="track-h"><span class="track-k">Track H2</span><h2>She signs it in the app — decided 4-Sep</h2></div>
-  <p class="track-note">
-    Goutam, 4-Sep: <b>“there is no download and upload, we must e-sign the NDA digitally.”</b>
-    Today she needs a printer and a scanner — in a rural partner network that is the actual blocker,
-    not a preference. Below: the flow, and what each screen has to record for the signature to be
-    worth more than the PDF it replaces. Spec:
-    <code>docs/superpowers/specs/2026-09-04-yashomargi-nda-esign-design.md</code>
-  </p>
-
-  <div class="flow">
-
-    <div class="cell">
-      <div class="cap"><div class="cap-n">S1</div><div class="cap-t">The agreement, in the page</div>
-      <div class="cap-d">One artefact — the same file <code>LegalNotice</code> hashes. No separate static PDF for the two to disagree about.</div>
-      <div class="cap-u">GET /partners/igp/nda</div></div>
-      <div class="phone"><div class="notch"></div><div class="pv">
-        <div class="pv-scroll" style="background:#fff">
-          <div style="padding:14px 16px 10px;border-bottom:1px solid #eee">
-            <div style="font-family:Montserrat;font-size:15px;font-weight:800;color:#111">Non-Disclosure Agreement</div>
-            <div style="font-size:11px;color:#888;margin-top:3px">Version 2026-09-04.v1 · YASHOMARGI</div>
-          </div>
-          <div style="height:4px;background:#F0F0F0"><div style="height:4px;width:22%;background:var(--o)"></div></div>
-          <div style="padding:13px 16px;font-size:11.5px;line-height:1.65;color:#333">
-            <div style="font-weight:700;color:#111;margin-bottom:5px">1. Purpose</div>
-            The Company is engaging Partners to promote its holistic transformation educational
-            programmes and empower students…
-            <div style="font-weight:700;color:#111;margin:12px 0 5px">2. Confidential Information</div>
-            Student data, parent details, and enrollment information. Internal marketing materials,
-            scripts, posters…
-            <div style="font-weight:700;color:#111;margin:12px 0 5px">3. Obligations of the Partner</div>
-            <span style="opacity:.45">The Partner shall not disclose, copy or misuse any…</span>
-          </div>
-          <div style="position:sticky;bottom:0;background:#fff;border-top:1px solid #eee;padding:11px 16px">
-            <div style="background:#F3F3F3;color:#AAA;text-align:center;border-radius:9px;padding:12px;font-weight:700;font-size:13.5px">Agree &amp; sign</div>
-            <div style="font-size:10.5px;color:#999;text-align:center;margin-top:6px">Please read to the end to continue</div>
-          </div>
-        </div>
-      </div></div>
-    </div>
-
-    <div class="cell">
-      <div class="cap"><div class="cap-n">S2</div><div class="cap-t">She reaches the end</div>
-      <div class="cap-d"><b>The button unlocks only here.</b> Dwell and scroll are recorded — see E5 for why that is the evidence that matters.</div>
-      <div class="cap-u">client-side gate</div></div>
-      <div class="phone"><div class="notch"></div><div class="pv">
-        <div class="pv-scroll" style="background:#fff">
-          <div style="height:4px;background:#F0F0F0"><div style="height:4px;width:100%;background:var(--green)"></div></div>
-          <div style="padding:13px 16px;font-size:11.5px;line-height:1.65;color:#333">
-            <div style="font-weight:700;color:#111;margin-bottom:5px">10. Acknowledgement</div>
-            By signing this NDA, the Partner acknowledges they have read, understood and agreed to
-            all terms; shall act in good faith as a representative of YASHHO; and that breach may
-            lead to legal action.
-          </div>
-          <div style="margin:4px 16px 0;padding:12px;background:var(--peach);border-radius:11px">
-            <div style="font-size:10.5px;font-weight:700;color:var(--o-dark);letter-spacing:.04em">SIGN AS</div>
-            <div style="background:#fff;border:1px solid #EBD9C9;border-radius:8px;padding:9px 10px;margin-top:7px;font-size:13px;color:#111">Lakshmi&nbsp;N.&nbsp;Rao<span style="color:var(--o)">|</span></div>
-            <div style="font-size:10px;color:#8A7566;margin-top:5px">Type your full name exactly as you wish to be bound</div>
-            <label style="display:flex;gap:8px;margin-top:11px;font-size:11px;color:#4A3B31;line-height:1.45">
-              <span style="min-width:15px;height:15px;border-radius:4px;background:var(--o);color:#fff;font-size:10px;text-align:center;line-height:15px">✓</span>
-              I have read and agree to this Agreement, version 2026-09-04.v1
-            </label>
-          </div>
-          <div style="position:sticky;bottom:0;background:#fff;border-top:1px solid #eee;padding:11px 16px">
-            <div style="background:var(--o);color:#fff;text-align:center;border-radius:9px;padding:12px;font-weight:700;font-size:13.5px">Agree &amp; sign</div>
-          </div>
-        </div>
-      </div></div>
-    </div>
-
-    <div class="cell">
-      <div class="cap"><div class="cap-n">S3</div><div class="cap-t">Signed — and told what that means</div>
-      <div class="cap-d">No admin approval for the NDA itself. Approval, if still wanted, belongs to KYC — a different question.</div>
-      <div class="cap-u">POST /partners/igp/nda/sign</div></div>
-      <div class="phone"><div class="notch"></div><div class="pv">
-        <div class="pv-scroll" style="background:var(--cream);display:flex;flex-direction:column;align-items:center;padding-top:52px">
-          <div style="width:56px;height:56px;border-radius:50%;background:var(--okbg);color:var(--ok);font-size:27px;text-align:center;line-height:56px">✓</div>
-          <div style="font-family:Montserrat;font-size:17px;font-weight:800;color:#111;margin-top:15px">Agreement signed</div>
-          <div style="font-size:11.5px;color:#7A6A5E;text-align:center;margin:7px 26px 0;line-height:1.55">
-            A copy has been emailed to you for your records.
-          </div>
-          <div style="margin:20px 18px 0;background:#fff;border:1px solid #EFE4DA;border-radius:12px;padding:13px 14px;width:calc(100% - 36px)">
-            <div style="font-size:10px;font-weight:700;color:var(--o-dark);letter-spacing:.05em">RECORDED</div>
-            <div style="font-size:11px;color:#4A3B31;line-height:1.9;margin-top:6px">
-              Signed by · <b>Lakshmi N. Rao</b><br>
-              Version · <b>2026-09-04.v1</b><br>
-              When · <b>4 Sep 2026, 3:42 pm IST</b>
-            </div>
-            <div style="border-top:1px dashed #EFE4DA;margin-top:10px;padding-top:9px;font-size:10.5px;color:#8A7566;line-height:1.5">
-              This record is sealed. It cannot be changed or deleted — including by us.
-            </div>
-          </div>
-        </div>
-      </div></div>
-    </div>
-
-    <div class="cell">
-      <div class="cap"><div class="cap-n">S4</div><div class="cap-t">The PDF is a receipt, not the agreement</div>
-      <div class="cap-d">Generated <b>from the sealed row</b>, after the fact. The row is the evidence; the PDF is her copy.</div>
-      <div class="cap-u">queued mail · renders from the row</div></div>
-      <div class="browser"><div class="bh"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">mail — YASHOMARGI Agreement</div></div>
-        <div style="background:#fff;padding:20px 22px;font-size:12px;color:#333;line-height:1.7">
-          <div style="font-family:Montserrat;font-weight:800;color:var(--o);font-size:15px">YASHHO</div>
-          <div style="margin-top:13px">Namaste Lakshmi ji,</div>
-          <div style="margin-top:9px">Your YASHOMARGI Agreement is attached for your records.</div>
-          <div style="margin-top:13px;background:var(--cream);border:1px solid #EFE4DA;border-radius:9px;padding:11px 13px;font-size:11.5px;line-height:1.8">
-            Version <b>2026-09-04.v1</b><br>Signed <b>4 Sep 2026, 3:42 pm IST</b><br>
-            Reference <b>a7f3…9c21</b>
-          </div>
-          <div style="margin-top:13px;font-size:11px;color:#777">
-            You do not need to print, sign or return anything.
-          </div>
-          <div style="margin-top:14px;display:inline-block;border:1px solid #E0D9D1;border-radius:7px;padding:8px 12px;font-size:11.5px;color:#444">📄 YASHOMARGI-Agreement-2026-09-04.pdf</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cap"><div class="cap-n">S5</div><div class="cap-t">What is actually sealed</div>
-      <div class="cap-d">Everything below is inside <code>record_hash</code>, which KMS signs. Editing any of it breaks the chain and <code>consent:verify</code> fails that night.</div>
-      <div class="cap-u">consents · purpose = partner_nda</div></div>
-      <div class="browser"><div class="bh"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">superadmin — agreement record</div></div>
-        <div style="background:#fff;padding:16px 20px;font-size:11.5px;color:#333">
-          <table style="width:100%;border-collapse:collapse;line-height:1.75">
-            <tr><td style="color:#888;padding:3px 0;width:44%">notice_version</td><td><b>2026-09-04.v1</b></td></tr>
-            <tr><td style="color:#888;padding:3px 0">notice_hash</td><td>seals the exact text she saw</td></tr>
-            <tr><td style="color:#888;padding:3px 0">basis</td><td><b>contract</b> — DPDPA, not §9 consent</td></tr>
-            <tr><td style="color:#888;padding:3px 0">verification_method</td><td>app_typed_name</td></tr>
-            <tr><td style="color:#888;padding:3px 0">ip · asn · city</td><td>from the request</td></tr>
-            <tr><td style="color:#888;padding:3px 0">device evidence</td><td>UA, platform, languages, client hints — <b>raw</b>, not a hash</td></tr>
-            <tr><td style="color:#888;padding:3px 0">webview?</td><td>via <code>InAppBrowser</code></td></tr>
-            <tr style="background:var(--okbg)"><td style="color:#146B45;padding:5px 0"><b>dwell · scroll depth</b></td><td><b>4m 11s · reached the end</b></td></tr>
-            <tr><td style="color:#888;padding:3px 0">prev_hash → record_hash</td><td>the chain</td></tr>
-            <tr><td style="color:#888;padding:3px 0">signature</td><td><b>KMS</b> — key outside the database</td></tr>
-          </table>
-          <div style="margin-top:11px;background:var(--okbg);border-left:3px solid var(--ok);padding:9px 11px;font-size:11px;color:#146B45;line-height:1.55">
-            <b>Dwell and scroll are the evidence that matters.</b> In a click-wrap dispute the court
-            asks whether she had a reasonable opportunity to read it — not what phone she used. Four
-            minutes and a full scroll answers the real question; another hardware signal does not.
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="track-note" style="margin-top:18px">
-    <b>Why this is stronger evidence than the paper flow, not weaker.</b> The instinct that a printed
-    signature is “more legal” is backwards here. Under the IT Act 2000 a click-wrap agreement is
-    enforceable; what makes it hold up is showing <i>which exact text she saw</i>, that she acted
-    deliberately, and that nothing has changed since.
-    <table style="width:100%;border-collapse:collapse;margin-top:11px;font-size:12px">
-      <tr style="text-align:left"><th style="padding:5px 8px 5px 0"></th><th style="padding:5px 8px">download &amp; upload, today</th><th style="padding:5px 8px">e-sign</th></tr>
-      <tr><td style="padding:4px 8px 4px 0;color:#888">which text she agreed to</td><td style="padding:4px 8px;color:var(--bad)">nothing binds the PDF to what was displayed</td><td style="padding:4px 8px;color:var(--ok)"><code>notice_hash</code></td></tr>
-      <tr><td style="padding:4px 8px 4px 0;color:#888">version</td><td style="padding:4px 8px;color:var(--bad)">no column</td><td style="padding:4px 8px;color:var(--ok)"><code>notice_version</code></td></tr>
-      <tr><td style="padding:4px 8px 4px 0;color:#888">tamper-evidence</td><td style="padding:4px 8px;color:var(--bad)"><b>re-upload purges the original</b></td><td style="padding:4px 8px;color:var(--ok)">hash chain + KMS</td></tr>
-      <tr><td style="padding:4px 8px 4px 0;color:#888">who · where · when</td><td style="padding:4px 8px;color:var(--bad)">only <code>created_at</code></td><td style="padding:4px 8px;color:var(--ok)">name, IP, device, dwell</td></tr>
-      <tr><td style="padding:4px 8px 4px 0;color:#888">needs a printer</td><td style="padding:4px 8px;color:var(--bad)">yes — the real blocker</td><td style="padding:4px 8px;color:var(--ok)">no</td></tr>
-    </table>
-    <div style="margin-top:12px;background:var(--badbg);border-left:3px solid var(--bad);padding:10px 12px;line-height:1.55">
-      <b>⛔ The defect that makes this urgent.</b> <code>uploadWalletDocs</code> calls
-      <code>purgeAllDisks()</code> then <code>nda()-&gt;delete()</code> before writing the replacement.
-      There is no supersession, only replacement — so an authenticated partner can overwrite her own
-      signed agreement <b>after approval</b>, and the original is gone from the row and purged from
-      both disks. Today the signed agreement is not merely unsealed; it is <b>deletable by the person
-      it binds</b>.
-    </div>
-    <div style="margin-top:10px;background:var(--warnbg);border-left:3px solid var(--warn);padding:10px 12px;line-height:1.55">
-      <b>⚠️ Still open, and not engineering calls.</b> Whether to keep storing Aadhaar images at all
-      (identity is a separate question from agreement, and the NDA text never mentions what ID is
-      collected or why) · where the UPI ID is captured now the paper form is going · and whether
-      partners who signed as “YASHHO Growth Partner (IGP)” need re-execution or an addendum. Their
-      existing rows and PDFs are evidence of the old name and <b>must not be overwritten</b>.
-    </div>
-  </div>
-</section>
-
 <!-- ══════════════ TRACK I — ATTRIBUTION DESIGN ══════════════ -->
 <section class="track">
   <div class="track-h"><span class="track-k">Track I</span><h2>Capturing a payment made through a partner link</h2></div>
@@ -1726,8 +1540,25 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
     already have withdrawn.
   </div>
 
+  <div class="note bad">
+    <span class="k">⭐ The payee is POLYMORPHIC &mdash; decided 4 Sep</span>
+    The ledger keys on <code>payee_type</code> + <code>payee_id</code>, <b>never</b>
+    <code>igp_id</code>. Yashomargis and Yashodarshis are both payees &mdash; and Yashodarshis have
+    <b>no payment path at all</b> today, measured 4 Sep.
+    <br><br>
+    This does not assert that evaluators are paid. It makes the ledger <i>able</i> to pay them without
+    a migration &mdash; and retrofitting a polymorphic key through a live, hash-chained,
+    trigger-guarded money table is the most expensive change this design can absorb.
+    <br><br>
+    Consequence: <code>igps.approved_balance</code> and <code>pending_balance</code> are
+    <b>retired</b>, not migrated. A Yashodarshi has no row in <code>igps</code>, and RT-8 already says
+    the balance must be a projection. One cached projection, <code>payee_balances</code>, keyed
+    <code>(payee_type, payee_id)</code>, written only by <code>PayeeLedger</code> as
+    <code>SUM(ledger)</code>.
+  </div>
+
   <div class="note">
-    <span class="k">The daily books check &mdash; nine assertions</span>
+    <span class="k">The daily books check &mdash; ten assertions</span>
     <b>A1</b> chain + signature verify &middot; <b>A2</b> balance == ledger sum &middot;
     <b>A3</b> every credit traces to a captured payment &middot; <b>A4</b> one credit per reward row
     &middot; <b>A5</b> no credit against a refunded enrolment &middot; <b>A6</b> withdrawals
@@ -1743,7 +1574,7 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
 
 <!-- ══════════════ TRACK K — EXECUTION ══════════════ -->
 <section class="track">
-  <div class="track-h"><span class="track-k">Track K</span><h2>Execution &mdash; 21 tasks, 5 lanes, 6 waves</h2></div>
+  <div class="track-h"><span class="track-k">Track K</span><h2>Execution &mdash; 6 phases, ~35 tasks</h2></div>
   <p class="track-note">
     Plan: <code>docs/superpowers/plans/2026-09-04-yashomargi-attribution-and-money-ledger.md</code>.
     Every red-team finding is assigned; nothing is unowned.
@@ -1751,23 +1582,38 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
 
   <div class="ev">
     <div class="ev-head"><span>dependency DAG</span><span>critical path in Lane C</span></div>
-<pre>LANE A · security          T0 admin routes · T0b 500s+dd() · T18 view ratchet
-  no dependencies          T19 host sweep · T20 YASHOMARGI copy
+<pre>P0 · STOP THE BLEEDING     T0  six unauthenticated money/PII routes  ← LIVE, waits on nothing
+  no dependencies          T0b three 500s + a live dd()
 
-LANE B · catalogue links   T1 page_slug ─▶ T2 seed ─▶ T3 publish ─▶ T4 dashboard
-  strictly sequential                        ▲ BLOCKED: confirm 8 mappings
+P1 · THE BOOKS  ⛔          T5 PayeeLedger ─┬─▶ T6 seal (chain·KMS·triggers) ─▶ T7 verify A1–A10
+  ★ CRITICAL PATH          polymorphic     ├─▶ T8 accrual + clawback        └─▶ T10 WORM checkpoint
+  non-negotiable           payee           └─▶ T9 one authority (deletes G-04)
+                           B1 MFA · B2 audit log · B3 maker-checker · B4 PII reads
+                           B5 signer FAILS CLOSED · B6 stale-verifier heartbeat
 
-LANE C · money ledger      T5 PartnerLedger ─┬─▶ T6 seal ─▶ T7 verify ─▶ T10 WORM
-  ★ CRITICAL PATH                            ├─▶ T8 accrual + clawback
-                                             └─▶ T9 one authority
+P2 · ATTRIBUTION           T1 page_slug ─▶ T2 seed ─▶ T3 publish ─▶ T4 links
+  runs alongside P1        T4b ?ref survives redirects   T4c one local QR
+  (touches no money)       T4d outbound-link ratchet     T11 notes cap ─▶ T14 storefront
+                           T12 first/last touch · T13 self-referral ─▶ T15 acceptance
 
-LANE D · research          T11 Razorpay cap ──▶ gates T14
-                           T16 badge table  ── BLOCKED: 7,000 or 7,500?
-                           T17 payout entry ── BLOCKED: self-serve or admin?
+P3 · KYC READINESS         K0 provider seam ─▶ K1 PAN ─▶ K2 penny-drop ─▶ K3 DigiLocker
+  blocks P4, not P1        K0b vendor = Cashfree (decided)  K0c the 3 written questions
 
-LANE E · attribution       T12 first/last touch ─┐
-  backend before storefront T11 ─────────────────┴─▶ T14 storefront ─▶ T15 acceptance
-                           T13 self-referral</pre>
+P4 · PAYOUTS               deferred — Cashfree Payouts, maker-checker, two-phase, TDS
+  gated on 3 long leads    onboarding · PAN+TDS 194H · a live UPI entry point
+
+P5 · CLEANUPS              T16 badge table · T17 payout details · T17b withdrawal
+                           T17c Aadhaar images purged · T18 view ratchet · T19 host sweep
+                           T20 YASHOMARGI copy</pre>
+  </div>
+
+  <div class="note bad">
+    <span class="k">Settled 4 Sep &mdash; what the phases now reflect</span>
+    Payee is <b>polymorphic</b> &middot; KYC stores <b>KMS-keyed tokens</b>, not masks &middot;
+    identity via <b>DigiLocker through Cashfree</b>, never a document upload &middot; <b>Cashfree</b>
+    for payouts + KYC with <b>Razorpay</b> unchanged for collection &middot; automated payouts
+    <b>deferred</b> to P4, manual-but-auditable until then &middot; the books and daily reconciliation
+    are <b>P1 and non-negotiable</b>.
   </div>
 
   <div class="note bad">
@@ -1840,16 +1686,16 @@ LANE E · attribution       T12 first/last touch ─┐
 
 <!-- ══════════════ TRACK L — PAYOUT RUNS ══════════════ -->
 <section class="track">
-  <div class="track-h"><span class="track-k">Track L</span><h2>Payout runs &mdash; RazorpayX &middot; phase 2</h2></div>
+  <div class="track-h"><span class="track-k">Track L</span><h2>Payout runs &mdash; Cashfree &middot; phase 2</h2></div>
   <p class="track-note">
     Deferred by decision on 4 Sep &mdash; payouts stay admin-initiated for now, routed through the
     ledger with a reference and an actor. This is the shape for when the three prerequisites land.
-    &#9888; RazorpayX API specifics are <b>UNVERIFIED</b> (from training, not measured); TDS needs a CA.
+    &#9888; Payout API specifics still need a sandbox run; TDS needs a CA. Verification fields ARE verified &mdash; read from Cashfree's published SDK.
   </p>
 
   <div class="note bad">
     <span class="k">Three long-lead prerequisites &mdash; none is a sprint task</span>
-    <b>1. RazorpayX onboarding</b> &mdash; a separate product from the payment gateway, needing a
+    <b>1. Cashfree Payouts onboarding</b> &mdash; a separate product from the payment gateway, needing a
     current account or partner bank. &nbsp;<b>2. PAN + TDS &sect;194H</b> &mdash; we collect Aadhaar
     and <b>no PAN</b>; if 194H applies the transfer is net of TDS and the ledger needs a
     <code>tds_withheld</code> leg or the books will not tie to the bank. &nbsp;<b>3. A live UPI entry
@@ -2076,7 +1922,7 @@ LANE E · attribution       T12 first/last touch ─┐
     <span class="k">The state machine every screen above is rendering</span>
     <code>ACCRUED</code> &rarr; <code>APPROVED</code> &rarr; <code>QUEUED</code> &rarr;
     <code>IN&nbsp;TRANSIT</code> &rarr; <code>SETTLED</code>, with <code>REVERSED</code> returning to
-    <code>APPROVED</code>. Initiation posts <code>partner_payable &rarr; payouts_in_transit</code>;
+    <code>APPROVED</code>. Initiation posts <code>payee_payable &rarr; payouts_in_transit</code>;
     only the <b>webhook</b> posts <code>in_transit &rarr; bank</code>. A single-phase debit would let
     a failed transfer vanish from a partner's balance with nothing detecting it &mdash; which is
     exactly what screen L5 exists to make impossible.
@@ -2093,7 +1939,7 @@ LANE E · attribution       T12 first/last touch ─┐
 
 <!-- ══════════════ TRACK M — KYC ══════════════ -->
 <section class="track">
-  <div class="track-h"><span class="track-k">Track M</span><h2>KYC &mdash; three checks, zero retained numbers</h2></div>
+  <div class="track-h"><span class="track-k">Track M</span><h2>KYC &mdash; three checks, zero retained identifiers</h2></div>
   <p class="track-note">
     Verify three things; store only what has a purpose we can name. &#9888; Regulatory footing is
     <b>unconfirmed</b> &mdash; &sect;194H needs a CA, and Aadhaar authentication by a non-notified
@@ -2104,16 +1950,31 @@ LANE E · attribution       T12 first/last touch ─┐
     <table>
       <thead><tr><th>Check</th><th>Answers</th><th>Method</th><th>What we STORE</th></tr></thead>
       <tbody>
-        <tr class="r-go"><td><b>PAN</b></td><td>tax identity &mdash; &sect;194H withholding</td><td>online partner service, name match</td><td class="v">mask <code>XXXXX234F</code> + ref</td></tr>
+        <tr class="r-go"><td><b>PAN</b></td><td>tax identity &mdash; &sect;194H withholding</td><td>online partner service, name match</td><td class="v">KMS-keyed <b>token</b> + ref</td></tr>
         <tr class="r-go"><td><b>Fund account</b></td><td><i>&ldquo;is this account theirs?&rdquo;</i></td><td>penny-drop &rarr; bank returns the holder name</td><td class="v">VPA + verification ref + returned name</td></tr>
-        <tr class="r-go"><td><b>Aadhaar</b> <span class="c-mute">(conditional)</span></td><td>identity assurance</td><td>online partner service &mdash; <b>no upload</b></td><td class="v">mask <code>XXXX XXXX 4821</code> + ref</td></tr>
-        <tr class="r-bad"><td colspan="3"><b>Never stored, in any of the three</b></td><td class="x">a full PAN &middot; a full Aadhaar number &middot; any image &middot; any OTP &middot; any raw vendor payload</td></tr>
+        <tr class="r-go"><td><b>Aadhaar</b> <span class="c-mute">(conditional)</span></td><td>identity assurance</td><td>number + OTP via a licensed KUA partner &mdash; <b>no upload</b></td><td class="v"><b>address + pincode</b>, KMS-keyed token + ref</td></tr>
+        <tr class="r-bad"><td colspan="3"><b>Never stored, in any of the three</b></td><td class="x">a full PAN &middot; a full Aadhaar &middot; <b>any mask or partial</b> &middot; any image &middot; any OTP &middot; any raw vendor payload</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="note bad">
-    <span class="k">Masks only &mdash; settled 4 Sep [Goutam]</span>
+    <span class="k">Keyed tokens, not masks &mdash; settled 4 Sep [Goutam]</span>
+    <i>"even if we store we must store a token that cannot be identified to the person and cannot be
+    misused by anyone."</i> Masks were the earlier answer and they <b>leak</b>:
+    <code>XXXXX234F</code> gives three digits and the check character of a PAN.
+    <br><br>
+    ⛔ And a plain SHA-256 is <b>not</b> the fix — Aadhaar is 10<sup>12</sup> values and PAN about
+    3&times;10<sup>11</sup>, so a GPU enumerates either in minutes. Only a <b>keyed HMAC with the key
+    outside the database</b> works: irreversible without the key, still deterministic so a UNIQUE
+    index catches one-person-many-accounts, and <b>revocable</b> — rotate the key and every token is
+    inert. Reuses <code>ConsentSigner</code>'s KMS <code>GenerateMac</code>, already in production.
+    <br><br>
+    <b>The honest limit:</b> tokens make the identifiers unusable; they do not anonymise the record,
+    because we still hold name and address by design. The defensible sentence is <i>"a leak exposes
+    a partner's name and address, and their Aadhaar and PAN to nobody, ever."</i>
+    <br><br>
+    <span style="opacity:.75">Superseded note &mdash;</span>
     <i>"so there is no way anyone can misuse these ever."</i> A database dump then contains nothing
     usable. Verification runs through an online partner service; we keep the <b>mask and the
     reference</b>, and the vendor is the custodian of record.
@@ -2126,6 +1987,22 @@ LANE E · attribution       T12 first/last touch ─┐
     And the rule is a <b>ratchet, not a promise</b>: a test scans every column of the partner tables
     &mdash; plus the ledger's JSON <code>trace</code>, the likeliest leak &mdash; for a PAN-shaped or
     12-digit value, and is seeded to prove it can go red.
+  </div>
+
+  <div class="note bad">
+    <span class="k">⛔ We cannot do this ourselves &mdash; and DigiLocker is the route</span>
+    Online Aadhaar eKYC returning demographic data requires <b>KUA or sub-KUA status</b>, restricted to
+    regulated entities or their authorised technology partners. We are an edtech company, so a partner
+    is not a convenience choice &mdash; <b>it is how this feature exists at all.</b>
+    <br><br>
+    <b>DigiLocker is the cleaner shape and it is what Cashfree implements.</b> The person authenticates
+    on DigiLocker's own page and approves what is shared; the Aadhaar number never enters our form,
+    our servers or our logs. We call <code>create-url</code>, they go and come back, we call
+    <code>get-document</code>.
+    <br><br>
+    <span style="opacity:.7">Corrected 4 Sep &mdash; an earlier version of this track drew the raw
+    Aadhaar-number + OTP flow. That is a real mechanism, but it puts the number through our form for
+    no benefit. DigiLocker does not.</span>
   </div>
 
   <div class="flow">
@@ -2167,7 +2044,7 @@ LANE E · attribution       T12 first/last touch ─┐
         <div class="ttl">Step 1 of 3 &middot; PAN</div>
         <div class="flabel">PAN number</div>
         <div class="field" style="color:#333;letter-spacing:.08em">ABCDE1234F</div>
-        <p style="font-size:9px;color:#999;margin:5px 0 0">Checked with our verification partner. We keep only <b>XXXXX234F</b>.</p>
+        <p style="font-size:9px;color:#999;margin:5px 0 0">Checked with our verification partner. We keep <b>no part of the number</b> — only a sealed token.</p>
         <div class="card" style="border:1.5px solid #10B981;margin-top:14px">
           <div style="display:flex;gap:9px;align-items:center">
             <div style="width:30px;height:30px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
@@ -2184,22 +2061,46 @@ LANE E · attribution       T12 first/last touch ─┐
 
     <div class="cell">
       <div class="cap"><div class="cap-n">M3</div><div class="cap-t">Identity &mdash; DigiLocker handoff</div>
-      <div class="cap-d">OAuth. Nothing is uploaded, nothing is stored.</div>
-      <div class="cap-u">K3 &mdash; conditional on counsel</div>
-      <span class="flag f-warn">may be deleted, not deferred</span></div>
+      <div class="cap-d">They authenticate on DigiLocker. The number never touches our form.</div>
+      <div class="cap-u">Cashfree DigiLocker &middot; create-url &rarr; get-document</div>
+      <span class="flag f-ok">returns split_address + subdist</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Step 3 of 3 &middot; Identity</div>
-        <div class="card" style="margin-top:6px;text-align:center;padding:20px 15px">
-          <div style="width:52px;height:52px;border-radius:12px;background:#1B4F9C;display:grid;place-items:center;margin:0 auto 11px;color:#fff;font-size:20px"><i class="fa-solid fa-id-badge"></i></div>
-          <div style="font-size:13px;font-weight:700;margin-bottom:6px">Verify with DigiLocker</div>
-          <p style="font-size:10.5px;color:#777;margin:0;line-height:1.55">You will sign in to DigiLocker and approve sharing your name and last 4 digits. You never send us a document.</p>
+        <div class="ttl">Step 2 of 3 &middot; Address</div>
+        <p style="font-size:10.5px;color:#777;margin:0 0 12px;line-height:1.5">We need your verified address to assign you a territory.</p>
+        <div class="card" style="margin-top:6px;text-align:center;padding:18px 15px">
+          <div style="width:50px;height:50px;border-radius:12px;background:#1B4F9C;display:grid;place-items:center;margin:0 auto 10px;color:#fff;font-size:19px"><i class="fa-solid fa-id-badge"></i></div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px">Continue with DigiLocker</div>
+          <p style="font-size:10.5px;color:#777;margin:0;line-height:1.55">You sign in to DigiLocker and approve what is shared. <b>You send us nothing</b> &mdash; your Aadhaar number never touches this form.</p>
         </div>
-        <div class="card peach">
-          <div style="font-size:10.5px;font-weight:700;margin-bottom:6px">What we receive</div>
-          <div style="font-size:10px;color:#666;line-height:1.7">&#10003; Name &nbsp;&#10003; Last 4 digits &nbsp;&#10003; A confirmation reference<br><span style="color:var(--bad)">&#10007; Not the full number &nbsp;&#10007; Not any image</span></div>
+        <button class="btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> &nbsp;Open DigiLocker</button>
+        <div class="card peach" style="margin-top:11px">
+          <div style="font-size:10.5px;font-weight:700;margin-bottom:6px">What comes back</div>
+          <div style="font-size:9.5px;color:#666;line-height:1.75;font-family:ui-monospace,monospace">split_address &#123;<br>&nbsp;&nbsp;house &middot; street &middot; landmark &middot; po &middot; vtc<br>&nbsp;&nbsp;<b style="color:var(--o)">subdist</b> &middot; dist &middot; state &middot; <b style="color:var(--o)">pincode</b><br>&#125;</div>
+          <p style="font-size:9.5px;color:#666;margin:8px 0 0;line-height:1.5"><b>subdist</b> is the sub-district &mdash; the taluk. Territory allocation reads it directly, so no pincode&rarr;taluk table is needed.</p>
         </div>
-        <button class="btn">Open DigiLocker</button>
-        <p style="text-align:center;font-size:10px;color:#999;margin-top:11px">Prefer not to? <b style="color:var(--o)">Talk to us</b></p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M3b</div><div class="cap-t">The OTP that never arrives</div>
+      <div class="cap-d">DigiLocker sign-in needs the Aadhaar-linked mobile &mdash; often stale.</div>
+      <div class="cap-u">the fallback that must exist</div>
+      <span class="flag f-bad">not an error message</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Didn't get the OTP?</div>
+        <div class="card" style="border:1.5px solid #FFC08A;background:#FFF8F0">
+          <p style="font-size:11px;color:#555;margin:0;line-height:1.6">The code goes to the mobile registered with your <b>Aadhaar</b> &mdash; which is often an old number. That is common and it is not your fault.</p>
+        </div>
+        <div class="card" style="margin-top:11px">
+          <div style="font-size:11.5px;font-weight:700;margin-bottom:9px">What you can do</div>
+          <div style="font-size:10.5px;color:#666;line-height:1.7">
+            &bull; Update your mobile at any Aadhaar centre, then come back<br>
+            &bull; Or send us a recent utility bill instead &mdash; we will verify it by hand<br>
+            &bull; Or ask us to call you
+          </div>
+        </div>
+        <button class="btn">Request a manual check</button>
+        <p style="text-align:center;font-size:10px;color:#999;margin-top:10px">You can still get paid meanwhile &mdash; only your territory waits.</p>
       </div></div></div></div>
     </div>
 
@@ -2214,14 +2115,14 @@ LANE E · attribution       T12 first/last touch ─┐
         </div>
         <div class="card" style="margin-top:0">
           <div style="font-size:11px;font-weight:700;margin-bottom:9px">What we hold</div>
-          <div class="tot" style="font-size:10.5px"><span>PAN</span><b>XXXXX234F</b></div>
+          <div class="tot" style="font-size:10.5px"><span>PAN</span><b style="color:#146B45">verified ✓</b></div>
           <div class="tot" style="font-size:10.5px"><span>UPI</span><b>ravi@okhdfcbank</b></div>
-          <div class="tot" style="font-size:10.5px"><span>Aadhaar</span><b>XXXX XXXX 4821</b></div>
+          <div class="tot" style="font-size:10.5px"><span>Address</span><b style="color:#146B45">verified ✓</b></div>
           <div class="tot" style="font-size:10.5px"><span>Verified on</span><b>4 Sep 2026</b></div>
         </div>
         <div class="card" style="background:#FFF6F5;border:1px solid #F3C9C4">
           <div style="font-size:11px;font-weight:700;margin-bottom:7px;color:#B3261E">What we deleted</div>
-          <div style="font-size:10px;color:#7a5a58;line-height:1.7">Your full PAN<br>Your full Aadhaar number<br>Every document image<br>The one-time codes</div>
+          <div style="font-size:10px;color:#7a5a58;line-height:1.7">Your PAN — every digit<br>Your Aadhaar — every digit<br>Every document image<br>The one-time codes</div>
         </div>
         <button class="btn ghost">Download my data</button>
       </div></div></div></div>
@@ -2233,7 +2134,7 @@ LANE E · attribution       T12 first/last touch ─┐
     <span class="k">Who is actually obliged to do KYC here?</span>
     PMLA / RBI KYC obligations bind <b>regulated entities</b> &mdash; banks, NBFCs, payment
     aggregators. An edtech company paying an affiliate is not one, and when payouts run through
-    RazorpayX the regulated party in the chain runs its own KYC on the fund account. So our purpose
+    Cashfree the regulated party in the chain runs its own KYC on the fund account. So our purpose
     for holding identity data must be <b>stated</b>, not assumed. That is a question for counsel, and
     if the answer is &ldquo;theirs, not ours&rdquo;, M3 is deleted and M2 + the penny-drop stand as
     the whole KYC.
