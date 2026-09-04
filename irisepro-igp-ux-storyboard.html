@@ -1937,136 +1937,106 @@ P5 · CLEANUPS              T16 badge table · T17 payout details · T17b withdr
 </section>
 
 
-<!-- ══════════════ TRACK M — KYC ══════════════ -->
+<!-- ══════════════ TRACK M — ONBOARDING ══════════════ -->
 <section class="track">
-  <div class="track-h"><span class="track-k">Track M</span><h2>KYC &mdash; three checks, zero retained identifiers</h2></div>
+  <div class="track-h"><span class="track-k">Track M</span><h2>The new onboarding &mdash; verify first, sign second</h2></div>
   <p class="track-note">
-    Verify three things; store only what has a purpose we can name. &#9888; Regulatory footing is
-    <b>unconfirmed</b> &mdash; &sect;194H needs a CA, and Aadhaar authentication by a non-notified
-    entity needs counsel. Build K1+K2 first; they are needed either way.
+    The proposal in the counsel document, drawn end to end. Today a Partner signs first and is verified
+    afterwards; this reverses it, so they sign <b>as a verified person, in their verified name</b>.
+    &#9888; Regulatory footing unconfirmed &mdash; &sect;194H needs a CA, and the Aadhaar/DPDPA questions need counsel.
   </p>
 
-  <div class="tw">
-    <table>
-      <thead><tr><th>Check</th><th>Answers</th><th>Method</th><th>What we STORE</th></tr></thead>
-      <tbody>
-        <tr class="r-go"><td><b>PAN</b></td><td>tax identity &mdash; &sect;194H withholding</td><td>online partner service, name match</td><td class="v">KMS-keyed <b>token</b> + ref</td></tr>
-        <tr class="r-go"><td><b>Fund account</b></td><td><i>&ldquo;is this account theirs?&rdquo;</i></td><td>penny-drop &rarr; bank returns the holder name</td><td class="v">VPA + verification ref + returned name</td></tr>
-        <tr class="r-go"><td><b>Aadhaar</b> <span class="c-mute">(conditional)</span></td><td>identity assurance</td><td>number + OTP via a licensed KUA partner &mdash; <b>no upload</b></td><td class="v"><b>address + pincode</b>, KMS-keyed token + ref</td></tr>
-        <tr class="r-bad"><td colspan="3"><b>Never stored, in any of the three</b></td><td class="x">a full PAN &middot; a full Aadhaar &middot; <b>any mask or partial</b> &middot; any image &middot; any OTP &middot; any raw vendor payload</td></tr>
-      </tbody>
-    </table>
-  </div>
-
   <div class="note bad">
-    <span class="k">Keyed tokens, not masks &mdash; settled 4 Sep [Goutam]</span>
-    <i>"even if we store we must store a token that cannot be identified to the person and cannot be
-    misused by anyone."</i> Masks were the earlier answer and they <b>leak</b>:
-    <code>XXXXX234F</code> gives three digits and the check character of a PAN.
-    <br><br>
-    ⛔ And a plain SHA-256 is <b>not</b> the fix — Aadhaar is 10<sup>12</sup> values and PAN about
-    3&times;10<sup>11</sup>, so a GPU enumerates either in minutes. Only a <b>keyed HMAC with the key
-    outside the database</b> works: irreversible without the key, still deterministic so a UNIQUE
-    index catches one-person-many-accounts, and <b>revocable</b> — rotate the key and every token is
-    inert. Reuses <code>ConsentSigner</code>'s KMS <code>GenerateMac</code>, already in production.
-    <br><br>
-    <b>The honest limit:</b> tokens make the identifiers unusable; they do not anonymise the record,
-    because we still hold name and address by design. The defensible sentence is <i>"a leak exposes
-    a partner's name and address, and their Aadhaar and PAN to nobody, ever."</i>
-    <br><br>
-    <span style="opacity:.75">Superseded note &mdash;</span>
-    <i>"so there is no way anyone can misuse these ever."</i> A database dump then contains nothing
-    usable. Verification runs through an online partner service; we keep the <b>mask and the
-    reference</b>, and the vendor is the custodian of record.
-    <br><br>
-    ⛔ <b>One consequence to decide, not discover:</b> a TDS return needs the deductee's <b>full</b>
-    PAN &mdash; Form 26Q cannot be filed against a mask. So someone holds it at filing time. Best
-    answer: the KYC vendor, exchanged via the reference and never persisted. Alternatives: a
-    tokenisation vault, or the CA directly. Deciding in January is too late.
-    <br><br>
-    And the rule is a <b>ratchet, not a promise</b>: a test scans every column of the partner tables
-    &mdash; plus the ledger's JSON <code>trace</code>, the likeliest leak &mdash; for a PAN-shaped or
-    12-digit value, and is seeded to prove it can go red.
-  </div>
-
-  <div class="note bad">
-    <span class="k">⛔ We cannot do this ourselves &mdash; and DigiLocker is the route</span>
-    Online Aadhaar eKYC returning demographic data requires <b>KUA or sub-KUA status</b>, restricted to
-    regulated entities or their authorised technology partners. We are an edtech company, so a partner
-    is not a convenience choice &mdash; <b>it is how this feature exists at all.</b>
-    <br><br>
-    <b>DigiLocker is the cleaner shape and it is what Cashfree implements.</b> The person authenticates
-    on DigiLocker's own page and approves what is shared; the Aadhaar number never enters our form,
-    our servers or our logs. We call <code>create-url</code>, they go and come back, we call
-    <code>get-document</code>.
-    <br><br>
-    <span style="opacity:.7">Corrected 4 Sep &mdash; an earlier version of this track drew the raw
-    Aadhaar-number + OTP flow. That is a real mechanism, but it puts the number through our form for
-    no benefit. DigiLocker does not.</span>
+    <span class="k">Why the order has to change</span>
+    The name on an agreement should be the name on the PAN, <b>exactly</b> &mdash; not whatever a person
+    types. Typed names vary: initials, spellings, married names, transliterations. An agreement signed
+    as <i>"R. Kumar"</i> against a PAN reading <i>"RAVI KUMAR"</i> invites an argument we would rather
+    not have. <b>We cannot bind someone to their verified name before we know it.</b>
   </div>
 
   <div class="flow">
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">M1</div><div class="cap-t">Why we ask</div>
+      <div class="cap"><div class="cap-n">M0</div><div class="cap-t">Today &mdash; 7 steps, 3 uploads</div>
+      <div class="cap-d">Needs a printer and a scanner. This is why sign-up doesn't complete.</div>
+      <div class="cap-u">the flow being replaced</div>
+      <span class="flag f-bad">excludes the people we recruit</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Activating Wallet</div>
+        <div class="steps"><div class="stp done">1</div><div class="stp now">2</div><div class="stp">3</div><div class="stp">4</div><div class="stp">5</div></div>
+        <div style="font-size:11px;color:#666;line-height:1.9">
+          1. Read the NDA on screen<br>
+          2. <b>Download</b> the PDF<br>
+          3. <b>Print</b> it<br>
+          4. <b>Sign</b> by hand<br>
+          5. <b>Scan or photograph</b> it<br>
+          6. <b>Upload</b> the scan + <b>both sides of Aadhaar</b><br>
+          7. Wait for staff approval
+        </div>
+        <div class="card" style="background:#FFF6F5;border:1px solid #F3C9C4;margin-top:12px">
+          <p style="font-size:10px;color:#7a5a58;margin:0;line-height:1.6">We then <b>store</b> the scan and both Aadhaar photographs &mdash; which is what created the exposure found on 4 Sep.</p>
+        </div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M1</div><div class="cap-t">What we check, and what we keep</div>
       <div class="cap-d">Purpose stated before collection &mdash; DPDPA, not decoration.</div>
       <div class="cap-u">GET /yashomargi/verify</div></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
         <div class="ttl">Before we can pay you</div>
-        <p style="font-size:11px;color:#777;margin:0 0 14px;line-height:1.55">Three quick checks. We tell you exactly what we keep.</p>
+        <p style="font-size:11px;color:#777;margin:0 0 13px;line-height:1.55">Three checks, then you sign. Nothing to print, scan or upload.</p>
         <div class="card" style="margin-top:0">
-          <div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:11px">
+          <div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:12px">
             <div style="width:26px;height:26px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:var(--o);font-size:11px;font-weight:800;flex:0 0 auto">1</div>
-            <div><div style="font-size:12px;font-weight:700">PAN</div><div style="font-size:10px;color:#888;line-height:1.45">Required by tax law before we can pay commission.</div></div>
+            <div><div style="font-size:12px;font-weight:700">PAN</div><div style="font-size:10px;color:#888;line-height:1.45">Tax law requires it before we can pay commission.</div></div>
           </div>
-          <div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:11px">
+          <div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:12px">
             <div style="width:26px;height:26px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:var(--o);font-size:11px;font-weight:800;flex:0 0 auto">2</div>
-            <div><div style="font-size:12px;font-weight:700">Your UPI</div><div style="font-size:10px;color:#888;line-height:1.45">We send &#8377;1 to confirm it is yours. Keep it.</div></div>
+            <div><div style="font-size:12px;font-weight:700">Identity &amp; address</div><div style="font-size:10px;color:#888;line-height:1.45">Through DigiLocker. Gives us the territory you work in.</div></div>
           </div>
           <div style="display:flex;gap:9px;align-items:flex-start">
             <div style="width:26px;height:26px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:var(--o);font-size:11px;font-weight:800;flex:0 0 auto">3</div>
-            <div><div style="font-size:12px;font-weight:700">Identity</div><div style="font-size:10px;color:#888;line-height:1.45">Via DigiLocker. <b>No documents to upload.</b></div></div>
+            <div><div style="font-size:12px;font-weight:700">Your UPI</div><div style="font-size:10px;color:#888;line-height:1.45">We send &#8377;1 to confirm it is yours. Keep it.</div></div>
           </div>
         </div>
         <div class="card peach">
-          <p style="font-size:10px;margin:0;line-height:1.6"><b>We do not store</b> your Aadhaar number, any photo of it, or any OTP. Only a confirmation that the check passed.</p>
+          <p style="font-size:10px;margin:0;line-height:1.6"><b>We never store</b> your PAN number, your Aadhaar number, any photo of a document, or any one-time code. Only sealed confirmations that the checks passed.</p>
         </div>
         <button class="btn">Start</button>
       </div></div></div></div>
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">M2</div><div class="cap-t">PAN &mdash; verified by name match</div>
-      <div class="cap-d">A mismatch is refused, not warned.</div>
-      <div class="cap-u">K1</div>
-      <span class="flag f-ok">the only retained number</span></div>
+      <div class="cap"><div class="cap-n">M2</div><div class="cap-t">Step 1 &middot; PAN</div>
+      <div class="cap-d">Returns the legal name. A mismatch is refused, not warned.</div>
+      <div class="cap-u">Cashfree &middot; registered_name + name_match_result</div>
+      <span class="flag f-ok">this becomes the signing name</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Step 1 of 3 &middot; PAN</div>
+        <div class="ttl">Step 1 of 4 &middot; PAN</div>
         <div class="flabel">PAN number</div>
         <div class="field" style="color:#333;letter-spacing:.08em">ABCDE1234F</div>
-        <p style="font-size:9px;color:#999;margin:5px 0 0">Checked with our verification partner. We keep <b>no part of the number</b> — only a sealed token.</p>
         <div class="card" style="border:1.5px solid #10B981;margin-top:14px">
           <div style="display:flex;gap:9px;align-items:center">
             <div style="width:30px;height:30px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
-            <div><div style="font-size:12px;font-weight:700">RAVI KUMAR</div>
-            <div style="font-size:9.5px;color:#888">Matches your agreement name</div></div>
+            <div><div style="font-size:12.5px;font-weight:700">RAVI KUMAR</div>
+            <div style="font-size:9.5px;color:#888">Name on your PAN &mdash; you will sign as this</div></div>
           </div>
         </div>
         <div class="card peach">
-          <p style="font-size:10px;margin:0;line-height:1.55">Tax may be deducted at source on your commission. Your PAN keeps that at the lower rate.</p>
+          <p style="font-size:10px;margin:0;line-height:1.55">We keep a <b>sealed token</b>, not the number. Even we cannot read it back.</p>
         </div>
         <button class="btn">Continue</button>
       </div></div></div></div>
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">M3</div><div class="cap-t">Identity &mdash; DigiLocker handoff</div>
+      <div class="cap"><div class="cap-n">M3</div><div class="cap-t">Step 2 &middot; DigiLocker</div>
       <div class="cap-d">They authenticate on DigiLocker. The number never touches our form.</div>
-      <div class="cap-u">Cashfree DigiLocker &middot; create-url &rarr; get-document</div>
-      <span class="flag f-ok">returns split_address + subdist</span></div>
+      <div class="cap-u">create-url &rarr; get-document</div>
+      <span class="flag f-ok">returns subdist = the taluk</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Step 2 of 3 &middot; Address</div>
-        <p style="font-size:10.5px;color:#777;margin:0 0 12px;line-height:1.5">We need your verified address to assign you a territory.</p>
+        <div class="ttl">Step 2 of 4 &middot; Address</div>
         <div class="card" style="margin-top:6px;text-align:center;padding:18px 15px">
           <div style="width:50px;height:50px;border-radius:12px;background:#1B4F9C;display:grid;place-items:center;margin:0 auto 10px;color:#fff;font-size:19px"><i class="fa-solid fa-id-badge"></i></div>
           <div style="font-size:13px;font-weight:700;margin-bottom:6px">Continue with DigiLocker</div>
@@ -2076,53 +2046,127 @@ P5 · CLEANUPS              T16 badge table · T17 payout details · T17b withdr
         <div class="card peach" style="margin-top:11px">
           <div style="font-size:10.5px;font-weight:700;margin-bottom:6px">What comes back</div>
           <div style="font-size:9.5px;color:#666;line-height:1.75;font-family:ui-monospace,monospace">split_address &#123;<br>&nbsp;&nbsp;house &middot; street &middot; landmark &middot; po &middot; vtc<br>&nbsp;&nbsp;<b style="color:var(--o)">subdist</b> &middot; dist &middot; state &middot; <b style="color:var(--o)">pincode</b><br>&#125;</div>
-          <p style="font-size:9.5px;color:#666;margin:8px 0 0;line-height:1.5"><b>subdist</b> is the sub-district &mdash; the taluk. Territory allocation reads it directly, so no pincode&rarr;taluk table is needed.</p>
+          <p style="font-size:9.5px;color:#666;margin:8px 0 0;line-height:1.5"><b>subdist</b> is the sub-district &mdash; the taluk. Allocation reads it directly, so no pincode&rarr;taluk table is needed.</p>
         </div>
       </div></div></div></div>
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">M3b</div><div class="cap-t">The OTP that never arrives</div>
-      <div class="cap-d">DigiLocker sign-in needs the Aadhaar-linked mobile &mdash; often stale.</div>
+      <div class="cap"><div class="cap-n">M3b</div><div class="cap-t">When DigiLocker fails</div>
+      <div class="cap-d">Sign-in needs the Aadhaar-linked mobile &mdash; often stale.</div>
       <div class="cap-u">the fallback that must exist</div>
-      <span class="flag f-bad">not an error message</span></div>
+      <span class="flag f-bad">must NOT become a document store</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Didn't get the OTP?</div>
+        <div class="ttl">Can't sign in to DigiLocker?</div>
         <div class="card" style="border:1.5px solid #FFC08A;background:#FFF8F0">
-          <p style="font-size:11px;color:#555;margin:0;line-height:1.6">The code goes to the mobile registered with your <b>Aadhaar</b> &mdash; which is often an old number. That is common and it is not your fault.</p>
+          <p style="font-size:11px;color:#555;margin:0;line-height:1.6">DigiLocker needs the mobile number registered with your <b>Aadhaar</b> &mdash; which is often an old number. That is common and it is not your fault.</p>
         </div>
         <div class="card" style="margin-top:11px">
-          <div style="font-size:11.5px;font-weight:700;margin-bottom:9px">What you can do</div>
-          <div style="font-size:10.5px;color:#666;line-height:1.7">
-            &bull; Update your mobile at any Aadhaar centre, then come back<br>
-            &bull; Or send us a recent utility bill instead &mdash; we will verify it by hand<br>
-            &bull; Or ask us to call you
-          </div>
+          <div style="font-size:11.5px;font-weight:700;margin-bottom:9px">We will verify on a video call</div>
+          <p style="font-size:10.5px;color:#666;margin:0;line-height:1.6">You <b>show</b> your document on camera. You do not send it. We record only that the check was done, by whom, on what date, and which document type &mdash; <b>never the document</b>.</p>
         </div>
-        <button class="btn">Request a manual check</button>
-        <p style="text-align:center;font-size:10px;color:#999;margin-top:10px">You can still get paid meanwhile &mdash; only your territory waits.</p>
+        <button class="btn">Book a call</button>
+        <p style="text-align:center;font-size:9.5px;color:#999;margin-top:10px">A fallback that asked for uploads would recreate the exact risk we are removing.</p>
       </div></div></div></div>
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">M4</div><div class="cap-t">Done &mdash; and we show what we kept</div>
+      <div class="cap"><div class="cap-n">M4</div><div class="cap-t">Step 3 &middot; UPI, and the name check</div>
+      <div class="cap-d">The bank returns the holder name. The person confirms it.</div>
+      <div class="cap-u">Cashfree &middot; name_at_bank</div>
+      <span class="flag f-ok">ask, never compute</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Step 3 of 4 &middot; Your UPI</div>
+        <div class="flabel">UPI ID</div>
+        <div class="field" style="color:#333">ravi@okhdfcbank</div>
+        <p style="font-size:9.5px;color:#999;margin:6px 0 0">We send &#8377;1 to confirm. It is yours to keep.</p>
+        <div class="card" style="margin-top:14px;border:1.5px solid var(--o2)">
+          <p style="font-size:10.5px;color:#777;margin:0 0 8px">The bank says this account belongs to</p>
+          <div style="background:var(--peach);border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:800;letter-spacing:.02em">MANJUNATH K M</div>
+          <p style="font-size:11px;font-weight:700;margin:11px 0 8px;text-align:center">Is that you?</p>
+          <div style="display:flex;gap:7px">
+            <span style="flex:1;background:#146B45;color:#fff;text-align:center;border-radius:8px;padding:9px;font-size:11.5px;font-weight:700">Yes, that's me</span>
+            <span style="flex:1;background:#fff;border:1px solid #bbb;color:#555;text-align:center;border-radius:8px;padding:9px;font-size:11.5px;font-weight:600">No &mdash; fix it</span>
+          </div>
+        </div>
+        <p style="font-size:9.5px;color:#999;margin-top:10px;line-height:1.5">Names differ without anyone being wrong &mdash; <i>K M Manjunath</i>, <i>Manjunath K M</i>. The person is the authority on their own name.</p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M5</div><div class="cap-t">⭐ Step 4 &middot; SIGN</div>
+      <div class="cap-d">The centrepiece. Signed as a verified person, in the PAN name.</div>
+      <div class="cap-u">AgreementService::record</div>
+      <span class="flag f-ok">nothing downloaded or uploaded</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Step 4 of 4 &middot; Your agreement</div>
+        <div class="card" style="margin-top:0;max-height:150px;overflow:hidden;position:relative;padding:13px">
+          <div style="font-size:10.5px;font-weight:700;text-align:center;margin-bottom:7px">YASHOMARGI Partner Agreement</div>
+          <div style="font-size:8.5px;color:#666;line-height:1.65">This Agreement is made between iRisePro International Edtech and Career Solutions Private Limited ("Company") and the undersigned YASHOMARGI ("Partner")&hellip;<br><br><b>1. Purpose</b><br>The Company is engaging Partners to promote its educational programmes&hellip;</div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:42px;background:linear-gradient(transparent,#fff)"></div>
+        </div>
+        <p style="text-align:center;font-size:9.5px;color:var(--o);margin:7px 0 0"><i class="fa-solid fa-arrow-down"></i> scroll to the end to continue</p>
+        <div class="flabel">Type your full name</div>
+        <div class="field" style="color:#333">RAVI KUMAR</div>
+        <p style="font-size:9.5px;color:#146B45;margin:5px 0 0"><i class="fa-solid fa-check"></i> matches your PAN</p>
+        <div style="display:flex;gap:8px;align-items:flex-start;margin-top:13px">
+          <div style="width:16px;height:16px;border-radius:3px;background:var(--o);display:grid;place-items:center;color:#fff;font-size:9px;flex:0 0 auto;margin-top:1px"><i class="fa-solid fa-check"></i></div>
+          <p style="font-size:10.5px;color:#555;margin:0;line-height:1.5">I have read and agree to the Partner Agreement</p>
+        </div>
+        <button class="btn" style="margin-top:13px">Agree and sign</button>
+        <p style="text-align:center;font-size:9px;color:#999;margin-top:8px">The button stays inactive until you reach the end.</p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M6</div><div class="cap-t">What is written at that moment</div>
+      <div class="cap-d">Stronger evidence than a scanned signature. Sealed, chained, unalterable.</div>
+      <div class="cap-u">the agreement rail &mdash; Track H</div>
+      <span class="flag f-ok">reuses parent-consent machinery</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">The record</div>
+        <div class="card" style="margin-top:2px">
+          <div style="font-size:9.5px;font-family:ui-monospace,monospace;color:#555;line-height:1.9">
+            signatory &nbsp;&nbsp;RAVI KUMAR <span style="color:#999">(PAN-verified)</span><br>
+            document_hash &nbsp;<span style="color:var(--o)">sha256:4f2a&hellip;</span><br>
+            version &nbsp;&nbsp;&nbsp;&nbsp;2026-09-04.v1<br>
+            signed_at &nbsp;&nbsp;04 Sep 2026 11:42:07<br>
+            ip / device &nbsp;&nbsp;103.x.x.x &middot; Android<br>
+            time_on_page &nbsp;3m 14s<br>
+            scrolled_to_end &nbsp;true<br>
+            prev_hash &nbsp;&nbsp;&nbsp;<span style="color:#999">&larr; links to the record before</span><br>
+            signature &nbsp;&nbsp;&nbsp;<span style="color:var(--o)">KMS-sealed</span>
+          </div>
+        </div>
+        <div class="card peach">
+          <p style="font-size:10px;margin:0;line-height:1.6">The key lives <b>outside our database</b>. Someone with full access to our systems still could not forge this.</p>
+        </div>
+        <div class="card" style="background:#E4F1EA;border:1px solid #9CCFB6">
+          <p style="font-size:10px;margin:0;line-height:1.6">We email a PDF <b>produced from this record</b>. It is a <b>receipt</b>, not the agreement.</p>
+        </div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M7</div><div class="cap-t">Done &mdash; and we show what we kept</div>
       <div class="cap-d">Transparency is the DPDPA posture, and it is cheap.</div>
       <div class="cap-u">GET /yashomargi/verify/complete</div></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
         <div class="ttl">You're verified</div>
-        <div style="text-align:center;margin:10px 0 16px">
-          <div style="width:62px;height:62px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;margin:0 auto;color:#146B45;font-size:26px"><i class="fa-solid fa-check"></i></div>
+        <div style="text-align:center;margin:8px 0 14px">
+          <div style="width:58px;height:58px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;margin:0 auto;color:#146B45;font-size:24px"><i class="fa-solid fa-check"></i></div>
         </div>
         <div class="card" style="margin-top:0">
           <div style="font-size:11px;font-weight:700;margin-bottom:9px">What we hold</div>
           <div class="tot" style="font-size:10.5px"><span>PAN</span><b style="color:#146B45">verified ✓</b></div>
+          <div class="tot" style="font-size:10.5px"><span>Identity</span><b style="color:#146B45">verified ✓</b></div>
+          <div class="tot" style="font-size:10.5px"><span>Address</span><b>Nelamangala, Bengaluru Rural</b></div>
           <div class="tot" style="font-size:10.5px"><span>UPI</span><b>ravi@okhdfcbank</b></div>
-          <div class="tot" style="font-size:10.5px"><span>Address</span><b style="color:#146B45">verified ✓</b></div>
-          <div class="tot" style="font-size:10.5px"><span>Verified on</span><b>4 Sep 2026</b></div>
+          <div class="tot" style="font-size:10.5px"><span>Agreement</span><b style="color:#146B45">signed 4 Sep</b></div>
         </div>
         <div class="card" style="background:#FFF6F5;border:1px solid #F3C9C4">
-          <div style="font-size:11px;font-weight:700;margin-bottom:7px;color:#B3261E">What we deleted</div>
-          <div style="font-size:10px;color:#7a5a58;line-height:1.7">Your PAN — every digit<br>Your Aadhaar — every digit<br>Every document image<br>The one-time codes</div>
+          <div style="font-size:11px;font-weight:700;margin-bottom:7px;color:#B3261E">What we never received</div>
+          <div style="font-size:10px;color:#7a5a58;line-height:1.7">Your PAN number &mdash; every digit<br>Your Aadhaar number &mdash; every digit<br>Any document image<br>Any one-time code</div>
         </div>
         <button class="btn ghost">Download my data</button>
       </div></div></div></div>
@@ -2131,13 +2175,42 @@ P5 · CLEANUPS              T16 badge table · T17 payout details · T17b withdr
   </div>
 
   <div class="note">
+    <span class="k">Three checks, three different questions</span>
+    <b>Aadhaar</b> gives identity <i>and address</i>, never tax. <b>PAN</b> gives identity <i>and tax</i>,
+    never address &mdash; a PAN card carries no address, which is why it is <b>not</b> one of the six
+    Officially Valid Documents in the RBI Master Direction. <b>Penny-drop</b> corroborates neither, but
+    it is the only one that proves the account is theirs.
+    <br><br>
+    Two documents are needed because no single one covers both address and tax.
+  </div>
+
+  <div class="note bad">
+    <span class="k">What we store &mdash; keyed tokens, not masks</span>
+    <b>Kept:</b> address, pincode, taluk &middot; the name each source returned &middot; verification
+    references &middot; the sealed agreement record.
+    <br>
+    <b>Never kept:</b> a full PAN &middot; a full Aadhaar &middot; <b>any mask or partial of either</b>
+    &middot; any image &middot; any OTP &middot; any raw vendor payload.
+    <br><br>
+    ⛔ Masks were the earlier answer and they leak &mdash; <code>XXXXX234F</code> gives three digits and
+    the check character of a PAN. And a plain SHA-256 is not the fix: Aadhaar is
+    10<sup>12</sup> values and PAN about 3&times;10<sup>11</sup>, so a GPU enumerates either in minutes.
+    Only a <b>keyed HMAC with the key outside the database</b> works &mdash; irreversible without the key,
+    still deterministic so a UNIQUE index catches one-person-many-accounts, and <b>revocable</b>.
+    Reuses <code>ConsentSigner</code>'s KMS <code>GenerateMac</code>, already in production.
+    <br><br>
+    <b>The honest limit:</b> tokens make the identifiers unusable; they do not anonymise the record,
+    because we hold name and address by design. The defensible sentence is <i>"a leak exposes a
+    partner's name and address, and their Aadhaar and PAN to nobody, ever."</i>
+  </div>
+
+  <div class="note">
     <span class="k">Who is actually obliged to do KYC here?</span>
-    PMLA / RBI KYC obligations bind <b>regulated entities</b> &mdash; banks, NBFCs, payment
-    aggregators. An edtech company paying an affiliate is not one, and when payouts run through
-    Cashfree the regulated party in the chain runs its own KYC on the fund account. So our purpose
-    for holding identity data must be <b>stated</b>, not assumed. That is a question for counsel, and
-    if the answer is &ldquo;theirs, not ours&rdquo;, M3 is deleted and M2 + the penny-drop stand as
-    the whole KYC.
+    PMLA / RBI KYC obligations bind <b>regulated entities</b> &mdash; banks, NBFCs, payment aggregators.
+    An edtech company paying an affiliate is not one, and when payouts run through Cashfree the
+    regulated party in the chain runs its own KYC on the fund account. So our purpose for holding
+    identity data must be <b>stated</b>, not assumed &mdash; and ours is the verified address, for
+    territory allocation. That is question 9 for counsel.
   </div>
 </section>
 
