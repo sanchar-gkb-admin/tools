@@ -203,6 +203,7 @@ h1{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-.03em;line-hei
 .err500 .msg{font-size:11px;color:#666;margin-top:9px;line-height:1.55;word-break:break-word}
 
 .wrongscr{background:#fff;padding:16px;height:100%}
+.r-bad{background:var(--badbg)}
 .wrongtag{background:var(--badbg);border:1px dashed var(--bad);color:var(--bad);font-size:9.5px;font-weight:700;padding:5px 8px;border-radius:4px;margin-bottom:11px;text-align:center;letter-spacing:.05em}
 
 .sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:17px 15px 20px;box-shadow:0 -8px 26px rgba(0,0,0,.22);z-index:20}
@@ -238,7 +239,31 @@ ol.qs span{font-size:14px;color:var(--pgmute);line-height:1.5}
 footer.end{margin-top:72px;padding-top:24px;border-top:3px solid var(--o);font-size:13px;color:var(--pgmute)}
 code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--pg);border:1px solid var(--pgline);border-radius:3px;padding:.08em .32em}
 
-@media(max-width:640px){body{padding:0 13px 70px;font-size:15px}}
+
+/* ── NDA document block ── */
+.doc{background:var(--pg2);border:1px solid var(--pgline);padding:30px 34px;margin:22px 0;
+  max-width:none;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.doc h3.dt{font-size:20px;font-weight:800;text-align:center;margin:0 0 6px;letter-spacing:-.01em}
+.doc .party{text-align:center;font-size:14px;color:var(--pgmute);max-width:62ch;margin:0 auto 26px;line-height:1.55}
+.doc h4.cl{font-size:15px;font-weight:800;margin:24px 0 7px;letter-spacing:-.005em}
+.doc p,.doc li{font-size:14.5px;line-height:1.62;max-width:74ch}
+.doc ul{padding-left:20px;margin:0 0 12px}
+.doc hr{border:0;border-top:1px solid var(--pgline);margin:26px 0}
+.ren{background:var(--okbg);color:var(--ok);border-bottom:1px solid var(--ok);
+  font-weight:700;padding:0 3px;border-radius:2px}
+.keep{background:var(--badbg);color:var(--bad);border-bottom:1px solid var(--bad);
+  font-weight:700;padding:0 3px;border-radius:2px}
+.mark{display:block;margin:9px 0 4px;padding:9px 13px;font-size:13px;line-height:1.5;
+  border-left:3px solid var(--warn);background:var(--warnbg);color:var(--pgink);max-width:74ch}
+.mark.bad{border-left-color:var(--bad);background:var(--badbg)}
+.mark b{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--warn);display:block;margin-bottom:3px}
+.mark.bad b{color:var(--bad)}
+.sig{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:8px}
+.sig div{font-size:14px;line-height:2.1}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--pgmute);margin:14px 0 0}
+
+@media(max-width:640px){body{padding:0 13px 70px;font-size:15px}.doc{padding:20px 17px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -1060,6 +1085,557 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
       code has to survive into the Razorpay order notes. That is a storefront change, and it should
       ship together with the double-credit fix.</span></li>
   </ol>
+</section>
+
+
+<!-- ══════════════ TRACK G — NDA ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track G</span><h2>The NDA, in full</h2></div>
+  <p class="track-note">
+    Screen <b>C2</b> renders this entire agreement inline before the partner may download and sign
+    it. Reproduced complete below, with the rename applied. Source:
+    <code>wallet/activate-wallet.blade.php:77&ndash;190</code>. The signed artefact
+    (<code>images/pdf/IGP NDA.pdf</code>) is a <b>separate file that nothing keeps in sync with this
+    text</b> &mdash; both must be re-issued together.
+  </p>
+  <div class="legend">
+    <span><span class="ren">YASHOMARGI</span> renamed</span>
+    <span><span class="keep">iRisePro&hellip;Private Limited</span> must NOT change &mdash; registered entity</span>
+    <span style="border-left:3px solid var(--warn);padding-left:7px">for legal review</span>
+  </div>
+
+  <div class="doc">
+    <h3 class="dt">Non-Disclosure Agreement (NDA)</h3>
+    <p class="party">This Agreement is made between <span class="keep">iRisePro International Edtech
+    and Career Solutions Private Limited</span> (&ldquo;Company&rdquo;) and the undersigned
+    <span class="ren">YASHOMARGI</span> (&ldquo;Partner&rdquo;).</p>
+
+    <h4 class="cl">1. Purpose</h4>
+    <p>The Company is engaging Partners to promote its Holistic transformation educational programs
+    and empower students. During this association, Partners may have access to confidential
+    information, proprietary data, marketing materials, and student information. This NDA ensures
+    such information is protected and used only for authorized purposes.</p>
+
+    <h4 class="cl">2. Confidential Information</h4>
+    <p>&ldquo;Confidential Information&rdquo; includes but is not limited to:</p>
+    <ul>
+      <li>Student data, parent details, and enrollment information.</li>
+      <li>Internal marketing materials, scripts, posters, training content.</li>
+      <li>Commission structures, payout mechanisms, and wallet data.</li>
+      <li>Any other non-public information related to YASHHO.</li>
+    </ul>
+
+    <h4 class="cl">3. Obligations of the Partner</h4>
+    <p>The Partner agrees to:</p>
+    <ul>
+      <li>Use Confidential Information solely for the purpose of promoting YASHHO programs.</li>
+      <li>Not disclose, share, or misuse any confidential data with third parties.</li>
+      <li>Protect student and parent information with utmost care.</li>
+      <li>Represent the YASHHO brand with integrity, honesty, and professionalism.</li>
+      <li>Not create or promote competing programs using YASHHO data or materials.</li>
+    </ul>
+
+    <h4 class="cl">4. Platinum-Level Privileges</h4>
+    <p>At Platinum level, a <span class="ren">YASHOMARGI</span> may be given opportunities to launch
+    their own courses, books, or masterclasses on the YASHHO platform. Such privileges remain
+    subject to Company review, quality standards, and compliance with this NDA.</p>
+    <span class="mark"><b>Gap &mdash; promises features that do not exist</b>
+    None of these are built. The rewards screen advertises the same list plus &ldquo;Blue Tick
+    Verified Badge&rdquo; and &ldquo;Freelancing opportunities&rdquo;. A contractual promise of an
+    unbuilt feature is worse than a softened statement of intent.</span>
+
+    <h4 class="cl">5. Termination</h4>
+    <p>If the Partner is found misusing information, engaging in unethical behavior, or damaging the
+    reputation of YASHHO, the Company reserves the right to immediately terminate the contract.</p>
+    <p>Upon termination, all rights, access, and privileges of the Partner under this NDA and the
+    <span class="ren">YASHOMARGI</span> programme shall cease.</p>
+    <p>Also, there could be legal and punitive measures against the concerned person. Even after
+    termination, the concerned person shall NOT SHARE any company information with anyone for a
+    period of lifetime.</p>
+    <span class="mark bad"><b>For legal &mdash; two points</b>
+    (a) This binds confidentiality &ldquo;for a period of lifetime&rdquo;, while &sect;8 says the
+    Agreement is valid one year. The two clauses contradict each other on the single most important
+    question an NDA answers. &nbsp;(b) &ldquo;punitive measures&rdquo; &mdash; Indian contract
+    damages under ss.&nbsp;73&ndash;74 are generally compensatory. Worth confirming this is wording
+    you would stand behind if tested.</span>
+
+    <h4 class="cl">6. Intellectual Property</h4>
+    <p>All logos, course materials, program content, graphics, and proprietary methods (including
+    the AACE framework) remain the exclusive intellectual property of YASHHO. The Partner has no
+    ownership rights beyond authorized usage for promotion.</p>
+
+    <h4 class="cl">7. Non-Solicitation</h4>
+    <p>The Partner agrees not to directly solicit or misguide students or parents for personal gain
+    outside the YASHHO ecosystem.</p>
+    <span class="mark"><b>For legal</b>
+    No duration stated. &sect;8's one-year term presumably governs, but non-solicitation is usually
+    given its own explicit period.</span>
+
+    <h4 class="cl">8. Duration</h4>
+    <p>This NDA remains valid for a period of one (1) year from the date of signing. However, it
+    shall become immediately invalid if the Partner&rsquo;s contract is terminated due to misuse,
+    fraud, breach of terms, or unethical behavior.</p>
+    <span class="mark bad"><b>For legal &mdash; read this one first</b>
+    As drafted, the Agreement &ldquo;becomes immediately invalid&rdquo; when terminated <i>for the
+    Partner&rsquo;s own misuse</i> &mdash; i.e. breaching it releases them from it. Almost certainly
+    the opposite of the intent, and in direct tension with &sect;5.</span>
+
+    <h4 class="cl">9. Jurisdiction</h4>
+    <p>This Agreement shall be governed by and construed in accordance with the laws of India. Any
+    disputes shall fall under the jurisdiction of Bengaluru courts.</p>
+
+    <h4 class="cl">10. Acknowledgement</h4>
+    <p>By signing this NDA, the Partner acknowledges:</p>
+    <ul>
+      <li>They have read, understood, and agreed to all terms.</li>
+      <li>They shall act in good faith as a representative of YASHHO.</li>
+      <li>Breach of this NDA may lead to legal action.</li>
+    </ul>
+
+    <hr>
+    <h4 class="cl" style="margin-top:0">Signed by</h4>
+    <div class="sig">
+      <div>
+        <b><span class="ren">YASHOMARGI</span>:</b><br>
+        Name: ________________________<br>
+        Age: _________________________<br>
+        Occupation: ___________________<br>
+        UPI ID (for payout linking): ______<br>
+        Signature: ___________________
+      </div>
+      <div>
+        <b><span class="keep">iRisePro International Edtech and Career Solutions Pvt Ltd</span></b><br>
+        Authorized Signatory: __________
+      </div>
+    </div>
+  </div>
+
+  <div class="note bad">
+    <span class="k">The signature block is the only place a UPI ID is captured anywhere</span>
+    This form asks for &ldquo;UPI ID (for payout linking)&rdquo; in handwriting. In the app there is
+    no live field for it &mdash; signup&rsquo;s input is commented out, the dashboard&rsquo;s
+    Payment Details card is <code>@if(false)</code>, and Profile shows only Name, Mobile and Code
+    (Gap A-2). So a handwritten line on a PDF is the sole capture point, and an admin re-keys it
+    before any payout can run. Whichever way that gap closes, this block should match.
+  </div>
+
+  <div class="note">
+    <span class="k">Two more things the agreement does not say</span>
+    <b>Aadhaar is never mentioned.</b> The wizard requires both sides of an Aadhaar card alongside
+    the signed NDA, yet the Agreement says nothing about what identity documents are taken, why, or
+    for how long &mdash; conspicuous in a document otherwise devoted to protecting personal data.
+    <br><br>
+    <b>No DPDPA reference.</b> The Partner is handed student and parent data, including
+    children&rsquo;s. There is no mention of the Act, the Partner&rsquo;s obligations under it, or a
+    breach-notification duty.
+  </div>
+
+  <div class="note">
+    <span class="k">Re-signing</span>
+    Partners who signed the &ldquo;YASHHO Growth Partner (IGP)&rdquo; version are bound under that
+    name. Whether the rename needs re-execution or a name-change addendum is a call for your lawyer
+    &mdash; but the <code>igp_ndas</code> rows and stored PDFs are evidence of the old name and
+    should not be overwritten.
+  </div>
+</section>
+
+
+<!-- ══════════════ TRACK H — AGREEMENT RAIL ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track H</span><h2>Is the signed NDA tamper-evident?</h2></div>
+  <p class="track-note">
+    <b>No &mdash; and we already own the pattern that would make it so.</b> The parent-consent ledger
+    is a hash-chained, signed, WORM-backed record. The NDA is a file upload. Below: the delta, then a
+    common rail so no future agreement has to reinvent it.
+  </p>
+
+  <h3 style="font-size:23px;font-weight:700;margin:26px 0 10px">What the standard already does</h3>
+  <p style="max-width:76ch;color:var(--pgmute);font-size:15px">
+    <code>App\Models\Consent</code> + <code>TermsAcceptanceService</code> +
+    <code>infra/prod-mumbai/consent_ledger.tf</code>. Used today for guardian consent and for the
+    checkout T&amp;C on <b>every</b> purchase.
+  </p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Control</th><th>Parent consent / checkout T&amp;C</th><th>YASHOMARGI NDA</th></tr></thead>
+      <tbody>
+        <tr><td>Seals the <b>exact text</b> signed</td><td class="v"><code>notice_hash = LegalNotice::hash($version)</code></td><td class="x">nothing &mdash; no hash, no version</td></tr>
+        <tr><td>Version of the document</td><td class="v"><code>notice_version</code> &middot; <code>2026-07-02.v2</code></td><td class="x">no column</td></tr>
+        <tr><td>Tamper-evidence</td><td class="v">hash chain &mdash; <code>record_hash</code> / <code>prev_hash</code></td><td class="x">none</td></tr>
+        <tr><td>Authenticity</td><td class="v">server-side <code>signature</code>, sealed in a model hook</td><td class="x">none</td></tr>
+        <tr><td>Lawful basis (DPDPA)</td><td class="v"><code>basis = 'contract'</code></td><td class="x">no column</td></tr>
+        <tr><td>Who / where / when</td><td class="v"><code>ip_address</code>, <code>granted_at</code></td><td class="x">only <code>created_at</code></td></tr>
+        <tr><td>Retention</td><td class="v"><code>retention_until</code>, drives Object-Lock duration</td><td class="x">no column</td></tr>
+        <tr><td>Append-only</td><td class="v">delete blocked by migration; <code>withdrawn_at</code>, never DELETE</td><td class="x"><b>hard delete on re-upload</b></td></tr>
+        <tr><td>Storage immutability</td><td class="v"><code>object_lock_enabled = true</code> (WORM)</td><td class="q">versioning only &mdash; no Object Lock</td></tr>
+        <tr><td>Race safety</td><td class="v">txn + unique-active index</td><td class="x">none</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13.5px;color:var(--pgmute)">
+    Measured: <code>igp_ndas</code> has 9 columns and <b>zero</b> matches against
+    <code>notice_hash|record_hash|prev_hash|signature|ip_address|basis|retention</code>.
+    <code>object_lock_enabled</code> appears in exactly one file in <code>infra/prod-mumbai/</code> &mdash;
+    <code>consent_ledger.tf</code>. The media bucket holding the NDA has versioning, not Object Lock.
+  </p>
+
+  <h3 style="font-size:23px;font-weight:700;margin:34px 0 10px">Four ways the signed NDA can be disputed today</h3>
+
+  <div class="note bad">
+    <span class="k">H-1 &mdash; re-uploading destroys the previous signed agreement</span>
+    <code>MobileIgpNdaController::uploadWalletDocs</code> calls
+    <code>PrivateMedia::purgeAllDisks()</code> on the NDA PDF and both Aadhaar images, then
+    <code>$igp-&gt;nda()-&gt;delete()</code>, <i>before</i> writing the replacement. There is no
+    supersession &mdash; only replacement. An authenticated partner can overwrite their own signed
+    agreement at any time, including after approval, and the original is gone from the row and
+    purged from both disks.
+  </div>
+
+  <div class="note bad">
+    <span class="k">H-2 &mdash; nothing binds the stored PDF to the text that was displayed</span>
+    The agreement is rendered inline from <code>activate-wallet.blade.php</code>, while the file the
+    partner downloads and signs is a separate static asset (<code>images/pdf/IGP NDA.pdf</code>).
+    Nothing checks the two agree, and no hash of either is recorded. If a partner disputes a clause,
+    we cannot establish <b>which version of which text</b> they signed.
+  </div>
+
+  <div class="note bad">
+    <span class="k">H-3 &mdash; no approver identity, no approval time</span>
+    <code>igp_ndas</code> records <code>status</code>, <code>remarks</code> and
+    <code>updated_at</code>. There is no <code>approved_by</code> and no <code>approved_at</code>.
+    &ldquo;Who approved this KYC, and when?&rdquo; has no answer in the data &mdash; and per the
+    access finding, the approve/reject routes are reachable without authentication at all, so there
+    may not have been a person.
+  </div>
+
+  <div class="note">
+    <span class="k">H-4 &mdash; storage is tamper-recoverable, not tamper-proof</span>
+    The media bucket has versioning enabled, so an accidental delete is recoverable by an operator.
+    That is not the same as immutable: without Object Lock, a sufficiently privileged actor (or the
+    application&rsquo;s own <code>purgeAllDisks</code>) can remove the object and its versions.
+    Aadhaar images and a signed contract belong on the WORM lane, alongside the consent ledger.
+  </div>
+
+  <h3 style="font-size:23px;font-weight:700;margin:34px 0 10px">The proposal &mdash; one agreement rail</h3>
+  <p style="max-width:76ch">
+    Generalise what the consent ledger already does so that signing anything with anyone is a
+    plug-in, not a rebuild. The chain-hashing, signing and WORM machinery exists and is proven in
+    production; what is student-shaped about it is only the two foreign keys.
+  </p>
+
+  <div class="ev">
+    <div class="ev-head"><span>proposed &mdash; generalise Consent into an agreements rail</span><span>not yet built</span></div>
+<pre>agreements
+  id
+  signatory_type / signatory_id   ← POLYMORPHIC: Guardian · Student · Yashomargi
+                                    Yashodarshi · Institution · Vendor
+  agreement_key                   ← 'yashomargi_nda' | 'checkout_terms' | 'guardian_consent'
+                                    'institution_mou' | 'vendor_nda'
+  version                         ← '2026-09-04.v1'
+  document_hash                   ← seals the EXACT text presented   (LegalNotice::hash)
+  artefact_path / artefact_sha256 ← the signed PDF + its content hash
+  basis                           ← DPDPA lawful basis
+  ip_address · signed_at
+  superseded_at · superseded_by   ← NEVER delete; a new signature supersedes
+  retention_until                 ← drives the Object-Lock duration
+  record_hash / prev_hash / signature   ← REUSE the existing creating-hook chain
+
+ONE SERVICE   AgreementService::record($signatory, $key, $version, $artefact): Agreement
+              — idempotent per (signatory, key, version), same txn + unique-active pattern
+
+ONE BUCKET    reuse the consent_ledger Object-Lock module for every agreement artefact
+
+CONSUMERS     guardian consent  ✓ exists   →  migrate
+              checkout T&C      ✓ exists   →  migrate
+              YASHOMARGI NDA    ✗ new      →  first new tenant
+              Yashodarshi, institution MoU, vendor NDA  →  free thereafter</pre>
+  </div>
+
+  <div class="note">
+    <span class="k">Why this is a rail and not a refactor</span>
+    Three properties make an agreement defensible: <b>what</b> was signed (document hash),
+    <b>by whom and when</b> (signatory + signed_at + IP), and <b>that the record has not
+    changed since</b> (hash chain + WORM). Those are identical for a parent consenting to a scan
+    and a Yashomargi signing an NDA. Only the counterparty differs &mdash; which is exactly the part
+    that should be a polymorphic key rather than a new table each time.
+  </div>
+
+  <div class="note bad">
+    <span class="k">Sequencing &mdash; this gates the rename, not the other way round</span>
+    A v2 NDA under the YASHOMARGI name will be signed by real people. Issuing it on the current
+    mechanism creates a fresh batch of un-versioned, un-hashed, deletable agreements. The rail
+    should land <b>before</b> the v2 NDA goes out, or the rename manufactures more of the problem
+    it is a good moment to fix.
+  </div>
+</section>
+
+
+<!-- ══════════════ TRACK I — ATTRIBUTION DESIGN ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track I</span><h2>Capturing a payment made through a partner link</h2></div>
+  <p class="track-note">
+    Design settled 4 Sep, then red-teamed. <b>Verdict: not green lit</b> &mdash; one blocker, one
+    must-fix, one unverified. Spec:
+    <code>docs/superpowers/specs/2026-09-04-yashomargi-referral-attribution-design.md</code>.
+  </p>
+
+  <div class="note">
+    <span class="k">The finding that shrank the design</span>
+    Referral attribution is a <b>UTM-shaped problem</b>, and the UTM rail is already built end to
+    end. <code>checkout_attempts</code> already carries <code>first_utm_*</code> (set-once,
+    first-touch) and <code>last_utm_*</code> (overwritten, last-touch). The migration's own docblock
+    says why: <i>"both on the lead so the campaign ROI view can attribute either way without
+    re-instrumenting."</i> First and last touch is not a new capability &mdash; it is one more key on
+    an existing pair of columns.
+  </div>
+
+  <div class="pipe">
+    <div class="pipe-lane">the whole change</div>
+    <div class="step"><div class="rail"><span class="node ok"></span></div><div class="step-body">
+      <div class="step-title">1 &nbsp;Dashboard emits catalogue-driven links</div>
+      <div class="step-meta">yashho.com/{stream}?ref=CODE &middot; code embedded at generation</div>
+      <div class="step-note">Replaces 12 hardcoded <code>irisepro.in</code> URLs. No redirector, no second piece to maintain.</div>
+      <div class="break"><b>Blocked &mdash; RT-1</b>The catalogue has no stream&rarr;URL slug.</div>
+    </div></div>
+    <div class="step"><div class="rail"><span class="node ok"></span></div><div class="step-body">
+      <div class="step-title">2 &nbsp;Storefront forwards the code</div>
+      <div class="step-meta">src/app/api/order/route.ts:201 &middot; one key on an existing loop</div>
+      <div class="step-note">The client already spreads <code>attribution</code> into the order body at <code>enroll-form.tsx:538</code>.</div>
+    </div></div>
+    <div class="step"><div class="rail"><span class="node warn"></span></div><div class="step-body">
+      <div class="step-title">3 &nbsp;Lead ledger records first + last</div>
+      <div class="step-meta">2 nullable columns mirroring the UTM pair</div>
+      <div class="step-note">Time-to-conversion comes free from <code>lead_events.created_at</code>.</div>
+    </div></div>
+    <div class="step"><div class="rail"><span class="node bad"></span></div><div class="step-body">
+      <div class="step-title">4 &nbsp;Delete the second reward engine</div>
+      <div class="step-meta">PaymentController.php:1901 &middot; same PR, not later</div>
+      <div class="step-note">Harmless only while attribution is dead. Restoring step 2 without this arms a double credit on the first referred sale.</div>
+    </div></div>
+  </div>
+
+  <h3 style="font-size:23px;font-weight:700;margin:30px 0 10px">Red team &mdash; three findings</h3>
+
+  <div class="note bad">
+    <span class="k">RT-1 &middot; BLOCKER &mdash; there is no per-stream storefront URL to link to</span>
+    Measured against live <code>/api/catalog</code>: <code>streams[]</code> exposes
+    <code>program &middot; label &middot; token</code> and <code>pages[]</code> exposes
+    <code>stream &middot; name &middot; heading &middot; tagline &middot; &hellip;</code> &mdash;
+    <b>neither carries a URL slug</b>. Eight catalogue streams
+    (<code>marks_booster, board_booster, career_readiness, ias, neet, jee, kas, neet_jee</code>)
+    against six curated storefront pages (<code>/kas /neet-jee /civil-services /regular
+    /institutions /godparent</code>). That is a marketing IA, not a projection of the catalogue
+    &mdash; three boosters collapse into <code>/regular</code>, and neet/jee/neet_jee do not map 1:1.
+    <br><br>
+    <b>Recommended fix:</b> add <code>page_slug</code> to the catalogue's <code>pages[]</code>. The
+    storefront owns its IA, so it declares the slug and the catalogue publishes it; partner links
+    stay self-healing. Additive, and the payload may only grow.
+  </div>
+
+  <div class="note bad" style="border-left-color:var(--warn)">
+    <span class="k" style="color:var(--warn)">RT-2 &middot; MUST FIX &mdash; the attribution writer never runs on the purchase path</span>
+    <code>LeadCapture::capture()</code> has exactly one caller:
+    <code>Api/LeadCaptureController:77</code>, serving the lead-capture <i>form</i>. The purchase path
+    is different &mdash; <code>PaymentController::createOrder</code> upserts the lead directly at
+    lines 327&ndash;372 and never calls <code>applyAttribution()</code>. As designed, the new columns
+    would populate only for buyers who filled the lead form first, not for a referred buyer who went
+    straight to checkout &mdash; which is the entire point. Route that upsert through the same
+    writer; one authority, not a second inline assignment.
+  </div>
+
+  <div class="note">
+    <span class="k">RT-3 &middot; VERIFY &mdash; Razorpay notes key count</span>
+    Counted from <code>route.ts</code>: 11 always-present keys, +3 optional, +5 UTM = <b>19 worst
+    case</b>. Adding <code>referral_code</code> makes 20.
+    <br><br>
+    &#9888; <b>UNVERIFIED:</b> I believe Razorpay caps <code>notes</code> at 15 pairs, but that is
+    from training, not measured here. Counter-evidence: 19-key orders are succeeding in production
+    today. Check the current API docs or post a 20-key test order before adding the 20th &mdash; a
+    silently truncated <code>notes</code> drops attribution exactly where it is hardest to notice.
+  </div>
+
+  <div class="note">
+    <span class="k">Attacks that found nothing</span>
+    The UTM rail is real, not declared-only (<code>LeadCapture:289</code> writes it,
+    <code>SyndicateLead:171</code> reads it). The client already forwards an
+    <code>attribution</code> object. <code>clean()</code> strips only <code>&lt;&gt;</code>, so an
+    alphanumeric code survives intact.
+    <br><br>
+    <b>Open, lower priority:</b> a buyer can put any string in <code>?ref</code>. No injection risk
+    &mdash; Eloquent parameterises and an unknown code simply fails to match &mdash; but
+    <b>self-referral is not blocked</b>. Worth a rule before commissions flow.
+  </div>
+</section>
+
+
+<!-- ══════════════ TRACK J — MONEY LEDGER ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track J</span><h2>&ldquo;What they owe is what they got&rdquo;</h2></div>
+  <p class="track-note">
+    The invariant, and why it is not currently provable. Spec:
+    <code>docs/superpowers/specs/2026-09-04-partner-money-ledger-tamper-evident-design.md</code>.
+  </p>
+
+  <div class="note bad">
+    <span class="k">A consent record is harder to tamper with than a money record</span>
+    Measured 4 Sep, side by side. Every control on the left runs in production today; none exists on
+    the right.
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Control</th><th>Consent ledger (live)</th><th>Partner money</th></tr></thead>
+      <tbody>
+        <tr><td>Storage-level append-only</td><td class="v"><code>BEFORE DELETE</code> trigger, <code>SIGNAL 45000</code></td><td class="x">none</td></tr>
+        <tr><td>Per-row hash chain</td><td class="v"><code>prev_hash</code> &larr; <code>record_hash</code></td><td class="x">none</td></tr>
+        <tr><td>Signature outside the DB</td><td class="v"><code>ConsentSigner</code> &rarr; AWS KMS</td><td class="x">none</td></tr>
+        <tr><td>Verifier</td><td class="v"><code>consent:verify</code>, nightly</td><td class="x">none</td></tr>
+        <tr><td>WORM checkpoint</td><td class="v"><code>object_lock_enabled = true</code></td><td class="x">none</td></tr>
+        <tr class="r-bad"><td>Balance derived from ledger</td><td class="c-mute">n/a</td><td class="x"><b>no &mdash; it is a separate column</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note bad">
+    <span class="k">The KMS signature is the load-bearing control</span>
+    The chain proves internal consistency &mdash; alter a row and its hash stops matching. But someone
+    holding the DB credential could recompute the whole chain. They <b>cannot forge the signature</b>:
+    the key lives in KMS, outside the database. That is the difference between
+    &ldquo;tamper-detectable by an honest process&rdquo; and &ldquo;tamper-evident against a
+    privileged actor&rdquo; &mdash; which is what audit grade means. Given <b>G-01</b>, the payout
+    endpoint currently answers unauthenticated, this is not theoretical.
+  </div>
+
+  <h3 style="font-size:23px;font-weight:700;margin:30px 0 10px">Applying accounting standards surfaced two things</h3>
+
+  <div class="note">
+    <span class="k">The ledger is single-entry</span>
+    <code>igp_transactions</code> records credit/debit against <b>one</b> account. That is a running
+    tally, not a book &mdash; no contra-entry, so no trial balance, and an unbalanced write is
+    undetectable. Proper form posts two legs summing to zero (Commission Expense &harr; Partner
+    Payable), which makes <b>A7: every entry_group sums to zero</b> a single arithmetic assertion.
+  </div>
+
+  <div class="note">
+    <span class="k"><code>pending_balance</code> is the accrual account nobody implemented</span>
+    It exists, renders on the dashboard, and has <b>zero write sites</b>. Under accrual accounting
+    money has three states &mdash; <b>accrued</b> (earned, unapproved), <b>approved</b> (payable),
+    <b>settled</b> (paid). Today a commission jumps straight to <code>approved_balance</code> at
+    webhook time, <i>before</i> KYC clears and <i>before</i> any refund window. That is why the
+    missing clawback bites: we approve money we may have to recover from a balance a partner may
+    already have withdrawn.
+  </div>
+
+  <div class="note">
+    <span class="k">The daily books check &mdash; nine assertions</span>
+    <b>A1</b> chain + signature verify &middot; <b>A2</b> balance == ledger sum &middot;
+    <b>A3</b> every credit traces to a captured payment &middot; <b>A4</b> one credit per reward row
+    &middot; <b>A5</b> no credit against a refunded enrolment &middot; <b>A6</b> withdrawals
+    reconcile to payouts &middot; <b>A7</b> every entry_group sums to zero &middot; <b>A8</b> no
+    entry predates the last checkpoint &middot; <b>A9</b> control account agrees with the subsidiary
+    ledger.
+    <br><br>
+    A1 answers <i>&ldquo;has anyone tampered?&rdquo;</i> A2&ndash;A9 answer <i>&ldquo;do the books
+    balance?&rdquo;</i> &mdash; and <b>A2 must be seeded to fail in tests</b>. A reconciler that has
+    never gone red is one nobody has proven can.
+  </div>
+</section>
+
+<!-- ══════════════ TRACK K — EXECUTION ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track K</span><h2>Execution &mdash; 21 tasks, 5 lanes, 6 waves</h2></div>
+  <p class="track-note">
+    Plan: <code>docs/superpowers/plans/2026-09-04-yashomargi-attribution-and-money-ledger.md</code>.
+    Every red-team finding is assigned; nothing is unowned.
+  </p>
+
+  <div class="ev">
+    <div class="ev-head"><span>dependency DAG</span><span>critical path in Lane C</span></div>
+<pre>LANE A · security          T0 admin routes · T0b 500s+dd() · T18 view ratchet
+  no dependencies          T19 host sweep · T20 YASHOMARGI copy
+
+LANE B · catalogue links   T1 page_slug ─▶ T2 seed ─▶ T3 publish ─▶ T4 dashboard
+  strictly sequential                        ▲ BLOCKED: confirm 8 mappings
+
+LANE C · money ledger      T5 PartnerLedger ─┬─▶ T6 seal ─▶ T7 verify ─▶ T10 WORM
+  ★ CRITICAL PATH                            ├─▶ T8 accrual + clawback
+                                             └─▶ T9 one authority
+
+LANE D · research          T11 Razorpay cap ──▶ gates T14
+                           T16 badge table  ── BLOCKED: 7,000 or 7,500?
+                           T17 payout entry ── BLOCKED: self-serve or admin?
+
+LANE E · attribution       T12 first/last touch ─┐
+  backend before storefront T11 ─────────────────┴─▶ T14 storefront ─▶ T15 acceptance
+                           T13 self-referral</pre>
+  </div>
+
+  <div class="note bad">
+    <span class="k">The ordering that is not negotiable</span>
+    Lane E must never overtake Lane C. Every money defect &mdash; lost updates, no clawback, no
+    reconciliation, a mutable ledger &mdash; is dormant <b>only because no commission is currently
+    being credited</b>. Ship attribution first and you manufacture exactly the unauditable history
+    the ledger exists to prevent.
+  </div>
+
+  <h3 style="font-size:23px;font-weight:700;margin:30px 0 10px">The loop &mdash; red · green · red-team · signoff</h3>
+
+  <div class="ev stop">
+    <div class="ev-head"><span>per-task cycle</span><span>a REJECT returns to step 1</span></div>
+<pre>1 RED      write the test · RUN IT · record that it FAILED
+           ⛔ no recorded failure ⇒ the task cannot pass
+2 GREEN    minimal implementation
+3 VERIFY   named test passes · diff-scoped suite passes
+           · nothing previously green went red
+4 REDTEAM  adversarial review by a fresh reader — may REJECT
+5 SIGNOFF  commit</pre>
+  </div>
+
+  <div class="note bad">
+    <span class="k">Why the RED record is the whole design</span>
+    This codebase has shipped a guard that could not fail &mdash;
+    <code>EveryRouteTargetExistsTest</code>, vacuous app-wide, and the commit message says so. In
+    <i>this session</i> my own route-target check passed by matching a <b>commented-out</b> method,
+    and a second check silently skipped <code>streak_1</code> because the regex excluded digits.
+    A loop with no proof-of-failure will manufacture that outcome at scale. So the gate stores the
+    step-1 failure and refuses a green whose test never ran red.
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Harness piece</th><th>Exists?</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>Diff-scoped runner</td><td class="v">✅ <code>select-tests-for-diff.sh</code></td><td>&mdash;</td></tr>
+        <tr><td>Background lane + receipts</td><td class="v">✅ <code>test-bg.sh</code></td><td>&mdash;</td></tr>
+        <tr><td>Per-task gate script</td><td class="x">no</td><td>~½ day</td></tr>
+        <tr class="r-bad"><td><b>Red-first record + enforcement</b></td><td class="x">no</td><td>~½ day &mdash; <b>load-bearing</b></td></tr>
+        <tr><td>Regression clamp (green&rarr;red)</td><td class="x">no</td><td>~½ day</td></tr>
+        <tr><td>Structured verdict + reject path</td><td class="x">no</td><td>~1 day</td></tr>
+        <tr><td>DAG driver / wave scheduler</td><td class="x">no</td><td>~1 day</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <span class="k">Termination &mdash; three conditions, all required</span>
+    Every unblocked task SIGNED OFF <b>and</b> the <b>full</b> suite green (not the diff-scoped
+    subset) <b>and</b> <code>partner:ledger-verify</code> exits 0 on seeded data.
+    <br><br>
+    Stop conditions: 3 REJECTs on one task halts that lane and escalates. A BLOCKED node halts
+    <b>its lane only</b>. Any money task that cannot produce a red-first record halts
+    <b>everything</b> &mdash; money does not get to skip the proof.
+    <br><br>
+    <b>~3&ndash;4 days to build the harness.</b> Worth it for 21 tasks across two repos with a money
+    path in the middle; not worth it for a smaller change.
+  </div>
+
+  <div class="note bad">
+    <span class="k">Four gates no harness can close</span>
+    <b>1.</b> Confirm the 8 stream&rarr;page mappings (T2). &nbsp;<b>2.</b> Measure the Razorpay
+    <code>notes</code> cap (T11). &nbsp;<b>3.</b> Platinum &mdash; &#8377;7,000 or &#8377;7,500?
+    (T16) &nbsp;<b>4.</b> Payout details &mdash; partner self-serve or admin-entered? (T17)
+  </div>
 </section>
 
 <footer class="end">
