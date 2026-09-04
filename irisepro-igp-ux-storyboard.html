@@ -998,21 +998,49 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">M3b</div><div class="cap-t">When DigiLocker fails</div>
-      <div class="cap-d">Sign-in needs the Aadhaar-linked mobile &mdash; often stale.</div>
-      <div class="cap-u">the fallback that must exist</div>
-      <span class="flag f-bad">must NOT become a document store</span></div>
+      <div class="cap"><div class="cap-n">M3b</div><div class="cap-t">DigiLocker didn&rsquo;t work &mdash; try another document</div>
+      <div class="cap-d">The stale-mobile problem is Aadhaar&rsquo;s alone. DL and Voter ID don&rsquo;t need it.</div>
+      <div class="cap-u">driving licence &middot; voter ID</div>
+      <span class="flag f-ok">two more automated routes</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Can't sign in to DigiLocker?</div>
-        <div class="card" style="border:1.5px solid #FFC08A;background:#FFF8F0">
-          <p style="font-size:11px;color:#555;margin:0;line-height:1.6">DigiLocker needs the mobile number registered with your <b>Aadhaar</b> &mdash; which is often an old number. That is common and it is not your fault.</p>
+        <div class="ttl">Let&rsquo;s try another way</div>
+        <div class="card" style="border:1.5px solid #FFC08A;background:#FFF8F0;margin-top:4px">
+          <p style="font-size:10.5px;color:#555;margin:0;line-height:1.6">DigiLocker needs the mobile number registered with your <b>Aadhaar</b> &mdash; often an old one. That is common and it is not your fault.</p>
         </div>
-        <div class="card" style="margin-top:11px">
-          <div style="font-size:11.5px;font-weight:700;margin-bottom:9px">We will verify on a video call</div>
-          <p style="font-size:10.5px;color:#666;margin:0;line-height:1.6">You <b>show</b> your document on camera. You do not send it. We record only that the check was done, by whom, on what date, and which document type &mdash; <b>never the document</b>.</p>
+        <p style="font-size:11px;color:#666;margin:13px 0 9px;line-height:1.5"><b>Either of these works instead</b> &mdash; no Aadhaar needed:</p>
+        <div class="card" style="margin-top:0;padding:13px">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:4px"><div style="width:28px;height:28px;border-radius:7px;background:var(--peach);display:grid;place-items:center;color:var(--o)"><i class="fa-solid fa-id-card"></i></div><div style="font-size:12px;font-weight:700">Driving Licence</div></div>
+          <div style="font-size:9.5px;color:#888;margin-left:37px">Licence number and date of birth</div>
         </div>
-        <button class="btn">Book a call</button>
-        <p style="text-align:center;font-size:9.5px;color:#999;margin-top:10px">A fallback that asked for uploads would recreate the exact risk we are removing.</p>
+        <div class="card" style="padding:13px">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:4px"><div style="width:28px;height:28px;border-radius:7px;background:var(--peach);display:grid;place-items:center;color:var(--o)"><i class="fa-solid fa-vote-yea"></i></div><div style="font-size:12px;font-weight:700">Voter ID</div></div>
+          <div style="font-size:9.5px;color:#888;margin-left:37px">EPIC number and your name</div>
+        </div>
+        <button class="btn">Continue</button>
+        <p style="text-align:center;font-size:10px;color:#999;margin-top:10px">Have neither? <b style="color:var(--o)">We&rsquo;ll sort it out for you</b></p>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">M3c</div><div class="cap-t">None worked &mdash; we take it from here</div>
+      <div class="cap-d">A holding state, not a dead end and not a booking form.</div>
+      <div class="cap-u">goes to an admin queue</div>
+      <span class="flag f-warn">the rare case</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">We&rsquo;ll take it from here</div>
+        <div style="text-align:center;margin:14px 0">
+          <div style="width:58px;height:58px;border-radius:50%;background:var(--peach);display:grid;place-items:center;margin:0 auto;color:var(--o);font-size:22px"><i class="fa-solid fa-user-clock"></i></div>
+        </div>
+        <div class="card" style="margin-top:0">
+          <p style="font-size:11px;color:#555;margin:0;line-height:1.65">Automatic checks didn&rsquo;t work for you, so someone from our team will complete this by hand and get back to you.</p>
+        </div>
+        <div class="card peach">
+          <div style="font-size:10.5px;font-weight:700;margin-bottom:6px">Meanwhile</div>
+          <div style="font-size:10px;color:#666;line-height:1.7">Your referrals keep earning &mdash; nothing is lost.<br>Only the payout waits.</div>
+        </div>
+        <div class="card" style="background:#F6F6F6">
+          <div style="font-size:10px;color:#777;line-height:1.7"><b>Submitted</b> 4 Sep, 11:42<br><b>Usually resolved in</b> 2 working days<br><b>We will</b> message you either way</div>
+        </div>
       </div></div></div></div>
     </div>
 
@@ -1192,6 +1220,32 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 </section>
 <section class="track"><div class="era era-adm"><div class="era-k">Proposed · 3</div><h2>The other user — an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p></div>
 <div class="admgrid">
+    <div>
+      <div class="cap"><div class="cap-n">F0</div><div class="cap-t">The verification queue</div>
+      <div class="cap-d">Where a partner lands when all three automated routes fail. The checking happens <b>outside</b> the system.</div>
+      <span class="flag f-warn">the only manual path</span></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/yashomargi/verification-queue</div></div>
+        <div class="bbody">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">
+            <div style="font-size:16px;font-weight:700">Verification queue</div>
+            <span style="background:#FBF1DC;color:#8A5A00;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:12px">3 waiting</span>
+          </div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;overflow:hidden">
+            <div class="ahead"><span style="flex:2">Partner</span><span style="flex:3">What was tried</span><span style="flex:1">Waiting</span><span style="flex:2">Decision</span></div>
+            <div class="arow"><span style="flex:2;font-weight:600">Manjunath K M</span><span style="flex:3;font-size:10px;color:#777">DigiLocker &mdash; no OTP &middot; DL &mdash; not found &middot; Voter &mdash; name mismatch</span><span style="flex:1">2d</span><span style="flex:2"><span style="background:var(--o2);color:#fff;border-radius:5px;padding:4px 9px;font-size:10px;font-weight:700">Set status</span></span></div>
+            <div class="arow"><span style="flex:2;font-weight:600">Lakshmi B</span><span style="flex:3;font-size:10px;color:#777">DigiLocker &mdash; no OTP &middot; DL &mdash; none held &middot; Voter &mdash; none held</span><span style="flex:1">1d</span><span style="flex:2"><span style="background:var(--o2);color:#fff;border-radius:5px;padding:4px 9px;font-size:10px;font-weight:700">Set status</span></span></div>
+            <div class="arow" style="opacity:.6"><span style="flex:2;font-weight:600">Anil K</span><span style="flex:3;font-size:10px;color:#777">resolved offline</span><span style="flex:1">&mdash;</span><span style="flex:2"><span class="pill2 p-ok">verified_offline &middot; by Priya S</span></span></div>
+          </div>
+          <div style="margin-top:12px;background:#FBEAE8;border-left:3px solid #B3261E;padding:10px 13px;font-size:10.5px;line-height:1.6">
+            <b>The system does not model how the check is made.</b> An admin, a colleague, a field agent or a
+            third-party vendor &mdash; it does not matter and it is not recorded. What is recorded: a named
+            person here set the status, and when. <b>No document, image or recording is ever uploaded.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div>
       <div class="cap"><div class="cap-n">F1</div><div class="cap-t">Partner list</div>
       <div class="cap-d">Filter by pin code, sort by enrolments, NDA status inline.</div>
