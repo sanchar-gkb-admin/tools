@@ -1384,6 +1384,184 @@ CONSUMERS     guardian consent  ✓ exists   →  migrate
 </section>
 
 
+<!-- ══════════════ TRACK H2 — E-SIGN, THE DECIDED FLOW ══════════════ -->
+<section class="track">
+  <div class="track-h"><span class="track-k">Track H2</span><h2>She signs it in the app — decided 4-Sep</h2></div>
+  <p class="track-note">
+    Goutam, 4-Sep: <b>“there is no download and upload, we must e-sign the NDA digitally.”</b>
+    Today she needs a printer and a scanner — in a rural partner network that is the actual blocker,
+    not a preference. Below: the flow, and what each screen has to record for the signature to be
+    worth more than the PDF it replaces. Spec:
+    <code>docs/superpowers/specs/2026-09-04-yashomargi-nda-esign-design.md</code>
+  </p>
+
+  <div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E1</div><div class="cap-t">The agreement, in the page</div>
+      <div class="cap-d">One artefact — the same file <code>LegalNotice</code> hashes. No separate static PDF for the two to disagree about.</div>
+      <div class="cap-u">GET /partners/igp/nda</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll" style="background:#fff">
+          <div style="padding:14px 16px 10px;border-bottom:1px solid #eee">
+            <div style="font-family:Montserrat;font-size:15px;font-weight:800;color:#111">Non-Disclosure Agreement</div>
+            <div style="font-size:11px;color:#888;margin-top:3px">Version 2026-09-04.v1 · YASHOMARGI</div>
+          </div>
+          <div style="height:4px;background:#F0F0F0"><div style="height:4px;width:22%;background:var(--o)"></div></div>
+          <div style="padding:13px 16px;font-size:11.5px;line-height:1.65;color:#333">
+            <div style="font-weight:700;color:#111;margin-bottom:5px">1. Purpose</div>
+            The Company is engaging Partners to promote its holistic transformation educational
+            programmes and empower students…
+            <div style="font-weight:700;color:#111;margin:12px 0 5px">2. Confidential Information</div>
+            Student data, parent details, and enrollment information. Internal marketing materials,
+            scripts, posters…
+            <div style="font-weight:700;color:#111;margin:12px 0 5px">3. Obligations of the Partner</div>
+            <span style="opacity:.45">The Partner shall not disclose, copy or misuse any…</span>
+          </div>
+          <div style="position:sticky;bottom:0;background:#fff;border-top:1px solid #eee;padding:11px 16px">
+            <div style="background:#F3F3F3;color:#AAA;text-align:center;border-radius:9px;padding:12px;font-weight:700;font-size:13.5px">Agree &amp; sign</div>
+            <div style="font-size:10.5px;color:#999;text-align:center;margin-top:6px">Please read to the end to continue</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E2</div><div class="cap-t">She reaches the end</div>
+      <div class="cap-d"><b>The button unlocks only here.</b> Dwell and scroll are recorded — see E5 for why that is the evidence that matters.</div>
+      <div class="cap-u">client-side gate</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll" style="background:#fff">
+          <div style="height:4px;background:#F0F0F0"><div style="height:4px;width:100%;background:var(--green)"></div></div>
+          <div style="padding:13px 16px;font-size:11.5px;line-height:1.65;color:#333">
+            <div style="font-weight:700;color:#111;margin-bottom:5px">10. Acknowledgement</div>
+            By signing this NDA, the Partner acknowledges they have read, understood and agreed to
+            all terms; shall act in good faith as a representative of YASHHO; and that breach may
+            lead to legal action.
+          </div>
+          <div style="margin:4px 16px 0;padding:12px;background:var(--peach);border-radius:11px">
+            <div style="font-size:10.5px;font-weight:700;color:var(--o-dark);letter-spacing:.04em">SIGN AS</div>
+            <div style="background:#fff;border:1px solid #EBD9C9;border-radius:8px;padding:9px 10px;margin-top:7px;font-size:13px;color:#111">Lakshmi&nbsp;N.&nbsp;Rao<span style="color:var(--o)">|</span></div>
+            <div style="font-size:10px;color:#8A7566;margin-top:5px">Type your full name exactly as you wish to be bound</div>
+            <label style="display:flex;gap:8px;margin-top:11px;font-size:11px;color:#4A3B31;line-height:1.45">
+              <span style="min-width:15px;height:15px;border-radius:4px;background:var(--o);color:#fff;font-size:10px;text-align:center;line-height:15px">✓</span>
+              I have read and agree to this Agreement, version 2026-09-04.v1
+            </label>
+          </div>
+          <div style="position:sticky;bottom:0;background:#fff;border-top:1px solid #eee;padding:11px 16px">
+            <div style="background:var(--o);color:#fff;text-align:center;border-radius:9px;padding:12px;font-weight:700;font-size:13.5px">Agree &amp; sign</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E3</div><div class="cap-t">Signed — and told what that means</div>
+      <div class="cap-d">No admin approval for the NDA itself. Approval, if still wanted, belongs to KYC — a different question.</div>
+      <div class="cap-u">POST /partners/igp/nda/sign</div></div>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="pv-scroll" style="background:var(--cream);display:flex;flex-direction:column;align-items:center;padding-top:52px">
+          <div style="width:56px;height:56px;border-radius:50%;background:var(--okbg);color:var(--ok);font-size:27px;text-align:center;line-height:56px">✓</div>
+          <div style="font-family:Montserrat;font-size:17px;font-weight:800;color:#111;margin-top:15px">Agreement signed</div>
+          <div style="font-size:11.5px;color:#7A6A5E;text-align:center;margin:7px 26px 0;line-height:1.55">
+            A copy has been emailed to you for your records.
+          </div>
+          <div style="margin:20px 18px 0;background:#fff;border:1px solid #EFE4DA;border-radius:12px;padding:13px 14px;width:calc(100% - 36px)">
+            <div style="font-size:10px;font-weight:700;color:var(--o-dark);letter-spacing:.05em">RECORDED</div>
+            <div style="font-size:11px;color:#4A3B31;line-height:1.9;margin-top:6px">
+              Signed by · <b>Lakshmi N. Rao</b><br>
+              Version · <b>2026-09-04.v1</b><br>
+              When · <b>4 Sep 2026, 3:42 pm IST</b>
+            </div>
+            <div style="border-top:1px dashed #EFE4DA;margin-top:10px;padding-top:9px;font-size:10.5px;color:#8A7566;line-height:1.5">
+              This record is sealed. It cannot be changed or deleted — including by us.
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E4</div><div class="cap-t">The PDF is a receipt, not the agreement</div>
+      <div class="cap-d">Generated <b>from the sealed row</b>, after the fact. The row is the evidence; the PDF is her copy.</div>
+      <div class="cap-u">queued mail · renders from the row</div></div>
+      <div class="browser"><div class="bh"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">mail — YASHOMARGI Agreement</div></div>
+        <div style="background:#fff;padding:20px 22px;font-size:12px;color:#333;line-height:1.7">
+          <div style="font-family:Montserrat;font-weight:800;color:var(--o);font-size:15px">YASHHO</div>
+          <div style="margin-top:13px">Namaste Lakshmi ji,</div>
+          <div style="margin-top:9px">Your YASHOMARGI Agreement is attached for your records.</div>
+          <div style="margin-top:13px;background:var(--cream);border:1px solid #EFE4DA;border-radius:9px;padding:11px 13px;font-size:11.5px;line-height:1.8">
+            Version <b>2026-09-04.v1</b><br>Signed <b>4 Sep 2026, 3:42 pm IST</b><br>
+            Reference <b>a7f3…9c21</b>
+          </div>
+          <div style="margin-top:13px;font-size:11px;color:#777">
+            You do not need to print, sign or return anything.
+          </div>
+          <div style="margin-top:14px;display:inline-block;border:1px solid #E0D9D1;border-radius:7px;padding:8px 12px;font-size:11.5px;color:#444">📄 YASHOMARGI-Agreement-2026-09-04.pdf</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">E5</div><div class="cap-t">What is actually sealed</div>
+      <div class="cap-d">Everything below is inside <code>record_hash</code>, which KMS signs. Editing any of it breaks the chain and <code>consent:verify</code> fails that night.</div>
+      <div class="cap-u">consents · purpose = partner_nda</div></div>
+      <div class="browser"><div class="bh"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">superadmin — agreement record</div></div>
+        <div style="background:#fff;padding:16px 20px;font-size:11.5px;color:#333">
+          <table style="width:100%;border-collapse:collapse;line-height:1.75">
+            <tr><td style="color:#888;padding:3px 0;width:44%">notice_version</td><td><b>2026-09-04.v1</b></td></tr>
+            <tr><td style="color:#888;padding:3px 0">notice_hash</td><td>seals the exact text she saw</td></tr>
+            <tr><td style="color:#888;padding:3px 0">basis</td><td><b>contract</b> — DPDPA, not §9 consent</td></tr>
+            <tr><td style="color:#888;padding:3px 0">verification_method</td><td>app_typed_name</td></tr>
+            <tr><td style="color:#888;padding:3px 0">ip · asn · city</td><td>from the request</td></tr>
+            <tr><td style="color:#888;padding:3px 0">device evidence</td><td>UA, platform, languages, client hints — <b>raw</b>, not a hash</td></tr>
+            <tr><td style="color:#888;padding:3px 0">webview?</td><td>via <code>InAppBrowser</code></td></tr>
+            <tr style="background:var(--okbg)"><td style="color:#146B45;padding:5px 0"><b>dwell · scroll depth</b></td><td><b>4m 11s · reached the end</b></td></tr>
+            <tr><td style="color:#888;padding:3px 0">prev_hash → record_hash</td><td>the chain</td></tr>
+            <tr><td style="color:#888;padding:3px 0">signature</td><td><b>KMS</b> — key outside the database</td></tr>
+          </table>
+          <div style="margin-top:11px;background:var(--okbg);border-left:3px solid var(--ok);padding:9px 11px;font-size:11px;color:#146B45;line-height:1.55">
+            <b>Dwell and scroll are the evidence that matters.</b> In a click-wrap dispute the court
+            asks whether she had a reasonable opportunity to read it — not what phone she used. Four
+            minutes and a full scroll answers the real question; another hardware signal does not.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="track-note" style="margin-top:18px">
+    <b>Why this is stronger evidence than the paper flow, not weaker.</b> The instinct that a printed
+    signature is “more legal” is backwards here. Under the IT Act 2000 a click-wrap agreement is
+    enforceable; what makes it hold up is showing <i>which exact text she saw</i>, that she acted
+    deliberately, and that nothing has changed since.
+    <table style="width:100%;border-collapse:collapse;margin-top:11px;font-size:12px">
+      <tr style="text-align:left"><th style="padding:5px 8px 5px 0"></th><th style="padding:5px 8px">download &amp; upload, today</th><th style="padding:5px 8px">e-sign</th></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#888">which text she agreed to</td><td style="padding:4px 8px;color:var(--bad)">nothing binds the PDF to what was displayed</td><td style="padding:4px 8px;color:var(--ok)"><code>notice_hash</code></td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#888">version</td><td style="padding:4px 8px;color:var(--bad)">no column</td><td style="padding:4px 8px;color:var(--ok)"><code>notice_version</code></td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#888">tamper-evidence</td><td style="padding:4px 8px;color:var(--bad)"><b>re-upload purges the original</b></td><td style="padding:4px 8px;color:var(--ok)">hash chain + KMS</td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#888">who · where · when</td><td style="padding:4px 8px;color:var(--bad)">only <code>created_at</code></td><td style="padding:4px 8px;color:var(--ok)">name, IP, device, dwell</td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#888">needs a printer</td><td style="padding:4px 8px;color:var(--bad)">yes — the real blocker</td><td style="padding:4px 8px;color:var(--ok)">no</td></tr>
+    </table>
+    <div style="margin-top:12px;background:var(--badbg);border-left:3px solid var(--bad);padding:10px 12px;line-height:1.55">
+      <b>⛔ The defect that makes this urgent.</b> <code>uploadWalletDocs</code> calls
+      <code>purgeAllDisks()</code> then <code>nda()-&gt;delete()</code> before writing the replacement.
+      There is no supersession, only replacement — so an authenticated partner can overwrite her own
+      signed agreement <b>after approval</b>, and the original is gone from the row and purged from
+      both disks. Today the signed agreement is not merely unsealed; it is <b>deletable by the person
+      it binds</b>.
+    </div>
+    <div style="margin-top:10px;background:var(--warnbg);border-left:3px solid var(--warn);padding:10px 12px;line-height:1.55">
+      <b>⚠️ Still open, and not engineering calls.</b> Whether to keep storing Aadhaar images at all
+      (identity is a separate question from agreement, and the NDA text never mentions what ID is
+      collected or why) · where the UPI ID is captured now the paper form is going · and whether
+      partners who signed as “YASHHO Growth Partner (IGP)” need re-execution or an addendum. Their
+      existing rows and PDFs are evidence of the old name and <b>must not be overwritten</b>.
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ TRACK I — ATTRIBUTION DESIGN ══════════════ -->
 <section class="track">
   <div class="track-h"><span class="track-k">Track I</span><h2>Capturing a payment made through a partner link</h2></div>
