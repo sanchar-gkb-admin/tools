@@ -1011,12 +1011,14 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
     <div class="cell">
       <div class="cap"><div class="cap-n">J4</div><div class="cap-t">An administrator admits them</div>
-      <div class="cap-d">Re-keyed from the Form response &mdash; which is also the moment a human is looking at it. This screen exists today and is the one to harden.</div>
+      <div class="cap-d">Re-keyed from the Form response &mdash; which is also the moment a human is looking at it. ⛔ <b>Email is the login identity</b>: OTP is sent to it and it is the only unique human-facing key, so an admission without it makes an account nobody can sign in to. First and last are asked separately because the parts are what a PAN legal name and a bank name-match get compared against.</div>
       <div class="cap-u">admin &middot; the only way an Igp is created</div>
       <span class="flag f-warn">exists, but carries the defects we just fixed on the public form</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Add a Yashomargi</div>
-        <div class="flabel">Full name</div><div class="field">Ravi Kumar</div>
+        <div class="ttl">Admit a Yashomargi</div>
+        <div class="flabel">First name</div><div class="field">Ravi</div>
+        <div class="flabel">Last name</div><div class="field">Kumar</div>
+        <div class="flabel">Email</div><div class="field">ravi@example.com</div>
         <div class="flabel">Mobile</div><div class="field">+91 98450 12345</div>
         <div class="flabel">PIN code</div><div class="field">570001</div>
         <div class="card peach">
@@ -1588,13 +1590,15 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
           <div style="font-size:11px;color:#888;margin-bottom:13px">Re-key from their application after you have spoken to them. This is the only way a Yashomargi is created.</div>
           <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;padding:13px">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
-              <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Full name</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">Ravi Kumar</div></div>
+              <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">First name</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">Ravi</div></div>
+              <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Last name</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">Kumar</div></div>
               <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Mobile</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">+91 98450 12345</div></div>
               <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Email</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">ravi@example.com</div></div>
               <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">PIN code</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">570001</div></div>
             </div>
             <div style="margin-top:12px;background:#FBF1DC;border:1px solid #F0DCA8;border-radius:6px;padding:10px 12px;font-size:10.5px;line-height:1.6">
               <b>Admitting does two things.</b> It <b>mints their referral code</b> &mdash; which does not exist until this moment &mdash; and lets them sign in with this email.
+              <div style="color:#7a6a4a;margin-top:5px"><b>First and last are asked for, never split from one string.</b> They are what a PAN legal name and a bank name-match are compared against; prod holds a lead recorded as &ldquo;K m manjunath&rdquo;, whose naive first name is &ldquo;K&rdquo;. A wrong guess there does not spoil a greeting, it fails a payout. <code>full_name</code> is still stored, composed from the two.</div>
               <div style="color:#7a6a4a;margin-top:5px">They still cannot be <b>paid</b> until PAN, identity and bank are verified, and earning stays closed until you open it on the list.</div>
             </div>
             <div style="margin-top:11px;text-align:right"><span style="background:var(--o2);color:#fff;border-radius:6px;padding:6px 16px;font-size:11.5px;font-weight:700">Admit</span></div>
