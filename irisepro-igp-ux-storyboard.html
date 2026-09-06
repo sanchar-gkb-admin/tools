@@ -1449,7 +1449,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-adm"><div class="era-k">Proposed · 5</div><h2>The other user &mdash; an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p><p><b>This role grew on 6 September.</b> The administrator is now the <i>only</i> way a Yashomargi comes into existence &mdash; they work the application queue (A3), and while the in-app checks are still being built they may also record an offline KYC check for someone they met in person. Both actions demand a reason, both stamp who did it, and manually-checked partners stay countable: if that number grows, the automated path is not working, and that is the signal.</p></div>
+<section class="track"><div class="era era-adm"><div class="era-k">Proposed · 5</div><h2>The other user &mdash; an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p><p><b>This role grew on 6 September</b>, and it grew without a build. The administrator is now the <i>only</i> way a Yashomargi comes into existence &mdash; and these screens <b>already exist</b>: <code>superadmin/igp/</code> has create, edit, list, show and bulk-upload, the same shape as the Yashodarshi admin. What changed is that a secondary path became the primary one, which means it has to stop asking questions whose answers it throws away &mdash; see <b>F3</b>.</p><p>Applications are <b>not</b> reviewed in here. They arrive through the careers page and a Google Form and the team works them there; we do not keep a second copy (J1&ndash;J2). While the in-app identity checks are still being built, the administrator may also record an <b>offline KYC check</b> for someone they met in person (<b>F4</b>): a reason is required, who decided is stamped, and manually-checked partners stay countable &mdash; if that number grows, the automated path is not working, and that is the signal.</p></div>
 <div class="admgrid">
     <div>
       <div class="cap"><div class="cap-n">F0</div><div class="cap-t">The verification queue</div>
@@ -1626,6 +1626,67 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
         </div>
       </div>
     </div>
+
+    <div>
+      <div class="cap"><div class="cap-n">F3</div><div class="cap-t">Admit a Yashomargi &mdash; the only door</div>
+      <div class="cap-d">The screen exists today. ⛔ Its <b>&ldquo;Status: Active / Inactive&rdquo;</b> dropdown was removed on 6-Sep: admission now server-decides it, so an admin choosing <i>Inactive</i> would have got an active partner and never known. A control whose value is discarded is worse than no control &mdash; it asks for a decision, records nothing, and leaves someone believing they made it.</div>
+      <span class="flag f-fixed">a control that lied, removed</span></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/igp/create</div></div>
+        <div class="bbody">
+          <div style="font-size:17px;font-weight:700;margin-bottom:3px">Admit a Yashomargi</div>
+          <div style="font-size:11px;color:#888;margin-bottom:13px">Re-key from their application after you have spoken to them. This is the only way a Yashomargi is created.</div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;padding:13px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+              <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Full name</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">Ravi Kumar</div></div>
+              <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Mobile</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">+91 98450 12345</div></div>
+              <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Email</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">ravi@example.com</div></div>
+              <div><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">PIN code</div><div style="font-size:12px;background:#F6F6F6;border-radius:5px;padding:7px 9px">570001</div></div>
+            </div>
+            <div style="margin-top:12px;background:#FBF1DC;border:1px solid #F0DCA8;border-radius:6px;padding:10px 12px;font-size:10.5px;line-height:1.6">
+              <b>Admitting does two things.</b> It <b>mints their referral code</b> &mdash; which does not exist until this moment &mdash; and lets them sign in with this email.
+              <div style="color:#7a6a4a;margin-top:5px">They still cannot be <b>paid</b> until PAN, identity and bank are verified, and earning stays closed until you open it on the list.</div>
+            </div>
+            <div style="margin-top:11px;text-align:right"><span style="background:var(--o2);color:#fff;border-radius:6px;padding:6px 16px;font-size:11.5px;font-weight:700">Admit</span></div>
+          </div>
+          <div style="margin-top:12px;background:#FBEAE8;border-left:3px solid #B3261E;padding:10px 13px;font-size:10.5px;line-height:1.6">
+            <b>There is no longer a public form behind this.</b> <code>POST /partners/signup</code> was deleted on 6-Sep &mdash; it minted a partner <i>and a working referral code</i> in one unauthenticated request.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="cap"><div class="cap-n">F4</div><div class="cap-t">Record an offline KYC check &mdash; temporary</div>
+      <div class="cap-d">Different from F0: that is where an <i>automated</i> route failed. This is the interim path while the in-app checks are still being built, behind a switch made to be turned off the day they go live.</div>
+      <div class="cap-u">MarkPartnerVerified::manually()</div>
+      <span class="flag f-warn">interim &middot; stamped &middot; counted</span></div>
+      <div class="browser">
+        <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/igp/482913/verify</div></div>
+        <div class="bbody">
+          <div style="font-size:17px;font-weight:700;margin-bottom:11px">Verify &middot; Ravi Kumar</div>
+          <div style="background:#fff;border:1px solid #e6e6e6;border-radius:7px;padding:13px">
+            <div style="font-size:11.5px;font-weight:700;margin-bottom:8px">What did you actually check?</div>
+            <div style="font-size:11px;line-height:2.1">
+              <span style="color:#146B45;font-weight:700">&#10003;</span> PAN card &mdash; original seen<br>
+              <span style="color:#146B45;font-weight:700">&#10003;</span> Aadhaar &mdash; original seen<br>
+              <span style="color:#B3261E;font-weight:700">&#10007;</span> Bank account &mdash; <b>cannot be recorded by hand</b>
+            </div>
+            <div style="margin-top:9px;background:#FBEAE8;border-left:3px solid #B3261E;padding:9px 12px;font-size:10px;line-height:1.6">
+              A penny drop answers a question no one can answer by looking: <b>is this account live, and does the name on it match?</b> So <code>bank</code> is the first check the manual path gives up.
+            </div>
+            <div style="margin-top:12px"><div style="font-size:9.5px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Reason &mdash; required</div>
+            <div style="font-size:11.5px;background:#F6F6F6;border-radius:5px;padding:8px 10px;line-height:1.5">Met at the Mysuru partner meeting, 6-Sep. Saw both originals; name matches the application.</div></div>
+            <div style="margin-top:11px;text-align:right"><span style="background:var(--o2);color:#fff;border-radius:6px;padding:6px 16px;font-size:11.5px;font-weight:700">Record</span></div>
+          </div>
+          <div style="margin-top:12px;background:#FBF1DC;border-left:3px solid var(--amber);padding:10px 13px;font-size:10.5px;line-height:1.6">
+            Recorded as <b>checked by a person</b>, not by a vendor &mdash; with your name and this reason, on every screen and every export, permanently. <b>No document or image is uploaded.</b>
+            <div style="color:#7a6a4a;margin-top:5px">If the count of hand-checked partners keeps growing, the automated path is not working. That is the number to watch.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 <section class="track">
