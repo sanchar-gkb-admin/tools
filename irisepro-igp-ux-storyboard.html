@@ -1404,9 +1404,11 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 <section class="track"><div class="era era-adm"><div class="era-k">Proposed · 5</div><h2>The other user &mdash; an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p><p><b>This role grew on 6 September</b>, and it grew without a build. The administrator is now the <i>only</i> way a Yashomargi comes into existence &mdash; and these screens <b>already exist</b>: <code>superadmin/igp/</code> has create, edit, list, show and bulk-upload, the same shape as the Yashodarshi admin. What changed is that a secondary path became the primary one, which means it has to stop asking questions whose answers it throws away &mdash; see <b>F3</b>.</p><p>Applications are <b>not</b> reviewed in here. They arrive through the careers page and a Google Form and the team works them there; we do not keep a second copy (J1&ndash;J2). While the in-app identity checks are still being built, the administrator may also record an <b>offline KYC check</b> for someone they met in person (<b>F4</b>): a reason is required, who decided is stamped, and manually-checked partners stay countable &mdash; if that number grows, the automated path is not working, and that is the signal.</p></div>
 <div class="admgrid">
     <div>
-      <div class="cap"><div class="cap-n">F0</div><div class="cap-t">The verification queue</div>
-      <div class="cap-d">Where a partner lands when all three automated routes fail. The checking happens <b>outside</b> the system.</div>
-      <span class="flag f-warn">the only manual path</span></div>
+      <div class="cap"><div class="cap-n">F0</div><div class="cap-t">Admitted &mdash; but cannot be paid yet</div>
+      <div class="cap-d">⭐ <b>Re-framed 7-Sep.</b> This was drawn as <i>&ldquo;where a partner lands when all three automated routes fail&rdquo;</i> &mdash; which describes <b>phase 2 only</b>. There are no automated routes yet, so by that framing the queue would read empty while in reality <b>every admitted partner is in it</b>.
+      <br><br>Its real job is a question that exists in every phase and is answerable today: <b>who is admitted, and cannot be paid yet?</b> It sits between <i>can sell</i> and <i>can be paid</i> &mdash; F3 puts people in, F4 takes them out.
+      <br><br><b>The screen does not change; who is in it does.</b> Today it is the daily worklist and holds everyone. After P8 most partners clear themselves in-app and only the failures remain &mdash; the exception queue it was first drawn as.</div>
+      <span class="flag f-warn">today: everyone &middot; after P8: the exceptions</span></div>
       <div class="browser">
         <div class="bbar"><span class="bdot" style="background:#FF5F57"></span><span class="bdot" style="background:#FEBC2E"></span><span class="bdot" style="background:#28C840"></span><div class="burl">app.irisepro.in/superadmin/yashomargi/verification-queue</div></div>
         <div class="bbody">
@@ -1418,12 +1420,16 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
             <div class="ahead"><span style="flex:2">Partner</span><span style="flex:3">What was tried</span><span style="flex:1">Waiting</span><span style="flex:2">Decision</span></div>
             <div class="arow"><span style="flex:2;font-weight:600">Manjunath K M</span><span style="flex:3;font-size:10px;color:#777">DigiLocker &mdash; no OTP &middot; DL &mdash; not found &middot; Voter &mdash; name mismatch</span><span style="flex:1">2d</span><span style="flex:2"><span style="background:var(--o2);color:#fff;border-radius:5px;padding:4px 9px;font-size:10px;font-weight:700">Set status</span></span></div>
             <div class="arow"><span style="flex:2;font-weight:600">Lakshmi B</span><span style="flex:3;font-size:10px;color:#777">DigiLocker &mdash; no OTP &middot; DL &mdash; none held &middot; Voter &mdash; none held</span><span style="flex:1">1d</span><span style="flex:2"><span style="background:var(--o2);color:#fff;border-radius:5px;padding:4px 9px;font-size:10px;font-weight:700">Set status</span></span></div>
-            <div class="arow" style="opacity:.6"><span style="flex:2;font-weight:600">Anil K</span><span style="flex:3;font-size:10px;color:#777">resolved offline</span><span style="flex:1">&mdash;</span><span style="flex:2"><span class="pill2 p-ok">verified_offline &middot; by Priya S</span></span></div>
+            <div class="arow" style="opacity:.6"><span style="flex:2;font-weight:600">Anil K</span><span style="flex:3;font-size:10px;color:#777">resolved offline</span><span style="flex:1">&mdash;</span><span style="flex:2"><span class="pill2 p-ok">manual_admin &middot; by Priya S</span></span></div>
           </div>
           <div style="margin-top:12px;background:#FBEAE8;border-left:3px solid #B3261E;padding:10px 13px;font-size:10.5px;line-height:1.6">
-            <b>The system does not model how the check is made.</b> An admin, a colleague, a field agent or a
-            third-party vendor &mdash; it does not matter and it is not recorded. What is recorded: a named
-            person here set the status, and when. <b>No document, image or recording is ever uploaded.</b>
+            <b>The system does not model how the check is made.</b> An admin, a colleague or a field agent &mdash;
+            it does not matter and it is not recorded. Goutam, 6-Sep: <i>&ldquo;we do not track how.&rdquo;</i>
+            <b>No document, image or recording is ever uploaded.</b>
+            <div style="color:#7a2f2a;margin-top:6px">What IS recorded: <b>who</b> set it, <b>when</b>, and the <b>basis</b> as a closed word
+            (<code>manual_admin</code> today; <code>digilocker</code>, <code>vendor_pan</code>, <code>penny_drop</code> join it at P8) &mdash; the same
+            shape as <code>funding_source</code> on a grant. The basis is not &ldquo;how&rdquo;: it is what makes hand-checked partners
+            <b>countable</b>, and that count is the signal the automated path is not working.</div>
           </div>
         </div>
       </div>
