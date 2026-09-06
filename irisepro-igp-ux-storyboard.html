@@ -321,9 +321,14 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
     wait for a gate to open. That is no longer the design. Goutam: <i>&ldquo;we cannot allow a random person
     join and become a yashomargi &mdash; the recruitment process is the selection gate.&rdquo;</i>
     <br><br>
-    So the public form now creates an <b>application</b>, never an account. There is no login and
-    <b>no referral code</b> until a person has read it and said yes. <b>Proposed &middot; 1</b> below is new and
-    replaces the old joining flow; everything after it now happens to somebody we have already chosen.
+    ⭐ <b>And almost none of that is a build.</b> The front door already exists and is live &mdash; the careers
+    page, and a Google Form for each role. Goutam: <i>&ldquo;we already have the website and google form
+    application as the process set &mdash; we dont want a duplicate process all over again.&rdquo;</i>
+    <br><br>
+    What changes is inside the app: the <b>second, unvetted door closes</b>. The public sign-up endpoint
+    still mints a Yashomargi <b>and a referral code</b> in one request, and one link still offers it.
+    <b>Proposed &middot; 1</b> below is the whole of that change; everything after it now happens to
+    somebody we have already chosen.
   </div>
   <div class="note bad">
     <span class="k">Why this is a design change and not a switch</span>
@@ -946,78 +951,86 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-new"><div class="era-k">Proposed · 1</div><h2>Applying, and being chosen</h2><p>The public form stops creating accounts. It creates an <b>application</b> &mdash; no login, no dashboard, and above all <b>no referral code</b>, because the code is the only thing that can actually cost us money. A person reads it, has the recruitment conversation, and decides. Only then does a Yashomargi exist.</p></div>
+<section class="track"><div class="era era-new"><div class="era-k">Proposed · 1</div><h2>Applying, and being chosen</h2><p>⭐ <b>There is nothing to build here.</b> The front door already exists and is live: the careers page on yashho.com, and a Google Form for each role. The team reads the responses, calls, and decides. What changes is inside the app &mdash; the <b>second, unvetted door</b> closes.</p><p>The public sign-up endpoint still mints a Yashomargi <b>and a referral code</b> in one request. Nothing on the storefront links to it, and inside the app exactly one thing does: the words <i>&ldquo;Don&rsquo;t have an account? Create Account&rdquo;</i> on the login page. While that stands, vetting is a policy nobody enforces.</p></div>
 <div class="flow">
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">A1</div><div class="cap-t">The form, honestly labelled</div>
-      <div class="cap-d">Same seven fields. Completely different promise at the end of them.</div>
-      <div class="cap-u">POST /partners/signup &rarr; igp_applications</div>
-      <span class="flag f-fixed">no account is created here</span></div>
+      <div class="cap"><div class="cap-n">A1</div><div class="cap-t">The real front door &mdash; live today</div>
+      <div class="cap-d">Both roles, on the public site. Shipped 6 September.</div>
+      <div class="cap-u">yashho.com/careers</div>
+      <span class="flag f-ok">already built &middot; nothing to do</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Apply to become a Yashomargi</div>
-        <p style="font-size:11px;color:#777;margin:0 0 13px;line-height:1.55">We choose our Yashomargis. Tell us about yourself and someone from our team will call you.</p>
-        <div class="flabel">Full name</div><div class="field">Ravi Kumar</div>
-        <div class="flabel">Mobile</div><div class="field">+91 98450 12345</div>
-        <div class="flabel">Email</div><div class="field">ravi@example.com</div>
-        <div class="flabel">PIN code</div><div class="field">570001</div>
-        <div class="card peach">
-          <p style="font-size:10px;margin:0;line-height:1.6">This is an <b>application</b>, not an account. There is nothing to log into yet.</p>
-        </div>
-        <button class="btn">Send my application</button>
-      </div></div></div></div>
-    </div>
-
-    <div class="cell">
-      <div class="cap"><div class="cap-n">A2</div><div class="cap-t">&ldquo;Please wait for Admin Approval&rdquo; &mdash; finally true</div>
-      <div class="cap-d">The old app said this while the account was already active and usable. Now the sentence describes what is actually happening.</div>
-      <div class="cap-u">no redirect to a login they do not have</div>
-      <span class="flag f-fixed">was a lie · now a fact</span></div>
-      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">We have your application</div>
-        <div class="card" style="border:1.5px solid #10B981;margin-top:0">
-          <div style="display:flex;gap:9px;align-items:center">
-            <div style="width:30px;height:30px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
-            <div><div style="font-size:12.5px;font-weight:700">Received</div>
-            <div style="font-size:9.5px;color:#888">6 September, 4:20 pm</div></div>
-          </div>
+        <div class="ttl">Work with us</div>
+        <p style="font-size:11px;color:#777;margin:0 0 13px;line-height:1.55">Two roles. Both work from home. Which one sounds like you?</p>
+        <div class="card" style="margin-top:0">
+          <div style="font-size:12.5px;font-weight:700">YASHOMARGI&trade;</div>
+          <div style="font-size:10px;color:#888;line-height:1.5;margin-bottom:8px">Community Success Guide &middot; across Karnataka</div>
+          <div style="background:var(--peach2);color:var(--o);font-size:10.5px;font-weight:700;text-align:center;padding:7px;border-radius:6px">See the role</div>
         </div>
         <div class="card">
-          <div style="font-size:11.5px;font-weight:700;margin-bottom:7px">What happens next</div>
-          <p style="font-size:10px;color:#777;margin:0;line-height:1.6"><b>A person reads it</b> &mdash; not a system. If it looks like a fit, someone calls you for a conversation. If we go ahead, you get an email with your login.</p>
-        </div>
-        <div class="card peach">
-          <p style="font-size:10px;margin:0;line-height:1.6">We will write either way. <b>You will not be left wondering.</b></p>
+          <div style="font-size:12.5px;font-weight:700">YASHODARSHI&trade;</div>
+          <div style="font-size:10px;color:#888;line-height:1.5;margin-bottom:8px">Student Success Mentor &middot; part time, all India</div>
+          <div style="background:var(--peach2);color:var(--o);font-size:10.5px;font-weight:700;text-align:center;padding:7px;border-radius:6px">See the role</div>
         </div>
       </div></div></div></div>
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">A3</div><div class="cap-t">A human decides</div>
-      <div class="cap-d">The queue an administrator works from. A rejection needs a reason &mdash; and is kept, so &ldquo;may they apply again?&rdquo; has an answer.</div>
-      <div class="cap-u">admin &middot; applications awaiting a decision</div>
-      <span class="flag f-ok">the selection gate, made visible</span></div>
+      <div class="cap"><div class="cap-n">A2</div><div class="cap-t">A Google Form &mdash; and it is the record</div>
+      <div class="cap-d">One per role, linked from the role page. The response sheet IS the application record; we do not keep a second copy.</div>
+      <div class="cap-u">docs.google.com/forms/&hellip;</div>
+      <span class="flag f-ok">already built &middot; do not duplicate</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
-        <div class="ttl">Applications &middot; 4 waiting</div>
-        <div class="card" style="margin-top:0">
-          <div style="font-size:12.5px;font-weight:700">Ravi Kumar</div>
-          <div style="font-size:9.5px;color:#888;margin-bottom:9px">Mysuru 570001 &middot; teacher &middot; applied 2 days ago</div>
-          <div style="display:flex;gap:7px">
-            <div style="flex:1;background:#E4F1EA;color:#146B45;font-size:10.5px;font-weight:700;text-align:center;padding:7px;border-radius:6px">Approve</div>
-            <div style="flex:1;background:#FBEAE8;color:#B3261E;font-size:10.5px;font-weight:700;text-align:center;padding:7px;border-radius:6px">Decline</div>
-          </div>
-        </div>
+        <div class="ttl">Apply &middot; YASHOMARGI&trade;</div>
+        <div class="flabel">Full name</div><div class="field">Ravi Kumar</div>
+        <div class="flabel">Mobile</div><div class="field">+91 98450 12345</div>
+        <div class="flabel">District you work in</div><div class="field">Mysuru</div>
         <div class="card peach">
-          <p style="font-size:10px;margin:0;line-height:1.6">Approving is the <b>only</b> way a Yashomargi comes into existence. It creates the account, <b>mints the referral code</b>, and records who decided.</p>
+          <p style="font-size:10px;margin:0;line-height:1.6">No account is created. No referral code exists. <b>A person reads this.</b></p>
+        </div>
+        <button class="btn">Submit</button>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A3</div><div class="cap-t">⛔ The door that must close</div>
+      <div class="cap-d">The one link in the whole product that still offers self-serve joining. The endpoint behind it mints a partner AND a working referral code in a single request.</div>
+      <div class="cap-u">login.blade.php:94 &rarr; POST /partners/signup</div>
+      <span class="flag f-bad">anyone with the URL becomes a Yashomargi</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Sign in</div>
+        <div class="flabel">Email</div><div class="field">ravi@example.com</div>
+        <button class="btn">Send OTP</button>
+        <div class="card" style="border:1.5px solid #B3261E;margin-top:14px">
+          <p style="font-size:10.5px;margin:0;line-height:1.6;text-align:center">Don&rsquo;t have an account?
+          <b style="text-decoration:line-through;color:#B3261E">Create Account</b></p>
+          <p style="font-size:9.5px;color:#888;margin:7px 0 0;line-height:1.5;text-align:center">becomes &rarr; <b>&ldquo;Want to become a Yashomargi? See the role&rdquo;</b> &rarr; the careers page</p>
         </div>
       </div></div></div></div>
     </div>
 
     <div class="cell">
-      <div class="cap"><div class="cap-n">A4</div><div class="cap-t">You are in &mdash; and now the code exists</div>
-      <div class="cap-d">The first moment a referral code is real. Before this there was nothing to share, which is the whole point.</div>
+      <div class="cap"><div class="cap-n">A4</div><div class="cap-t">An administrator admits them</div>
+      <div class="cap-d">Re-keyed from the Form response &mdash; which is also the moment a human is looking at it. This screen exists today and is the one to harden.</div>
+      <div class="cap-u">admin &middot; the only way an Igp is created</div>
+      <span class="flag f-warn">exists, but carries the defects we just fixed on the public form</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Add a Yashomargi</div>
+        <div class="flabel">Full name</div><div class="field">Ravi Kumar</div>
+        <div class="flabel">Mobile</div><div class="field">+91 98450 12345</div>
+        <div class="flabel">PIN code</div><div class="field">570001</div>
+        <div class="card peach">
+          <p style="font-size:10px;margin:0;line-height:1.6">Saving <b>mints the referral code</b> and records who admitted them. This is the first moment the code is real.</p>
+        </div>
+        <button class="btn">Admit</button>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A5</div><div class="cap-t">You are in</div>
+      <div class="cap-d">The first time the partner sees a code &mdash; because before this there was not one.</div>
       <div class="cap-u">email &rarr; GET /partners/login</div>
-      <span class="flag f-fixed">code minted here, not at sign-up</span></div>
+      <span class="flag f-fixed">code minted at admission, not at sign-up</span></div>
       <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
         <div class="ttl">Welcome, Ravi</div>
         <p style="font-size:11px;color:#777;margin:0 0 13px;line-height:1.55">You have been selected as a Yashomargi. Sign in to finish setting up.</p>
