@@ -309,13 +309,35 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 </style>
 
 <header class="mast">
-  <div class="eyebrow">YASHOMARGI &nbsp;·&nbsp; Partner onboarding &nbsp;·&nbsp; 4 September 2026</div>
-  <h1>What joining looks like &mdash; today, and as proposed</h1>
+  <div class="eyebrow">YASHOMARGI &nbsp;·&nbsp; Partner onboarding &nbsp;·&nbsp; Revised 6 September 2026</div>
+  <h1>How someone becomes a Yashomargi &mdash; today, and as proposed</h1>
   <p class="standfirst">
-    The same person, the same goal: <strong>get signed up, get verified, get paid.</strong>
+    The same person, the same goal: <strong>be chosen, get verified, get paid.</strong>
     First, what that takes now. Then, what we want it to take. Every screen is drawn from the real product.
   </p>
+  <div class="note">
+    <span class="k">Revised 6 September &middot; being a Yashomargi is conferred, not claimed</span>
+    This storyboard was drawn on 4 September around <b>self-serve sign-up</b>: fill the form, get an account,
+    wait for a gate to open. That is no longer the design. Goutam: <i>&ldquo;we cannot allow a random person
+    join and become a yashomargi &mdash; the recruitment process is the selection gate.&rdquo;</i>
+    <br><br>
+    So the public form now creates an <b>application</b>, never an account. There is no login and
+    <b>no referral code</b> until a person has read it and said yes. <b>Proposed &middot; 1</b> below is new and
+    replaces the old joining flow; everything after it now happens to somebody we have already chosen.
+  </div>
+  <div class="note bad">
+    <span class="k">Why this is a design change and not a switch</span>
+    We first asked a narrower question &mdash; <i>should login be blocked until an admin approves?</i> &mdash;
+    and measuring it gave a better answer. The referral code is minted <b>inside the sign-up request</b>, and
+    the storefront honours that code with no check at all. So a stranger who fills in the form is holding a
+    <b>working referral code within one HTTP request</b>. Locking them out of the dashboard would have guarded
+    an empty room while the door to the market stood open.
+    <br><br>
+    <b>The code, not the door, was the leak.</b> Hence: the code must not exist until we have admitted the person.
+  </div>
   <dl class="bignum">
+    <div><dt>Who decides you are in</dt><dd><span class="was">nobody</span><span class="arr">&rarr;</span><span class="now">a person</span></dd></div>
+    <div><dt>Referral code exists from</dt><dd><span class="was">sign-up</span><span class="arr">&rarr;</span><span class="now">approval</span></dd></div>
     <div><dt>Steps to join</dt><dd><span class="was">7</span><span class="arr">&rarr;</span><span class="now">4</span></dd></div>
     <div><dt>Things to upload</dt><dd><span class="was">3</span><span class="arr">&rarr;</span><span class="now">none</span></dd></div>
     <div><dt>Needs a printer</dt><dd><span class="was">yes</span><span class="arr">&rarr;</span><span class="now">no</span></dd></div>
@@ -924,7 +946,97 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-new"><div class="era-k">Proposed · 1</div><h2>Verify first, then sign</h2><p>The order reverses. Three checks — tax, identity, bank — then the agreement is signed on screen, in the name the PAN card carries. Nothing is printed, scanned or uploaded, and the partner finishes in one sitting.</p></div>
+<section class="track"><div class="era era-new"><div class="era-k">Proposed · 1</div><h2>Applying, and being chosen</h2><p>The public form stops creating accounts. It creates an <b>application</b> &mdash; no login, no dashboard, and above all <b>no referral code</b>, because the code is the only thing that can actually cost us money. A person reads it, has the recruitment conversation, and decides. Only then does a Yashomargi exist.</p></div>
+<div class="flow">
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A1</div><div class="cap-t">The form, honestly labelled</div>
+      <div class="cap-d">Same seven fields. Completely different promise at the end of them.</div>
+      <div class="cap-u">POST /partners/signup &rarr; igp_applications</div>
+      <span class="flag f-fixed">no account is created here</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Apply to become a Yashomargi</div>
+        <p style="font-size:11px;color:#777;margin:0 0 13px;line-height:1.55">We choose our Yashomargis. Tell us about yourself and someone from our team will call you.</p>
+        <div class="flabel">Full name</div><div class="field">Ravi Kumar</div>
+        <div class="flabel">Mobile</div><div class="field">+91 98450 12345</div>
+        <div class="flabel">Email</div><div class="field">ravi@example.com</div>
+        <div class="flabel">PIN code</div><div class="field">570001</div>
+        <div class="card peach">
+          <p style="font-size:10px;margin:0;line-height:1.6">This is an <b>application</b>, not an account. There is nothing to log into yet.</p>
+        </div>
+        <button class="btn">Send my application</button>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A2</div><div class="cap-t">&ldquo;Please wait for Admin Approval&rdquo; &mdash; finally true</div>
+      <div class="cap-d">The old app said this while the account was already active and usable. Now the sentence describes what is actually happening.</div>
+      <div class="cap-u">no redirect to a login they do not have</div>
+      <span class="flag f-fixed">was a lie · now a fact</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">We have your application</div>
+        <div class="card" style="border:1.5px solid #10B981;margin-top:0">
+          <div style="display:flex;gap:9px;align-items:center">
+            <div style="width:30px;height:30px;border-radius:50%;background:#E4F1EA;display:grid;place-items:center;color:#146B45"><i class="fa-solid fa-check"></i></div>
+            <div><div style="font-size:12.5px;font-weight:700">Received</div>
+            <div style="font-size:9.5px;color:#888">6 September, 4:20 pm</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div style="font-size:11.5px;font-weight:700;margin-bottom:7px">What happens next</div>
+          <p style="font-size:10px;color:#777;margin:0;line-height:1.6"><b>A person reads it</b> &mdash; not a system. If it looks like a fit, someone calls you for a conversation. If we go ahead, you get an email with your login.</p>
+        </div>
+        <div class="card peach">
+          <p style="font-size:10px;margin:0;line-height:1.6">We will write either way. <b>You will not be left wondering.</b></p>
+        </div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A3</div><div class="cap-t">A human decides</div>
+      <div class="cap-d">The queue an administrator works from. A rejection needs a reason &mdash; and is kept, so &ldquo;may they apply again?&rdquo; has an answer.</div>
+      <div class="cap-u">admin &middot; applications awaiting a decision</div>
+      <span class="flag f-ok">the selection gate, made visible</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Applications &middot; 4 waiting</div>
+        <div class="card" style="margin-top:0">
+          <div style="font-size:12.5px;font-weight:700">Ravi Kumar</div>
+          <div style="font-size:9.5px;color:#888;margin-bottom:9px">Mysuru 570001 &middot; teacher &middot; applied 2 days ago</div>
+          <div style="display:flex;gap:7px">
+            <div style="flex:1;background:#E4F1EA;color:#146B45;font-size:10.5px;font-weight:700;text-align:center;padding:7px;border-radius:6px">Approve</div>
+            <div style="flex:1;background:#FBEAE8;color:#B3261E;font-size:10.5px;font-weight:700;text-align:center;padding:7px;border-radius:6px">Decline</div>
+          </div>
+        </div>
+        <div class="card peach">
+          <p style="font-size:10px;margin:0;line-height:1.6">Approving is the <b>only</b> way a Yashomargi comes into existence. It creates the account, <b>mints the referral code</b>, and records who decided.</p>
+        </div>
+      </div></div></div></div>
+    </div>
+
+    <div class="cell">
+      <div class="cap"><div class="cap-n">A4</div><div class="cap-t">You are in &mdash; and now the code exists</div>
+      <div class="cap-d">The first moment a referral code is real. Before this there was nothing to share, which is the whole point.</div>
+      <div class="cap-u">email &rarr; GET /partners/login</div>
+      <span class="flag f-fixed">code minted here, not at sign-up</span></div>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="pv-scroll"><div class="scr" style="padding-top:16px">
+        <div class="ttl">Welcome, Ravi</div>
+        <p style="font-size:11px;color:#777;margin:0 0 13px;line-height:1.55">You have been selected as a Yashomargi. Sign in to finish setting up.</p>
+        <div class="card" style="margin-top:0">
+          <div style="font-size:10px;color:#888;margin-bottom:5px">Your referral code</div>
+          <div style="font-size:15px;font-weight:800;letter-spacing:.09em;color:var(--o)">IN5700IGP4821</div>
+        </div>
+        <div class="card">
+          <div style="font-size:11.5px;font-weight:700;margin-bottom:7px">One thing left</div>
+          <p style="font-size:10px;color:#777;margin:0;line-height:1.6">Before we can <b>pay</b> you, three quick checks &mdash; tax, identity, bank. You can share your link straight away.</p>
+        </div>
+        <button class="btn">Sign in</button>
+      </div></div></div></div>
+    </div>
+
+</div>
+</section>
+
+<section class="track"><div class="era era-new"><div class="era-k">Proposed · 2</div><h2>Verify first, then sign</h2><p>The order reverses. Three checks &mdash; tax, identity, bank &mdash; then the agreement is signed on screen, in the name the PAN card carries. Nothing is printed, scanned or uploaded, and the partner finishes in one sitting.</p><p><b>This now happens to somebody we have already chosen</b>, which removes a knot: admission rests on the recruitment conversation, not on these checks. If it rested on them, the partner would need to be logged in to supply the evidence that lets them log in.</p><p>⛔ <b>While we are still building this, an administrator may record an offline check instead</b> &mdash; documents seen in person, at a meeting. The partner then finds these screens already done. It is behind a switch built to be turned off the day the in-app path goes live, and every such verdict is stamped with who decided and why, so a hand-checked partner is never mistaken for a vendor-checked one.</p></div>
 <div class="flow">
 
     <div class="cell">
@@ -1148,7 +1260,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-new"><div class="era-k">Proposed · 2</div><h2>Cleared to sell</h2><p>Verification answers <i>is this really you</i>. This answers a different question &mdash; <i>do we want you selling on our behalf</i> &mdash; and it is the one thing the app has never explained. Today a partner is told &ldquo;Pending Approval&rdquo; and nothing else: not what is being decided, not by whom, not how long, not what to do meanwhile. Three states, each one honest about what is happening to their link <b>and to their money</b>.</p></div>
+<section class="track"><div class="era era-new"><div class="era-k">Proposed · 3</div><h2>Cleared to sell</h2><p>Verification answers <i>is this really you</i>. This answers a different question &mdash; <i>do we want you selling on our behalf</i> &mdash; and it is the one thing the app has never explained.</p><p><b>Since Proposed &middot; 1, &ldquo;pending&rdquo; no longer exists here.</b> A Yashomargi is somebody we chose, so they arrive cleared. What remains is what happens <i>afterwards</i> &mdash; if we suspend or end the relationship. The old &ldquo;Pending Approval&rdquo; badge, which told a partner nothing about what was being decided, by whom, or how long, has moved to where the waiting actually happens: the application, screen A2.</p><p>⛔ And the gate has to be real this time. Today it is read in <b>two page templates and nowhere else</b> &mdash; so &ldquo;locked&rdquo; hides a link and stops no money: a partner who wrote their code down is still credited in full. It now sits where the money moves, beside the verification gate. <b>A suspended partner still earns what they are owed; they simply cannot be paid</b> &mdash; nothing is silently forfeited, and reinstating them releases it.</p></div>
 <div class="flow">
 
     <div class="cell">
@@ -1252,7 +1364,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-new"><div class="era-k">Proposed · 3</div><h2>Getting paid</h2><p>The wallet stops promising a withdraw button that does not exist, and starts telling the partner when they will be paid, how much, and what arrived.</p></div>
+<section class="track"><div class="era era-new"><div class="era-k">Proposed · 4</div><h2>Getting paid</h2><p>The wallet stops promising a withdraw button that does not exist, and starts telling the partner when they will be paid, how much, and what arrived.</p></div>
 <div class="flow">
 
     <div class="cell">
@@ -1324,7 +1436,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.87em;background:var(--p
 
   </div>
 </section>
-<section class="track"><div class="era era-adm"><div class="era-k">Proposed · 4</div><h2>The other user — an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p></div>
+<section class="track"><div class="era era-adm"><div class="era-k">Proposed · 5</div><h2>The other user &mdash; an administrator</h2><p>Reviewing a partner, building a payout run, approving it, and reconciling it. Approval requires a different person from the one who built the run.</p><p><b>This role grew on 6 September.</b> The administrator is now the <i>only</i> way a Yashomargi comes into existence &mdash; they work the application queue (A3), and while the in-app checks are still being built they may also record an offline KYC check for someone they met in person. Both actions demand a reason, both stamp who did it, and manually-checked partners stay countable: if that number grows, the automated path is not working, and that is the signal.</p></div>
 <div class="admgrid">
     <div>
       <div class="cap"><div class="cap-n">F0</div><div class="cap-t">The verification queue</div>
