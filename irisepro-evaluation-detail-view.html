@@ -210,8 +210,8 @@ ul,ol{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.35rem}
   <div class="crumb">My students › Candidate 8E939 › unit 519 › position 12</div>
   <div class="hdr">
     <div class="idblock">
-      <h3>Candidate 8E939 <span class="pill p-info">blind</span></h3>
-      <p class="sub">Class 7 · CBSE · age 12 — no name, no contact</p>
+      <h3>A VARSHIKAA <span class="pill p-info">no contact details</span></h3>
+      <p class="sub">Class 7 · CBSE · age 12 — name and class shown, guardian contact withheld</p>
     </div>
     <div class="stats">
       <div class="stat"><b>13</b><span>you marked</span></div>
@@ -223,7 +223,7 @@ ul,ol{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.35rem}
     <div class="flags"><span class="pill p-new">a parent has queried this evaluation</span></div>
     <p style="font-size:.85rem;margin-bottom:.5rem">Same task rail, same record, same abilities — with three differences:</p>
     <ol style="font-size:.85rem;margin-bottom:0">
-      <li><b>The student stays blind.</b> Pseudonym, class, board and age only — exactly as when marking.</li>
+      <li><b>Name and class are shown</b> — changed 7 Sep. Guardian email and phone stay admin-only.</li>
       <li><b>Scoped to mapped units.</b> <code>units.yashodarshi_id</code>, the existing guard, unchanged.</li>
       <li><b>Read-only, plus one action: <span class="pill p-new">add feedback</span></b> — the gap this student's record actually has.</li>
     </ol>
@@ -231,8 +231,11 @@ ul,ol{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.35rem}
 </div>
 
 <div class="why">
-<h4 style="margin-top:0">Why the evaluator's view stays blind even on review</h4>
-<p style="margin-bottom:0">Blind marking is the integrity control. If a Yashodarshi could see the name once a parent complains, the incentive to revise a score changes — and the review would no longer be a review of the same judgement. <b>The admin holds identity; the evaluator holds the work.</b> That separation is what makes an overturn meaningful.</p>
+<h4 style="margin-top:0">⭐ Blind marking is being dropped — Goutam &amp; KMM sir, 7 Sep</h4>
+<p><b>The evaluator now sees the child's name and class.</b> The reason is operational and it is a good one: a pseudonym makes it genuinely hard to track whose evaluation is whose. This escalation opened with <i>“Candidate: 8E939”</i> and it took real work to establish that meant A Varshikaa — friction paid on every single query.</p>
+<p><b>What changes in code:</b> <code>Student::blindView()</code> already returns class, board and age; only the <b>name</b> is missing. It is called from five places, so adding it once updates every evaluator surface consistently.</p>
+<p><b>What must NOT come with it:</b> guardian email and phone. An evaluator has no operational need for either, and it is a child's contact data. Identity solves the tracking problem; contact details do not, and they carry a DPDPA minimisation cost for nothing.</p>
+<p style="margin-bottom:0">⛔ <b>Two comments become false the moment this ships and must be updated in the same change</b>, or the next reader will trust the wrong one: <code>EvaluatorDesk.php:19</code> — <i>“BLIND — a candidate is ONLY Student::blindView(); name/email/phone never leave the model [#80]”</i> — and <code>YashodarshiController.php:59</code>, which describes that desk as the thing this screen must never become a way around. The honest trade is worth recording too: blind marking was an integrity control, and once an evaluator can see who they are marking, an overturn after a complaint is no longer a review of the same conditions. That is an accepted cost, not an oversight.</p>
 </div>
 
 <!-- ─────────── BUILD ─────────── -->
@@ -242,7 +245,7 @@ ul,ol{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.35rem}
 <tr><td>Brief, submission, abilities</td><td><span class="pill p-ok">data exists</span></td><td>reuse <code>CockpitPresenter</code>; do not re-query</td></tr>
 <tr><td>Timeline + seconds</td><td><span class="pill p-ok">data exists</span></td><td class="mono">student_task_responses + yashodarshi_task_sessions</td></tr>
 <tr><td>“What the evaluator saw” tab</td><td><span class="pill p-ok">the panel, read-only</span></td><td>admin route to the same blade, <code>$isEditable=false</code>, POST blocked server-side</td></tr>
-<tr><td>Named student header</td><td><span class="pill p-new">admin only</span></td><td>never on the Yashodarshi view — blind marking is the control</td></tr>
+<tr><td>Named student header</td><td><span class="pill p-new">both views</span></td><td>7 Sep decision — add <code>full_name</code> to <code>blindView()</code>; guardian email/phone stay admin-only</td></tr>
 <tr><td>Anomaly flags</td><td><span class="pill p-new">to build</span></td><td>derived at read time</td></tr>
 <tr><td>History tab / audit log</td><td><span class="pill p-new">to build</span></td><td>append-only</td></tr>
 <tr><td>Evidence beyond 90 days</td><td><span class="pill p-bad">blocks the screen</span></td><td>S3 lifecycle — the record 404s once files expire</td></tr>
