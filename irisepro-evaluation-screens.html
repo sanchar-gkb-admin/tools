@@ -77,10 +77,112 @@ td.n2{font-family:ui-monospace,Menlo,monospace;text-align:right;white-space:nowr
 .mbox h4{margin:0 0 .5rem;font-size:.95rem}
 .inp{border:1px solid var(--line);border-radius:6px;padding:.4rem .55rem;font-size:.76rem;color:var(--mut);margin-bottom:.5rem}
 .mob{max-width:20rem;margin:0 auto}
+
+.nav{background:#0f172a;color:#cbd5e1;padding:.5rem 0;font-size:.76rem;min-height:19rem}
+.nav .grp{font-family:ui-monospace,Menlo,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:#64748b;padding:.6rem .8rem .2rem}
+.nav .it{padding:.28rem .8rem}
+.nav .it.new{background:var(--o);color:#fff;font-weight:700}
+.nav .it.on{background:#1e293b;color:#fff}
+.two{display:grid;grid-template-columns:13rem 1fr;min-height:19rem}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.flow{display:flex;gap:.5rem;flex-wrap:wrap;padding:1rem}
+.fs{flex:1;min-width:9.5rem;border:1px solid var(--line);border-radius:8px;padding:.55rem .6rem;background:#fff}
+.fs b{display:block;font-size:.78rem;margin-bottom:.15rem}
+.fs span{font-size:.7rem;color:var(--mut);display:block}
+.fs .who{font-family:ui-monospace,Menlo,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.25rem}
+.fs.a{border-top:3px solid #1d4ed8} .fs.y{border-top:3px solid var(--o)} .fs.s{border-top:3px solid var(--ok)}
 </style>
 
 <div class="w">
 <p class="title">YASHHO · Evaluation Record — screens</p>
+
+<!-- S00a -->
+<span class="sid">S00a</span><p class="cap">Where it plugs in · admin sidebar — existing items unchanged</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · Superadmin</span><span class="r">Chief Yashodarshi</span></div>
+<div class="two">
+<div class="nav">
+<div class="grp">Main</div>
+<div class="it">Dashboard</div>
+<div class="it on">Manage Students</div>
+<div class="it new">↳ Evaluation Record · new</div>
+<div class="it">Manage Yashodarshis</div>
+<div class="it new">↳ Evaluation Quality · new</div>
+<div class="it">Manage Batches</div>
+<div class="it">Manage Enrollments</div>
+<div class="it">Manage Tasks</div>
+<div class="it">Manage Challenges</div>
+<div class="grp">Operations</div>
+<div class="it">Cohort Scoreboard</div>
+<div class="it new">Calibration · new</div>
+<div class="it">Support Requests</div>
+<div class="it">Reports</div>
+</div>
+<div class="pn">
+<p class="mt" style="margin-bottom:.5rem">Three additions. No existing item moves.</p>
+<div class="sc"><table>
+<thead><tr><th>New entry</th><th>Sits under</th><th>Opens</th></tr></thead><tbody>
+<tr><td><b>Evaluation Record</b></td><td>Manage Students › a student</td><td>S02 — that child's full task history</td></tr>
+<tr><td><b>Evaluation Quality</b></td><td>Manage Yashodarshis › an evaluator</td><td>S12 — that evaluator's signals</td></tr>
+<tr><td><b>Calibration</b></td><td>Operations</td><td>S13 — double-marked spread</td></tr>
+</tbody></table></div>
+</div>
+</div>
+</div>
+
+<!-- S00b -->
+<span class="sid">S00b</span><p class="cap">Where it plugs in · Yashodarshi desk</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · Yashodarshi</span><span class="r">Prem Sagar</span></div>
+<div class="two">
+<div class="nav">
+<div class="grp">Today</div>
+<div class="it on">My Desk · 12 pending</div>
+<div class="it">Review Queue</div>
+<div class="it">Sessions</div>
+<div class="it">Mentorship</div>
+<div class="grp">My work</div>
+<div class="it new">My Evaluations · new</div>
+<div class="it new">My Quality · new</div>
+</div>
+<div class="pn">
+<p class="mt" style="margin-bottom:.5rem">Two additions. The desk stays the marking queue.</p>
+<div class="sc"><table>
+<thead><tr><th>New entry</th><th>Opens</th><th>Scope</th></tr></thead><tbody>
+<tr><td><b>My Evaluations</b></td><td>S08 → S09</td><td>mapped units only</td></tr>
+<tr><td><b>My Quality</b></td><td>S10</td><td>own signals vs cohort range</td></tr>
+</tbody></table></div>
+<div class="fl" style="margin-top:.6rem"><span class="p pi">desk = what to mark next</span><span class="p po">my evaluations = what I already marked</span></div>
+</div>
+</div>
+</div>
+
+<!-- S00c -->
+<span class="sid">S00c</span><p class="cap">The flow · submission to resolution</p>
+<div class="app">
+<div class="tb"><span>Flow</span><span class="r">green student · orange yashodarshi · blue admin</span></div>
+<div class="flow">
+<div class="fs s"><span class="who">student</span><b>1 · Submits</b><span>files attach to the open task</span></div>
+<div class="fs y"><span class="who">yashodarshi</span><b>2 · Marks</b><span>desk → panel → 37 abilities</span></div>
+<div class="fs a"><span class="who">system</span><b>3 · Flags</b><span>expired · fast submit · no feedback</span></div>
+<div class="fs a"><span class="who">admin</span><b>4 · Query raised</b><span>parent disputes a score</span></div>
+<div class="fs a"><span class="who">admin</span><b>5 · Reviews</b><span>brief vs submission vs score</span></div>
+<div class="fs a"><span class="who">admin</span><b>6 · Resolves</b><span>overturn · re-open · request feedback</span></div>
+<div class="fs y"><span class="who">yashodarshi</span><b>7 · Notified</b><span>reason shown · adds feedback</span></div>
+<div class="fs a"><span class="who">admin</span><b>8 · Learns</b><span>feeds quality &amp; calibration</span></div>
+</div>
+<div class="pn" style="border-top:1px solid var(--line)">
+<div class="sc"><table>
+<thead><tr><th>Step</th><th>Screen</th><th>Purpose</th></tr></thead><tbody>
+<tr><td>1–2</td><td>existing desk &amp; panel</td><td>unchanged</td></tr>
+<tr><td>3</td><td>derived · shown on S01 and S02</td><td>surface the anomaly before a parent finds it</td></tr>
+<tr><td>4–5</td><td>S02 → S03 → S04 → S05 → S06</td><td>answer "what happened here" without SQL</td></tr>
+<tr><td>6</td><td>S07</td><td>overturn with a reason, logged</td></tr>
+<tr><td>7</td><td>S09</td><td>evaluator sees the reason, adds what was missing</td></tr>
+<tr><td>8</td><td>S11 → S13</td><td>one query becomes a calibration data point</td></tr>
+</tbody></table></div>
+</div>
+</div>
 
 <!-- S01 -->
 <span class="sid">S01</span><p class="cap">Admin · students</p>
