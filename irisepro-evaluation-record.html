@@ -1,0 +1,253 @@
+<title>YASHHO · The Evaluation Record — student, Yashodarshi, admin</title>
+<style>
+:root{--o:#FF8A3D;--o-dark:#E67E35;--cream:#FFF1E6;--ink:#111827;--mut:#6b7280;--line:#e5e7eb;
+--page:#f6f7f9;--ok:#4CAF50;--warn:#FFC107;--warn-d:#FFA000;--bad:#dc2626;--info:#2196F3}
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,-apple-system,'Segoe UI',sans-serif;background:var(--page);color:var(--ink);line-height:1.6}
+.w{max-width:60rem;margin:0 auto;padding:2.5rem 1rem 5rem}
+h1{font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.15;margin:.3rem 0 .6rem;letter-spacing:-.02em}
+h2{font-size:1.25rem;margin:0;letter-spacing:-.01em}
+h3{font-size:1rem;margin:0 0 .5rem}
+h4{font-size:.82rem;margin:1.1rem 0 .4rem;text-transform:uppercase;letter-spacing:.09em;color:var(--mut)}
+p{margin:0 0 .85rem}
+.lede{font-size:1.05rem;color:#374151;max-width:54ch}
+.mono,code{font-family:ui-monospace,Menlo,monospace;font-size:.86em}
+.sec{margin-top:2.8rem}
+.sechead{display:flex;gap:.8rem;align-items:baseline;border-top:3px solid var(--ink);padding-top:.7rem;margin-bottom:1rem}
+.num{font-family:ui-monospace,Menlo,monospace;font-size:.75rem;background:var(--ink);color:#fff;
+padding:.15rem .45rem;border-radius:4px;flex:none}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:.9rem}
+.screen{background:#fff;border:2px solid var(--ink);border-radius:12px;overflow:hidden;margin:1rem 0 1.4rem}
+.bar{background:var(--ink);color:#fff;padding:.5rem .9rem;font-size:.75rem;font-family:ui-monospace,Menlo,monospace;
+display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.body{padding:1rem 1.1rem}
+.why{background:var(--cream);border-left:5px solid var(--o);border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0}
+.stop{background:#fef2f2;border-left:5px solid var(--bad);border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0}
+.stop h3,.stop h4{color:var(--bad)}
+.win{background:#f0fdf4;border-left:5px solid var(--ok);border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff;margin:1rem 0}
+table{border-collapse:collapse;width:100%;min-width:32rem;font-size:.85rem}
+th{text-align:left;font-size:.66rem;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);
+padding:.6rem .7rem;border-bottom:1px solid var(--line);white-space:nowrap;font-family:ui-monospace,Menlo,monospace}
+td{padding:.5rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;font-size:.65rem;font-family:ui-monospace,Menlo,monospace;padding:.12rem .42rem;
+border-radius:4px;letter-spacing:.05em;white-space:nowrap;font-weight:600}
+.p-bad{background:#fee2e2;color:var(--bad)} .p-ok{background:#dcfce7;color:#15803d}
+.p-warn{background:#fef3c7;color:#92400e} .p-info{background:#dbeafe;color:#1d4ed8}
+.p-new{background:var(--o);color:#fff}
+.two{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.mini{border:1px solid var(--line);border-radius:9px;padding:.75rem .85rem;background:#fff}
+.mini b{display:block;font-size:.78rem;margin-bottom:.2rem}
+.mini span{font-size:.8rem;color:var(--mut)}
+.abrow{display:flex;justify-content:space-between;gap:.5rem;font-size:.8rem;padding:.2rem .45rem;
+background:var(--page);border-radius:4px;margin-bottom:.2rem}
+.abrow b{font-family:ui-monospace,Menlo,monospace}
+.grid4{display:grid;gap:.25rem;grid-template-columns:repeat(auto-fill,minmax(10.5rem,1fr))}
+.thumb{display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--line);border-radius:6px;
+padding:.25rem .5rem;font-size:.72rem;font-family:ui-monospace,Menlo,monospace;background:var(--page);margin:.15rem .15rem 0 0}
+ol,ul{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.4rem}
+.foot{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--mut)}
+.kbd{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;background:var(--ink);color:#fff;padding:.1rem .35rem;border-radius:3px}
+</style>
+
+<div class="w">
+<p class="mono" style="color:var(--mut);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase">Storyboard · 7 September 2026</p>
+<h1>The Evaluation Record</h1>
+<p class="lede">One screen that answers “what did this child submit, and why was it scored that way?” — built for the parent conversation, the Yashodarshi’s own review, and the admin resolving a dispute.</p>
+
+<div class="why">
+<h3>This exists because of a real escalation, not a hypothesis</h3>
+<p>On 7 September a parent challenged an evaluation. Answering it took direct SQL against production, S3 version archaeology, and three wrong turns — because <b>there is no screen anywhere in YASHHO that shows a submission next to the scores it earned.</b></p>
+<p style="margin-bottom:0">What we found could not have been found any other way: the child’s photographs attached to task&nbsp;12 were <b>her completed work for task&nbsp;11</b> — the task that had been auto-scored <b>zero</b> for non-submission. She did the work, got nothing for it, and was then marked on it as though it were a different exercise.</p>
+</div>
+
+<div class="card">
+<h4>What already exists — and why this is not a duplicate</h4>
+<div class="scroll"><table><thead><tr><th>Storyboard</th><th>Answers</th><th>Does not answer</th></tr></thead><tbody>
+<tr><td class="mono">irisepro-yashodarshi-console</td><td>Is the fleet keeping up? Whose queue is late?</td><td>Anything about what was actually <i>submitted</i> or <i>scored</i></td></tr>
+<tr><td class="mono">irisepro-student-progress</td><td>Task-by-task: who is waiting on whom</td><td>The evidence. It is a <b>chasing</b> view, not a <b>review</b> view</td></tr>
+<tr><td class="mono">irisepro-scorecard-architecture</td><td>How abilities roll up into a card</td><td>The per-task record behind any single number</td></tr>
+</tbody></table></div>
+<p style="margin-bottom:0">This storyboard is <b>screen 03 of student-progress, opened up</b> — plus the two audiences that view never had: the Yashodarshi looking at their own past work, and the admin arbitrating a complaint.</p>
+</div>
+
+<!-- ══════════════════ 01 ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">01</span><h2>Today — there is no surface</h2></div>
+<p>Not “a bad screen”. <b>No screen.</b> To answer one parent’s question we had to:</p>
+<div class="scroll"><table><thead><tr><th>Step</th><th>What it took</th><th>What went wrong</th></tr></thead><tbody>
+<tr><td>Find the student</td><td>SQL on <code>students</code></td><td>Guessed column <code>name</code>; it is <code>full_name</code>. Reported “no match” for a student who was there.</td></tr>
+<tr><td>Find “task 12”</td><td>Read <code>units.task_snapshot</code></td><td>Tasks are <b>shuffled per student</b>. Her task 12 is <code>task_id 11</code>. <code>task_id 12</code> is her position 16 — a lookup by ID answers the wrong question.</td></tr>
+<tr><td>Judge the score</td><td>Parse <code>score_snapshot</code> JSON</td><td>Every task has a <b>different maximum</b>. Dividing by one task’s max produced “109.5%”.</td></tr>
+<tr><td>See the work</td><td>S3 <code>head-object</code></td><td>Recordings 404’d. Nearly reported data loss — originals are deleted after review <b>by design</b>; optimised copies were there all along.</td></tr>
+</tbody></table></div>
+<div class="stop"><h4 style="margin-top:0">The point</h4>
+<p style="margin-bottom:0">Four traps, four near-miss wrong answers, on a question a parent is entitled to ask. <b>Nobody without production access could have answered it at all</b> — and the person who most needs the answer is the Yashodarshi being questioned.</p></div>
+</div>
+
+<!-- ══════════════════ 02 ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">02</span><h2>The Evaluation Record — the core screen</h2></div>
+<p>The submission and the scores on <b>one screen</b>, because the only useful question is whether one justifies the other.</p>
+
+<div class="screen">
+<div class="bar"><span>A VARSHIKAA · Class 7 · unit 519</span><span>Task 12 of 21</span></div>
+<div class="body">
+  <div style="display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap">
+    <h3 style="margin:0">My Habit Transformation Challenge</h3>
+    <span class="pill p-info">position 12</span><span class="pill p-info">task_id 11</span>
+    <span class="pill p-warn">no feedback given</span>
+  </div>
+  <p class="mono" style="font-size:.75rem;color:var(--mut);margin:.3rem 0 .9rem">
+    opened 4 Sep 12:11:35 · window closed 12:41:35 · submitted 12:12:10 <b>(35s)</b> · evaluated 12:47:17 by Prem Sagar · 141s on screen</p>
+
+  <div class="two">
+    <div class="mini"><b>What she submitted</b>
+      <span class="thumb">▣ page 1</span><span class="thumb">▣ page 2</span>
+      <span style="display:block;margin-top:.5rem">Tap to open full size. Video and audio play inline.</span>
+    </div>
+    <div class="mini"><b>Score 133 / 185 &nbsp;<span style="color:var(--o-dark)">71.9%</span></b>
+      <div class="abrow"><span>Aptitude</span><b>36 / 50</b></div>
+      <div class="abrow"><span>Attitude</span><b>26 / 35</b></div>
+      <div class="abrow"><span>Communication</span><b>21 / 30</b></div>
+      <div class="abrow"><span>Execution</span><b>50 / 70</b></div>
+    </div>
+  </div>
+
+  <h4>All 37 abilities, as scored</h4>
+  <div class="grid4">
+    <div class="abrow"><span>memory</span><b>3.5</b></div><div class="abrow"><span>concentration</span><b>4</b></div>
+    <div class="abrow"><span>attention to detail</span><b>3.5</b></div><div class="abrow"><span>logical reasoning</span><b>3.5</b></div>
+    <div class="abrow"><span>grasping ability</span><b>4</b></div><div class="abrow"><span>self regulation</span><b>4</b></div>
+    <div class="abrow"><span>curiosity</span><b>3.5</b></div><div class="abrow"><span>optimism</span><b>4</b></div>
+    <div class="abrow"><span>spelling</span><b>3</b></div><div class="abrow"><span>legibility</span><b>4</b></div>
+  </div>
+  <p class="mono" style="font-size:.72rem;color:var(--mut);margin-top:.5rem">…27 more · each shown with the weight it carried</p>
+</div>
+</div>
+
+<div class="why">
+<h4 style="margin-top:0">Four decisions in that screen that change engineering, not styling</h4>
+<ol style="margin-bottom:0">
+<li><b>Position is the identity, task_id is the footnote.</b> Tasks are shuffled per student, so “task 12” only means anything as a position. Every surface — this screen, the scorecard, a support email — must lead with position and carry <code>task_id</code> only as a debugging aid. The parent, the Yashodarshi and the admin must all be counting the same thing.</li>
+<li><b>The maximum travels with the score, always.</b> <code>133</code> is meaningless; <code>133 / 185</code> is not. Each task has its own maximum, already stored in <code>score_snapshot</code>. Never render a bare number.</li>
+<li><b>The media resolver is a first-class component.</b> Video and audio originals are deleted at review by design; images are retained. The screen must silently serve the <code>.optimized.*</code> sibling and never show a broken tile — a 404 here reads as “we lost your child’s work”.</li>
+<li><b>Evidence must outlive the score it justifies.</b> S3 expires <code>task_responses/</code> at <b>90 days</b>. A scorecard is discussed for months. Today this screen would 404 for any complaint older than a term.</li>
+</ol>
+</div>
+</div>
+
+<!-- ══════════════════ 03 ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">03</span><h2>The four cases it must survive</h2></div>
+<p>Taken from one real student’s 13 tasks. A design that handles only the happy path fails on her first week.</p>
+
+<div class="stop">
+<h3 style="margin-top:0">Case A · The work is attached to the wrong task</h3>
+<p>Position 11 closed at 12:11:24 and was auto-scored <b>0 / 165</b>. Position 12 opened 11 seconds later. At 12:12:10 she uploaded two photographs — <b>of her position 11 work</b> — and they attached to position 12.</p>
+<p style="margin-bottom:0"><b>The screen must make this visible, not hide it.</b> Show the previous task’s outcome inline whenever a submission lands within minutes of a prior expiry. An evaluator seeing <span class="pill p-bad">previous task expired 11s earlier</span> would have opened the images and stopped.</p>
+</div>
+
+<div class="card">
+<h3>Case B · The task expired and nothing was submitted</h3>
+<p style="margin-bottom:0">A zero is a legitimate outcome, but the record must show <b>why</b> — window opened, window closed, nothing received — rather than a bare 0 that reads as “your child did badly”. This is the single most complaint-generating number we produce.</p>
+</div>
+
+<div class="card">
+<h3>Case C · Scored with no feedback at all</h3>
+<p style="margin-bottom:0">12 of her 13 tasks carry <b>no written feedback</b>. Platform-wide only <b>27.6%</b> of 10,578 evaluations do, and individual evaluators range from <b>0.3% to 99.8%</b>. The record should state plainly when no feedback was given — silence should be visible, not inferred.</p>
+</div>
+
+<div class="card">
+<h3>Case D · The media is not what the evaluator saw</h3>
+<p style="margin-bottom:0">The evaluator was served the optimised copy; the original may already be deleted. When an admin reopens a case months later they must be told <b>which artefact they are looking at</b>, so nobody argues about a file the evaluator never had.</p>
+</div>
+</div>
+
+<!-- ══════════════════ 04 ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">04</span><h2>The Yashodarshi’s own view</h2></div>
+<p>The person best placed to answer a query is the one who did the evaluation — and today they have no way to look back at their own work.</p>
+
+<div class="screen">
+<div class="bar"><span>Prem Sagar · senior · premium_4999</span><span>My evaluations</span></div>
+<div class="body">
+  <div class="two">
+    <div class="mini"><b>505 evaluations</b><span>39 students · since 23 Aug</span></div>
+    <div class="mini"><b style="color:var(--bad)">6.9% with feedback</b><span>platform average 27.6% — <b>you are below it</b></span></div>
+    <div class="mini"><b>116s average</b><span>platform 89s — you take more care than most</span></div>
+  </div>
+  <h4>Queried by a parent · needs your response</h4>
+  <div class="scroll"><table><thead><tr><th>Student</th><th>Task</th><th>Score</th><th>Raised</th><th></th></tr></thead><tbody>
+  <tr><td>A Varshikaa</td><td>Position 12 · Habit Transformation</td><td>133/185</td><td>7 Sep</td><td><span class="pill p-new">open record</span></td></tr>
+  </tbody></table></div>
+</div>
+</div>
+
+<div class="why">
+<h4 style="margin-top:0">Why show them their own feedback rate</h4>
+<p style="margin-bottom:0">Prem Sagar spent <b>more</b> time per task than the platform average — he was not careless. He simply had no signal that written feedback was expected, because nothing ever told him 93% of his evaluations went out without any. <b>A number he can see is worth more than a policy he was never shown.</b> Pair it with the honest comparison, not a target.</p>
+</div>
+</div>
+
+<!-- ══════════════════ 05 ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">05</span><h2>Admin — resolving a dispute</h2></div>
+
+<div class="screen">
+<div class="bar"><span>Escalation · A Varshikaa · guardian aanjanhari@…</span><span>Chief Yashodarshi</span></div>
+<div class="body">
+  <div class="scroll"><table><thead><tr><th>#</th><th>Task</th><th>Submitted</th><th>Score</th><th>Feedback</th><th>Flags</th></tr></thead><tbody>
+  <tr><td>10</td><td>Future Me Identity</td><td>3 Sep</td><td>180.5/250 · 72%</td><td><span class="pill p-bad">none</span></td><td></td></tr>
+  <tr style="background:#fef2f2"><td>11</td><td>Rate the Top 5 Abilities</td><td class="mono">never</td><td><b>0/165</b></td><td><span class="pill p-bad">none</span></td><td><span class="pill p-bad">expired</span></td></tr>
+  <tr style="background:#fff7ed"><td>12</td><td>Habit Transformation</td><td>4 Sep · 35s</td><td>133/185 · 72%</td><td><span class="pill p-bad">none</span></td><td><span class="pill p-warn">submitted 11s after prior expiry</span></td></tr>
+  <tr><td>13</td><td>My Future: Their Dream</td><td>5 Sep</td><td>115/155 · 74%</td><td><span class="pill p-bad">none</span></td><td></td></tr>
+  </tbody></table></div>
+  <h4>Actions available here</h4>
+  <div class="two">
+    <div class="mini"><b>Overturn a score</b><span>with a required reason, written to an append-only audit log</span></div>
+    <div class="mini"><b>Re-open a task</b><span>give the student the attempt back</span></div>
+    <div class="mini"><b>Request feedback</b><span>send it back to the evaluator before the scorecard issues</span></div>
+    <div class="mini"><b>Export the record</b><span>a single PDF for the parent conversation</span></div>
+  </div>
+</div>
+</div>
+
+<div class="why">
+<h4 style="margin-top:0">The flag column is the whole design</h4>
+<p style="margin-bottom:0">An admin cannot read 21 tasks looking for something wrong. The screen must <b>surface the anomaly itself</b>: expired, submitted-suspiciously-soon-after-a-prior-expiry, scored-without-feedback, evaluated-in-under-30-seconds. On this student, two flags would have pointed straight at the problem — and this escalation would have been a five-minute conversation instead of a day.</p>
+</div>
+</div>
+
+<!-- ══════════════════ 06 ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">06</span><h2>Mobile — the parent call</h2></div>
+<p>A Yashodarshi or Chief takes the call on a phone. They need three things in the first screenful: <b>what was submitted</b>, <b>what it scored</b>, <b>was there feedback</b>. Ability detail collapses behind one tap; the submission opens full-screen. Nothing else belongs there.</p>
+</div>
+
+<!-- ══════════════════ DATA ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">DATA</span><h2>What exists, and what does not</h2></div>
+<div class="scroll"><table><thead><tr><th>Needed</th><th>Source</th><th>Status</th></tr></thead><tbody>
+<tr><td>Submission files</td><td class="mono">student_task_responses.submission_multimedia</td><td><span class="pill p-ok">exists</span></td></tr>
+<tr><td>Ability-level scores</td><td class="mono">yashodarshi_evaluation_results.attribute_scores</td><td><span class="pill p-ok">exists — all 37</span></td></tr>
+<tr><td>Per-task maximum</td><td class="mono">…score_snapshot.max_total_score</td><td><span class="pill p-ok">exists</span></td></tr>
+<tr><td>Shuffled position</td><td class="mono">units.task_snapshot</td><td><span class="pill p-ok">exists — array index</span></td></tr>
+<tr><td>Evaluator time on task</td><td class="mono">yashodarshi_task_sessions.active_seconds</td><td><span class="pill p-ok">exists</span> <span class="pill p-warn">only since ~30 Aug</span></td></tr>
+<tr><td>Written / audio feedback</td><td class="mono">…feedback, audio_feedback</td><td><span class="pill p-ok">exists — usually null</span></td></tr>
+<tr><td>Optimised media resolution</td><td class="mono">App\Support\SubmissionMedia</td><td><span class="pill p-ok">exists — reuse, do not reinvent</span></td></tr>
+<tr><td><b>Anomaly flags</b></td><td>derived</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td><b>Query / dispute state</b></td><td>—</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td><b>Override audit log</b></td><td>—</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td><b>Evidence retention &gt; 90d</b></td><td>S3 lifecycle</td><td><span class="pill p-bad">blocks this screen</span></td></tr>
+</tbody></table></div>
+
+<div class="win">
+<h4 style="margin-top:0">Almost all of it already exists</h4>
+<p style="margin-bottom:0">Seven of eleven inputs are live data we are simply not showing anyone. The build is mostly a <b>reading</b> problem, not a modelling one — with three genuinely new pieces (flags, dispute state, audit log) and one policy decision (retention) that must be settled first, because a record screen that 404s after 90 days is worse than none.</p>
+</div>
+</div>
+
+<p class="foot">Anchored throughout in the 7 September 2026 escalation for student 954, unit 519 — every number here was measured in production, not illustrative. Companion storyboards: <span class="mono">irisepro-student-progress</span> (chasing), <span class="mono">irisepro-yashodarshi-console</span> (fleet), <span class="mono">irisepro-scorecard-architecture</span> (roll-up).</p>
+</div>
