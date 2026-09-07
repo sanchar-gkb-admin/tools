@@ -1,0 +1,390 @@
+<title>YASHHO · Evaluation Record — screens</title>
+<style>
+:root{--o:#FF8A3D;--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--page:#f6f7f9;--ok:#16a34a;
+--bad:#dc2626;--warn:#d97706;--panel:#0f172a;--sel:#fff7ed}
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,-apple-system,'Segoe UI',sans-serif;background:#e9eaee;color:var(--ink);line-height:1.45}
+.w{max-width:78rem;margin:0 auto;padding:1.5rem 1rem 4rem}
+.title{font-size:1.3rem;margin:0 0 1.4rem;font-weight:800;letter-spacing:-.01em}
+.sid{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:#fff;background:var(--ink);
+padding:.2rem .5rem;border-radius:4px;display:inline-block;margin-bottom:.4rem}
+.cap{font-size:.78rem;color:#4b5563;margin:0 0 .5rem}
+.app{border:1px solid #cbd0d8;border-radius:10px;overflow:hidden;background:#fff;margin:0 0 2rem;box-shadow:0 1px 8px rgba(0,0,0,.07)}
+.tb{background:var(--panel);color:#fff;padding:.5rem .8rem;display:flex;justify-content:space-between;font-size:.76rem;align-items:center}
+.tb .r{font-family:ui-monospace,Menlo,monospace;font-size:.67rem;opacity:.7}
+.cr{background:#f1f5f9;border-bottom:1px solid var(--line);padding:.35rem .8rem;font-family:ui-monospace,Menlo,monospace;font-size:.68rem;color:var(--mut)}
+.hd{padding:.7rem .8rem;border-bottom:1px solid var(--line);display:flex;gap:.8rem;flex-wrap:wrap;align-items:flex-start}
+.hd .id{flex:1;min-width:13rem}
+.hd h3{font-size:1.02rem;margin:0;font-weight:700}
+.mt{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;color:var(--mut);margin:.15rem 0 0}
+.st{display:flex;gap:.35rem;flex-wrap:wrap}
+.k{border:1px solid var(--line);border-radius:6px;padding:.3rem .5rem;min-width:5.4rem}
+.k b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:.95rem;line-height:1.15}
+.k span{font-size:.6rem;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.sp{display:grid;grid-template-columns:15rem 1fr;min-height:19rem}
+@media(max-width:800px){.sp{grid-template-columns:1fr}}
+.rl{border-right:1px solid var(--line);background:#fafbfc}
+.rh{padding:.4rem .6rem;font-family:ui-monospace,Menlo,monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);border-bottom:1px solid var(--line)}
+.r{display:flex;gap:.4rem;align-items:center;padding:.38rem .6rem;border-bottom:1px solid #eef0f2;font-size:.76rem}
+.r.sel{background:var(--sel);border-left:3px solid var(--o);font-weight:600}
+.r.z{background:#fef2f2}
+.r.dim{opacity:.42}
+.n{font-family:ui-monospace,Menlo,monospace;font-size:.64rem;color:var(--mut);width:1.1rem;flex:none}
+.t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;flex:none}
+.pn{padding:.8rem .9rem;min-width:0}
+.tabs{display:flex;gap:.25rem;border-bottom:1px solid var(--line);margin-bottom:.7rem;flex-wrap:wrap}
+.tab{padding:.3rem .6rem;font-size:.74rem;color:var(--mut);border:1px solid transparent;border-bottom:none;border-radius:6px 6px 0 0}
+.tab.on{background:#fff;border-color:var(--line);color:var(--ink);font-weight:600;margin-bottom:-1px}
+.fl{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.6rem}
+.p{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:.62rem;padding:.1rem .4rem;border-radius:4px;font-weight:600;white-space:nowrap}
+.pb{background:#fee2e2;color:var(--bad)} .pw{background:#fef3c7;color:#92400e}
+.pg{background:#dcfce7;color:#15803d} .pi{background:#dbeafe;color:#1d4ed8} .po{background:var(--o);color:#fff}
+.tl{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin:.4rem 0 .8rem}
+.tl>div{flex:1;min-width:6.4rem;padding:.35rem .5rem;border-right:1px solid var(--line)}
+.tl>div:last-child{border-right:none}
+.tl b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:.76rem}
+.tl span{font-size:.58rem;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.c2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+@media(max-width:680px){.c2{grid-template-columns:1fr}}
+.bx{border:1px solid var(--line);border-radius:8px;padding:.6rem .7rem}
+.bx h5{margin:0 0 .35rem;font-family:ui-monospace,Menlo,monospace;font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
+.bx p{font-size:.78rem;margin:0 0 .3rem}
+.f{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:.67rem;padding:.18rem .42rem;border-radius:5px;border:1px solid var(--line);background:var(--page);margin:.1rem .1rem 0 0}
+.sb{display:flex;justify-content:space-between;font-size:.75rem;padding:.16rem .35rem;background:var(--page);border-radius:4px;margin-bottom:.14rem}
+.sb b{font-family:ui-monospace,Menlo,monospace}
+.ag{display:grid;gap:.16rem;grid-template-columns:repeat(auto-fill,minmax(8.6rem,1fr))}
+.a{display:flex;justify-content:space-between;font-size:.71rem;padding:.12rem .34rem;background:var(--page);border-radius:3px}
+.a b{font-family:ui-monospace,Menlo,monospace}
+.ac{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.7rem;padding-top:.6rem;border-top:1px solid var(--line)}
+.b{font-size:.73rem;padding:.3rem .6rem;border-radius:6px;border:1px solid var(--line);background:#fff}
+.b.pri{background:var(--o);border-color:var(--o);color:#fff;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:.78rem}
+th{text-align:left;font-family:ui-monospace,Menlo,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);padding:.45rem .6rem;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:.4rem .6rem;border-bottom:1px solid #eef0f2}
+tr:last-child td{border-bottom:none}
+td.n2{font-family:ui-monospace,Menlo,monospace;text-align:right;white-space:nowrap}
+.sc{overflow-x:auto}
+.lb{background:#0b1220;padding:1rem;display:grid;grid-template-columns:1fr 15rem;gap:.8rem;min-height:17rem}
+@media(max-width:760px){.lb{grid-template-columns:1fr}}
+.img{background:#1e293b;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-family:ui-monospace,Menlo,monospace;font-size:.72rem;min-height:15rem;text-align:center;padding:1rem}
+.side{color:#cbd5e1;font-size:.74rem}
+.side h5{color:#94a3b8;font-family:ui-monospace,Menlo,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 .3rem}
+.side .thumb{background:#1e293b;border:1px solid #334155;border-radius:5px;padding:.28rem .45rem;font-family:ui-monospace,Menlo,monospace;font-size:.66rem;margin-bottom:.25rem}
+.side .thumb.on{border-color:var(--o);color:#fff}
+.modal{background:rgba(15,23,42,.5);padding:1.6rem;display:flex;justify-content:center}
+.mbox{background:#fff;border-radius:10px;max-width:26rem;width:100%;padding:1rem 1.1rem}
+.mbox h4{margin:0 0 .5rem;font-size:.95rem}
+.inp{border:1px solid var(--line);border-radius:6px;padding:.4rem .55rem;font-size:.76rem;color:var(--mut);margin-bottom:.5rem}
+.mob{max-width:20rem;margin:0 auto}
+</style>
+
+<div class="w">
+<p class="title">YASHHO · Evaluation Record — screens</p>
+
+<!-- S01 -->
+<span class="sid">S01</span><p class="cap">Admin · students</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · Admin</span><span class="r">Chief Yashodarshi</span></div>
+<div class="cr">Students</div>
+<div style="padding:.6rem .8rem;display:flex;gap:.4rem;flex-wrap:wrap;border-bottom:1px solid var(--line)">
+<span class="inp" style="flex:1;min-width:11rem;margin:0">Search name, email, unit…</span>
+<span class="b">Batch: all</span><span class="b">Evaluator: all</span><span class="b po" style="border-color:var(--o)">Flagged only</span>
+</div>
+<div class="sc"><table>
+<thead><tr><th>Student</th><th>Class</th><th>Evaluator</th><th class="n2">Done</th><th class="n2">Avg</th><th class="n2">Zeros</th><th class="n2">Feedback</th><th>Flags</th></tr></thead>
+<tbody>
+<tr style="background:var(--sel)"><td><b>A Varshikaa</b></td><td>7</td><td>Prem Sagar</td><td class="n2">13/21</td><td class="n2">66%</td><td class="n2" style="color:var(--bad)">1</td><td class="n2" style="color:var(--bad)">1/13</td><td><span class="p po">parent query</span> <span class="p pw">wrong-task</span></td></tr>
+<tr><td>Nayan M</td><td>9</td><td>Divya B R</td><td class="n2">8/21</td><td class="n2">71%</td><td class="n2">0</td><td class="n2">2/8</td><td></td></tr>
+<tr><td>Rithika S</td><td>7</td><td>Prem Sagar</td><td class="n2">21/21</td><td class="n2">64%</td><td class="n2">2</td><td class="n2" style="color:var(--bad)">0/21</td><td><span class="p pb">no feedback</span></td></tr>
+<tr><td>Aarav K</td><td>10</td><td>Vijayashree G</td><td class="n2">15/21</td><td class="n2">48%</td><td class="n2">3</td><td class="n2">1/15</td><td><span class="p pw">3 zeros</span></td></tr>
+</tbody></table></div>
+</div>
+
+<!-- S02 -->
+<span class="sid">S02</span><p class="cap">Admin · one student · Record tab</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · Evaluation Record</span><span class="r">Chief Yashodarshi · full visibility</span></div>
+<div class="cr">Students › A Varshikaa › unit 519 › position 12</div>
+<div class="hd">
+<div class="id"><h3>A VARSHIKAA <span class="p po">parent query</span></h3>
+<p class="mt">student 954 · Class 7 · CBSE · guardian aanjanhari@gmail.com · enrolled 23 Aug · batch 646</p></div>
+<div class="st">
+<div class="k"><b>13/21</b><span>done</span></div><div class="k"><b>66%</b><span>average</span></div>
+<div class="k"><b style="color:var(--bad)">1</b><span>zero</span></div><div class="k"><b style="color:var(--bad)">1/13</b><span>feedback</span></div>
+<div class="k"><b style="font-size:.8rem">Prem Sagar</b><span>evaluator</span></div></div>
+</div>
+<div class="sp">
+<div class="rl">
+<div class="rh">Task order · 21 shuffled</div>
+<div class="r"><span class="n">09</span><span class="t">Dream Curriculum P1</span><span class="v">65%</span></div>
+<div class="r"><span class="n">10</span><span class="t">Future Me Identity</span><span class="v">72%</span></div>
+<div class="r z"><span class="n">11</span><span class="t">Rate Top 5 Abilities</span><span class="v" style="color:var(--bad)">0%</span></div>
+<div class="r sel"><span class="n">12</span><span class="t">Habit Transformation</span><span class="v">72%</span></div>
+<div class="r"><span class="n">13</span><span class="t">My Future: Their Dream</span><span class="v">74%</span></div>
+<div class="r dim"><span class="n">14</span><span class="t">Neighborhood Detective</span><span class="v">—</span></div>
+<div class="r dim"><span class="n">15</span><span class="t">Captain for a Day</span><span class="v">—</span></div>
+</div>
+<div class="pn">
+<div class="tabs"><span class="tab on">Record</span><span class="tab">Submission</span><span class="tab">Abilities</span><span class="tab">Evaluator's view</span><span class="tab">History</span></div>
+<h3 style="margin:0 0 .15rem;font-size:1rem">My Habit Transformation Challenge</h3>
+<p class="mt" style="margin-bottom:.5rem">position 12 · task_id 11 · scan · file ≤200 MB · 30-min timer</p>
+<div class="fl"><span class="p pw">submitted 11s after prior expiry</span><span class="p pw">submitted in 35s</span><span class="p pb">no feedback</span></div>
+<div class="tl">
+<div><span>Opened</span><b>12:11:35</b></div><div><span>Closes</span><b>12:41:35</b></div>
+<div><span>Submitted</span><b>12:12:10</b></div><div><span>Evaluated</span><b>12:47:17</b></div><div><span>On screen</span><b>141s</b></div>
+</div>
+<div class="c2">
+<div class="bx"><h5>Task asked for</h5>
+<p><b>Objective</b> — self-awareness, accountability, a plan for changing one limiting habit.</p>
+<p><b>Task</b> — What habit? Why is it affecting you? What steps? By when? Who did you tell?</p>
+<p style="margin:0"><b>Deliverable</b> — Written Submission</p></div>
+<div class="bx"><h5>Submitted &amp; scored</h5>
+<span class="f">▣ page 1 · 2.9 MB</span><span class="f">▣ page 2 · 2.9 MB</span>
+<div style="margin-top:.45rem"></div>
+<div class="sb"><span>Aptitude</span><b>36 / 50</b></div>
+<div class="sb"><span>Attitude</span><b>26 / 35</b></div>
+<div class="sb"><span>Communication</span><b>21 / 30</b></div>
+<div class="sb"><span>Execution</span><b>50 / 70</b></div>
+<div class="sb" style="background:var(--sel)"><span><b>Total</b></span><b>133 / 185 · 71.9%</b></div></div>
+</div>
+<div class="ac"><span class="b pri">Overturn score</span><span class="b">Re-open task</span><span class="b">Request feedback</span><span class="b">Export PDF</span></div>
+</div>
+</div>
+</div>
+
+<!-- S03 -->
+<span class="sid">S03</span><p class="cap">Admin · Submission tab · full-frame viewer</p>
+<div class="app">
+<div class="tb"><span>A Varshikaa · position 12 · submission</span><span class="r">2 files · 5.8 MB</span></div>
+<div class="lb">
+<div class="img">page 1 of 2 — handwritten, 2 pages<br><br>zoom · rotate · download<br>video &amp; audio play inline · PDF in native viewer</div>
+<div class="side">
+<h5>Files</h5>
+<div class="thumb on">▣ page 1 · jpg · 2.9 MB</div>
+<div class="thumb">▣ page 2 · jpg · 2.9 MB</div>
+<h5 style="margin-top:.8rem">Uploaded</h5>
+<div style="font-family:ui-monospace,Menlo,monospace;font-size:.68rem">4 Sep 12:12:10</div>
+<h5 style="margin-top:.8rem">Serving</h5>
+<div style="font-family:ui-monospace,Menlo,monospace;font-size:.68rem">optimised copy<br>original retained</div>
+<h5 style="margin-top:.8rem">Expires</h5>
+<div style="font-family:ui-monospace,Menlo,monospace;font-size:.68rem;color:#fca5a5">3 Dec 2026</div>
+</div>
+</div>
+</div>
+
+<!-- S04 -->
+<span class="sid">S04</span><p class="cap">Admin · Abilities tab · all 37</p>
+<div class="app">
+<div class="tb"><span>A Varshikaa · position 12 · abilities</span><span class="r">max 5.0 · snap 0.5</span></div>
+<div class="pn">
+<div class="sb" style="background:var(--sel);margin-bottom:.5rem"><span><b>Total</b></span><b>133 / 185 · 71.9%</b></div>
+<h5 style="font-family:ui-monospace,Menlo,monospace;font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:.6rem 0 .3rem">Aptitude &nbsp;·&nbsp; 36 / 50 &nbsp;·&nbsp; 10 abilities</h5>
+<div class="ag">
+<div class="a"><span>memory</span><b>3.5</b></div><div class="a"><span>concentration</span><b>4</b></div>
+<div class="a"><span>attention to detail</span><b>3.5</b></div><div class="a"><span>critical thinking</span><b>3</b></div>
+<div class="a"><span>logical reasoning</span><b>3.5</b></div><div class="a"><span>grasping ability</span><b>4</b></div>
+<div class="a"><span>mental dexterity</span><b>3.5</b></div><div class="a"><span>self awareness</span><b>3.5</b></div>
+<div class="a"><span>self regulation</span><b>4</b></div><div class="a"><span>problem solving</span><b>3.5</b></div>
+</div>
+<h5 style="font-family:ui-monospace,Menlo,monospace;font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:.7rem 0 .3rem">Attitude &nbsp;·&nbsp; 26 / 35 &nbsp;·&nbsp; 7 abilities</h5>
+<div class="ag">
+<div class="a"><span>curiosity</span><b>3.5</b></div><div class="a"><span>optimism</span><b>4</b></div>
+<div class="a"><span>regard for others</span><b>3.5</b></div><div class="a"><span>accountability</span><b>4</b></div>
+<div class="a"><span>growth mindset</span><b>4</b></div><div class="a"><span>self reflection</span><b>3.5</b></div>
+<div class="a"><span>courage</span><b>3.5</b></div>
+</div>
+<h5 style="font-family:ui-monospace,Menlo,monospace;font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:.7rem 0 .3rem">Communication &nbsp;·&nbsp; 21 / 30 &nbsp;·&nbsp; 6 abilities</h5>
+<div class="ag">
+<div class="a"><span>vocabulary</span><b>3.5</b></div><div class="a"><span>grammar</span><b>3.5</b></div>
+<div class="a"><span>legibility</span><b>4</b></div><div class="a"><span>structure</span><b>3.5</b></div>
+<div class="a"><span>spelling</span><b>3</b></div><div class="a"><span>creativity</span><b>3.5</b></div>
+</div>
+<h5 style="font-family:ui-monospace,Menlo,monospace;font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:.7rem 0 .3rem">Execution &nbsp;·&nbsp; 50 / 70 &nbsp;·&nbsp; 14 abilities</h5>
+<div class="ag">
+<div class="a"><span>goal setting</span><b>3.5</b></div><div class="a"><span>time management</span><b>3.5</b></div>
+<div class="a"><span>discipline</span><b>3.5</b></div><div class="a"><span>uniqueness</span><b>4</b></div>
+<div class="a"><span>decision making</span><b>3.5</b></div><div class="a"><span>bonding</span><b>3.5</b></div>
+<div class="a"><span>conflict resolution</span><b>3.5</b></div><div class="a"><span>receptiveness</span><b>3.5</b></div>
+<div class="a"><span>mental endurance</span><b>3.5</b></div><div class="a"><span>efficiency</span><b>3.5</b></div>
+<div class="a"><span>effectiveness</span><b>3.5</b></div><div class="a"><span>quality mgmt</span><b>4</b></div>
+<div class="a"><span>planning</span><b>3.5</b></div><div class="a"><span>comprehension</span><b>3.5</b></div>
+</div>
+</div>
+</div>
+
+<!-- S05 -->
+<span class="sid">S05</span><p class="cap">Admin · Evaluator's view tab · the marking panel, read-only</p>
+<div class="app">
+<div class="tb"><span>What Prem Sagar saw · 4 Sep 12:44:56</span><span class="r">read-only · POST blocked</span></div>
+<div class="pn" style="background:#fafbfc">
+<div class="fl"><span class="p pi">exact screen used to mark</span><span class="p pb">editing disabled</span></div>
+<div class="c2">
+<div class="bx" style="background:#fff"><h5>Candidate</h5>
+<p style="margin:0"><b>A Varshikaa</b> · Class 7 · CBSE · age 12</p>
+<p class="mt" style="margin-top:.2rem">no guardian contact shown</p></div>
+<div class="bx" style="background:#fff"><h5>Specimen</h5><span class="f">▣ page 1</span><span class="f">▣ page 2</span></div>
+</div>
+<div class="bx" style="background:#fff;margin-top:.6rem"><h5>Scoring dials · as submitted</h5>
+<div class="ag"><div class="a"><span>memory</span><b>3.5</b></div><div class="a"><span>concentration</span><b>4</b></div><div class="a"><span>spelling</span><b>3</b></div><div class="a"><span>legibility</span><b>4</b></div></div>
+<div style="margin-top:.4rem"><span class="p pb">feedback field left empty</span></div></div>
+</div>
+</div>
+
+<!-- S06 -->
+<span class="sid">S06</span><p class="cap">Admin · History tab · append-only</p>
+<div class="app">
+<div class="tb"><span>A Varshikaa · position 12 · history</span><span class="r">append-only</span></div>
+<div class="sc"><table>
+<thead><tr><th>When</th><th>Who</th><th>Action</th><th>Detail</th></tr></thead><tbody>
+<tr><td>4 Sep 12:11:35</td><td>system</td><td>task opened</td><td>30-min window</td></tr>
+<tr><td>4 Sep 12:12:10</td><td>A Varshikaa</td><td>submitted</td><td>2 files · 35s after opening</td></tr>
+<tr><td>4 Sep 12:44:56</td><td>Prem Sagar</td><td>opened for marking</td><td>—</td></tr>
+<tr><td>4 Sep 12:47:17</td><td>Prem Sagar</td><td>scored</td><td>133/185 · no feedback · 141s</td></tr>
+<tr><td>7 Sep 13:45</td><td>Sutirtha Roy</td><td>parent query raised</td><td>guardian disputes evaluation</td></tr>
+<tr style="background:var(--sel)"><td>7 Sep 14:20</td><td>Chief Yashodarshi</td><td>record opened</td><td>escalation review</td></tr>
+</tbody></table></div>
+</div>
+
+<!-- S07 -->
+<span class="sid">S07</span><p class="cap">Admin · Overturn</p>
+<div class="app"><div class="modal"><div class="mbox">
+<h4>Overturn score · position 12</h4>
+<p style="font-size:.76rem;color:var(--mut);margin:0 0 .5rem">Current 133 / 185 · 71.9% — set by Prem Sagar, 4 Sep 12:47</p>
+<div class="inp">New total &nbsp;·&nbsp; <b style="color:var(--ink)">—</b> / 185</div>
+<div class="inp" style="height:3.4rem">Reason (required) — visible to the evaluator and in the audit log…</div>
+<label style="font-size:.75rem;display:block;margin-bottom:.5rem"><input type="checkbox" checked disabled> Notify Prem Sagar</label>
+<label style="font-size:.75rem;display:block;margin-bottom:.7rem"><input type="checkbox" disabled> Re-open task for the student</label>
+<div style="display:flex;gap:.4rem;justify-content:flex-end"><span class="b">Cancel</span><span class="b pri">Overturn</span></div>
+</div></div></div>
+
+<!-- S08 -->
+<span class="sid">S08</span><p class="cap">Yashodarshi · my students</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · My Evaluations</span><span class="r">Prem Sagar · mapped units only</span></div>
+<div class="hd">
+<div class="id"><h3>My work</h3><p class="mt">senior · premium_4999 · en / kn · marks_booster</p></div>
+<div class="st">
+<div class="k"><b>505</b><span>evaluations</span></div><div class="k"><b>39</b><span>students</span></div>
+<div class="k"><b style="color:var(--bad)">6.9%</b><span>with feedback</span></div><div class="k"><b>116s</b><span>avg time</span></div>
+</div>
+</div>
+<div class="sc"><table>
+<thead><tr><th>Student</th><th>Class</th><th class="n2">Marked</th><th class="n2">Avg</th><th class="n2">Feedback</th><th>Needs me</th></tr></thead><tbody>
+<tr style="background:var(--sel)"><td><b>A Varshikaa</b></td><td>7</td><td class="n2">13</td><td class="n2">66%</td><td class="n2" style="color:var(--bad)">1/13</td><td><span class="p po">parent query</span></td></tr>
+<tr><td>Rithika S</td><td>7</td><td class="n2">21</td><td class="n2">64%</td><td class="n2" style="color:var(--bad)">0/21</td><td><span class="p pw">add feedback</span></td></tr>
+<tr><td>Kiran P</td><td>8</td><td class="n2">6</td><td class="n2">70%</td><td class="n2">3/6</td><td></td></tr>
+</tbody></table></div>
+</div>
+
+<!-- S09 -->
+<span class="sid">S09</span><p class="cap">Yashodarshi · one student · same layout, read-only + add feedback</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · My Evaluations</span><span class="r">Prem Sagar</span></div>
+<div class="cr">My students › A Varshikaa › unit 519 › position 12</div>
+<div class="hd">
+<div class="id"><h3>A VARSHIKAA</h3><p class="mt">Class 7 · CBSE · age 12 — no guardian contact</p></div>
+<div class="st"><div class="k"><b>13</b><span>marked</span></div><div class="k"><b>66%</b><span>average</span></div><div class="k"><b style="color:var(--bad)">1/13</b><span>feedback</span></div></div>
+</div>
+<div class="sp">
+<div class="rl">
+<div class="rh">Task order</div>
+<div class="r"><span class="n">10</span><span class="t">Future Me Identity</span><span class="v">72%</span></div>
+<div class="r z"><span class="n">11</span><span class="t">Rate Top 5 Abilities</span><span class="v" style="color:var(--bad)">0%</span></div>
+<div class="r sel"><span class="n">12</span><span class="t">Habit Transformation</span><span class="v">72%</span></div>
+<div class="r"><span class="n">13</span><span class="t">My Future: Their Dream</span><span class="v">74%</span></div>
+</div>
+<div class="pn">
+<div class="tabs"><span class="tab on">Record</span><span class="tab">Submission</span><span class="tab">Abilities</span></div>
+<div class="fl"><span class="p po">parent query on this task</span><span class="p pb">you left no feedback</span></div>
+<div class="tl"><div><span>Submitted</span><b>12:12:10</b></div><div><span>You marked</span><b>12:47:17</b></div><div><span>Your time</span><b>141s</b></div><div><span>Score</span><b>133/185</b></div></div>
+<div class="bx"><h5>Add feedback now</h5><div class="inp" style="height:3rem;margin:0">Written feedback for the student…</div>
+<div class="ac" style="border:none;padding:0;margin-top:.5rem"><span class="b pri">Save feedback</span><span class="b">Record audio</span></div></div>
+<p class="mt" style="margin-top:.5rem">Scores are locked. Only an admin can change a mark.</p>
+</div>
+</div>
+</div>
+
+<!-- S10 -->
+<span class="sid">S10</span><p class="cap">Yashodarshi · my quality</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · My Quality</span><span class="r">Prem Sagar · from May 2026</span></div>
+<div class="sc"><table>
+<thead><tr><th>Signal</th><th class="n2">You</th><th class="n2">Cohort</th><th>Where you sit</th></tr></thead><tbody>
+<tr><td>Average score given</td><td class="n2">53.0%</td><td class="n2">45.7 – 68.4%</td><td><span class="p pg">mid-range</span></td></tr>
+<tr><td>Written feedback</td><td class="n2" style="color:var(--bad)">6.9%</td><td class="n2">27.6%</td><td><span class="p pb">well below</span></td></tr>
+<tr><td>Time per task</td><td class="n2">116s</td><td class="n2">89s</td><td><span class="p pg">more care than most</span></td></tr>
+<tr><td>Same score across abilities</td><td class="n2">2.1%</td><td class="n2">0.9 – 10.2%</td><td><span class="p pg">you discriminate well</span></td></tr>
+<tr><td>Turnaround</td><td class="n2">160 min</td><td class="n2">160 – 1025 min</td><td><span class="p pg">fastest</span></td></tr>
+</tbody></table></div>
+</div>
+
+<!-- S11 -->
+<span class="sid">S11</span><p class="cap">Admin · evaluators</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · Evaluators</span><span class="r">Chief Yashodarshi · from May 2026</span></div>
+<div class="sc"><table>
+<thead><tr><th>Evaluator</th><th class="n2">Evals</th><th class="n2">Avg given</th><th class="n2">Feedback</th><th class="n2">Straight-lined</th><th class="n2">Time</th><th class="n2">Turnaround</th><th>Watch</th></tr></thead><tbody>
+<tr><td>Divya B R</td><td class="n2">450</td><td class="n2" style="color:var(--bad)">68.4%</td><td class="n2">12.7%</td><td class="n2" style="color:var(--bad)">10.2%</td><td class="n2">—</td><td class="n2">265m</td><td><span class="p pb">lenient</span> <span class="p pb">undifferentiated</span></td></tr>
+<tr><td>Sowmya Manjappa</td><td class="n2">364</td><td class="n2">53.5%</td><td class="n2" style="color:var(--bad)">2.5%</td><td class="n2">0.9%</td><td class="n2">—</td><td class="n2">658m</td><td><span class="p pb">no feedback</span></td></tr>
+<tr style="background:var(--sel)"><td>Prem Sagar</td><td class="n2">505</td><td class="n2">53.0%</td><td class="n2" style="color:var(--bad)">6.9%</td><td class="n2">2.1%</td><td class="n2">116s</td><td class="n2">160m</td><td><span class="p pb">no feedback</span> <span class="p po">1 query</span></td></tr>
+<tr><td>Vijayashree G</td><td class="n2">467</td><td class="n2" style="color:var(--bad)">45.7%</td><td class="n2" style="color:var(--bad)">1.5%</td><td class="n2">6.6%</td><td class="n2">—</td><td class="n2">603m</td><td><span class="p pb">harsh</span> <span class="p pb">no feedback</span></td></tr>
+</tbody></table></div>
+<div class="pn" style="border-top:1px solid var(--line)"><div class="fl"><span class="p pw">spread between markers: 22.7 points</span><span class="p pi">platform feedback 27.6%</span></div></div>
+</div>
+
+<!-- S12 -->
+<span class="sid">S12</span><p class="cap">Admin · one evaluator</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · Evaluator</span><span class="r">Chief Yashodarshi</span></div>
+<div class="hd">
+<div class="id"><h3>Prem Sagar</h3><p class="mt">id 65 · senior · premium_4999 · en / kn · marks_booster · active since 20 Aug</p></div>
+<div class="st"><div class="k"><b>505</b><span>evals</span></div><div class="k"><b>39</b><span>students</span></div><div class="k"><b style="color:var(--bad)">1</b><span>open query</span></div></div>
+</div>
+<div class="pn">
+<div class="tabs"><span class="tab on">Quality</span><span class="tab">Students</span><span class="tab">Queries</span><span class="tab">Calibration</span></div>
+<div class="sc"><table>
+<thead><tr><th>Signal</th><th class="n2">Them</th><th class="n2">Cohort</th><th>Read</th></tr></thead><tbody>
+<tr><td>Average score given</td><td class="n2">53.0%</td><td class="n2">45.7 – 68.4%</td><td><span class="p pg">mid-range</span></td></tr>
+<tr><td>Written feedback</td><td class="n2">6.9%</td><td class="n2">27.6%</td><td><span class="p pb">coach on this</span></td></tr>
+<tr><td>Time per task</td><td class="n2">116s</td><td class="n2">89s</td><td><span class="p pg">above average care</span></td></tr>
+<tr><td>Straight-lined</td><td class="n2">2.1%</td><td class="n2">0.9 – 10.2%</td><td><span class="p pg">discriminates well</span></td></tr>
+<tr><td>Zeros issued</td><td class="n2">26 / 505</td><td class="n2">—</td><td><span class="p pg">5%</span></td></tr>
+</tbody></table></div>
+<div class="ac"><span class="b pri">Send feedback coaching</span><span class="b">Add to calibration set</span><span class="b">View all queries</span></div>
+</div>
+</div>
+
+<!-- S13 -->
+<span class="sid">S13</span><p class="cap">Admin · calibration — same submission, two markers</p>
+<div class="app">
+<div class="tb"><span><b>YASHHO</b> · Calibration</span><span class="r">1 in 20 double-marked, blind</span></div>
+<div class="sc"><table>
+<thead><tr><th>Submission</th><th>Marker A</th><th class="n2">Score</th><th>Marker B</th><th class="n2">Score</th><th class="n2">Gap</th><th>Status</th></tr></thead><tbody>
+<tr style="background:#fef2f2"><td>Rithika S · pos 4</td><td>Divya B R</td><td class="n2">78%</td><td>Vijayashree G</td><td class="n2">51%</td><td class="n2" style="color:var(--bad)"><b>27</b></td><td><span class="p pb">review rubric</span></td></tr>
+<tr><td>Kiran P · pos 9</td><td>Prem Sagar</td><td class="n2">64%</td><td>Sowmya M</td><td class="n2">61%</td><td class="n2">3</td><td><span class="p pg">agreed</span></td></tr>
+<tr><td>Aarav K · pos 2</td><td>Divya B R</td><td class="n2">71%</td><td>Prem Sagar</td><td class="n2">58%</td><td class="n2" style="color:var(--warn)">13</td><td><span class="p pw">watch</span></td></tr>
+</tbody></table></div>
+</div>
+
+<!-- S14 -->
+<span class="sid">S14</span><p class="cap">Mobile · the parent call</p>
+<div class="mob">
+<div class="app">
+<div class="tb"><span>A Varshikaa</span><span class="r">pos 12</span></div>
+<div class="pn">
+<div class="fl"><span class="p pw">wrong-task</span><span class="p pb">no feedback</span></div>
+<h3 style="margin:0 0 .1rem;font-size:.92rem">Habit Transformation</h3>
+<p class="mt" style="margin-bottom:.5rem">4 Sep · 133/185 · 71.9%</p>
+<span class="f">▣ page 1</span><span class="f">▣ page 2</span>
+<div style="margin-top:.5rem"></div>
+<div class="sb"><span>Aptitude</span><b>36/50</b></div>
+<div class="sb"><span>Attitude</span><b>26/35</b></div>
+<div class="sb"><span>Communication</span><b>21/30</b></div>
+<div class="sb"><span>Execution</span><b>50/70</b></div>
+<div class="ac"><span class="b pri">Open full record</span></div>
+</div>
+</div>
+</div>
+
+</div>
