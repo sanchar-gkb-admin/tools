@@ -88,7 +88,7 @@ ol,ul{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.4rem}
 
 <!-- ══════════════════ 02 ══════════════════ -->
 <div class="sec">
-<div class="sechead"><span class="num">02</span><h2>The Evaluation Record — the core screen</h2></div>
+<div class="sechead"><span class="num">02</span><h2>The Evaluation Record — what the screen must show</h2></div>
 <p>The submission and the scores on <b>one screen</b>, because the only useful question is whether one justifies the other.</p>
 
 <div class="screen">
@@ -135,6 +135,46 @@ ol,ul{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.4rem}
 <li><b>The media resolver is a first-class component.</b> Video and audio originals are deleted at review by design; images are retained. The screen must silently serve the <code>.optimized.*</code> sibling and never show a broken tile — a 404 here reads as “we lost your child’s work”.</li>
 <li><b>Evidence must outlive the score it justifies.</b> S3 expires <code>task_responses/</code> at <b>90 days</b>. A scorecard is discussed for months. Today this screen would 404 for any complaint older than a term.</li>
 </ol>
+</div>
+</div>
+
+
+<!-- ══════════════════ REUSE ══════════════════ -->
+<div class="sec">
+<div class="sechead"><span class="num">⭐</span><h2>Do not build this screen — it already exists</h2></div>
+
+<div class="win">
+<h3 style="margin-top:0">The Yashodarshi evaluation panel already renders everything above</h3>
+<p><code>resources/views/yashodarshi/task/evaluate-detail.blade.php</code> — the screen an evaluator marks on — already shows, from its own header comment and markup:</p>
+<ul>
+<li><b>The full brief</b> — title, objective, description, instructions, deliverable, each when authored</li>
+<li><b>The Specimen</b> — the submission itself, with a full-frame lightbox: image, video, and PDF via the browser-native viewer</li>
+<li><b>Every ability</b> — mode-gated 0–5 dials snapping to 0.5, no hardcoded ability names</li>
+<li><b>The feedback field</b>, and the learning materials attached to the task</li>
+</ul>
+<p style="margin-bottom:0">And <code>CockpitPresenter::forSubmission()</code> <b>already re-loads the saved scores and feedback</b> from <code>YashodarshiEvaluationResult</code> — its own comment reads <i>“re-populate saved/draft feedback on re-open (was blank)”</i>. Reopening a completed evaluation already shows the brief, the submission, and the marks that were given.</p>
+</div>
+
+<div class="stop">
+<h3 style="margin-top:0">One line blocks both audiences</h3>
+<p>In <code>YashodarshiAuthController::evaluateDetail()</code>:</p>
+<div class="brief" style="font-family:ui-monospace,Menlo,monospace;font-size:.82rem;white-space:pre-wrap">if (!$submission-&gt;unit || $submission-&gt;unit-&gt;yashodarshi_id != $yashodarshi-&gt;id) {
+    abort(403, 'Unauthorized access to this submission');
+}</div>
+<p style="margin-bottom:0">Together with the surrounding <code>Auth::guard('yashodarshi')</code>, that means: <b>an admin cannot open the record at all</b> — they are not a Yashodarshi, so they are redirected to the evaluator login — and <b>a Yashodarshi loses access to their own past work the moment a unit is reassigned</b>.</p>
+</div>
+
+<h4>So the build is four small pieces, not a new screen</h4>
+<div class="scroll"><table><thead><tr><th>#</th><th>Piece</th><th>Why</th><th>Size</th></tr></thead><tbody>
+<tr><td>1</td><td><b>Admin read-only route</b> to the same blade — admin guard, same <code>CockpitPresenter</code>, <code>$isEditable = false</code></td><td>Gives the Chief the exact screen the evaluator saw. An audit that reconstructs the view separately is an audit of a different thing.</td><td><span class="pill p-ok">small</span></td></tr>
+<tr><td>2</td><td><b>“My evaluations” list</b> for the Yashodarshi</td><td>The route needs a <code>submissionId</code>; there is no way to reach past work today.</td><td><span class="pill p-ok">small</span></td></tr>
+<tr><td>3</td><td><b>Read-only must be enforced server-side</b> — block the POST, not just disable the inputs</td><td>An audit record that can be silently altered by the person being audited is not a record. <code>$isEditable</code> exists but keys on <code>status !== 'expired'</code>, which is the wrong condition.</td><td><span class="pill p-warn">care needed</span></td></tr>
+<tr><td>4</td><td><b>Relax the ownership rule for read</b> — assigned evaluator OR admin OR the evaluator who actually marked it</td><td>Reassignment currently erases an evaluator's access to their own work, which is exactly who a parent query needs to reach.</td><td><span class="pill p-ok">small</span></td></tr>
+</tbody></table></div>
+
+<div class="why">
+<h4 style="margin-top:0">Why reuse beats rebuild here, beyond the saving</h4>
+<p style="margin-bottom:0">An audit must show <b>what the evaluator actually saw</b>. Any separately-built review screen drifts from the marking screen — a different image resolver, a different ability order, a newer rubric — and then a dispute turns into an argument about which screen is right. <b>Rendering the same blade in read-only mode makes that class of argument impossible.</b> It also means the four decisions above (position not task_id, the maximum travelling with the score, the media resolver, retention) are inherited rather than reimplemented.</p>
 </div>
 </div>
 
