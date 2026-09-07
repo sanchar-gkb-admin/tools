@@ -86,8 +86,8 @@ ul,ol{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.35rem}
 
 <div class="stop">
 <h3>Correcting myself: this is not the Yashodarshi panel</h3>
-<p>I previously said “do not build this, reuse <code>evaluate-detail.blade.php</code>”. That was wrong, and the reason is in the code: the panel renders <code>$student-&gt;blindView()</code> — <b>pseudonym, age, class, board. No name. No email.</b> Evaluators mark blind, deliberately.</p>
-<p style="margin-bottom:0">An admin resolving a parent complaint needs the opposite: <b>the named child, the whole history, and the timings</b>. The marking panel is <b>one pane inside</b> this view — reached from it, showing exactly what the evaluator saw — not a substitute for it.</p>
+<p>I previously said “do not build this, reuse <code>evaluate-detail.blade.php</code>”. That was wrong. The panel is a <b>marking</b> screen: one task at a time, scoring dials, and a candidate summary. It has no way to show a whole history, the timings, or the flags — and it renders <code>blindView()</code>, which as of 7 Sep carries the name and class but never guardian contact.</p>
+<p style="margin-bottom:0">An admin resolving a parent complaint needs <b>the whole record</b>: every task in order, what was submitted, when, how long it took, and what was marked. The marking panel is <b>one pane inside</b> this view — reached from the “what the evaluator saw” tab — not a substitute for it.</p>
 </div>
 
 <!-- ─────────── THE SCREEN ─────────── -->
