@@ -499,16 +499,90 @@ td.n2{font-family:ui-monospace,Menlo,monospace;text-align:right;white-space:nowr
 </div>
 </div>
 
-<!-- S13 -->
-<span class="sid">S13</span><p class="cap">Admin · calibration — same submission, two markers</p>
+<!-- S13a -->
+<span class="sid">S13a</span><p class="cap">Admin · Calibration · one task across evaluators — no new process, live data</p>
 <div class="app">
-<div class="tb"><span><b>YASHHO</b> · Calibration</span><span class="r">1 in 20 double-marked, blind</span></div>
+<div class="tb"><span><b>YASHHO</b> · Calibration · by task</span><span class="r">from May 2026 · ≥5 marks per evaluator</span></div>
+<div class="cr">Operations › Calibration › by task</div>
+<div class="pn" style="padding-bottom:.4rem">
+<div class="tabs"><span class="tab on">By task</span><span class="tab">By evaluator</span><span class="tab">Double-marked</span><span class="tab">Anchors</span></div>
+<div class="fl"><span class="b">Stream ▾</span><span class="b">Min marks: 5 ▾</span><span class="b">Min evaluators: 3 ▾</span><span class="b po" style="border-color:var(--o)">Spread &gt; 20 pts</span><span class="b">Export CSV</span></div>
+</div>
 <div class="sc"><table>
-<thead><tr><th>Submission</th><th>Marker A</th><th class="n2">Score</th><th>Marker B</th><th class="n2">Score</th><th class="n2">Gap</th><th>Status</th></tr></thead><tbody>
-<tr style="background:#fef2f2"><td>Rithika S · pos 4</td><td>Divya B R</td><td class="n2">78%</td><td>Vijayashree G</td><td class="n2">51%</td><td class="n2" style="color:var(--bad)"><b>27</b></td><td><span class="p pb">review rubric</span></td></tr>
-<tr><td>Kiran P · pos 9</td><td>Prem Sagar</td><td class="n2">64%</td><td>Sowmya M</td><td class="n2">61%</td><td class="n2">3</td><td><span class="p pg">agreed</span></td></tr>
-<tr><td>Aarav K · pos 2</td><td>Divya B R</td><td class="n2">71%</td><td>Prem Sagar</td><td class="n2">58%</td><td class="n2" style="color:var(--warn)">13</td><td><span class="p pw">watch</span></td></tr>
+<thead><tr><th>Task</th><th class="n2">Evaluators</th><th class="n2">Lowest avg</th><th class="n2">Highest avg</th><th class="n2">Spread</th><th>Read</th></tr></thead><tbody>
+<tr style="background:#fef2f2"><td>381 · Challenge Zero</td><td class="n2">5</td><td class="n2">34.9%</td><td class="n2">70.2%</td><td class="n2" style="color:var(--bad)"><b>35.2</b></td><td><span class="p pb">rubric unusable</span></td></tr>
+<tr style="background:#fef2f2"><td>249 · Future Me Identity</td><td class="n2">3</td><td class="n2">42.4%</td><td class="n2">73.3%</td><td class="n2" style="color:var(--bad)"><b>30.8</b></td><td><span class="p pb">rubric unusable</span></td></tr>
+<tr><td>205 · The Feedback Mirror</td><td class="n2">4</td><td class="n2">46.9%</td><td class="n2">74.3%</td><td class="n2" style="color:var(--warn)">27.4</td><td><span class="p pw">needs anchoring</span></td></tr>
+<tr><td>12 · Life Without Video Games</td><td class="n2">4</td><td class="n2">50.1%</td><td class="n2">76.3%</td><td class="n2" style="color:var(--warn)">26.3</td><td><span class="p pw">needs anchoring</span></td></tr>
+<tr><td>19 · Escape from the Forest</td><td class="n2">4</td><td class="n2">48.3%</td><td class="n2">73.8%</td><td class="n2" style="color:var(--warn)">25.5</td><td><span class="p pw">needs anchoring</span></td></tr>
+<tr><td>18 · Be the Buddy</td><td class="n2">4</td><td class="n2">50.0%</td><td class="n2">74.4%</td><td class="n2" style="color:var(--warn)">24.3</td><td><span class="p pw">needs anchoring</span></td></tr>
+<tr><td>220 · Dream Curriculum P1</td><td class="n2">5</td><td class="n2">51.5%</td><td class="n2">75.5%</td><td class="n2" style="color:var(--warn)">24.0</td><td><span class="p pw">needs anchoring</span></td></tr>
+<tr><td>248 · Dream Curriculum P2</td><td class="n2">5</td><td class="n2">53.4%</td><td class="n2">75.3%</td><td class="n2" style="color:var(--warn)">21.9</td><td><span class="p pw">needs anchoring</span></td></tr>
 </tbody></table></div>
+</div>
+
+<!-- S13b -->
+<span class="sid">S13b</span><p class="cap">Admin · Calibration · drill into one task — controlled for class, n always shown</p>
+<div class="app">
+<div class="tb"><span>Task 381 · CHALLENGE ZERO — always position 1, never shuffled</span><span class="r">102 marks · 5 evaluators</span></div>
+<div class="pn">
+<div class="fl"><span class="b po" style="border-color:var(--o)">Control for class ✓</span><span class="b">Class: 10 ▾</span><span class="b">Min marks: 3 ▾</span><span class="p pi">position confound: none — 125/125 units have this task first</span></div>
+
+<h5 style="font-family:ui-monospace,Menlo,monospace;font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:.7rem 0 .3rem">Class 10 only · like for like</h5>
+<div class="sc"><table>
+<thead><tr><th>Evaluator</th><th class="n2">Marks</th><th class="n2">Avg</th><th style="width:40%">vs class median</th></tr></thead><tbody>
+<tr style="background:#fef2f2"><td>Vijayashree G</td><td class="n2"><b>7</b></td><td class="n2" style="color:var(--bad)"><b>34.6%</b></td><td><div style="position:relative;height:14px;background:var(--page);border-radius:7px"><div style="position:absolute;left:0;width:34.6%;height:14px;background:#fca5a5;border-radius:7px"></div><div style="position:absolute;left:63%;width:2px;height:14px;background:var(--ink)"></div></div></td></tr>
+<tr><td>Sutirtha (YD)</td><td class="n2" style="color:var(--warn)">2</td><td class="n2">60.0%</td><td><div style="position:relative;height:14px;background:var(--page);border-radius:7px"><div style="position:absolute;left:0;width:60%;height:14px;background:#fcd34d;border-radius:7px"></div><div style="position:absolute;left:63%;width:2px;height:14px;background:var(--ink)"></div></div></td></tr>
+<tr><td>Sowmya M</td><td class="n2" style="color:var(--bad)">1</td><td class="n2">66.8%</td><td><div style="position:relative;height:14px;background:var(--page);border-radius:7px"><div style="position:absolute;left:0;width:66.8%;height:14px;background:#e5e7eb;border-radius:7px"></div><div style="position:absolute;left:63%;width:2px;height:14px;background:var(--ink)"></div></div></td></tr>
+<tr style="background:#f0fdf4"><td>Divya B R</td><td class="n2"><b>8</b></td><td class="n2" style="color:var(--ok)"><b>67.7%</b></td><td><div style="position:relative;height:14px;background:var(--page);border-radius:7px"><div style="position:absolute;left:0;width:67.7%;height:14px;background:#86efac;border-radius:7px"></div><div style="position:absolute;left:63%;width:2px;height:14px;background:var(--ink)"></div></div></td></tr>
+</tbody></table></div>
+<div class="fl"><span class="p pb">33 points · same task, same class</span><span class="p pw">Sowmya n=1 · Sutirtha n=2 — too few to conclude</span></div>
+
+<h5 style="font-family:ui-monospace,Menlo,monospace;font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:.9rem 0 .3rem">Same evaluator across classes · does the pattern hold?</h5>
+<div class="sc"><table>
+<thead><tr><th>Class</th><th>Vijayashree G</th><th>Prem Sagar</th><th>Sutirtha (YD)</th><th>Divya B R</th></tr></thead><tbody>
+<tr><td>7</td><td style="color:var(--bad)">43.9% <span class="p pw">n=1</span></td><td>55.9% <span class="p pg">n=9</span></td><td>—</td><td>—</td></tr>
+<tr><td>9</td><td style="color:var(--bad)"><b>35.1%</b> <span class="p pg">n=15</span></td><td>—</td><td>64.9% <span class="p pw">n=3</span></td><td>—</td></tr>
+<tr><td>10</td><td style="color:var(--bad)"><b>34.6%</b> <span class="p pg">n=7</span></td><td>—</td><td>60.0% <span class="p pw">n=2</span></td><td style="color:var(--ok)"><b>67.7%</b> <span class="p pg">n=8</span></td></tr>
+</tbody></table></div>
+<div class="fl"><span class="p pb">Vijayashree sits ~30 points below every peer, in every class she overlaps on</span></div>
+
+<div class="ac"><span class="b pri">Make this an anchor task</span><span class="b">Open rubric</span><span class="b">Sample 10 marks side by side</span><span class="b">Schedule double-marking</span></div>
+</div>
+</div>
+
+<!-- S13x -->
+<span class="sid">S13x</span><p class="cap">Admin · Calibration · what the screen refuses to claim</p>
+<div class="app">
+<div class="tb"><span>Guardrails</span><span class="r">shown on every calibration screen</span></div>
+<div class="sc"><table>
+<thead><tr><th>Confound</th><th>Handled how</th><th>Status</th></tr></thead><tbody>
+<tr><td>Task shuffled to different positions</td><td>Position shown per task. Task 381 is position 1 in <b>125 of 125</b> units, so this comparison is unaffected.</td><td><span class="p pg">controlled</span></td></tr>
+<tr><td>Evaluators mark different classes</td><td>Class filter is <b>on by default</b>. Uncontrolled, Prem Sagar averages class 6 and Divya class 11 — the raw spread is mostly cohort.</td><td><span class="p pg">controlled</span></td></tr>
+<tr><td>Small samples</td><td><b>n shown on every cell</b>; under 3 is greyed and excluded from any verdict.</td><td><span class="p pg">shown</span></td></tr>
+<tr><td>Different batches / streams</td><td>Filterable; not yet controlled by default.</td><td><span class="p pw">partial</span></td></tr>
+<tr><td>Student ability within a class</td><td>Not controlled. Only <b>anchor tasks and double-marking</b> remove this — same submission, different markers.</td><td><span class="p pb">needs S13c</span></td></tr>
+<tr><td>Records before May 2026</td><td>No <code>score_snapshot</code>, so no percentage. Excluded and stated.</td><td><span class="p pg">excluded</span></td></tr>
+</tbody></table></div>
+<div class="pn" style="border-top:1px solid var(--line)">
+<div class="fl"><span class="p pi">this screen ranks evaluators only within a class, on one task, with n visible</span><span class="p pb">it never produces a single "quality score"</span></div>
+</div>
+</div>
+
+<!-- S13c -->
+<span class="sid">S13c</span><p class="cap">Admin · Calibration · anchor task — same submission, marked blind by all</p>
+<div class="app">
+<div class="tb"><span>Anchor · task 381 · submission #A7</span><span class="r">Chief's mark = 62% · 5 evaluators, blind</span></div>
+<div class="sc"><table>
+<thead><tr><th>Evaluator</th><th class="n2">Their mark</th><th class="n2">Anchor</th><th class="n2">Drift</th><th>Action</th></tr></thead><tbody>
+<tr style="background:#fef2f2"><td>Vijayashree G</td><td class="n2">38%</td><td class="n2">62%</td><td class="n2" style="color:var(--bad)"><b>−24</b></td><td><span class="p pb">coach: harsh</span></td></tr>
+<tr><td>Prem Sagar</td><td class="n2">57%</td><td class="n2">62%</td><td class="n2">−5</td><td><span class="p pg">in band</span></td></tr>
+<tr><td>Sowmya M</td><td class="n2">60%</td><td class="n2">62%</td><td class="n2">−2</td><td><span class="p pg">in band</span></td></tr>
+<tr style="background:#fef2f2"><td>Divya B R</td><td class="n2">79%</td><td class="n2">62%</td><td class="n2" style="color:var(--bad)"><b>+17</b></td><td><span class="p pb">coach: lenient</span></td></tr>
+</tbody></table></div>
+<div class="pn" style="border-top:1px solid var(--line)">
+<div class="fl"><span class="p pi">anchors are inserted into normal queues · evaluators are not told which</span><span class="p pi">re-run monthly to measure drift</span></div>
+</div>
 </div>
 
 <!-- S14 -->
