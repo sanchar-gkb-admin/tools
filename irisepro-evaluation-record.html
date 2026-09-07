@@ -169,8 +169,18 @@ ol,ul{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.4rem}
 <tr><td>1</td><td><b>Admin read-only route</b> to the same blade — admin guard, same <code>CockpitPresenter</code>, <code>$isEditable = false</code></td><td>Gives the Chief the exact screen the evaluator saw. An audit that reconstructs the view separately is an audit of a different thing.</td><td><span class="pill p-ok">small</span></td></tr>
 <tr><td>2</td><td><b>“My evaluations” list</b> for the Yashodarshi</td><td>The route needs a <code>submissionId</code>; there is no way to reach past work today.</td><td><span class="pill p-ok">small</span></td></tr>
 <tr><td>3</td><td><b>Read-only must be enforced server-side</b> — block the POST, not just disable the inputs</td><td>An audit record that can be silently altered by the person being audited is not a record. <code>$isEditable</code> exists but keys on <code>status !== 'expired'</code>, which is the wrong condition.</td><td><span class="pill p-warn">care needed</span></td></tr>
-<tr><td>4</td><td><b>Relax the ownership rule for read</b> — assigned evaluator OR admin OR the evaluator who actually marked it</td><td>Reassignment currently erases an evaluator's access to their own work, which is exactly who a parent query needs to reach.</td><td><span class="pill p-ok">small</span></td></tr>
+<tr><td>4</td><td><b>Two read rules, not one</b> — see below</td><td>Admin and evaluator need different scopes, and the evaluator's must follow who <i>marked</i> it, not who the unit is assigned to now.</td><td><span class="pill p-ok">small</span></td></tr>
 </tbody></table></div>
+
+
+<div class="why">
+<h4 style="margin-top:0">⭐ The access rule — confirmed by Goutam, 7 Sep</h4>
+<div class="scroll"><table><thead><tr><th>Who</th><th>Can read</th><th>Can write</th><th>Scoped by</th></tr></thead><tbody>
+<tr><td><b>Admin / Chief Yashodarshi</b></td><td><b>every record, unscoped</b></td><td>override with a logged reason</td><td>nothing — full visibility is the point of the role</td></tr>
+<tr><td><b>Yashodarshi</b></td><td>the evaluations <b>they marked</b></td><td>only while still open</td><td class="mono">yashodarshi_evaluation_results.yashodarshi_id</td></tr>
+</tbody></table></div>
+<p style="margin-bottom:0">⛔ <b>The evaluator's scope must key on who MARKED it, not on <code>units.yashodarshi_id</code>.</b> Today's guard uses the latter — the unit's <i>current</i> assignment. Those two diverge the moment a unit is reassigned, and when they do an evaluator silently loses the ability to answer a question about work they did. It is also the wrong answer on its own terms: the person who can explain a score is the one who gave it, not whoever holds the unit today.</p>
+</div>
 
 <div class="why">
 <h4 style="margin-top:0">Why reuse beats rebuild here, beyond the saving</h4>
