@@ -1,0 +1,226 @@
+<title>YASHHO · Evaluation Quality — the Yashodarshi view, the admin view, and how we keep it honest</title>
+<style>
+:root{--o:#FF8A3D;--o-dark:#E67E35;--cream:#FFF1E6;--ink:#111827;--mut:#6b7280;--line:#e5e7eb;
+--page:#f6f7f9;--ok:#4CAF50;--warn:#FFC107;--warn-d:#FFA000;--bad:#dc2626;--info:#2196F3}
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,-apple-system,'Segoe UI',sans-serif;background:var(--page);color:var(--ink);line-height:1.6}
+.w{max-width:62rem;margin:0 auto;padding:2.5rem 1rem 5rem}
+h1{font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.15;margin:.3rem 0 .6rem;letter-spacing:-.02em}
+h2{font-size:1.25rem;margin:0;letter-spacing:-.01em}
+h3{font-size:1rem;margin:0 0 .5rem}
+h4{font-size:.8rem;margin:1.1rem 0 .4rem;text-transform:uppercase;letter-spacing:.09em;color:var(--mut)}
+h5{font-size:.68rem;margin:.9rem 0 .3rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-family:ui-monospace,Menlo,monospace}
+p{margin:0 0 .85rem}
+.lede{font-size:1.05rem;color:#374151;max-width:56ch}
+.mono,code{font-family:ui-monospace,Menlo,monospace;font-size:.86em}
+.sec{margin-top:2.8rem}
+.sechead{display:flex;gap:.8rem;align-items:baseline;border-top:3px solid var(--ink);padding-top:.7rem;margin-bottom:1rem}
+.num{font-family:ui-monospace,Menlo,monospace;font-size:.75rem;background:var(--ink);color:#fff;padding:.15rem .45rem;border-radius:4px;flex:none}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:.9rem}
+.screen{background:#fff;border:2px solid var(--ink);border-radius:12px;overflow:hidden;margin:1rem 0 1.4rem}
+.bar{background:var(--ink);color:#fff;padding:.5rem .9rem;font-size:.75rem;font-family:ui-monospace,Menlo,monospace;display:flex;justify-content:space-between;gap:1rem}
+.body{padding:1rem 1.1rem}
+.why{background:var(--cream);border-left:5px solid var(--o);border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0}
+.stop{background:#fef2f2;border-left:5px solid var(--bad);border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0}
+.stop h3,.stop h4{color:var(--bad)}
+.win{background:#f0fdf4;border-left:5px solid var(--ok);border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff;margin:1rem 0}
+table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.85rem}
+th{text-align:left;font-size:.65rem;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);padding:.6rem .7rem;border-bottom:1px solid var(--line);white-space:nowrap;font-family:ui-monospace,Menlo,monospace}
+td{padding:.5rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.n{font-family:ui-monospace,Menlo,monospace;text-align:right;white-space:nowrap}
+.pill{display:inline-block;font-size:.64rem;font-family:ui-monospace,Menlo,monospace;padding:.12rem .42rem;border-radius:4px;letter-spacing:.05em;white-space:nowrap;font-weight:600}
+.p-bad{background:#fee2e2;color:var(--bad)} .p-ok{background:#dcfce7;color:#15803d}
+.p-warn{background:#fef3c7;color:#92400e} .p-info{background:#dbeafe;color:#1d4ed8}
+.p-new{background:var(--o);color:#fff}
+.two{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.mini{border:1px solid var(--line);border-radius:9px;padding:.75rem .85rem;background:#fff}
+.mini b{display:block;font-size:.8rem;margin-bottom:.15rem}
+.mini span{font-size:.79rem;color:var(--mut)}
+.bigno{font-family:ui-monospace,Menlo,monospace;font-size:1.5rem;letter-spacing:-.03em;display:block;line-height:1.1}
+ol,ul{padding-left:1.15rem;margin:0 0 .9rem} li{margin-bottom:.4rem}
+.foot{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--mut)}
+.bar-h{display:inline-block;height:8px;border-radius:4px;background:var(--o);vertical-align:middle}
+</style>
+
+<div class="w">
+<p class="mono" style="color:var(--mut);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase">Storyboard · 7 September 2026</p>
+<h1>Evaluation Quality</h1>
+<p class="lede">Three surfaces: what a Yashodarshi sees about their own marking, what an admin sees about one student, and what an admin sees about one Yashodarshi — plus the tools that make quality measurable rather than assumed.</p>
+
+<div class="stop">
+<h3 style="margin-top:0">The finding that makes this urgent</h3>
+<p><b>A child’s score depends heavily on who marks them.</b> Measured across 10,578 live evaluations:</p>
+<div class="scroll"><table><thead><tr><th>Evaluator</th><th class="n">Evals</th><th class="n">Average score</th><th class="n">Feedback</th><th class="n">Straight-lined</th><th class="n">Turnaround</th></tr></thead><tbody>
+<tr><td>Divya B R</td><td class="n">450</td><td class="n"><b style="color:var(--bad)">68.4%</b></td><td class="n">12.7%</td><td class="n"><b style="color:var(--bad)">10.2%</b></td><td class="n">265 min</td></tr>
+<tr><td>Sowmya Manjappa</td><td class="n">364</td><td class="n">53.5%</td><td class="n">2.5%</td><td class="n">0.9%</td><td class="n">658 min</td></tr>
+<tr><td>Prem Sagar</td><td class="n">505</td><td class="n">53.0%</td><td class="n"><b style="color:var(--bad)">6.9%</b></td><td class="n">2.1%</td><td class="n">160 min</td></tr>
+<tr><td>Vijayashree G</td><td class="n">467</td><td class="n"><b style="color:var(--bad)">45.7%</b></td><td class="n"><b style="color:var(--bad)">1.5%</b></td><td class="n">6.6%</td><td class="n">603 min</td></tr>
+</tbody></table></div>
+<p style="margin-bottom:0"><b>A 23-point spread between the most and least generous marker.</b> Two children doing identical work receive materially different scores — and neither they nor their parents can see why. Platform-wide, feedback ranges from <b>0.3% to 99.8%</b> depending on who you draw.</p>
+</div>
+
+<div class="why">
+<h4 style="margin-top:0">⛔ There is no single “quality score”, and building one would be the mistake</h4>
+<p style="margin-bottom:0">Prem Sagar — the evaluator in the 7 September parent escalation — is the <b>best discriminator of the four</b>: he varies his scores across abilities more than anyone (2.49 distinct values per sample, straight-lines only 2.1% of the time) and he spends <b>more</b> time per task than the platform average. His weakness is feedback, not judgement. Divya is simultaneously the <b>most generous</b> and the <b>most undifferentiated</b>. Collapse those into one number and you would rank the careful marker below the lenient one. <b>Show the dimensions; let a human read them.</b></p>
+</div>
+
+<!-- 01 -->
+<div class="sec">
+<div class="sechead"><span class="num">01</span><h2>The Yashodarshi’s own view — “my students”</h2></div>
+<p>Today an evaluator has no way to look back at anything they have marked. They cannot answer a parent’s question, cannot see their own patterns, and cannot know they are an outlier.</p>
+
+<div class="screen">
+<div class="bar"><span>Prem Sagar · senior · premium_4999 · en / kn · marks_booster</span><span>My evaluations</span></div>
+<div class="body">
+  <div class="two">
+    <div class="mini"><b><span class="bigno">505</span>evaluations</b><span>39 students · since 23 Aug</span></div>
+    <div class="mini"><b><span class="bigno" style="color:var(--bad)">6.9%</span>with written feedback</b><span>platform 27.6% — <b style="color:var(--bad)">you are well below</b></span></div>
+    <div class="mini"><b><span class="bigno" style="color:var(--ok)">116s</span>average time per task</b><span>platform 89s — you take more care than most</span></div>
+    <div class="mini"><b><span class="bigno">53.0%</span>average score you give</b><span>cohort 45.7 – 68.4% — you sit mid-range</span></div>
+  </div>
+
+  <h5>My students</h5>
+  <div class="scroll"><table><thead><tr><th>Student</th><th class="n">Tasks marked</th><th class="n">Avg score</th><th class="n">Feedback given</th><th>Needs me</th></tr></thead><tbody>
+  <tr><td>A Varshikaa · Class 7</td><td class="n">13</td><td class="n">66%</td><td class="n"><span class="pill p-bad">1 of 13</span></td><td><span class="pill p-new">parent query open</span></td></tr>
+  <tr><td>Nayan M · Class 9</td><td class="n">8</td><td class="n">58%</td><td class="n">0 of 8</td><td></td></tr>
+  <tr><td>…37 more</td><td class="n"></td><td class="n"></td><td class="n"></td><td></td></tr>
+  </tbody></table></div>
+  <p class="mono" style="font-size:.74rem;color:var(--mut);margin-bottom:0">Any row opens the full Evaluation Record — submission, task brief, all 37 ability scores.</p>
+</div>
+</div>
+
+<div class="why">
+<h4 style="margin-top:0">Why show an evaluator their own comparison</h4>
+<p style="margin-bottom:0">Nothing has ever told Prem Sagar that 93% of his evaluations went out with no feedback. He is not careless — he spends longer per task than almost anyone. <b>A number he can see beats a policy he was never shown.</b> Show the cohort range beside his own figure and let him place himself; do not show a target, which invites gaming.</p>
+</div>
+</div>
+
+<!-- 02 -->
+<div class="sec">
+<div class="sechead"><span class="num">02</span><h2>Admin — one student, end to end</h2></div>
+
+<div class="screen">
+<div class="bar"><span>A VARSHIKAA · Class 7 · unit 519 · 13 of 21 tasks</span><span>Chief Yashodarshi</span></div>
+<div class="body">
+  <div class="two">
+    <div class="mini"><b>Average 66%</b><span>range 43–74% across 12 scored tasks</span></div>
+    <div class="mini"><b style="color:var(--bad)">1 zero</b><span>position 11 · expired unsubmitted</span></div>
+    <div class="mini"><b style="color:var(--bad)">1 of 13 with feedback</b><span>all marked by one evaluator</span></div>
+    <div class="mini"><b>Single evaluator</b><span>Prem Sagar marked every task</span></div>
+  </div>
+  <div class="scroll"><table><thead><tr><th>#</th><th>Task</th><th class="n">Score</th><th>Feedback</th><th>Flags</th></tr></thead><tbody>
+  <tr><td class="n">10</td><td>Future Me Identity</td><td class="n">72%</td><td><span class="pill p-bad">none</span></td><td></td></tr>
+  <tr style="background:#fef2f2"><td class="n">11</td><td>Rate the Top 5 Abilities</td><td class="n"><b>0%</b></td><td><span class="pill p-bad">none</span></td><td><span class="pill p-bad">expired unsubmitted</span></td></tr>
+  <tr style="background:#fff7ed"><td class="n">12</td><td>Habit Transformation</td><td class="n">72%</td><td><span class="pill p-bad">none</span></td><td><span class="pill p-warn">submitted 11s after prior expiry</span> <span class="pill p-warn">35s to submit</span></td></tr>
+  <tr><td class="n">13</td><td>My Future: Their Dream</td><td class="n">74%</td><td><span class="pill p-bad">none</span></td><td></td></tr>
+  </tbody></table></div>
+  <h5>Actions</h5>
+  <div class="two">
+    <div class="mini"><b>Overturn a score</b><span>reason required · append-only audit log</span></div>
+    <div class="mini"><b>Re-open a task</b><span>return the attempt to the student</span></div>
+    <div class="mini"><b>Send back for feedback</b><span>before the scorecard issues</span></div>
+    <div class="mini"><b>Export for the parent</b><span>one PDF, submissions included</span></div>
+  </div>
+</div>
+</div>
+
+<div class="why">
+<h4 style="margin-top:0">The flag column is the whole design</h4>
+<p style="margin-bottom:0">An admin cannot read 21 tasks hunting for a problem. The screen must <b>surface the anomaly</b>. On this student two flags point straight at it — <i>expired unsubmitted</i> on position 11, <i>submitted 11 seconds after prior expiry</i> on position 12. Yesterday’s escalation took a day. With this row visible it is a five-minute conversation.</p>
+</div>
+</div>
+
+<!-- 03 -->
+<div class="sec">
+<div class="sechead"><span class="num">03</span><h2>Admin — one Yashodarshi</h2></div>
+
+<div class="screen">
+<div class="bar"><span>Prem Sagar · id 65 · active since 20 Aug</span><span>Evaluator profile</span></div>
+<div class="body">
+  <h5>Where they sit against the cohort</h5>
+  <div class="scroll"><table><thead><tr><th>Signal</th><th class="n">Them</th><th class="n">Cohort</th><th>Read</th></tr></thead><tbody>
+  <tr><td>Average score given</td><td class="n">53.0%</td><td class="n">45.7 – 68.4%</td><td><span class="pill p-ok">mid-range</span></td></tr>
+  <tr><td>Written feedback</td><td class="n">6.9%</td><td class="n">27.6% avg</td><td><span class="pill p-bad">well below</span></td></tr>
+  <tr><td>Time per task</td><td class="n">116s</td><td class="n">89s</td><td><span class="pill p-ok">takes more care</span></td></tr>
+  <tr><td>Straight-lined evaluations</td><td class="n">2.1%</td><td class="n">0.9 – 10.2%</td><td><span class="pill p-ok">discriminates well</span></td></tr>
+  <tr><td>Turnaround</td><td class="n">160 min</td><td class="n">160 – 1025 min</td><td><span class="pill p-ok">fastest of the cohort</span></td></tr>
+  <tr><td>Zero scores issued</td><td class="n">26 of 505</td><td class="n">—</td><td><span class="pill p-ok">5%</span></td></tr>
+  <tr><td>Parent queries</td><td class="n">1</td><td class="n">—</td><td><span class="pill p-warn">open</span></td></tr>
+  </tbody></table></div>
+  <p style="margin-bottom:0"><b>Read as a whole:</b> a fast, careful, discriminating marker who does not write feedback. The intervention is feedback coaching — <b>not</b> a warning about marking quality, which the data does not support.</p>
+</div>
+</div>
+</div>
+
+<!-- 04 -->
+<div class="sec">
+<div class="sechead"><span class="num">04</span><h2>The tools — what to build, in order</h2></div>
+<p>Ranked by what they catch against what they cost. The first three run on data we already hold.</p>
+
+<div class="card">
+<h3>1 · Anomaly flags <span class="pill p-new">build first</span></h3>
+<p>Derived at read time, no new storage. Each one is a query we have already written by hand during the escalation:</p>
+<ul style="margin-bottom:0">
+<li><b>Expired unsubmitted</b> — the single most complaint-generating outcome we produce</li>
+<li><b>Submitted within N seconds of a prior task expiring</b> — this is exactly what happened on 4 September, and it has occurred <b>once</b> platform-wide, so the alert volume is near zero</li>
+<li><b>Scored with no feedback</b> — currently 72% of all evaluations</li>
+<li><b>Evaluated in under 30 seconds</b> — the platform median sitting is 72s; under 30 warrants a look</li>
+<li><b>Straight-lined</b> — the same value across all sampled abilities</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>2 · Evaluator scorecard <span class="pill p-new">build second</span></h3>
+<p style="margin-bottom:0">Screen 03 above, run weekly. <b>Never a single composite number</b> — four dimensions side by side with the cohort range, because the careful marker and the lenient one are distinguished only by looking at more than one.</p>
+</div>
+
+<div class="card">
+<h3>3 · Feedback floor <span class="pill p-new">build third</span></h3>
+<p style="margin-bottom:0">Feedback is optional today and 72% of evaluations go out without it. Either make it required to submit an evaluation, or make “no feedback” a deliberate, logged choice with a reason. <b>The current state — silently optional — is what produced this complaint.</b></p>
+</div>
+
+<div class="win">
+<h3 style="margin-top:0">4 · Calibration — the only thing that actually measures marking quality</h3>
+<p>Everything above measures <i>behaviour</i>. None of it can tell you whether a score is <b>right</b>, because there is no second opinion to compare against. This is how examination boards solve it, and it is the real answer to your question:</p>
+<h5>a · Double-marking sample</h5>
+<p>Route <b>1 in 20</b> submissions to a second Yashodarshi, blind. Compare the two scores. The spread between markers on identical work is the only honest measure of consistency we can produce — and it converts “Divya marks 23 points higher” from a suspicion into a number.</p>
+<h5>b · Anchor submissions</h5>
+<p>Take ten real submissions, have the Chief Yashodarshi mark them definitively, then quietly insert them into evaluators’ queues every few weeks. Deviation from the anchor is per-evaluator drift, measured against a known answer rather than against each other.</p>
+<h5>c · Re-mark on dispute</h5>
+<p style="margin-bottom:0">When a parent queries a score, a second evaluator marks it blind before anyone looks at the original. The dispute then resolves on evidence, not on seniority — and every dispute silently becomes another calibration data point.</p>
+</div>
+
+<div class="card">
+<h3>5 · Rubric anchoring <span class="pill p-info">content, not code</span></h3>
+<p style="margin-bottom:0">A 23-point spread usually means the rubric is under-specified rather than that markers are careless. For each ability, write what a <b>2</b>, a <b>3</b> and a <b>4</b> actually look like, with a real example. This is the cheapest large improvement available and it needs no engineering — but it does need the Chief Yashodarshi’s time.</p>
+</div>
+</div>
+
+<!-- DATA -->
+<div class="sec">
+<div class="sechead"><span class="num">DATA</span><h2>What exists, and what does not</h2></div>
+<div class="scroll"><table><thead><tr><th>Needed</th><th>Source</th><th>Status</th></tr></thead><tbody>
+<tr><td>Per-ability scores</td><td class="mono">yashodarshi_evaluation_results.attribute_scores</td><td><span class="pill p-ok">exists — all 37</span></td></tr>
+<tr><td>Time on task</td><td class="mono">yashodarshi_task_sessions.active_seconds</td><td><span class="pill p-ok">exists</span> <span class="pill p-warn">only since ~30 Aug</span></td></tr>
+<tr><td>Turnaround</td><td class="mono">…turnaround_minutes, on_time</td><td><span class="pill p-ok">exists</span></td></tr>
+<tr><td>Feedback presence</td><td class="mono">…feedback, audio_feedback</td><td><span class="pill p-ok">exists — usually null</span></td></tr>
+<tr><td>Per-task maximum</td><td class="mono">…score_snapshot.max_total_score</td><td><span class="pill p-ok">exists</span> <span class="pill p-bad">NULL on several evaluators</span></td></tr>
+<tr><td>Anomaly flags</td><td>derived at read time</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td>Evaluator cohort stats</td><td>derived, cached nightly</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td>Dispute / query state</td><td>—</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td>Override audit log</td><td>—</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td>Double-marking route</td><td>—</td><td><span class="pill p-new">to build</span></td></tr>
+<tr><td>Evidence retention &gt; 90 days</td><td>S3 lifecycle</td><td><span class="pill p-bad">blocks all of it</span></td></tr>
+</tbody></table></div>
+
+<div class="why">
+<h4 style="margin-top:0">⚠️ A history boundary every one of these screens must state</h4>
+<p><code>score_snapshot</code> is <b>absent on 7,178 of 10,578 evaluations — 67.9%</b>. It is <b>not</b> a live bug: the snapshot begins in May 2026 and every one of the last 1,029 evaluations has it. The missing rows run <b>23 Dec 2025 → 26 May 2026</b>, before the field existed.</p>
+<p style="margin-bottom:0">The consequence is real anyway. <b>No percentage can be computed for any evaluation before ~May 2026</b>, because the maximum it was marked against was never recorded. Ten evaluators — id 43, 44, 45, 47, 48, 37, 57, 60, 55, 28 — have <b>100%</b> of their work in that period and cannot appear in any score comparison at all. The four in the table above are the currently-active cohort, which is why they are the ones with data. <b>Every screen here must say “from May 2026” rather than quietly showing a shorter history than it appears to.</b></p>
+</div>
+</div>
+
+<p class="foot">All figures measured in production on 7 September 2026 across 10,578 evaluations — illustrative of nothing, drawn from live data. Companion storyboards: <span class="mono">irisepro-evaluation-record</span> (the per-task record), <span class="mono">irisepro-yashodarshi-console</span> (fleet &amp; SLA), <span class="mono">irisepro-student-progress</span> (chasing).</p>
+</div>
