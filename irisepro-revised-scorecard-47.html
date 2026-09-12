@@ -1,0 +1,286 @@
+<title>#47 · What a REVISED scorecard shows its reader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#FFF8EF; --paper:#FAF5EB; --card:rgba(255,255,255,.72);
+    --ink:#2A2333; --ink-read:#2B2622; --faint:#a89fb2; --line:rgba(42,35,51,.10);
+    --blue:#2F6BF0; --blue-deep:#1B47B4; --green:#2FB46B; --saffron:#F5821F; --red:#E5484D;
+    --disp:'Fraunces',Georgia,serif; --read:'Literata',Georgia,serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--read);line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:34px 20px 90px}
+
+  h1{font-family:var(--disp);font-weight:900;font-size:clamp(26px,4vw,40px);line-height:1.08;margin:0 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--ink-read);max-width:74ch;margin:0 0 6px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-deep);font-weight:600}
+
+  h2{font-family:var(--disp);font-weight:900;font-size:19px;margin:46px 0 2px;letter-spacing:-.01em;
+     display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .num{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--blue);
+       padding:3px 8px;border-radius:6px;letter-spacing:.06em}
+  .cap{color:var(--ink-read);margin:4px 0 16px;max-width:78ch;font-size:15px}
+
+  .pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+        padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--faint);font-weight:600}
+  .pill.rec{background:var(--green);border-color:var(--green);color:#fff}
+  .pill.cost{background:#fff3e6;border-color:#f6d5b0;color:#8a4b06}
+  .pill.risk{background:#fdecec;border-color:#f4c7c8;color:#9c2126}
+
+  .pair{display:grid;grid-template-columns:1fr;gap:22px}
+  @media(min-width:1000px){.pair{grid-template-columns:1.35fr .65fr;align-items:start}}
+
+  /* ── device frames ───────────────────────────────────────────── */
+  .browser{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;
+           box-shadow:0 10px 30px rgba(42,35,51,.07)}
+  .chrome{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#f3ece1;border-bottom:1px solid var(--line)}
+  .dot{width:9px;height:9px;border-radius:50%;background:#d8ccbb}
+  .urlpill{flex:1;background:#fff;border:1px solid var(--line);border-radius:999px;
+           font-family:var(--mono);font-size:10.5px;color:var(--faint);padding:4px 11px;overflow:hidden;white-space:nowrap}
+  .phone{width:272px;margin:0 auto;border:9px solid #241f2e;border-radius:34px;background:#241f2e;
+         box-shadow:0 12px 30px rgba(36,31,46,.22)}
+  .notch{height:17px;display:flex;justify-content:center;align-items:flex-start}
+  .notch i{display:block;width:78px;height:5px;background:#3a3348;border-radius:0 0 7px 7px}
+  .pv{background:var(--bg);border-radius:0 0 25px 25px;overflow:hidden}
+
+  /* ── the scorecard cover, as it really renders ───────────────── */
+  .cover{background:linear-gradient(160deg,var(--paper) 0%,#fff 58%);padding:22px 20px 20px}
+  .phone .cover{padding:16px 14px 15px}
+  .brandrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .mark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--saffron),#ff9b3d)}
+  .brand{font-family:var(--disp);font-weight:900;font-size:13px;letter-spacing:.02em}
+  .covtitle{font-family:var(--disp);font-weight:900;font-size:27px;line-height:1.06;letter-spacing:-.02em;margin:0 0 3px}
+  .phone .covtitle{font-size:19px}
+  .covname{font-family:var(--disp);font-size:15px;color:var(--blue-deep);margin-bottom:16px}
+  .phone .covname{font-size:12.5px;margin-bottom:12px}
+
+  .bars{display:flex;gap:5px;margin:0 0 16px}
+  .bars i{height:6px;border-radius:3px;flex:1}
+  .covmeta{font-family:var(--mono);font-size:10.5px;line-height:1.85;color:var(--faint);
+           border-top:1px solid var(--line);padding-top:11px}
+  .phone .covmeta{font-size:9px;line-height:1.8}
+  .covmeta b{color:var(--ink);font-weight:600}
+  .dt{color:var(--ink);font-weight:600}
+  .dt.moved{background:#e6f7ee;color:#12603a;padding:1px 5px;border-radius:4px}
+  .revline{display:inline-block;margin-top:5px;background:#eaf0fe;color:var(--blue-deep);
+           border:1px solid #cfdcfb;border-radius:5px;padding:2px 7px;font-weight:600}
+  .prevlink{display:inline-flex;align-items:center;gap:5px;margin-top:7px;background:#fff;
+            border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--blue);font-weight:600}
+
+  /* ── the in-app notice (decided: in-app only) ────────────────── */
+  .notice{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin:11px 14px 16px;
+          display:flex;gap:10px;box-shadow:0 3px 10px rgba(42,35,51,.05)}
+  .nicon{width:28px;height:28px;flex:none;border-radius:8px;background:#eaf0fe;color:var(--blue-deep);
+         display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--disp);font-size:14px}
+  .ntxt{font-size:12.5px;line-height:1.5}
+  .ntime{font-family:var(--mono);font-size:9.5px;color:var(--faint);margin-top:3px}
+
+  .note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);
+        border-radius:8px;padding:12px 14px;font-size:14px;margin-top:14px}
+  .note.warn{border-left-color:var(--red)}
+  .note.good{border-left-color:var(--green)}
+  .note b{font-weight:600}
+  code{font-family:var(--mono);font-size:12.5px;background:#f3ece1;padding:1px 5px;border-radius:4px}
+  .verdict{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-top:40px;
+           box-shadow:0 8px 24px rgba(42,35,51,.06)}
+  .verdict h3{font-family:var(--disp);font-weight:900;font-size:20px;margin:0 0 8px}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600}
+</style>
+
+<div class="wrap">
+
+  <div class="kicker">Immutability #34 · issue #47 · 12 Sep 2026</div>
+  <h1>When a scorecard is revised,<br>what does its reader see?</h1>
+  <p class="sub">A re-mark now <b>appends</b> a new version and keeps the old one. The guardian gets a quiet
+  in-app notice (#46, decided: in-app only, names the task, never the number). This is the other half —
+  the <b>card itself</b>. Three options, rendered on the real cover.</p>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <h2><span class="num">01</span> The notice they get first <span class="pill">decided · #46</span></h2>
+  <p class="cap">In-app only. No email. It names the task and never the number or the direction.</p>
+
+  <div class="pair">
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+        <div class="urlpill">app.irisepro.in/mobile/notifications</div></div>
+      <div style="background:var(--bg);padding:6px 0 10px">
+        <div class="notice" style="margin-left:18px;margin-right:18px">
+          <div class="nicon">↻</div>
+          <div><div class="ntxt"><b>Your scorecard has been updated</b><br>
+            The review of <b>Task 4 · Reading aloud with feeling</b> was revisited, so a new
+            version of the scorecard has been issued.</div>
+            <div class="ntime">2 hours ago</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="pv">
+        <div style="padding:12px 14px 0"><div class="brandrow"><div class="mark"></div>
+          <div class="brand">Notifications</div></div></div>
+        <div class="notice">
+          <div class="nicon">↻</div>
+          <div><div class="ntxt" style="font-size:11.5px"><b>Your scorecard has been updated</b><br>
+            The review of <b>Task 4</b> was revisited, so a new version has been issued.</div>
+            <div class="ntime">2h</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <h2><span class="num">02</span> Option A — the date already moves
+      <span class="pill rec">recommended</span><span class="pill">build: none</span></h2>
+  <p class="cap">The cover date binds to <code>meta.generated_at</code>. An appended version carries a fresh
+  one, so the record is <b>already on screen</b> — no template change, no PDF-Lambda rebuild.</p>
+
+  <div class="pair">
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+        <div class="urlpill">app.irisepro.in/mobile/scorecard</div></div>
+      <div class="cover">
+        <div class="brandrow"><div class="mark"></div><div class="brand">YASHHO · AACE64™</div></div>
+        <div class="covtitle">Ability Signature</div>
+        <div class="covname">Aarav Sharma</div>
+        <div class="bars"><i style="background:var(--green)"></i><i style="background:var(--saffron)"></i>
+          <i style="background:#F2C744"></i><i style="background:var(--blue)"></i></div>
+        <div class="covmeta">KAS Full-time aspirant &nbsp;·&nbsp; 7 tasks &nbsp;·&nbsp; 15 abilities
+          &nbsp;·&nbsp; <span class="dt moved">12 September 2026</span><br>
+          Confidential — prepared for the family of <b>Aarav Sharma</b></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="pv"><div class="cover">
+        <div class="brandrow"><div class="mark"></div><div class="brand">YASHHO</div></div>
+        <div class="covtitle">Ability Signature</div>
+        <div class="covname">Aarav Sharma</div>
+        <div class="bars"><i style="background:var(--green)"></i><i style="background:var(--saffron)"></i>
+          <i style="background:#F2C744"></i><i style="background:var(--blue)"></i></div>
+        <div class="covmeta">KAS &nbsp;·&nbsp; 7 tasks &nbsp;·&nbsp; 15 abilities<br>
+          <span class="dt moved">12 September 2026</span><br>
+          Prepared for the family of <b>Aarav Sharma</b></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note good"><b>Was 04 September.</b> The only visible change is the highlighted date, and it
+  happens for free because the appended row carries a new <code>generated_at</code>. Nothing invites a
+  comparison of numbers — which is what the notice copy was written to avoid.</div>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <h2><span class="num">03</span> Option B — name the revision
+      <span class="pill cost">build: engine template + PDF Lambda</span></h2>
+  <p class="cap">One extra line, so the change is <b>stated</b> rather than inferred from a date the reader
+  may never have noted.</p>
+
+  <div class="pair">
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+        <div class="urlpill">app.irisepro.in/mobile/scorecard</div></div>
+      <div class="cover">
+        <div class="brandrow"><div class="mark"></div><div class="brand">YASHHO · AACE64™</div></div>
+        <div class="covtitle">Ability Signature</div>
+        <div class="covname">Aarav Sharma</div>
+        <div class="bars"><i style="background:var(--green)"></i><i style="background:var(--saffron)"></i>
+          <i style="background:#F2C744"></i><i style="background:var(--blue)"></i></div>
+        <div class="covmeta">KAS Full-time aspirant &nbsp;·&nbsp; 7 tasks &nbsp;·&nbsp; 15 abilities
+          &nbsp;·&nbsp; <span class="dt">12 September 2026</span><br>
+          <span class="revline">Revised edition · supersedes 04 September 2026</span><br>
+          Confidential — prepared for the family of <b>Aarav Sharma</b></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="pv"><div class="cover">
+        <div class="brandrow"><div class="mark"></div><div class="brand">YASHHO</div></div>
+        <div class="covtitle">Ability Signature</div>
+        <div class="covname">Aarav Sharma</div>
+        <div class="bars"><i style="background:var(--green)"></i><i style="background:var(--saffron)"></i>
+          <i style="background:#F2C744"></i><i style="background:var(--blue)"></i></div>
+        <div class="covmeta">KAS &nbsp;·&nbsp; 7 tasks &nbsp;·&nbsp; 15 abilities<br>
+          <span class="dt">12 September 2026</span><br>
+          <span class="revline">Revised · supersedes 04 Sep</span><br>
+          Prepared for the family of <b>Aarav Sharma</b></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Honest, and it invites the next question.</b> A reader told "revised" will reasonably
+  ask <i>what changed</i> — and the card does not say. Also note the cost: the card is an <b>engine</b>
+  template, so this is the six-step tail (publish → rebuild the PDF Lambda → <code>prod-infra apply</code>
+  → selftest), not a code deploy.</div>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <h2><span class="num">04</span> Option C — let them open the previous version
+      <span class="pill cost">build: route + view + authz</span><span class="pill risk">two numbers, side by side</span></h2>
+  <p class="cap">The data is already retained, so this is purely UI. It is also the only option that puts an
+  old mark in front of a child.</p>
+
+  <div class="pair">
+    <div class="browser">
+      <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+        <div class="urlpill">app.irisepro.in/mobile/scorecard</div></div>
+      <div class="cover">
+        <div class="brandrow"><div class="mark"></div><div class="brand">YASHHO · AACE64™</div></div>
+        <div class="covtitle">Ability Signature</div>
+        <div class="covname">Aarav Sharma</div>
+        <div class="bars"><i style="background:var(--green)"></i><i style="background:var(--saffron)"></i>
+          <i style="background:#F2C744"></i><i style="background:var(--blue)"></i></div>
+        <div class="covmeta">KAS Full-time aspirant &nbsp;·&nbsp; 7 tasks &nbsp;·&nbsp; 15 abilities
+          &nbsp;·&nbsp; <span class="dt">12 September 2026</span><br>
+          <span class="revline">Revised edition · supersedes 04 September 2026</span><br>
+          <span class="prevlink">↩ View the 04 September edition</span><br>
+          Confidential — prepared for the family of <b>Aarav Sharma</b></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="pv"><div class="cover">
+        <div class="brandrow"><div class="mark"></div><div class="brand">YASHHO</div></div>
+        <div class="covtitle">Ability Signature</div>
+        <div class="covname">Aarav Sharma</div>
+        <div class="bars"><i style="background:var(--green)"></i><i style="background:var(--saffron)"></i>
+          <i style="background:#F2C744"></i><i style="background:var(--blue)"></i></div>
+        <div class="covmeta">KAS &nbsp;·&nbsp; 7 tasks &nbsp;·&nbsp; 15 abilities<br>
+          <span class="dt">12 September 2026</span><br>
+          <span class="revline">Revised · supersedes 04 Sep</span><br>
+          <span class="prevlink">↩ View 04 Sep edition</span></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note warn"><b>This is the option that can hurt.</b> Everything else in this workstream —
+  "names the task, never the number", "identical wording in both directions" — exists to stop a child
+  reading their worth as a delta. A link to the old edition undoes that in one tap.</div>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <div class="verdict">
+    <h3>Recommendation — Option A, and file B</h3>
+    <p style="margin:0">Option A is the only one that is <b>already true</b>: the cover date moves on its own
+    because the appended version carries a fresh <code>generated_at</code>. It costs nothing, ships with the
+    code release, and adds no new question a reader cannot answer.</p>
+
+    <table>
+      <tr><th>option</th><th>build</th><th>what a parent learns</th><th>the risk it carries</th></tr>
+      <tr><td><b>A</b> date moves</td><td>none — already works</td>
+          <td>the card is newer than the one they saw</td><td>they may not notice the date at all</td></tr>
+      <tr><td><b>B</b> name it</td><td>engine template + PDF Lambda (6-step tail)</td>
+          <td>it was revised, and when</td><td>invites “what changed?”, which nothing answers</td></tr>
+      <tr><td><b>C</b> show the old one</td><td>route + view + authz</td>
+          <td>exactly what changed</td><td>a child reads two numbers side by side</td></tr>
+    </table>
+
+    <div class="note" style="margin-top:16px"><b>Why not B now:</b> the honest case for it is a parent who
+    notices a different number and finds no record. But they <i>do</i> get a record — the in-app notice from
+    #46, which names the task. B is the right follow-up <b>if support ever fields “why is this different”</b>;
+    building it first spends the six-step engine tail on a problem we have not yet seen.</div>
+
+    <div class="note warn" style="margin-top:12px"><b>What none of these do:</b> tell a Yashodarshi that a
+    task they marked was re-marked. The marker-side surface is not in #47 and is not in this release — worth
+    its own issue before send-back is ever switched on.</div>
+  </div>
+
+</div>
