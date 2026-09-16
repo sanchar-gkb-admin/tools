@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEET–JEE Section 5 — graph options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --saffron:#FF9A2E;--saffron-deep:#F47A1F;--blue:#2F6BF0;--sky:#5BB0F0;--blue-deep:#1B47B4;
+  --green:#2FB46B;--yellow:#E0A100;--red:#E5484D;
+  --bm-student:var(--blue);--bm-dev:var(--yellow);--bm-champ:var(--green);--bm-comp:var(--saffron);
+  --bg:#FFF8EF;--paper:#FAF5EB;--card:#fff;--ink:#2A2333;--soft:#6f6678;--faint:#a89fb2;
+  --line:rgba(42,35,51,.10);--line2:rgba(42,35,51,.20);
+  --disp:'Fraunces',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;--read:'Literata',Georgia,serif;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:0 18px 90px;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto}
+header{padding:48px 0 0}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--saffron-deep)}
+h1{font-family:var(--disp);font-size:clamp(28px,4.6vw,42px);line-height:1.08;margin:14px 0 0;font-weight:600;letter-spacing:-.015em;max-width:20ch}
+.lede{font-family:var(--read);font-size:18px;line-height:1.65;color:var(--soft);margin:16px 0 0;max-width:60ch}
+.note{margin:22px 0 0;padding:14px 18px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:6px;font-size:14.5px;line-height:1.55;max-width:66ch}
+.note b{font-weight:700}
+
+h2{font-family:var(--disp);font-size:26px;font-weight:600;margin:0;letter-spacing:-.01em}
+.opt{margin-top:54px}
+.opthd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.onum{font-family:var(--mono);font-size:13px;font-weight:600;color:#fff;background:var(--ink);padding:3px 10px;border-radius:4px;letter-spacing:.06em}
+.rec{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--green);padding:4px 10px;border-radius:4px}
+.sub{font-family:var(--read);color:var(--soft);font-size:16px;margin:12px 0 0;max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 28px;margin-top:20px;box-shadow:0 1px 2px rgba(42,35,51,.04)}
+.cardttl{font-family:var(--disp);font-size:19px;font-weight:600;margin:0 0 3px}
+.cardsub{font-size:13.5px;color:var(--soft);margin:0 0 20px}
+
+.scrollx{overflow-x:auto}
+svg{display:block;width:100%;height:auto;min-width:620px}
+.ax{fill:var(--faint);font-family:var(--mono);font-size:10.5px}
+.lab{fill:var(--ink);font-family:var(--sans);font-size:13px;font-weight:500}
+.wt{fill:var(--soft);font-family:var(--mono);font-size:11px}
+.val{fill:var(--ink);font-family:var(--mono);font-size:12px;font-weight:600}
+.grid{stroke:var(--line);stroke-width:1}
+.track{fill:rgba(42,35,51,.055)}
+
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:12.5px;color:var(--soft);align-items:center}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin-top:6px}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--soft);font-weight:700;border-bottom:1px solid var(--line2)}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:1px solid var(--line2);border-bottom:0}
+
+.verdict{margin-top:18px;padding:16px 20px;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.verdict .vt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--soft)}
+.verdict .vv{font-family:var(--disp);font-size:24px;font-weight:600;margin-top:5px}
+.verdict .vd{font-size:13.5px;color:var(--soft);margin-top:5px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+.pro{font-size:14px;line-height:1.55;margin-top:16px}
+.pro p{margin:7px 0 0;padding-left:22px;position:relative;max-width:62ch}
+.pro p::before{position:absolute;left:0;font-weight:700}
+.pro .y::before{content:"+";color:var(--green)}
+.pro .n::before{content:"−";color:var(--red)}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line2);font-size:13.5px;color:var(--soft)}
+footer p{max-width:66ch;margin-top:9px}
+code{font-family:var(--mono);font-size:.88em;background:rgba(42,35,51,.05);padding:1px 5px;border-radius:3px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">NEET–JEE 2X Booster · new Section 5</div>
+  <h1>Three ways to draw the Ability Alignment</h1>
+  <p class="lede">Sutirtha ji — all three are drawn with Deepashree's real numbers, pulled from the live system and matching her Success Path chart to the decimal. Same card colours and fonts as the scorecard, so what you see is what it will look like.</p>
+
+  <div class="note">
+    <b>One correction already applied here.</b> The weighted benchmark totals are recomputed from your per-ability table, as you confirmed — so the NEET Competitive benchmark reads <b>97.45</b> and that gap reads <b>−24.27</b>, not −24.07.
+  </div>
+</header>
+
+<!-- ─────────────────────────── OPTION 1 ─────────────────────────── -->
+<section class="opt">
+  <div class="opthd">
+    <span class="onum">OPTION 1</span>
+    <h2>The Alignment Dial</h2>
+    <span class="rec">Recommended for DIRECTION</span>
+  </div>
+  <p class="sub">One line answering the section's own question — which way does this student lean? The middle band is the range where the two scores are too close to call, so a child sitting inside it is shown as balanced rather than given a direction the evidence cannot support.</p>
+
+  <div class="card">
+    <p class="cardttl">Current Direction</p>
+    <p class="cardsub">Deepashree · NEET 73.18% · JEE 73.04% · difference 0.14 points</p>
+    <div class="scrollx">
+    <svg viewBox="0 0 860 190" role="img" aria-label="Alignment dial showing Deepashree inside the balanced band">
+      <rect x="60" y="62" width="740" height="30" rx="15" class="track"/>
+      <rect x="319" y="62" width="222" height="30" rx="4" fill="#2FB46B" opacity=".16"/>
+      <line x1="319" y1="58" x2="319" y2="96" stroke="#2FB46B" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <line x1="541" y1="58" x2="541" y2="96" stroke="#2FB46B" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <line x1="430" y1="52" x2="430" y2="102" stroke="#a89fb2" stroke-width="1"/>
+
+      <text class="lab" x="60" y="44" style="font-weight:700;fill:#1B47B4">◀ JEE-leaning</text>
+      <text class="lab" x="430" y="44" text-anchor="middle" style="font-weight:700;fill:#2FB46B">Balanced</text>
+      <text class="lab" x="800" y="44" text-anchor="end" style="font-weight:700;fill:#F47A1F">NEET-leaning ▶</text>
+
+      <g class="ax" text-anchor="middle">
+        <text x="60" y="116">−5.0</text><text x="245" y="116">−2.5</text><text x="319" y="116">−1.5</text>
+        <text x="430" y="116">0</text><text x="541" y="116">+1.5</text><text x="615" y="116">+2.5</text><text x="800" y="116">+5.0</text>
+      </g>
+
+      <g>
+        <line x1="440" y1="50" x2="440" y2="104" stroke="#2F6BF0" stroke-width="3"/>
+        <circle cx="440" cy="77" r="9" fill="#2F6BF0" stroke="#fff" stroke-width="2.5"/>
+        <text class="val" x="440" y="140" text-anchor="middle" style="fill:#2F6BF0">Deepashree  +0.14</text>
+        <text class="wt" x="440" y="158" text-anchor="middle">inside the balanced band</text>
+      </g>
+      <text class="wt" x="430" y="178" text-anchor="middle">Balanced band = ±1.5 points, the width within which the two indices cannot be reliably separated</text>
+    </svg>
+    </div>
+
+    <div class="verdict">
+      <div class="vt">Current Direction</div>
+      <div class="vv">NEET ↔ JEE: Balanced Ability Alignment</div>
+      <div class="vd">Deepashree's present ability architecture supports continuing with both NEET and JEE preparation, subject to academic performance, subject proficiency, personal interest and career preference.</div>
+    </div>
+  </div>
+
+  <div class="pro">
+    <p class="y">Answers the section's headline question in one glance, which the other two do not.</p>
+    <p class="y">The band is the only way to show "too close to call" honestly — a point on a line always implies a winner.</p>
+    <p class="n">Shows direction only. It says nothing about how far the student is from the benchmarks, which is why it needs Option 2 beneath it.</p>
+  </div>
+</section>
+
+<!-- ─────────────────────────── OPTION 2 ─────────────────────────── -->
+<section class="opt">
+  <div class="opthd">
+    <span class="onum">OPTION 2</span>
+    <h2>Twin Benchmark Bars</h2>
+    <span class="rec">Recommended for READINESS</span>
+  </div>
+  <p class="sub">The same visual language as Section 4, so it will feel like part of the existing card rather than a new idea. This is the one that carries your <b>DIRECTION ≠ READINESS</b> box — it shows plainly that being balanced is not the same as being ready.</p>
+
+  <div class="card">
+    <p class="cardttl">Priority-Weighted Ability Alignment against the three benchmarks</p>
+    <p class="cardsub">Deepashree · axis 60–100%</p>
+    <div class="scrollx">
+    <svg viewBox="0 0 860 260" role="img" aria-label="JEE and NEET weighted alignment against three benchmarks">
+      <g class="grid">
+        <line x1="150" y1="30" x2="150" y2="200"/><line x1="312" y1="30" x2="312" y2="200"/>
+        <line x1="475" y1="30" x2="475" y2="200"/><line x1="637" y1="30" x2="637" y2="200"/><line x1="800" y1="30" x2="800" y2="200"/>
+      </g>
+      <g class="ax" text-anchor="middle">
+        <text x="150" y="220">60</text><text x="312" y="220">70</text><text x="475" y="220">80</text>
+        <text x="637" y="220">90</text><text x="800" y="220">100</text>
+      </g>
+
+      <!-- JEE row -->
+      <text class="lab" x="0" y="64" style="font-weight:700">JEE</text>
+      <rect x="150" y="50" width="650" height="26" rx="4" class="track"/>
+      <rect x="150" y="50" width="212" height="26" rx="4" fill="#2F6BF0"/>
+      <text class="val" x="372" y="68" style="fill:#2F6BF0">73.04</text>
+      <line x1="662" y1="44" x2="662" y2="82" stroke="#E0A100" stroke-width="3"/>
+      <line x1="709" y1="44" x2="709" y2="82" stroke="#2FB46B" stroke-width="3"/>
+      <line x1="759" y1="44" x2="759" y2="82" stroke="#FF9A2E" stroke-width="3"/>
+      <text class="wt" x="800" y="40" text-anchor="end">gaps −18.51 · −21.41 · −24.46</text>
+
+      <!-- NEET row -->
+      <text class="lab" x="0" y="130" style="font-weight:700">NEET</text>
+      <rect x="150" y="116" width="650" height="26" rx="4" class="track"/>
+      <rect x="150" y="116" width="214" height="26" rx="4" fill="#2F6BF0"/>
+      <text class="val" x="374" y="134" style="fill:#2F6BF0">73.18</text>
+      <line x1="669" y1="110" x2="669" y2="148" stroke="#E0A100" stroke-width="3"/>
+      <line x1="713" y1="110" x2="713" y2="148" stroke="#2FB46B" stroke-width="3"/>
+      <line x1="758" y1="110" x2="758" y2="148" stroke="#FF9A2E" stroke-width="3"/>
+      <text class="wt" x="800" y="106" text-anchor="end">gaps −18.77 · −21.47 · −24.27</text>
+
+      <text class="wt" x="150" y="180">The two blue bars are almost the same length — that is the balance. Both sit far from the saffron line — that is the readiness gap.</text>
+    </svg>
+    </div>
+    <div class="legend">
+      <span><i style="background:#2F6BF0"></i>Deepashree</span>
+      <span><i style="background:#E0A100"></i>Developmental</span>
+      <span><i style="background:#2FB46B"></i>ASLI Champion</span>
+      <span><i style="background:#FF9A2E"></i>Competitive</span>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="card">
+      <p class="cardttl">A. JEE — Top-5 Critical Success Abilities™</p>
+      <table>
+        <thead><tr><th>Ability</th><th>Wt</th><th>Her</th><th>Dev</th><th>ASLI</th><th>Comp</th></tr></thead>
+        <tbody>
+          <tr><td>Critical &amp; Analytical Thinking</td><td class="n">30%</td><td class="n">73.33</td><td class="n">90</td><td class="n">94</td><td class="n">97</td></tr>
+          <tr><td>Problem-Solving</td><td class="n">25%</td><td class="n">73.50</td><td class="n">92</td><td class="n">94</td><td class="n">98</td></tr>
+          <tr><td>Concentration</td><td class="n">20%</td><td class="n">74.76</td><td class="n">93</td><td class="n">95</td><td class="n">98</td></tr>
+          <tr><td>Time-Management</td><td class="n">15%</td><td class="n">71.43</td><td class="n">93</td><td class="n">95</td><td class="n">98</td></tr>
+          <tr><td>Mental Endurance</td><td class="n">10%</td><td class="n">70.00</td><td class="n">90</td><td class="n">95</td><td class="n">96</td></tr>
+          <tr class="tot"><td>JEE-AAI</td><td class="n">100%</td><td class="n">73.04</td><td class="n">91.55</td><td class="n">94.45</td><td class="n">97.50</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <p class="cardttl">B. NEET — Top-5 Critical Success Abilities™</p>
+      <table>
+        <thead><tr><th>Ability</th><th>Wt</th><th>Her</th><th>Dev</th><th>ASLI</th><th>Comp</th></tr></thead>
+        <tbody>
+          <tr><td>Concentration</td><td class="n">30%</td><td class="n">74.76</td><td class="n">93</td><td class="n">95</td><td class="n">98</td></tr>
+          <tr><td>Time-Management</td><td class="n">25%</td><td class="n">71.43</td><td class="n">93</td><td class="n">95</td><td class="n">98</td></tr>
+          <tr><td>Critical &amp; Analytical Thinking</td><td class="n">20%</td><td class="n">73.33</td><td class="n">90</td><td class="n">94</td><td class="n">97</td></tr>
+          <tr><td>Attention-to-Detail</td><td class="n">15%</td><td class="n">73.81</td><td class="n">92</td><td class="n">94</td><td class="n">97</td></tr>
+          <tr><td>Mental Dexterity</td><td class="n">10%</td><td class="n">71.58</td><td class="n">90</td><td class="n">95</td><td class="n">96</td></tr>
+          <tr class="tot"><td>NEET-AAI</td><td class="n">100%</td><td class="n">73.18</td><td class="n">91.95</td><td class="n">94.65</td><td class="n">97.45</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pro">
+    <p class="y">Inherits Section 4's look exactly — no new visual grammar for a family to learn.</p>
+    <p class="y">Carries the readiness gap, which is the half your DIRECTION ≠ READINESS box exists to protect.</p>
+    <p class="n">On its own a reader must compare two bar lengths by eye to find the direction. That is what Option 1 fixes.</p>
+  </div>
+</section>
+
+<!-- ─────────────────────────── OPTION 3 ─────────────────────────── -->
+<section class="opt">
+  <div class="opthd">
+    <span class="onum">OPTION 3</span>
+    <h2>The Weighting Explainer</h2>
+  </div>
+  <p class="sub">Shows <i>why</i> the two numbers differ: her seven abilities in order, each tagged with how much NEET and JEE lean on it. A parent can see for themselves that her strongest ability is the one NEET weights most.</p>
+
+  <div class="card">
+    <p class="cardttl">How each examination weighs Deepashree's abilities</p>
+    <p class="cardsub">Sorted by her score · axis 65–80%</p>
+    <div class="scrollx">
+    <svg viewBox="0 0 860 310" role="img" aria-label="Seven abilities with NEET and JEE weights">
+      <g class="grid">
+        <line x1="290" y1="24" x2="290" y2="264"/><line x1="460" y1="24" x2="460" y2="264"/>
+        <line x1="630" y1="24" x2="630" y2="264"/><line x1="800" y1="24" x2="800" y2="264"/>
+      </g>
+      <g class="ax" text-anchor="middle">
+        <text x="290" y="282">65</text><text x="460" y="282">70</text><text x="630" y="282">75</text><text x="800" y="282">80</text>
+      </g>
+      <text class="wt" x="0" y="18">ability</text>
+      <text class="wt" x="205" y="18" text-anchor="middle">NEET · JEE</text>
+
+      <g>
+        <text class="lab" x="0" y="44">Concentration</text>
+        <text class="wt" x="205" y="44" text-anchor="middle" style="fill:#F47A1F;font-weight:600">30% · 20%</text>
+        <rect x="290" y="32" width="332" height="17" rx="3" fill="#2F6BF0"/><text class="val" x="632" y="46">74.76</text>
+
+        <text class="lab" x="0" y="76">Attention-to-Detail</text>
+        <text class="wt" x="205" y="76" text-anchor="middle" style="fill:#F47A1F;font-weight:600">15% · —</text>
+        <rect x="290" y="64" width="300" height="17" rx="3" fill="#2F6BF0"/><text class="val" x="600" y="78">73.81</text>
+
+        <text class="lab" x="0" y="108">Problem-Solving</text>
+        <text class="wt" x="205" y="108" text-anchor="middle" style="fill:#1B47B4;font-weight:600">— · 25%</text>
+        <rect x="290" y="96" width="289" height="17" rx="3" fill="#2F6BF0"/><text class="val" x="589" y="110">73.50</text>
+
+        <text class="lab" x="0" y="140">Critical &amp; Analytical Thinking</text>
+        <text class="wt" x="205" y="140" text-anchor="middle" style="fill:#1B47B4;font-weight:600">20% · 30%</text>
+        <rect x="290" y="128" width="283" height="17" rx="3" fill="#2F6BF0"/><text class="val" x="583" y="142">73.33</text>
+
+        <text class="lab" x="0" y="172">Mental Dexterity</text>
+        <text class="wt" x="205" y="172" text-anchor="middle" style="fill:#F47A1F;font-weight:600">10% · —</text>
+        <rect x="290" y="160" width="224" height="17" rx="3" fill="#2F6BF0"/><text class="val" x="524" y="174">71.58</text>
+
+        <text class="lab" x="0" y="204">Time-Management</text>
+        <text class="wt" x="205" y="204" text-anchor="middle" style="fill:#F47A1F;font-weight:600">25% · 15%</text>
+        <rect x="290" y="192" width="219" height="17" rx="3" fill="#2F6BF0"/><text class="val" x="519" y="206">71.43</text>
+
+        <text class="lab" x="0" y="236">Mental Endurance</text>
+        <text class="wt" x="205" y="236" text-anchor="middle" style="fill:#1B47B4;font-weight:600">— · 10%</text>
+        <rect x="290" y="224" width="170" height="17" rx="3" fill="#2F6BF0"/><text class="val" x="470" y="238">70.00</text>
+      </g>
+      <text class="wt" x="0" y="302">Orange = NEET leans on it more · Blue = JEE leans on it more</text>
+    </svg>
+    </div>
+  </div>
+
+  <div class="pro">
+    <p class="y">Explains the result rather than just stating it, and needs no statistics to read.</p>
+    <p class="y">Doubles as a teaching aid — it shows a family exactly which ability to strengthen for which examination.</p>
+    <p class="n">Three columns of numbers is a lot for a parent, and it does not give a verdict at all.</p>
+  </div>
+</section>
+
+<footer>
+  <p><b>My recommendation: Options 1 and 2 together, not one of the three.</b> Your specification asks two separate questions — <i>direction</i> and <i>readiness</i> — and says plainly that a parent must not confuse them. One picture cannot carry both without blurring exactly the line you asked us to protect. Option 1 answers direction, Option 2 answers readiness, and they stack naturally into the DIRECTION ≠ READINESS box. Option 3 is worth keeping in reserve as an explainer if the section feels too abrupt.</p>
+  <p><b>Every number here is real.</b> Deepashree's seven ability scores were read from the live system and match your Success Path chart to the decimal — Concentration 74.76, Attention-to-Detail 73.81, Problem-Solving 73.50, Critical &amp; Analytical Thinking 73.33, Mental Dexterity 71.58, Time-Management 71.43, Mental Endurance 70.00.</p>
+  <p><b>The ±1.5 band in Option 1 is a measurement, not a preference</b> — it is the width within which the two indices cannot be told apart reliably, taken from all 42 learners in this stream. If the band is changed, only that shaded area moves; nothing else in these drawings depends on it.</p>
+</footer>
+</div>
+
+</body>
+</html>
