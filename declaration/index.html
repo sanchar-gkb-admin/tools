@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Every day, from scratch — Goutam Kumar Biswas</title>
+<meta name="description" content="A public declaration of being a cause in the matter of my life. Goutam Kumar Biswas, Bengaluru.">
+<link rel="canonical" href="https://sanchar-gkb-admin.github.io/tools/declaration/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Goutam Kumar Biswas">
+<meta property="og:title" content="Every day, from scratch">
+<meta property="og:description" content="A public declaration of being a cause in the matter of my life. Goutam Kumar Biswas, Bengaluru.">
+<meta property="og:url" content="https://sanchar-gkb-admin.github.io/tools/declaration/">
+<meta property="og:image" content="https://sanchar-gkb-admin.github.io/tools/declaration/og-image.png">
+<meta property="og:image:secure_url" content="https://sanchar-gkb-admin.github.io/tools/declaration/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Dawn breaking over a ridgeline, with the words Every day, from scratch.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Every day, from scratch">
+<meta name="twitter:description" content="A public declaration of being a cause in the matter of my life. Goutam Kumar Biswas, Bengaluru.">
+<meta name="twitter:image" content="https://sanchar-gkb-admin.github.io/tools/declaration/og-image.png">
+<meta name="theme-color" content="#05080F">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,800&family=Karla:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --night:#05080F;
+  --deep:#0C1428;
+  --indigo:#1B2450;
+  --violet:#3B2F63;
+  --ember:#B85536;
+  --amber:#E4A23F;
+  --dawn:#F5DDAE;
+  --leaf:#4F8E6B;
+  --ink:#F0E9DC;
+  --ink-2:#B9B0A2;
+  --ink-3:#7E776D;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--night); color:var(--ink);
+  font-family:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.scene{position:relative; width:100%;}
+.scene canvas{display:block; width:100%; height:100%; position:absolute; inset:0;}
+.grain{position:fixed; inset:0; pointer-events:none; opacity:.22; z-index:50;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");}
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:2;}
+
+/* ── HERO ─────────────────────────────── */
+#hero{height:min(92vh,880px); min-height:620px; overflow:hidden;}
+.hero-copy{position:absolute; inset:auto 0 0 0; padding:0 28px 8vh; z-index:3;}
+.hero-inner{max-width:1180px; margin:0 auto;}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.34em;
+  text-transform:uppercase; color:var(--amber); margin:0 0 18px;}
+h1{font-family:Fraunces,Georgia,serif; font-weight:800; font-variation-settings:"SOFT" 0,"WONK" 1;
+  font-size:clamp(3rem,10.5vw,8rem); line-height:.88; letter-spacing:-.035em; margin:0 0 22px;
+  color:var(--dawn); text-wrap:balance; max-width:14ch;}
+.hero-sub{font-size:clamp(1.05rem,2.2vw,1.45rem); color:var(--ink-2); max-width:44ch; margin:0;
+  font-weight:300;}
+.hero-sub b{color:var(--ink); font-weight:600;}
+
+
+/* ── MOVEMENTS ────────────────────────── */
+.movement{position:relative; padding:clamp(70px,11vh,140px) 0;}
+.mv-head{display:flex; align-items:baseline; gap:20px; margin-bottom:8px; flex-wrap:wrap;}
+.mv-num{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.24em; color:var(--amber);}
+.mv-name{font-family:Fraunces,Georgia,serif; font-weight:600; font-size:clamp(2rem,5.5vw,3.6rem);
+  letter-spacing:-.02em; margin:0; line-height:1;}
+.mv-say{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3);
+  letter-spacing:.06em; margin:0 0 42px;}
+
+.grid{display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr));}
+.card{border:1px solid rgba(240,233,220,.14); border-radius:3px; padding:26px 24px;
+  background:rgba(240,233,220,.035); position:relative; overflow:hidden;}
+.card h3{font-family:Fraunces,Georgia,serif; font-weight:600; font-size:1.3rem; margin:0 0 10px;
+  letter-spacing:-.01em; color:var(--dawn);}
+.card p{margin:0 0 10px; color:var(--ink-2); font-weight:300;}
+.card p:last-child{margin-bottom:0}
+.card .tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--amber); display:block; margin-bottom:12px;}
+.card.wide{grid-column:1/-1;}
+.card.leaf{border-color:rgba(79,142,107,.4);}
+.card.leaf .tag{color:var(--leaf);}
+
+.pull{font-family:Fraunces,Georgia,serif; font-weight:300; font-size:clamp(1.5rem,4vw,2.6rem);
+  line-height:1.24; letter-spacing:-.02em; color:var(--dawn); margin:48px 0 0; max-width:22ch;}
+
+/* ── THE LADDER OF NUMBERS ────────────── */
+.ladder{display:grid; gap:18px; margin-top:12px;}
+.rung{display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center;
+  border-top:1px solid rgba(240,233,220,.16); padding-top:18px;}
+.rung .n{font-family:Fraunces,Georgia,serif; font-weight:800; letter-spacing:-.04em; line-height:.82;
+  font-variant-numeric:tabular-nums; white-space:nowrap;}
+.rung:nth-child(1) .n{font-size:clamp(2rem,6vw,3.4rem); color:var(--ink-2);}
+.rung:nth-child(2) .n{font-size:clamp(2.6rem,8vw,4.6rem); color:var(--ember);}
+.rung:nth-child(3) .n{font-size:clamp(3.4rem,11vw,6.6rem); color:var(--amber);}
+.rung:nth-child(4) .n{font-size:clamp(4.2rem,15vw,9rem); color:var(--dawn);}
+.rung .lab{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3);}
+.rung .lab b{display:block; font-family:Karla,sans-serif; font-size:16px; letter-spacing:0;
+  text-transform:none; color:var(--ink-2); font-weight:300; margin-top:7px;}
+
+/* ── CLOSING ──────────────────────────── */
+#close{position:relative; padding:clamp(90px,16vh,190px) 0 clamp(70px,10vh,120px); overflow:hidden;}
+.vow{font-family:Fraunces,Georgia,serif; font-weight:300; font-size:clamp(1.55rem,4.4vw,2.9rem);
+  line-height:1.2; letter-spacing:-.022em; color:var(--night); max-width:24ch; margin:0;}
+.vow b{font-weight:800;}
+.vow-note{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.2em;
+  text-transform:uppercase; color:rgba(5,8,15,.6); margin:26px 0 0;}
+
+@media (prefers-reduced-motion:reduce){ *{animation:none !important; transition:none !important;} }
+</style>
+
+<div class="grain"></div>
+
+<!-- ══ HERO ══ -->
+<section class="scene" id="hero">
+  <canvas id="c-hero"></canvas>
+  <div class="hero-copy"><div class="hero-inner">
+    <p class="eyebrow">Goutam Kumar Biswas &nbsp;·&nbsp; Bengaluru &nbsp;·&nbsp; FY2027 &rarr; FY2029</p>
+    <h1>Every day, from scratch</h1>
+    <p class="hero-sub">A public declaration. <b>I am a cause in the matter of my life</b> &mdash; not its author, not its victim, its cause. What follows is not what I hope for. It is what I am doing.</p>
+  </div></div>
+</section>
+
+<!-- ══ SCAN ══ -->
+<section class="scene movement" id="m1" style="background:linear-gradient(180deg,#05080F,#0A1020);">
+  <canvas id="c-breath"></canvas>
+  <div class="wrap">
+    <div class="mv-head"><span class="mv-num">I</span><h2 class="mv-name">Scan</h2></div>
+    <p class="mv-say">the body first — nothing above this is possible without it</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Every day</span>
+        <h3>Ninety minutes on foot</h3>
+        <p>I walk ninety minutes a day. I get sunshine every day &mdash; not as exercise, as intake.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Every day</span>
+        <h3>Time under trees</h3>
+        <p>I spend time in nature. I breathe. I meditate. The nervous system is given somewhere to go.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Always</span>
+        <h3>Mindfulness in everything</h3>
+        <p>I practise mindfulness <em>in</em> the doing &mdash; in the code, the call, the queue, the conversation. Not a session at dawn and a different man by noon.</p>
+      </div>
+    </div>
+    <p class="pull">Attention is the only instrument I have. Everything else is downstream of how I keep it.</p>
+  </div>
+</section>
+
+<!-- ══ RECOGNISE ══ -->
+<section class="scene movement" id="m2" style="background:linear-gradient(180deg,#0A1020,#141C3A);">
+  <canvas id="c-braid"></canvas>
+  <div class="wrap">
+    <div class="mv-head"><span class="mv-num">II</span><h2 class="mv-name">Recognise</h2></div>
+    <p class="mv-say">three paths, running together</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Madhumita</span>
+        <h3>Her own institution</h3>
+        <p>Built to her standard, on her subject, not folded into mine. Hers to describe when she chooses to.</p>
+      </div>
+      <div class="card">
+        <span class="tag">My son</span>
+        <h3>His own craft</h3>
+        <p>Creative work on genuinely hard problems &mdash; the kind of practice you are reached for when the problem is difficult, not when it needs decorating.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Mine</span>
+        <h3>YASHHO, and the science under it</h3>
+        <p>Human development taken seriously enough to be researched, taught and measured &mdash; so a child is seen clearly instead of sorted early.</p>
+      </div>
+    </div>
+    <p class="pull" style="max-width:26ch">Her school. His craft. My platform.<br><span style="color:var(--amber);font-weight:600">Not one of us chose safe.</span></p>
+  </section>
+
+<!-- ══ ACTIVATE ══ -->
+<section class="scene movement" id="m3" style="background:linear-gradient(180deg,#141C3A,#2A2354);">
+  <canvas id="c-dendrite"></canvas>
+  <div class="wrap">
+    <div class="mv-head"><span class="mv-num">III</span><h2 class="mv-name">Activate</h2></div>
+    <p class="mv-say">the study, and the discipline that makes study possible</p>
+    <div class="grid">
+      <div class="card wide">
+        <span class="tag">The research</span>
+        <h3>The Technology of Human Development</h3>
+        <p>I study what is actually involved in the development and evolution of the human species &mdash; <strong>biology, zoology, sociology, psychology, neuroscience</strong>. Not as background reading. As the discipline the whole venture rests on.</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--amber);margin-top:16px;">One book. Every day.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Stop</span>
+        <h3>Worrying</h3>
+        <p>I have stopped worrying. Action, action, action &mdash; never procrastination. Worry is the tax on a decision not yet made.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Start</span>
+        <h3>Scheduling like it matters</h3>
+        <p>I schedule my time as though everything in my life matters, because it does. A calendar is the only honest record of what a man actually believes.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Daily</span>
+        <h3>Restore integrity</h3>
+        <p>I restore my integrity every day, starting from scratch. Not a state reached once, but a thing rebuilt each morning by whoever I was yesterday.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REALISE ══ -->
+<section class="scene movement" id="m4" style="background:linear-gradient(180deg,#2A2354,#5A3A52 55%,#8E4A3E);">
+  <canvas id="c-constellation"></canvas>
+  <div class="wrap">
+    <div class="mv-head"><span class="mv-num">IV</span><h2 class="mv-name">Realise</h2></div>
+    <p class="mv-say">yashho.com — the arc, in learners</p>
+
+    <div class="ladder">
+      <div class="rung"><span class="n">100s</span><span class="lab">Today<b>Hundreds of students a month</b></span></div>
+      <div class="rung"><span class="n">1,000s</span><span class="lab">Next 3–6 months<b>Thousands of students a month</b></span></div>
+      <div class="rung"><span class="n">1 lakh</span><span class="lab">FY 2027<b>Active students</b></span></div>
+      <div class="rung"><span class="n">10 lakh</span><span class="lab">FY 2029<b>Active students</b></span></div>
+    </div>
+
+    <div class="grid" style="margin-top:56px;">
+      <div class="card wide">
+        <span class="tag">The engine</span>
+        <h3>A flywheel, not a funnel</h3>
+        <p>I am building the platform that delivers an unmatched user experience. Best-in-class NPS &mdash; measured on <strong>retention</strong> and on <strong>growth through organic referral</strong>. The flywheel turns. Paid acquisition is what you do when the product is not yet good enough to be talked about.</p>
+      </div>
+      <div class="card wide">
+        <span class="tag">Bangalore &ndash; Mysore</span>
+        <h3>A world-class R&amp;D centre on Human Excellence</h3>
+        <p>I am building it: human excellence and curriculum development, researched properly and openly. An institution that makes our communities and our nation proud, and a global organisation with its feet in the Bangalore&ndash;Mysore corridor rather than borrowed from elsewhere.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Every year</span>
+        <h3>One journey out</h3>
+        <p>I travel out once a year. A new language, a new culture, every year. The map means nothing unless you have stood on some of it.</p>
+      </div>
+      <div class="card leaf">
+        <span class="tag">The land</span>
+        <h3>A house that feeds itself</h3>
+        <p>A five-bedroom villa, self-sufficient in its own energy. Organic farming. Farm-fresh and local on the table. The community around it self-sustaining in what it consumes and what it burns.</p>
+      </div>
+      <div class="card leaf">
+        <span class="tag">The keeping</span>
+        <h3>Air, water, soil</h3>
+        <p>I protect the air, the water and the soil around me. Three things no revenue line replaces and no apology restores.</p>
+      </div>
+      <div class="card">
+        <span class="tag">And</span>
+        <h3>The car</h3>
+        <p>A Porsche. Or a BMW. Written down rather than left off to look serious &mdash; a thing wanted is still a thing wanted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLOSE ══ -->
+<section class="scene" id="close" style="background:linear-gradient(180deg,#8E4A3E,#E4A23F 45%,#F5DDAE);">
+  <canvas id="c-sun"></canvas>
+  <div class="wrap">
+    <p class="vow">Nothing about this is easy, and it was never going to be.<br><br>Which is why integrity is not a state I reach &mdash; it is a thing I <b>rebuild every morning, from scratch.</b></p>
+    <p class="vow-note">Goutam Kumar Biswas &nbsp;·&nbsp; Bengaluru &nbsp;·&nbsp; FY2027 &rarr; FY2029</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setup(id){
+    const c = document.getElementById(id); if(!c) return null;
+    const ctx = c.getContext('2d');
+    function size(){
+      const r = c.parentElement.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio||1, 2);
+      c.width = Math.max(1, r.width*dpr); c.height = Math.max(1, r.height*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      return {w:r.width, h:r.height};
+    }
+    return {c, ctx, size};
+  }
+
+  /* ── HERO: dawn over the Bangalore–Mysore ridgeline ───────────── */
+  (function(){
+    const s = setup('c-hero'); if(!s) return;
+    function draw(){
+      const {w,h} = s.size(), ctx = s.ctx;
+      const g = ctx.createLinearGradient(0,0,0,h);
+      g.addColorStop(0,'#04060E'); g.addColorStop(.42,'#101A3C');
+      g.addColorStop(.72,'#40295A'); g.addColorStop(.92,'#9C4B34'); g.addColorStop(1,'#C86A33');
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+
+      // stars, densest at the top, fading into the dawn
+      for(let i=0;i<260;i++){
+        const y = Math.pow(Math.random(),1.7)*h*.72, x = Math.random()*w;
+        const a = (1 - y/(h*.72))*.85*Math.random();
+        ctx.fillStyle = 'rgba(245,221,174,'+a.toFixed(3)+')';
+        ctx.fillRect(x,y,Math.random()<.12?1.6:1,Math.random()<.12?1.6:1);
+      }
+      // the sun, just clearing the ridge
+      const sx = w*.74, sy = h*.845, R = Math.max(w,h)*.30;
+      const sg = ctx.createRadialGradient(sx,sy,0,sx,sy,R);
+      sg.addColorStop(0,'rgba(255,226,160,.95)'); sg.addColorStop(.18,'rgba(240,170,80,.55)');
+      sg.addColorStop(.55,'rgba(190,90,50,.20)'); sg.addColorStop(1,'rgba(190,90,50,0)');
+      ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(sx,sy,R,0,7); ctx.fill();
+      ctx.fillStyle='rgba(255,236,190,.92)'; ctx.beginPath(); ctx.arc(sx,sy,w*.035,0,7); ctx.fill();
+
+      // four ridgelines, far to near
+      const bands = [
+        {y:.80, amp:.045, col:'#33244A', seed:1.3},
+        {y:.855,amp:.055, col:'#24193A', seed:2.7},
+        {y:.905,amp:.050, col:'#160F29', seed:4.1},
+        {y:.955,amp:.040, col:'#0A0718', seed:5.9}
+      ];
+      bands.forEach(b=>{
+        ctx.beginPath(); ctx.moveTo(0,h);
+        for(let x=0;x<=w;x+=6){
+          const t = x/w;
+          const y = h*b.y
+            - Math.sin(t*3.1+b.seed)*h*b.amp
+            - Math.sin(t*7.7+b.seed*2)*h*b.amp*.34
+            - Math.sin(t*15.3+b.seed*3)*h*b.amp*.13;
+          ctx.lineTo(x,y);
+        }
+        ctx.lineTo(w,h); ctx.closePath(); ctx.fillStyle=b.col; ctx.fill();
+      });
+    }
+    draw(); window.addEventListener('resize', draw);
+  })();
+
+  /* ── SCAN: breath — concentric rings, slowly expanding ────────── */
+  (function(){
+    const s = setup('c-breath'); if(!s) return;
+    let t=0, dims=s.size();
+    function frame(){
+      const {w,h}=dims, ctx=s.ctx;
+      ctx.clearRect(0,0,w,h);
+      const cx=w*.82, cy=h*.5, base=Math.min(w,h)*.10;
+      for(let i=0;i<9;i++){
+        const phase = (t*.0045 + i*.11) % 1;
+        const r = base + phase*Math.min(w,h)*.62;
+        const a = (1-phase)*.30;
+        ctx.strokeStyle='rgba(228,162,63,'+a.toFixed(3)+')';
+        ctx.lineWidth = 1 + (1-phase)*1.4;
+        ctx.beginPath(); ctx.arc(cx,cy,r,0,7); ctx.stroke();
+      }
+      if(!RM){ t++; requestAnimationFrame(frame); }
+    }
+    frame();
+    window.addEventListener('resize',()=>{dims=s.size(); if(RM) frame();});
+  })();
+
+  /* ── RECOGNISE: three strands, braided ───────────────────────── */
+  (function(){
+    const s = setup('c-braid'); if(!s) return;
+    function draw(){
+      const {w,h}=dims=s.size(), ctx=s.ctx;
+      ctx.clearRect(0,0,w,h);
+      const cols=['rgba(245,221,174,.55)','rgba(228,162,63,.5)','rgba(79,142,107,.5)'];
+      for(let k=0;k<3;k++){
+        ctx.beginPath();
+        for(let x=0;x<=w;x+=4){
+          const t=x/w;
+          const y = h*.5 + Math.sin(t*5.2 + k*2.094)*h*.17 + Math.sin(t*2.1+k)*h*.05;
+          x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+        }
+        ctx.strokeStyle=cols[k]; ctx.lineWidth=1.7; ctx.stroke();
+      }
+    }
+    let dims; draw(); window.addEventListener('resize',draw);
+  })();
+
+  /* ── ACTIVATE: dendritic growth — knowledge branching ────────── */
+  (function(){
+    const s = setup('c-dendrite'); if(!s) return;
+    function branch(ctx,x,y,ang,len,depth){
+      if(depth===0||len<4) return;
+      const x2=x+Math.cos(ang)*len, y2=y+Math.sin(ang)*len;
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x2,y2);
+      ctx.strokeStyle='rgba(228,162,63,'+(0.05+depth*0.028).toFixed(3)+')';
+      ctx.lineWidth=depth*.42; ctx.stroke();
+      branch(ctx,x2,y2,ang-0.42+Math.random()*.12,len*.76,depth-1);
+      branch(ctx,x2,y2,ang+0.42-Math.random()*.12,len*.76,depth-1);
+      if(depth>4 && Math.random()<.35) branch(ctx,x2,y2,ang+(Math.random()-.5)*.3,len*.62,depth-2);
+    }
+    function draw(){
+      const {w,h}=s.size(), ctx=s.ctx;
+      ctx.clearRect(0,0,w,h);
+      branch(ctx, w*.12, h, -Math.PI/2 - .12, Math.min(h*.17,110), 8);
+      branch(ctx, w*.88, h, -Math.PI/2 + .12, Math.min(h*.15,95), 7);
+    }
+    draw(); window.addEventListener('resize',draw);
+  })();
+
+  /* ── REALISE: the constellation grows with the numbers ───────── */
+  (function(){
+    const s = setup('c-constellation'); if(!s) return;
+    function draw(){
+      const {w,h}=s.size(), ctx=s.ctx;
+      ctx.clearRect(0,0,w,h);
+      // four clusters; point-count scales with the learner milestones
+      const groups=[{n:26,x:.10,r:.055},{n:70,x:.33,r:.085},{n:190,x:.60,r:.12},{n:430,x:.87,r:.16}];
+      groups.forEach(g=>{
+        const cx=w*g.x, cy=h*.5, R=Math.min(w,h)*g.r*2.1;
+        for(let i=0;i<g.n;i++){
+          const a=Math.random()*7, rad=Math.pow(Math.random(),.62)*R;
+          const x=cx+Math.cos(a)*rad, y=cy+Math.sin(a)*rad*.72;
+          const alpha=.10+Math.random()*.42;
+          ctx.fillStyle='rgba(245,221,174,'+alpha.toFixed(3)+')';
+          const sz=Math.random()<.10?1.9:1.1;
+          ctx.fillRect(x,y,sz,sz);
+        }
+      });
+    }
+    draw(); window.addEventListener('resize',draw);
+  })();
+
+  /* ── CLOSE: risen sun, full light ────────────────────────────── */
+  (function(){
+    const s = setup('c-sun'); if(!s) return;
+    function draw(){
+      const {w,h}=s.size(), ctx=s.ctx;
+      ctx.clearRect(0,0,w,h);
+      const cx=w*.80, cy=h*.42, R=Math.max(w,h)*.55;
+      const g=ctx.createRadialGradient(cx,cy,0,cx,cy,R);
+      g.addColorStop(0,'rgba(255,249,232,.95)'); g.addColorStop(.25,'rgba(252,226,168,.55)');
+      g.addColorStop(1,'rgba(252,226,168,0)');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,7); ctx.fill();
+      for(let i=0;i<46;i++){
+        const a=(i/46)*Math.PI*2, L=R*(.55+Math.random()*.5);
+        ctx.beginPath(); ctx.moveTo(cx,cy);
+        ctx.lineTo(cx+Math.cos(a)*L, cy+Math.sin(a)*L);
+        ctx.strokeStyle='rgba(255,247,226,'+(0.018+Math.random()*0.03).toFixed(3)+')';
+        ctx.lineWidth=1; ctx.stroke();
+      }
+    }
+    draw(); window.addEventListener('resize',draw);
+  })();
+})();
+</script>
+
+
+</body>
+</html>
