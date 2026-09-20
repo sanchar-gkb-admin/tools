@@ -1,0 +1,551 @@
+<title>Engine 2A — the exam day, offline end to end</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FDF8F0; --card:#FFFFFF; --ink:#2B2119; --muted:#7A6A5C;
+    --orange:#F5821F; --orange-soft:#FFF1E0; --amber:#E8A33D;
+    --line:#EBE0CE; --green:#2E7D5B; --red:#C0492F; --slate:#F4EEE4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--ink);
+       font-family:Montserrat,system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .wrap{max-width:1180px;margin:0 auto;padding:44px 22px 90px}
+  h1{font-size:34px;font-weight:900;letter-spacing:-.5px;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 26px;max-width:760px}
+  .lede{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 34px}
+  .lede b{color:var(--orange)}
+  h2{font-size:13px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;
+     color:var(--orange);margin:46px 0 4px;padding-top:20px;border-top:2px solid var(--line)}
+  h2 span{color:var(--muted);font-weight:600;letter-spacing:0}
+  .phase-note{color:var(--muted);margin:0 0 22px;max-width:820px;font-size:14px}
+  .row{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start}
+  .cell{width:278px}
+  .cap{font-size:12px;font-weight:800;letter-spacing:.4px;margin:12px 0 3px}
+  .cap i{font-style:normal;color:var(--orange)}
+  .why{font-size:12px;color:var(--muted);line-height:1.45}
+  .new{display:inline-block;background:var(--orange);color:#fff;font-size:9px;font-weight:900;
+       letter-spacing:.8px;padding:2px 6px;border-radius:4px;vertical-align:2px;margin-left:5px}
+  .exist{display:inline-block;background:var(--slate);color:var(--muted);font-size:9px;font-weight:900;
+       letter-spacing:.8px;padding:2px 6px;border-radius:4px;vertical-align:2px;margin-left:5px}
+
+  /* device */
+  .phone{width:278px;border:9px solid #1b1512;border-radius:30px;background:var(--card);
+         overflow:hidden;position:relative;box-shadow:0 10px 26px rgba(43,33,25,.13)}
+  .phone:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+                width:96px;height:17px;background:#1b1512;border-radius:0 0 11px 11px;z-index:3}
+  .pv{height:492px;overflow:hidden;display:flex;flex-direction:column}
+  .bar{padding:22px 15px 9px;font-size:10px;color:var(--muted);display:flex;justify-content:space-between;
+       border-bottom:1px solid var(--line)}
+  .body{padding:15px;flex:1;overflow:hidden}
+  .browser{width:580px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);
+           box-shadow:0 10px 26px rgba(43,33,25,.10)}
+  .chrome{background:var(--slate);padding:9px 12px;display:flex;gap:6px;align-items:center;border-bottom:1px solid var(--line)}
+  .dot{width:9px;height:9px;border-radius:50%;background:#d9cdb9}
+  .url{flex:1;background:var(--card);border-radius:6px;font-size:10px;color:var(--muted);padding:3px 9px;margin-left:8px}
+
+  /* atoms */
+  .h{font-size:17px;font-weight:900;line-height:1.25;margin:0 0 7px}
+  .p{font-size:12px;color:var(--muted);margin:0 0 12px;line-height:1.5}
+  .btn{background:var(--orange);color:#fff;font-weight:800;font-size:12px;text-align:center;
+       padding:11px;border-radius:9px;margin-top:10px}
+  .btn.ghost{background:var(--card);color:var(--ink);border:1.5px solid var(--line)}
+  .btn.mute{background:var(--slate);color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:9px}
+  .card.sel{border-color:var(--orange);background:var(--orange-soft)}
+  .card.warn{border-color:var(--amber);background:#FFF8EC}
+  .card.bad{border-color:var(--red);background:#FCEFEC}
+  .card.ok{border-color:var(--green);background:#EDF6F1}
+  .t{font-size:12px;font-weight:800;margin-bottom:2px}
+  .s{font-size:10.5px;color:var(--muted);line-height:1.45}
+  .pill{display:inline-block;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;
+        background:var(--slate);color:var(--muted);letter-spacing:.3px}
+  .pill.o{background:var(--orange);color:#fff}
+  .pill.g{background:var(--green);color:#fff}
+  .pill.r{background:var(--red);color:#fff}
+  .pill.a{background:var(--amber);color:#fff}
+  .clock{font-size:24px;font-weight:900;letter-spacing:-.5px}
+  .pace{height:8px;background:var(--slate);border-radius:5px;position:relative;overflow:hidden;margin:9px 0}
+  .fill{position:absolute;left:0;top:0;bottom:0;background:var(--orange);border-radius:5px}
+  .fill.warm{background:linear-gradient(90deg,var(--orange) 60%,var(--amber))}
+  .tick{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.55}
+  .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin-top:8px}
+  .q{aspect-ratio:1;border-radius:3px;background:var(--slate);font-size:7px;display:flex;
+     align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+  .q.a{background:var(--orange);color:#fff}
+  .q.m{background:var(--amber);color:#fff}
+  .q.b{background:#fff;border:1px solid var(--line)}
+  .opt{border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font-size:11px;margin-bottom:6px}
+  .opt.sel{border-color:var(--orange);background:var(--orange-soft);font-weight:700}
+  .slot{display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--line);
+        border-radius:9px;padding:9px 11px;margin-bottom:7px;font-size:11px}
+  .slot.sel{border-color:var(--orange);background:var(--orange-soft)}
+  .slot.off{opacity:.42}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:56px;margin:10px 0}
+  .bars div{flex:1;background:var(--orange);border-radius:3px 3px 0 0}
+  .ab{display:flex;justify-content:space-between;font-size:10px;padding:5px 0;border-bottom:1px solid var(--line)}
+  .marks{position:relative;height:6px;background:var(--slate);border-radius:4px;width:78px}
+  .marks i{position:absolute;top:-2px;width:2px;height:10px;background:var(--ink);opacity:.4}
+  .marks b{position:absolute;top:0;bottom:0;left:0;background:var(--orange);border-radius:4px}
+  .gap{background:var(--orange-soft);border-left:3px solid var(--orange);padding:10px 13px;
+       border-radius:0 9px 9px 0;margin:16px 0 22px;font-size:13px;max-width:880px}
+  .gap b{color:var(--orange)}
+  footer{margin-top:60px;padding-top:22px;border-top:2px solid var(--line);color:var(--muted);font-size:12px}
+</style>
+
+<div class="wrap">
+
+<h1>Engine 2A — the exam day, offline end to end</h1>
+<p class="sub">One day. Two papers. Four self-report tests around them. One morning connection, and then the
+whole day runs from her phone — including every way it can go wrong.</p>
+
+<div class="lede">
+  <b>Why 2A has its own storyboard.</b> The 2C/2B journey is a set of sittings booked on a time grid, each sat
+  online. 2A is <b>a day</b>: 09:45 to 16:15, both papers, with a pre-exam perception test and a post-exam
+  reflection test around each one — 28 self-report questions, machine-scored into the same 15 abilities. It has
+  a morning pack, a readiness check days ahead, a six-hour offline stretch, and refusals that exist only
+  because there is nobody to ask.<br><br>
+  <b>Everything marked BUILT exists in code today</b> (slices B–G, 20-Sep-2026) and the copy is the copy in the
+  product, not a sketch. TARGET marks a screen that is specified but not finished.<br><br>
+  <b>Never "tasks".</b> On screen they are the <b>pre-exam perception test</b> and the <b>post-exam reflection
+  test</b>.
+</div>
+
+<h2>A · Days before <span>— the refusal happens now, never at 10:00</span></h2>
+<p class="phase-note">A phone that cannot run the day must say so while there is time to fix it or use another
+phone. The check runs at booking, on the set list, the day before and on the morning — and never during the
+day itself.</p>
+
+<div class="row">
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:41</span><span>Exam hall · 2A</span></div>
+    <div class="body">
+      <div class="h">Your exam day</div>
+      <p class="p">Engine 2A — one day, both papers, and the four short tests around them.</p>
+      <div class="card sel"><span class="pill o">NEXT</span><div class="t" style="margin-top:6px">Sat 27 Sep</div>
+        <div class="s">09:45 pre-exam perception test<br>10:00 Paper 1 · 2 hours<br>12:05 post-exam reflection
+        test<br><br>13:45 · 14:00 Paper 2 · 16:05</div></div>
+      <div class="btn">Book this day</div>
+    </div>
+  </div></div>
+  <div class="cap">A1 · her 2A card <i>—</i> a DAY, not two slots<span class="new">BUILT</span></div>
+  <div class="why">One date books the whole day: both papers and the four tests around them. The card shows the shape of the day.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:42</span><span>Booked</span></div>
+    <div class="body">
+      <div class="h">You're booked</div>
+      <p class="p">Sat 27 Sep · 09:45–16:15. Both papers, one day.</p>
+      <div class="card"><div class="t">Three things to know</div>
+        <div class="s">It starts on the dot · 2 hours, no pause · move it up to 24 h before.</div></div>
+      <div class="card"><div class="t">Getting this phone ready for your exam day…</div>
+        <div class="s">Creating this phone's key · installing the day's pages · rehearsing the paper opening.</div></div>
+    </div>
+  </div></div>
+  <div class="cap">A2 · booked, and the phone is made ready<span class="new">BUILT</span></div>
+  <div class="why">Two or three seconds while the phone's key is created, the pages installed and the crypto rehearsed. The booking already stands.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:42</span><span>Booked</span></div>
+    <div class="body">
+      <div class="h">You're booked</div>
+      <div class="card ok"><div class="t">✓ This phone is ready for your exam day</div>
+        <div class="s">Use this phone on the day.</div></div>
+      <p class="p">Your papers download by themselves on the morning. After that you can switch off mobile data
+      — nothing needs a connection until you're done.</p>
+    </div>
+  </div></div>
+  <div class="cap">A3 · ready <i>—</i> use THIS phone<span class="new">BUILT</span></div>
+  <div class="why">The green state names the one thing she must remember: the day belongs to the phone that holds it.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:42</span><span>Booked</span></div>
+    <div class="body">
+      <div class="h">You're booked</div>
+      <div class="card ok"><div class="t">Phone ready ✓ — one thing would make it safer</div>
+        <div class="s">Add YASHHO to your home screen, so this phone cannot clear your exam day to save space.</div>
+        <div class="btn ghost" style="margin-top:8px">How</div></div>
+    </div>
+  </div></div>
+  <div class="cap">A4 · advice, not a refusal<span class="new">BUILT</span></div>
+  <div class="why">Measured: a normal phone will not PROMISE to keep stored data unless the site is installed. A card everyone sees is a card nobody reads — so this is advice on a ready phone.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:42</span><span>Booked</span></div>
+    <div class="body">
+      <div class="h">You're booked</div>
+      <div class="card warn"><div class="t">Phone needs attention</div>
+        <div class="s">You're in a private window, and it forgets everything when closed — open YASHHO in a
+        normal window, and use that on the day.</div>
+        <div class="btn ghost" style="margin-top:8px">Check this phone again</div></div>
+    </div>
+  </div></div>
+  <div class="cap">A5 · a private window<span class="new">BUILT</span></div>
+  <div class="why">It forgets everything when it closes — including her answers. Named plainly, with the one fix.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:42</span><span>Booked</span></div>
+    <div class="body">
+      <div class="h">You're booked</div>
+      <div class="card bad"><div class="t">Phone needs attention</div>
+        <div class="s">This browser can't run the exam offline — open this link in Chrome, and use that browser
+        on the day.</div>
+        <div class="btn ghost" style="margin-top:8px">Copy link</div></div>
+    </div>
+  </div></div>
+  <div class="cap">A6 · a browser that cannot do it<span class="new">BUILT</span></div>
+  <div class="why">One reason, one fix, and a link she can copy into the browser that works.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:42</span><span>Booked</span></div>
+    <div class="body">
+      <div class="h">You're booked</div>
+      <div class="card bad"><div class="t">Phone needs attention</div>
+        <div class="s">Something on this phone blocked the offline setup. Try again, or use another phone on the
+        day. We have been told about this.</div>
+        <div class="btn ghost" style="margin-top:8px">Check this phone again</div></div>
+      <p class="p">Your booking stands either way.</p>
+    </div>
+  </div></div>
+  <div class="cap">A7 · the rehearsal failed<span class="new">BUILT</span></div>
+  <div class="why">The real crypto path was tried on her phone and did not work. She is told once; we are told immediately — days before, not at 10:00.</div>
+</div>
+
+</div>
+
+<h2>B · The days between <span>— one line, on the phone she will use</span></h2>
+<div class="row">
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>9:41</span><span>Your exams</span></div>
+    <div class="body">
+      <div class="h">Your exam day</div>
+      <div class="card sel"><div class="t">Sat 27 Sep · 09:45–16:15</div>
+        <div class="s">Paper 1 — 10:00<br>Paper 2 — 14:00</div></div>
+      <div class="card ok"><div class="t">Phone ready ✓</div><div class="s">Use this phone on the day.</div></div>
+      <div class="btn ghost">Check this phone again</div>
+      <div class="btn">Open your exam day (works offline)</div>
+    </div>
+  </div></div>
+  <div class="cap">B1 · set list, until the day<span class="new">BUILT</span></div>
+  <div class="why">The badge re-runs the whole check when tapped. The day is one tap away once its pack can be fetched.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>20:10</span><span>Tomorrow</span></div>
+    <div class="body">
+      <div class="h">Your exam day</div>
+      <div class="card warn"><div class="t">Tomorrow is your exam day</div>
+        <div class="s">Open YASHHO once on the phone you'll use — that puts your day on it.</div></div>
+      <div class="card"><div class="t">Sat 27 Sep · 09:45</div>
+        <div class="s">Pre-exam perception test, then Paper 1 at 10:00.</div></div>
+    </div>
+  </div></div>
+  <div class="cap">B2 · the day before<span class="new">BUILT</span></div>
+  <div class="why">The nudge that matters: open it once, on the phone you will actually use. Opening re-runs the check.</div>
+</div>
+
+</div>
+
+<h2>C · The morning <span>— one connection, then the day is hers</span></h2>
+<p class="phase-note">From three hours before the first paper, opening the app pulls the whole day onto the
+phone: both papers sealed, their keys wrapped to this phone alone, and every screen the day needs.</p>
+
+<div class="row">
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>07:12</span><span>Exam day</span></div>
+    <div class="body">
+      <div class="h">Pre-exam perception test · Paper 1</div>
+      <div class="card ok"><div class="t">✓ Your whole exam day is on this phone</div>
+        <div class="s">You can switch off mobile data now if you want; nothing needs a connection until you're
+        done.</div></div>
+      <p class="p">Starts at 09:45</p>
+      <div class="h" style="font-size:30px">2:33:04</div>
+    </div>
+  </div></div>
+  <div class="cap">C1 · the whole day lands<span class="new">BUILT</span></div>
+  <div class="why">The sentence that makes the offline promise real — and tells her she may switch data off.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>07:12</span><span>Exam day</span></div>
+    <div class="body">
+      <div class="h">Connect once to put your exam day on this phone</div>
+      <p class="p">Connect once before 09:45 to put your day on this phone.</p>
+      <p class="p">If you can't, you can still sit online.</p>
+      <div class="btn ghost">Sit online instead</div>
+    </div>
+  </div></div>
+  <div class="cap">C2 · no signal this morning<span class="new">BUILT</span></div>
+  <div class="why">Nobody is excluded: she is told when to connect by, and can still sit online if she never manages it.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>09:30</span><span>Exam day</span></div>
+    <div class="body">
+      <div class="h">Pre-exam perception test · Paper 1</div>
+      <p class="p">Starts at 09:45</p>
+      <div class="h" style="font-size:30px">14:58</div>
+      <div class="card"><div class="t">Before you begin: make this phone quiet</div>
+        <div class="s">☐ Do Not Disturb / Zen mode is on <i>How on Android · How on iPhone</i><br>
+        ☐ Battery above 50%, or on charge<br>
+        ☐ Somewhere you won't be interrupted for 2 hours</div>
+        <div class="btn" style="margin-top:8px">I'm ready</div></div>
+    </div>
+  </div></div>
+  <div class="cap">C3 · make this phone quiet<span class="new">BUILT</span></div>
+  <div class="why">Zen mode, asked for (Goutam, 19-Sep). A web page cannot set Do Not Disturb, and the start never waits for the answer.</div>
+</div>
+
+</div>
+
+<h2>D · The day itself <span>— six hours with no connection needed</span></h2>
+<p class="phase-note">Every step is drawn from the phone. At each boundary the page reloads itself and asks the
+phone what has happened so far — the same path a killed tab or a closed browser takes, so the recovery route is
+the one exercised all day.</p>
+
+<div class="row">
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>09:47</span><span>offline</span></div>
+    <div class="body">
+      <div class="bar" style="padding:0 0 6px;border:0"><span>Pre-exam perception test · Q1</span><span>0:08:12</span></div>
+      <div class="h" style="font-size:14px">Based on your preparation right now, what score do you realistically
+      expect in QP1?</div>
+      <div class="card">A · Below 100</div>
+      <div class="card sel">B · 100–150</div>
+      <div class="card">C · 150–200</div>
+      <div class="card">D · Above 200</div>
+      <div class="s">1 / 7 answered · unanswered ones aren't counted</div>
+    </div>
+  </div></div>
+  <div class="cap">D1 · pre-exam perception test<span class="new">BUILT</span></div>
+  <div class="why">Seven questions, ten minutes, on the paper's own clock — the same screen as the paper, so there is one timer and one behaviour.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>09:57</span><span>offline</span></div>
+    <div class="body">
+      <div class="h">Paper 1</div>
+      <p class="p">Starts at 10:00</p>
+      <div class="h" style="font-size:30px">2:41</div>
+      <div class="card"><div class="t">Before you begin: is this phone still quiet?</div>
+        <div class="s">☐ Do Not Disturb / Zen mode is still on</div>
+        <div class="btn" style="margin-top:8px">I'm ready</div></div>
+    </div>
+  </div></div>
+  <div class="cap">D2 · between steps<span class="new">BUILT</span></div>
+  <div class="why">The day never shows a blank gap: what is next, when it starts, and a shorter quiet-phone check.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>10:32</span><span>offline</span></div>
+    <div class="body">
+      <div class="bar" style="padding:0 0 6px;border:0"><span>Paper 1 · Q18</span><span>1:36:04</span></div>
+      <div class="h" style="font-size:14px">Which of these was the immediate cause of the 1857 revolt in
+      Karnataka?</div>
+      <div class="card">A · The doctrine of lapse</div>
+      <div class="card sel">B · The annexation of Kittur</div>
+      <div class="card">C · The salt tax</div>
+      <div class="card">D · None of these</div>
+      <div class="s">+2 correct · −0.50 wrong · 0 blank — a guess beats a blank</div>
+    </div>
+  </div></div>
+  <div class="cap">D3 · Paper 1, from the phone<span class="new">BUILT</span></div>
+  <div class="why">The paper opens from the copy already on the phone, its key unwrapped inside the browser's crypto engine. No request, no signal.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>10:33</span><span>offline</span></div>
+    <div class="body">
+      <div class="card warn"><div class="t">You're offline</div>
+        <div class="s">24 answers are held here, safely. The clock is still running — this paper ends at
+        12:00.</div></div>
+      <div class="bar" style="padding:0 0 6px;border:0"><span>Paper 1 · Q24</span><span>1:26:44</span></div>
+      <div class="h" style="font-size:14px">Which committee recommended…</div>
+      <div class="card">A · …</div>
+    </div>
+  </div></div>
+  <div class="cap">D4 · offline, and the clock still runs<span class="new">BUILT</span></div>
+  <div class="why">Never just 'offline': always what it means for her clock, and the instant the paper ends.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>12:00</span><span>offline</span></div>
+    <div class="body">
+      <div class="h">Time's up — paper closed on your device</div>
+      <p class="p">You're offline. 94 answers are held here, safely. We'll send them the moment you're back.
+      Your marks are decided by what you answered before 12:00, not by when it reached us.</p>
+      <p class="p">Keep this tab open, or just reopen the app — it will finish on its own.</p>
+    </div>
+  </div></div>
+  <div class="cap">D5 · the bell<span class="new">BUILT</span></div>
+  <div class="why">The phone closes the paper without the server, and FINISHES it: her submit is queued and sent the moment there is signal.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>12:07</span><span>offline</span></div>
+    <div class="body">
+      <div class="bar" style="padding:0 0 6px;border:0"><span>Post-exam reflection test · Q2</span><span>0:07:41</span></div>
+      <div class="h" style="font-size:14px">Which subject did you feel most confident about in the paper you just
+      sat?</div>
+      <div class="card">A · History</div>
+      <div class="card sel">B · Polity</div>
+      <div class="card">C · Geography</div>
+      <div class="card">D · I am not sure / cannot identify one subject</div>
+    </div>
+  </div></div>
+  <div class="cap">D6 · post-exam reflection test<span class="new">BUILT</span></div>
+  <div class="why">Five minutes after the bell, ten minutes long. The other half of the profile: what she expected, against what happened.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>16:16</span><span>offline</span></div>
+    <div class="body">
+      <div class="h">Your exam day is done</div>
+      <p class="p">Your answers are on this phone and go up on their own as soon as there's signal. Keep YASHHO
+      on this phone until they have.</p>
+      <div class="btn ghost">Back to your exams</div>
+    </div>
+  </div></div>
+  <div class="cap">D7 · the day is done<span class="new">BUILT</span></div>
+  <div class="why">The last screen says where her answers are and that nothing more is asked of her.</div>
+</div>
+
+</div>
+
+<h2>E · When something goes wrong <span>— refusals that are honest about why</span></h2>
+<p class="phase-note">Each is a real path with a browser test behind it. None loses an answer, and none is a
+verdict: what looked wrong is recorded for a person to read.</p>
+
+<div class="row">
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>10:41</span><span>Exam day</span></div>
+    <div class="body">
+      <div class="h">Connect once to put your exam day on this phone</div>
+      <div class="card bad"><div class="t">Your exam day is already on another phone</div>
+        <div class="s">Use that phone — it has your papers and your answers.</div></div>
+    </div>
+  </div></div>
+  <div class="cap">E1 · a second phone<span class="new">BUILT</span></div>
+  <div class="why">The day belongs to the phone that holds it. Moving it is allowed once, before the day starts; after that this is the answer — and the attempt is on the record.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>13:02</span><span>Exam day</span></div>
+    <div class="body">
+      <div class="h">Connect once to put your exam day on this phone</div>
+      <div class="card bad"><div class="t">This phone's clock changed by 180 minutes while the app was open</div>
+        <div class="s">Set it to network time and reopen.</div></div>
+    </div>
+  </div></div>
+  <div class="cap">E2 · the clock was changed<span class="new">BUILT</span></div>
+  <div class="why">A clock moved while the app is running is provable: the wall moves and the monotonic clock does not. The paper refuses to open, and says the fix.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>11:14</span><span>offline</span></div>
+    <div class="body">
+      <div class="h">Something went wrong on this phone</div>
+      <p class="p">Every answer you have given is saved on this phone and will be sent on its own. Tap below to
+      carry on.</p>
+      <div class="btn">Carry on</div>
+    </div>
+  </div></div>
+  <div class="cap">E3 · something crashed<span class="new">BUILT</span></div>
+  <div class="why">Every error is journalled and the page redraws from the phone. After three in one step she gets this — never a blank page, never a reload loop.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>11:20</span><span>offline</span></div>
+    <div class="body">
+      <div class="card"><div class="t">Nothing is shown to her</div>
+        <div class="s">The one case with no screen. The day carries on exactly as before; the record carries
+        "left the screen 3 times, 74 s in total" for a human to read afterwards.</div></div>
+      <div class="bar" style="padding:0 0 6px;border:0"><span>Paper 1 · Q31</span><span>1:02:10</span></div>
+    </div>
+  </div></div>
+  <div class="cap">E4 · she left the screen<span class="new">BUILT</span></div>
+  <div class="why">Leaving is timed and journalled, and flagged past three departures or a minute away in one paper — flagged, never blocked. A flag is evidence, not a verdict.</div>
+</div>
+
+</div>
+
+<h2>F · After the day <span>— what she gets, and when</span></h2>
+<div class="gap"><b>Not finished (slices H–I).</b> The sync of the whole day's journal, the attendance
+timeline, and the released profile are specified and only partly built. These two are the target, not the
+state.</div>
+
+<div class="row">
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>12:20</span><span>Results</span></div>
+    <div class="body">
+      <div class="h">Paper 1 is in</div>
+      <p class="p">Your profile lands after Paper 2 — a set is both papers, scored together.</p>
+      <div class="card"><div class="t">Paper 2 · today, 14:00</div>
+        <div class="s">Your phone already has it.</div></div>
+    </div>
+  </div></div>
+  <div class="cap">F1 · the reveal gate<span class="exist">TARGET</span></div>
+  <div class="why">Nothing after Paper 1. A set is both papers, and a half-set mark reads as a verdict.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>19:04</span><span>Profile</span></div>
+    <div class="body">
+      <div class="h">Your exam-day profile</div>
+      <div class="card ok"><div class="t">Where you were right about yourself</div>
+        <div class="s">Your confidence in Polity matched your marks almost exactly.</div></div>
+      <div class="card warn"><div class="t">Where you weren't</div>
+        <div class="s">You expected 100–150 and scored 176. You are harder on yourself than the paper is.</div></div>
+      <div class="card"><div class="t">15 abilities</div>
+        <div class="s">pre-exam perception ×0.25 · post-exam reflection ×0.25 · what you actually did ×0.50</div></div>
+    </div>
+  </div></div>
+  <div class="cap">F2 · the 2A profile<span class="exist">TARGET</span></div>
+  <div class="why">15 abilities, and the part only 2A can show: what she expected, what she felt, and what actually happened.</div>
+</div>
+
+</div>
+
+<div class="lede" style="margin-top:40px">
+  <b>What this storyboard is for.</b> Every screen above exists in code today except the two marked TARGET. If a
+  screen here disagrees with the product, the product is wrong — or this file is stale and should be fixed in the
+  same breath. Written 20-Sep-2026 alongside slices B–G.
+</div>
+
+</div>
