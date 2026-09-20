@@ -90,15 +90,84 @@
        border-radius:0 9px 9px 0;margin:16px 0 22px;font-size:13px;max-width:880px}
   .gap b{color:var(--orange)}
   footer{margin-top:60px;padding-top:22px;border-top:2px solid var(--line);color:var(--muted);font-size:12px}
+
+  /* ─────────── jazz: motion, depth and a day that moves ─────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .cell{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+    .cell.in{opacity:1;transform:none}
+    .phone{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+    .cell:hover .phone{transform:translateY(-6px) scale(1.012);box-shadow:0 22px 46px rgba(43,33,25,.22)}
+  }
+  h1{background:linear-gradient(92deg,var(--ink) 20%,var(--orange));-webkit-background-clip:text;
+     background-clip:text;color:transparent}
+  .hero{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin:0 0 30px}
+  .hero .lede{flex:1 1 420px;margin:0}
+
+  /* the day, as a ribbon — with a marker that walks it */
+  .ribbon{flex:1 1 430px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px 22px}
+  .ribbon h3{margin:0 0 4px;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--orange)}
+  .ribbon .sub2{font-size:12px;color:var(--muted);margin:0 0 16px}
+  .track{position:relative;height:64px}
+  .track .line{position:absolute;left:0;right:0;top:26px;height:6px;border-radius:3px;
+               background:linear-gradient(90deg,#EFE4D2,#F7D9B4,#EFE4D2)}
+  .seg{position:absolute;top:20px;height:18px;border-radius:5px;background:var(--orange-soft);
+       border:1px solid #F3C08A}
+  .seg.paper{background:linear-gradient(180deg,#FFB763,#F5821F);border-color:#E0700F}
+  .seg b{position:absolute;top:22px;left:0;font-size:9.5px;font-weight:800;color:var(--muted);white-space:nowrap}
+  .now{position:absolute;top:12px;width:2px;height:34px;background:var(--red);border-radius:2px;
+       box-shadow:0 0 0 4px rgba(192,73,47,.14)}
+  @media (prefers-reduced-motion: no-preference){ .now{animation:walk 14s linear infinite} }
+  @keyframes walk{from{left:2%}to{left:98%}}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:26px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+  /* live atoms inside the phones */
+  .count{font-size:30px;font-weight:900;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+  @media (prefers-reduced-motion: no-preference){ .count.tick{animation:pulse 1s ease-in-out infinite} }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .pace{height:7px;border-radius:4px;background:#EFE4D2;overflow:hidden;margin:8px 0 4px;position:relative}
+  .pace i{display:block;height:100%;background:var(--orange);width:38%}
+  @media (prefers-reduced-motion: no-preference){ .pace i{animation:fill 6s ease-in-out infinite alternate} }
+  @keyframes fill{from{width:22%}to{width:74%}}
+  .tapring{position:relative}
+  .tapring:after{content:"";position:absolute;right:12px;top:50%;width:14px;height:14px;margin-top:-7px;
+                 border-radius:50%;border:2px solid var(--orange)}
+  @media (prefers-reduced-motion: no-preference){ .tapring:after{animation:ring 2.4s ease-out infinite} }
+  @keyframes ring{0%{transform:scale(.4);opacity:.9}70%{transform:scale(1.9);opacity:0}100%{opacity:0}}
+  .offline-chip{display:inline-block;font-size:9px;font-weight:900;letter-spacing:.7px;padding:2px 7px;
+                border-radius:20px;background:#2B2119;color:#FFD9A8}
+  @media (prefers-reduced-motion: no-preference){ .offline-chip{animation:blink 2.6s ease-in-out infinite} }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
+  .tick-in{display:inline-block}
+  @media (prefers-reduced-motion: no-preference){ .tick-in{animation:pop .7s cubic-bezier(.2,1.6,.4,1) both} }
+  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+  .sync{height:6px;border-radius:3px;background:#E6F0EA;overflow:hidden;margin-top:8px}
+  .sync i{display:block;height:100%;width:40%;background:var(--green)}
+  @media (prefers-reduced-motion: no-preference){ .sync i{animation:slide 2.2s ease-in-out infinite} }
+  @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
+
+  /* phase nav that follows you down the page */
+  .nav{position:sticky;top:0;z-index:20;background:rgba(253,248,240,.92);backdrop-filter:blur(8px);
+       border-bottom:1px solid var(--line);margin:0 0 22px;padding:10px 0;display:flex;gap:8px;flex-wrap:wrap}
+  .nav a{font-size:11px;font-weight:800;letter-spacing:.6px;text-decoration:none;color:var(--muted);
+         border:1px solid var(--line);border-radius:20px;padding:5px 11px;background:var(--card);transition:all .2s}
+  .nav a:hover,.nav a.on{color:#fff;background:var(--orange);border-color:var(--orange)}
+  .count-badge{display:inline-block;background:var(--slate);color:var(--muted);border-radius:20px;
+               font-size:10px;font-weight:800;padding:2px 8px;margin-left:8px}
 </style>
 
 <div class="wrap">
 
+
+<div class="nav">
+  <a href="#A">A · Days before</a><a href="#B">B · Between</a><a href="#C">C · The morning</a>
+  <a href="#D">D · The day</a><a href="#E">E · When it breaks</a><a href="#F">F · After</a>
+</div>
 <h1>Engine 2A — the exam day, offline end to end</h1>
 <p class="sub">One day. Two papers. Four self-report tests around them. One morning connection, and then the
 whole day runs from her phone — including every way it can go wrong.</p>
 
-<div class="lede">
+<div class="hero"><div class="lede">
   <b>Why 2A has its own storyboard.</b> The 2C/2B journey is a set of sittings booked on a time grid, each sat
   online. 2A is <b>a day</b>: 09:45 to 16:15, both papers, with a pre-exam perception test and a post-exam
   reflection test around each one — 28 self-report questions, machine-scored into the same 15 abilities. It has
@@ -109,8 +178,29 @@ whole day runs from her phone — including every way it can go wrong.</p>
   <b>Never "tasks".</b> On screen they are the <b>pre-exam perception test</b> and the <b>post-exam reflection
   test</b>.
 </div>
+  <div class="ribbon">
+    <h3>Her day, end to end</h3>
+    <p class="sub2">09:45 → 16:15 · one morning connection, then six hours with no signal needed.</p>
+    <div class="track">
+      <div class="line"></div>
+      <div class="seg" style="left:0%;width:9%"><b>09:45 perception</b></div>
+      <div class="seg paper" style="left:11%;width:30%"><b>10:00 · Paper 1 · 2 h</b></div>
+      <div class="seg" style="left:43%;width:9%"><b>12:05 reflection</b></div>
+      <div class="seg" style="left:56%;width:9%"><b>13:45 perception</b></div>
+      <div class="seg paper" style="left:67%;width:30%"><b>14:00 · Paper 2 · 2 h</b></div>
+      <div class="now"></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:linear-gradient(180deg,#FFB763,#F5821F)"></i>paper</span>
+      <span><i style="background:var(--orange-soft);border:1px solid #F3C08A"></i>self-report test</span>
+      <span><i style="background:var(--red)"></i>now</span>
+      <span>25 screens · 6 phases</span>
+    </div>
+  </div>
+</div>
 
-<h2>A · Days before <span>— the refusal happens now, never at 10:00</span></h2>
+
+<h2 id="A">A · Days before <span>— the refusal happens now, never at 10:00</span></h2>
 <p class="phase-note">A phone that cannot run the day must say so while there is time to fix it or use another
 phone. The check runs at booking, on the set list, the day before and on the morning — and never during the
 day itself.</p>
@@ -154,7 +244,7 @@ day itself.</p>
     <div class="bar"><span>9:42</span><span>Booked</span></div>
     <div class="body">
       <div class="h">You're booked</div>
-      <div class="card ok"><div class="t">✓ This phone is ready for your exam day</div>
+      <div class="card ok"><div class="t"><span class="tick-in">✓</span> This phone is ready for your exam day</div>
         <div class="s">Use this phone on the day.</div></div>
       <p class="p">Your papers download by themselves on the morning. After that you can switch off mobile data
       — nothing needs a connection until you're done.</p>
@@ -226,7 +316,7 @@ day itself.</p>
 
 </div>
 
-<h2>B · The days between <span>— one line, on the phone she will use</span></h2>
+<h2 id="B">B · The days between <span>— one line, on the phone she will use</span></h2>
 <div class="row">
 
 <div class="cell">
@@ -262,7 +352,7 @@ day itself.</p>
 
 </div>
 
-<h2>C · The morning <span>— one connection, then the day is hers</span></h2>
+<h2 id="C">C · The morning <span>— one connection, then the day is hers</span></h2>
 <p class="phase-note">From three hours before the first paper, opening the app pulls the whole day onto the
 phone: both papers sealed, their keys wrapped to this phone alone, and every screen the day needs.</p>
 
@@ -273,11 +363,11 @@ phone: both papers sealed, their keys wrapped to this phone alone, and every scr
     <div class="bar"><span>07:12</span><span>Exam day</span></div>
     <div class="body">
       <div class="h">Pre-exam perception test · Paper 1</div>
-      <div class="card ok"><div class="t">✓ Your whole exam day is on this phone</div>
+      <div class="card ok"><div class="t"><span class="tick-in">✓</span> Your whole exam day is on this phone</div>
         <div class="s">You can switch off mobile data now if you want; nothing needs a connection until you're
         done.</div></div>
       <p class="p">Starts at 09:45</p>
-      <div class="h" style="font-size:30px">2:33:04</div>
+      <div class="count tick">2:33:04</div>
     </div>
   </div></div>
   <div class="cap">C1 · the whole day lands<span class="new">BUILT</span></div>
@@ -304,7 +394,7 @@ phone: both papers sealed, their keys wrapped to this phone alone, and every scr
     <div class="body">
       <div class="h">Pre-exam perception test · Paper 1</div>
       <p class="p">Starts at 09:45</p>
-      <div class="h" style="font-size:30px">14:58</div>
+      <div class="count tick">14:58</div>
       <div class="card"><div class="t">Before you begin: make this phone quiet</div>
         <div class="s">☐ Do Not Disturb / Zen mode is on <i>How on Android · How on iPhone</i><br>
         ☐ Battery above 50%, or on charge<br>
@@ -318,7 +408,7 @@ phone: both papers sealed, their keys wrapped to this phone alone, and every scr
 
 </div>
 
-<h2>D · The day itself <span>— six hours with no connection needed</span></h2>
+<h2 id="D">D · The day itself <span>— six hours with no connection needed</span></h2>
 <p class="phase-note">Every step is drawn from the phone. At each boundary the page reloads itself and asks the
 phone what has happened so far — the same path a killed tab or a closed browser takes, so the recovery route is
 the one exercised all day.</p>
@@ -327,13 +417,13 @@ the one exercised all day.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>09:47</span><span>offline</span></div>
+    <div class="bar"><span>09:47</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="bar" style="padding:0 0 6px;border:0"><span>Pre-exam perception test · Q1</span><span>0:08:12</span></div>
       <div class="h" style="font-size:14px">Based on your preparation right now, what score do you realistically
       expect in QP1?</div>
       <div class="card">A · Below 100</div>
-      <div class="card sel">B · 100–150</div>
+      <div class="card sel tapring">B · 100–150</div>
       <div class="card">C · 150–200</div>
       <div class="card">D · Above 200</div>
       <div class="s">1 / 7 answered · unanswered ones aren't counted</div>
@@ -345,11 +435,11 @@ the one exercised all day.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>09:57</span><span>offline</span></div>
+    <div class="bar"><span>09:57</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="h">Paper 1</div>
       <p class="p">Starts at 10:00</p>
-      <div class="h" style="font-size:30px">2:41</div>
+      <div class="count tick">2:41</div>
       <div class="card"><div class="t">Before you begin: is this phone still quiet?</div>
         <div class="s">☐ Do Not Disturb / Zen mode is still on</div>
         <div class="btn" style="margin-top:8px">I'm ready</div></div>
@@ -361,13 +451,14 @@ the one exercised all day.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>10:32</span><span>offline</span></div>
+    <div class="bar"><span>10:32</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="bar" style="padding:0 0 6px;border:0"><span>Paper 1 · Q18</span><span>1:36:04</span></div>
+      <div class="pace"><i></i></div>
       <div class="h" style="font-size:14px">Which of these was the immediate cause of the 1857 revolt in
       Karnataka?</div>
       <div class="card">A · The doctrine of lapse</div>
-      <div class="card sel">B · The annexation of Kittur</div>
+      <div class="card sel tapring">B · The annexation of Kittur</div>
       <div class="card">C · The salt tax</div>
       <div class="card">D · None of these</div>
       <div class="s">+2 correct · −0.50 wrong · 0 blank — a guess beats a blank</div>
@@ -379,7 +470,7 @@ the one exercised all day.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>10:33</span><span>offline</span></div>
+    <div class="bar"><span>10:33</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="card warn"><div class="t">You're offline</div>
         <div class="s">24 answers are held here, safely. The clock is still running — this paper ends at
@@ -395,7 +486,7 @@ the one exercised all day.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>12:00</span><span>offline</span></div>
+    <div class="bar"><span>12:00</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="h">Time's up — paper closed on your device</div>
       <p class="p">You're offline. 94 answers are held here, safely. We'll send them the moment you're back.
@@ -409,7 +500,7 @@ the one exercised all day.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>12:07</span><span>offline</span></div>
+    <div class="bar"><span>12:07</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="bar" style="padding:0 0 6px;border:0"><span>Post-exam reflection test · Q2</span><span>0:07:41</span></div>
       <div class="h" style="font-size:14px">Which subject did you feel most confident about in the paper you just
@@ -426,9 +517,10 @@ the one exercised all day.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>16:16</span><span>offline</span></div>
+    <div class="bar"><span>16:16</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="h">Your exam day is done</div>
+      <div class="sync"><i></i></div>
       <p class="p">Your answers are on this phone and go up on their own as soon as there's signal. Keep YASHHO
       on this phone until they have.</p>
       <div class="btn ghost">Back to your exams</div>
@@ -440,7 +532,7 @@ the one exercised all day.</p>
 
 </div>
 
-<h2>E · When something goes wrong <span>— refusals that are honest about why</span></h2>
+<h2 id="E">E · When something goes wrong <span>— refusals that are honest about why</span></h2>
 <p class="phase-note">Each is a real path with a browser test behind it. None loses an answer, and none is a
 verdict: what looked wrong is recorded for a person to read.</p>
 
@@ -474,7 +566,7 @@ verdict: what looked wrong is recorded for a person to read.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>11:14</span><span>offline</span></div>
+    <div class="bar"><span>11:14</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="h">Something went wrong on this phone</div>
       <p class="p">Every answer you have given is saved on this phone and will be sent on its own. Tap below to
@@ -488,7 +580,7 @@ verdict: what looked wrong is recorded for a person to read.</p>
 
 <div class="cell">
   <div class="phone"><div class="pv">
-    <div class="bar"><span>11:20</span><span>offline</span></div>
+    <div class="bar"><span>11:20</span><span class="offline-chip">OFFLINE</span></div>
     <div class="body">
       <div class="card"><div class="t">Nothing is shown to her</div>
         <div class="s">The one case with no screen. The day carries on exactly as before; the record carries
@@ -502,7 +594,7 @@ verdict: what looked wrong is recorded for a person to read.</p>
 
 </div>
 
-<h2>F · After the day <span>— what she gets, and when</span></h2>
+<h2 id="F">F · After the day <span>— what she gets, and when</span></h2>
 <div class="gap"><b>Not finished (slices H–I).</b> The sync of the whole day's journal, the attendance
 timeline, and the released profile are specified and only partly built. These two are the target, not the
 state.</div>
@@ -549,3 +641,25 @@ state.</div>
 </div>
 
 </div>
+<script>
+(function () {
+  var cells = document.querySelectorAll('.cell');
+  if (!('IntersectionObserver' in window)) { cells.forEach(function (c) { c.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (rows) {
+    rows.forEach(function (r, i) {
+      if (r.isIntersecting) { setTimeout(function () { r.target.classList.add('in'); }, i * 70); io.unobserve(r.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  cells.forEach(function (c) { io.observe(c); });
+
+  var links = [].slice.call(document.querySelectorAll('.nav a'));
+  var spy = new IntersectionObserver(function (rows) {
+    rows.forEach(function (r) {
+      if (!r.isIntersecting) return;
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + r.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  ['A','B','C','D','E','F'].forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
+})();
+</script>
+
