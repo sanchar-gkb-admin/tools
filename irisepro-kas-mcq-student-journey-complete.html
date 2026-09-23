@@ -589,12 +589,38 @@ is the only thing that ends a paper.</p>
       doesn't restart for a late arrival — that's what makes the scores comparable.</p>
       <div class="card"><div class="t">98 minutes left · 100 questions</div>
         <div class="s">About 59 seconds each. Go wide first, come back to the hard ones.</div></div>
-      <div class="btn">Start now</div>
+      <div class="btn">Continue</div>
     </div>
   </div></div>
-  <div class="cap">C7 · arriving late<span class="new">NEW</span></div>
+  <div class="cap">C7 · returning after a break<span class="new">CHANGED</span></div>
   <div class="why">A synchronised clock has no screen today. The learner needs the real number and a
-  strategy, not a countdown that lies.</div>
+  strategy, not a countdown that lies. <b>Narrowed 23-Sep-2026:</b> this is the screen for a learner who
+  STARTED on time and lost her phone or her signal. She is already in the hall, so she is always let
+  back in, whatever the clock says. It is no longer what a LATECOMER sees &mdash; that is C7b.</div>
+</div>
+
+<div class="cell">
+  <div class="phone"><div class="pv">
+    <div class="bar"><span>10:22</span><span>Sitting closed</span></div>
+    <div class="body">
+      <div class="card bad" style="margin-top:6px">
+        <div class="t">This sitting started at 10:00</div>
+        <div class="s">Late arrivals are not admitted, so this paper is closed to you.</div>
+      </div>
+      <p class="p" style="margin-top:12px">Everyone sits the same paper on the same clock &mdash; that is
+      what makes the scores comparable, and it is why the door closes at 10:00 sharp.</p>
+      <div class="card"><div class="t">Your other papers are not affected</div>
+        <div class="s">Open YASHHO before the start time and your day runs as normal.</div></div>
+      <div class="btn ghost">Back to my exam day</div>
+    </div>
+  </div></div>
+  <div class="cap">C7b &middot; arrived late &mdash; not admitted<span class="new">NEW</span></div>
+  <div class="why">Goutam, 23-Sep-2026: <i>&ldquo;normally in an exam hall if you are late you are late
+  &hellip; not permitted to sit if late even by a single min&rdquo;</i>. Default is NO late admission;
+  a configurable allowance exists but ships OFF. <b>It fires only when the seat was never started</b>
+  &mdash; a learner who started is always readmitted (C7), so this can never lock someone out of an exam
+  she is already sitting. The refusal is journalled, never a silent dead end. Said at BOOKING time too:
+  a rule she first meets at the moment it excludes her is an ambush, not an instruction.</div>
 </div>
 
 <div class="cell">
@@ -840,8 +866,12 @@ palette.</p>
 <footer>
   <b>What changed.</b> Six new screens fill the holes: the shelf where a scan and an exam series
   coexist (A1), booking as part of onboarding (B1–B3), moving and being refused (B4–B5), a language we
-  can't serve (B6), arriving late to a synchronised clock (C7), being absent (D5), and being told that
-  sitting again is a purchase (D6).<br><br>
+  can't serve (B6), returning to a synchronised clock after a break (C7), being absent (D5), and being
+  told that sitting again is a purchase (D6).<br><br>
+  <b>Changed 23-Sep-2026 &mdash; the hall rule.</b> Late is late: a learner who has not started when the
+  sitting begins is <b>not admitted</b> (C7b), with no grace by default. C7 narrows to the learner who
+  DID start and came back, so the rule can never lock someone out of a paper she is already sitting.
+  The distinction is &ldquo;has this seat started&rdquo;, never &ldquo;what time is it&rdquo;.<br><br>
   <b>The one that matters most</b> is C9 — never-reached questions leave the ability denominator,
   chosen-blanks stay in it. Without that distinction a candidate who ran out of time is scored as
   having failed abilities they were never shown.<br><br>
