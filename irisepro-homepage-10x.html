@@ -1,0 +1,204 @@
+<title>YASHHO homepage — 10X richer, mobile-first (storyboard)</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#fffbf6;--white:#fff;--ink:#191919;--soft:#4a4a55;--line:#e7e1d8;--blue:#033195;--deep:#021f5e;--tint:#e7edfb;
+    --saffron:#ff7301;--saffron-t:#ffe7d1;--saffron-ink:#b25001;--green:#0e7a5f;--red:#c81e1e;
+    --sc:#033195;--nj:#7a2bd1;--ki:#b25001}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Montserrat,system-ui,sans-serif;background:#eceef3;color:var(--ink);padding:32px 20px 80px}
+  h1{font-size:28px;font-weight:900;color:var(--deep)} .lede{max-width:900px;margin:8px 0 28px;color:var(--soft);font-size:14px;line-height:1.5}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;font-size:12px}
+  .legend span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+  .flow{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+  .step{width:300px}
+  .step h2{font-size:15px;font-weight:900;color:var(--deep);margin-bottom:4px}
+  .step p.cap{font-size:12px;color:var(--soft);line-height:1.45;margin-bottom:10px;min-height:34px}
+  .arrow{align-self:center;font-size:26px;color:var(--saffron);font-weight:900}
+  .phone{width:300px;height:620px;border-radius:38px;background:#111;padding:10px;box-shadow:0 20px 40px -18px rgba(2,31,94,.45);position:relative}
+  .phone:before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:110px;height:22px;background:#111;border-radius:0 0 14px 14px;z-index:5}
+  .pv{width:100%;height:100%;border-radius:30px;overflow:hidden;background:var(--cream);position:relative}
+  .scroll{height:100%;overflow-y:auto;scrollbar-width:none}
+  .web{height:30px;background:#eef1f6;display:flex;align-items:center;gap:6px;padding:0 12px;font-size:9px;font-weight:700;color:var(--deep)}
+  .web .dot{width:6px;height:6px;border-radius:50%;background:var(--saffron)}
+  .nav{height:44px;background:#0b1424;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+  .logo{background:#fff;border-radius:8px;padding:4px 8px;font-weight:900;font-size:13px;color:var(--saffron)} .logo b{color:var(--blue)}
+  .burger{width:26px;height:22px;border:1px solid #2a3a55;border-radius:6px}
+  .btn{display:flex;align-items:center;justify-content:center;background:var(--saffron);color:#fff;font-weight:900;border-radius:999px;font-size:12px;padding:12px 14px;box-shadow:0 0 0 5px rgba(255,115,1,.18)}
+  .wa{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none}
+  .ph{background:repeating-linear-gradient(135deg,#dfe5f2 0 10px,#e9edf6 10px 20px);color:var(--deep);display:flex;align-items:center;justify-content:center;text-align:center;font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:8px}
+  .tag{display:inline-block;font-size:8.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 8px}
+  .sec{padding:18px 14px}
+  .eyebrow{font-size:9px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--saffron-ink)}
+  .h{font-size:19px;font-weight:900;line-height:1.1;color:var(--deep);margin:4px 0 10px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:12px;box-shadow:0 10px 24px -18px rgba(2,31,94,.4)}
+  .scard .img{height:110px}
+  .scard .b{padding:12px 14px}
+  .scard .t{font-size:15px;font-weight:900}
+  .scard .o{font-size:11px;color:var(--soft);margin:4px 0 8px;line-height:1.35}
+  .from{font-size:11px;font-weight:700;color:var(--soft)} .from b{font-size:16px;font-weight:900;color:var(--ink)} .from s{color:#999}
+  .go{margin-top:10px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:900}
+  .go i{font-style:normal;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+  .steps .s{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
+  .steps .n{width:34px;height:34px;flex:none;border-radius:12px;background:var(--saffron);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .steps .s b{font-size:12.5px;display:block;color:#fff} .steps .s span{font-size:10.5px;color:#c9d6ef;line-height:1.35}
+  .num{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+  .num div{background:#fff;border:1px dashed #c9cfdb;border-radius:14px;padding:10px;text-align:center}
+  .num b{display:block;font-size:20px;font-weight:900;color:var(--blue)} .num span{font-size:9px;color:var(--soft);font-weight:700}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;gap:10px;margin-bottom:8px}
+  .face{width:40px;height:40px;border-radius:50%;flex:none}
+  .quote p{font-size:10.5px;line-height:1.4} .quote small{display:block;margin-top:4px;font-size:9px;color:var(--soft);font-weight:700}
+  .banner{background:linear-gradient(135deg,#c81e1e,#ff7301);color:#fff;border-radius:16px;padding:12px;margin-bottom:12px}
+  .banner b{display:block;font-size:13px;font-weight:900} .banner span{font-size:10px;opacity:.95}
+  .row{background:#fff;border:1px solid var(--line);border-left:4px solid var(--sc);border-radius:16px;padding:12px;margin-bottom:10px}
+  .row .k{font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--sc)}
+  .row .nm{font-size:13px;font-weight:900;margin:3px 0} .row .d{font-size:10px;color:var(--soft)}
+  .pr{display:flex;align-items:center;gap:8px;margin-top:8px} .pr b{font-size:18px;font-weight:900} .pr s{font-size:10px;color:#999}
+  .save{background:#e6f6ef;color:var(--green);font-size:9px;font-weight:900;border-radius:999px;padding:3px 7px}
+  .note{font-size:10.5px;color:var(--soft);margin-top:8px;line-height:1.4;max-width:300px}
+  .note b{color:var(--deep)}
+  .browser{width:880px;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 20px 40px -18px rgba(2,31,94,.45)}
+  .chrome{height:30px;background:#e8ebf1;display:flex;align-items:center;gap:6px;padding:0 12px}
+  .chrome i{width:9px;height:9px;border-radius:50%;background:#c9ced8;display:inline-block} .chrome .url{margin-left:14px;background:#fff;border-radius:999px;font-size:10px;padding:3px 14px;color:var(--soft)}
+  .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:980px;margin:6px 0 30px}
+  .ba div{background:#fff;border-radius:14px;padding:14px;font-size:12px;line-height:1.5;border:1px solid var(--line)}
+  .ba h3{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+</style>
+
+<h1>YASHHO homepage — 10× richer, mobile-first</h1>
+<p class="lede">The homepage in scroll order on a phone (01 → 06), then the same page on desktop. Grey-striped boxes are image slots: real photos, faces and numbers come from Sutirtha. Nothing in them is a real claim.</p>
+<div class="legend"><span>🟧 Saffron #FF7301: actions</span><span>🟦 Deep blue #021F5E: chapters</span><span>⬜ Cream #FFFBF6: page</span><span>▧ Striped: image / data needed</span></div>
+
+<div class="ba">
+  <div><h3 style="color:#c81e1e">Today (measured)</h3>Price list = <b>4,990 px</b> of a 12,318 px page (40%). Brochure: <b>0 images</b>. The offer block repeats <b>8×</b>. Testimonials have no faces. Every block is the same white card.</div>
+  <div><h3 style="color:#0e7a5f">Proposed</h3>The price list becomes <b>3 stream cards</b> (about 1,000 px). Plus a <b>how-it-works</b> strip, a <b>proof band</b>, <b>one</b> offer banner, an <b>accent colour per stream</b>, and alternating section colours so the page reads in chapters.</div>
+</div>
+
+<div class="flow">
+
+  <div class="step"><h2>01 · First screen (as live)</h2><p class="cap">Poster full width + one-line action. Unchanged: already live today.</p>
+    <div class="phone"><div class="pv"><div class="scroll">
+      <div class="web"><span class="dot"></span>Tonight, 9 PM · Ask the CEO</div>
+      <div class="nav"><span class="logo">YASH<b>HO</b></span><span class="burger"></span></div>
+      <img src="https://yashho.com/img/carousel/00-rajyotsava-offer.webp" style="width:100%;display:block" alt="">
+      <div style="background:var(--deep);padding:10px;display:flex;gap:8px"><span class="btn" style="flex:1">Get the Master Scan at ₹4,000 →</span><span class="wa">✆</span></div>
+    </div></div></div>
+    <p class="note">Already shipped: CTA animation, sticky bar, full-width poster.</p></div>
+  <div class="arrow">→</div>
+
+  <div class="step"><h2>02 · Find your stream</h2><p class="cap">Three tall visual cards replace six screens of price rows. One tap goes to the full list.</p>
+    <div class="phone"><div class="pv"><div class="scroll">
+      <div class="sec">
+        <div class="eyebrow">Find your stream</div><div class="h">Which Success Scan is yours?</div>
+        <div class="card scard"><div class="img ph" style="background:linear-gradient(160deg,#033195,#3f6fd8);color:#fff">Photo · Class 5–10 student</div>
+          <div class="b"><span class="tag" style="background:var(--tint);color:var(--sc)">School &amp; Career</span>
+            <div class="t" style="margin-top:6px">Marks Booster · Board Exam · Career Readiness</div>
+            <div class="o">See the abilities behind your child's marks and build them, one task a day.</div>
+            <div class="from">from <s>₹5,898.82</s> <b>₹4,000</b> incl. GST</div>
+            <div class="go" style="color:var(--sc)">See School &amp; Career plans <i style="background:var(--sc)">→</i></div></div></div>
+        <div class="card scard"><div class="img ph" style="background:linear-gradient(160deg,#5a1aa8,#9b5be8);color:#fff">Photo · NEET/JEE aspirant</div>
+          <div class="b"><span class="tag" style="background:#f1e8fd;color:var(--nj)">NEET &amp; JEE</span>
+            <div class="t" style="margin-top:6px">NEET · JEE · NEET-JEE 2X</div>
+            <div class="o">The abilities that decide rank, not just the syllabus.</div>
+            <div class="from">from <b>₹4,000</b> incl. GST</div>
+            <div class="go" style="color:var(--nj)">See NEET &amp; JEE plans <i style="background:var(--nj)">→</i></div></div></div>
+        <div class="card scard"><div class="img ph" style="background:linear-gradient(160deg,#8a3d00,#ff7301);color:#fff">Photo · KAS/IAS aspirant</div>
+          <div class="b"><span class="tag" style="background:var(--saffron-t);color:var(--ki)">KAS / IAS</span>
+            <div class="t" style="margin-top:6px">KAS · IAS · State Civil Services</div>
+            <div class="o">Measure the 64 abilities the examiners are really testing.</div>
+            <div class="from">from <b>₹4,000</b> incl. GST</div>
+            <div class="go" style="color:var(--ki)">See KAS / IAS plans <i style="background:var(--ki)">→</i></div></div></div>
+      </div>
+    </div></div></div>
+    <p class="note"><b>Prices come from the catalogue</b> (switch back after 15 Nov). Each card opens <b>/brochure</b> filtered to that stream.</p></div>
+  <div class="arrow">→</div>
+
+  <div class="step"><h2>03 · How it works</h2><p class="cap">A deep-blue chapter: three steps, icons and one line each. Swipeable on phones.</p>
+    <div class="phone"><div class="pv"><div class="scroll" style="background:var(--deep)">
+      <div class="sec">
+        <div class="eyebrow" style="color:#ffb259">How it works</div><div class="h" style="color:#fff">From scan to a guided plan in 3 steps</div>
+        <div class="steps">
+          <div class="s"><span class="n">1</span><div><b>Take the Success Scan</b><span>21 short real-life tasks. No exam, no right answers.</span></div></div>
+          <div class="s"><span class="n">2</span><div><b>Get your 64-ability report</b><span>Strengths, gaps and 6 career pathways, explained in plain words.</span></div></div>
+          <div class="s"><span class="n">3</span><div><b>Grow with your YASHODARSHI</b><span>A dedicated 1-to-1 mentor who tracks progress.</span></div></div>
+        </div>
+        <div class="ph" style="height:140px;border-radius:16px;margin-top:6px">Image · sample report page (real scorecard, blurred name)</div>
+        <div class="btn" style="margin-top:14px">Start my scan →</div>
+      </div>
+    </div></div></div>
+    <p class="note">Copy is from the existing site and needs your approval. The sample report image would come from a real scorecard with the name removed.</p></div>
+  <div class="arrow">→</div>
+
+  <div class="step"><h2>04 · Proof</h2><p class="cap">Numbers and faces. Every value here is a placeholder until Sutirtha sends sourced data.</p>
+    <div class="phone"><div class="pv"><div class="scroll">
+      <div class="sec">
+        <div class="eyebrow">Families who measured first</div><div class="h">Real students. Real change.</div>
+        <div class="num"><div><b>—,—</b><span>students scanned (source needed)</span></div><div><b>—</b><span>schools (source needed)</span></div><div><b>—</b><span>cities</span></div><div><b>14 yrs</b><span>of research (founder)</span></div></div>
+        <div class="quote"><span class="face ph">face</span><div><p>"Testimonial text from a real parent, with written consent."</p><small>Parent of a Class 8 student · Bengaluru</small></div></div>
+        <div class="quote"><span class="face ph">face</span><div><p>"Testimonial text from a real KAS aspirant."</p><small>KAS aspirant · Mysuru</small></div></div>
+        <div class="ph" style="height:110px;border-radius:16px">Video thumbnail · 30-second parent story</div>
+      </div>
+    </div></div></div>
+    <p class="note">Only <b>14 years</b> is already on the site. Everything else needs a source, and for faces, <b>written consent</b>.</p></div>
+  <div class="arrow">→</div>
+
+  <div class="step"><h2>05 · Brochure, calmer</h2><p class="cap">One offer banner at the top; each row gets a stream accent, a big price and a "save" chip.</p>
+    <div class="phone"><div class="pv"><div class="scroll">
+      <div class="nav"><span class="logo">YASH<b>HO</b></span><span class="burger"></span></div>
+      <div class="sec">
+        <div class="banner"><b>Karnataka Rajyotsava Special</b><span>Master Scan ₹4,000 incl. GST · ends 15 Nov · first 100 per stream</span></div>
+        <div class="row"><div class="k">Group 1 · Class 5–7</div><div class="nm">ASLI64 Success Master Scan <span class="tag" style="background:var(--saffron-t);color:var(--saffron-ink)">Most chosen</span></div><div class="d">All 64 abilities · dedicated YASHODARSHI</div>
+          <div class="pr"><b>₹4,000</b><s>₹5,898.82</s><span class="save">save ₹1,899</span></div><div class="btn" style="margin-top:10px">Get it at ₹4,000 →</div></div>
+        <div class="row" style="--sc:#033195"><div class="k">Group 1 · Class 8–10</div><div class="nm">ASLI64 Success Master Scan</div><div class="d">All 64 abilities · dedicated YASHODARSHI</div>
+          <div class="pr"><b>₹4,000</b><s>₹5,898.82</s><span class="save">save ₹1,899</span></div></div>
+        <div class="row" style="--sc:#7a2bd1"><div class="k">Group 2 · NEET</div><div class="nm">NEET Success Master Scan</div><div class="d">All 64 abilities · dedicated YASHODARSHI</div>
+          <div class="pr"><b>₹4,000</b><s>₹5,898.82</s><span class="save">save ₹1,899</span></div></div>
+      </div>
+    </div></div></div>
+    <p class="note">The offer's end date and cap are said <b>once</b>, not 8 times. Product names lose their link underline (the whole row is tappable).</p></div>
+  <div class="arrow">→</div>
+
+  <div class="step"><h2>06 · Close</h2><p class="cap">The founder, then FAQ, then one last saffron call to action on deep blue.</p>
+    <div class="phone"><div class="pv"><div class="scroll">
+      <div class="sec" style="background:#fff">
+        <div class="eyebrow">The World's First Success Doctor™</div><div class="h">14 years. One purpose.</div>
+        <div style="display:flex;gap:10px;align-items:center"><span class="ph" style="width:80px;height:80px;border-radius:18px">Founder photo (live)</span><span style="font-size:11px;color:var(--soft);line-height:1.4">Krishnaraja M Manjunath: former KAS officer, former Chief, ETV Network.</span></div>
+      </div>
+      <div class="sec">
+        <div class="eyebrow">Honest answers</div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;font-size:11px;font-weight:800;margin-top:6px">Is this an exam? <span style="float:right">+</span></div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;font-size:11px;font-weight:800;margin-top:6px">What does my child get? <span style="float:right">+</span></div>
+      </div>
+      <div class="sec" style="background:var(--deep);text-align:center">
+        <div class="h" style="color:#fff">Measure first. Then grow.</div>
+        <div class="btn">Get the Master Scan at ₹4,000 →</div>
+        <div style="color:#c9d6ef;font-size:10px;margin-top:8px">or WhatsApp us · 76761 09210</div>
+      </div>
+    </div></div></div>
+    <p class="note">The founder and FAQ sections exist today. Only the closing band is new.</p></div>
+
+</div>
+
+<h2 style="margin:40px 0 6px;font-size:15px;font-weight:900;color:var(--deep)">07 · Desktop: the same chapters, three across</h2>
+<p class="cap" style="font-size:12px;color:var(--soft);margin-bottom:12px">Stream cards sit in one row; how-it-works runs as three columns on deep blue.</p>
+<div class="browser"><div class="chrome"><i></i><i></i><i></i><span class="url">yashho.com</span></div>
+  <div style="background:#0b1424;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 22px"><span class="logo">YASH<b>HO</b></span><span style="color:#c9d6ef;font-size:11px;font-weight:600">School &amp; Career · NEET &amp; JEE · KAS / IAS · Success Doctor · CEO Webinar · FAQ</span></div>
+  <div style="background:var(--cream);padding:26px 34px">
+    <div class="eyebrow">Find your stream</div><div class="h" style="font-size:24px">Which Success Scan is yours?</div>
+    <div class="dgrid">
+      <div class="card scard"><div class="img ph" style="background:linear-gradient(160deg,#033195,#3f6fd8);color:#fff">Photo</div><div class="b"><span class="tag" style="background:var(--tint);color:var(--sc)">School &amp; Career</span><div class="o" style="margin-top:6px">See the abilities behind your child's marks.</div><div class="from">from <b>₹4,000</b></div><div class="go" style="color:var(--sc)">See plans <i style="background:var(--sc)">→</i></div></div></div>
+      <div class="card scard"><div class="img ph" style="background:linear-gradient(160deg,#5a1aa8,#9b5be8);color:#fff">Photo</div><div class="b"><span class="tag" style="background:#f1e8fd;color:var(--nj)">NEET &amp; JEE</span><div class="o" style="margin-top:6px">The abilities that decide rank.</div><div class="from">from <b>₹4,000</b></div><div class="go" style="color:var(--nj)">See plans <i style="background:var(--nj)">→</i></div></div></div>
+      <div class="card scard"><div class="img ph" style="background:linear-gradient(160deg,#8a3d00,#ff7301);color:#fff">Photo</div><div class="b"><span class="tag" style="background:var(--saffron-t);color:var(--ki)">KAS / IAS</span><div class="o" style="margin-top:6px">What the examiners really test.</div><div class="from">from <b>₹4,000</b></div><div class="go" style="color:var(--ki)">See plans <i style="background:var(--ki)">→</i></div></div></div>
+    </div>
+  </div>
+  <div style="background:var(--deep);padding:24px 34px">
+    <div class="eyebrow" style="color:#ffb259">How it works</div><div class="h" style="color:#fff;font-size:22px">From scan to a guided plan in 3 steps</div>
+    <div class="steps" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="s"><span class="n">1</span><div><b>Take the Success Scan</b><span>21 short real-life tasks.</span></div></div>
+      <div class="s"><span class="n">2</span><div><b>Get your 64-ability report</b><span>Strengths, gaps, 6 pathways.</span></div></div>
+      <div class="s"><span class="n">3</span><div><b>Grow with your YASHODARSHI</b><span>1-to-1 mentor, tracked.</span></div></div>
+    </div>
+  </div>
+</div>
+
+<p class="lede" style="margin-top:26px"><b>To ship this:</b> (1) your OK on the layout and the new wording; (2) from Sutirtha, 3 stream photos, a sample report image, testimonials with written consent, and sourced numbers; (3) I build it behind the same catalogue data, so prices and the offer stay single-source.</p>
