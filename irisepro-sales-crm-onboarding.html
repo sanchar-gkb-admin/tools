@@ -242,19 +242,19 @@ table.t .bar{min-width:110px}
   <p>How a new YSP or RSM gets from "nominated" to "ready to sell". The checks happen <b>outside the CRM</b>, in Google Forms, Google Drive and one Tracker Sheet. The CRM only switches people on once everything is done.</p>
   <p>This is a companion to the main CRM storyboard. Full step-by-step rules are in the team guide "YSP Onboarding and Verification Process".</p>
   <div class="stepper">
-   <div><b>1 · RSM</b>Nominates a candidate</div>
+   <div><b>1 · RSM</b>Meets, checks and nominates the candidate</div>
    <div><b>2 · Candidate</b>Fills in details, uploads PAN and bank proof</div>
    <div><b>3 · Head Office</b>Checks PAN and bank</div>
-   <div><b>4 · Candidate</b>Signs the agreement, passes the quiz</div>
-   <div><b>5 · RSM</b>One field day together</div>
-   <div><b>6 · Field Sales manager</b>Final approval</div>
-   <div><b>7 · Onboarding desk</b>Switches them on in the CRM</div>
+   <div><b>4 · Candidate</b>Signs the partner agreement</div>
+   <div><b>5 · Head Office HR</b>Second check and approval</div>
+   <div><b>6 · In the app</b>Training, then a field day with the RSM</div>
+   <div><b>7 · Selling opens</b>Families start reaching the new YSP</div>
   </div>
   <div class="who">
-   <div><b>RSM</b>Finds and nominates, follows up, does the field day</div>
-   <div><b>Candidate</b>Fills in three forms and a quiz</div>
+   <div><b>RSM</b>Finds and checks candidates (first check), nominates, follows up, does the field day</div>
+   <div><b>Candidate</b>Fills in two forms, then trains in the app</div>
    <div><b>Onboarding desk</b>Checks documents, keeps the tracker, switches people on</div>
-   <div><b>Field Sales manager</b>Gives the final yes</div>
+   <div><b>Head Office HR</b>Second check and final yes</div>
   </div>
   <div class="legend"><span>Target: nomination to "ready to sell" in <b>7 working days</b></span><span>No Aadhaar, ever</span><span>No documents on WhatsApp</span></div>
   <nav class="toc"><a href="#ysp">A new YSP</a><a href="#fix">When something is wrong</a><a href="#rsm">A new RSM</a><a href="#leave">When someone leaves</a><a href="#see">Who can see what</a></nav>
@@ -267,14 +267,14 @@ table.t .bar{min-width:110px}
 <p class="sub">Suresh, the RSM for Tumakuru West–North, has found Lakshmi for his empty Nonavinakere area. Here is every step until she can sell.</p>
 <div class="flow">
 
-<div class="step"><h3><i>1</i>Suresh nominates Lakshmi</h3><p class="cap">From the CRM, "Nominate a candidate" opens Form A. Area codes must be in the right format, and he confirms nobody else holds the area.</p>
+<div class="step"><h3><i>1</i>Suresh nominates Lakshmi</h3><p class="cap">Suresh meets the candidate first: that is the first check. Then "Nominate a candidate" in the CRM opens Form A.</p>
 <div class="phone"><div class="notch"></div><div class="pv gform">
  <div class="gbar"></div><div class="gcard"><p class="gt">YSP Nomination</p><p class="mini" style="margin:0">Form A · for RSMs</p></div>
  <div class="gq"><label>Your region code</label><div class="ans">KA-R11</div></div>
  <div class="gq"><label>YSP area (unit code)</label><div class="ans">KA-R11-U07</div></div>
  <div class="gq"><label>Candidate full name</label><div class="ans">Lakshmi R</div></div>
  <div class="gq"><label>Candidate mobile number</label><div class="ans">99012 34567</div></div>
- <div class="gq box"><div class="rad"><i class="on"></i>This area is in my region and no other YSP holds it</div></div>
+ <div class="gq box"><div class="rad"><i class="on"></i>I have met and checked this candidate</div><div class="rad"><i class="on"></i>This area is in my region and no other YSP holds it</div></div>
  <span class="gbtn">Submit</span>
 </div></div>
 <p class="note">A new row appears in the Tracker automatically (step 4).</p></div>
@@ -326,10 +326,10 @@ table.t .bar{min-width:110px}
 </div></div></div>
 <p class="note">Then the bank check: the name on the cheque or passbook must match the PAN name, and the account number and IFSC must match Form B. We never pay into someone else's account.</p></div>
 
-<div class="step wide"><h3><i>6</i>Marking the checks in the Tracker</h3><p class="cap">The desk picks "Verified" (or "Problem" with a note) from the dropdown, and writes their name and the date. Only the desk and the Field Sales manager can edit these columns.</p>
+<div class="step wide"><h3><i>6</i>Marking the checks in the Tracker</h3><p class="cap">The desk picks "Verified" (or "Problem" with a note) from the dropdown, and writes their name and the date. Only the onboarding desk and Head Office HR can edit these columns.</p>
 <div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YSP Onboarding · Tracker (Google Sheets)</span></div>
-<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Name</th><th>PAN check</th><th>PAN checked by / on</th><th>Bank check</th><th>Bank checked by / on</th><th>Agreement</th><th>Quiz</th><th>Field day</th></tr>
- <tr class="new"><td>Lakshmi R</td><td><span class="dd v">Verified</span></td><td>Priya (desk) · 10 Dec</td><td><span class="dd v">Verified</span></td><td>Priya (desk) · 10 Dec</td><td>Sent</td><td></td><td></td></tr></table></div>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Name</th><th>PAN check</th><th>PAN checked by / on</th><th>Bank check</th><th>Bank checked by / on</th><th>Agreement</th><th>HR approval</th></tr>
+ <tr class="new"><td>Lakshmi R</td><td><span class="dd v">Verified</span></td><td>Priya (desk) · 10 Dec</td><td><span class="dd v">Verified</span></td><td>Priya (desk) · 10 Dec</td><td>Sent</td><td><span class="dd p">Pending</span></td></tr></table></div>
 <div class="sheet-tabs"><span class="on">Candidates</span><span>How to use</span></div></div></div>
 
 <div class="step"><h3><i>7</i>Signing the partner agreement</h3><p class="cap">Lakshmi gets the agreement as a PDF. In Form C she ticks each key promise and types her name as her signature.</p>
@@ -344,59 +344,60 @@ table.t .bar{min-width:110px}
 </div></div>
 <p class="note">Open for legal: is a typed name enough, or do we need an e-signature service?</p></div>
 
-<div class="step"><h3><i>8</i>Training and quiz</h3><p class="cap">After the training videos, a 10-question quiz on the rules that matter most. It marks itself; she can retry after 24 hours.</p>
-<div class="phone"><div class="notch"></div><div class="pv gform">
- <div class="gbar"></div><div class="gcard"><p class="gt">YSP Training Quiz</p><p class="mini" style="margin:0">Score 9 / 10 · passed</p></div>
- <div class="gq"><label>A parent wants to pay you ₹4,999 in cash. What do you do?</label>
-  <div class="rad"><i></i>Take the cash and pay online later</div>
-  <div class="rad"><i class="on"></i>Politely refuse and send the payment link ✓</div>
-  <div class="rad"><i></i>Ask them to pay by your personal UPI</div></div>
- <div class="gq"><label>When can you call a parent?</label>
-  <div class="rad"><i class="on"></i>Only after the parent has said yes ✓</div></div>
-</div></div>
-<p class="note">Open: is passing training required before selling (Q3.3)? Pass mark set by the Field Sales manager.</p></div>
-
-<div class="step"><h3><i>9</i>A day in the field together</h3><p class="cap">Suresh spends one day visiting families with Lakshmi, then confirms in Form E whether she is ready.</p>
-<div class="phone"><div class="notch"></div><div class="pv gform">
- <div class="gbar"></div><div class="gcard"><p class="gt">YSP Field Day Confirmation</p><p class="mini" style="margin:0">Form E · for RSMs</p></div>
- <div class="gq"><label>Candidate mobile number</label><div class="ans">99012 34567</div></div>
- <div class="gq"><label>Families visited together</label><div class="ans">7</div></div>
- <div class="gq"><label>Your view</label><div class="rad"><i class="on"></i>Ready to sell</div><div class="rad"><i></i>Needs another field day</div></div>
- <span class="gbtn">Submit</span>
-</div></div></div>
-
-<div class="step wide"><h3><i>10</i>Final approval</h3><p class="cap">When every column is green and her area is Active, the Field Sales manager marks "Approved" with their name and the date.</p>
+<div class="step wide"><h3><i>8</i>Head Office HR approves</h3><p class="cap">When PAN, bank and the agreement are done, HR does the second check and approves Lakshmi in the Tracker.</p>
 <div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YSP Onboarding · Tracker (Google Sheets)</span></div>
-<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Name</th><th>PAN</th><th>Bank</th><th>Agreement</th><th>Quiz</th><th>Field day</th><th>Area live?</th><th>Final approval</th><th>Approved by / on</th></tr>
- <tr class="new"><td>Lakshmi R</td><td><span class="dd v">Verified</span></td><td><span class="dd v">Verified</span></td><td>Accepted v1.0</td><td>9 / 10</td><td>Ready (15 Dec)</td><td>Yes</td><td><span class="dd v">Approved</span></td><td>Field Sales mgr · 16 Dec</td></tr></table></div>
-<div class="sheet-tabs"><span class="on">Candidates</span><span>How to use</span></div></div>
-<p class="note">Open: is the Field Sales manager the approver (Q3.1)?</p></div>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Name</th><th>RSM check</th><th>PAN</th><th>Bank</th><th>Agreement</th><th>HR approval</th><th>Approved by / on</th></tr>
+ <tr class="new"><td>Lakshmi R</td><td><span class="dd v">Done</span></td><td><span class="dd v">Verified</span></td><td><span class="dd v">Verified</span></td><td>Accepted v1.0</td><td><span class="dd v">Approved</span></td><td>HR · 12 Dec</td></tr></table></div>
+<div class="sheet-tabs"><span class="on">Candidates</span><span>How to use</span></div></div></div>
 
-<div class="step wide"><h3><i>11</i>Switched on in the CRM</h3><p class="cap">The onboarding desk opens "Switch on" in the CRM, links Lakshmi to her post, ticks PAN and bank verified, and sends her the password link. The CRM records who did it and when.</p>
+<div class="step wide"><h3><i>9</i>Switched on for training</h3><p class="cap">The onboarding desk switches Lakshmi on in the CRM in training mode: she can sign in, learn and read Head Office messages, but she can't sell yet.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · Switch on</span></div>
 <div class="bv"><div class="main">
  <div class="oc"><h4>Switch on: Lakshmi R</h4>
   <p class="ohint" style="margin:0 0 4px">Post KA-R11-YSP07 (YSP) · area Nonavinakere · RSM Suresh</p>
-  <p class="ohint" style="margin:0 0 4px">☑ PAN verified (tracker, 10 Dec) · ☑ Bank verified (tracker, 10 Dec) · ☑ Area is Active</p>
-  <p class="ohint" style="margin:0 0 10px">Approved by the Field Sales manager on 16 Dec</p>
+  <p class="ohint" style="margin:0 0 4px">☑ PAN verified · ☑ Bank verified · ☑ Approved by HR on 12 Dec</p>
+  <p class="ohint" style="margin:0 0 10px">Mode: <b>Training</b> (selling opens after training and the field day)</p>
   <span class="ob">Switch on and send password link</span></div>
 </div></div></div>
 <p class="note">No documents are uploaded into the CRM, only the fact that each check passed. Payouts work only while PAN and bank are marked verified.</p></div>
 
-<div class="step"><h3><i>12</i>Lakshmi sets her password</h3><p class="cap">She gets an email with a one-time link. The link works once and expires, so no password is ever sent to her.</p>
+<div class="step"><h3><i>10</i>Lakshmi sets her password</h3><p class="cap">She gets an email with a one-time link. It works once and expires, so no password is ever sent to her.</p>
 <div class="phone"><div class="notch"></div><div class="pv mail">
  <div class="top"><b>Inbox</b></div>
  <div class="body">
-  <div class="fc"><p style="margin:0 0 4px;font-weight:800">Welcome to YASHHO, Lakshmi</p><p class="mini" style="margin:0 0 8px">You're now the YASHHO Success Partner for Nonavinakere (KA-R11-YSP07). Set your password to get started. This link works once and expires in 48 hours.</p><div class="btn">Set my password</div></div>
-  <p class="mini">Your RSM Suresh will call you today.</p>
+  <div class="fc"><p style="margin:0 0 4px;font-weight:800">Welcome to YASHHO, Lakshmi</p><p class="mini" style="margin:0 0 8px">You're joining as the YASHHO Success Partner for Nonavinakere (KA-R11-YSP07). Set your password to start your training. This link works once and expires in 48 hours.</p><div class="btn">Set my password</div></div>
  </div></div></div></div>
 
-<div class="step"><h3><i>13</i>Ready to sell</h3><p class="cap">She sets her app PIN, and the app opens on her joining list. From here, her day is the one in the main storyboard.</p>
+<div class="step"><h3><i>11</i>Training in the app</h3><p class="cap">Manuals, videos, the training schedule and a short quiz, all inside the app. Head Office sees her progress.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>My training</b><span class="pill wait">3 of 5</span></div>
+ <div class="body">
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">YASHHO and the Success Scan</div><div class="s">Video · 12 min</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Talking to parents</div><div class="s">Live session · Thu 11 AM</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Using the app</div><div class="s">Video · 8 min</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i></i><div><div class="n">Rules: permission, no cash, data</div><div class="s">Manual · 10 min</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i></i><div><div class="n">Quiz</div><div class="s">10 questions</div></div></div></div>
+  </div>
+ </div>
+ <div class="dock"><div class="btn">Continue training</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>12</i>A day in the field together</h3><p class="cap">Suresh spends one day visiting families with Lakshmi, then confirms in the app that she is ready.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Lakshmi R</b></span><span class="pill wait">Training</span></div>
+ <div class="body">
+  <div class="fc"><div class="r"><span class="s">Training</span><span class="pill ok">Done · quiz 9/10</span></div><div class="r"><span class="s">Field day</span><span class="n">15 Dec · 7 families</span></div></div>
+  <h4 style="margin:8px 0 6px">Is Lakshmi ready to sell?</h4>
+  <div class="row2"><div class="btn ghost">Another field day</div><div class="btn">Ready to sell</div></div>
+ </div></div></div></div>
+
+<div class="step"><h3><i>13</i>Selling opens</h3><p class="cap">The app opens on her joining list. From here, her day is the one in the main storyboard.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Namaskara, Lakshmi</b><span class="pill ok">Ready</span></div>
  <div class="body" style="text-align:center;padding-top:50px">
   <p style="font-size:40px;margin:0">🎉</p>
-  <p style="font-weight:800;margin:6px 0">You're all set</p>
+  <p style="font-weight:800;margin:6px 0">You can start selling</p>
   <p class="mini" style="margin:0 0 14px">Start by adding the parents you know in Nonavinakere.</p>
   <div class="btn">Open my joining list</div>
  </div>
@@ -466,14 +467,14 @@ table.t .bar{min-width:110px}
 <!-- ================= LEAVE ================= -->
 <section class="j" id="leave">
 <h2>When someone leaves</h2>
-<p class="sub">Access stops the same day. Families move to another YSP. Money already earned is paid. Documents are kept only as long as tax rules require.</p>
+<p class="sub">Access stops the same day. The GM decides who takes over the families and who is credited for open sales; the person leaving gets no further incentives. Documents are kept only as long as tax rules require.</p>
 <div class="flow">
-<div class="step wide"><h3><i>1</i>Switching someone off</h3><p class="cap">The RSM records that Imran is leaving. The desk switches him off in the CRM, which ends his access on every phone at once.</p>
+<div class="step wide"><h3><i>1</i>Switching someone off</h3><p class="cap">The RSM tells the GM that Imran is leaving. The desk switches him off in the CRM, which ends his access on every phone at once.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · Leavers</span></div>
 <div class="bv"><div class="main">
  <div class="oc"><h4>Switch off: Imran (KA-R11-YSP04)</h4>
-  <p class="ohint" style="margin:0 0 4px">286 families moved to Deepa by Suresh · 2 paid orders keep Imran's commission</p>
-  <p class="ohint" style="margin:0 0 10px">Drive folder → 4 Exited · final payout on 5 Jan with refund take-backs</p>
+  <p class="ohint" style="margin:0 0 4px">286 families moved to Deepa by the GM · open sales credited to Deepa · no further incentives for Imran</p>
+  <p class="ohint" style="margin:0 0 10px">Drive folder → 4 Exited · access ended on every phone</p>
   <span class="ob">Switch off now</span></div>
 </div></div></div>
 <p class="note">How long exited YSPs' documents are kept is for Finance and legal to set.</p></div>
@@ -487,7 +488,7 @@ table.t .bar{min-width:110px}
 <div class="flow">
 <div class="step wide"><h3>Access at a glance</h3><p class="cap">Full numbers live in one restricted place. Everyone else sees a status or the last 4 characters.</p>
 <div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Access</span></div>
-<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Place</th><th>What it holds</th><th>Onboarding desk</th><th>Field Sales mgr</th><th>Finance</th><th>RSM</th></tr>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Place</th><th>What it holds</th><th>Onboarding desk</th><th>Head Office HR</th><th>Finance</th><th>RSM</th></tr>
  <tr><td>Drive folder</td><td>PAN, cheque, photo, agreement</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
  <tr><td>Responses file</td><td>Full form answers</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
  <tr><td>Tracker</td><td>Statuses, last 4 only</td><td>Edit</td><td>Edit</td><td>View</td><td>View, own region</td></tr>
