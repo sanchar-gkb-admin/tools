@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>YASHHO onboarding storyboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Page: cool fog. Field (phones): sunlight theme, white + deep ink, darker orange for text.
+   Office (laptops): YASHHO navy, brand orange. Heat uses colour + shape, never colour alone. */
+:root{
+  --page:#e8edf3; --ink:#0e2440; --ink-2:#3b5070; --rule:#c9d3df;
+  --brand:#f5821f; --brand-ink:#b4530a; --brand-soft:#fff1e3;
+  --f-bg:#ffffff; --f-sub:#f3f6f9; --f-ink:#0b1b33; --f-mute:#4a5b73; --f-line:#d5dde7;
+  --ok:#137a43; --ok-soft:#e3f5ea; --bad:#b42318; --bad-soft:#fde8e6; --warnc:#8a5a00; --warn-soft:#fff4d6;
+  --hot:#b8360a; --hot-soft:#ffe6dc; --warm:#8a5a00; --warm-soft:#fff1c7; --cold:#1d4ed8; --cold-soft:#e3ebff;
+  --o-bg:#0a1626; --o-sur:#10223c; --o-sur2:#16304f; --o-ink:#eaf1f9; --o-mute:#9fb3c9; --o-line:#22406a;
+  --q:#7a5200; --q-soft:#fff3cc;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:400 15px/1.5 Montserrat,system-ui,sans-serif}
+.kn{font-family:"Noto Sans Kannada",Montserrat,sans-serif}
+a{color:#8f4207}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.wrap{max-width:1360px;margin:0 auto;padding:32px 16px 96px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;margin-bottom:28px}
+.hero h1{font-weight:900;font-size:clamp(32px,4.6vw,56px);line-height:1.02;letter-spacing:-.01em;margin:0 0 16px;text-transform:uppercase}
+.hero h1 span{display:block;color:var(--brand-ink)}
+.hero p{max-width:60ch;margin:0 0 12px;color:var(--ink-2)}
+.hero .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.hero .two div{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:14px}
+.hero .two b{display:block;margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;font-size:13px}
+.legend span{background:#fff;border:1px solid var(--rule);border-radius:999px;padding:5px 12px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.toc a{background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 12px;border-radius:10px}
+.switch{display:inline-flex;background:#fff;border:1px solid var(--rule);border-radius:12px;padding:4px;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.switch button{border:0;background:transparent;padding:9px 14px;border-radius:9px;font-weight:700;color:var(--ink-2);cursor:pointer;min-height:44px}
+.switch button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.rolecap{font-size:13px;color:var(--ink-2);min-height:40px;margin:0 0 10px;max-width:46ch}
+[data-role="ceo"] .hide-ceo, [data-role="rsm"] .hide-rsm{display:none}
+.only-ceo,.only-rsm{display:none}
+[data-role="ceo"] .only-ceo,[data-role="rsm"] .only-rsm{display:inline}
+[data-role="rsm"] div.only-rsm{display:block}
+[data-role="ceo"] p.only-ceo{display:block}
+section.j{margin:56px 0 0;padding-top:28px;border-top:2px solid var(--rule)}
+section.j>h2{font-weight:800;font-size:clamp(22px,2.6vw,30px);margin:0 0 6px}
+section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
+.badge{display:inline-block;font-size:12px;font-weight:700;border-radius:8px;padding:3px 9px;margin-left:10px;vertical-align:middle}
+.badge.now{background:var(--brand);color:#1a0e02}
+.badge.later{background:#d7dee8;color:#33475f}
+.flow{display:flex;flex-wrap:wrap;gap:30px 26px;align-items:flex-start}
+.step{width:300px;flex:0 0 auto}
+.step.wide{width:820px;max-width:100%}
+.step.mid{width:560px;max-width:100%}
+.step h3{font-size:15px;font-weight:800;margin:0 0 4px;color:var(--ink)}
+.step h3 i{font-style:normal;color:var(--brand-ink);margin-right:6px}
+.step .cap{font-size:13.5px;color:var(--ink-2);margin:0 0 12px;min-height:60px}
+.q{display:inline-block;background:var(--q-soft);color:var(--q);border:1px dashed #c99a1a;border-radius:6px;padding:0 6px;font-size:11px;font-weight:700;white-space:nowrap}
+.note{font-size:12.5px;color:var(--ink-2);margin-top:10px;border-left:3px solid var(--rule);padding-left:9px}
+.phone{width:280px;margin:0 auto;background:#1a2433;border:10px solid #1a2433;border-radius:36px;box-shadow:0 18px 40px rgba(14,36,64,.25);position:relative;overflow:hidden}
+.phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:92px;height:20px;background:#1a2433;border-radius:0 0 14px 14px;z-index:6}
+.pv{height:560px;position:relative;background:var(--f-bg);color:var(--f-ink);overflow:hidden;font-size:13px}
+.pv .top{padding:26px 14px 8px;display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--f-line)}
+.pv .top b{font-weight:800;font-size:15px}
+.pv .top>span:first-child{display:flex;align-items:center;min-width:0}
+.pv .back{font-weight:800;font-size:18px;margin-right:6px;color:var(--f-mute)}
+.pv .body{padding:10px 12px}
+.sync{font-size:11px;color:var(--f-mute);white-space:nowrap}
+.sync b{color:var(--warnc)}
+.dock{position:absolute;left:0;right:0;bottom:0;padding:10px 12px 14px;background:linear-gradient(to top,#fff 75%,rgba(255,255,255,0))}
+.tabs{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#fff;border-top:1px solid var(--f-line);padding:6px 0 9px;font-size:11px;color:var(--f-mute)}
+.tabs span{display:flex;flex-direction:column;align-items:center;min-width:52px;min-height:44px;justify-content:center}
+.tabs i{font-style:normal;font-size:17px;line-height:1}
+.tabs .on{color:var(--brand-ink);font-weight:700}
+.fc{background:var(--f-bg);border:1px solid var(--f-line);border-radius:12px;padding:10px;margin-bottom:8px}
+.fc.sub{background:var(--f-sub)}
+.fc.ok{border-color:var(--ok);background:var(--ok-soft)}
+.fc.bad{border-color:var(--bad);background:var(--bad-soft)}
+.fc.warn{border-color:#d9a400;background:var(--warn-soft)}
+.fc h4{margin:0 0 6px;font-size:13.5px}
+.r{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--f-line)}
+.r:last-child{border-bottom:0}
+.r .n{font-weight:700;min-width:0}
+.r .s{color:var(--f-mute);font-size:12px}
+.r .act{display:flex;gap:6px;flex:0 0 auto}
+.ib{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:16px;border:1px solid var(--f-line);background:#fff}
+.ib.call{background:#e7f6ee;border-color:#b9e3c9}
+.ib.wa{background:#e5f9ee;border-color:#a7e8c3}
+.k2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.kp{background:var(--f-sub);border-radius:12px;padding:9px}
+.kp small{display:block;color:var(--f-mute);font-size:11.5px}
+.kp b{font-size:20px;font-weight:800}
+.kp em{display:block;font-style:normal;font-size:11.5px;color:var(--f-mute);line-height:1.3}
+.bar{height:7px;background:#e3e9f0;border-radius:6px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--brand)}
+.fld{border:1.5px solid var(--f-line);border-radius:12px;padding:8px 11px;margin-bottom:8px;position:relative;background:#fff}
+.fld label{display:block;font-size:11.5px;color:var(--f-mute)}
+.fld span{font-weight:600}
+.fld.focus{border-color:var(--brand)}
+.fld .hint{display:block;font-size:11px;color:var(--ok);font-weight:600}
+.btn{display:flex;align-items:center;justify-content:center;min-height:48px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:14px;margin-top:8px;font-size:14px;text-align:center;padding:0 10px}
+.btn.ghost{background:#fff;border:1.5px solid var(--f-line);color:var(--f-ink)}
+.btn.wa{background:#1faa59;color:#fff}
+.btn.dark{background:var(--f-ink);color:#fff}
+.row2{display:flex;gap:8px}
+.row2>*{flex:1}
+.heat{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.heat div{min-height:52px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:2px solid transparent}
+.heat .c{background:var(--cold-soft);color:var(--cold)}
+.heat .w{background:var(--warm-soft);color:var(--warm)}
+.heat .h{background:var(--hot);color:#fff;border-color:#7a2306}
+.heat small{font-weight:600;font-size:10.5px}
+.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;white-space:nowrap;background:#eef2f7;color:var(--f-ink)}
+.pill.hot{background:var(--hot-soft);color:var(--hot)}
+.pill.warm{background:var(--warm-soft);color:var(--warm)}
+.pill.cold{background:var(--cold-soft);color:var(--cold)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.wait{background:var(--warn-soft);color:var(--warnc)}
+.preset{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.preset span{border:1.5px solid var(--f-line);border-radius:10px;padding:8px 10px;font-weight:700;font-size:12px;min-height:40px;display:flex;align-items:center}
+.preset .on{border-color:var(--brand);background:var(--brand-soft)}
+.chk{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;margin:7px 0;min-height:32px}
+.chk i{width:22px;height:22px;border:2px solid var(--f-ink);border-radius:6px;flex:0 0 22px;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:900}
+.chk i.y{background:var(--ok);border-color:var(--ok);color:#fff}
+.stages{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.stages span{font-size:10.5px;padding:2px 7px;border-radius:6px;background:#eef2f7;color:var(--f-mute);white-space:nowrap}
+.stages .on{background:var(--brand);color:#1a0e02;font-weight:800}
+.stages .done{background:var(--ok-soft);color:var(--ok)}
+.tl{margin-left:6px;border-left:2px solid var(--f-line);padding-left:13px}
+.tl div{position:relative;margin-bottom:9px}
+.tl div::before{content:"";position:absolute;left:-20px;top:4px;width:12px;height:12px;border-radius:50%;background:#c9d3df;border:2px solid #fff}
+.tl .done::before{background:var(--ok)}
+.tl .now::before{background:var(--brand)}
+.tl .fail::before{background:var(--bad)}
+.tl b{font-size:13px}
+.tl small{display:block;color:var(--f-mute);font-size:11.5px}
+.dim{position:absolute;inset:0;background:rgba(11,27,51,.55);z-index:3}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:12px 12px 14px;z-index:4;box-shadow:0 -10px 30px rgba(0,0,0,.2)}
+.sheet .grab{width:40px;height:5px;background:#c9d3df;border-radius:5px;margin:0 auto 10px}
+.qr{width:150px;height:150px;margin:6px auto 8px;background:conic-gradient(from 90deg at 18% 18%,#0b1b33 25%,#fff 0 50%,#0b1b33 0 75%,#fff 0) 0 0/30px 30px;border:10px solid #fff;outline:2px solid var(--f-line);border-radius:6px}
+.mask{background:#e3e9f0;color:var(--f-mute);border-radius:5px;padding:0 6px;font-size:11.5px}
+.mini{font-size:11.5px;color:var(--f-mute)}
+.wa-msg{background:#e7ffdb;border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:12.5px;color:#0b1b33;margin:6px 0}
+.parentphone{background:#f1f3f6}
+.browser{border:1px solid #1b2f4c;border-radius:14px;overflow:hidden;background:var(--o-bg);color:var(--o-ink);box-shadow:0 18px 40px rgba(14,36,64,.28)}
+.chrome{display:flex;align-items:center;gap:6px;background:#06101d;padding:9px 12px}
+.chrome .d{width:10px;height:10px;border-radius:50%;background:#2c415d;flex:0 0 auto}
+.chrome .url{margin-left:10px;flex:1;min-width:0;background:#0f1d31;border-radius:999px;padding:4px 12px;color:var(--o-mute);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bv{display:flex;font-size:13px}
+.side{width:170px;background:#081425;border-right:1px solid var(--o-line);padding:14px 10px;flex:0 0 auto}
+.side div{padding:8px 10px;border-radius:8px;color:var(--o-mute);margin-bottom:2px}
+.side .on{background:var(--o-sur2);color:var(--o-ink);font-weight:700;box-shadow:inset 3px 0 0 var(--brand)}
+.main{flex:1;padding:16px;min-width:0}
+.main h4{margin:0 0 10px;font-size:15px}
+.ok5,.ok4{display:grid;gap:8px;margin-bottom:12px}
+.ok5{grid-template-columns:repeat(5,1fr)} .ok4{grid-template-columns:repeat(4,1fr)}
+.okp{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:10px;min-width:0}
+.okp small{display:block;color:var(--o-mute);font-size:11.5px}
+.okp b{font-size:20px;font-weight:800}
+.okp em{display:block;font-style:normal;font-size:11.5px;color:var(--o-mute);line-height:1.3}
+.okp .bar,.browser .bar{background:#0a1a2e}
+.oc{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:12px;margin-bottom:10px;min-width:0}
+.split{display:flex;gap:12px}
+.split>.grow{flex:1;min-width:0}
+.split>.fix{width:290px;flex:0 0 auto}
+.tw{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;font-size:12.5px;color:var(--o-ink);font-family:inherit}
+table.t th{text-align:left;color:var(--o-mute);font-weight:600;font-size:11.5px;padding:6px 8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
+table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
+table.t td:first-child{white-space:normal;min-width:100px}
+table.t td.wrap{white-space:normal}
+table.t .bar{min-width:110px}
+.ob{display:inline-flex;align-items:center;justify-content:center;min-height:42px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:12px;padding:0 16px;font-size:13px;white-space:nowrap}
+.ob.ghost{background:transparent;border:1.5px solid var(--o-line);color:var(--o-ink)}
+.op{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;white-space:nowrap;background:#1d3354;color:var(--o-ink)}
+.op.ok{background:#0f3d28;color:#7fe0a8}.op.bad{background:#4a1714;color:#ffb3aa}.op.wait{background:#44360c;color:#ffd979}
+.up{color:#7fe0a8}.dn{color:#ffb3aa}
+.ohint{font-size:12px;color:var(--o-mute)}
+.browser .q{background:#44360c;color:#ffd979;border-color:#a8841f}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+@media (max-width:980px){.hero{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .ok5,.ok4{grid-template-columns:repeat(2,1fr)}
+  .bv{flex-direction:column}
+  .side{width:auto;display:flex;flex-wrap:wrap;gap:4px;border-right:0;border-bottom:1px solid var(--o-line)}
+  .split{flex-direction:column}
+  .split>.fix{width:auto}
+  .step.wide,.step.mid{width:100%}
+  .hero .two{grid-template-columns:1fr}
+}
+</style>
+<style>
+/* Google Form and Sheet look-alikes (illustrations of the tools we use) */
+.gform{background:#f0ebf8;padding-top:24px}
+.gform .gbar{height:8px;background:#673ab7;border-radius:8px 8px 0 0;margin:8px 10px 0}
+.gform .gcard{background:#fff;border-radius:0 0 8px 8px;margin:0 10px 8px;padding:10px;border:1px solid #dadce0;border-top:0}
+.gform .gq{background:#fff;border-radius:8px;margin:0 10px 8px;padding:10px;border:1px solid #dadce0}
+.gform .gq label{display:block;font-size:12.5px;font-weight:600;margin-bottom:6px}
+.gform .gq .ans{border-bottom:1.5px solid #9aa0a6;padding:3px 0;font-size:12.5px;color:#202124}
+.gform .gq .err{color:#d93025;font-size:11px;margin-top:4px}
+.gform .gt{font-size:16px;font-weight:700;margin:0 0 4px}
+.gform .gbtn{display:inline-flex;background:#673ab7;color:#fff;font-weight:700;border-radius:6px;padding:9px 16px;font-size:13px;margin:4px 10px}
+.gform .up{border:1.5px dashed #9aa0a6;border-radius:8px;padding:10px;text-align:center;font-size:12px;color:#5f6368}
+.gform .rad{display:flex;gap:8px;align-items:center;font-size:12.5px;margin:4px 0}
+.gform .rad i{width:16px;height:16px;border-radius:50%;border:2px solid #5f6368;flex:0 0 16px}
+.gform .rad i.on{border-color:#673ab7;box-shadow:inset 0 0 0 3px #fff;background:#673ab7}
+.gform .box i{border-radius:3px}
+.browser.light{background:#fff;color:#202124;border-color:#c9d3df}
+.browser.light .chrome{background:#e8edf3}
+.browser.light .chrome .url{background:#fff;color:#3b5070}
+.sheet-grid{width:100%;border-collapse:collapse;font-size:12px;color:#202124}
+.sheet-grid th{background:#f1f3f4;color:#3c4043;font-weight:600;border:1px solid #dadce0;padding:5px 6px;text-align:left;white-space:nowrap}
+.sheet-grid td{border:1px solid #e2e5e9;padding:5px 6px;white-space:nowrap}
+.sheet-grid tr.amber td{background:#fff4d6}
+.sheet-grid tr.red td{background:#fde8e6}
+.sheet-grid tr.new td{background:#e8f0fe}
+.sheet-grid .dd{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:1px 8px;font-weight:700;font-size:11px}
+.dd.v{background:#e6f4ea;color:#137333}.dd.p{background:#f1f3f4;color:#3c4043}.dd.x{background:#fce8e6;color:#c5221f}
+.sheet-tabs{display:flex;gap:2px;background:#f1f3f4;padding:4px 8px;font-size:11.5px;border-top:1px solid #dadce0}
+.sheet-tabs span{padding:4px 10px;border-radius:4px 4px 0 0}
+.sheet-tabs .on{background:#fff;color:#137333;font-weight:700}
+.portal{border:1px solid #c9d3df;border-radius:10px;padding:14px;background:#fff;color:#202124}
+.wachat{background:#efeae2}
+.wabubble{background:#fff;border-radius:10px 10px 10px 2px;padding:9px 11px;font-size:12.5px;margin:10px 12px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.wabubble a{color:#027eb5}
+.mail{background:#fff}
+.stepper{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.stepper div{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:10px 12px;font-size:13px;min-width:150px;flex:1}
+.stepper b{display:block;color:var(--brand-ink);font-size:12px}
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.who div{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:12px;font-size:13px}
+.who b{display:block;margin-bottom:4px}
+@media (max-width:720px){.who{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="wrap">
+<header class="hero" style="grid-template-columns:1fr">
+ <div>
+  <h1>Joining YASHHO.<span>Checked, then switched on.</span></h1>
+  <p>How a new YSP or RSM gets from "nominated" to "ready to sell". The checks happen <b>outside the CRM</b>, in Google Forms, Google Drive and one Tracker Sheet. The CRM only switches people on once everything is done.</p>
+  <p>This is a companion to the main CRM storyboard. Full step-by-step rules are in the team guide "YSP Onboarding and Verification Process".</p>
+  <div class="stepper">
+   <div><b>1 · RSM</b>Nominates a candidate</div>
+   <div><b>2 · Candidate</b>Fills in details, uploads PAN and bank proof</div>
+   <div><b>3 · Head Office</b>Checks PAN and bank</div>
+   <div><b>4 · Candidate</b>Signs the agreement, passes the quiz</div>
+   <div><b>5 · RSM</b>One field day together</div>
+   <div><b>6 · Field Sales manager</b>Final approval</div>
+   <div><b>7 · Onboarding desk</b>Switches them on in the CRM</div>
+  </div>
+  <div class="who">
+   <div><b>RSM</b>Finds and nominates, follows up, does the field day</div>
+   <div><b>Candidate</b>Fills in three forms and a quiz</div>
+   <div><b>Onboarding desk</b>Checks documents, keeps the tracker, switches people on</div>
+   <div><b>Field Sales manager</b>Gives the final yes</div>
+  </div>
+  <div class="legend"><span>Target: nomination to "ready to sell" in <b>7 working days</b></span><span>No Aadhaar, ever</span><span>No documents on WhatsApp</span></div>
+  <nav class="toc"><a href="#ysp">A new YSP</a><a href="#fix">When something is wrong</a><a href="#rsm">A new RSM</a><a href="#leave">When someone leaves</a><a href="#see">Who can see what</a></nav>
+ </div>
+</header>
+
+<!-- ================= YSP ================= -->
+<section class="j" id="ysp">
+<h2>A new YSP: Lakshmi joins for Nonavinakere</h2>
+<p class="sub">Suresh, the RSM for Tumakuru West–North, has found Lakshmi for his empty Nonavinakere area. Here is every step until she can sell.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>Suresh nominates Lakshmi</h3><p class="cap">From the CRM, "Nominate a candidate" opens Form A. Area codes must be in the right format, and he confirms nobody else holds the area.</p>
+<div class="phone"><div class="notch"></div><div class="pv gform">
+ <div class="gbar"></div><div class="gcard"><p class="gt">YSP Nomination</p><p class="mini" style="margin:0">Form A · for RSMs</p></div>
+ <div class="gq"><label>Your region code</label><div class="ans">KA-R11</div></div>
+ <div class="gq"><label>YSP area (unit code)</label><div class="ans">KA-R11-U07</div></div>
+ <div class="gq"><label>Candidate full name</label><div class="ans">Lakshmi R</div></div>
+ <div class="gq"><label>Candidate mobile number</label><div class="ans">99012 34567</div></div>
+ <div class="gq box"><div class="rad"><i class="on"></i>This area is in my region and no other YSP holds it</div></div>
+ <span class="gbtn">Submit</span>
+</div></div>
+<p class="note">A new row appears in the Tracker automatically (step 4).</p></div>
+
+<div class="step"><h3><i>2</i>Lakshmi gets her link</h3><p class="cap">The onboarding desk sends the joining link the same day, by WhatsApp and email, using the standard message.</p>
+<div class="phone"><div class="notch"></div><div class="pv wachat">
+ <div class="top" style="background:#075e54;color:#fff;border:0"><b style="color:#fff">YASHHO Onboarding</b></div>
+ <div class="wabubble">Namaskara Lakshmi. Welcome to YASHHO! Suresh has nominated you as the YASHHO Success Partner for Nonavinakere. Please fill in your joining details here: <a>forms.gle/…</a><br><br>Keep your PAN card and a cancelled cheque or passbook ready. Please don't send these documents on WhatsApp: upload them only in the form.</div>
+</div></div></div>
+
+<div class="step"><h3><i>3</i>Her details, PAN and bank</h3><p class="cap">Form B checks formats as she types: a 10-digit mobile, a PAN like ABCDE1234F, an 11-character IFSC. She types her account number twice.</p>
+<div class="phone"><div class="notch"></div><div class="pv gform">
+ <div class="gbar"></div><div class="gcard"><p class="gt">YSP Joining Details</p><p class="mini" style="margin:0">We never ask for Aadhaar.</p></div>
+ <div class="gq"><label>Full name exactly as on your PAN card</label><div class="ans">LAKSHMI RAMESH</div></div>
+ <div class="gq"><label>PAN number</label><div class="ans">ABCPL1234</div><div class="err">Format ABCDE1234F, capital letters</div></div>
+ <div class="gq"><label>Bank account number</label><div class="ans">3298 0011 2244</div></div>
+ <div class="gq"><label>IFSC code</label><div class="ans">CNRB0001234</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>3b</i>Documents and promises</h3><p class="cap">She uploads three photos straight into Head Office's private folder, and ticks four promises before she can submit.</p>
+<div class="phone"><div class="notch"></div><div class="pv gform">
+ <div class="gq"><label>Photo of your PAN card</label><div class="up">⬆ pan.jpg · uploaded</div></div>
+ <div class="gq"><label>Cancelled cheque or passbook front page</label><div class="up">⬆ passbook.jpg · uploaded</div></div>
+ <div class="gq"><label>Passport-size photo</label><div class="up">⬆ Add file</div></div>
+ <div class="gq box"><label>I confirm</label>
+  <div class="rad"><i class="on"></i>My details and documents are true and my own</div>
+  <div class="rad"><i class="on"></i>No cash or personal UPI from any family</div>
+  <div class="rad"><i class="on"></i>Contact parents only after they agree</div></div>
+ <span class="gbtn">Submit</span>
+</div></div>
+<p class="note">Uploads land in "YSP Onboarding / 1 Applications". The candidate never emails or WhatsApps documents.</p></div>
+
+<div class="step wide"><h3><i>4</i>The Tracker updates itself</h3><p class="cap">One row per candidate. Form A created Lakshmi's row; Form B just filled in her dates and the last 4 characters of her PAN and account. Rows turn amber after 5 working days and red after 7.</p>
+<div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YSP Onboarding · Tracker (Google Sheets)</span></div>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Candidate ID</th><th>Unit</th><th>RSM</th><th>Name</th><th>Nominated</th><th>PAN</th><th>Account</th><th>PAN check</th><th>Bank check</th><th>Days</th></tr>
+ <tr class="new"><td>YSP-2026-0142</td><td>KA-R11-U07</td><td>Suresh</td><td>Lakshmi R</td><td>9 Dec</td><td>••••234F</td><td>••••2244</td><td><span class="dd p">Pending</span></td><td><span class="dd p">Pending</span></td><td>1</td></tr>
+ <tr class="amber"><td>YSP-2026-0131</td><td>KA-R05-U03</td><td>Asha</td><td>Mohan T</td><td>2 Dec</td><td>••••118K</td><td>••••0912</td><td><span class="dd v">Verified</span></td><td><span class="dd x">Problem</span></td><td>6</td></tr>
+ <tr class="red"><td>YSP-2026-0120</td><td>KA-R28-U01</td><td>Vacant</td><td>Shreya N</td><td>27 Nov</td><td>—</td><td>—</td><td><span class="dd p">Pending</span></td><td><span class="dd p">Pending</span></td><td>9</td></tr></table></div>
+<div class="sheet-tabs"><span class="on">Candidates</span><span>How to use</span></div></div>
+<p class="note">Full PAN and bank numbers are in a separate, restricted responses file. RSMs get a view-only copy filtered to their region, with no document links.</p></div>
+
+<div class="step mid"><h3><i>5</i>Head Office checks the PAN</h3><p class="cap">The onboarding desk opens Lakshmi's PAN photo in Drive, then checks it on the Income Tax e-filing portal: Quick Links, "Verify PAN Status".</p>
+<div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">incometax.gov.in · Verify PAN Status</span></div>
+<div style="padding:14px"><div class="portal">
+ <p style="margin:0 0 8px;font-weight:700">Verify PAN Status (illustration)</p>
+ <p class="mini" style="margin:0 0 4px">PAN ••••••234F · Name LAKSHMI RAMESH · Date of birth 14/03/1994</p>
+ <p class="mini" style="margin:0 0 10px">One-time code sent to the onboarding desk's mobile</p>
+ <p style="margin:0;color:#137333;font-weight:700">✓ PAN is active and details match</p>
+</div></div></div>
+<p class="note">Then the bank check: the name on the cheque or passbook must match the PAN name, and the account number and IFSC must match Form B. We never pay into someone else's account.</p></div>
+
+<div class="step wide"><h3><i>6</i>Marking the checks in the Tracker</h3><p class="cap">The desk picks "Verified" (or "Problem" with a note) from the dropdown, and writes their name and the date. Only the desk and the Field Sales manager can edit these columns.</p>
+<div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YSP Onboarding · Tracker (Google Sheets)</span></div>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Name</th><th>PAN check</th><th>PAN checked by / on</th><th>Bank check</th><th>Bank checked by / on</th><th>Agreement</th><th>Quiz</th><th>Field day</th></tr>
+ <tr class="new"><td>Lakshmi R</td><td><span class="dd v">Verified</span></td><td>Priya (desk) · 10 Dec</td><td><span class="dd v">Verified</span></td><td>Priya (desk) · 10 Dec</td><td>Sent</td><td></td><td></td></tr></table></div>
+<div class="sheet-tabs"><span class="on">Candidates</span><span>How to use</span></div></div></div>
+
+<div class="step"><h3><i>7</i>Signing the partner agreement</h3><p class="cap">Lakshmi gets the agreement as a PDF. In Form C she ticks each key promise and types her name as her signature.</p>
+<div class="phone"><div class="notch"></div><div class="pv gform">
+ <div class="gbar"></div><div class="gcard"><p class="gt">YSP Partner Agreement</p><p class="mini" style="margin:0">Form C · version 1.0</p></div>
+ <div class="gq box"><label>I agree that</label>
+  <div class="rad"><i class="on"></i>I understand the commission rules</div>
+  <div class="rad"><i class="on"></i>I will never take cash from families</div>
+  <div class="rad"><i class="on"></i>I will keep families' details only in YASHHO's system</div></div>
+ <div class="gq"><label>Type your full name as your signature</label><div class="ans">Lakshmi Ramesh</div></div>
+ <span class="gbtn">Submit</span>
+</div></div>
+<p class="note">Open for legal: is a typed name enough, or do we need an e-signature service?</p></div>
+
+<div class="step"><h3><i>8</i>Training and quiz</h3><p class="cap">After the training videos, a 10-question quiz on the rules that matter most. It marks itself; she can retry after 24 hours.</p>
+<div class="phone"><div class="notch"></div><div class="pv gform">
+ <div class="gbar"></div><div class="gcard"><p class="gt">YSP Training Quiz</p><p class="mini" style="margin:0">Score 9 / 10 · passed</p></div>
+ <div class="gq"><label>A parent wants to pay you ₹4,999 in cash. What do you do?</label>
+  <div class="rad"><i></i>Take the cash and pay online later</div>
+  <div class="rad"><i class="on"></i>Politely refuse and send the payment link ✓</div>
+  <div class="rad"><i></i>Ask them to pay by your personal UPI</div></div>
+ <div class="gq"><label>When can you call a parent?</label>
+  <div class="rad"><i class="on"></i>Only after the parent has said yes ✓</div></div>
+</div></div>
+<p class="note">Open: is passing training required before selling (Q3.3)? Pass mark set by the Field Sales manager.</p></div>
+
+<div class="step"><h3><i>9</i>A day in the field together</h3><p class="cap">Suresh spends one day visiting families with Lakshmi, then confirms in Form E whether she is ready.</p>
+<div class="phone"><div class="notch"></div><div class="pv gform">
+ <div class="gbar"></div><div class="gcard"><p class="gt">YSP Field Day Confirmation</p><p class="mini" style="margin:0">Form E · for RSMs</p></div>
+ <div class="gq"><label>Candidate mobile number</label><div class="ans">99012 34567</div></div>
+ <div class="gq"><label>Families visited together</label><div class="ans">7</div></div>
+ <div class="gq"><label>Your view</label><div class="rad"><i class="on"></i>Ready to sell</div><div class="rad"><i></i>Needs another field day</div></div>
+ <span class="gbtn">Submit</span>
+</div></div></div>
+
+<div class="step wide"><h3><i>10</i>Final approval</h3><p class="cap">When every column is green and her area is Active, the Field Sales manager marks "Approved" with their name and the date.</p>
+<div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YSP Onboarding · Tracker (Google Sheets)</span></div>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Name</th><th>PAN</th><th>Bank</th><th>Agreement</th><th>Quiz</th><th>Field day</th><th>Area live?</th><th>Final approval</th><th>Approved by / on</th></tr>
+ <tr class="new"><td>Lakshmi R</td><td><span class="dd v">Verified</span></td><td><span class="dd v">Verified</span></td><td>Accepted v1.0</td><td>9 / 10</td><td>Ready (15 Dec)</td><td>Yes</td><td><span class="dd v">Approved</span></td><td>Field Sales mgr · 16 Dec</td></tr></table></div>
+<div class="sheet-tabs"><span class="on">Candidates</span><span>How to use</span></div></div>
+<p class="note">Open: is the Field Sales manager the approver (Q3.1)?</p></div>
+
+<div class="step wide"><h3><i>11</i>Switched on in the CRM</h3><p class="cap">The onboarding desk opens "Switch on" in the CRM, links Lakshmi to her post, ticks PAN and bank verified, and sends her the password link. The CRM records who did it and when.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · Switch on</span></div>
+<div class="bv"><div class="main">
+ <div class="oc"><h4>Switch on: Lakshmi R</h4>
+  <p class="ohint" style="margin:0 0 4px">Post KA-R11-YSP07 (YSP) · area Nonavinakere · RSM Suresh</p>
+  <p class="ohint" style="margin:0 0 4px">☑ PAN verified (tracker, 10 Dec) · ☑ Bank verified (tracker, 10 Dec) · ☑ Area is Active</p>
+  <p class="ohint" style="margin:0 0 10px">Approved by the Field Sales manager on 16 Dec</p>
+  <span class="ob">Switch on and send password link</span></div>
+</div></div></div>
+<p class="note">No documents are uploaded into the CRM, only the fact that each check passed. Payouts work only while PAN and bank are marked verified.</p></div>
+
+<div class="step"><h3><i>12</i>Lakshmi sets her password</h3><p class="cap">She gets an email with a one-time link. The link works once and expires, so no password is ever sent to her.</p>
+<div class="phone"><div class="notch"></div><div class="pv mail">
+ <div class="top"><b>Inbox</b></div>
+ <div class="body">
+  <div class="fc"><p style="margin:0 0 4px;font-weight:800">Welcome to YASHHO, Lakshmi</p><p class="mini" style="margin:0 0 8px">You're now the YASHHO Success Partner for Nonavinakere (KA-R11-YSP07). Set your password to get started. This link works once and expires in 48 hours.</p><div class="btn">Set my password</div></div>
+  <p class="mini">Your RSM Suresh will call you today.</p>
+ </div></div></div></div>
+
+<div class="step"><h3><i>13</i>Ready to sell</h3><p class="cap">She sets her app PIN, and the app opens on her joining list. From here, her day is the one in the main storyboard.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Namaskara, Lakshmi</b><span class="pill ok">Ready</span></div>
+ <div class="body" style="text-align:center;padding-top:50px">
+  <p style="font-size:40px;margin:0">🎉</p>
+  <p style="font-weight:800;margin:6px 0">You're all set</p>
+  <p class="mini" style="margin:0 0 14px">Start by adding the parents you know in Nonavinakere.</p>
+  <div class="btn">Open my joining list</div>
+ </div>
+ <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div></div>
+</div>
+</section>
+
+<!-- ================= FIX ================= -->
+<section class="j" id="fix">
+<h2>When something is wrong</h2>
+<p class="sub">Most problems are a blurred photo or a typo. They are fixed by resubmitting the form, not by sending documents on WhatsApp.</p>
+<div class="flow">
+<div class="step"><h3><i>1</i>Something to fix</h3><p class="cap">Mohan's bank account is in his father's name. The desk marks "Problem" with a note and sends the standard message.</p>
+<div class="phone"><div class="notch"></div><div class="pv wachat">
+ <div class="top" style="background:#075e54;color:#fff;border:0"><b style="color:#fff">YASHHO Onboarding</b></div>
+ <div class="wabubble">Namaskara Mohan. We couldn't verify your bank details because the account is not in your name. We can only pay into an account in your own name. Please submit the form again here: <a>forms.gle/…</a></div>
+</div></div></div>
+
+<div class="step wide"><h3><i>2</i>Not taken forward</h3><p class="cap">If a candidate can't be verified or isn't right for the role, the row is marked Rejected with a reason. Their documents are deleted after 90 days.</p>
+<div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YSP Onboarding · Tracker (Google Sheets)</span></div>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Name</th><th>PAN check</th><th>Bank check</th><th>Final approval</th><th>Notes</th></tr>
+ <tr><td>Shreya N</td><td><span class="dd x">Problem</span></td><td><span class="dd p">Pending</span></td><td><span class="dd x">Rejected</span></td><td>No response after 3 reminders · folder moved to 3 Rejected</td></tr></table></div>
+<div class="sheet-tabs"><span class="on">Candidates</span><span>How to use</span></div></div></div>
+</div>
+</section>
+
+<!-- ================= RSM ================= -->
+<section class="j" id="rsm">
+<h2>A new RSM: Anitha joins for Region 27</h2>
+<p class="sub">RSMs are salaried staff. Their PAN, bank and contract go through HR and payroll, not the onboarding forms. The CRM only switches them on and hands over their region.</p>
+<div class="flow">
+<div class="step"><h3><i>1</i>Hired through recruitment</h3><p class="cap">Anitha applied through the careers page and the RSM application form, and HR completed her joining papers.</p>
+<div class="phone"><div class="notch"></div><div class="pv gform">
+ <div class="gbar"></div><div class="gcard"><p class="gt">Regional Sales Manager · Round 1</p><p class="mini" style="margin:0">YASHHO careers</p></div>
+ <div class="gq"><label>Region you are applying for</label><div class="ans">KA-R27</div></div>
+ <div class="gq"><label>Upload your CV</label><div class="up">⬆ anitha-cv.pdf · uploaded</div></div>
+ <div class="gq"><label>90-second video</label><div class="up">⬆ video.mp4 · uploaded</div></div>
+</div></div>
+<p class="note">This is the existing recruitment form. Applicant data rules still need a privacy review.</p></div>
+
+<div class="step wide"><h3><i>2</i>The GM approves, the desk switches her on</h3><p class="cap">An RSM needs the GM's approval. Then the onboarding desk links her to the post KA-R27-RSM01 and sends her the password link.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · Switch on</span></div>
+<div class="bv"><div class="main">
+ <div class="oc"><h4>Switch on: Anitha M</h4>
+  <p class="ohint" style="margin:0 0 4px">Post KA-R27-RSM01 (RSM) · region Chikkamagaluru · 10 areas</p>
+  <p class="ohint" style="margin:0 0 10px">☑ Approved by the GM on 18 Dec · HR joining complete</p>
+  <span class="ob">Switch on and send password link</span></div>
+</div></div></div></div>
+
+<div class="step"><h3><i>3</i>Her first day</h3><p class="cap">After setting her password and PIN, the app hands over her region and lists what to do this week.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Welcome, Anitha</b><span class="pill">KA-R27</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Areas</span><span class="n">10 · 2 Active</span></div><div class="r"><span class="s">YSPs</span><span class="n">1 working · 9 to find</span></div></div>
+  <div class="chk"><i class="y">✓</i>Set your password and app PIN</div>
+  <div class="chk"><i></i>Welcome call with the GM</div>
+  <div class="chk"><i></i>Check your 10 areas</div>
+  <div class="chk"><i></i>Nominate YSPs for the empty areas</div>
+  <div class="chk"><i></i>Hold your first morning huddle</div>
+ </div>
+ <div class="dock"><div class="btn">Start with my areas</div></div>
+</div></div></div>
+</div>
+</section>
+
+<!-- ================= LEAVE ================= -->
+<section class="j" id="leave">
+<h2>When someone leaves</h2>
+<p class="sub">Access stops the same day. Families move to another YSP. Money already earned is paid. Documents are kept only as long as tax rules require.</p>
+<div class="flow">
+<div class="step wide"><h3><i>1</i>Switching someone off</h3><p class="cap">The RSM records that Imran is leaving. The desk switches him off in the CRM, which ends his access on every phone at once.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · Leavers</span></div>
+<div class="bv"><div class="main">
+ <div class="oc"><h4>Switch off: Imran (KA-R11-YSP04)</h4>
+  <p class="ohint" style="margin:0 0 4px">286 families moved to Deepa by Suresh · 2 paid orders keep Imran's commission</p>
+  <p class="ohint" style="margin:0 0 10px">Drive folder → 4 Exited · final payout on 5 Jan with refund take-backs</p>
+  <span class="ob">Switch off now</span></div>
+</div></div></div>
+<p class="note">How long exited YSPs' documents are kept is for Finance and legal to set.</p></div>
+</div>
+</section>
+
+<!-- ================= WHO SEES ================= -->
+<section class="j" id="see">
+<h2>Who can see what</h2>
+<p class="sub">PAN and bank details are sensitive. Each place holds only what it needs.</p>
+<div class="flow">
+<div class="step wide"><h3>Access at a glance</h3><p class="cap">Full numbers live in one restricted place. Everyone else sees a status or the last 4 characters.</p>
+<div class="browser light"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Access</span></div>
+<div style="padding:10px;overflow-x:auto"><table class="sheet-grid"><tr><th>Place</th><th>What it holds</th><th>Onboarding desk</th><th>Field Sales mgr</th><th>Finance</th><th>RSM</th></tr>
+ <tr><td>Drive folder</td><td>PAN, cheque, photo, agreement</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+ <tr><td>Responses file</td><td>Full form answers</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+ <tr><td>Tracker</td><td>Statuses, last 4 only</td><td>Edit</td><td>Edit</td><td>View</td><td>View, own region</td></tr>
+ <tr><td>CRM</td><td>Verified yes/no, who, when</td><td>Switch on/off</td><td>View</td><td>View</td><td>Status only</td></tr></table></div></div></div>
+</div>
+</section>
+
+<p class="note" style="margin-top:44px;max-width:80ch">Names and numbers are made up. Google Form, Sheet, WhatsApp and portal screens are simplified illustrations of the tools we use. Main CRM storyboard: <a href="irisepro-sales-crm-journeys.html">irisepro-sales-crm-journeys.html</a>.</p>
+</div>
