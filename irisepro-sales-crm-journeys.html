@@ -144,6 +144,9 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .mini{font-size:11.5px;color:var(--f-mute)}
 .wa-msg{background:#e7ffdb;border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:12.5px;color:#0b1b33;margin:6px 0}
 .parentphone{background:#f1f3f6}
+.tbar{display:flex;justify-content:space-between;gap:4px;align-items:center;background:#fff4e8;border-bottom:2px solid var(--brand);padding:5px 10px;font-size:12px;font-weight:700;color:#3a2207;white-space:nowrap;overflow:hidden}
+.tbar span{min-width:0}.tbar .behind{color:#b3261e}.tbar .met{color:#1f7a3f}
+.tbar.rsm{flex-wrap:wrap;row-gap:2px}
 .tgt{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 8px}
 .tgt>div{border:1.5px solid var(--f-line);border-radius:10px;padding:5px 7px;background:#fff;min-width:0}
 .tgt small{display:block;font-size:11px;color:var(--f-mute);font-weight:600}
@@ -299,11 +302,12 @@ table.t .bar{min-width:110px}
  </div>
  <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
 </div></div>
-<p class="note">Daily targets: 40 calls including follow-ups (Call 1, Call 2, Call 3…) and 10 visits (Visit 1, 2, 3…), counted only when an outcome is saved. If he is behind at 1 PM or 5 PM, the app nudges him. Enquiries from his area must be called within 2 hours; if not, his RSM is told.</p></div>
+<p class="note">The same targets ride on every screen in a slim banner under the header (orange when behind for the time of day, green when met; tap for details). Daily targets: 40 calls including follow-ups (Call 1, Call 2, Call 3…) and 10 visits (Visit 1, 2, 3…), counted only when an outcome is saved. If he is behind at 1 PM or 5 PM, the app nudges him. Enquiries from his area must be called within 2 hours; if not, his RSM is told.</p></div>
 
 <div class="step"><h3><i>4</i>Meeting a new family</h3><p class="cap">He types the parent's number first. The app checks it straight away and shows the place name for the PIN, so a typing mistake is caught.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>New family</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fld focus"><label>Parent's mobile</label><span>98450 12418</span><span class="hint">✓ 10 digits · nobody has this family yet</span></div>
   <div class="fld"><label>Parent's name</label><span>Shilpa Kumar</span></div>
@@ -316,6 +320,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>5</i>When the family is already known, or lives elsewhere</h3><p class="cap">Two other answers the check can give. A YSP works only families inside his own area, and never sees whose family another one is.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>New family</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fld"><label>Parent's mobile</label><span>98451 77302</span></div>
   <div class="fc ok"><h4>This family is already yours</h4><p class="mini" style="margin:0 0 6px">You added the Gowda family on 3 Dec.</p><div class="btn ghost" style="min-height:42px">Open their page</div></div>
@@ -327,6 +332,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>6</i>The family is his</h3><p class="cap">Saved. No forms, no waiting: the relationship is Ravi's. He calls, sends a WhatsApp, or sends the payment link.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill ok">✓ Saved</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc ok"><h4>Kumar family is yours</h4><p class="mini" style="margin:0">Shilpa Kumar · Sira · Class 9</p></div>
   <div class="row2"><div class="btn ghost">📞 Call</div><div class="btn wa">💬 WhatsApp</div></div>
@@ -338,6 +344,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>7</i>The family page</h3><p class="cap">Everything about one family on one page: who they are, where they stand, what happened, and what Ravi can do next.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill hot">▲ Hot</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="stages"><span class="done">New</span><span class="done">Contacted</span><span class="done">Qualified</span><span class="on">Counselled</span><span>Payment pending</span><span>Paid</span></div>
   <div class="fc"><div class="r"><span class="s">People</span><span class="n">Shilpa (mother) · Aarav, Class 9</span></div><div class="r"><span class="s">Numbers</span><span class="n">2 mobiles · 1 email</span></div></div>
@@ -350,6 +357,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>8</i>Adding another number</h3><p class="cap">Families use more than one phone or email. Each new number is checked the same way as a new family: one number can belong to one family only.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Kumar family · numbers</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Shilpa (mother)</span><span class="n">98450 12418</span></div><div class="r"><span class="s">Email</span><span class="n">shilpa.k@…</span></div></div>
   <div class="fld focus"><label>Father's mobile</label><span>99015 22764</span><span class="hint">✓ Added to the Kumar family</span></div>
@@ -361,6 +369,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>9</i>After the call</h3><p class="cap">When Ravi hangs up, this sheet opens by itself: who he spoke to, how interested they are, and the next step. A call counts only once this is saved.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Kumar family</b></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body"><div class="stages"><span class="done">New</span><span class="done">Contacted</span><span class="on">Qualified</span><span>Counselled</span><span>Payment pending</span><span>Paid</span><span>Delivered</span></div></div>
  <div class="dim"></div>
  <div class="sheet"><div class="grab"></div>
@@ -377,6 +386,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>10</i>Arriving: start the visit</h3><p class="cap">At the door, Ravi opens the family and taps Start visit. The app reads his location first; the visit can only start with it.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Manjappa family</b></span><span class="pill warm">● Warm</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Planned today</span><span class="n">Visit 1 · 10:00</span></div><div class="r"><span class="s">Last contact</span><span class="n">Call 1 · parent (RP)</span></div></div>
   <div class="fc ok"><h4>📍 Location found</h4><p class="mini" style="margin:0">±12 m · Sira, ward 4 · inside the family's PIN 572137</p></div>
@@ -389,6 +399,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>11</i>Visit in progress</h3><p class="cap">The visit is running. The tag and a timer stay on screen, and quick actions sit under his thumb while he talks to the parent.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Visit 1 · Manjappa family</b></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc ok"><div class="r"><span class="s">📍 Tagged</span><span class="n">10:05 · ±12 m</span></div><div class="r"><span class="s">In progress</span><span class="n">18 min</span></div></div>
   <div class="fc" style="padding:2px 10px">
@@ -404,6 +415,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>12</i>When location is off or weak</h3><p class="cap">Two answers the location check can give. With location off, no visit; with a weak reading, the visit starts but is marked for the RSM.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Manjappa family</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc warn"><h4>Location is off</h4><p class="mini" style="margin:0 0 6px">Turn on location to start the visit.</p><div class="btn ghost" style="min-height:42px">Turn on location</div></div>
   <div class="fc warn"><h4>Weak reading · ±240 m</h4><p class="mini" style="margin:0 0 6px">Tried 3 times. Step outside or start anyway; your RSM will see it was weak.</p><div class="row2"><div class="btn ghost" style="min-height:42px">Try again</div><div class="btn" style="min-height:42px">Start anyway</div></div></div>
@@ -413,6 +425,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>13</i>Closing the visit</h3><p class="cap">"Close visit" tags the location again and asks for the outcome, with an optional photo if the parent agrees. The same sheet is used after a Google Meet, without location.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Visit 1 · Manjappa family</b><span class="pill ok">📍 10:05</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body"><p class="mini" style="margin:0">📍 Tagged 10:05 · ±12 m · Sira, ward 4 · 22 min</p></div>
  <div class="dim"></div>
  <div class="sheet"><div class="grab"></div>
@@ -430,6 +443,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>14</i>The app suggests the next step</h3><p class="cap">From the family's history and what has worked for similar families, the app suggests what to do next. Ravi decides.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="pill warm">● Warm</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc"><div class="r"><span class="s">So far</span><span class="n">3 calls · 1 visit</span></div><div class="r"><span class="s">Last objection</span><span class="n">Family decides</span></div><div class="r"><span class="s">Answers calls</span><span class="n">after 7 PM</span></div></div>
   <div class="fc ok"><h4>Suggested: a Google Meet with both parents, 7:30 PM</h4><p class="mini" style="margin:0">When the family decides together, a joint meeting turned more families Hot in your region than another call.</p></div>
@@ -440,6 +454,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>15</i>A Google Meet</h3><p class="cap">Ravi books a Meet from the family page; the parent gets the link from him on WhatsApp. Afterwards he logs the outcome, like a visit.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Patil family · Meet</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fld"><label>When</label><span>Today, 7:30 PM</span></div>
   <div class="fld"><label>With</label><span>Kavitha and Suresh Patil (both parents)</span></div>
@@ -453,6 +468,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>16</i>Send the payment link</h3><p class="cap">One product: the ₹4,999 scan. Ravi checks the name and the last 4 digits, then sends. The parent sees YASHHO's name, not a stranger's.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Kumar family</b></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body"><p class="mini">Master Success Scan, ₹4,999</p></div>
  <div class="dim"></div>
  <div class="sheet"><div class="grab"></div>
@@ -465,11 +481,11 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>17</i>Following the payment</h3><p class="cap">Every step shows on the family page, including problems. Ravi earns his commission the moment the family pays; it is paid on the 5th of next month.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill ok">Paid</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="tl">
    <div class="done"><b>Link sent</b><small>16 Dec, Ravi</small></div>
    <div class="fail"><b>Payment failed (UPI timed out)</b><small>16 Dec · Ravi was told</small></div>
-   <div class="done"><b>Link sent again</b><small>16 Dec</small></div>
    <div class="done"><b>Paid ₹4,999 and registered in the app</b><small>16 Dec · commission earned · receipt sent</small></div>
    <div class="done"><b>Scan taken</b><small>18 Dec</small></div>
    <div class="now"><b>Report being prepared</b><small>due 21 Dec</small></div>
@@ -481,6 +497,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>18</i>My earnings and rank</h3><p class="cap">His commission grows with every paid sale, and he can see where he stands. Only his own money: never another YSP's or his RSM's.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>My earnings</b><span class="sync">December</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="k2"><div class="kp"><small>Earned this month</small><b>₹3,262</b><em>11 sales</em></div><div class="kp"><small>My rank</small><b>4 of 10</b><em>in region · 141 of 400 in state</em></div></div>
   <div class="fc" style="padding:2px 10px">
@@ -497,6 +514,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>19</i>Questioning a commission line</h3><p class="cap">If a sale looks wrong, Ravi asks from the line itself. Finance answers in the app, and the answer stays with the line.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Money · December</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Hegde family · 9 Dec</span><span class="n">not credited</span></div><div class="r"><span class="s">Credit</span><span class="n">YASHHO direct</span></div></div>
   <div class="fld focus"><label>What looks wrong?</label><span>I added this family on 2 Dec</span></div>
@@ -509,6 +527,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>20</i>My families</h3><p class="cap">Search by name, number or PIN. Filter by interest, stage or overdue. New families he hasn't called yet are one tap away.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>My families</b><span class="sync">214</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fld"><label>Search</label><span style="color:var(--f-mute);font-weight:400">Name, number or PIN</span></div>
   <div class="preset"><span class="on">All 214</span><span>▲ Hot 18</span><span>Overdue 4</span><span>Not called yet 78</span></div>
@@ -524,6 +543,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>21</i>My first week: the joining list</h3><p class="cap">Each new YSP brings 500 parents. He picks them straight from his phone's contacts, many at a time. Each one is his as soon as he adds it.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Joining list</b><span class="pill">312 of 500</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <p style="margin:0 0 6px;font-weight:800">Add parents</p>
   <div class="fc" style="padding:2px 10px">
@@ -540,6 +560,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>22</i>Ticking contacts</h3><p class="cap">The phone's own contact list opens. He ticks the parents, and the app checks each one before adding it.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Choose parents</b></span><span class="pill">6 ticked</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fld"><label>Search contacts</label><span style="color:var(--f-mute);font-weight:400">Name or number</span></div>
   <div class="fc" style="padding:2px 10px">
@@ -556,6 +577,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>23</i>Waiting to send</h3><p class="cap">With no signal, work is saved on the phone. This screen shows what hasn't gone yet, and anything the server couldn't accept.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Waiting to send</b></span><span class="pill wait">3</span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body">
   <div class="fc" style="padding:2px 10px">
    <div class="r"><div><div class="n">Call 2 · Manjappa family</div><div class="s">Saved 1:05 PM</div></div><span class="pill wait">Waiting</span></div>
@@ -596,6 +618,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>26</i>A parent asks not to be contacted</h3><p class="cap">If a parent says "please don't call again", Ravi records it. Nobody at YASHHO contacts that family again.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Rao family</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
  <div class="body"><div class="dim"></div>
   <div class="sheet"><div class="grab"></div><p style="margin:0 0 6px;font-weight:800">Stop all contact with the Rao family?</p><p class="mini" style="margin:0 0 8px">Calls, WhatsApp and payment links stop for everyone at YASHHO. You can undo this only if the parent asks.</p><div class="btn dark">Stop all contact</div><div class="btn ghost">Cancel</div></div>
  </div></div></div></div>
@@ -627,6 +650,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>2</i>My region at a glance</h3><p class="cap">How his YSPs and he himself are doing against this month's targets, and who needs help.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>My region</b><span class="sync">Updated 12:00</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="k2"><div class="kp"><small>My YSPs, December</small><b>111</b> <em>of 200</em><div class="bar"><i style="width:56%"></i></div></div><div class="kp"><small>My own sales</small><b>31</b> <em>of 50</em><div class="bar"><i style="width:62%"></i></div></div></div>
   <div class="fc" style="padding:2px 10px">
@@ -642,6 +666,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>3</i>Team activity</h3><p class="cap">Each YSP's day against plan: calls, visits and how many were with the right person. Imran's phone hasn't synced, so his numbers may be out of date.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Team today</b><span class="sync">Wed 18 Dec</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc" style="padding:2px 10px">
    <div class="r"><span class="n">Deepa</span><span class="s">Calls 42/40 · Visits 10/10 · RP 6</span></div>
@@ -658,6 +683,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>4</i>Work moved to tomorrow twice</h3><p class="cap">Unfinished work moves to tomorrow by itself once. If the same item is about to move a second time, Suresh decides: keep it or drop it.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Moved twice</b><span class="pill wait">3</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc"><div class="r"><div><div class="n">Ravi · visit Rao family</div><div class="s">Moved twice · "grandmother only at home"</div></div></div><div class="row2"><div class="btn ghost" style="min-height:40px">Drop it</div><div class="btn" style="min-height:40px">Keep for tomorrow</div></div></div>
   <div class="fc"><div class="r"><div><div class="n">Deepa · call Shetty family</div><div class="s">Moved twice · "number switched off"</div></div></div><div class="row2"><div class="btn ghost" style="min-height:40px">Drop it</div><div class="btn" style="min-height:40px">Keep for tomorrow</div></div></div>
@@ -667,6 +693,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>5</i>Team earnings and mine</h3><p class="cap">He sees what each of his YSPs has earned. His own commission starts with April 2027 earnings, first paid on 5 May 2027.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Earnings</b><span class="sync">December</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc" style="padding:2px 10px">
    <div class="r"><span class="n">Deepa, Tiptur</span><span class="n">₹7,117</span></div>
@@ -681,12 +708,12 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>6</i>Drawing a YSP's area</h3><p class="cap">He groups neighbouring PIN codes into each area. Warnings show if a PIN is taken or the area has a gap.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Sira area</b></span><span class="pill">Proposed</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fld"><label>Add a PIN or place</label><span style="color:var(--f-mute);font-weight:400">5721…</span></div>
   <div class="fc" style="padding:2px 10px">
    <div class="r"><span class="n">☑ 572137 Sira</span><span class="s">18,200 aged 0–25</span></div>
    <div class="r"><span class="n">☑ 572125 Bukkapatna</span><span class="s">6,100</span></div>
-   <div class="r"><span class="s">☐ 572141 Tavarekere</span><span class="s">in another area</span></div>
   </div>
   <div class="fc"><h4>Area checks</h4><div class="r"><span class="s">No gaps between PINs</span><span class="pill ok">✓ OK</span></div><div class="r"><span class="s">No PIN in another area</span><span class="pill ok">✓ OK</span></div><div class="r"><span class="s">24,300 aged 0–25</span><span class="pill warm">12% below average</span></div></div>
  </div>
@@ -697,6 +724,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>7</i>Checking the area on the ground</h3><p class="cap">After the data check, he visits and confirms. Leaders then approve, and the area goes live.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Visit Sira area</b></span><span class="pill">Data checked</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="chk"><i class="y">✓</i>Centre is reachable for families in the area</div>
   <div class="chk"><i class="y">✓</i>Schools and colleges nearby</div>
@@ -710,6 +738,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>8</i>Bringing in a new YSP</h3><p class="cap">The checks run outside the app, in Google Forms and Head Office's tracker. In the app Suresh sees only where each candidate is, and opens the tracker for the detail.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>New YSPs</b></span><span class="pill">3</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc" style="padding:2px 10px">
    <div class="r"><div><div class="n">Lakshmi R · Nonavinakere</div><div class="s">Nominated 9 Dec</div></div><span class="pill wait">In progress</span></div>
@@ -725,6 +754,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>9</i>When a YSP leaves</h3><p class="cap">Suresh tells the GM. The YSP's access stops at once, and the GM decides who takes over the families and who is credited for open sales.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Imran is leaving</b></span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Families</span><span class="n">286</span></div><div class="r"><span class="s">Links sent, not yet paid</span><span class="n">4</span></div><div class="r"><span class="s">Sales not yet paid out</span><span class="n">2</span></div></div>
   <div class="fc warn"><p class="mini" style="margin:0">Imran gets no further incentives once he leaves. The GM moves his families and credits his open sales to the YSP who takes over.</p></div>
@@ -736,6 +766,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>10</i>A lost phone, before a new one</h3><p class="cap">Signing in on a new phone signs the old one out by itself. If the YSP has no new phone yet, Suresh can sign the lost one out straight away.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Ravi · phones</b></span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc"><div class="r"><div><div class="n">Redmi 9A</div><div class="s">Last used today 11:20</div></div><span class="pill ok">Active</span></div></div>
   <div class="fc warn"><h4>Sign out this phone?</h4><p class="mini" style="margin:0">Anything not yet sent from it is lost. Ravi's families stay safe on the server.</p></div>
@@ -747,6 +778,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>11</i>Who keeps this family?</h3><p class="cap">The rule is simple: the YSP of the area where the family lives always comes first, whoever found them.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Naik family</b></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Family lives in</span><span class="n">Pavagada (Imran's area)</span></div><div class="r"><span class="s">Found by</span><span class="n">Ravi, through a friend</span></div><div class="r"><span class="s">Passed on by Head Office</span><span class="n">No</span></div></div>
   <div class="fc ok"><h4>Imran keeps them</h4><p class="mini" style="margin:0">The family is in his area. Ravi's calls stay on record.</p></div>
@@ -757,6 +789,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>12</i>My own sales: ward and inner circle</h3><p class="cap">Suresh enters every prospect he meets, about 700 a month, and tags each one: door-to-door in his ward, or people he already knows. The two are tracked separately.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>My sales</b><span class="sync">December</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="k2"><div class="kp"><small>Ward (door to door)</small><b>21</b><em>sold · 480 prospects</em></div><div class="kp"><small>Inner circle</small><b>10</b><em>sold · 190 prospects</em></div></div>
   <div class="fc"><div class="r"><span class="s">This month's target</span><span class="n">31 of 50</span></div><div class="r"><span class="s">Prospects entered</span><span class="n">670 of 700</span></div></div>
@@ -768,6 +801,7 @@ table.t .bar{min-width:110px}
 <div class="step"><h3><i>13</i>The region's lead bank</h3><p class="cap">Enquiries that can't go straight to a YSP (no PIN, or an area with no YSP yet) wait here. The YSP, the RSM and Head Office all see them; Suresh assigns each one.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Lead bank</b><span class="pill">5</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 <b class="behind">7</b>/10</span></div>
  <div class="body">
   <div class="fc" style="padding:2px 10px">
    <div class="r"><div><div class="n">Arjun P · KAS</div><div class="s">No PIN given · 40 min ago</div></div><span class="pill bad">Call soon</span></div>
