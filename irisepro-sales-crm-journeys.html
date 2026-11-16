@@ -144,6 +144,15 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .mini{font-size:11.5px;color:var(--f-mute)}
 .wa-msg{background:#e7ffdb;border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:12.5px;color:#0b1b33;margin:6px 0}
 .parentphone{background:#f1f3f6}
+.tgt{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 8px}
+.tgt>div{border:1.5px solid var(--f-line);border-radius:10px;padding:5px 7px;background:#fff;min-width:0}
+.tgt small{display:block;font-size:11px;color:var(--f-mute);font-weight:600}
+.tgt b{font-size:16px}
+.tgt em{font-style:normal;font-size:11.5px;color:var(--f-mute)}
+.tgt .bar{margin-top:3px}
+.oc3{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.oc3 span{border:1.5px solid var(--f-line);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:600;background:#fff}
+.oc3 span.on{border-color:var(--brand);background:#fff4e8}
 .fld.lock{background:#eef1f5}
 .rule3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .rq{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:12px;min-width:0}
@@ -264,21 +273,21 @@ table.t .bar{min-width:110px}
 </div></div>
 <p class="note">Kannada screens are drawn in step 11.</p></div>
 
-<div class="step"><h3><i>2</i>Today</h3><p class="cap">The first screen each morning. Overdue calls first, then calls with a time, then the most interested families. One tap to call or WhatsApp.</p>
+<div class="step"><h3><i>2</i>Today</h3><p class="cap">The first screen each morning: his own plan from last evening, with today's targets on top. Overdue calls first, then calls with a time. One tap to call or WhatsApp.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Namaskara, Ravi</b><span class="pill">9 today</span></div>
  <div class="body"><p class="sync" style="margin:0 0 6px">Synced 10:42 · <b>3 updates waiting to send</b></p>
+  <div class="tgt"><div><small>Calls</small><b>6</b> <em>/ 40</em><div class="bar"><i style="width:15%"></i></div></div><div><small>Visits</small><b>1</b> <em>/ 10</em><div class="bar"><i style="width:10%"></i></div></div><div><small>Meets</small><b>0</b> <em>today</em></div></div>
   <div class="k2"><div class="kp"><small>Scans sold in December</small><b>11</b> <em>of 20</em><div class="bar"><i style="width:55%"></i></div></div><div class="kp"><small>Earned so far</small><b>₹3,262</b> <em>11 sales</em></div></div>
   <div class="fc" style="padding:2px 10px">
-   <div class="r"><div><div class="n">Patil family</div><div class="s" style="color:var(--bad)">Overdue since yesterday</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
-   <div class="r"><div><div class="n">Manjappa family</div><div class="s">Call at 11:30 · <span class="pill warm">● Warm</span></div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
+   <div class="r"><div><div class="n">Patil family</div><div class="s" style="color:var(--bad)">Call 3 · overdue since yesterday</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
+   <div class="r"><div><div class="n">Manjappa family</div><div class="s">Call 2 at 11:30 · <span class="pill warm">● Warm</span></div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
    <div class="r"><div><div class="n">Kumar family</div><div class="s">Link sent · <span class="pill hot">▲ Hot</span></div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
-   <div class="r"><div><div class="n">Fathima B</div><div class="s">Asked on the website · call in 2 h</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
   </div>
  </div>
  <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
 </div></div>
-<p class="note">Enquiries from his area, including ones Head Office passes on, come straight to him. He must call within 2 hours; if he doesn't, his RSM is told.</p></div>
+<p class="note">Daily targets: 40 calls including follow-ups (Call 1, Call 2, Call 3…) and 10 visits (Visit 1, 2, 3…), counted only when an outcome is saved. If he is behind at 1 PM or 5 PM, the app nudges him. Enquiries from his area must be called within 2 hours; if not, his RSM is told.</p></div>
 
 <div class="step"><h3><i>3</i>Meeting a new family</h3><p class="cap">He types the parent's number first. The app checks it straight away and shows the place name for the PIN, so a typing mistake is caught.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -314,19 +323,47 @@ table.t .bar{min-width:110px}
  </div></div></div>
 <p class="note">YASHHO does not message the parent first. These are the YSP's own relationships, built on trust. If a parent asks not to be contacted, step 13.</p></div>
 
-<div class="step"><h3><i>5</i>After the call</h3><p class="cap">When Ravi hangs up, this sheet opens by itself. How interested are they, and when to call next. Three taps.</p>
+<div class="step"><h3><i>5</i>After the call</h3><p class="cap">When Ravi hangs up, this sheet opens by itself: who he spoke to, how interested they are, and the next step. A call counts only once this is saved.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Kumar family</b></div>
  <div class="body"><div class="stages"><span class="done">New</span><span class="done">Contacted</span><span class="on">Qualified</span><span>Counselled</span><span>Payment pending</span><span>Paid</span><span>Delivered</span></div></div>
  <div class="dim"></div>
  <div class="sheet"><div class="grab"></div>
-  <p style="margin:0 0 8px;font-weight:800">How did the call go?</p>
+  <p style="margin:0 0 6px;font-weight:800">Call 2 · 4 min · who did you speak to?</p>
+  <div class="oc3"><span class="on">Parent (RP)</span><span>Someone else</span><span>No answer</span><span>Busy / off</span><span>Wrong number</span></div>
   <div class="heat"><div class="c">▼ Cold<small>not now</small></div><div class="w">● Warm<small>thinking</small></div><div class="h">▲ Hot<small>ready</small></div></div>
+  <p class="mini" style="margin:2px 0 4px;font-weight:700">Cold → Warm: what moved them?</p>
+  <div class="oc3"><span class="on">Sample report</span><span>Exam pressure</span><span>Friend said</span><span>Other</span></div>
   <div class="preset"><span>This evening</span><span class="on">Tomorrow</span><span>In 3 days</span><span>Pick…</span></div>
-  <div class="fld"><label>Note (no health or marks)</label><span>Wants the scan before Class 10</span></div>
   <div class="row2"><div class="btn ghost">Lost · say why</div><div class="btn">Save</div></div>
  </div></div></div>
-<p class="note">Agreed meanings: Cold = not interested now; Warm = interested, still deciding; Hot = ready, or agreed to a counselling session. "Lost" needs a reason (not interested, price, no answer, wrong number) and can be undone.</p></div>
+<p class="note">Agreed meanings: Cold = not interested now; Warm = interested, still deciding; Hot = ready, or agreed to a counselling session. "Lost" needs a reason (not interested, price, no answer, wrong number) and can be undone. RP = he spoke to the right person (the parent or student). A next call or visit is required unless the family is Paid, Lost or do-not-contact.</p></div>
+
+<div class="step"><h3><i>5b</i>A visit: start, then close</h3><p class="cap">"Start visit" on arrival records the time and place. "Close visit" records them again and asks for the outcome. The same sheet is used after a Google Meet.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Visit 1 · Manjappa family</b><span class="pill ok">📍 10:05</span></div>
+ <div class="body"><p class="mini" style="margin:0">Started 10:05 · Sira, ward 4 · 22 min</p></div>
+ <div class="dim"></div>
+ <div class="sheet"><div class="grab"></div>
+  <p style="margin:0 0 6px;font-weight:800">Close visit · who did you meet?</p>
+  <div class="oc3"><span class="on">RP meeting</span><span>Non-RP meeting</span><span>Only got details</span></div>
+  <div class="oc3"><span class="on">▼ Cold</span><span>● Warm</span><span>▲ Hot</span></div>
+  <p class="mini" style="margin:0 0 4px;font-weight:700">Still cold: the key objection?</p>
+  <div class="oc3"><span class="on">Price</span><span>Not now</span><span>Family decides</span><span>No need</span><span>Other</span></div>
+  <div class="preset"><span>Call tomorrow</span><span class="on">Visit in 3 days</span><span>Pick…</span></div>
+  <div class="btn">Close visit</div>
+ </div></div></div>
+<p class="note">After Cold, Warm or Hot comes one tap: the key objection (Cold), what moved them (Warm) or what made it hot (Hot). These lists are settings KMM can change. RP meeting = met the parent or student and explained the programme. Non-RP = reached the house but not the decision-maker. Only got details = took the parent's number to call later; it is saved on the family straight away.</p></div>
+
+<div class="step"><h3><i>5c</i>The app suggests the next step</h3><p class="cap">From the family's history and what has worked for similar families, the app suggests what to do next. Ravi decides.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="pill warm">● Warm</span></div>
+ <div class="body">
+  <div class="fc"><div class="r"><span class="s">So far</span><span class="n">3 calls · 1 visit</span></div><div class="r"><span class="s">Last objection</span><span class="n">Family decides</span></div><div class="r"><span class="s">Answers calls</span><span class="n">after 7 PM</span></div></div>
+  <div class="fc ok"><h4>Suggested: a Google Meet with both parents, 7:30 PM</h4><p class="mini" style="margin:0">When the family decides together, a joint meeting turned more families Hot in your region than another call.</p></div>
+  <div class="row2"><div class="btn ghost">Not now</div><div class="btn">Book the Meet</div></div>
+ </div></div></div>
+<p class="note">At launch the suggestions come from agreed rules (for example: "price" → show the sample report first; three unanswered calls → try the time this family answered before). Later they are ranked by what actually worked. Suggestions never offer discounts.</p></div>
 
 <div class="step"><h3><i>6</i>Send the payment link</h3><p class="cap">One product: the ₹4,999 scan. Ravi checks the name and the last 4 digits, then sends. The parent sees YASHHO's name, not a stranger's.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -490,13 +527,13 @@ table.t .bar{min-width:110px}
  <div class="tabs"><span class="on"><i>⌂</i>Region</span><span><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span><i>₹</i>Money</span></div>
 </div></div><p class="note">Until a new YSP joins, the GM decides who covers an empty area.</p></div>
 
-<div class="step"><h3><i>2</i>Team activity</h3><p class="cap">What each YSP did today: visits, calls, families added. Imran's phone hasn't synced, so his numbers may be out of date.</p>
+<div class="step"><h3><i>2</i>Team activity</h3><p class="cap">Each YSP's day against plan: calls, visits and how many were with the right person. Imran's phone hasn't synced, so his numbers may be out of date.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Team today</b><span class="sync">Wed 18 Dec</span></div>
  <div class="body">
   <div class="fc" style="padding:2px 10px">
-   <div class="r"><span class="n">Deepa</span><span class="s">6 visits 📍 · 14 calls · 5 added</span></div>
-   <div class="r"><span class="n">Ravi</span><span class="s">3 visits 📍 · 9 calls · 2 added</span></div>
+   <div class="r"><span class="n">Deepa</span><span class="s">Calls 42/40 · Visits 10/10 · RP 6</span></div>
+   <div class="r"><span class="n">Ravi</span><span class="s">Calls 23/40 · Visits 6/10 · RP 3</span></div>
    <div class="r"><span class="n">Imran</span><span class="s" style="color:var(--bad)">Last synced Mon</span></div>
   </div>
   <div class="fc warn"><h4>Imran needs a hand</h4><p class="mini" style="margin:0">195 families added but never called.</p></div>
@@ -504,7 +541,7 @@ table.t .bar{min-width:110px}
  </div>
  <div class="tabs"><span><i>⌂</i>Region</span><span class="on"><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span><i>₹</i>Money</span></div>
 </div></div>
-<p class="note">Every day each YSP reports visits, families met, calls and school meetings. Each visit carries a GPS check-in (📍).</p></div>
+<p class="note">Numbers come from the YSPs' own calls and visits; nobody types a report. Tap a YSP to see his plan against what he did, with every outcome and its time and place.</p></div>
 
 <div class="step"><h3><i>3</i>Team earnings and mine</h3><p class="cap">He sees what each of his YSPs has earned. His own commission starts with April 2027 earnings, first paid on 5 May 2027.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -714,7 +751,7 @@ table.t .bar{min-width:110px}
 <div class="bv"><div class="side"><div class="on">Control room</div><div>Field today</div><div>Follow-ups</div><div>Deliveries</div><div>Checks</div><div>Network</div><div>Change log</div></div>
 <div class="main">
  <div class="ok4">
-  <div class="okp"><small>YSPs who started their day</small><b>291</b> <em>of 318 working · 27 not yet</em></div>
+  <div class="okp"><small>YSPs active today</small><b>291</b> <em>of 318 working · 27 not yet</em></div>
   <div class="okp"><small>Follow-ups overdue</small><b class="dn">1,406</b> <em>in 64 YSPs</em></div>
   <div class="okp"><small>Enquiries not called within 2 hours</small><b class="dn">12</b> <em>sent to RSMs</em></div>
   <div class="okp"><small>Families added, never called (7+ days)</small><b class="dn">3,920</b> <em>the GM can move them</em></div>
@@ -723,34 +760,74 @@ table.t .bar{min-width:110px}
   <div class="okp"><small>Phones not synced (24+ h)</small><b class="dn">31</b> <em>RSMs to call</em></div>
   <div class="okp"><small>Things that look wrong</small><b class="dn">6</b> <em>to review</em></div>
  </div>
- <div class="oc"><h4>Worst five regions on today's checks</h4><div class="tw"><table class="t"><tr><th>Region</th><th>RSM</th><th>Started day</th><th>Overdue</th><th>Never called</th><th>Not synced</th></tr>
+ <div class="oc"><h4>Worst five regions on today's checks</h4><div class="tw"><table class="t"><tr><th>Region</th><th>RSM</th><th>Active today</th><th>Overdue</th><th>Never called</th><th>Not synced</th></tr>
  <tr><td>Region 28</td><td class="dn">Vacant</td><td>4 / 6</td><td>212</td><td>640</td><td>2</td></tr>
  <tr><td>Region 17</td><td>Mahesh</td><td>7 / 10</td><td>148</td><td>402</td><td>3</td></tr>
  <tr><td>Tumakuru W–N</td><td>Suresh</td><td>8 / 9</td><td>61</td><td>195</td><td>1</td></tr></table></div></div>
 </div></div></div>
 <p class="note">Numbers update at 7 AM, 10 AM, 1 PM, 5 PM and 10 PM. Each tile has an agreed limit and an owner; going over the limit creates an alert (see Leaders, step 2). The exact limits come from KMM's tracking document.</p></div>
 
-<div class="step"><h3><i>2</i>A YSP starts and ends the day</h3><p class="cap">Ravi taps "Start my day" when he goes out, logs each visit as he goes, and closes the day with one tap. His RSM sees it live.</p>
+<div class="step"><h3><i>2</i>Ravi's day runs itself</h3><p class="cap">No start or end button. His day starts with his first call or visit and ends after his last; every activity carries the time and place.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
- <div class="top"><b>My day</b><span class="pill ok">📍 Started 9:12</span></div>
+ <div class="top"><b>My day</b><span class="pill ok">📍 Active since 9:12</span></div>
  <div class="body">
-  <div class="k2"><div class="kp"><small>Visits</small><b>3</b><em>plan 6</em></div><div class="kp"><small>Calls</small><b>9</b><em>plan 15</em></div></div>
+  <div class="tgt"><div><small>Calls</small><b>14</b> <em>/ 40</em><div class="bar"><i style="width:35%"></i></div></div><div><small>Visits</small><b>3</b> <em>/ 10</em><div class="bar"><i style="width:30%"></i></div></div><div><small>Meets</small><b>0</b> <em>today</em></div></div>
   <div class="fc" style="padding:2px 10px">
-   <div class="r"><div><div class="n">Visit · Kumar family</div><div class="s">📍 10:05 · Sira, ward 4</div></div><span class="pill ok">Added</span></div>
-   <div class="r"><div><div class="n">Visit · Sri Vidya School</div><div class="s">📍 11:40 · met the principal</div></div><span class="pill">School</span></div>
-   <div class="r"><div><div class="n">Visit · Rao family</div><div class="s">📍 1:15 · not at home</div></div><span class="pill">Try again</span></div>
+   <div class="r"><div><div class="n">Visit 1 · Manjappa family</div><div class="s">📍 10:05–10:27 · Sira, ward 4</div></div><span class="pill ok">RP</span></div>
+   <div class="r"><div><div class="n">Visit 1 · Unknown, Gandhi Road</div><div class="s">📍 11:40 · got the father's number</div></div><span class="pill">Got details</span></div>
+   <div class="r"><div><div class="n">Visit 2 · Rao family</div><div class="s">📍 1:15 · grandmother at home</div></div><span class="pill wait">Non-RP</span></div>
   </div>
-  <div class="btn ghost">＋ Log a visit</div>
+  <div class="fc"><div class="r"><span class="s">Calls: spoke to the parent</span><span class="n">8 of 14</span></div><div class="r"><span class="s">No answer / busy</span><span class="n">6</span></div></div>
  </div>
- <div class="dock"><div class="btn dark">End my day</div></div>
 </div></div>
-<p class="note">GPS check-in is required: starting the day and each visit record the time and the phone's location once (no tracking all day). Daily plan numbers are set by the RSM.</p></div>
+<p class="note">At day end (after his last activity, or 10 PM at the latest) the summary goes to his RSM by itself: visits, calls and Meets, each with its outcomes. Nothing to type.</p></div>
+
+<div class="step"><h3><i>2b</i>Plan tomorrow</h3><p class="cap">Each evening Ravi plans the next day. Follow-ups that are due fill in by themselves; he tops up to the targets with families and door-to-door visits.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Plan for Thu 19 Dec</b><span class="pill wait">Due by 10 PM</span></div>
+ <div class="body">
+  <div class="tgt"><div><small>Calls</small><b>40</b> <em>/ 40</em><div class="bar"><i style="width:100%"></i></div></div><div><small>Visits</small><b>10</b> <em>/ 10</em><div class="bar"><i style="width:100%"></i></div></div><div><small>Meets</small><b>1</b> <em>planned</em></div></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">22 follow-up calls due</div><div class="s">Added by themselves</div></div><span class="pill ok">Auto</span></div>
+   <div class="r"><div><div class="n">18 more calls</div><div class="s">Picked from Warm and new families</div></div></div>
+   <div class="r"><div><div class="n">6 visits · 4 Unknown, ward 4</div><div class="s">Door to door, Gandhi Road</div></div></div>
+   <div class="r"><div><div class="n">2 carried from today</div><div class="s">Reason: family travelling</div></div><span class="pill wait">Carried</span></div>
+  </div>
+ </div>
+ <div class="dock"><div class="btn">Save plan</div></div>
+</div></div>
+<p class="note">Planned against done is what his RSM reviews at 4 PM. Unfinished items carry over by themselves with a reason; an item carried a second time needs the RSM's OK.</p></div>
+
+<div class="step mid"><h3><i>2c</i>An RSM's route today</h3><p class="cap">For RSMs, the app records where they are at every action and every few minutes while it is open, during working hours only. The GM sees the day as a route.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Field today · Suresh (RSM)</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>First activity</small><b>8:55</b><em>Tumakuru</em></div><div class="okp"><small>Visits</small><b>7</b><em>of 10</em></div><div class="okp"><small>Calls</small><b>31</b><em>of 40</em></div><div class="okp"><small>Places today</small><b>5</b><em>last 3:40 PM</em></div></div>
+ <div class="tw"><table class="t"><tr><th>Time</th><th>Where</th><th>What</th></tr>
+ <tr><td>8:55</td><td>Tumakuru, Ashok Nagar</td><td>Call 1 · Hegde family · parent (RP)</td></tr>
+ <tr><td>10:30</td><td>Gubbi</td><td>Joint visit with Manoj · school meeting</td></tr>
+ <tr><td>1:10</td><td>Gubbi, ward 2</td><td>Visit 2 · Shetty family · RP · Warm</td></tr>
+ <tr><td>1:40–3:20</td><td class="dn">No location</td><td class="dn">App closed or location off</td></tr>
+ <tr><td>3:40</td><td>Tumakuru</td><td>Visit 1 · Unknown · got details</td></tr></table></div>
+</div></div></div>
+<p class="note">A web app records location only while it is open; no app can stop someone switching it off, so gaps are shown and counted instead. A visit cannot be logged without a location. A small Android app for RSMs (with company phones) can track with the screen off and spot fake locations. Staff are told in writing what is recorded; only working hours are kept.</p></div>
+
+<div class="step mid"><h3><i>2d</i>What families say</h3><p class="cap">Every Cold, Warm and Hot comes with its reason, so Head Office sees the top objections and what wins families, by region. The answers shape training.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · What families say · December</span></div>
+<div class="bv"><div class="main">
+ <div class="tw"><table class="t"><tr><th>Top objections (Cold)</th><th>Share</th><th>Top reasons for Hot</th><th>Share</th></tr>
+ <tr><td>Price</td><td>34%</td><td>Board exams near</td><td>38%</td></tr>
+ <tr><td>Not the right time</td><td>22%</td><td>Saw a sample report</td><td>27%</td></tr>
+ <tr><td>Family decides</td><td>17%</td><td>Counselling booked</td><td>19%</td></tr>
+ <tr><td>Don't see the need</td><td>14%</td><td>Friend recommended</td><td>11%</td></tr></table></div>
+ <div class="oc" style="margin-top:10px"><b>Cold → Warm, most often after</b><p class="ohint" style="margin:4px 0 0">a sample report (41%) · a second visit (29%) · a webinar (12%). Next training: answering "price" with the sample report.</p></div>
+</div></div></div>
+<p class="note">RSMs see the same view for their region and use it in the 4 PM review. Shares here are sample figures.</p></div>
 
 <div class="step"><h3><i>3</i>The RSM's 4 PM review and 5 PM update</h3><p class="cap">Every day at 4 PM Suresh reviews the day with his 10 YSPs, then sends the standard daily update by 5 PM.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Daily update</b><span class="pill wait">Due 5 PM</span></div>
  <div class="body">
-  <div class="fc" style="padding:2px 10px"><div class="r"><span class="s">Sales today</span><span class="n">6 (₹29,994)</span></div><div class="r"><span class="s">Visits / calls</span><span class="n">31 / 118</span></div><div class="r"><span class="s">Hot list</span><span class="n">39 families</span></div><div class="r"><span class="s">YSPs who didn't start</span><span class="n" style="color:var(--bad)">Imran</span></div></div>
+  <div class="fc" style="padding:2px 10px"><div class="r"><span class="s">Sales today</span><span class="n">6 (₹29,994)</span></div><div class="r"><span class="s">Visits / calls</span><span class="n">31 / 118</span></div><div class="r"><span class="s">Hot list</span><span class="n">39 families</span></div><div class="r"><span class="s">YSPs not active today</span><span class="n" style="color:var(--bad)">Imran</span></div></div>
   <div class="fld"><label>Wins and insights</label><span>Tiptur school meeting went well</span></div>
   <div class="fld"><label>Problems and help needed</label><span>Imran unreachable · joint visit Fri</span></div>
  </div>
