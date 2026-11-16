@@ -144,6 +144,12 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .mini{font-size:11.5px;color:var(--f-mute)}
 .wa-msg{background:#e7ffdb;border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:12.5px;color:#0b1b33;margin:6px 0}
 .parentphone{background:#f1f3f6}
+.fld.lock{background:#eef1f5}
+.rule3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rq{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:12px;min-width:0}
+.rq b{display:block;margin-bottom:4px}
+.rq p{margin:0 0 8px;font-size:13.5px;opacity:.9}
+@media (max-width:700px){.rule3{grid-template-columns:1fr}}
 .browser{border:1px solid #1b2f4c;border-radius:14px;overflow:hidden;background:var(--o-bg);color:var(--o-ink);box-shadow:0 18px 40px rgba(14,36,64,.28)}
 .chrome{display:flex;align-items:center;gap:6px;background:#06101d;padding:9px 12px}
 .chrome .d{width:10px;height:10px;border-radius:50%;background:#2c415d;flex:0 0 auto}
@@ -209,7 +215,7 @@ table.t .bar{min-width:110px}
    <span><span class="q">Q4.2</span> open question for KMM, in the shared Google Doc (storyboard note only, not app text)</span>
   </div>
   <nav class="toc" aria-label="Sections">
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#money">Money and payouts</a><a href="#school">Schools and colleges</a><a href="#msgs">Messages and materials</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#msgs">Messages and materials</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
   </nav>
  </div>
 
@@ -777,7 +783,7 @@ table.t .bar{min-width:110px}
  <div class="tw"><table class="t"><tr><th>What we noticed</th><th>Who</th><th>Since</th><th>Status</th><th></th></tr>
  <tr><td>One UPI account paid for 6 different families</td><td>Kiran, Hiriyur</td><td>Today</td><td><span class="op wait">Commission held</span></td><td><span class="ob ghost">Review</span></td></tr>
  <tr><td>120 families added in one hour, none called since</td><td>Manoj, Gubbi</td><td>Yesterday</td><td><span class="op wait">To review</span></td><td><span class="ob ghost">Review</span></td></tr>
- <tr><td>The same mobile number entered for 14 families</td><td>Ravi, Sira</td><td>2 days</td><td><span class="op ok">Cleared: shop phone</span></td><td><span class="ob ghost">View</span></td></tr>
+ <tr><td>Possible same family: "Shilpa Kumar" and "S. Kumar", same child, same PIN</td><td>Ravi, Sira</td><td>2 days</td><td><span class="op ok">Cleared: merged, Ravi keeps</span></td><td><span class="ob ghost">View</span></td></tr>
  <tr><td>A YSP's own number paid for scans</td><td>Prakash, Tiptur</td><td>3 days</td><td><span class="op bad">Refund and warning</span></td><td><span class="ob ghost">View</span></td></tr></table></div>
 </div></div></div>
 <p class="note">The patterns to watch are a starting list for KMM to agree. A flagged case never changes credit by itself: a person decides, and the decision is logged.</p></div>
@@ -837,6 +843,158 @@ table.t .bar{min-width:110px}
  <tr><td><span class="op wait">No matching family</span></td><td>₹4,999 · UPI</td><td>—</td><td><span class="ob ghost">Match</span></td></tr></table></div>
  <div class="oc" style="margin-top:10px"><b>Refund: Shetty family, ₹4,999</b><p class="ohint" style="margin:4px 0 0">Reason: scan not taken · takes back ₹296.55 from Ravi's next payout. Ravi and Suresh are told why.</p></div>
 </div></div></div></div>
+</div>
+</section>
+
+<section class="j" id="credit">
+<h2>Who gets credit for a sale <span class="badge now">At launch</span></h2>
+<p class="sub">Every paid sale is credited once, at the moment of payment, by one rule. A sale belongs to a YSP or RSM only if the parent paid on their link, or the parent was already one of their families. Everything else is a YASHHO direct sale, and nobody earns commission on it.</p>
+<div class="flow">
+
+<div class="step wide"><h3><i>1</i>The rule</h3><p class="cap">Three questions, asked in this order the moment the payment comes in. The first "yes" decides, and the answer is saved with the sale for good.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · How a sale is credited</span></div>
+<div class="bv"><div class="main">
+ <div class="rule3">
+  <div class="rq"><b>1 · Did the parent pay on a partner's link?</b><p>Yes → the YSP or RSM who sent the link.</p><span class="op ok">Flow A</span></div>
+  <div class="rq"><b>2 · Is this parent already in a partner's families?</b><p>Matched by mobile number or email, saved before the payment. Yes → that YSP or RSM.</p><span class="op ok">Flow B</span></div>
+  <div class="rq"><b>3 · Neither?</b><p>A YASHHO direct sale. No YSP or RSM gets credit or commission.</p><span class="op">Flow C</span></div>
+ </div>
+ <div class="oc" style="margin-top:10px"><b>Why it can never be two people</b><p class="ohint" style="margin:4px 0 0">A mobile number or email can belong to only one family, and a family to only one partner. The first person to save the family keeps it. Only the GM can move a family, and every move is logged.</p></div>
+</div></div></div>
+<p class="note">The PIN code is used to show sales by region. It never decides who gets a sale.</p></div>
+
+<div class="step"><h3><i>A1</i>Ravi sends his link</h3><p class="cap">From the Kumar family's page. The link is made for this family only, and carries Ravi's name.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Kumar family</b></div>
+ <div class="body"><p class="mini">Master Success Scan, ₹4,999</p></div>
+ <div class="dim"></div>
+ <div class="sheet"><div class="grab"></div>
+  <p style="margin:0 0 6px;font-weight:800">Send the link to Shilpa (…2418)?</p>
+  <div class="wa-msg">YASHHO: Namaskara Shilpa. Pay ₹4,999 for Aarav's Success Scan here: yashho.com/p/7Kq2mX. Your partner: Ravi (KA-R11-YSP02).</div>
+  <p class="mini">This link works for the Kumar family only.</p>
+  <div class="btn wa">Send on WhatsApp</div>
+ </div></div></div></div>
+
+<div class="step"><h3><i>A2</i>Shilpa opens the link</h3><p class="cap">Her details are already filled in and locked, so the link can only pay for her family. She sees who her partner is.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>yashho.com</b><span class="sync">🔒 Secure</span></div>
+ <div class="body">
+  <p style="font-weight:800;margin:2px 0 8px">Master Success Scan · ₹4,999</p>
+  <div class="fld lock"><label>Parent</label><span>Shilpa Kumar 🔒</span></div>
+  <div class="fld lock"><label>Mobile</label><span>98450 12418 🔒</span></div>
+  <div class="fld lock"><label>PIN code</label><span>572137 · Sira 🔒</span></div>
+  <div class="fld"><label>Email for the receipt</label><span>shilpa.k@…</span></div>
+  <div class="fc sub"><div class="r"><span class="s">Your partner</span><span class="n">Ravi S, Sira</span></div></div>
+ </div>
+ <div class="dock"><div class="btn">Pay ₹4,999</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>A3</i>She pays</h3><p class="cap">The usual secure payment screen: UPI, card or net banking. Nothing new for the parent to learn.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>Pay YASHHO</b><span class="sync">Razorpay</span></div>
+ <div class="body">
+  <div class="fc"><div class="r"><span class="s">Amount</span><span class="n">₹4,999</span></div><div class="r"><span class="s">For</span><span class="n">Master Success Scan</span></div></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><span class="n">UPI</span><span class="pill ok">Selected</span></div>
+   <div class="r"><span class="n">Card</span></div>
+   <div class="r"><span class="n">Net banking</span></div>
+  </div>
+ </div>
+ <div class="dock"><div class="btn">Pay with UPI</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>A4</i>Paid, then register</h3><p class="cap">Straight after paying, Shilpa sets up the family's YASHHO app account. From here the app takes care of everything.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO</b></div>
+ <div class="body" style="text-align:center">
+  <div class="fc ok" style="text-align:left"><h4>Payment received ✓</h4><p class="mini" style="margin:0">₹4,999 · receipt sent to your email</p></div>
+  <p style="font-weight:800;margin:12px 0 6px">Set up Aarav's account</p>
+  <div class="fld" style="text-align:left"><label>Mobile</label><span>98450 12418</span></div>
+  <p class="mini">Next: booking the scan, in the app.</p>
+ </div>
+ <div class="dock"><div class="btn">Continue</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>A5</i>Ravi sees it straight away</h3><p class="cap">The sale lands on his phone, with the reason it is his. The commission is earned now and paid on 5 January.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill ok">Paid</span></div>
+ <div class="body">
+  <div class="fc ok"><h4>Kumar family paid ₹4,999</h4><p class="mini" style="margin:0">You earned ₹296.55</p></div>
+  <div class="fc"><div class="r"><span class="s">Credited to</span><span class="n">Ravi</span></div><div class="r"><span class="s">Why</span><span class="n">Paid on your link</span></div><div class="r"><span class="s">Paid on</span><span class="n">16 Dec, 7:42 PM</span></div></div>
+  <div class="tl"><div class="done"><b>Link sent</b><small>16 Dec, Ravi</small></div><div class="done"><b>Link opened</b><small>16 Dec, 7:31 PM</small></div><div class="done"><b>Paid and registered</b><small>16 Dec, 7:42 PM</small></div></div>
+ </div></div></div>
+<p class="note">His RSM, Suresh, sees the same sale on his team screen.</p></div>
+
+<div class="step"><h3><i>B1</i>A family he already added pays on the website</h3><p class="cap">Ravi added the Patil family on 3 December. A week later the mother pays on yashho.com herself, without using his link.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>yashho.com</b><span class="sync">🔒 Secure</span></div>
+ <div class="body">
+  <p style="font-weight:800;margin:2px 0 8px">Master Success Scan · ₹4,999</p>
+  <div class="fld"><label>Parent's name</label><span>Kavitha Patil</span></div>
+  <div class="fld"><label>Mobile</label><span>99015 40377</span></div>
+  <div class="fld"><label>Email</label><span>kavitha.p@…</span></div>
+  <div class="fld"><label>PIN code</label><span>572137</span><span class="hint">Sira, Tumakuru, Karnataka</span></div>
+ </div>
+ <div class="dock"><div class="btn">Pay ₹4,999</div></div>
+</div></div>
+<p class="note">With no link, the parent types her own details. One PIN code fills in the town, district and state.</p></div>
+
+<div class="step"><h3><i>B2</i>It is still Ravi's</h3><p class="cap">Her mobile number was already in Ravi's families before she paid, so the sale is his, the same as if she had used his link.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="pill ok">Paid</span></div>
+ <div class="body">
+  <div class="fc ok"><h4>Patil family paid ₹4,999</h4><p class="mini" style="margin:0">On the website · you earned ₹296.55</p></div>
+  <div class="fc"><div class="r"><span class="s">Credited to</span><span class="n">Ravi</span></div><div class="r"><span class="s">Why</span><span class="n">Already your family</span></div><div class="r"><span class="s">Matched by</span><span class="n">Mobile, added 3 Dec</span></div></div>
+ </div></div></div>
+<p class="note">A match on a second number or email the family gave Ravi counts too. A number added after the payment does not.</p></div>
+
+<div class="step"><h3><i>C1</i>A parent nobody knows pays</h3><p class="cap">Anil sees a YASHHO advert and pays on the website. No link, and his number isn't in any partner's families.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>yashho.com</b><span class="sync">🔒 Secure</span></div>
+ <div class="body">
+  <p style="font-weight:800;margin:2px 0 8px">Master Success Scan · ₹4,999</p>
+  <div class="fld"><label>Parent's name</label><span>Anil Menon</span></div>
+  <div class="fld"><label>Mobile</label><span>90080 66215</span></div>
+  <div class="fld"><label>PIN code</label><span>560034</span><span class="hint">Koramangala, Bengaluru, Karnataka</span></div>
+  <div class="fc ok"><h4>Payment received ✓</h4><p class="mini" style="margin:0">Next: set up your account in the app</p></div>
+ </div></div></div>
+<p class="note">His journey is exactly the same as Shilpa's: pay, register, and the app does the rest.</p></div>
+
+<div class="step mid"><h3><i>C2</i>Head Office sees a YASHHO direct sale</h3><p class="cap">It is counted as YASHHO's own sale and shown in its region, but no YSP or RSM is credited and no commission is paid.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · YASHHO direct sales</span></div>
+<div class="bv"><div class="main">
+ <div class="tw"><table class="t"><tr><th>Family</th><th>Paid</th><th>Region (from PIN)</th><th>Credit</th></tr>
+ <tr><td>Menon family</td><td>16 Dec</td><td>Bengaluru South</td><td><span class="op">YASHHO direct</span></td></tr>
+ <tr><td>Nayak family</td><td>16 Dec</td><td>Udupi</td><td><span class="op">YASHHO direct</span></td></tr>
+ <tr><td>Hegde family</td><td>15 Dec</td><td>Outside Karnataka</td><td><span class="op">YASHHO direct</span></td></tr></table></div>
+</div></div></div>
+<p class="note">If a YSP later tries to add Anil's number, the app says this family is already known. A direct sale never turns into a partner's sale afterwards.</p></div>
+
+<div class="step wide"><h3><i>D</i>The awkward cases</h3><p class="cap">What happens when things don't go to plan. Each one follows the same rule, so nobody has to argue about it.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Credit: special cases</span></div>
+<div class="bv"><div class="main">
+ <div class="tw"><table class="t"><tr><th>What happened</th><th>Who gets the sale</th></tr>
+ <tr><td class="wrap">Shilpa forwards Ravi's link to her neighbour</td><td class="wrap">The link pays only for the Kumar family; the details are locked. The neighbour pays on the website: rules 2 and 3 apply.</td></tr>
+ <tr><td class="wrap">The GM moves the family to Deepa after Ravi sent a link</td><td class="wrap">Ravi's old link stops working. Deepa sends a new one, and the sale is Deepa's.</td></tr>
+ <tr><td class="wrap">Ravi leaves and is switched off</td><td class="wrap">His links stop that day and he earns nothing more. The GM moves his families; later sales go to the new owner.</td></tr>
+ <tr><td class="wrap">Ravi adds the parent's number an hour after she paid</td><td class="wrap">Too late: credit is decided at the moment of payment. It stays a YASHHO direct sale.</td></tr>
+ <tr><td class="wrap">The same family looks saved twice ("S. Kumar", same child, same PIN)</td><td class="wrap">Held as a possible match. Commission waits until the Field Sales Network manager clears it. The first person to save the family keeps it.</td></tr>
+ <tr><td class="wrap">The family is refunded</td><td class="wrap">The sale is reversed and the commission is taken back from the next payout.</td></tr>
+ <tr><td class="wrap">The parent pays on Suresh's (RSM's) link</td><td class="wrap">The same rules apply: it is Suresh's own sale.</td></tr>
+ <tr><td class="wrap">A student comes through a partner college</td><td class="wrap">Credited through the college programme (see Schools and colleges).</td></tr></table></div>
+</div></div></div></div>
+
+<div class="step wide"><h3><i>E</i>Where it shows: partner sales and YASHHO direct</h3><p class="cap">Leaders see the split every day. Commission is worked out only on partner sales.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Billings · December 2026</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>All scans paid</small><b>3,184</b> <em>₹1.59 Cr</em></div><div class="okp"><small>Through YSPs and RSMs</small><b>2,912</b> <em>₹1.46 Cr · commission due</em></div><div class="okp"><small>YASHHO direct</small><b>272</b> <em>₹13.6 L · no commission</em></div><div class="okp"><small>Held: possible match</small><b>6</b> <em>to clear</em></div></div>
+ <div class="tw"><table class="t"><tr><th>How credit was decided</th><th>Sales</th><th>Share</th></tr>
+ <tr><td>Paid on a partner's link</td><td>2,431</td><td>76%</td></tr>
+ <tr><td>Already a partner's family</td><td>481</td><td>15%</td></tr>
+ <tr><td>YASHHO direct</td><td>272</td><td>9%</td></tr></table></div>
+</div></div></div>
+<p class="note">Every sale keeps its reason (link, already a family, or direct), so any figure can be traced back to the individual sale.</p></div>
+
 </div>
 </section>
 
