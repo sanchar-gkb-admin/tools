@@ -848,15 +848,15 @@ table.t .bar{min-width:110px}
 
 <section class="j" id="credit">
 <h2>Who gets credit for a sale <span class="badge now">At launch</span></h2>
-<p class="sub">Every paid sale is credited once, at the moment of payment, by one rule. A sale belongs to a YSP or RSM only if the parent paid on their link, or the parent was already one of their families. Everything else is a YASHHO direct sale, and nobody earns commission on it.</p>
+<p class="sub">Every paid sale is credited once, at the moment of payment, by one rule. A sale belongs to a YSP or RSM only if the parent was already one of their families, or came through their own link or QR code. Everything else is a YASHHO direct sale, and nobody earns commission on it.</p>
 <div class="flow">
 
-<div class="step wide"><h3><i>1</i>The rule</h3><p class="cap">Three questions, asked in this order the moment the payment comes in. The first "yes" decides, and the answer is saved with the sale for good.</p>
+<div class="step wide"><h3><i>1</i>The rule</h3><p class="cap">Three questions, asked in this order the moment the payment comes in. A family's partner always comes before anyone else's link. The first "yes" decides, and the answer is saved with the sale for good.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · How a sale is credited</span></div>
 <div class="bv"><div class="main">
  <div class="rule3">
-  <div class="rq"><b>1 · Did the parent pay on a partner's link?</b><p>Yes → the YSP or RSM who sent the link.</p><span class="op ok">Flow A</span></div>
-  <div class="rq"><b>2 · Is this parent already in a partner's families?</b><p>Matched by mobile number or email, saved before the payment. Yes → that YSP or RSM.</p><span class="op ok">Flow B</span></div>
+  <div class="rq"><b>1 · Is the parent already one of a partner's families?</b><p>Matched by the family's payment link, mobile number or email, saved before the payment. Yes → that YSP or RSM.</p><span class="op ok">Flows A and B</span></div>
+  <div class="rq"><b>2 · Did they come through a partner's own link or QR?</b><p>Within 90 days of the click. Yes → that YSP or RSM, and the family becomes theirs.</p><span class="op ok">See D</span></div>
   <div class="rq"><b>3 · Neither?</b><p>A YASHHO direct sale. No YSP or RSM gets credit or commission.</p><span class="op">Flow C</span></div>
  </div>
  <div class="oc" style="margin-top:10px"><b>Why it can never be two people</b><p class="ohint" style="margin:4px 0 0">A mobile number or email can belong to only one family, and a family to only one partner. The first person to save the family keeps it. Only the GM can move a family, and every move is logged.</p></div>
@@ -974,7 +974,8 @@ table.t .bar{min-width:110px}
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Credit: special cases</span></div>
 <div class="bv"><div class="main">
  <div class="tw"><table class="t"><tr><th>What happened</th><th>Who gets the sale</th></tr>
- <tr><td class="wrap">Shilpa forwards Ravi's link to her neighbour</td><td class="wrap">The link pays only for the Kumar family; the details are locked. The neighbour pays on the website: rules 2 and 3 apply.</td></tr>
+ <tr><td class="wrap">Shilpa forwards Ravi's link to her neighbour</td><td class="wrap">The link pays only for the Kumar family; the details are locked. The neighbour pays with her own details, and the same three questions decide.</td></tr>
+ <tr><td class="wrap">A parent scans the QR on Ravi's visiting card, then pays on the website a week later</td><td class="wrap">Ravi's sale, and the family becomes his. If the family was already Deepa's, it stays Deepa's sale.</td></tr>
  <tr><td class="wrap">The GM moves the family to Deepa after Ravi sent a link</td><td class="wrap">Ravi's old link stops working. Deepa sends a new one, and the sale is Deepa's.</td></tr>
  <tr><td class="wrap">Ravi leaves and is switched off</td><td class="wrap">His links stop that day and he earns nothing more. The GM moves his families; later sales go to the new owner.</td></tr>
  <tr><td class="wrap">Ravi adds the parent's number an hour after she paid</td><td class="wrap">Too late: credit is decided at the moment of payment. It stays a YASHHO direct sale.</td></tr>
@@ -989,11 +990,12 @@ table.t .bar{min-width:110px}
 <div class="bv"><div class="main">
  <div class="ok4"><div class="okp"><small>All scans paid</small><b>3,184</b> <em>₹1.59 Cr</em></div><div class="okp"><small>Through YSPs and RSMs</small><b>2,912</b> <em>₹1.46 Cr · commission due</em></div><div class="okp"><small>YASHHO direct</small><b>272</b> <em>₹13.6 L · no commission</em></div><div class="okp"><small>Held: possible match</small><b>6</b> <em>to clear</em></div></div>
  <div class="tw"><table class="t"><tr><th>How credit was decided</th><th>Sales</th><th>Share</th></tr>
- <tr><td>Paid on a partner's link</td><td>2,431</td><td>76%</td></tr>
- <tr><td>Already a partner's family</td><td>481</td><td>15%</td></tr>
+ <tr><td>Family's payment link</td><td>2,431</td><td>76%</td></tr>
+ <tr><td>Already a partner's family, paid on the website</td><td>391</td><td>12%</td></tr>
+ <tr><td>Partner's own link or QR</td><td>90</td><td>3%</td></tr>
  <tr><td>YASHHO direct</td><td>272</td><td>9%</td></tr></table></div>
 </div></div></div>
-<p class="note">Every sale keeps its reason (link, already a family, or direct), so any figure can be traced back to the individual sale.</p></div>
+<p class="note">Every sale keeps its reason (family link, already a family, partner link, or direct), so any figure can be traced back to the individual sale.</p></div>
 
 </div>
 </section>
