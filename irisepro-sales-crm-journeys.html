@@ -1,0 +1,591 @@
+<title>YASHHO Sales CRM — Journey Storyboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1626;--surface:#10223c;--surface2:#142a49;--accent:#f5821f;--accent-strong:#ff9b3d;--accent-bright:#ffb259;--accent-soft:#1d2f4d;--blue:#3f93e0;--text:#eaf1f9;--muted:#8ea3bd;--border:#1d3354;--ok:#2fbf71;--warn:#f2c94c;--bad:#eb5757;--cold:#56a3e6;--warm:#f2c94c;--hot:#ff6b3d}
+*{box-sizing:border-box}
+body{margin:0;background:#06101d;color:var(--text);font:400 14px/1.45 Montserrat,system-ui,sans-serif}
+a{color:var(--accent-strong)}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 16px 80px}
+header.hero h1{font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(26px,4vw,40px);margin:0 0 6px}
+header.hero p{color:var(--muted);margin:4px 0;max-width:900px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.legend span{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:12px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 28px}
+.toc a{background:var(--accent-soft);border:1px solid var(--border);padding:7px 12px;border-radius:8px;text-decoration:none;font-weight:600;font-size:13px}
+section.journey{margin:44px 0 0;border-top:1px solid var(--border);padding-top:22px}
+section.journey>h2{font-weight:900;text-transform:uppercase;font-size:22px;margin:0 0 4px}
+section.journey>p.sub{color:var(--muted);margin:0 0 18px}
+.flow{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start}
+.step{width:290px;flex:0 0 auto}
+.step.wide{width:760px;max-width:100%}
+.step h3{font-size:13px;font-weight:700;margin:0 0 4px;color:var(--accent-bright);text-transform:uppercase;letter-spacing:.04em}
+.step .cap{font-size:12.5px;color:var(--muted);margin:0 0 10px;min-height:36px}
+.step .note{font-size:11.5px;color:var(--muted);margin-top:8px;border-left:2px solid var(--border);padding-left:8px}
+.arrow{align-self:center;color:var(--accent);font-size:26px;font-weight:900}
+/* device frames */
+.phone{width:270px;margin:0 auto;background:#05101f;border:9px solid #0c1a2e;border-radius:34px;box-shadow:0 24px 60px rgba(0,0,0,.55);position:relative;overflow:hidden}
+.phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:20px;background:#0c1a2e;border-radius:0 0 14px 14px;z-index:5}
+.pv{height:540px;position:relative;background:var(--bg);overflow:hidden;font-size:12px}
+.pv .top{padding:26px 14px 8px;display:flex;justify-content:space-between;align-items:center}
+.pv .top b{font-weight:800;font-size:13px}
+.pv .body{padding:0 12px}
+.tabbar{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:var(--surface);border-top:1px solid var(--border);padding:7px 0 9px;font-size:9.5px;color:var(--muted)}
+.tabbar i{display:block;text-align:center;font-style:normal;font-size:15px}
+.tabbar .on{color:var(--accent-strong)}
+.browser{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--bg);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.chrome{display:flex;align-items:center;gap:6px;background:#0c1a2e;padding:8px 10px}
+.chrome .d{width:9px;height:9px;border-radius:50%;background:#33475f}
+.chrome .url{margin-left:10px;flex:1;background:#06101d;border-radius:999px;padding:4px 12px;color:var(--muted);font-size:11px}
+.bv{display:flex;min-height:430px;font-size:12px}
+.side{width:150px;background:#0c1a2e;border-right:1px solid var(--border);padding:12px 8px}
+.side div{padding:6px 8px;border-radius:6px;color:var(--muted);margin-bottom:2px}
+.side .on{background:var(--accent-soft);color:var(--text);font-weight:600}
+.main{flex:1;padding:14px}
+/* atoms */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px;margin-bottom:8px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:8px}
+.kpis.k4{grid-template-columns:repeat(4,1fr)}
+.kpis.k5{grid-template-columns:repeat(5,1fr)}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px}
+.kpi small{display:block;color:var(--muted);font-size:9.5px;text-transform:uppercase;letter-spacing:.04em}
+.kpi b{font-size:17px;font-weight:800}
+.kpi em{font-style:normal;font-size:10px}
+.up{color:var(--ok)}.dn{color:var(--bad)}
+.bar{height:6px;background:#0c1a2e;border-radius:4px;overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-bright))}
+.field{background:#0c1a2e;border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--muted);margin-bottom:7px;position:relative;font-size:11.5px}
+.field label{display:block;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.field span{color:var(--text)}
+.field.req::after{content:"";position:absolute;right:9px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--bad)}
+.btn{display:block;text-align:center;background:linear-gradient(180deg,var(--accent-bright),var(--accent));color:#1a0e02;font-weight:800;border-radius:9px;padding:10px;margin-top:8px;font-size:12px}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn.wa{background:#25d366;color:#05210f}
+.seg{display:flex;background:#0c1a2e;border:1px solid var(--border);border-radius:9px;padding:3px;gap:3px;margin-bottom:8px}
+.seg div{flex:1;text-align:center;padding:6px 0;border-radius:6px;font-weight:700;font-size:11px;color:var(--muted)}
+.seg .c{background:rgba(86,163,230,.18);color:var(--cold)}
+.seg .w{background:rgba(242,201,76,.18);color:var(--warm)}
+.seg .h{background:var(--hot);color:#2a0b00}
+.chip{display:inline-block;border-radius:999px;padding:2px 8px;font-size:9.5px;font-weight:700;border:1px solid var(--border);background:var(--accent-soft);color:var(--text);margin-right:3px}
+.chip.hot{background:rgba(255,107,61,.2);color:var(--hot);border-color:transparent}
+.chip.warm{background:rgba(242,201,76,.18);color:var(--warm);border-color:transparent}
+.chip.cold{background:rgba(86,163,230,.18);color:var(--cold);border-color:transparent}
+.chip.ok{background:rgba(47,191,113,.18);color:var(--ok);border-color:transparent}
+.chip.bad{background:rgba(235,87,87,.18);color:var(--bad);border-color:transparent}
+.chip.off{background:#2a2f3a;color:#c9d2de}
+.row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);gap:6px}
+.row:last-child{border-bottom:0}
+.row .n{font-weight:600}
+.row .s{color:var(--muted);font-size:10.5px}
+.chk{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:var(--muted);margin:6px 0}
+.chk i{width:14px;height:14px;border:1.5px solid var(--accent);border-radius:3px;flex:0 0 14px;background:var(--accent);position:relative}
+.chk i.e{background:transparent}
+.q{display:inline-block;background:rgba(242,201,76,.14);color:var(--warn);border:1px dashed var(--warn);border-radius:6px;padding:1px 6px;font-size:9.5px;font-weight:700}
+.blocked{outline:2px dashed var(--warn);outline-offset:4px}
+.dim{position:absolute;inset:0;background:rgba(4,10,20,.72);z-index:3}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);border-radius:16px 16px 0 0;padding:12px;z-index:4}
+.sheet .grab{width:36px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 10px}
+.offline{background:#2a2f3a;color:#c9d2de;font-size:10px;text-align:center;padding:3px 0}
+table.t{width:100%;border-collapse:collapse;font-size:11px}
+table.t th{text-align:left;color:var(--muted);font-weight:600;font-size:9.5px;text-transform:uppercase;padding:5px 6px;border-bottom:1px solid var(--border)}
+table.t td{padding:6px;border-bottom:1px solid var(--border)}
+table.t .bar{min-width:120px}
+.heat{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.heat i{height:18px;border-radius:3px;display:block}
+.tl{border-left:2px solid var(--border);margin-left:6px;padding-left:12px}
+.tl div{position:relative;margin-bottom:9px}
+.tl div::before{content:"";position:absolute;left:-18px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--border)}
+.tl div.done::before{background:var(--ok)}
+.tl div.now::before{background:var(--accent)}
+.spark{display:flex;align-items:flex-end;gap:2px;height:40px}
+.spark i{flex:1;background:var(--blue);border-radius:2px 2px 0 0;opacity:.85}
+.mini{font-size:10px;color:var(--muted)}
+h4{margin:2px 0 6px;font-size:12px}
+@media (max-width:700px){.step.wide{width:100%}.bv{flex-direction:column}.side{width:auto;display:flex;flex-wrap:wrap}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <h1>YASHHO Sales CRM · Journey Storyboard</h1>
+  <p>Screen-by-screen flows for the 40-Region / 400-YSP network across <b>all seven sales paths</b>. Draft for Goutam + KMM review, 17 Nov 2026. Every screen traces to a use case in <code>docs/sales-crm/01-roles-and-use-cases.md</code> (UC-ids shown under each screen).</p>
+  <p>Built on decisions from the 16 Nov meeting: territory integrity, first contact wins, online enquiries auto-route to the territory YSP, commission on delivery, Razorpay only, no field discounts, Cold/Warm/Hot at qualification, analytics every 3 hours.</p>
+  <div class="legend">
+    <span><span class="q">⏳ Q4.2</span> waiting on an open question in the shared Google Doc. The screen shows our default</span>
+    <span>📱 phone = field app (PWA, works offline)</span>
+    <span>🖥 browser = Head Office console</span>
+    <span><span class="chip cold">Cold</span><span class="chip warm">Warm</span><span class="chip hot">Hot</span> lead heat</span>
+  </div>
+  <nav class="toc">
+    <a href="#ysp">1 · YSP (field)</a><a href="#rsm">2 · RSM (Region)</a><a href="#osc">3 · Online counsellor</a><a href="#ceo">4 · CEO dashboard</a><a href="#gm">5 · GM–Sales</a><a href="#pay">6 · Payout approval</a><a href="#amb">7 · Ambassador + parent</a>
+  </nav>
+</header>
+
+<!-- ================= 1. YSP ================= -->
+<section class="journey" id="ysp">
+<h2>1 · YASHHO Success Partner: field app</h2>
+<p class="sub">Joining list → daily list → capture → qualify → payment link → delivered → earnings. Mobile-first; desktop/tablet view shown at the end.</p>
+<div class="flow">
+
+<div class="step"><h3>01 · Sign in</h3><p class="cap">Email + password (reuses the existing login). Session kept for offline use.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>YASHHO</b><span class="mini">KA-R11-U02</span></div>
+ <div class="body" style="padding-top:40px">
+  <h4 style="font-size:18px;font-weight:900;text-transform:uppercase">Partner sign in</h4>
+  <div class="field req"><label>Email</label><span>ysp.sira@…</span></div>
+  <div class="field req"><label>Password</label><span>••••••••</span></div>
+  <div class="btn">Sign in</div>
+  <p class="mini" style="margin-top:10px">Forgot password? · Language: English | ಕನ್ನಡ <span class="q">⏳ Q0.1</span></p>
+ </div></div></div>
+<p class="note">UC-ADM-05</p></div>
+
+<div class="step blocked"><h3>02 · First day: joining list</h3><p class="cap">The 500-parent list is required on joining (meeting). Upload a sheet or add parents one by one.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Joining list</b><span class="chip">312 / 500</span></div>
+ <div class="body">
+  <div class="card"><div class="bar"><i style="width:62%"></i></div><p class="mini">188 more to activate full selling</p></div>
+  <div class="btn ghost">⬆ Upload spreadsheet (template)</div>
+  <div class="btn ghost">＋ Add a parent</div>
+  <div class="card" style="margin-top:8px"><h4>Checks on every row</h4>
+   <div class="row"><span class="s">Phone valid + unique</span><span class="chip ok">298</span></div>
+   <div class="row"><span class="s">PIN inside my unit</span><span class="chip ok">281</span></div>
+   <div class="row"><span class="s">Already someone's lead</span><span class="chip bad">14</span></div>
+   <div class="row"><span class="s">Permission confirmed</span><span class="chip warm">203</span></div></div>
+  <div class="chk"><i></i>I confirm each parent agreed to be contacted by YASHHO <span class="q">⏳ Q15.4</span></div>
+ </div></div></div>
+<p class="note">UC-NET-04 · Duplicates go to first contact (UC-LEAD-06). Upload vs app entry, and per-parent consent, are open.</p></div>
+
+<div class="step"><h3>03 · Home: today</h3><p class="cap">Target vs actual this month, then today's follow-ups sorted by due time and heat.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Namaskara, Ravi</b><span class="mini">Sira · U02</span></div>
+ <div class="offline" style="margin:0 12px 8px;border-radius:6px">Offline · 3 changes waiting to sync</div>
+ <div class="body">
+  <div class="kpis"><div class="kpi"><small>Enrolments (Dec)</small><b>11</b> <em class="mini">/ 20</em><div class="bar"><i style="width:55%"></i></div></div>
+  <div class="kpi"><small>Delivered</small><b>8</b> <em class="up">+2 today</em></div></div>
+  <h4>Today · 9 follow-ups</h4>
+  <div class="card" style="padding:4px 10px">
+   <div class="row"><div><div class="n">Shilpa K · Class 9</div><div class="s">Counselled · link sent yesterday</div></div><span class="chip hot">Hot</span></div>
+   <div class="row"><div><div class="n">Manjappa H · Class 6</div><div class="s">Call back 11:30</div></div><span class="chip warm">Warm</span></div>
+   <div class="row"><div><div class="n">Fathima B · NEET</div><div class="s">Online enquiry · auto-routed</div></div><span class="chip">New</span></div>
+  </div>
+  <div class="btn">＋ New lead</div>
+ </div>
+ <div class="tabbar"><span class="on"><i>⌂</i>Today</span><span><i>☰</i>Leads</span><span><i>🏫</i>Institutions</span><span><i>₹</i>Earnings</span></div>
+</div></div>
+<p class="note">UC-SALE-01, UC-TGT-02 · Attainment counts at payment or delivery <span class="q">⏳ Q15.3</span></p></div>
+
+<div class="step"><h3>04 · Capture a lead</h3><p class="cap">Phone first. The CRM checks ownership instantly (or on sync if offline).</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>New lead</b><span class="mini">Step 1 of 2</span></div>
+ <div class="body">
+  <div class="field req"><label>Parent mobile</label><span>98450 1•••8</span></div>
+  <div class="card" style="border-color:var(--ok)"><span class="chip ok">✓ New family</span> <span class="mini">No one owns this number. First contact = you, 16 Nov 10:42</span></div>
+  <div class="field req"><label>Parent name</label><span>Shilpa Kumar</span></div>
+  <div class="field req"><label>PIN code</label><span>572137 · Sira ✓ in your unit</span></div>
+  <div class="field"><label>Child · class · stream</label><span>Aarav · 9 · Board Booster</span></div>
+  <div class="chk"><i></i>Parent agreed to be contacted (read the 1-line script)</div>
+  <div class="btn">Save lead</div>
+ </div></div></div>
+<p class="note">UC-LEAD-01, UC-LEAD-06 · Outside-unit PIN → <span class="q">⏳ Q14.2</span></p></div>
+
+<div class="step"><h3>05 · Lead: qualify + stage</h3><p class="cap">Stage bar from the meeting. Moving to Qualified requires Cold / Warm / Hot.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Shilpa Kumar</b><span class="chip">P3 · YSP</span></div>
+ <div class="body">
+  <div class="mini" style="margin-bottom:6px">New › Contacted › <b style="color:var(--accent-strong)">Qualified</b> › Counselled › Payment › Paid › Delivered</div>
+  <h4>How interested?</h4>
+  <div class="seg"><div class="c">Cold</div><div class="w">Warm</div><div class="h">Hot</div></div>
+  <p class="mini">Hot = agreed to a counselling session <span class="q">⏳ Q15.5</span></p>
+  <div class="field"><label>Next follow-up</label><span>Tomorrow 11:00</span></div>
+  <div class="field"><label>Note</label><span>Wants scan before Class 10 board prep</span></div>
+  <div class="btn">Save · Qualified</div>
+  <div class="btn ghost">Mark lost (reason required)</div>
+  <div class="card" style="margin-top:8px"><h4>Activity</h4><div class="row"><span class="s">📞 Call · 3 min</span><span class="s">10:44</span></div><div class="row"><span class="s">💬 WhatsApp sent</span><span class="s">10:49</span></div></div>
+ </div></div></div>
+<p class="note">UC-SALE-02/03/06 · Call and WhatsApp channel <span class="q">⏳ Q0.2</span></p></div>
+
+<div class="step"><h3>06 · Send payment link</h3><p class="cap">HO price list only, no discount field. The link carries the lead and the owner, so the sale is credited automatically.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Payment link</b><span class="mini">Shilpa K</span></div>
+ <div class="body">
+  <h4>Choose product</h4>
+  <div class="card" style="border-color:var(--accent)"><div class="row"><div><div class="n">AACE64 Success Scan · 64 abilities</div><div class="s">Includes 1-to-1 mentoring</div></div><b>₹4,999</b></div></div>
+  <div class="card"><div class="row"><div><div class="n">Success Scan · 15 abilities</div></div><b>₹1,999</b></div></div>
+  <div class="card"><div class="row"><div><div class="n">Success Scan · 5 abilities</div></div><b>₹999</b></div></div>
+  <p class="mini">Prices set by HO · GST included · no field discounts</p>
+  <div class="btn wa">Send on WhatsApp</div>
+  <div class="btn ghost">Copy link · SMS</div>
+ </div></div></div>
+<p class="note">UC-SALE-05 · Stage → Payment Pending · Razorpay only. Stream products (NURTURA etc.) <span class="q">⏳ T8</span></p></div>
+
+<div class="step"><h3>07 · Paid → Delivered</h3><p class="cap">Razorpay confirms payment; the scan report release marks it Delivered. Commission is earned only then.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Order #YS-20871</b><span class="chip ok">Delivered</span></div>
+ <div class="body">
+  <div class="tl">
+   <div class="done"><b>Link sent</b><div class="mini">16 Nov 10:52 · by you</div></div>
+   <div class="done"><b>Paid ₹4,999</b><div class="mini">16 Nov 13:05 · Razorpay</div></div>
+   <div class="done"><b>Scan taken</b><div class="mini">18 Nov</div></div>
+   <div class="done"><b>Report delivered</b><div class="mini">20 Nov · commission earned</div></div>
+  </div>
+  <div class="card"><h4>Credited to</h4><div class="row"><span class="s">Sales path</span><b>P3 · YSP</b></div><div class="row"><span class="s">Owner</span><b>KA-R11-YSP02</b></div><div class="row"><span class="s">Evidence</span><b>Your payment link</b></div></div>
+  <div class="card"><div class="row"><span class="s">Your commission (7%)</span><b class="up">₹296.55</b></div><p class="mini">On ₹4,236.44 net of GST <span class="q">⏳ T2</span></p></div>
+ </div></div></div>
+<p class="note">UC-ORD-01/02/03, UC-COM-01 · Meaning of "delivered" per product <span class="q">⏳ Q15.2</span></p></div>
+
+<div class="step blocked"><h3>08 · Earnings</h3><p class="cap">This month's commission builds up as scans are delivered; paid on the 5th after approval, with TDS.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>My earnings</b><span class="mini">December</span></div>
+ <div class="body">
+  <div class="kpi" style="margin-bottom:8px"><small>Earned so far (delivered)</small><b>₹2,372</b> <em class="mini">8 scans</em></div>
+  <div class="card"><div class="row"><span class="s">Direct sales · 7%</span><b>₹2,372</b></div><div class="row"><span class="s">Institutional · 5%</span><b>₹0</b></div><div class="row"><span class="s">Academy · 5%</span><b>₹0</b></div><div class="row"><span class="s">Refund reversals</span><b class="dn">−₹0</b></div><div class="row"><span class="s">TDS</span><b>−₹47</b></div></div>
+  <div class="card"><h4>November statement</h4><div class="row"><span class="s">Approved · paid 5 Dec</span><b>₹4,180</b></div><div class="btn ghost">Download PDF</div></div>
+  <p class="mini">Live running total vs monthly statement only <span class="q">⏳ Q8.2</span></p>
+ </div>
+ <div class="tabbar"><span><i>⌂</i>Today</span><span><i>☰</i>Leads</span><span><i>🏫</i>Institutions</span><span class="on"><i>₹</i>Earnings</span></div>
+</div></div>
+<p class="note">UC-COM-04 · TDS rate from config</p></div>
+
+<div class="step"><h3>09 · Institution prospects</h3><p class="cap">Five numbered prospect slots per YSP; pick one school and one college (~1,000 students).</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Institutions</b><span class="chip">Pair: 1 / 2</span></div>
+ <div class="body">
+  <div class="card" style="padding:4px 10px">
+   <div class="row"><div><div class="n">1 · Govt PU College, Sira</div><div class="s">College · 640 students · Agreement sent</div></div><span class="chip ok">Selected</span></div>
+   <div class="row"><div><div class="n">2 · Sri Vidya HPS</div><div class="s">School · 410 · Meeting done</div></div><span class="chip warm">Proposal</span></div>
+   <div class="row"><div><div class="n">3 · St. Mary's School</div><div class="s">School · 380 · First visit</div></div><span class="chip">Visit</span></div>
+   <div class="row"><div><div class="n">4 · —</div><div class="s">Add from list (UDISE)</div></div><span class="chip off">Empty</span></div>
+   <div class="row"><div><div class="n">5 · —</div><div class="s">Add from list</div></div><span class="chip off">Empty</span></div>
+  </div>
+  <p class="mini">Steps and who approves the agreement <span class="q">⏳ Q8.3</span></p>
+ </div>
+ <div class="tabbar"><span><i>⌂</i>Today</span><span><i>☰</i>Leads</span><span class="on"><i>🏫</i>Institutions</span><span><i>₹</i>Earnings</span></div>
+</div></div>
+<p class="note">UC-INS-02/03/04</p></div>
+
+<div class="step wide"><h3>10 · Same app on tablet / desktop</h3><p class="cap">The YSP app widens into a two-pane layout: list on the left, lead on the right. Same data, same offline queue.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.com/partner/leads</span></div>
+<div class="bv"><div class="side"><div class="on">Today</div><div>Leads (214)</div><div>Joining list</div><div>Institutions</div><div>Earnings</div><div>Help</div></div>
+<div class="main" style="display:flex;gap:12px">
+ <div style="flex:1"><h4>Leads · sorted by follow-up</h4>
+  <table class="t"><tr><th>Family</th><th>Stage</th><th>Heat</th><th>Next</th></tr>
+  <tr><td>Shilpa Kumar</td><td>Payment pending</td><td><span class="chip hot">Hot</span></td><td>Today 11:00</td></tr>
+  <tr><td>Manjappa H</td><td>Contacted</td><td><span class="chip warm">Warm</span></td><td>Today 11:30</td></tr>
+  <tr><td>Fathima B</td><td>New (online)</td><td>—</td><td>Call within <span class="q">⏳ Q4.2</span></td></tr>
+  <tr><td>Kiran R</td><td>Qualified</td><td><span class="chip cold">Cold</span></td><td>Fri</td></tr></table></div>
+ <div style="width:240px" class="card"><h4>Shilpa Kumar</h4><p class="mini">572137 · Aarav, Class 9 · first contact you, 16 Nov</p><div class="btn wa">Resend link</div><div class="btn ghost">Log call</div></div>
+</div></div></div>
+<p class="note">Responsive: one codebase for phone, tablet and desktop.</p></div>
+</div>
+</section>
+
+<!-- ================= 2. RSM ================= -->
+<section class="journey" id="rsm">
+<h2>2 · Regional Sales Manager</h2>
+<p class="sub">Region health → unit drill-down → territory building → YSP onboarding → own personal sales (175 a month).</p>
+<div class="flow">
+
+<div class="step"><h3>01 · Region home</h3><p class="cap">Ten units ranked by attainment; own personal target alongside.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>KA-R11 Tumakuru W–N</b><span class="mini">Snapshot 12:00</span></div>
+ <div class="body">
+  <div class="kpis"><div class="kpi"><small>Region (Dec)</small><b>142</b> <em class="mini">/ 200</em><div class="bar"><i style="width:71%"></i></div></div><div class="kpi"><small>My personal</small><b>31</b> <em class="mini">/ 50</em><div class="bar"><i style="width:62%"></i></div></div></div>
+  <h4>Units</h4>
+  <div class="card" style="padding:4px 10px">
+   <div class="row"><span class="n">U01 Tiptur</span><span class="chip ok">24/20</span></div>
+   <div class="row"><span class="n">U02 Sira</span><span class="chip">11/20</span></div>
+   <div class="row"><span class="n">U04 Pavagada</span><span class="chip bad">3/20</span></div>
+   <div class="row"><span class="n">U07 Nonavinakere</span><span class="chip off">Vacant</span></div>
+  </div>
+  <p class="mini">Vacant unit cover <span class="q">⏳ B2</span></p>
+ </div>
+ <div class="tabbar"><span class="on"><i>⌂</i>Region</span><span><i>☰</i>My leads</span><span><i>🗺</i>Territory</span><span><i>👥</i>Team</span></div>
+</div></div>
+<p class="note">UC-DASH-07</p></div>
+
+<div class="step"><h3>02 · Unit drill-down</h3><p class="cap">One YSP's funnel and activity: where the unit is stuck.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>U04 Pavagada</b><span class="chip bad">At risk</span></div>
+ <div class="body">
+  <div class="card"><h4>Funnel this month</h4>
+   <div class="row"><span class="s">Leads</span><b>286</b></div><div class="row"><span class="s">Contacted</span><b>91</b></div><div class="row"><span class="s">Qualified (H/W/C)</span><b>12 / 19 / 23</b></div><div class="row"><span class="s">Paid</span><b>3</b></div></div>
+  <div class="card"><h4>Signals</h4><p class="mini">⚠ 195 leads never contacted · ⚠ no activity for 2 days</p></div>
+  <div class="btn">Call YSP</div><div class="btn ghost">Plan a joint field day</div>
+ </div></div></div>
+<p class="note">UC-DASH-07 · Daily reporting fields <span class="q">⏳ Q3.2</span></p></div>
+
+<div class="step"><h3>03 · Build a unit (PIN cluster)</h3><p class="cap">Table-first (map later). Pick contiguous PINs; checks run as you go.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>U02 Sira · PINs</b><span class="chip">Proposed</span></div>
+ <div class="body">
+  <div class="field"><label>Search PIN / place</label><span>5721…</span></div>
+  <div class="card" style="padding:4px 10px">
+   <div class="row"><span>☑ 572137 Sira</span><span class="s">0–25: 18.2k</span></div>
+   <div class="row"><span>☑ 572125 Bukkapatna</span><span class="s">6.1k</span></div>
+   <div class="row"><span>☐ 572141 Tavarekere</span><span class="s">U03 owns</span></div>
+  </div>
+  <div class="card"><div class="row"><span class="s">Contiguous</span><span class="chip ok">✓</span></div><div class="row"><span class="s">No PIN in two units</span><span class="chip ok">✓</span></div><div class="row"><span class="s">0–25 pop. vs state avg</span><span class="chip warm">−12%</span></div></div>
+  <div class="btn">Submit for data check</div>
+ </div></div></div>
+<p class="note">UC-TER-02/03 · Fallback to total population when 0–25 is unreliable (meeting)</p></div>
+
+<div class="step"><h3>04 · Field-validate</h3><p class="cap">Visit each centre; record evidence. Moves Data Checked → Field Validated.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Validate U02</b><span class="chip">Data checked</span></div>
+ <div class="body">
+  <div class="chk"><i></i>Centre reachable by road within 45 min</div>
+  <div class="chk"><i></i>At least 5 schools/colleges in catchment</div>
+  <div class="chk"><i class="e"></i>Local market evidence (shops, coaching)</div>
+  <div class="field"><label>Photo / note</label><span>📷 2 photos attached</span></div>
+  <div class="btn">Mark field validated</div>
+  <p class="mini">Next: GM + KMM approval → Active</p>
+ </div></div></div>
+<p class="note">UC-TER-04 → UC-TER-05/06</p></div>
+
+<div class="step blocked"><h3>05 · Onboard a YSP</h3><p class="cap">Checklist to activation. Selling unlocks when every item is done.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>New YSP · U07</b><span class="chip warm">3 / 6</span></div>
+ <div class="body">
+  <div class="chk"><i></i>Profile + photo</div><div class="chk"><i></i>PAN verified</div><div class="chk"><i></i>Bank account</div>
+  <div class="chk"><i class="e"></i>Agreement signed</div><div class="chk"><i class="e"></i>Training complete <span class="q">⏳ Q3.3</span></div><div class="chk"><i class="e"></i>Approval <span class="q">⏳ Q3.1</span></div>
+  <div class="btn ghost">Send reminder to candidate</div>
+ </div></div></div>
+<p class="note">UC-NET-03</p></div>
+
+<div class="step blocked"><h3>06 · My personal sales</h3><p class="cap">Ward-level and inner-circle prospects; 7% above 100 a month shown live.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>My sales</b><span class="mini">Dec · target 50</span></div>
+ <div class="body">
+  <div class="seg"><div style="background:var(--accent-soft);color:var(--text)">Ward (P1)</div><div>Inner circle (P2)</div></div>
+  <p class="mini">Split worth tracking? <span class="q">⏳ Q7.2</span></p>
+  <div class="kpis"><div class="kpi"><small>Prospects</small><b>212</b></div><div class="kpi"><small>Paid</small><b>31</b></div></div>
+  <div class="card"><div class="row"><span class="s">Above-100 threshold</span><b>0 of 31</b></div><p class="mini">Personal 7% starts after 100 paid in a month (full plan from Apr 2027)</p></div>
+  <div class="btn">＋ Log prospect</div>
+  <p class="mini">Every prospect a record, or counts only? <span class="q">⏳ Q7.1</span></p>
+ </div></div></div>
+<p class="note">UC-LEAD-01, UC-COM-01</p></div>
+
+<div class="step wide"><h3>07 · Region console (desktop)</h3><p class="cap">The same Region on a laptop: unit league table and territory status in one view.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.com/region/KA-R11</span></div>
+<div class="bv"><div class="side"><div class="on">Region</div><div>Units</div><div>Territory</div><div>Team</div><div>Institutions</div><div>Academy</div><div>My sales</div></div>
+<div class="main">
+ <div class="kpis k4"><div class="kpi"><small>Paid (Dec)</small><b>142</b></div><div class="kpi"><small>Delivered</small><b>118</b></div><div class="kpi"><small>Leads</small><b>3,912</b></div><div class="kpi"><small>Institution pairs</small><b>4 / 10</b></div></div>
+ <table class="t"><tr><th>Unit</th><th>YSP</th><th>Territory</th><th>Paid / target</th><th>Contacted %</th><th>Hot</th></tr>
+ <tr><td>U01 Tiptur</td><td>Deepa</td><td><span class="chip ok">Active</span></td><td>24 / 20</td><td>61%</td><td>18</td></tr>
+ <tr><td>U02 Sira</td><td>Ravi</td><td><span class="chip ok">Active</span></td><td>11 / 20</td><td>44%</td><td>9</td></tr>
+ <tr><td>U04 Pavagada</td><td>Imran</td><td><span class="chip warm">Field validated</span></td><td>3 / 20</td><td>32%</td><td>12</td></tr>
+ <tr><td>U07 Nonavinakere</td><td>—</td><td><span class="chip">Approved</span></td><td>— / 20</td><td>—</td><td>—</td></tr></table>
+</div></div></div></div>
+</div>
+</section>
+
+<!-- ================= 3. OSC ================= -->
+<section class="journey" id="osc">
+<h2>3 · Online counsellor (and Online Sales manager)</h2>
+<p class="sub">Leads from the website, Meta and TV land here only when no YSP owns the PIN. Leads inside an Active unit auto-route to that YSP (meeting rule).</p>
+<div class="flow">
+
+<div class="step wide blocked"><h3>01 · My queue</h3><p class="cap">Oldest-first with a first-contact timer. Source chips show where each enquiry came from.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.com/online/queue</span></div>
+<div class="bv"><div class="side"><div class="on">My queue (23)</div><div>Follow-ups</div><div>Webinar attendees</div><div>Log TV enquiry</div><div>Done today</div></div>
+<div class="main">
+ <div class="kpis k4"><div class="kpi"><small>Waiting</small><b>23</b></div><div class="kpi"><small>Oldest</small><b class="dn">47m</b></div><div class="kpi"><small>First contact (avg)</small><b>12m</b> <em class="mini">target <span class="q">⏳ Q4.2</span></em></div><div class="kpi"><small>Paid today</small><b>6</b></div></div>
+ <table class="t"><tr><th>Waiting</th><th>Family</th><th>Source</th><th>Why here (not a YSP)</th><th>Interest</th></tr>
+ <tr><td class="dn">47m</td><td>Arjun P</td><td><span class="chip">Meta · IAS/KAS ad</span></td><td>PIN missing</td><td>KAS</td></tr>
+ <tr><td>31m</td><td>Lakshmi N</td><td><span class="chip">TV · SUCCESS</span></td><td>Unit U07 vacant</td><td>Class 8</td></tr>
+ <tr><td>9m</td><td>Rehana S</td><td><span class="chip">Website</span></td><td>Territory not Active yet</td><td>NEET</td></tr></table>
+ <p class="mini">How no-YSP leads are split between counsellors: our default is round robin <span class="q">⏳ Q4.1</span></p>
+</div></div></div>
+<p class="note">UC-LEAD-02/03/05, UC-DASH-04</p></div>
+
+<div class="step wide"><h3>02 · Lead workspace</h3><p class="cap">Call, record counselling, send the link. One screen, no tab-hopping.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.com/online/lead/88213</span></div>
+<div class="bv"><div class="main" style="display:flex;gap:12px">
+ <div style="flex:1">
+  <h4>Arjun P · KAS aspirant · 24</h4><div class="mini" style="margin-bottom:6px">New › <b style="color:var(--accent-strong)">Contacted</b> › Qualified › Counselled › Payment › Paid › Delivered</div>
+  <div class="seg"><div class="c">Cold</div><div class="w">Warm</div><div class="h">Hot</div></div>
+  <div class="field"><label>Counselling notes</label><span>Prelims 2027; wants ability profile for optional choice</span></div>
+  <div class="field"><label>Next step</label><span>Invite to Thursday webinar</span></div>
+  <p class="mini">Minimum record after a call; call recording? <span class="q">⏳ Q4.3</span></p>
+ </div>
+ <div style="width:250px"><div class="card"><h4>Contact</h4><div class="btn">📞 Call</div><div class="btn wa">WhatsApp</div><div class="btn ghost">Send payment link</div></div>
+ <div class="card"><h4>Credit</h4><p class="mini">Path P5 · Online (Meta campaign). Webinar will be logged as an assist only.</p></div></div>
+</div></div></div>
+<p class="note">UC-SALE-02/03/04/05</p></div>
+
+<div class="step"><h3>03 · Auto-routed notice (YSP side)</h3><p class="cap">When an enquiry's PIN is in an Active unit, the YSP gets it instantly; the counsellor never sees it.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Today</b><span class="mini">U02</span></div>
+ <div class="body"><div class="dim"></div>
+  <div class="sheet"><div class="grab"></div><h4>🔔 New online enquiry in your unit</h4><p class="mini">Fathima B · NEET · PIN 572137 · via website. Call within the target time.</p><div class="btn">Call now</div><div class="btn ghost">Later</div></div>
+ </div></div></div>
+<p class="note">UC-LEAD-05 (meeting rule)</p></div>
+
+<div class="step"><h3>04 · Webinar follow-ups</h3><p class="cap">Attendees go back to whoever originated them; credit never moves to the webinar.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Webinar · Thu 7 PM</b><span class="chip">54 attended</span></div>
+ <div class="body"><div class="card" style="padding:4px 10px">
+  <div class="row"><div><div class="n">Arjun P</div><div class="s">Origin P5 · you</div></div><span class="chip hot">Follow up</span></div>
+  <div class="row"><div><div class="n">Meena R</div><div class="s">Origin P3 · YSP U01</div></div><span class="chip">Sent to YSP</span></div>
+  <div class="row"><div><div class="n">Vinod K</div><div class="s">No origin (ad)</div></div><span class="q">⏳ Q10.1</span></div></div>
+  <p class="mini">Attendance from the platform <span class="q">⏳ Q10.2</span></p></div></div></div>
+<p class="note">UC-WEB-02/03, UC-SALE-07</p></div>
+
+<div class="step blocked"><h3>05 · Log a TV enquiry</h3><p class="cap">Quick form during and after Saturday's programme; source is tagged P7 automatically.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>TV enquiry</b><span class="chip">P7 · SUCCESS</span></div>
+ <div class="body">
+  <div class="field req"><label>Mobile</label><span>9•••• •••21</span></div>
+  <div class="field"><label>Episode</label><span>Sat 14 Nov · PNS Vistara</span></div>
+  <div class="field"><label>Came in by</label><span>Phone / WhatsApp / QR <span class="q">⏳ Q11.1</span></span></div>
+  <div class="btn">Save → routing</div></div></div></div>
+<p class="note">UC-TV-01 → UC-LEAD-05</p></div>
+</div>
+</section>
+
+<!-- ================= 4. CEO ================= -->
+<section class="journey" id="ceo">
+<h2>4 · CEO: tracking and monitoring dashboard</h2>
+<p class="sub">Read-only. Refreshed every 3 hours (meeting). Totals by default; family detail only if allowed <span class="q">⏳ Q1.4</span>. Five headline numbers to confirm <span class="q">⏳ Q1.2</span>.</p>
+<div class="flow">
+
+<div class="step wide"><h3>01 · Company overview (desktop)</h3><p class="cap">Plan vs actual across seven paths and 40 Regions; slippage surfaced first.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.com/ceo</span></div>
+<div class="bv"><div class="main">
+ <div style="display:flex;justify-content:space-between;align-items:center"><h4 style="font-size:15px">Karnataka · December 2026 (settling-in plan)</h4><span class="chip">Snapshot 12:00 · next 15:00</span></div>
+ <div class="kpis k5"><div class="kpi"><small>Paid scans MTD</small><b>3,184</b> <em class="mini">/ 8,000</em><div class="bar"><i style="width:40%"></i></div></div><div class="kpi"><small>Gross revenue MTD</small><b>₹1.59 Cr</b></div><div class="kpi"><small>Delivered</small><b>2,612</b></div><div class="kpi"><small>Lead → paid</small><b>6.8%</b> <em class="up">▲0.4</em></div><div class="kpi"><small>Active YSPs</small><b>318</b> <em class="mini">/ 400</em></div></div>
+ <div style="display:flex;gap:10px">
+  <div class="card" style="flex:1"><h4>By sales path</h4>
+   <table class="t"><tr><th>Path</th><th>Paid</th><th>Plan</th><th></th></tr>
+   <tr><td>P3 YSP</td><td>1,720</td><td>8,000</td><td><div class="bar"><i style="width:21%"></i></div></td></tr>
+   <tr><td>P1+P2 RSM</td><td>690</td><td>2,000</td><td><div class="bar"><i style="width:34%"></i></div></td></tr>
+   <tr><td>P4 Ambassadors</td><td>212</td><td>500</td><td><div class="bar"><i style="width:42%"></i></div></td></tr>
+   <tr><td>P5 Online (+P7)</td><td>402</td><td>500</td><td><div class="bar"><i style="width:80%"></i></div></td></tr>
+   <tr><td>YASHHO Direct</td><td>160</td><td>—</td><td></td></tr></table>
+   <p class="mini">Webinar-assisted: 288 of these (assist only)</p></div>
+  <div class="card" style="width:280px"><h4>40 Regions · attainment</h4>
+   <div class="heat">
+    <i style="background:#2fbf71"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#eb5757"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i>
+    <i style="background:#f2c94c"></i><i style="background:#eb5757"></i><i style="background:#2fbf71"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#eb5757"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#2fbf71"></i>
+    <i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#eb5757"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i>
+    <i style="background:#2fbf71"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#2fbf71"></i><i style="background:#f2c94c"></i><i style="background:#2fbf71"></i><i style="background:#2fbf71"></i><i style="background:#eb5757"></i><i style="background:#2fbf71"></i></div>
+   <p class="mini">R01…R40 · green ≥ pace · amber 70–99% · red &lt; 70%</p>
+   <h4 style="margin-top:8px">Needs attention</h4><p class="mini">⚠ R05, R12, R17, R28, R39 below 70% pace<br>⚠ 82 YSPs not yet active<br>⚠ P3 conversion down 3 days</p></div>
+ </div>
+</div></div></div>
+<p class="note">UC-DASH-01, UC-DASH-08 · Which alerts, and how they are sent: KMM's tracking-requirements document <span class="q">⏳ Q15.6</span></p></div>
+
+<div class="step"><h3>02 · Same view on phone</h3><p class="cap">Headline numbers, then the "needs attention" list. Tap a Region for its card.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>YASHHO · CEO</b><span class="mini">12:00</span></div>
+ <div class="body">
+  <div class="kpis"><div class="kpi"><small>Paid MTD</small><b>3,184</b><div class="bar"><i style="width:40%"></i></div></div><div class="kpi"><small>Revenue</small><b>₹1.59Cr</b></div><div class="kpi"><small>Delivered</small><b>2,612</b></div><div class="kpi"><small>Active YSPs</small><b>318</b></div></div>
+  <div class="card"><h4>Last 14 days · paid/day</h4><div class="spark"><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:55%"></i><i style="height:60%"></i><i style="height:48%"></i><i style="height:66%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:78%"></i><i style="height:74%"></i><i style="height:85%"></i><i style="height:90%"></i><i style="height:82%"></i></div></div>
+  <div class="card"><h4>Needs attention</h4><p class="mini">5 Regions below 70% · 82 inactive YSPs</p></div>
+ </div></div></div>
+<p class="note">UC-DASH-01 · Who holds the CEO view <span class="q">⏳ Q1.1</span></p></div>
+</div>
+</section>
+
+<!-- ================= 5. GM ================= -->
+<section class="journey" id="gm">
+<h2>5 · GM–Sales Karnataka</h2>
+<p class="sub">State league table → approvals inbox → review pack for the daily/weekly meeting.</p>
+<div class="flow">
+
+<div class="step wide"><h3>01 · State dashboard</h3><p class="cap">Region league table with path mix, filterable by RSM, path and stream.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.com/gm</span></div>
+<div class="bv"><div class="side"><div class="on">State</div><div>Approvals (7)</div><div>Review packs</div><div>Leads</div><div>Territory</div><div>Team</div></div>
+<div class="main">
+ <div class="kpis k4"><div class="kpi"><small>Paid MTD</small><b>3,184</b></div><div class="kpi"><small>Pace</small><b class="dn">−9%</b></div><div class="kpi"><small>Territories active</small><b>31 / 40</b></div><div class="kpi"><small>Disputes open</small><b>4</b></div></div>
+ <table class="t"><tr><th>#</th><th>Region</th><th>RSM</th><th>Paid / plan</th><th>YSP P3</th><th>RSM P1+P2</th><th>Active YSPs</th></tr>
+ <tr><td>1</td><td>R01 Bengaluru Central</td><td>Anil</td><td>148 / 200</td><td>96</td><td>52</td><td>10</td></tr>
+ <tr><td>2</td><td>R11 Tumakuru W–N</td><td>Suresh</td><td>142 / 200</td><td>111</td><td>31</td><td>9</td></tr>
+ <tr><td>39</td><td>R28 …</td><td>Vacant</td><td>41 / 200</td><td>41</td><td>0</td><td>6</td></tr></table>
+</div></div></div>
+<p class="note">UC-DASH-02</p></div>
+
+<div class="step blocked"><h3>02 · Approvals inbox</h3><p class="cap">Everything waiting on the GM, with what needs KMM too.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Approvals</b><span class="chip">7</span></div>
+ <div class="body"><div class="card" style="padding:4px 10px">
+  <div class="row"><div><div class="n">Territory R11 U02 → Approve</div><div class="s">Field validated · needs KMM too</div></div><span class="chip warm">Joint</span></div>
+  <div class="row"><div><div class="n">Ownership dispute #D-14</div><div class="s">First contact: YSP U03, 2 Nov</div></div><span class="chip">Review</span></div>
+  <div class="row"><div><div class="n">Move 212 leads U07 → U06</div><div class="s">YSP left · RSM request</div></div><span class="chip">Review</span></div>
+  <div class="row"><div><div class="n">Target change R05 Dec</div><div class="s">Config change request</div></div><span class="chip">Review</span></div></div>
+  <p class="mini">What GM approves alone vs with KMM <span class="q">⏳ Q2.1</span></p><div class="btn">Open first</div></div></div></div>
+<p class="note">UC-TER-05, UC-LEAD-07/09, UC-ADM-01</p></div>
+
+<div class="step"><h3>03 · Dispute: first contact wins</h3><p class="cap">The CRM shows the evidence; the GM confirms. The audit trail keeps both sides.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Dispute #D-14</b><span class="chip">Open</span></div>
+ <div class="body">
+  <div class="card"><h4>Family: 98450 •••8 · PIN 572141 (U03)</h4>
+   <div class="row"><span class="s">YSP U03 logged lead</span><b>2 Nov 16:10</b></div>
+   <div class="row"><span class="s">YSP U02 logged lead</span><b>9 Nov 11:02</b></div>
+   <div class="row"><span class="s">Paid via</span><b>U02 link</b></div></div>
+  <div class="card" style="border-color:var(--ok)"><b>System verdict:</b> <span class="mini">U03 (first contact, inside own territory)</span></div>
+  <p class="mini">Evidence rule <span class="q">⏳ Q14.1</span></p>
+  <div class="btn">Confirm verdict</div><div class="btn ghost">Override (reason required)</div></div></div></div>
+<p class="note">UC-LEAD-07</p></div>
+
+<div class="step blocked"><h3>04 · Review pack</h3><p class="cap">One page per meeting (daily / weekly / monthly), generated from the 3-hourly snapshot.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Weekly review</b><span class="mini">Wk 47</span></div>
+ <div class="body"><div class="card"><h4>Agenda (auto)</h4><p class="mini">1. Pace vs plan by path<br>2. Bottom 5 Regions + RSM actions<br>3. Inactive YSPs<br>4. Disputes and reassignments<br>5. Institution pairs signed</p></div>
+ <div class="btn ghost">Download PDF</div><p class="mini">Attendees and contents per meeting <span class="q">⏳ Q2.2</span></p></div></div></div>
+<p class="note">UC-DASH-02</p></div>
+</div>
+</section>
+
+<!-- ================= 6. Payout ================= -->
+<section class="journey" id="pay">
+<h2>6 · Monthly payout: Sales Manager → Finance (paid on the 5th)</h2>
+<p class="sub">Built on delivered sales only, refunds reversed, TDS applied (meeting). Who the "Sales Manager" is <span class="q">⏳ Q6.1</span>; gross vs net basis <span class="q">⏳ T2</span>.</p>
+<div class="flow">
+<div class="step wide"><h3>01 · Payout run (desktop)</h3><p class="cap">Month closes → statements generated → step-1 approval → Finance approval → bank file.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.com/finance/payouts/2026-11</span></div>
+<div class="bv"><div class="side"><div>Dashboard</div><div class="on">Payouts</div><div>Orders</div><div>Refunds</div><div>Institutions</div></div>
+<div class="main">
+ <div class="mini" style="margin-bottom:8px"><span class="chip ok">1 · Generated 1 Dec</span> › <span class="chip ok">2 · Sales Manager approved 2 Dec</span> › <span class="chip warm">3 · Finance approval</span> › <span class="chip off">4 · Paid 5 Dec</span></div>
+ <div class="kpis k4"><div class="kpi"><small>Payees</small><b>356</b></div><div class="kpi"><small>Gross commission</small><b>₹9.84 L</b></div><div class="kpi"><small>Reversals</small><b class="dn">−₹21.6k</b></div><div class="kpi"><small>TDS</small><b>₹19.2k</b></div></div>
+ <table class="t"><tr><th>Payee</th><th>Post</th><th>Delivered</th><th>Commission</th><th>Reversal</th><th>TDS</th><th>Net</th></tr>
+ <tr><td>Ravi S</td><td>KA-R11-YSP02</td><td>19</td><td>₹5,634</td><td>−₹297</td><td>₹107</td><td>₹5,230</td></tr>
+ <tr><td>Suresh M</td><td>KA-R11-RSM01</td><td>31 + network</td><td>₹6,880</td><td>—</td><td>₹138</td><td>₹6,742</td></tr></table>
+ <div style="display:flex;gap:8px;max-width:420px"><div class="btn" style="flex:1">Approve (Finance)</div><div class="btn ghost" style="flex:1">Send back with note</div></div>
+</div></div></div>
+<p class="note">UC-COM-01/02/03 · Payment from CRM (bank file) or outside <span class="q">⏳ Q6.1</span></p></div>
+</div>
+</section>
+
+<!-- ================= 7. Ambassador + parent ================= -->
+<section class="journey" id="amb">
+<h2>7 · YSC Ambassador and parent</h2>
+<p class="sub">Light-touch flows for people outside the company.</p>
+<div class="flow">
+<div class="step blocked"><h3>01 · Ambassador: my referral link</h3><p class="cap">Share a personal link or code; see who has signed up.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Refer a family</b><span class="chip">P4</span></div>
+ <div class="body"><div class="card"><h4>Your code</h4><b style="font-size:20px;letter-spacing:.1em">AMB-SUMA</b><div class="btn wa">Share on WhatsApp</div></div>
+ <div class="card" style="padding:4px 10px"><div class="row"><span class="n">Referrals</span><b>7 / 10</b></div><div class="row"><span class="n">Paid</span><b>3 / 5</b></div></div>
+ <p class="mini">Login vs link only <span class="q">⏳ Q9.1</span> · reward <span class="q">⏳ Q9.2</span> · family inside a YSP unit <span class="q">⏳ Q9.3</span></p></div></div></div>
+<p class="note">UC-NET-06, UC-LEAD-04</p></div>
+
+<div class="step"><h3>02 · Parent: pays from the link</h3><p class="cap">Razorpay checkout over the YASHHO page; the partner's name shows for trust.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>yashho.com</b><span class="mini">Secure</span></div>
+ <div class="body"><div class="dim"></div>
+  <div class="sheet"><div class="grab"></div><h4>AACE64 Success Scan · ₹4,999</h4><p class="mini">For Aarav (Class 9) · arranged by Ravi, YASHHO Partner, Sira <span class="q">⏳ Q13.1</span></p><div class="field"><label>Pay with</label><span>UPI · Card · Netbanking (Razorpay)</span></div><div class="btn">Pay ₹4,999</div></div>
+ </div></div></div>
+<p class="note">UC-ORD-05, UC-ORD-01</p></div>
+
+<div class="step"><h3>03 · Parent: stop contact</h3><p class="cap">One tap in any message stops all paths from contacting the family.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Your preferences</b></div>
+ <div class="body"><div class="card"><h4>Contact from YASHHO</h4><div class="chk"><i class="e"></i>Calls and WhatsApp about programmes</div><div class="btn ghost">Stop all contact</div><p class="mini">Closes the lead for every partner and counsellor <span class="q">⏳ Q13.2</span></p></div></div></div></div>
+<p class="note">UC-LEAD-08</p></div>
+</div>
+</section>
+
+<p class="mini" style="margin-top:40px">Source: docs/sales-crm/02-journeys-storyboard.html (Backend-laravel). Use cases: 01-roles-and-use-cases.md. Open questions: shared Google Doc "Role Journeys: Open Questions". Sample names and numbers are illustrative.</p>
+</div>
