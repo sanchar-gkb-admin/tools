@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
 <title>YASHHO CRM storyboard</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,6 +63,7 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .pv{height:560px;position:relative;background:var(--f-bg);color:var(--f-ink);overflow:hidden;font-size:13px}
 .pv .top{padding:26px 14px 8px;display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--f-line)}
 .pv .top b{font-weight:800;font-size:15px}
+.pv .top>span:first-child{display:flex;align-items:center;min-width:0}
 .pv .back{font-weight:800;font-size:18px;margin-right:6px;color:var(--f-mute)}
 .pv .body{padding:10px 12px}
 .sync{font-size:11px;color:var(--f-mute);white-space:nowrap}
@@ -88,7 +91,7 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .kp{background:var(--f-sub);border-radius:12px;padding:9px}
 .kp small{display:block;color:var(--f-mute);font-size:11.5px}
 .kp b{font-size:20px;font-weight:800}
-.kp em{font-style:normal;font-size:11.5px;color:var(--f-mute)}
+.kp em{display:block;font-style:normal;font-size:11.5px;color:var(--f-mute);line-height:1.3}
 .bar{height:7px;background:#e3e9f0;border-radius:6px;overflow:hidden;margin-top:6px}
 .bar i{display:block;height:100%;background:var(--brand)}
 .fld{border:1.5px solid var(--f-line);border-radius:12px;padding:8px 11px;margin-bottom:8px;position:relative;background:#fff}
@@ -156,16 +159,18 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .okp{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:10px;min-width:0}
 .okp small{display:block;color:var(--o-mute);font-size:11.5px}
 .okp b{font-size:20px;font-weight:800}
-.okp em{font-style:normal;font-size:11.5px;color:var(--o-mute)}
-.okp .bar{background:#0a1a2e}
+.okp em{display:block;font-style:normal;font-size:11.5px;color:var(--o-mute);line-height:1.3}
+.okp .bar,.browser .bar{background:#0a1a2e}
 .oc{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:12px;margin-bottom:10px;min-width:0}
 .split{display:flex;gap:12px}
 .split>.grow{flex:1;min-width:0}
 .split>.fix{width:290px;flex:0 0 auto}
 .tw{overflow-x:auto}
-table.t{width:100%;border-collapse:collapse;font-size:12.5px}
+table.t{width:100%;border-collapse:collapse;font-size:12.5px;color:var(--o-ink);font-family:inherit}
 table.t th{text-align:left;color:var(--o-mute);font-weight:600;font-size:11.5px;padding:6px 8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
 table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
+table.t td:first-child{white-space:normal;min-width:100px}
+table.t td.wrap{white-space:normal}
 table.t .bar{min-width:110px}
 .ob{display:inline-flex;align-items:center;justify-content:center;min-height:42px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:12px;padding:0 16px;font-size:13px;white-space:nowrap}
 .ob.ghost{background:transparent;border:1.5px solid var(--o-line);color:var(--o-ink)}
@@ -204,7 +209,7 @@ table.t .bar{min-width:110px}
    <span><span class="q">Q4.2</span> open question for KMM, in the shared Google Doc (storyboard note only, not app text)</span>
   </div>
   <nav class="toc" aria-label="Sections">
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#money">Money and payouts</a><a href="#school">Schools and colleges</a><a href="#later">Later: Head Office</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#money">Money and payouts</a><a href="#school">Schools and colleges</a><a href="#later">Later: Head Office</a>
   </nav>
  </div>
 
@@ -229,7 +234,7 @@ table.t .bar{min-width:110px}
     <div class="tl"><div class="done"><b>Met at home</b><small>16 Dec, Ravi</small></div><div class="done"><b>Parent agreed to be contacted</b><small>16 Dec, on her phone</small></div><div class="now"><b>Payment link sent</b><small>16 Dec, waiting</small></div></div>
     <div class="hide-ceo hide-rsm row2" style="margin-top:4px"><div class="btn ghost">📞 Call</div><div class="btn">Send link</div></div>
     <div class="only-rsm"><div class="btn ghost" style="margin-top:4px">Move to another YSP</div></div>
-    <p class="mini only-ceo" style="margin-top:6px">View only. Family details stay hidden. <span class="q">Q1.4</span></p>
+    <p class="mini only-ceo" style="margin-top:6px">View only</p>
    </div></div></div>
  </div>
 </header>
@@ -255,8 +260,8 @@ table.t .bar{min-width:110px}
 
 <div class="step"><h3><i>2</i>Today</h3><p class="cap">The first screen each morning. Overdue calls first, then calls with a time, then the most interested families. One tap to call or WhatsApp.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
- <div class="top"><b>Namaskara, Ravi</b><span class="sync">10:42 · <b>3 to send</b></span></div>
- <div class="body">
+ <div class="top"><b>Namaskara, Ravi</b><span class="pill">9 today</span></div>
+ <div class="body"><p class="sync" style="margin:0 0 6px">Synced 10:42 · <b>3 updates waiting to send</b></p>
   <div class="k2"><div class="kp"><small>Scans sold in December</small><b>11</b> <em>of 20</em><div class="bar"><i style="width:55%"></i></div></div><div class="kp"><small>Earned so far</small><b>₹2,372</b> <em>8 delivered</em></div></div>
   <div class="fc" style="padding:2px 10px">
    <div class="r"><div><div class="n">Patil family</div><div class="s" style="color:var(--bad)">Overdue since yesterday</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
@@ -264,9 +269,8 @@ table.t .bar{min-width:110px}
    <div class="r"><div><div class="n">Kumar family</div><div class="s">Link sent · <span class="pill hot">▲ Hot</span></div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
    <div class="r"><div><div class="n">Fathima B</div><div class="s">Asked on the website · call in 2 h</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div>
   </div>
-  <p class="mini">+ 5 more today</p>
  </div>
- <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Earnings</span></div>
+ <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
 </div></div>
 <p class="note">Website enquiries from his area come straight to him with a call-back deadline. If he doesn't call in time, his RSM is told. How fast? <span class="q">Q4.2</span></p></div>
 
@@ -278,10 +282,9 @@ table.t .bar{min-width:110px}
   <div class="fld"><label>Parent's name</label><span>Shilpa Kumar</span></div>
   <div class="fld"><label>PIN code</label><span>572137</span><span class="hint">Sira · in your area</span></div>
   <div class="fld"><label>Child's class and interest (optional)</label><span>Class 9 · board exams</span></div>
-  <p class="mini">The child's name is added later, once the parent agrees.</p>
  </div>
  <div class="dock"><div class="btn">Save and ask for the parent's OK</div></div>
-</div></div></div>
+</div></div><p class="note">The child's name is added only after the parent agrees.</p></div>
 
 <div class="step"><h3><i>3b</i>When the number is already known</h3><p class="cap">The two other answers the check can give. He never sees whose family it is, only what he can do.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -339,9 +342,9 @@ table.t .bar{min-width:110px}
  <div class="sheet"><div class="grab"></div>
   <p style="margin:0 0 6px;font-weight:800">Send the ₹4,999 link to Shilpa Kumar (…2418)?</p>
   <div class="wa-msg">YASHHO: Namaskara Shilpa. Here is the secure link to pay ₹4,999 for Aarav's Success Scan. Your partner: Ravi (KA-R11-YSP02). Pay only on this link.</div>
-  <p class="mini">Price fixed by Head Office. No discounts. Never take cash or a personal UPI payment. <span class="q">GST included?</span></p>
+  <p class="mini">Price fixed by Head Office. No discounts. Never take cash or a personal UPI payment.</p>
   <div class="btn wa">Send on WhatsApp</div><div class="btn ghost">Copy link</div>
- </div></div></div></div>
+ </div></div></div><p class="note">Open: does ₹4,999 include GST?</p></div>
 
 <div class="step"><h3><i>7</i>Following the payment</h3><p class="cap">Every step shows on the family page, including problems. Commission is earned when the report reaches the family.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -365,16 +368,15 @@ table.t .bar{min-width:110px}
  <div class="body">
   <div class="k2"><div class="kp"><small>On its way</small><b>₹890</b><em>3 paid, report not yet delivered</em></div><div class="kp"><small>Earned</small><b>₹2,372</b><em>8 reports delivered</em></div></div>
   <div class="fc" style="padding:2px 10px">
-   <div class="r"><span class="s">Scans, 7% after GST</span><span class="n">₹2,372</span></div>
+   <div class="r"><span class="s">₹4,999 scans · 7%</span><span class="n">₹2,372</span></div>
    <div class="r"><span class="s">Refunds taken back</span><span class="n">₹0</span></div>
    <div class="r"><span class="s">Tax deducted (TDS)</span><span class="n">−₹47</span></div>
   </div>
   <div class="fc"><div class="r"><div><div class="n">November</div><div class="s">Paid 5 Dec</div></div><span class="n">₹5,230</span></div><div class="r"><span class="s">Bank and PAN</span><span class="pill ok">✓ Verified</span></div></div>
-  <p class="mini">Live total or monthly only? <span class="q">Q8.2</span> · TDS rate from Finance <span class="q">assumed 2%</span></p>
  </div>
- <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span class="on"><i>₹</i>Earnings</span></div>
+ <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span class="on"><i>₹</i>Money</span></div>
 </div></div>
-<p class="note">A wrong line? "Question this line" goes to Finance and the RSM.</p></div>
+<p class="note">School programme (5%) and Academy (5%) lines appear once those start. Open: live total or monthly only (Q8.2); TDS assumed at 2% until Finance confirms. A wrong line? "Question this line" goes to Finance and the RSM.</p></div>
 
 <div class="step"><h3><i>9</i>My families</h3><p class="cap">Search by name, number or PIN. Filter by interest, stage or overdue. Families waiting for the parent's OK are kept apart.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -388,25 +390,40 @@ table.t .bar{min-width:110px}
    <div class="r"><div><div class="n">Rao family</div><div class="s">Contacted · Fri</div></div><span class="pill cold">▼ Cold</span></div>
   </div>
  </div>
- <div class="tabs"><span><i>⌂</i>Today</span><span class="on"><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Earnings</span></div>
+ <div class="tabs"><span><i>⌂</i>Today</span><span class="on"><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
 </div></div></div>
 
-<div class="step"><h3><i>10</i>My first week: the joining list</h3><p class="cap">Each new YSP brings 500 parents. They are prospects until each parent says yes. Nobody can call them before that.</p>
+<div class="step"><h3><i>10</i>My first week: the joining list</h3><p class="cap">Each new YSP brings 500 parents. He picks them straight from his phone's contacts, many at a time. They stay prospects until each parent says yes.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Joining list</b><span class="pill">312 of 500</span></div>
  <div class="body">
-  <div class="row2"><div class="btn ghost" style="font-size:12.5px">Pick from contacts</div><div class="btn ghost" style="font-size:12.5px">Upload on laptop</div></div>
-  <div class="fc" style="margin-top:8px">
-   <div class="r"><span class="s">Parent said yes · now yours</span><span class="pill ok">203</span></div>
-   <div class="r"><span class="s">Waiting for the parent's answer</span><span class="pill wait">78</span></div>
-   <div class="r"><span class="s">Outside your area</span><span class="pill">17</span></div>
-   <div class="r"><span class="s">Can't add (already known)</span><span class="pill bad">14</span></div>
+  <p style="margin:0 0 6px;font-weight:800">Add parents</p>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">📇 Choose from my contacts</div><div class="s">Tick many at once</div></div><span class="pill ok">Fastest</span></div>
+   <div class="r"><div><div class="n">↗ Share a contact to YASHHO</div><div class="s">From WhatsApp or the phone book</div></div></div>
+   <div class="r"><div><div class="n">⌨ Type a parent</div><div class="s">Name, number, PIN</div></div></div>
+   <div class="r"><div><div class="n">🗂 Upload a sheet</div><div class="s">On a laptop, for long lists</div></div></div>
   </div>
-  <p class="mini">Only name, number and PIN are taken from the list. YASHHO sends each parent the yes/no message.</p>
+  <div class="fc"><div class="r"><span class="s">Parent said yes · yours</span><span class="pill ok">203</span></div><div class="r"><span class="s">Waiting for answer</span><span class="pill wait">78</span></div><div class="r"><span class="s">Outside area / already known</span><span class="pill">31</span></div></div>
  </div>
- <div class="dock"><div class="btn">Ask the 78 waiting again</div></div>
 </div></div>
-<p class="note">Names that never say yes are removed after a set time. <span class="q">Q15.4</span></p></div>
+<p class="note">YASHHO asks each parent once, reminds once after 3 days, and drops names with no answer after 30 days, so the YSP never chases. Meeting one of them, he can ask in person with the QR code. The 3-day reminder and 30-day cut-off are suggestions for KMM and legal to set. Only the contacts he ticks are added, never his whole phone book. Only name, number and PIN are kept. His RSM can add parents for him too. <span class="q">Q15.4</span></p></div>
+
+<div class="step"><h3><i>10b</i>Ticking contacts</h3><p class="cap">The phone's own contact list opens. He ticks the parents, and the app checks each one before adding it.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Choose parents</b></span><span class="pill">6 ticked</span></div>
+ <div class="body">
+  <div class="fld"><label>Search contacts</label><span style="color:var(--f-mute);font-weight:400">Name or number</span></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Anitha Shetty</div><div class="s">98440 •• •• 21</div></div></div><span class="pill ok">New</span></div>
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Basavaraj K</div><div class="s">99000 •• •• 87</div></div></div><span class="pill ok">New</span></div>
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Chandru (cousin)</div><div class="s">97410 •• •• 02</div></div></div><span class="pill">Outside area</span></div>
+   <div class="r"><div class="chk" style="margin:0"><i></i><div><div class="n">Doctor Rao clinic</div><div class="s">080 •••• 4410</div></div></div><span class="pill bad">Not a mobile</span></div>
+  </div>
+ </div>
+ <div class="dock"><div class="btn">Add 5 and ask for their OK</div></div>
+</div></div>
+<p class="note">Works on Android phones. On iPhones, he shares contacts one by one or types them.</p></div>
 
 <div class="step"><h3><i>11</i>The same Today screen in Kannada</h3><p class="cap">Ravi can switch the whole app to Kannada. Draft wording, to be checked by a native speaker.</p>
 <div class="phone"><div class="notch"></div><div class="pv kn">
@@ -417,11 +434,10 @@ table.t .bar{min-width:110px}
    <div class="r"><div><div class="n">ಪಾಟೀಲ್ ಕುಟುಂಬ</div><div class="s" style="color:var(--bad)">ನಿನ್ನೆಯಿಂದ ಬಾಕಿ</div></div><div class="act"><span class="ib call">📞</span></div></div>
    <div class="r"><div><div class="n">ಮಂಜಪ್ಪ ಕುಟುಂಬ</div><div class="s">11:30 ಕ್ಕೆ ಕರೆ</div></div><div class="act"><span class="ib call">📞</span></div></div>
   </div>
-  <p class="mini">Tabs use one-word labels so longer Kannada words still fit.</p>
  </div>
  <div class="tabs"><span class="on"><i>⌂</i>ಇಂದು</span><span><i>👪</i>ಕುಟುಂಬ</span><span><i>＋</i>ಹೊಸದು</span><span><i>🏫</i>ಶಾಲೆ</span><span><i>₹</i>ಗಳಿಕೆ</span></div>
 </div></div>
-<p class="note">Language choice for the whole app <span class="q">Q0.1</span></p></div>
+<p class="note">Tabs use one-word labels so longer Kannada words still fit. Language choice for the whole app <span class="q">Q0.1</span></p></div>
 
 <div class="step"><h3><i>12</i>A quiet first morning</h3><p class="cap">Empty screens tell him what to do next, instead of showing nothing.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -432,7 +448,7 @@ table.t .bar{min-width:110px}
   <p class="mini" style="margin:0 0 14px">Start with your joining list, or add a family you met.</p>
   <div class="btn">Open joining list</div><div class="btn ghost">Add a family</div>
  </div>
- <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Earnings</span></div>
+ <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
 </div></div></div>
 </div>
 </section>
@@ -453,10 +469,9 @@ table.t .bar{min-width:110px}
    <div class="r"><div><div class="n">Imran, Pavagada</div><div class="s" style="color:var(--bad)">No sync for 2 days</div></div><span class="pill bad">3 of 20</span></div>
    <div class="r"><div><div class="n">Nonavinakere</div><div class="s">No YSP yet</div></div><span class="pill wait">Vacant</span></div>
   </div>
-  <p class="mini">Who looks after an area with no YSP? <span class="q">Q2.3</span></p>
  </div>
- <div class="tabs"><span class="on"><i>⌂</i>Region</span><span><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span><i>₹</i>Earnings</span></div>
-</div></div></div>
+ <div class="tabs"><span class="on"><i>⌂</i>Region</span><span><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span><i>₹</i>Money</span></div>
+</div></div><p class="note">Open: who looks after an area with no YSP? (Q2.3)</p></div>
 
 <div class="step"><h3><i>2</i>Team activity</h3><p class="cap">What each YSP did today: visits, calls, parents who said yes. Imran's phone hasn't synced, so his numbers may be out of date.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -470,7 +485,7 @@ table.t .bar{min-width:110px}
   <div class="fc warn"><h4>Imran needs a hand</h4><p class="mini" style="margin:0">195 families said yes but were never called.</p></div>
   <div class="row2"><div class="btn ghost">📞 Call Imran</div><div class="btn">Plan a field day</div></div>
  </div>
- <div class="tabs"><span><i>⌂</i>Region</span><span class="on"><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span><i>₹</i>Earnings</span></div>
+ <div class="tabs"><span><i>⌂</i>Region</span><span class="on"><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span><i>₹</i>Money</span></div>
 </div></div>
 <p class="note">Daily reporting fields <span class="q">Q3.2</span></p></div>
 
@@ -483,10 +498,10 @@ table.t .bar{min-width:110px}
    <div class="r"><span class="n">Ravi, Sira</span><span class="n">₹2,372</span></div>
    <div class="r"><span class="n">Imran, Pavagada</span><span class="n">₹890</span></div>
   </div>
-  <div class="fc sub"><h4>My commission</h4><p class="mini" style="margin:0">None during the settling-in months, November 2026 to March 2027. YSPs are paid; RSMs are not. From April 2027: 0.5% of my region's sales after GST, plus 7% on my own sales above 100 a month.</p></div>
+  <div class="fc"><div class="r"><span class="s">My commission</span><span class="pill wait">Starts April 2027</span></div></div>
  </div>
- <div class="tabs"><span><i>⌂</i>Region</span><span><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span class="on"><i>₹</i>Earnings</span></div>
-</div></div></div>
+ <div class="tabs"><span><i>⌂</i>Region</span><span><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span class="on"><i>₹</i>Money</span></div>
+</div></div><p class="note">RSM rates from April 2027, all on the amount after GST: 0.5% of scans, school fees and Academy admissions in his region, plus 7% on his own scans above 100 a month. Nothing during settling-in (Nov 2026 – Mar 2027).</p></div>
 
 <div class="step"><h3><i>4</i>Drawing a YSP's area</h3><p class="cap">He groups neighbouring PIN codes into each area. Warnings show if a PIN is taken or the area has a gap.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -498,11 +513,11 @@ table.t .bar{min-width:110px}
    <div class="r"><span class="n">☑ 572125 Bukkapatna</span><span class="s">6,100</span></div>
    <div class="r"><span class="s">☐ 572141 Tavarekere</span><span class="s">in another area</span></div>
   </div>
-  <div class="fc"><div class="r"><span class="s">PINs all touch each other</span><span class="pill ok">✓</span></div><div class="r"><span class="s">No PIN in two areas</span><span class="pill ok">✓</span></div><div class="r"><span class="s">Young people vs average area</span><span class="pill warm">12% fewer</span></div></div>
+  <div class="fc"><h4>Area checks</h4><div class="r"><span class="s">No gaps between PINs</span><span class="pill ok">✓ OK</span></div><div class="r"><span class="s">No PIN in another area</span><span class="pill ok">✓ OK</span></div><div class="r"><span class="s">24,300 aged 0–25</span><span class="pill warm">12% below average</span></div></div>
  </div>
  <div class="dock"><div class="btn">Send for data check</div></div>
 </div></div>
-<p class="note">Population numbers come from the official figures we load, shown with their source.</p></div>
+<p class="note">The checks in plain words: the PIN codes must form one connected area with no holes; none of them can already belong to another YSP; and the area's number of young people (age 0–25) is compared with the average YSP area, using the official figures we load. Areas are balanced on young people because they are our future customers.</p></div>
 
 <div class="step"><h3><i>5</i>Checking the area on the ground</h3><p class="cap">After the data check, he visits and confirms. Leaders then approve, and the area goes live.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -513,25 +528,27 @@ table.t .bar{min-width:110px}
   <div class="chk"><i></i>Signs of demand (shops, coaching centres)</div>
   <div class="fld"><label>Photos and notes</label><span>📷 2 photos</span></div>
   <div class="stages" style="margin-top:8px"><span class="done">Proposed</span><span class="done">Data checked</span><span class="on">Field validated</span><span>Approved</span><span>Active</span></div>
-  <p class="mini">Families start flowing to the YSP only when the area is Active. Who approves? <span class="q">Q2.1</span></p>
  </div>
  <div class="dock"><div class="btn">Confirm after visit</div></div>
-</div></div></div>
+</div></div><p class="note">Families start flowing to the YSP only when the area is Active. Open: who approves? (Q2.1)</p></div>
 
-<div class="step"><h3><i>6</i>Bringing in a new YSP</h3><p class="cap">A checklist from first meeting to ready to sell. Selling opens only when everything is done.</p>
+<div class="step"><h3><i>6</i>Bringing in a new YSP</h3><p class="cap">Suresh sends the candidate an invite. The candidate does their own steps on their phone, Head Office checks them, and selling opens when all seven are done.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
- <div class="top"><span><span class="back">‹</span><b>New YSP</b></span><span class="pill wait">4 of 7</span></div>
+ <div class="top"><span><span class="back">‹</span><b>Lakshmi R</b></span><span class="pill wait">4 of 7</span></div>
  <div class="body">
-  <div class="chk"><i class="y">✓</i>Profile and photo</div>
-  <div class="chk"><i class="y">✓</i>PAN checked</div>
-  <div class="chk"><i class="y">✓</i>Bank account verified</div>
-  <div class="chk"><i class="y">✓</i>Agreement signed, including how families' data is protected</div>
-  <div class="chk"><i></i>Training done <span class="q">Q3.3</span></div>
-  <div class="chk"><i></i>Area is Active</div>
-  <div class="chk"><i></i>Approved <span class="q">Q3.1</span></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Profile and photo</div><div class="s">Lakshmi, in the app</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">PAN</div><div class="s">Checked by Head Office</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Bank account</div><div class="s">Checked by Head Office</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i class="y">✓</i><div><div class="n">Partner agreement</div><div class="s">Accepted by Lakshmi, 12 Dec</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i></i><div><div class="n">Training</div><div class="s">2 of 3 lessons · field day with you</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i></i><div><div class="n">Area is live</div><div class="s">Nonavinakere is Approved</div></div></div></div>
+   <div class="r"><div class="chk" style="margin:0"><i></i><div><div class="n">Final approval</div><div class="s">Field Sales manager</div></div></div></div>
+  </div>
  </div>
- <div class="dock"><div class="btn ghost">Remind the candidate</div></div>
-</div></div></div>
+ <div class="dock"><div class="btn ghost">Remind Lakshmi</div></div>
+</div></div>
+<p class="note">Who does what: the RSM invites and follows up; the candidate fills in their profile, enters PAN and bank details, and accepts the agreement in the app; Head Office checks PAN and bank (offline at first, by an online check service later) and marks them verified; training is short in-app lessons plus one field day with the RSM; "Area is live" ticks itself; the Field Sales manager gives final approval. No Aadhaar is collected. Payouts stay blocked until PAN and bank are verified. Open: is training required before selling (Q3.3), and is the Field Sales manager the approver (Q3.1)?</p></div>
 
 <div class="step"><h3><i>7</i>When a YSP leaves</h3><p class="cap">Their access stops at once. Suresh chooses who takes the families. Money already earned stays with the YSP who earned it.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -539,11 +556,11 @@ table.t .bar{min-width:110px}
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Families</span><span class="n">286</span></div><div class="r"><span class="s">Links sent, not yet paid</span><span class="n">4</span></div><div class="r"><span class="s">Paid, report not delivered</span><span class="n">2</span></div></div>
   <div class="fld"><label>Move families to</label><span>Deepa, Tiptur (cover until a new YSP joins)</span></div>
-  <div class="fc sub"><p class="mini" style="margin:0">Commission for the 2 paid families: <b>Imran</b> (he made the sale). The 4 open links: <b>Deepa</b> if paid after today. <span class="q">Q2.3</span></p></div>
+  <div class="fc sub"><p class="mini" style="margin:0">Commission for the 2 paid families: <b>Imran</b> (he made the sale). The 4 open links: <b>Deepa</b> if paid after today.</p></div>
  </div>
  <div class="dock"><div class="btn">Move 286 families</div></div>
 </div></div>
-<p class="note">Large moves go to the GM for approval.</p></div>
+<p class="note">Open: the rule for open links and paid-but-not-delivered orders (Q2.3). Large moves go to the GM for approval.</p></div>
 
 <div class="step"><h3><i>8</i>Two people say "this family is mine"</h3><p class="cap">The app shows who the parent agreed to first, inside their own area. Both YSPs see the same evidence.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -551,20 +568,18 @@ table.t .bar{min-width:110px}
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Parent agreed through Imran</span><span class="n">2 Dec, 4:10 pm</span></div><div class="r"><span class="s">Ravi added them</span><span class="n">9 Dec, 11:02 am</span></div><div class="r"><span class="s">Family lives in</span><span class="n">Imran's area</span></div></div>
   <div class="fc ok"><h4>Imran keeps them</h4><p class="mini" style="margin:0">The parent agreed through him first, in his own area. Ravi's calls stay on record.</p></div>
-  <p class="mini">What counts as first? <span class="q">Q14.1</span></p>
  </div>
  <div class="dock"><div class="btn ghost">Ask the GM to review</div></div>
-</div></div></div>
+</div></div><p class="note">Open: what exactly counts as "first" (Q14.1).</p></div>
 
 <div class="step"><h3><i>9</i>My own ward</h3><p class="cap">Suresh sells where he lives, in the regional town. Same family page, same payment link, same parent's OK.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>My ward</b><span class="sync">December</span></div>
  <div class="body">
   <div class="k2"><div class="kp"><small>Parents who said yes</small><b>212</b></div><div class="kp"><small>Bought</small><b>31</b> <em>of 50</em></div></div>
-  <p class="mini">Record every family met, or only interested ones? <span class="q">Q7.1</span><br>If his ward is inside a YSP's area, who gets the sale? <span class="q">T10 follow-up</span></p>
  </div>
  <div class="dock"><div class="btn">＋ New family</div></div>
-</div></div></div>
+</div></div><p class="note">Open: record every family met, or only interested ones (Q7.1)? If his ward is inside a YSP's area, who gets the sale (T10 follow-up)?</p></div>
 
 <div class="step wide"><h3><i>10</i>The same region on the laptop</h3><p class="cap">At the regional office, all 10 areas side by side, with the same names and sections as on his phone.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Tumakuru West–North</span></div>
@@ -592,8 +607,7 @@ table.t .bar{min-width:110px}
  <div class="ok4"><div class="okp"><small>Sold this month</small><b>3,184</b> <em>of 10,000</em></div><div class="okp"><small>Pace</small><b class="dn">9% behind</b></div><div class="okp"><small>YSP areas active</small><b>310</b> <em>of 400</em></div><div class="okp"><small>Ownership questions</small><b>4</b></div></div>
  <div class="split"><div class="grow oc"><h4>Top regions</h4><div class="tw"><table class="t"><tr><th>Region</th><th>RSM</th><th>Sold / plan</th></tr><tr><td>Bengaluru Central</td><td>Anil</td><td>148 / 250</td></tr><tr><td>Tumakuru W–N</td><td>Suresh</td><td>142 / 250</td></tr><tr><td>Mysuru</td><td>Kavitha</td><td>139 / 250</td></tr></table></div></div>
  <div class="grow oc"><h4>Regions needing help</h4><div class="tw"><table class="t"><tr><th>Region</th><th>RSM</th><th>Sold / plan</th></tr><tr><td>Region 28</td><td class="dn">Vacant</td><td>41 / 250</td></tr><tr><td>Region 17</td><td>Mahesh</td><td>48 / 250</td></tr><tr><td>Region 05</td><td>Asha</td><td>52 / 250</td></tr></table></div></div></div>
- <p class="ohint">A region's plan is 250: 10 YSPs × 20, plus the RSM's own 50.</p>
-</div></div></div></div>
+</div></div></div><p class="note">A region's plan is 250: 10 YSPs × 20, plus the RSM's own 50.</p></div>
 
 <div class="step mid"><h3><i>2</i>Alerts: what needs acting on</h3><p class="cap">Every 3 hours the system checks the rules leaders agreed. Each alert has an owner, who marks it handled.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Alerts</span></div>
@@ -601,8 +615,7 @@ table.t .bar{min-width:110px}
  <div class="oc"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>5 regions below 70% of pace</b><span class="op wait">Open · GM</span></div><p class="ohint" style="margin:4px 0 8px">R05, R12, R17, R28, R39 · since 09:00</p><span class="ob ghost">Mark handled</span></div>
  <div class="oc"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>Website enquiries not called in time: 12</b><span class="op wait">Open · RSMs</span></div><p class="ohint" style="margin:4px 0 0">Sent to each YSP's RSM at 12:00</p></div>
  <div class="oc"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>82 YSPs not selling yet</b><span class="op ok">Handled · Field Sales</span></div></div>
- <p class="ohint">The alert list comes from KMM's tracking document. <span class="q">Q15.6</span></p>
-</div></div></div></div>
+</div></div></div><p class="note">The alert rules come from KMM's tracking document (Q15.6).</p></div>
 
 <div class="step wide"><h3><i>3</i>CEO: how the company is doing</h3><p class="cap">Plan against actual, where sales came from, and what needs attention. View only.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Company view</span></div>
@@ -614,8 +627,8 @@ table.t .bar{min-width:110px}
    <tr><td>RSMs in their own wards</td><td>690</td><td>2,000</td><td><div class="bar"><i style="width:35%"></i></div></td></tr>
    <tr><td>YASHHO Direct (Head Office campaigns)</td><td>160</td><td>—</td><td></td></tr>
    <tr><td><b>Total</b></td><td><b>3,184</b></td><td><b>10,000</b></td><td></td></tr></table></div></div>
-  <div class="fix oc"><h4>Needs attention</h4><p class="ohint" style="margin:0 0 6px">5 regions below 70% of pace<br>82 YSPs not selling yet<br>YSP sales slower 3 days running</p><p class="ohint">Your five key numbers? <span class="q">Q1.2</span></p></div></div>
-</div></div></div></div>
+  <div class="fix oc"><h4>Needs attention</h4><p class="ohint" style="margin:0 0 6px">5 regions below 70% of pace<br>82 YSPs not selling yet<br>YSP sales slower 3 days running</p></div></div>
+</div></div></div><p class="note">Open: which five numbers matter most to the CEO (Q1.2)?</p></div>
 
 <div class="step mid"><h3><i>4</i>Field Sales manager: new YSPs to approve</h3><p class="cap">Every new YSP whose checklist is complete, ready for a final yes.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · New YSPs</span></div>
@@ -623,8 +636,117 @@ table.t .bar{min-width:110px}
  <div class="tw"><table class="t"><tr><th>Candidate</th><th>Area</th><th>RSM</th><th>Checklist</th><th></th></tr>
  <tr><td>Lakshmi R</td><td>Nonavinakere</td><td>Suresh</td><td><span class="op ok">7 of 7</span></td><td><span class="ob">Approve</span></td></tr>
  <tr><td>Prakash M</td><td>Hiriyur</td><td>Naveen</td><td><span class="op wait">5 of 7</span></td><td><span class="ob ghost">View</span></td></tr></table></div>
- <p class="ohint">Is the Field Sales manager the approver? <span class="q">Q3.1</span></p>
+</div></div></div><p class="note">Open: is the Field Sales manager the approver (Q3.1)?</p></div>
+</div>
+</section>
+
+<section class="j" id="controls">
+<h2>Keeping it working on the ground <span class="badge now">At launch</span></h2>
+<p class="sub">These screens tell leaders, every day, whether the field is really working: who is out selling, which families are being ignored, where money or reports are stuck, and what looks wrong. Each problem has an owner and a fix, and nothing is left to a monthly surprise.</p>
+<div class="flow">
+
+<div class="step wide"><h3><i>1</i>Control room</h3><p class="cap">One screen for the GM and the Field Sales manager. Every tile is a daily check. Red means someone has to act today. Tap a tile to see the list and who owns it.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Control room · Wed 18 Dec, 12:00</span></div>
+<div class="bv"><div class="side"><div class="on">Control room</div><div>Field today</div><div>Follow-ups</div><div>Deliveries</div><div>Checks</div><div>Network</div><div>Change log</div></div>
+<div class="main">
+ <div class="ok4">
+  <div class="okp"><small>YSPs who started their day</small><b>291</b> <em>of 318 working · 27 not yet</em></div>
+  <div class="okp"><small>Follow-ups overdue</small><b class="dn">1,406</b> <em>in 64 YSPs</em></div>
+  <div class="okp"><small>Website enquiries past call-back time</small><b class="dn">12</b> <em>sent to RSMs</em></div>
+  <div class="okp"><small>Families said yes, never called (7+ days)</small><b class="dn">3,920</b> <em>can be moved to another YSP</em></div>
+  <div class="okp"><small>Paid, scan not taken (5+ days)</small><b class="dn">84</b> <em>delivery team</em></div>
+  <div class="okp"><small>Payment problems</small><b>9</b> <em>Finance</em></div>
+  <div class="okp"><small>Phones not synced (24+ h)</small><b class="dn">31</b> <em>RSMs to call</em></div>
+  <div class="okp"><small>Things that look wrong</small><b class="dn">6</b> <em>to review</em></div>
+ </div>
+ <div class="oc"><h4>Worst five regions on today's checks</h4><div class="tw"><table class="t"><tr><th>Region</th><th>RSM</th><th>Started day</th><th>Overdue</th><th>Never called</th><th>Not synced</th></tr>
+ <tr><td>Region 28</td><td class="dn">Vacant</td><td>4 / 6</td><td>212</td><td>640</td><td>2</td></tr>
+ <tr><td>Region 17</td><td>Mahesh</td><td>7 / 10</td><td>148</td><td>402</td><td>3</td></tr>
+ <tr><td>Tumakuru W–N</td><td>Suresh</td><td>8 / 9</td><td>61</td><td>195</td><td>1</td></tr></table></div></div>
+</div></div></div>
+<p class="note">Every number refreshes every 3 hours. Each tile has an agreed limit and an owner; going over the limit creates an alert (see Leaders, step 2). The exact limits come from KMM's tracking document (Q15.6).</p></div>
+
+<div class="step"><h3><i>2</i>A YSP starts and ends the day</h3><p class="cap">Ravi taps "Start my day" when he goes out, logs each visit as he goes, and closes the day with one tap. His RSM sees it live.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>My day</b><span class="pill ok">Started 9:12</span></div>
+ <div class="body">
+  <div class="k2"><div class="kp"><small>Visits</small><b>3</b><em>plan 6</em></div><div class="kp"><small>Calls</small><b>9</b><em>plan 15</em></div></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">Visit · Kumar family</div><div class="s">10:05 · Sira, ward 4</div></div><span class="pill ok">Said yes</span></div>
+   <div class="r"><div><div class="n">Visit · Sri Vidya School</div><div class="s">11:40 · met the principal</div></div><span class="pill">School</span></div>
+   <div class="r"><div><div class="n">Visit · Rao family</div><div class="s">1:15 · not at home</div></div><span class="pill">Try again</span></div>
+  </div>
+  <div class="btn ghost">＋ Log a visit</div>
+ </div>
+ <div class="dock"><div class="btn dark">End my day</div></div>
+</div></div>
+<p class="note">A visit records the time and the phone's location once, when it is logged (no tracking all day). Daily plan numbers are set by the RSM. Open: which daily numbers are required (Q3.2).</p></div>
+
+<div class="step"><h3><i>3</i>The RSM's morning huddle</h3><p class="cap">Every morning Suresh runs a 15-minute call with his YSPs. The app lists yesterday's results and today's plan for each one, and he marks the huddle done.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Morning huddle</b><span class="sync">Thu 19 Dec</span></div>
+ <div class="body">
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">Deepa</div><div class="s">Yesterday 6 visits · 2 sold · today plan 6</div></div><span class="pill ok">On track</span></div>
+   <div class="r"><div><div class="n">Ravi</div><div class="s">3 visits · 0 sold · 4 overdue calls</div></div><span class="pill warm">Watch</span></div>
+   <div class="r"><div><div class="n">Imran</div><div class="s">Didn't start his day · not synced</div></div><span class="pill bad">Call now</span></div>
+  </div>
+  <div class="fld"><label>Agreed actions</label><span>Imran: joint field day Fri · Ravi: clear overdue by noon</span></div>
+ </div>
+ <div class="dock"><div class="btn">Mark huddle done</div></div>
+</div></div>
+<p class="note">The GM sees which RSMs held their huddle. Agreed actions come back on the next day's list until they are done.</p></div>
+
+<div class="step"><h3><i>4</i>Families nobody is working</h3><p class="cap">Families who said yes but haven't been called in 7 days are shown to the RSM. He can nudge the YSP, or move them to someone who will call.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Not being worked</b></span><span class="pill bad">195</span></div>
+ <div class="body">
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">Imran, Pavagada</div><div class="s">195 families · oldest 12 days</div></div><span class="pill bad">Act</span></div>
+   <div class="r"><div><div class="n">Ravi, Sira</div><div class="s">4 families · oldest 8 days</div></div><span class="pill warm">Nudge</span></div>
+  </div>
+  <div class="row2"><div class="btn ghost">Remind Imran</div><div class="btn">Move to Deepa</div></div>
+ </div></div></div>
+<p class="note">After a warning, families not worked for a set number of days can be released and moved; the days are for KMM to set. Every move is logged with a reason.</p></div>
+
+<div class="step wide"><h3><i>5</i>Things that look wrong</h3><p class="cap">The system watches for patterns that suggest mistakes or gaming. Each case is reviewed by the Field Sales manager, and commission can be held until it's cleared.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Checks</span></div>
+<div class="bv"><div class="main">
+ <div class="tw"><table class="t"><tr><th>What we noticed</th><th>Who</th><th>Since</th><th>Status</th><th></th></tr>
+ <tr><td>One UPI account paid for 6 different families</td><td>Kiran, Hiriyur</td><td>Today</td><td><span class="op wait">Commission held</span></td><td><span class="ob ghost">Review</span></td></tr>
+ <tr><td>41 parents said yes from the same phone within 10 minutes</td><td>Manoj, Gubbi</td><td>Yesterday</td><td><span class="op wait">To review</span></td><td><span class="ob ghost">Review</span></td></tr>
+ <tr><td>The same mobile number entered for 14 families</td><td>Ravi, Sira</td><td>2 days</td><td><span class="op ok">Cleared: shop phone</span></td><td><span class="ob ghost">View</span></td></tr>
+ <tr><td>A YSP's own number paid for scans</td><td>Prakash, Tiptur</td><td>3 days</td><td><span class="op bad">Refund and warning</span></td><td><span class="ob ghost">View</span></td></tr></table></div>
+</div></div></div>
+<p class="note">The patterns to watch are a starting list for KMM to agree. A flagged case never changes credit by itself: a person decides, and the decision is logged.</p></div>
+
+<div class="step mid"><h3><i>6</i>Paid but not delivered</h3><p class="cap">Between payment and report, families can get stuck. This list shows every scan that is late, so the delivery team can fix it before the family complains.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Deliveries</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>Paid this month</small><b>3,184</b></div><div class="okp"><small>Report delivered</small><b>2,612</b></div><div class="okp"><small>Scan not taken, 5+ days</small><b class="dn">84</b></div><div class="okp"><small>Report late, 3+ days</small><b class="dn">23</b></div></div>
+ <div class="tw"><table class="t"><tr><th>Family</th><th>YSP</th><th>Paid</th><th>Stuck at</th></tr>
+ <tr><td>Shetty family</td><td>Ravi</td><td>9 Dec</td><td>Scan not booked</td></tr>
+ <tr><td>Naik family</td><td>Deepa</td><td>11 Dec</td><td>Report being prepared</td></tr></table></div>
+</div></div></div>
+<p class="note">The YSP sees the same status on the family page, so he can nudge the family too. Commission is earned only at delivery, so this list also protects his pay.</p></div>
+
+<div class="step mid"><h3><i>7</i>Network health</h3><p class="cap">Are we building the network fast enough? From invite to first sale, for every region, and who has gone quiet.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Network</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>Invited</small><b>436</b></div><div class="okp"><small>Checklist complete</small><b>352</b></div><div class="okp"><small>First family said yes</small><b>334</b></div><div class="okp"><small>First sale</small><b>318</b></div></div>
+ <div class="oc"><b>Gone quiet</b><p class="ohint" style="margin:4px 0 0">22 YSPs with no visit or call for 3 days · 9 RSMs without a huddle this week · 4 YSPs left this month</p></div>
+</div></div></div>
+<p class="note">The target is 400 working YSPs. This shows where each region is stuck, from invite to first sale.</p></div>
+
+<div class="step wide"><h3><i>8</i>Change log</h3><p class="cap">Every important change is recorded: who did it, when, and why. Nothing about ownership, money or territory changes silently.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Change log</span></div>
+<div class="bv"><div class="main">
+ <div class="tw"><table class="t"><tr><th>When</th><th>Who</th><th>What changed</th></tr>
+ <tr><td>Today 11:20</td><td>Suresh (RSM)</td><td class="wrap">Moved 212 families Imran → Deepa · reason: YSP left</td></tr>
+ <tr><td>Today 09:05</td><td>GM</td><td class="wrap">Patil family stays with Imran · ownership question closed</td></tr>
+ <tr><td>Yesterday</td><td>Engineering</td><td class="wrap">December targets loaded · approved by GM and KMM</td></tr></table></div>
 </div></div></div></div>
+
 </div>
 </section>
 
@@ -642,9 +764,8 @@ table.t .bar{min-width:110px}
  <div class="tw"><table class="t"><tr><th>YSP</th><th>Area</th><th>Reports delivered</th><th>Commission</th><th>Refund</th><th>Tax</th><th>To pay</th></tr>
  <tr><td>Ravi</td><td>Sira</td><td>19</td><td>₹5,634</td><td>−₹297</td><td>₹107</td><td><b>₹5,230</b></td></tr>
  <tr><td>Deepa</td><td>Tiptur</td><td>22</td><td>₹6,524</td><td>₹0</td><td>₹130</td><td><b>₹6,394</b></td></tr></table></div>
- <p class="ohint">RSMs are not in this list: their commission starts with April 2027 earnings. Tax rate from Finance <span class="q">assumed 2%</span> · Who is the sales manager? <span class="q">Q6.1</span></p>
  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><span class="ob">Approve and pay</span><span class="ob ghost">Send back with a note</span></div>
-</div></div></div></div>
+</div></div></div><p class="note">RSMs are not in this list: their commission starts with April 2027 earnings. Tax assumed at 2% until Finance confirms. Open: who is the "sales manager" (Q6.1)?</p></div>
 
 <div class="step mid"><h3><i>2</i>Payment problems and refunds</h3><p class="cap">Payments that need a person: failed, paid twice, or paid with no matching family. Refunds show the commission they will take back.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Payment problems</span></div>
@@ -672,10 +793,9 @@ table.t .bar{min-width:110px}
    <div class="r"><div><div class="n">St. Mary's School</div><div class="s">380 students · first visit</div></div><span class="pill">Visited</span></div>
    <div class="r"><div><div class="n">Add a school</div><div class="s">From the official list</div></div><span class="pill">＋</span></div>
   </div>
-  <p class="mini">Who approves an agreement? <span class="q">Q8.3</span> · Signing partners by January 2027.</p>
  </div>
- <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span class="on"><i>🏫</i>Schools</span><span><i>₹</i>Earnings</span></div>
-</div></div></div>
+ <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span class="on"><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div><p class="note">Partners to be signed by January 2027. Open: who approves an agreement (Q8.3)?</p></div>
 
 <div class="step"><h3><i>2</i>The college's page</h3><p class="cap">Counts only, no student names. Fee instalments appear once the programme starts.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -683,16 +803,15 @@ table.t .bar{min-width:110px}
  <div class="body">
   <div class="k2"><div class="kp"><small>Students in programme</small><b>640</b></div><div class="kp"><small>Parents who agreed</small><b>212</b></div></div>
   <div class="fc"><div class="r"><span class="s">Scans, Jan–Feb 2027</span><span class="n">goal 100</span></div></div>
-  <div class="fc sub"><h4>Programme fee: ₹15,000 per student</h4><p class="mini" style="margin:0">Three instalments of ₹5,000 (May, August, November 2027). Ravi earns 5% of each, after GST, when it is collected. Who invoices the college? <span class="q">Q6.2</span></p></div>
- </div></div></div></div>
+  <div class="fc sub"><h4>Programme fee: ₹15,000 per student</h4><p class="mini" style="margin:0">Three instalments of ₹5,000 (May, August, November 2027).</p></div>
+ </div></div></div><p class="note">Ravi earns 5% of each instalment, after GST, when it is collected. Open: who invoices the college (Q6.2)?</p></div>
 
 <div class="step"><h3><i>3</i>A student who came through the college</h3><p class="cap">Once the parent agrees, the student's family has its own page, marked as coming through the college.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Gowda family</b></span><span class="pill">Through college</span></div>
  <div class="body">
   <div class="fc"><div class="r"><span class="s">Student</span><span class="n">Kavya, 1st PU</span></div><div class="r"><span class="s">Under 18</span><span class="n">Yes</span></div><div class="r"><span class="s">Parent</span><span class="n">Ramesh Gowda</span></div><div class="r"><span class="s">Parent agreed</span><span class="pill ok">✓ 14 Jan 2027</span></div><div class="r"><span class="s">How they came</span><span class="n">Govt PU College</span></div></div>
-  <p class="mini">Before the parent agrees, this page doesn't exist: the college page only counts the student. Legal to confirm the consent step for minors.</p>
- </div></div></div></div>
+ </div></div></div><p class="note">Before the parent agrees, this page doesn't exist: the college page only counts the student. Legal to confirm the consent step for minors.</p></div>
 </div>
 </section>
 
@@ -705,16 +824,16 @@ table.t .bar{min-width:110px}
 <div class="bv"><div class="main"><div class="tw"><table class="t"><tr><th>Waiting</th><th>Family</th><th>Came from</th><th>Why it's here</th><th></th></tr>
  <tr><td class="dn">47 min</td><td>Arjun P</td><td>Instagram ad, KAS</td><td>No PIN given</td><td><span class="ob ghost">📞 Call</span></td></tr>
  <tr><td>31 min</td><td>Lakshmi N</td><td>TV programme</td><td>No YSP in that area yet</td><td><span class="ob ghost">📞 Call</span></td></tr></table></div>
- <p class="ohint">Until this screen is built, these enquiries wait in a list for the GM. <span class="q">Q4.1</span> <span class="q">Q4.2</span></p></div></div></div></div>
+</div></div></div><p class="note">Until this screen is built, these enquiries wait in a list for the GM. Open: Q4.1, Q4.2.</p></div>
 <div class="step"><h3><i>2</i>Ambassador: refer a family</h3><p class="cap">A happy parent shares their own link. They see totals, never which family bought.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><b>Refer a family</b></div>
  <div class="body"><div class="fc"><h4>Your link</h4><p style="font-weight:800;font-size:18px;margin:0 0 6px">yashho.com/r/suma</p><div class="btn wa">Share on WhatsApp</div></div>
- <div class="fc"><div class="r"><span class="s">Families referred</span><span class="n">7</span></div><div class="r"><span class="s">Bought</span><span class="n">3</span></div></div><p class="mini"><span class="q">Q9.1–Q9.4</span></p></div></div></div></div>
+ <div class="fc"><div class="r"><span class="s">Families referred</span><span class="n">7</span></div><div class="r"><span class="s">Bought</span><span class="n">3</span></div></div></div></div></div><p class="note">Open: Q9.1–Q9.4.</p></div>
 <div class="step"><h3><i>3</i>Parent: stop all contact</h3><p class="cap">At launch a YSP or RSM records it on the family page. Later the parent can do it themselves: one tap, or reply STOP.</p>
 <div class="phone"><div class="notch"></div><div class="pv parentphone">
  <div class="top" style="background:#fff"><b>Your preferences</b></div>
- <div class="body"><div class="fc"><h4>Calls and messages from YASHHO</h4><div class="btn dark">Stop all contact</div><p class="mini" style="margin-top:8px">Every YSP, RSM and counsellor stops. You can also ask us to delete your details. <span class="q">Q13.2</span></p></div></div></div></div></div>
+ <div class="body"><div class="fc"><h4>Calls and messages from YASHHO</h4><div class="btn dark">Stop all contact</div><p class="mini" style="margin-top:8px">Every YSP, RSM and counsellor stops. You can also ask us to delete your details.</p></div></div></div></div><p class="note">Open: Q13.2.</p></div>
 </div>
 </section>
 
@@ -725,7 +844,7 @@ table.t .bar{min-width:110px}
 (function(){
   var caps={ysp:"Ravi looks after Sira. He sees the Kumar family in full and can call them or send the payment link.",
             rsm:"Suresh runs the region. He sees every family in it, and can move a family to another YSP when needed.",
-            ceo:"The CEO sees the family as part of the numbers. Family details stay hidden, and nothing can be changed."};
+            ceo:"The CEO sees the family as part of the numbers. Family details stay hidden, and nothing can be changed. (Should the CEO ever see details? Q1.4)"};
   var card=document.getElementById('famcard'), cap=document.getElementById('rolecap');
   document.querySelectorAll('.switch button').forEach(function(b){
     b.addEventListener('click',function(){
