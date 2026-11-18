@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>YASHHO CRM V2 options</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Page: cool fog. Field (phones): sunlight theme, white + deep ink, darker orange for text.
+   Office (laptops): YASHHO navy, brand orange. Heat uses colour + shape, never colour alone. */
+:root{
+  --page:#e8edf3; --ink:#0e2440; --ink-2:#3b5070; --rule:#c9d3df;
+  --brand:#f5821f; --brand-ink:#b4530a; --brand-soft:#fff1e3;
+  --f-bg:#ffffff; --f-sub:#f3f6f9; --f-ink:#0b1b33; --f-mute:#4a5b73; --f-line:#d5dde7;
+  --ok:#137a43; --ok-soft:#e3f5ea; --bad:#b42318; --bad-soft:#fde8e6; --warnc:#8a5a00; --warn-soft:#fff4d6;
+  --hot:#b8360a; --hot-soft:#ffe6dc; --warm:#8a5a00; --warm-soft:#fff1c7; --cold:#1d4ed8; --cold-soft:#e3ebff;
+  --o-bg:#0a1626; --o-sur:#10223c; --o-sur2:#16304f; --o-ink:#eaf1f9; --o-mute:#9fb3c9; --o-line:#22406a;
+  --q:#7a5200; --q-soft:#fff3cc;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:400 15px/1.5 Montserrat,system-ui,sans-serif}
+.kn{font-family:"Noto Sans Kannada",Montserrat,sans-serif}
+a{color:#8f4207}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.wrap{max-width:1360px;margin:0 auto;padding:32px 16px 96px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;margin-bottom:28px}
+.hero h1{font-weight:900;font-size:clamp(32px,4.6vw,56px);line-height:1.02;letter-spacing:-.01em;margin:0 0 16px;text-transform:uppercase}
+.hero h1 span{display:block;color:var(--brand-ink)}
+.hero p{max-width:60ch;margin:0 0 12px;color:var(--ink-2)}
+.hero .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.hero .two div{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:14px}
+.hero .two b{display:block;margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;font-size:13px}
+.legend span{background:#fff;border:1px solid var(--rule);border-radius:999px;padding:5px 12px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.toc a{background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 12px;border-radius:10px}
+.switch{display:inline-flex;background:#fff;border:1px solid var(--rule);border-radius:12px;padding:4px;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.switch button{border:0;background:transparent;padding:9px 14px;border-radius:9px;font-weight:700;color:var(--ink-2);cursor:pointer;min-height:44px}
+.switch button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.rolecap{font-size:13px;color:var(--ink-2);min-height:40px;margin:0 0 10px;max-width:46ch}
+[data-role="ceo"] .hide-ceo, [data-role="rsm"] .hide-rsm{display:none}
+.only-ceo,.only-rsm{display:none}
+[data-role="ceo"] .only-ceo,[data-role="rsm"] .only-rsm{display:inline}
+[data-role="rsm"] div.only-rsm{display:block}
+[data-role="ceo"] p.only-ceo{display:block}
+section.j{margin:56px 0 0;padding-top:28px;border-top:2px solid var(--rule)}
+section.j>h2{font-weight:800;font-size:clamp(22px,2.6vw,30px);margin:0 0 6px}
+section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
+.badge{display:inline-block;font-size:12px;font-weight:700;border-radius:8px;padding:3px 9px;margin-left:10px;vertical-align:middle}
+.badge.now{background:var(--brand);color:#1a0e02}
+.badge.later{background:#d7dee8;color:#33475f}
+.flow{display:flex;flex-wrap:wrap;gap:30px 26px;align-items:flex-start}
+.step{width:300px;flex:0 0 auto}
+.step.wide{width:820px;max-width:100%}
+.step.mid{width:560px;max-width:100%}
+.step h3{font-size:15px;font-weight:800;margin:0 0 4px;color:var(--ink)}
+.step h3 i{font-style:normal;color:var(--brand-ink);margin-right:6px}
+.step .cap{font-size:13.5px;color:var(--ink-2);margin:0 0 12px;min-height:60px}
+.q{display:inline-block;background:var(--q-soft);color:var(--q);border:1px dashed #c99a1a;border-radius:6px;padding:0 6px;font-size:11px;font-weight:700;white-space:nowrap}
+.note{font-size:12.5px;color:var(--ink-2);margin-top:10px;border-left:3px solid var(--rule);padding-left:9px}
+.phone{width:280px;margin:0 auto;background:#1a2433;border:10px solid #1a2433;border-radius:36px;box-shadow:0 18px 40px rgba(14,36,64,.25);position:relative;overflow:hidden}
+.phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:92px;height:20px;background:#1a2433;border-radius:0 0 14px 14px;z-index:6}
+.pv{height:560px;position:relative;background:var(--f-bg);color:var(--f-ink);overflow:hidden;font-size:13px}
+.pv .top{padding:26px 14px 8px;display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--f-line)}
+.pv .top b{font-weight:800;font-size:15px}
+.pv .top>span:first-child{display:flex;align-items:center;min-width:0}
+.pv .back{font-weight:800;font-size:18px;margin-right:6px;color:var(--f-mute)}
+.pv .body{padding:10px 12px}
+.sync{font-size:11px;color:var(--f-mute);white-space:nowrap}
+.sync b{color:var(--warnc)}
+.dock{position:absolute;left:0;right:0;bottom:0;padding:10px 12px 14px;background:linear-gradient(to top,#fff 75%,rgba(255,255,255,0))}
+.tabs{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#fff;border-top:1px solid var(--f-line);padding:6px 0 9px;font-size:11px;color:var(--f-mute)}
+.tabs span{display:flex;flex-direction:column;align-items:center;min-width:52px;min-height:44px;justify-content:center}
+.tabs i{font-style:normal;font-size:17px;line-height:1}
+.tabs .on{color:var(--brand-ink);font-weight:700}
+.fc{background:var(--f-bg);border:1px solid var(--f-line);border-radius:12px;padding:10px;margin-bottom:8px}
+.fc.sub{background:var(--f-sub)}
+.fc.ok{border-color:var(--ok);background:var(--ok-soft)}
+.fc.bad{border-color:var(--bad);background:var(--bad-soft)}
+.fc.warn{border-color:#d9a400;background:var(--warn-soft)}
+.fc h4{margin:0 0 6px;font-size:13.5px}
+.r{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--f-line)}
+.r:last-child{border-bottom:0}
+.r .n{font-weight:700;min-width:0}
+.r .s{color:var(--f-mute);font-size:12px}
+.r .act{display:flex;gap:6px;flex:0 0 auto}
+.ib{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:16px;border:1px solid var(--f-line);background:#fff}
+.ib.call{background:#e7f6ee;border-color:#b9e3c9}
+.ib.wa{background:#e5f9ee;border-color:#a7e8c3}
+.k2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.kp{background:var(--f-sub);border-radius:12px;padding:9px}
+.kp small{display:block;color:var(--f-mute);font-size:11.5px}
+.kp b{font-size:20px;font-weight:800}
+.kp em{display:block;font-style:normal;font-size:11.5px;color:var(--f-mute);line-height:1.3}
+.bar{height:7px;background:#e3e9f0;border-radius:6px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--brand)}
+.fld{border:1.5px solid var(--f-line);border-radius:12px;padding:8px 11px;margin-bottom:8px;position:relative;background:#fff}
+.fld label{display:block;font-size:11.5px;color:var(--f-mute)}
+.fld span{font-weight:600}
+.fld.focus{border-color:var(--brand)}
+.fld .hint{display:block;font-size:11px;color:var(--ok);font-weight:600}
+.btn{display:flex;align-items:center;justify-content:center;min-height:48px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:14px;margin-top:8px;font-size:14px;text-align:center;padding:0 10px}
+.btn.ghost{background:#fff;border:1.5px solid var(--f-line);color:var(--f-ink)}
+.btn.wa{background:#1faa59;color:#fff}
+.btn.dark{background:var(--f-ink);color:#fff}
+.row2{display:flex;gap:8px}
+.row2>*{flex:1}
+.heat{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.heat div{min-height:52px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:2px solid transparent}
+.heat .c{background:var(--cold-soft);color:var(--cold)}
+.heat .w{background:var(--warm-soft);color:var(--warm)}
+.heat .h{background:var(--hot);color:#fff;border-color:#7a2306}
+.heat small{font-weight:600;font-size:10.5px}
+.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;white-space:nowrap;background:#eef2f7;color:var(--f-ink)}
+.pill.hot{background:var(--hot-soft);color:var(--hot)}
+.pill.warm{background:var(--warm-soft);color:var(--warm)}
+.pill.cold{background:var(--cold-soft);color:var(--cold)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.wait{background:var(--warn-soft);color:var(--warnc)}
+.preset{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.preset span{border:1.5px solid var(--f-line);border-radius:10px;padding:8px 10px;font-weight:700;font-size:12px;min-height:40px;display:flex;align-items:center}
+.preset .on{border-color:var(--brand);background:var(--brand-soft)}
+.chk{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;margin:7px 0;min-height:32px}
+.chk i{width:22px;height:22px;border:2px solid var(--f-ink);border-radius:6px;flex:0 0 22px;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:900}
+.chk i.y{background:var(--ok);border-color:var(--ok);color:#fff}
+.stages{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.stages span{font-size:10.5px;padding:2px 7px;border-radius:6px;background:#eef2f7;color:var(--f-mute);white-space:nowrap}
+.stages .on{background:var(--brand);color:#1a0e02;font-weight:800}
+.stages .done{background:var(--ok-soft);color:var(--ok)}
+.tl{margin-left:6px;border-left:2px solid var(--f-line);padding-left:13px}
+.tl div{position:relative;margin-bottom:9px}
+.tl div::before{content:"";position:absolute;left:-20px;top:4px;width:12px;height:12px;border-radius:50%;background:#c9d3df;border:2px solid #fff}
+.tl .done::before{background:var(--ok)}
+.tl .now::before{background:var(--brand)}
+.tl .fail::before{background:var(--bad)}
+.tl b{font-size:13px}
+.tl small{display:block;color:var(--f-mute);font-size:11.5px}
+.dim{position:absolute;inset:0;background:rgba(11,27,51,.55);z-index:3}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:12px 12px 14px;z-index:4;box-shadow:0 -10px 30px rgba(0,0,0,.2)}
+.sheet .grab{width:40px;height:5px;background:#c9d3df;border-radius:5px;margin:0 auto 10px}
+.qr{width:150px;height:150px;margin:6px auto 8px;background:conic-gradient(from 90deg at 18% 18%,#0b1b33 25%,#fff 0 50%,#0b1b33 0 75%,#fff 0) 0 0/30px 30px;border:10px solid #fff;outline:2px solid var(--f-line);border-radius:6px}
+.mask{background:#e3e9f0;color:var(--f-mute);border-radius:5px;padding:0 6px;font-size:11.5px}
+.mini{font-size:11.5px;color:var(--f-mute)}
+.wa-msg{background:#e7ffdb;border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:12.5px;color:#0b1b33;margin:6px 0}
+.parentphone{background:#f1f3f6}
+.tbar{display:flex;justify-content:space-between;gap:4px;align-items:center;background:#fff4e8;border-bottom:2px solid var(--brand);padding:5px 10px;font-size:12px;font-weight:700;color:#3a2207;white-space:nowrap;overflow:hidden}
+.tbar span{min-width:0}.tbar .behind{color:#b3261e}.tbar .met{color:#1f7a3f}
+.tbar.rsm{flex-wrap:wrap;row-gap:2px}
+.tgt{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 8px}
+.tgt>div{border:1.5px solid var(--f-line);border-radius:10px;padding:5px 7px;background:#fff;min-width:0}
+.tgt small{display:block;font-size:11px;color:var(--f-mute);font-weight:600}
+.tgt b{font-size:16px}
+.tgt em{font-style:normal;font-size:11.5px;color:var(--f-mute)}
+.tgt .bar{margin-top:3px}
+@media (max-width:700px){.mapgrid{grid-template-columns:1fr !important}}
+.ring{display:flex;gap:10px;align-items:center;margin:0 0 8px}.ring i{width:46px;height:46px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:12px;background:conic-gradient(var(--brand) calc(var(--p)*1%),#e8edf3 0);position:relative}.ring i::after{content:"";position:absolute;inset:6px;border-radius:50%;background:#fff}.ring i b{position:relative;z-index:1}
+.oc3{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.oc3 span{border:1.5px solid var(--f-line);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:600;background:#fff}
+.oc3 span.on{border-color:var(--brand);background:#fff4e8}
+.fld.lock{background:#eef1f5}
+.rule3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rq{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:12px;min-width:0}
+.rq b{display:block;margin-bottom:4px}
+.rq p{margin:0 0 8px;font-size:13.5px;opacity:.9}
+@media (max-width:700px){.rule3{grid-template-columns:1fr}}
+.browser{border:1px solid #1b2f4c;border-radius:14px;overflow:hidden;background:var(--o-bg);color:var(--o-ink);box-shadow:0 18px 40px rgba(14,36,64,.28)}
+.chrome{display:flex;align-items:center;gap:6px;background:#06101d;padding:9px 12px}
+.chrome .d{width:10px;height:10px;border-radius:50%;background:#2c415d;flex:0 0 auto}
+.chrome .url{margin-left:10px;flex:1;min-width:0;background:#0f1d31;border-radius:999px;padding:4px 12px;color:var(--o-mute);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bv{display:flex;font-size:13px}
+.side{width:170px;background:#081425;border-right:1px solid var(--o-line);padding:14px 10px;flex:0 0 auto}
+.side div{padding:8px 10px;border-radius:8px;color:var(--o-mute);margin-bottom:2px}
+.side .on{background:var(--o-sur2);color:var(--o-ink);font-weight:700;box-shadow:inset 3px 0 0 var(--brand)}
+.main{flex:1;padding:16px;min-width:0}
+.main h4{margin:0 0 10px;font-size:15px}
+.ok5,.ok4{display:grid;gap:8px;margin-bottom:12px}
+.ok5{grid-template-columns:repeat(5,1fr)} .ok4{grid-template-columns:repeat(4,1fr)}
+.okp{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:10px;min-width:0}
+.okp small{display:block;color:var(--o-mute);font-size:11.5px}
+.okp b{font-size:20px;font-weight:800}
+.okp em{display:block;font-style:normal;font-size:11.5px;color:var(--o-mute);line-height:1.3}
+.okp .bar,.browser .bar{background:#0a1a2e}
+.oc{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:12px;margin-bottom:10px;min-width:0}
+.split{display:flex;gap:12px}
+.split>.grow{flex:1;min-width:0}
+.split>.fix{width:290px;flex:0 0 auto}
+.tw{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;font-size:12.5px;color:var(--o-ink);font-family:inherit}
+table.t th{text-align:left;color:var(--o-mute);font-weight:600;font-size:11.5px;padding:6px 8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
+table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
+table.t td:first-child{white-space:normal;min-width:100px}
+table.t td.wrap{white-space:normal}
+table.t .bar{min-width:110px}
+.ob{display:inline-flex;align-items:center;justify-content:center;min-height:42px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:12px;padding:0 16px;font-size:13px;white-space:nowrap}
+.ob.ghost{background:transparent;border:1.5px solid var(--o-line);color:var(--o-ink)}
+.op{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;white-space:nowrap;background:#1d3354;color:var(--o-ink)}
+.op.ok{background:#0f3d28;color:#7fe0a8}.op.bad{background:#4a1714;color:#ffb3aa}.op.wait{background:#44360c;color:#ffd979}
+.up{color:#7fe0a8}.dn{color:#ffb3aa}
+.ohint{font-size:12px;color:var(--o-mute)}
+.browser .q{background:#44360c;color:#ffd979;border-color:#a8841f}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+@media (max-width:980px){.hero{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .ok5,.ok4{grid-template-columns:repeat(2,1fr)}
+  .bv{flex-direction:column}
+  .side{width:auto;display:flex;flex-wrap:wrap;gap:4px;border-right:0;border-bottom:1px solid var(--o-line)}
+  .split{flex-direction:column}
+  .split>.fix{width:auto}
+  .step.wide,.step.mid{width:100%}
+  .hero .two{grid-template-columns:1fr}
+}
+.examples{border-left:4px solid var(--brand);background:#fff4e8;color:#3a2a14;padding:10px 12px;border-radius:8px;font-size:14px;margin:12px 0}
+/* Team messaging and parent replies: new addition, 18 Nov 2026. m- prefix keeps these apart from older atoms. */
+.badge.newadd{background:#0e2440;color:#fff;outline:2px dashed var(--brand);outline-offset:1px}
+.badge.beta{background:#dbe7ff;color:#1d3f8a}
+.step.full{width:1280px;max-width:100%}
+.m-th{border-top:1px solid var(--f-line);margin-top:4px;padding-top:6px}
+.m-th h5{margin:0 0 6px;font-size:12.5px;display:flex;justify-content:space-between;align-items:center}
+.m-cm{display:flex;gap:7px;margin-bottom:7px}
+.m-av{width:24px;height:24px;border-radius:50%;flex:0 0 24px;display:grid;place-items:center;font-size:9.5px;font-weight:800;background:#e3e9f0;color:#33475f}
+.m-av.me{background:var(--brand-soft);color:var(--brand-ink)}
+.m-bd{min-width:0;flex:1;background:var(--f-sub);border-radius:4px 12px 12px 12px;padding:5px 9px;font-size:12px;line-height:1.35}
+.m-bd .who{display:block;font-weight:800;font-size:11px}
+.m-bd .who small{font-weight:500;color:var(--f-mute);font-size:10.5px}
+.m-at{color:#1d4ed8;font-weight:700}
+.m-ed{font-size:10.5px;color:var(--f-mute);font-style:italic}
+.m-cm.rm .m-bd{background:transparent;border:1px dashed #b5c1d0;color:var(--f-mute);font-style:italic}
+.m-cm.hl .m-bd{background:#fff4d6;box-shadow:0 0 0 2px #d9a400}
+.m-cm.sent .m-bd{background:var(--brand-soft)}
+.m-acts{display:flex;gap:10px;font-size:11px;font-weight:700;color:var(--brand-ink);margin-top:3px}
+.m-rule{display:flex;gap:6px;align-items:flex-start;background:var(--warn-soft);border:1px solid #d9a400;color:#5a3d00;border-radius:10px;padding:5px 8px;font-size:11px;font-weight:700;margin-bottom:6px;line-height:1.3}
+.m-comp{display:flex;gap:6px;align-items:center}
+.m-comp .in{flex:1;border:1.5px solid var(--f-line);border-radius:12px;padding:9px 10px;font-size:12px;color:var(--f-mute);background:#fff;min-width:0;line-height:1.3}
+.m-comp .in.focus{border-color:var(--brand);color:var(--f-ink)}
+.m-comp .in.off{background:#eef1f5}
+.m-comp .go{width:40px;height:40px;border-radius:12px;background:var(--brand);display:grid;place-items:center;font-weight:900;color:#1a0e02;flex:0 0 40px}
+.m-comp .go.off{background:#d5dde7;color:#7a8aa0}
+.m-dock{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--f-line);padding:8px 10px 12px;z-index:2}
+.m-pick{position:absolute;left:10px;right:10px;bottom:104px;background:#fff;border:1px solid var(--f-line);border-radius:12px;box-shadow:0 10px 24px rgba(11,27,51,.2);padding:4px 10px 8px;z-index:4}
+.tabs.six span{min-width:40px;font-size:10px;position:relative}
+.m-cnt{position:absolute;top:-3px;right:4px;background:var(--bad);color:#fff;border-radius:999px;font-size:10px;font-weight:800;padding:0 5px;line-height:16px;font-style:normal}
+.side .m-cnt,.m-cnt.inl{position:static;display:inline-block;margin-left:6px}
+.m-dot{width:8px;height:8px;border-radius:50%;background:var(--brand);display:inline-block;margin-right:6px;flex:0 0 8px}
+.m-wa{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#1faa59;color:#fff;font-size:10px;font-weight:900;font-style:normal;vertical-align:middle}
+.m-win{display:flex;justify-content:space-between;align-items:center;gap:6px;border-radius:10px;padding:6px 9px;font-size:11.5px;font-weight:800;margin-bottom:7px}
+.m-win.open{background:var(--ok-soft);color:var(--ok);border:1px solid #9fd6b5}
+.m-win.shut{background:var(--bad-soft);color:var(--bad);border:1px solid #f0b4ad}
+.m-out{background:#fff;border:1px solid #dfe6ef;border-radius:12px 12px 3px 12px;padding:9px 11px;font-size:12.5px;margin:6px 0 6px 34px}
+.m-out small,.wa-msg small{display:block;color:var(--f-mute);font-size:10.5px;margin-top:2px}
+.m-lock{background:linear-gradient(165deg,#1d3354 0%,#0a1626 58%,#3b2a14 100%);color:#fff}
+.m-lock .clk{text-align:center;padding-top:58px}
+.m-lock .clk b{display:block;font-size:54px;font-weight:600;line-height:1}
+.m-lock .clk small{font-size:13px;opacity:.85}
+.m-ntf{background:rgba(255,255,255,.93);color:#0b1b33;border-radius:16px;padding:10px 12px;margin:0 10px 8px;font-size:12px}
+.m-ntf .hd{display:flex;justify-content:space-between;font-size:10.5px;color:var(--f-mute);margin-bottom:3px}
+.m-dnc{background:var(--f-ink);color:#fff;border-radius:12px;padding:9px 10px;margin-bottom:8px;font-size:11.5px;line-height:1.35}
+.m-dnc b{display:block;font-size:13px;margin-bottom:2px}
+.m-tpl{border:1.5px solid var(--f-line);border-radius:10px;padding:7px 9px;margin-bottom:6px;font-size:12px;font-weight:700;display:flex;gap:8px;align-items:center}
+.m-tpl.on{border-color:var(--brand);background:var(--brand-soft)}
+.m-tpl i{width:16px;height:16px;border-radius:50%;border:2px solid var(--f-mute);flex:0 0 16px}
+.m-tpl.on i{border:5px solid var(--brand-ink)}
+.m-toast{position:absolute;left:12px;right:12px;bottom:118px;background:var(--f-ink);color:#fff;border-radius:10px;padding:8px 10px;font-size:11.5px;z-index:3}
+.browser .m-th{border-color:var(--o-line)}
+.browser .m-bd{background:var(--o-sur2);color:var(--o-ink)}
+.browser .m-bd .who small,.browser .m-ed{color:var(--o-mute)}
+.browser .m-av{background:#22406a;color:var(--o-ink)}
+.browser .m-at{color:#8cc4ff}
+.browser .m-rule{background:#44360c;color:#ffd979;border-color:#a8841f}
+.browser .m-comp .in{background:var(--o-bg);border-color:var(--o-line);color:var(--o-mute)}
+.browser .m-cm.hl .m-bd{background:#3a3010;box-shadow:0 0 0 2px #a8841f}
+.m-mail{background:#f3f5f8;color:#0b1b33;display:flex;font-size:13px}
+.m-mail .ml{width:230px;flex:0 0 auto;border-right:1px solid #dfe6ef;background:#fff}
+.m-mail .ml div{padding:9px 12px;border-bottom:1px solid #eef1f5;font-size:12px}
+.m-mail .ml .on{background:#fff4e8;box-shadow:inset 3px 0 0 var(--brand)}
+.m-mail .mv{flex:1;padding:16px;min-width:0}
+.m-em{max-width:520px;margin:0 auto;background:#fff;border:1px solid #dfe6ef;border-radius:12px;overflow:hidden}
+.m-em .eh{background:var(--o-bg);color:#fff;padding:12px 16px;font-weight:900;letter-spacing:.04em}
+.m-em .eh span{color:var(--brand)}
+.m-em .eb{padding:14px 16px}
+@media (max-width:720px){.m-mail .ml{display:none}}
+</style>
+<style>
+/* V2 options page: decision rows, Option A | Option B side by side. */
+.v2flag{display:inline-block;background:#0e2440;color:#fff;font-weight:800;font-size:13px;border-radius:10px;padding:6px 12px;outline:2px dashed var(--brand);outline-offset:2px;margin:6px 0 10px}
+.ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 0;font-size:13px}
+.ladder span{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:7px 11px;font-weight:700}
+.ladder i{font-style:normal;color:var(--ink-2)}
+.dec{margin:44px 0 0;padding-top:22px;border-top:2px solid var(--rule)}
+.dec>h2{font-weight:800;font-size:clamp(20px,2.3vw,26px);margin:0 0 4px}
+.dec>h2 b{color:var(--brand-ink);margin-right:8px}
+.dec>p.q2{margin:0 0 14px;color:var(--ink-2);font-size:14px;max-width:90ch}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.opt{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:14px;min-width:0}
+.opt>h3{margin:0 0 4px;font-size:15px;font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.opt>h3 .tag{background:var(--ink);color:#fff;border-radius:8px;padding:2px 9px;font-size:12px}
+.opt>h3 .tag.b{background:var(--brand);color:#1a0e02}
+.opt .means{font-size:13.5px;color:var(--ink-2);margin:0 0 12px;min-height:40px}
+.frames{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.frames .phone{margin:0}
+.frames .browser{width:100%}
+.flab{font-size:11.5px;font-weight:700;color:var(--ink-2);text-align:center;margin:6px 0 0}
+.trade{margin:14px 0 0;background:#fff4e8;border-left:4px solid var(--brand);border-radius:8px;padding:9px 12px;font-size:13.5px;color:#3a2a14}
+.trade b{margin-right:6px}
+.esc{border-radius:12px;padding:9px 10px;margin-bottom:8px;font-size:12px;background:var(--bad-soft);border:1px solid #f0b4ad;color:#5c130c}
+.esc b{display:block;font-size:13px;color:var(--bad)}
+.tko{background:#1d3f8a;color:#fff;border-radius:12px;padding:9px 10px;margin-bottom:8px;font-size:12px}
+.tko b{display:block;font-size:13px}
+.lockin{border:1.5px dashed var(--f-line);background:#eef1f5;border-radius:12px;padding:10px;font-size:12px;color:var(--f-mute);font-weight:600}
+.tg{display:flex;align-items:center;justify-content:space-between;gap:8px;border:2px solid var(--brand);background:var(--brand-soft);border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.tg .sw{width:44px;height:26px;border-radius:999px;background:var(--brand-ink);position:relative;flex:0 0 44px}
+.tg .sw::after{content:"";position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff}
+.cd{display:inline-block;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:800;white-space:nowrap}
+.cd.ok{background:var(--ok-soft);color:var(--ok)} .cd.due{background:var(--warn-soft);color:var(--warnc)} .cd.miss{background:var(--bad);color:#fff}
+.m-ntf.crit{background:#b42318;color:#fff} .m-ntf.crit .hd{color:#ffd6d1}
+.call{background:linear-gradient(180deg,#3b0d0a,#0a1626);color:#fff;text-align:center}
+.call .who{padding-top:70px} .call .who b{display:block;font-size:22px;margin:6px 0 2px}
+.call .btns{position:absolute;bottom:40px;left:0;right:0;display:flex;justify-content:space-around}
+.call .btns span{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:24px}
+.qr5{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:8px 0}
+.qr5 span{border:1.5px solid #a7e8c3;background:#fff;color:#1faa59;border-radius:10px;text-align:center;padding:9px 0;font-weight:800}
+.qr5.em span{border-color:var(--brand);color:var(--brand-ink)}
+.stp{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.stp span{font-size:11.5px;padding:4px 9px;border-radius:8px;background:#1d3354;color:var(--o-mute);white-space:nowrap}
+.stp .done{background:#0f3d28;color:#7fe0a8} .stp .on{background:var(--brand);color:#1a0e02;font-weight:800}
+.pv .stp span{background:#eef2f7;color:var(--f-mute)} .pv .stp .done{background:var(--ok-soft);color:var(--ok)} .pv .stp .on{background:var(--brand);color:#1a0e02}
+.lockt{background:rgba(255,255,255,.18);border-radius:10px;padding:6px 10px;margin:0 10px 6px;font-size:11.5px}
+@media (max-width:900px){.opts{grid-template-columns:1fr}}
+</style>
+<div class="wrap">
+<header style="margin-bottom:8px">
+ <h1 style="font-weight:900;font-size:clamp(28px,4vw,48px);line-height:1.05;text-transform:uppercase;margin:0 0 10px">V2 options<span style="display:block;color:var(--brand-ink)">Take over, escalation, cases, rating</span></h1>
+ <div class="v2flag">V2 options — for decision, not in launch scope</div>
+ <p style="max-width:80ch;color:var(--ink-2);margin:6px 0">Ten decisions for Goutam. Each row shows Option A and Option B as real screens side by side, what each means, and the trade-off. A common case detail screen is at the end.</p>
+ <p class="examples"><b>All names and numbers are examples.</b> Ravi is the YSP for Sira; Asha is his RSM on this page. Families are shown as "Kumar family"; numbers are masked (…2418). No child details anywhere.</p>
+ <div class="ladder"><b style="font-size:13px">Already decided, when a parent's message is unanswered:</b><span>Owner YSP · 5 min</span><i>→</i><span>RSM · 15 min</span><i>→</i><span>Head Office · 30 min</span></div>
+ <nav class="toc" aria-label="Decisions" style="margin-top:14px"><a href="#d1">1 Take over</a><a href="#d2">2 Ask back</a><a href="#d3">3 In a visit</a><a href="#d4">4 RSM alerts</a><a href="#d5">5 Backstop</a><a href="#d6">6 Critical delivery</a><a href="#d7">7 Case system</a><a href="#d8">8 Targets shown</a><a href="#d9">9 Low rating</a><a href="#d10">10 Rating request</a><a href="#common">Case detail</a></nav>
+</header>
+
+<!-- 1 -->
+<section class="dec" id="d1"><h2><b>1</b>Take over</h2><p class="q2">The parent has waited past the owner's 5 minutes. Can the RSM or Head Office reply instead of Ravi?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>RSM or Head Office can take over</h3><p class="means">Asha presses "Take over"; Ravi can read but not reply until she hands back with a note.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Asha · RSM</span></div>
+  <div class="body">
+   <div class="esc"><b>Parent waiting 17 min</b>Ravi has not replied. Now with you.</div>
+   <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · …2418 · 6:35 PM</small></div>
+  </div>
+  <div class="dock"><div class="btn">Take over</div><div class="btn ghost">Nudge Ravi</div></div>
+ </div></div><p class="flab">Asha (RSM)</p></div>
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
+  <div class="body">
+   <div class="tko"><b>Taken over by Asha (RSM)</b>6:52 PM · you can still read everything.</div>
+   <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · 6:35 PM</small></div>
+   <div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Asha (RSM) · 6:53 PM</small></div>
+  </div>
+  <div class="dock"><div class="lockin">🔒 Reply box locked while Asha has this family.</div></div>
+ </div></div><p class="flab">Ravi (YSP)</p></div>
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Asha · RSM</span></div>
+  <div class="body"><div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Asha · 6:53 PM</small></div></div>
+  <div class="dim"></div>
+  <div class="sheet"><div class="grab"></div>
+   <p style="margin:0 0 6px;font-weight:800;font-size:15px">Hand back to Ravi</p>
+   <div class="fld focus"><label>Note for Ravi (required)</label><span style="font-weight:500;font-size:12.5px">Confirmed Saturday 5 PM. Please call her then.</span></div>
+   <div class="btn">Hand back to Ravi</div>
+  </div>
+ </div></div><p class="flab">Asha hands back</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>No take over</h3><p class="means">Asha can only nudge or add a note. Ravi always replies to the parent.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Asha · RSM</span></div>
+  <div class="body">
+   <div class="esc"><b>Parent waiting 17 min</b>Ravi has not replied.</div>
+   <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · …2418 · 6:35 PM</small></div>
+   <p class="mini">Only Ravi can reply to this parent.</p>
+  </div>
+  <div class="dock"><div class="btn">Nudge Ravi</div><div class="btn ghost">Add a note</div></div>
+ </div></div><p class="flab">Asha (RSM)</p></div>
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
+  <div class="body">
+   <div class="esc"><b>Asha nudged you</b>Shilpa has waited 17 min. Please reply now.</div>
+   <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · 6:35 PM</small></div>
+  </div>
+  <div class="m-dock"><div class="m-win open" style="margin-bottom:6px"><span>Reply window open</span><span>23 h left</span></div><div class="m-comp"><span class="in focus">Yes, Saturday 5 PM…</span><span class="go">➤</span></div></div>
+ </div></div><p class="flab">Ravi (YSP)</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A gets the parent an answer fastest, but two people can speak for one family. B keeps one voice and clear credit, but a busy YSP can leave a parent waiting.</p>
+</section>
+
+<!-- 2 -->
+<section class="dec" id="d2"><h2><b>2</b>Ask back</h2><p class="q2">Only matters if take over (1A) is chosen. Once Ravi is free again, can he ask for the family back?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>Ravi can ask to hand back</h3><p class="means">Ravi taps "Ask to hand back"; Asha gets the request and approves or keeps the family.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
+  <div class="body"><div class="tko"><b>Taken over by Asha (RSM)</b>6:52 PM</div><div class="lockin">🔒 Reply box locked while Asha has this family.</div></div>
+  <div class="dim"></div>
+  <div class="sheet"><div class="grab"></div><p style="margin:0 0 6px;font-weight:800;font-size:15px">Ask Asha to hand back?</p>
+   <div class="fld"><label>Why (optional)</label><span style="font-weight:500;font-size:12.5px">Visit finished, I'm free now.</span></div>
+   <div class="btn">Ask to hand back</div></div>
+ </div></div><p class="flab">Ravi asks</p></div>
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>Requests</b><span class="sync">Asha · RSM</span></div>
+  <div class="body">
+   <div class="fc"><h4>Ravi asks to have the Kumar family back</h4><p class="mini" style="margin:0 0 6px">"Visit finished, I'm free now." · 7:04 PM</p><p class="mini" style="margin:0">You took over at 6:52 PM and replied once.</p></div>
+  </div>
+  <div class="dock" style="display:flex;gap:8px"><div class="btn" style="flex:1">Hand back</div><div class="btn ghost" style="flex:1">Keep it</div></div>
+ </div></div><p class="flab">Asha decides</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>Only the RSM decides</h3><p class="means">No request button. Ravi waits until Asha hands back.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
+  <div class="body"><div class="tko"><b>Taken over by Asha (RSM)</b>6:52 PM · you can still read everything.</div>
+   <div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Asha · 6:53 PM</small></div>
+   <p class="mini">Asha decides when to hand the family back.</p></div>
+  <div class="dock"><div class="lockin">🔒 Reply box locked while Asha has this family.</div></div>
+ </div></div><p class="flab">Ravi (YSP)</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A returns families sooner and keeps YSPs engaged, at the cost of one more request for the RSM. B is simpler, but families can stay with a busy RSM.</p>
+</section>
+
+<!-- 3 -->
+<section class="dec" id="d3"><h2><b>3</b>"In a visit" pause</h2><p class="q2">Ravi is sitting with a family and can't reply. Can he pause the 5-minute clock?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>Pause while in a visit</h3><p class="means">A switch on Today pauses his clock for up to 45 min; each pause is logged on the timeline.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>Namaskara, Ravi</b><span class="sync">Today</span></div>
+  <div class="body">
+   <div class="tg"><div><b style="font-size:13.5px">In a visit</b><div class="mini">Clock paused · 38 min left (max 45)</div></div><span class="sw"></span></div>
+   <div class="fc" style="padding:2px 10px"><div class="r"><div><div class="n">Kumar family</div><div class="s">Parent waiting 9 min · paused</div></div><span class="pill wait">Paused</span></div><div class="r"><div><div class="n">Patil family</div><div class="s">Call due 7 PM</div></div></div></div>
+   <p class="mini">At 45 min the pause ends by itself and the clocks restart.</p>
+  </div>
+  <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+ </div></div><p class="flab">Today, switch on</p></div>
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span></div>
+  <div class="body"><div class="tl">
+   <div class="now"><b>Ravi replied</b><small>6:47 PM · 12 min after the message</small></div>
+   <div class="done"><b>Clock paused: in a visit</b><small>6:38–6:46 PM · 8 min · Manjappa family visit</small></div>
+   <div class="done"><b><span class="m-wa">✓</span> Parent wrote</b><small>6:35 PM</small></div>
+  </div></div>
+ </div></div><p class="flab">Logged on the timeline</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>No pause</h3><p class="means">The clocks always run. A visit does not stop escalation to Asha.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>Namaskara, Ravi</b><span class="sync">Today</span></div>
+  <div class="body">
+   <div class="esc"><b>Kumar family · parent waiting 4 min</b>Goes to Asha (RSM) at 5 min.</div>
+   <div class="fc" style="padding:2px 10px"><div class="r"><div><div class="n">Visit in progress</div><div class="s">Manjappa family · since 6:38 PM</div></div></div></div>
+  </div>
+  <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+ </div></div><p class="flab">Today, no switch</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A is fair to YSPs mid-visit, but parents wait longer and the switch can be overused (logged, capped at 45 min). B is strict and simple, and escalates more to RSMs.</p>
+</section>
+
+<!-- 4 -->
+<section class="dec" id="d4"><h2><b>4</b>RSM alerts</h2><p class="q2">How does Asha hear about families escalated to her?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>One push per escalation</h3><p class="means">Each escalated family is its own notification, the moment it reaches her.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
+  <div class="clk" style="padding-top:34px"><small>Thursday, 17 December</small><b>7:10</b></div><div style="height:18px"></div>
+  <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>now</span></div><b>Kumar family waiting 15 min</b></div>
+  <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>1 min ago</span></div><b>Patil family waiting 15 min</b></div>
+  <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>3 min ago</span></div><b>Naik family waiting 15 min</b></div>
+  <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>4 min ago</span></div><b>Rao family waiting 15 min</b></div>
+  <div class="lockt">+2 more from YASHHO Partner</div>
+ </div></div><p class="flab">Asha's lock screen</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>15-minute digest</h3><p class="means">One push every 15 minutes with a ranked list, oldest wait first.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
+  <div class="clk"><small>Thursday, 17 December</small><b>7:15</b></div><div style="height:120px"></div>
+  <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>now</span></div><b>6 families waiting · oldest 22 min</b><div class="mini">Open the list</div></div>
+ </div></div><p class="flab">One push</p></div>
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>Waiting for a reply</b><span class="pill bad">6</span></div>
+  <div class="body"><div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">Kumar family</div><div class="s">Ravi · Sira</div></div><span class="cd miss">22 min</span></div>
+   <div class="r"><div><div class="n">Patil family</div><div class="s">Deepa · Tiptur</div></div><span class="cd miss">19 min</span></div>
+   <div class="r"><div><div class="n">Naik family</div><div class="s">Imran · Pavagada</div></div><span class="cd miss">17 min</span></div>
+   <div class="r"><div><div class="n">Rao family</div><div class="s">Ravi · Sira</div></div><span class="cd due">16 min</span></div>
+   <div class="r"><div><div class="n">Shetty family</div><div class="s">Deepa · Tiptur</div></div><span class="cd due">15 min</span></div>
+   <div class="r"><div><div class="n">Manjappa family</div><div class="s">Imran · Pavagada</div></div><span class="cd due">15 min</span></div>
+  </div></div>
+ </div></div><p class="flab">Ranked list</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A is fastest per family but floods the phone on a busy evening. B is calm and ranked, but a family can wait up to 15 extra minutes before Asha sees it.</p>
+</section>
+
+<!-- 5 -->
+<section class="dec" id="d5"><h2><b>5</b>Final backstop</h2><p class="q2">Head Office's 30 minutes have passed and the parent still has no reply. What happens?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>Critical alert to the CEO</h3><p class="means">The CEO's phone gets a critical alert straight away, even in silent mode.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
+  <div class="clk"><small>Thursday, 17 December</small><b>7:35</b></div><div style="height:110px"></div>
+  <div class="m-ntf crit"><div class="hd"><span>⚠ CRITICAL · YASHHO CRM</span><span>now</span></div><b>Kumar family unanswered 60 min</b><div style="font-size:11.5px">YSP, RSM and Head Office all missed. Tap to open.</div></div>
+ </div></div><p class="flab">CEO's lock screen</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>Unresolved board for the GM</h3><p class="means">No alert at night. The GM sees an "Unresolved" board next morning, and a daily report goes out.</p>
+<div class="frames">
+ <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Unresolved · Fri 18 Dec</span></div>
+ <div class="bv"><div class="main">
+  <h4>Unresolved overnight · 3 <span class="op wait" style="margin-left:6px">Daily report sent 8:00 AM</span></h4>
+  <div class="tw"><table class="t"><tr><th>Family</th><th>Waiting since</th><th>Missed by</th><th></th></tr>
+  <tr><td>Kumar family</td><td>Thu 6:35 PM</td><td>Ravi · Asha · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
+  <tr><td>Shetty family</td><td>Thu 8:10 PM</td><td>Deepa · Asha · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
+  <tr><td>Rao family</td><td>Thu 9:42 PM</td><td>Ravi · Asha · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr></table></div>
+ </div></div></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A means no parent waits all night, but the CEO is woken for single replies. B protects leaders' time, but some parents wait until morning.</p>
+</section>
+
+<!-- 6 -->
+<section class="dec" id="d6"><h2><b>6</b>Critical alert delivery</h2><p class="q2">When a critical alert fires, how is it delivered?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>Push, email and an automated call</h3><p class="means">If the push is not opened, an automated phone call follows; press 1 to acknowledge.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv call">
+  <div class="who"><small>Incoming call</small><b>YASHHO Alerts</b><small>automated call</small></div>
+  <p style="margin:26px 18px 0;font-size:12.5px;opacity:.9">"Critical: the Kumar family has had no reply for 60 minutes. Press 1 to acknowledge."</p>
+  <div class="lockt" style="margin:20px 18px 0">Push sent 7:35 · email sent 7:35 · call 7:40</div>
+  <div class="btns"><span style="background:#b42318">✕</span><span style="background:#1faa59">✆</span></div>
+ </div></div><p class="flab">Call screen</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>Push and email only</h3><p class="means">A critical push and an email; no phone call.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
+  <div class="clk"><small>Thursday, 17 December</small><b>7:35</b></div><div style="height:90px"></div>
+  <div class="m-ntf crit"><div class="hd"><span>⚠ CRITICAL · YASHHO CRM</span><span>now</span></div><b>Kumar family unanswered 60 min</b></div>
+  <div class="m-ntf"><div class="hd"><span>✉ Mail</span><span>now</span></div><b>YASHHO CRM: critical, Kumar family</b><div class="mini">No reply for 60 minutes. Open the CRM to act.</div></div>
+ </div></div><p class="flab">Push + email</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A is hard to miss, but needs a voice vendor, costs per call and is intrusive. B is cheap and simple, but a silenced phone can miss it.</p>
+</section>
+
+<!-- 7 -->
+<section class="dec" id="d7"><h2><b>7</b>Case system</h2><p class="q2">Parent issues, refunds, payments, YSP support and integrity checks: one queue or two? Shown as laptop screens.</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>One "Cases" queue with types</h3><p class="means">One list with a type column; integrity rows are visible only to Head Office integrity roles.</p>
+<div class="frames">
+ <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Cases</span></div>
+ <div class="bv"><div class="side"><div class="on">Cases</div><div>Families</div><div>Team</div><div>Money</div></div>
+ <div class="main"><div class="steps"><span class="op">All · 5</span><span class="op">Parent issue</span><span class="op">Refund</span><span class="op">Payment</span><span class="op">YSP support</span><span class="op wait">🔒 Integrity</span></div>
+  <div class="tw"><table class="t"><tr><th>Case</th><th>Type</th><th>Owner</th><th>Status</th></tr>
+  <tr><td>Kumar family</td><td>Parent issue</td><td>Ravi</td><td><span class="op">In progress</span></td></tr>
+  <tr><td>Patil family</td><td>Refund</td><td>Finance</td><td><span class="op wait">Waiting on parent</span></td></tr>
+  <tr><td>Naik family</td><td>Payment</td><td>Finance</td><td><span class="op">Open</span></td></tr>
+  <tr><td>Deepa, Tiptur</td><td>YSP support</td><td>Asha</td><td><span class="op">Open</span></td></tr>
+  <tr><td>Ravi, Sira</td><td>🔒 Integrity</td><td>Integrity desk</td><td><span class="op bad">Open</span></td></tr></table></div>
+  <p class="ohint" style="margin:8px 0 0">Head Office integrity view. Others never see 🔒 rows.</p>
+ </div></div></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>Two queues: Cases and Integrity</h3><p class="means">Integrity has its own menu; YSPs and RSMs never see it at all.</p>
+<div class="frames">
+ <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Cases</span></div>
+ <div class="bv"><div class="side"><div class="on">Cases</div><div>Integrity 🔒</div><div>Families</div><div>Team</div></div>
+ <div class="main"><div class="steps"><span class="op">All · 4</span><span class="op">Parent issue</span><span class="op">Refund</span><span class="op">Payment</span><span class="op">YSP support</span></div>
+  <div class="tw"><table class="t"><tr><th>Case</th><th>Type</th><th>Owner</th><th>Status</th></tr>
+  <tr><td>Kumar family</td><td>Parent issue</td><td>Ravi</td><td><span class="op">In progress</span></td></tr>
+  <tr><td>Patil family</td><td>Refund</td><td>Finance</td><td><span class="op wait">Waiting on parent</span></td></tr>
+  <tr><td>Naik family</td><td>Payment</td><td>Finance</td><td><span class="op">Open</span></td></tr>
+  <tr><td>Deepa, Tiptur</td><td>YSP support</td><td>Asha</td><td><span class="op">Open</span></td></tr></table></div>
+  <p class="ohint" style="margin:8px 0 0">The Integrity menu appears only for Head Office integrity roles.</p>
+ </div></div></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A is one place to work and one set of reports, but relies on row-level hiding being perfect. B separates integrity completely (safer), at the cost of two queues to build and watch.</p>
+</section>
+
+<!-- 8 -->
+<section class="dec" id="d8"><h2><b>8</b>Targets shown on cases</h2><p class="q2">Should each case show its reply and resolve deadlines?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>Countdown on every case</h3><p class="means">Each case shows its next deadline; it turns red when missed.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>My cases</b><span class="pill">3 open</span></div>
+  <div class="body"><div class="fc" style="padding:2px 10px">
+   <div class="r" style="display:block"><div class="n">Kumar family · parent issue</div><span class="cd due">Reply due in 42 min</span></div>
+   <div class="r" style="display:block"><div class="n">Rao family · parent issue</div><span class="cd ok">Resolve by Thu 5 PM</span></div>
+   <div class="r" style="display:block"><div class="n">Shetty family · payment</div><span class="cd miss">Reply missed by 12 min</span></div>
+  </div></div>
+  <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span class="on"><i>☰</i>Cases</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+ </div></div><p class="flab">Ravi's cases</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>No countdown; weekly report</h3><p class="means">Cases show only their status. Targets appear in the weekly report.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>My cases</b><span class="pill">3 open</span></div>
+  <div class="body"><div class="fc" style="padding:2px 10px">
+   <div class="r"><span class="n">Kumar family</span><span class="pill">Open</span></div>
+   <div class="r"><span class="n">Rao family</span><span class="pill">In progress</span></div>
+   <div class="r"><span class="n">Shetty family</span><span class="pill wait">Waiting on parent</span></div>
+  </div></div>
+  <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span class="on"><i>☰</i>Cases</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+ </div></div><p class="flab">Ravi's cases</p></div>
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>Weekly report</b><span class="sync">7–13 Dec</span></div>
+  <div class="body">
+   <div class="k2"><div class="kp"><small>First reply on time</small><b>86%</b><em>target 90%</em></div><div class="kp"><small>Resolved on time</small><b>92%</b><em>target 90%</em></div></div>
+   <div class="fc sub"><div class="r"><span class="s">Cases closed</span><span class="n">14</span></div><div class="r"><span class="s">Missed first reply</span><span class="n">2</span></div></div>
+  </div>
+ </div></div><p class="flab">Monday report</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A drives on-time replies but adds pressure on every screen. B is calmer, but misses are found a week late.</p>
+</section>
+
+<!-- 9 -->
+<section class="dec" id="d9"><h2><b>9</b>Low rating (1 or 2)</h2><p class="q2">A parent rates a resolved case 2 out of 5. What happens?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>Alert the RSM</h3><p class="means">The case stays resolved; Asha is asked to call the parent.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="sync">Asha · RSM</span></div>
+  <div class="body">
+   <div class="esc"><b>Parent rated 2/5</b>Refund case · resolved Wed by Finance. Please call the parent.</div>
+   <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="done">Waiting on parent</span><span class="on">Resolved</span><span>Closed</span></div>
+   <p class="mini">The case stays resolved. Your call is noted on the family timeline.</p>
+  </div>
+  <div class="dock"><div class="btn">📞 Call parent · …7731</div></div>
+ </div></div><p class="flab">Asha (RSM)</p></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>Case reopens</h3><p class="means">The case reopens and goes back to the queue, flagged with the rating.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv">
+  <div class="top"><b>Cases</b><span class="pill">4 open</span></div>
+  <div class="body"><div class="fc" style="padding:2px 10px">
+   <div class="r" style="display:block"><div class="n">Patil family · refund</div><span class="pill bad">Reopened · Parent rated 2/5</span></div>
+   <div class="r"><span class="n">Kumar family</span><span class="pill">In progress</span></div>
+   <div class="r"><span class="n">Naik family</span><span class="pill">Open</span></div>
+   <div class="r"><span class="n">Rao family</span><span class="pill">Open</span></div>
+  </div></div>
+ </div></div><p class="flab">Queue</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A keeps resolve-time numbers honest and adds a human call. B makes sure nothing is dropped, but a rating about price can reopen a case nobody can fix.</p>
+</section>
+
+<!-- 10 -->
+<section class="dec" id="d10"><h2><b>10</b>Rating request</h2><p class="q2">How do we ask the parent to rate a resolved case?</p>
+<div class="opts">
+<div class="opt"><h3><span class="tag">Option A</span>Email, from beta</h3><p class="means">One email after the case is resolved, with five buttons.</p>
+<div class="frames">
+ <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
+ <div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span></div><div class="eb">
+  <p style="margin:0 0 4px;font-weight:800;font-size:16px">How did we do?</p>
+  <p class="mini" style="margin:0 0 6px">Namaskara Shilpa. Your request was resolved on Wednesday. One tap to rate it.</p>
+  <div class="qr5 em"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+  <p class="mini" style="margin:0">1 = very poor · 5 = excellent</p>
+ </div></div></div></div></div>
+</div></div>
+<div class="opt"><h3><span class="tag b">Option B</span>Official WhatsApp, from launch</h3><p class="means">A WhatsApp message with 1–5 quick replies from YASHHO's official number.</p>
+<div class="frames">
+ <div><div class="phone"><div class="notch"></div><div class="pv parentphone">
+  <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+  <div class="body">
+   <div class="wa-msg">Namaskara Shilpa. Your request was resolved today. How did we do? Tap a number: 1 = very poor, 5 = excellent.<small>4:10 PM</small></div>
+   <div class="qr5"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+  </div>
+ </div></div><p class="flab">Parent's phone</p></div>
+</div></div>
+</div>
+<p class="trade"><b>Trade-off:</b>A works in the beta with no vendor, but email gets fewer replies. B gets more replies, but only once the WhatsApp vendor is live at launch.</p>
+</section>
+
+<!-- common -->
+<section class="dec" id="common"><h2><b>★</b>Case detail: the same with every option</h2><p class="q2">One case page: status, owner, first response time, time to resolve, and the case timeline. Laptop at 1280 px and phone.</p>
+<div class="flow">
+<div class="step full"><h3><i>L</i>Case detail on the laptop</h3>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Cases · Kumar family · parent issue</span></div>
+<div class="bv"><div class="side"><div class="on">Cases</div><div>Families</div><div>Team</div><div>Money</div></div>
+<div class="main">
+ <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="on">Waiting on parent</span><span>Resolved</span><span>Closed</span></div>
+ <div class="ok4"><div class="okp"><small>Owner</small><b style="font-size:16px">Ravi</b><em>YSP, Sira</em></div><div class="okp"><small>First response</small><b>12 min</b><em>target 5 min · escalated to Asha</em></div><div class="okp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far · target 2 days</em></div><div class="okp"><small>Family</small><b style="font-size:16px">Kumar family</b><em>Shilpa · …2418</em></div></div>
+ <div class="split"><div class="grow oc"><h4>Case timeline</h4>
+  <div class="tw"><table class="t"><tr><th>When</th><th>What</th><th>Who</th></tr>
+  <tr><td>Wed 6:35 PM</td><td class="wrap">Parent wrote on WhatsApp: asked to move the counselling call</td><td>Shilpa</td></tr>
+  <tr><td>Wed 6:40 PM</td><td class="wrap">Not answered in 5 min: escalated to RSM</td><td>System</td></tr>
+  <tr><td>Wed 6:47 PM</td><td class="wrap">First response sent</td><td>Ravi</td></tr>
+  <tr><td>Wed 6:48 PM</td><td class="wrap">Status: In progress</td><td>Ravi</td></tr>
+  <tr><td>Thu 10:30 AM</td><td class="wrap">Asked the parent to confirm a new time · Status: Waiting on parent</td><td>Ravi</td></tr></table></div></div>
+ <div class="fix oc"><h4>Actions</h4><div style="display:flex;flex-direction:column;gap:8px"><span class="ob">Mark resolved</span><span class="ob ghost">Change owner</span><span class="ob ghost">Add a note</span></div><p class="ohint" style="margin:10px 0 0">Closed 3 days after Resolved, or when the parent rates it.</p></div></div>
+</div></div></div></div>
+<div class="step"><h3><i>P</i>Case detail on the phone</h3>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Case · Kumar family</b></span></div>
+ <div class="body">
+  <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="on">Waiting on parent</span><span>Resolved</span><span>Closed</span></div>
+  <div class="k2"><div class="kp"><small>First response</small><b>12 min</b><em>target 5</em></div><div class="kp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far</em></div></div>
+  <div class="fc sub"><div class="r"><span class="s">Owner</span><span class="n">Ravi, Sira</span></div><div class="r"><span class="s">Type</span><span class="n">Parent issue</span></div></div>
+  <div class="tl"><div class="now"><b>Waiting on parent</b><small>Thu 10:30 AM · Ravi</small></div><div class="done"><b>First response</b><small>Wed 6:47 PM · Ravi</small></div><div class="fail"><b>Escalated to RSM</b><small>Wed 6:40 PM · parent wrote 6:35 PM</small></div></div>
+ </div>
+ <div class="dock"><div class="btn">Mark resolved</div></div>
+</div></div></div>
+</div>
+</section>
+
+<p class="note" style="margin-top:44px;max-width:80ch">V2 options for decision only; nothing here is in launch scope. Names, families and numbers are made up. Source: docs/sales-crm/02c-v2-options-storyboard.html.</p>
+</div>
+</html>
