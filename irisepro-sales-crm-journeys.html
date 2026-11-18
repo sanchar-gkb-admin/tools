@@ -336,7 +336,7 @@ table.t .bar{min-width:110px}
    <span><span class="q">Q4.2</span> open question for KMM, in the shared Google Doc (storyboard note only, not app text)</span>
   </div>
   <nav class="toc" aria-label="Sections">
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#leadership-messages">Leadership messages</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#spotcheck">Spot checks</a><a href="#payfail">Payment failed</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#leadership-messages">Leadership messages</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#spotcheck">Spot checks</a><a href="#familymsg">Family messages</a><a href="#payfail">Payment failed</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
   </nav>
  </div>
 
@@ -2567,6 +2567,40 @@ table.t .bar{min-width:110px}
 </section>
 
 
+
+<section class="j" id="familymsg">
+<h2>Messages to families: webinar funnel and welcome <span class="badge now">At launch</span></h2>
+<p class="sub">Each message goes on WhatsApp AND email. Webinar messages go only to people who registered for a webinar (UC-ENQ-07/08/09); the community invitation never goes to buyers (Goutam, 29 Aug 2026). The welcome goes after payment (UC-ORD-08). No child name on WhatsApp.</p>
+<div class="flow">
+<div class="step"><h3><i>1</i>Webinar registration confirmed</h3><p class="cap">Meena registers on yashho.com for the webinar. Today she gets nothing back; this confirmation is new (Goutam, 18 Nov).</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+ <div class="body"><div class="wa-msg">Namaskara Meena. You are registered for the YASHHO webinar. We will remind you before it starts.<small>Mon 6:05 PM</small></div></div>
+</div></div>
+<p class="note">UC-ENQ-08. Today the registration only posts an ops alert for a manual WhatsApp add (WebinarRegistrationController). Wording is still open.</p></div>
+
+<div class="step"><h3><i>2</i>Invitation to the YASHHO WhatsApp community</h3><p class="cap">Only for webinar registrants, never for families who have paid.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+ <div class="body"><div class="wa-msg">Join the YASHHO parents community on WhatsApp for updates and webinar news.<small>Mon 6:06 PM</small></div><div class="btn wa">Join the community</div></div>
+</div></div>
+<p class="note">UC-ENQ-09. The link is one setting (links.community). When it is sent is still open.</p></div>
+
+<div class="step"><h3><i>3</i>Webinar reminder</h3><p class="cap">Urgent: WhatsApp and email together, to everyone registered. The team gets the same reminder in the app.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+ <div class="body"><div class="wa-msg">Reminder: the YASHHO webinar starts at 5 PM today.<small>Thu 4:30 PM</small></div><div class="btn wa">Join</div></div>
+</div></div>
+<p class="note">UC-ENQ-07. Audience settled 18 Nov: webinar-registered contacts.</p></div>
+
+<div class="step"><h3><i>4</i>Welcome after payment</h3><p class="cap">Shilpa has just paid. Today's welcome email ("Payment successful! You're officially enrolled") also comes on WhatsApp.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+ <div class="body"><div class="wa-msg">Congratulations! Payment successful — you are now enrolled in the YASHHO Master Success Scan. Set up your child's account in the YASHHO app to start.<small>Tue 7:43 PM</small></div><div class="btn wa">Open the app</div></div>
+</div></div>
+<p class="note">UC-ORD-08. The email is sent after the payment commits (SendEnrolmentSideEffects). Whether it merges with the receipt and the "start the scan" message is still open.</p></div>
+</div>
+</section>
 
 <section class="j" id="payfail">
 <h2>A payment fails: parent and YSP both told, then the recovery follow-up <span class="badge now">Launch</span></h2>
