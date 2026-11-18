@@ -336,7 +336,7 @@ table.t .bar{min-width:110px}
    <span><span class="q">Q4.2</span> open question for KMM, in the shared Google Doc (storyboard note only, not app text)</span>
   </div>
   <nav class="toc" aria-label="Sections">
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#msgs">Messages and materials</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#leadership-messages">Leadership messages</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#spotcheck">Spot checks</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
   </nav>
  </div>
 
@@ -1721,8 +1721,9 @@ table.t .bar{min-width:110px}
 </div>
 </section>
 
-<section class="j" id="msgs">
-<h2>Messages, materials and webinars <span class="badge now">At launch</span></h2>
+<a id="msgs"></a>
+<section class="j" id="leadership-messages">
+<h2>Leadership messages, materials and webinars <span class="badge now">At launch</span></h2>
 <p class="sub">Head Office talks to every RSM and YSP through the app only: directions, marketing materials, manuals, brochures, the training schedule and webinar links. Nothing important lives in WhatsApp groups.</p>
 <div class="flow">
 
@@ -1856,18 +1857,19 @@ table.t .bar{min-width:110px}
   <tr><td>Ravi · Sira</td><td>9:12 AM</td><td>9:13 AM</td></tr><tr><td>Deepa · Tiptur</td><td>9:40 AM</td><td class="dn">Not yet</td></tr><tr><td>Imran · Pavagada</td><td class="dn">Not yet</td><td class="dn">Not yet</td></tr></table></div></div></div>
 </div></div></div></div>
 
-<div class="step"><h3><i>11</i>A reminder reaches those who haven't acknowledged <span class="st b">BETA</span></h3><p class="cap">A reminder push now; still waiting at 7 PM, it is in the email digest.</p>
+<div class="step"><h3><i>11</i>A reminder reaches those who haven't acknowledged <span class="st b">BETA</span></h3><p class="cap">A reminder push to the 14. Team messages stay in the app, never in email.</p>
 <div class="phone"><div class="notch"></div><div class="pv m-lock">
  <div class="clk"><small>Thursday, 17 December</small><b>2:05</b></div><div style="height:110px"></div>
  <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>now</span></div><b>Reminder from the GM: please acknowledge</b><div class="mini">December offer: how to explain it to parents</div></div>
 </div></div></div>
 
-<div class="step mid"><h3><i>12</i>The email digest <span class="st b">BETA</span></h3><p class="cap">At 7 PM, messages still waiting for acknowledgement come as one email.</p>
+<div class="step mid"><h3><i>12</i>After 24 hours away: a content-free email <span class="st b">BETA</span></h3><p class="cap">No message text by email. Only after 24 h without opening the app, a count and "open the app".</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
-<div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span> CRM</div><div class="eb">
- <p style="margin:0 0 4px;font-weight:800;font-size:16px">Deepa, 1 message needs your acknowledgement</p>
- <div class="fc" style="padding:2px 10px"><div class="r"><span class="n">December offer: how to explain it to parents</span><span class="s">from the GM</span></div></div>
- <div class="btn" style="max-width:240px">Open Messages</div>
+<div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span></div><div class="eb">
+ <p style="margin:0 0 6px;font-weight:800;font-size:16px">You have 1 unread messages in the YASHHO app</p>
+ <p class="mini" style="margin:0 0 10px">Open the app to read them.</p>
+ <div class="btn" style="max-width:220px">Open the app</div>
+ <p class="mini" style="margin:12px 0 0">Sent only because you haven't opened the app for 24 hours (setting team_inactive_nudge_hours). No family names and no message text are ever put in email.</p>
 </div></div></div></div></div></div>
 
 <div class="step"><h3><i>13</i>A private reply to the sender <span class="st l">LAUNCH</span></h3><p class="cap">Ravi asks a question privately. Only the GM sees it, not the other 37.</p>
@@ -2070,17 +2072,15 @@ table.t .bar{min-width:110px}
 </div></div>
 <p class="note">Tapping the push unlocks the app (PIN or fingerprint) and opens the family at the note.</p></div>
 
-<div class="step mid"><h3><i>12</i>The 7 PM email digest <span class="badge beta">Beta</span></h3><p class="cap">At 7 PM, anything still waiting comes as one email. Nothing waiting, no email.</p>
+<div class="step mid"><h3><i>12</i>After 24 hours away: a content-free email <span class="badge beta">Beta</span></h3><p class="cap">Team messages stay in the app. Only if Ravi hasn't opened it for 24 h, one email with a count.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
-<div class="m-mail"><div class="ml"><div class="on"><b>YASHHO CRM</b><br>3 notes need your reply · 7:00 PM</div><div>Training: Thursday 11 AM<br><span class="mini">Yesterday</span></div><div>Your November statement<br><span class="mini">5 Dec</span></div></div>
-<div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span> CRM</div><div class="eb">
- <p style="margin:0 0 4px;font-weight:800;font-size:16px">Ravi, 3 notes need your reply</p>
- <p class="mini" style="margin:0 0 10px">Still waiting at 7 PM, Thursday 17 December</p>
- <div class="fc" style="padding:2px 10px"><div class="r"><span class="n">Asha mentioned you</span><span class="s">Kumar family</span></div><div class="r"><span class="n">Suresh replied to you</span><span class="s">Patil family</span></div><div class="r"><span class="n">The GM mentioned you</span><span class="s">Naik family review</span></div></div>
- <div class="btn" style="max-width:260px">Open Needs my reply</div>
- <p class="mini" style="margin:12px 0 0">Note text is never put in email. Open the app to read and reply.</p>
+<div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span></div><div class="eb">
+ <p style="margin:0 0 6px;font-weight:800;font-size:16px">You have 3 unread messages in the YASHHO app</p>
+ <p class="mini" style="margin:0 0 10px">Open the app to read them.</p>
+ <div class="btn" style="max-width:220px">Open the app</div>
+ <p class="mini" style="margin:12px 0 0">Sent only because you haven't opened the app for 24 hours (setting team_inactive_nudge_hours). No family names and no message text are ever put in email.</p>
 </div></div></div></div></div>
-<p class="note">Sent once a day, at 7 PM local time, only to people with waiting items.</p></div>
+<p class="note">No family names, no note text, no links into a family. Opening the app resets the 24 hours.</p></div>
 
 <div class="step"><h3><i>13</i>A parent replies on WhatsApp <span class="badge now">Launch</span></h3><p class="cap">From launch, YASHHO's official WhatsApp messages parents. Shilpa replies.</p>
 <div class="phone"><div class="notch"></div><div class="pv parentphone">
@@ -2202,7 +2202,7 @@ table.t .bar{min-width:110px}
   <tr><td>Routine</td><td>15-minute ranked digest</td></tr>
   <tr><td>CEO critical alert</td><td class="wrap">Only critical money or complaint cases, after Head Office's 30 min</td></tr>
   <tr><td>Automated phone call</td><td><span class="op">Off</span> · can be switched on at launch</td></tr>
-  <tr><td>Rating request</td><td>Email (beta) → official WhatsApp (launch)</td></tr></table></div></div>
+  <tr><td>Rating request</td><td>One survey link: no-reply email (beta) → official WhatsApp (launch)</td></tr></table></div></div>
  <div class="fix oc"><h4>Who can change this</h4><p class="ohint" style="margin:0 0 8px">v1: engineering only, recording who proposed and who approved.</p><p class="ohint" style="margin:0 0 10px">Later: the GM proposes, the CEO approves, in the app.</p><span class="ob ghost">Propose a change</span></div></div>
 </div></div></div></div>
 
@@ -2366,7 +2366,7 @@ table.t .bar{min-width:110px}
   <tr><td>Thu 6:40 PM</td><td class="wrap">Not answered in 5 min: escalated to RSM</td><td>System</td></tr>
   <tr><td>Thu 6:47 PM</td><td class="wrap">First response sent · status In progress</td><td>Ravi</td></tr>
   <tr><td>Fri 10:30 AM</td><td class="wrap">Asked the parent to confirm a new time · status Waiting on parent</td><td>Ravi</td></tr></table></div></div>
- <div class="fix oc"><h4>Actions</h4><div style="display:flex;flex-direction:column;gap:8px"><span class="ob">Mark resolved</span><span class="ob ghost">Change owner</span><span class="ob ghost">Add a note</span></div><p class="ohint" style="margin:10px 0 0">Resolved sends the rating request. Closed after the parent rates, or after a set number of days.</p></div></div>
+ <div class="fix oc"><h4>Actions</h4><div style="display:flex;flex-direction:column;gap:8px"><span class="ob">Mark resolved</span><span class="ob ghost">Change owner</span><span class="ob ghost">Add a note</span></div><p class="ohint" style="margin:10px 0 0">Resolved sends the survey link. Closed after the parent rates, or after a set number of days.</p></div></div>
 </div></div></div></div>
 
 <div class="step"><h3><i>17</i>Case detail on the phone</h3><p class="cap">The same case for Ravi: where it stands, the times, and what happened.</p>
@@ -2381,27 +2381,39 @@ table.t .bar{min-width:110px}
  <div class="dock"><div class="btn">Mark resolved</div></div>
 </div></div></div>
 
-<div class="step mid"><h3><i>18</i>Rating request by email (beta)</h3><p class="cap">In the beta, a resolved case sends one email with five buttons.</p>
+<div class="step mid"><h3><i>18</i>Rating request: one survey link (beta)</h3><p class="cap">In the beta, a resolved case sends a no-reply email with one link: "Tell us how we did".</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
 <div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span></div><div class="eb">
- <p style="margin:0 0 4px;font-weight:800;font-size:16px">How did we do?</p>
- <p class="mini" style="margin:0 0 6px">Namaskara Shilpa. Your request was resolved today. One tap to rate it.</p>
- <div class="qr5 em"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
- <p class="mini" style="margin:0">1 = very poor · 5 = excellent · <u>Not fixed? Tell us</u></p>
+ <p style="margin:0 0 4px;font-weight:800;font-size:16px">Your request is resolved</p>
+ <p class="mini" style="margin:0 0 10px">Namaskara Shilpa. Your request was resolved today. It takes 30 seconds to tell us how we did.</p>
+ <div class="btn" style="max-width:240px">Tell us how we did</div><p class="mini" style="margin:12px 0 0;border-top:1px solid #dfe6ef;padding-top:8px">No-reply email. Questions? Call your YSP (pilot, beta) · Message us on WhatsApp (launch).</p>
 </div></div></div></div></div></div>
 
-<div class="step"><h3><i>19</i>Rating request on WhatsApp (launch)</h3><p class="cap">From launch, YASHHO's official WhatsApp asks instead, with 1–5 quick replies.</p>
+<div class="step"><h3><i>19</i>The survey page</h3><p class="cap">The parent taps 1–5, says if it is fixed, and can add a comment in English or Kannada.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>yashho.com</b><span class="sync">English · <span class="kn">ಕನ್ನಡ</span></span></div>
+ <div class="body">
+  <p style="font-weight:800;margin:4px 0 6px">How did we do?</p>
+  <div class="qr5 em"><span>1</span><span>2</span><span>3</span><span style="background:var(--brand-soft)">4</span><span>5</span></div>
+  <p class="mini" style="margin:0 0 8px">1 = very poor · 5 = excellent</p>
+  <div class="oc3"><span class="on">It's fixed</span><span>Not fixed</span></div>
+  <div class="fld"><label>Comment (optional)</label><span style="font-weight:500;font-size:12.5px">Quick and polite, thank you.</span></div>
+  <div class="btn">Send</div>
+ </div>
+</div></div>
+<p class="note">The answer lands on the case and the family timeline. One-time link; no sign-in.</p></div>
+
+<div class="step"><h3><i>20</i>The same survey link on WhatsApp (launch)</h3><p class="cap">From launch, the same survey link comes on YASHHO's official WhatsApp.</p>
 <div class="phone"><div class="notch"></div><div class="pv parentphone">
  <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
  <div class="body">
-  <div class="wa-msg">Namaskara Shilpa. Your request was resolved today. How did we do? 1 = very poor, 5 = excellent.<small>4:10 PM</small></div>
-  <div class="qr5"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
-  <div class="btn" style="margin:0;background:#fff;color:#1faa59;border:1.5px solid #a7e8c3">Not fixed</div>
+  <div class="wa-msg">Namaskara Shilpa. Your request was resolved today. Tell us how we did: yashho.com/s/4Rt8<small>4:10 PM</small></div>
+  <div class="btn" style="margin:0;background:#fff;color:#1faa59;border:1.5px solid #a7e8c3">Tell us how we did</div>
  </div>
 </div></div>
-<p class="note">The channel is a setting: email in beta, WhatsApp from launch.</p></div>
+<p class="note">The channel is a setting: email in beta, WhatsApp from launch. Both open the same survey page.</p></div>
 
-<div class="step"><h3><i>20</i>A low rating alerts Suresh</h3><p class="cap">The Patil family rated 2/5. The case stays resolved; Suresh is asked to call the parent.</p>
+<div class="step"><h3><i>21</i>A low rating alerts Suresh</h3><p class="cap">The Patil family rated 2/5. The case stays resolved; Suresh is asked to call the parent.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="sync">Suresh · RSM</span></div>
  <div class="body">
@@ -2412,7 +2424,7 @@ table.t .bar{min-width:110px}
  <div class="dock"><div class="btn">📞 Call parent · …7731</div></div>
 </div></div></div>
 
-<div class="step"><h3><i>21</i>"Not fixed": the case reopens</h3><p class="cap">Only a parent's "not fixed" sends the case back to In progress.</p>
+<div class="step"><h3><i>22</i>"Not fixed": the case reopens</h3><p class="cap">Only a parent's "not fixed" sends the case back to In progress.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Case · Patil family</b></span></div>
  <div class="body">
@@ -2424,6 +2436,138 @@ table.t .bar{min-width:110px}
 
 </div>
 </section>
+
+<section class="j" id="spotcheck">
+<h2>Spot checks (parent-check backup) <span class="badge v2">Pilot onwards · all rules are settings, changed through change management</span></h2>
+<p class="sub">Goutam's decision of 18 Nov (R68): first the parent gets a no-reply survey email; unanswered visits, plus a random share, go on a daily call list the app builds. Suresh calls routine checks; Head Office calls the high-risk ones. Nobody sees a risk score.</p>
+<div class="flow">
+
+<div class="step mid"><h3><i>1</i>After a visit: a no-reply email to the parent</h3><p class="cap">The same day, the parent gets one email with a one-time link: "Did Ravi from YASHHO visit you today?"</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
+<div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span></div><div class="eb">
+ <p style="margin:0 0 4px;font-weight:800;font-size:16px">Did Ravi from YASHHO visit you today?</p>
+ <p class="mini" style="margin:0 0 10px">Namaskara Shilpa. Two quick questions help us keep our partners honest.</p>
+ <div class="btn" style="max-width:220px">Tell us here</div>
+ <p class="mini" style="margin:12px 0 0;border-top:1px solid #dfe6ef;padding-top:8px">No-reply email. Questions? Call your YSP (pilot, beta) · Message us on WhatsApp (launch).</p>
+</div></div></div></div></div>
+<p class="note">Pilot onwards. The link works once and needs no sign-in.</p></div>
+
+<div class="step"><h3><i>2</i>The parent-check survey</h3><p class="cap">Two questions, one tap each, in English or Kannada.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>yashho.com</b><span class="sync">English · <span class="kn">ಕನ್ನಡ</span></span></div>
+ <div class="body">
+  <div class="fc"><h4>Did Ravi from YASHHO visit you today?</h4><div class="oc3" style="margin:0"><span class="on">Yes</span><span>No</span></div></div>
+  <div class="fc"><h4>Did you pay anyone directly?</h4><div class="oc3" style="margin:0"><span class="on">No</span><span>Yes</span></div></div>
+  <div class="btn">Send</div>
+  <p class="mini">A "No" visit or a "Yes" payment opens an integrity case, as on a spot-check call.</p>
+ </div>
+</div></div></div>
+
+<div class="step"><h3><i>3</i>Thank you</h3><p class="cap">A short thank-you. The answer lands on the visit and the family timeline.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>yashho.com</b><span class="sync">🔒 Secure</span></div>
+ <div class="body" style="text-align:center;padding-top:60px">
+  <div style="width:64px;height:64px;border-radius:50%;background:var(--ok);color:#fff;font-size:30px;display:grid;place-items:center;margin:0 auto 12px">✓</div>
+  <p style="font-weight:800;font-size:17px;margin:0 0 6px">Thank you, Shilpa</p>
+  <p class="mini" style="margin:0 0 14px">Your answer helps us keep every visit honest.</p>
+  <p class="mini">Opening the link again shows "You've already answered".</p>
+ </div>
+</div></div></div>
+
+<div class="step"><h3><i>4</i>No answer in 48 h</h3><p class="cap">No answer in 48 h → the visit goes to the spot-check list for a call.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span></div>
+ <div class="body"><div class="tl">
+  <div class="now"><b>Added to spot checks</b><small>18 Dec 6:00 PM · no survey answer in 48 h</small></div>
+  <div class="done"><b>Parent-check email sent</b><small>16 Dec 6:05 PM · one-time link</small></div>
+  <div class="done"><b>Visit 1 · Warm → Hot</b><small>16 Dec · Ravi</small></div>
+ </div><p class="mini">Shown to Suresh and Head Office. Ravi sees the email was sent, not the outcome.</p></div>
+</div></div>
+<p class="note">The 48 hours is a setting, like every other spot-check rule.</p></div>
+
+
+<div class="step"><h3><i>5</i>Suresh's Today: spot checks waiting</h3><p class="cap">Each morning the app gives Suresh a short list of recent visits to check with the parent.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Namaskara, Suresh</b><span class="sync">Today</span></div>
+ <div class="tbar rsm"><span>Team 📞 118/400 · 📍 31/100</span><span>Me 📞 31/40 · 📍 7/10</span></div>
+ <div class="body">
+  <div class="fc warn"><div class="r"><div><div class="n">☎ Spot checks: 5</div><div class="s">Recent visits to confirm with the parent · ~10 min</div></div><span class="pill">Open</span></div></div>
+  <div class="fc" style="padding:2px 10px"><div class="r"><div><div class="n">Joint visit: Ravi</div><div class="s">Sira · 11:00 AM</div></div></div><div class="r"><div><div class="n">4 PM agenda</div><div class="s">Ready</div></div></div></div>
+ </div>
+ <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👥</i>Team</span><span><i>👪</i>Families</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div></div>
+
+<div class="step"><h3><i>6</i>The ranked list, no score</h3><p class="cap">Family, visit date, YSP, masked number and a Call button. No risk score.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Spot checks</b></span><span class="pill">5 today</span></div>
+ <div class="body"><div class="fc" style="padding:2px 10px">
+  <div class="r"><div><div class="n">Kumar family</div><div class="s">Visit 16 Dec · Ravi · …2418</div></div><span class="ib call">📞</span></div>
+  <div class="r"><div><div class="n">Patil family</div><div class="s">Visit 16 Dec · Deepa · …7731</div></div><span class="ib call">📞</span></div>
+  <div class="r"><div><div class="n">Naik family</div><div class="s">Visit 15 Dec · Imran · …5520</div></div><span class="ib call">📞</span></div>
+  <div class="r"><div><div class="n">Gowda family</div><div class="s">Visit 15 Dec · Ravi · …0947</div></div><span class="ib call">📞</span></div>
+  <div class="r"><div><div class="n">Shetty family</div><div class="s">Visit 14 Dec · Deepa · …3361</div></div><span class="ib call">📞</span></div>
+ </div><p class="mini">Some families are picked at random, so a YSP can't tell why a family is on the list.</p></div>
+</div></div></div>
+
+<div class="step"><h3><i>7</i>The call card: 3 fixed questions</h3><p class="cap">Suresh calls the Kumar family and taps one answer per question. Nothing to type.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill ok">On call 0:42</span></div>
+ <div class="body">
+  <p class="mini" style="margin:0 0 6px">Visit 16 Dec by Ravi · Shilpa · …2418</p>
+  <div class="fc"><h4>1. Did Ravi visit you?</h4><div class="oc3" style="margin:0"><span class="on">Yes</span><span>No</span><span>Not sure</span></div></div>
+  <div class="fc"><h4>2. Did you pay anyone directly?</h4><div class="oc3" style="margin:0"><span class="on">No</span><span>Yes, paid someone</span></div></div>
+  <div class="fc"><h4>3. Was he polite?</h4><div class="oc3" style="margin:0"><span class="on">Yes</span><span>No</span></div></div>
+ </div>
+ <div class="dock"><div class="btn">Save · next family</div><div class="btn ghost">No answer · try later</div></div>
+</div></div>
+<p class="note">Questions are the same for every call, in English or Kannada. The answers go on the family timeline as "spot check".</p></div>
+
+<div class="step"><h3><i>8</i>A worrying answer opens an integrity case</h3><p class="cap">"No visit" or "paid someone directly" opens an integrity case the YSP can't see.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="sync">Suresh · RSM</span></div>
+ <div class="body">
+  <div class="fc"><h4>2. Did you pay anyone directly?</h4><div class="oc3" style="margin:0"><span>No</span><span class="on" style="border-color:var(--bad);background:var(--bad-soft)">Yes, paid someone</span></div></div>
+  <div class="esc"><b>Integrity case opened</b>Sent to Head Office integrity · not visible to Deepa (the YSP).</div>
+  <p class="mini">Don't discuss it with the YSP. Head Office will follow up.</p>
+ </div>
+ <div class="dock"><div class="btn">Next family</div></div>
+</div></div>
+<p class="note">The case appears only in the locked Integrity menu (Head Office integrity roles).</p></div>
+
+<div class="step full"><h3><i>9</i>Head Office desk: the high-risk list</h3><p class="cap">Routine checks go to the RSM; high-risk ones to the Head Office desk.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Spot checks · Head Office desk · high-risk</span></div>
+<div class="bv"><div class="side"><div class="on">Spot checks<em class="m-cnt">8</em></div><div>Integrity 🔒</div><div>Cases</div></div>
+<div class="main"><h4>High-risk spot checks · today · 8</h4>
+ <div class="tw"><table class="t"><tr><th>Family</th><th>Visit</th><th>YSP · region</th><th>Mobile</th><th>Status</th><th></th></tr>
+ <tr><td>Rao family</td><td>16 Dec</td><td>Ravi · KA-R11</td><td>…6612</td><td><span class="op">To call</span></td><td><span class="ob" style="min-height:32px">Call</span></td></tr>
+ <tr><td>Hegde family</td><td>16 Dec</td><td>Kiran · KA-R17</td><td>…2290</td><td><span class="op">To call</span></td><td><span class="ob" style="min-height:32px">Call</span></td></tr>
+ <tr><td>Manjappa family</td><td>15 Dec</td><td>Imran · KA-R11</td><td>…4108</td><td><span class="op wait">No answer · retry 4 PM</span></td><td><span class="ob ghost" style="min-height:32px">Call</span></td></tr>
+ <tr><td>Bhat family</td><td>15 Dec</td><td>Meena · KA-R05</td><td>…8854</td><td><span class="op ok">Done · all fine</span></td><td></td></tr></table></div>
+ <p class="ohint" style="margin:8px 0 0">Same call card and questions as the RSM. The desk sees the reason a family was picked; the list order is all the RSM sees.</p>
+</div></div></div></div>
+
+<div class="step full"><h3><i>10</i>The spot-check settings (read-only)</h3><p class="cap">Every rule is a setting, changed through change management. Read-only here.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Settings · Spot checks</span></div>
+<div class="bv"><div class="side"><div>Control room</div><div>Escalation</div><div class="on">Spot checks</div></div>
+<div class="main"><div class="split"><div class="grow oc"><h4>Spot checks <span class="op ok" style="margin-left:6px">On</span></h4>
+ <div class="tw"><table class="t"><tr><th>Setting</th><th>Value</th></tr>
+ <tr><td>List size per RSM per day</td><td>5</td></tr>
+ <tr><td>Random share</td><td>5%</td></tr>
+ <tr><td>Per-YSP weekly cap</td><td>3 checks</td></tr>
+ <tr><td>Who calls</td><td>RSM: routine · Head Office desk: high-risk</td></tr>
+ <tr><td>Parent-check survey</td><td>No-reply email, one-time link · no answer in 48 h → spot-check list</td></tr>
+ <tr><td>Questions</td><td class="wrap">Did Ravi visit you? · Did you pay anyone directly? · Was he polite? · English and ಕನ್ನಡ</td></tr></table></div></div>
+ <div class="grow oc"><h4>Signal weights (never shown in the field)</h4>
+ <div class="tw"><table class="t"><tr><th>Signal</th><th>Weight</th></tr>
+ <tr><td>Short visit</td><td>3</td></tr><tr><td>Weak GPS</td><td>2</td></tr><tr><td>New YSP</td><td>2</td></tr><tr><td>Previous case</td><td>4</td></tr><tr><td>Paid sale size</td><td>1</td></tr><tr><td>Earlier "No" from a parent</td><td>5</td></tr><tr><td>Not checked recently</td><td>2</td></tr></table></div>
+ <p class="ohint" style="margin:8px 0 0">Weights and the 3-check cap are examples; the real values are set at pilot.</p></div>
+ <div class="fix oc" style="width:240px"><h4>Change management</h4><p class="ohint" style="margin:0 0 8px">Changed through change management: engineering in v1; GM proposes, CEO approves later.</p><p class="ohint" style="margin:0 0 10px">Every change is versioned and logged.</p><span class="ob ghost">Propose a change</span></div></div>
+</div></div></div></div>
+
+</div>
+</section>
+
+
 
 <section class="j" id="web">
 <h2>On yashho.com: find your local partner <span class="badge now">At launch</span></h2>
