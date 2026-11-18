@@ -1,0 +1,422 @@
+<title>Careers page — storyboard v1 (18 Nov 2026)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Storefront theme — live tokens from ~/dev/web/irisepro/src/app/globals.css (18 Nov 2026) */
+  :root{
+    --bg:#0a1626; --forest:#081325; --panel:#10223c; --panel2:#112644; --line:#1d3354; --line2:#264066;
+    --ink:#eaf1f9; --mut:#8ea3bd; --dim:#5e708a;
+    --accent:#f5821f; --accent2:#ff9b3d; --accent3:#ffb259; --accentfg:#1a0e02; --accent-soft:#1d2f4d;
+    --leaf:#3f93e0; --leaf-soft:#16294a; --good:#4ade80; --warn:#fbbf24;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 16px 80px}
+  @media(min-width:760px){.wrap{padding:44px 24px 96px}}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(24px,6.5vw,42px);line-height:1.05;margin:.3em 0 .25em;font-weight:900;letter-spacing:-.02em;text-transform:uppercase}
+  .lede{font-size:15px;color:var(--mut);max-width:68ch;margin:0}
+  .lede b{color:var(--ink)}
+  h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent3);margin:46px 0 4px;font-weight:800;border-top:1px solid var(--line);padding-top:16px}
+  .cap{font-size:13.5px;color:var(--mut);margin:0 0 16px;max-width:72ch}
+  .cap b{color:var(--ink)}
+  code{font-family:var(--mono);font-size:.85em;background:#0b1526;border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--accent2);word-break:break-word}
+
+  /* flow strip at the top */
+  .flow{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 6px}
+  .flow a{font-size:12px;font-weight:700;color:var(--ink);text-decoration:none;background:var(--panel);border:1px solid var(--line2);border-radius:999px;padding:7px 12px;min-height:34px;display:inline-flex;align-items:center}
+  .flow a span{color:var(--accent);margin-right:6px;font-family:var(--mono)}
+
+  /* note boxes */
+  .note{font-size:12.5px;color:var(--mut);background:#0b1526;border:1px solid var(--line);border-left:3px solid var(--leaf);border-radius:10px;padding:10px 12px;margin-top:14px;max-width:72ch}
+  .note b{color:var(--ink)}
+  .note.warn{border-left-color:var(--warn)}
+  .note.warn b{color:var(--warn)}
+
+  /* layout: phones first, desktop after */
+  .row{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start;justify-content:flex-start}
+  .row > figure{margin:0;flex:0 1 auto}
+  figcaption{font-size:11.5px;color:var(--dim);text-align:center;margin-top:8px;font-family:var(--mono)}
+  .desk{margin-top:22px}
+
+  /* ── UI atoms used inside every mock ── */
+  .btn{display:block;background:linear-gradient(100deg,var(--accent),var(--accent3));color:var(--accentfg);font-weight:800;text-align:center;padding:13px;border-radius:12px;font-size:14px;min-height:46px}
+  .btn.ghost{background:transparent;border:1px solid var(--line2);color:var(--ink)}
+  .chip{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent2)}
+  .chip.blue{background:var(--leaf-soft);color:#8cc2f2}
+  .chip.warn{background:#3a2a07;color:var(--warn)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;display:block}
+  .card + .card{margin-top:9px}
+  .card .t{font-size:13.5px;font-weight:800;line-height:1.2;margin:5px 0 3px}
+  .card .m{font-size:11px;color:var(--mut)}
+  .card .p{font-size:12px;font-weight:700;color:var(--accent2);margin-top:5px}
+  .card .go{float:right;color:var(--accent);font-weight:900;font-size:16px;line-height:1}
+  .sec{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:16px 0 8px}
+  .kv{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}
+  .kv div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px}
+  .kv small{display:block;font-size:9.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  .kv b{font-size:13px}
+  ul.l{margin:0;padding-left:16px;font-size:11.5px;color:var(--ink)}
+  ul.l li{margin:3px 0}
+  ol.steps{margin:0;padding-left:0;list-style:none;font-size:12px;counter-reset:s}
+  ol.steps li{counter-increment:s;display:flex;gap:9px;align-items:flex-start;margin:7px 0}
+  ol.steps li::before{content:counter(s);flex:none;width:20px;height:20px;border-radius:50%;background:var(--accent-soft);color:var(--accent2);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .fine{font-size:10px;color:var(--dim);line-height:1.4}
+  .banner{background:#3a2a07;border:1px solid #6b4e0e;color:var(--warn);border-radius:10px;padding:9px 10px;font-size:11.5px;font-weight:700}
+  .poster{display:block;width:100%;border-radius:12px;border:1px solid var(--line2)}
+  .poster-wrap{position:relative}
+  .poster-wrap .zoom{position:absolute;right:8px;bottom:8px;background:rgba(4,10,20,.8);color:var(--ink);font-size:10.5px;font-weight:700;padding:5px 9px;border-radius:999px;border:1px solid var(--line2)}
+  .brand{font-weight:900;letter-spacing:-.01em;font-size:15px}.brand b{color:var(--accent)}
+  .ext{font-size:10px;color:var(--mut)}
+
+  /* phone frame */
+  .phone{width:288px;max-width:calc(100vw - 32px);background:#05101f;border:9px solid #0c1a2e;border-radius:34px;box-shadow:0 24px 60px rgba(0,0,0,.55);position:relative;overflow:hidden}
+  .phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:20px;background:#0c1a2e;border-radius:0 0 14px 14px;z-index:6}
+  .pv{height:560px;position:relative;background:var(--bg);overflow:hidden}
+  .pv .scroll{position:absolute;inset:0;overflow-y:auto;padding-bottom:84px}
+  .pv .top{padding:26px 14px 10px;display:flex;justify-content:space-between;align-items:center;font-size:12px;border-bottom:1px solid var(--line);background:var(--forest);position:sticky;top:0;z-index:4}
+  .pv .top .menu{font-size:11px;font-weight:700;color:var(--accent2)}
+  .pv .body{padding:12px 14px}
+  .sticky{position:absolute;left:0;right:0;bottom:0;padding:10px 14px 14px;background:linear-gradient(180deg,rgba(10,22,38,0),var(--bg) 30%);z-index:5}
+  .sheet{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,var(--panel2),var(--panel));border-top:1px solid var(--line2);border-radius:22px 22px 0 0;padding:16px 14px 18px;box-shadow:0 -20px 50px rgba(0,0,0,.5);z-index:8}
+  .sheet .grip{width:38px;height:4px;border-radius:3px;background:var(--line2);margin:0 auto 12px}
+  .dim{position:absolute;inset:0;background:rgba(4,10,20,.66);z-index:7}
+  .sheet h4,.modal h4{font-size:16px;font-weight:800;margin:4px 0 4px;line-height:1.15}
+  .sheet .s,.modal .s{font-size:11.5px;color:var(--mut);margin:0 0 8px}
+
+  /* browser frame */
+  .browser{width:100%;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--forest);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .bchrome{background:#0c1a30;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;align-items:center;gap:7px}
+  .bchrome i{width:10px;height:10px;border-radius:50%;background:#26384f;display:inline-block}
+  .bchrome .url{margin-left:10px;font-family:var(--mono);font-size:11px;color:var(--dim);background:#0a1424;border:1px solid var(--line);border-radius:20px;padding:3px 12px;flex:1;max-width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tabs{display:flex;gap:2px;background:#081221;padding:6px 8px 0}
+  .tabs div{font-size:10.5px;color:var(--mut);background:#0c1a30;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;padding:5px 12px;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tabs div.on{color:var(--ink);background:#13233c}
+  .vp{position:relative;padding:18px 20px;min-height:280px}
+  .dnav{display:flex;align-items:center;gap:18px;font-size:12px;color:var(--mut);padding:10px 20px;border-bottom:1px solid var(--line)}
+  .dnav .brand{margin-right:auto}
+  .dnav .on{color:var(--accent2);font-weight:800;border-bottom:2px solid var(--accent);padding-bottom:2px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:start}
+  @media(max-width:760px){.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+  .overlay{position:absolute;inset:0;background:rgba(4,10,20,.72);display:flex;align-items:center;justify-content:center;padding:16px;z-index:5}
+  .modal{width:100%;max-width:380px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:18px;padding:18px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+  .modal .x{float:right;color:var(--dim);font-size:20px;line-height:1}
+
+  /* google form look (outside our site) */
+  .gf{background:#f0ebf8;min-height:100%;padding:14px;color:#202124;font-family:Roboto,Arial,sans-serif}
+  .gf .hd{background:#fff;border-radius:8px;border-top:8px solid #673ab7;padding:12px;margin-bottom:10px}
+  .gf .hd b{font-size:14px;display:block}
+  .gf .hd span{font-size:11px;color:#5f6368}
+  .gf .q{background:#fff;border-radius:8px;padding:12px;margin-bottom:8px;font-size:11.5px}
+  .gf .sel{border:1px solid #dadce0;border-radius:4px;padding:7px 9px;margin-top:6px;color:#5f6368;display:flex;justify-content:space-between}
+  .gf .sign{background:#fff;border-radius:8px;padding:12px;font-size:11px;color:#5f6368;display:flex;gap:8px;align-items:center;margin-bottom:10px}
+  .gf .sign i{width:22px;height:22px;border-radius:50%;background:conic-gradient(#ea4335 0 25%,#fbbc05 0 50%,#34a853 0 75%,#4285f4 0);flex:none}
+
+  /* decisions table */
+  table.dec{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+  table.dec th,table.dec td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+  table.dec th{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .tw{overflow-x:auto}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">yashho.com · careers · storyboard v1 · 18 Nov 2026</div>
+  <h1>Careers: 5 jobs + 1 partner role</h1>
+  <p class="lede">Phone first. Real posters from Surya's folder. Each <b>Apply</b> opens that role's Google Form in a <b>new tab</b>, so the careers page stays open behind it.</p>
+
+  <nav class="flow">
+    <a href="#s1"><span>01</span>Careers page</a>
+    <a href="#s2"><span>02</span>RSM page</a>
+    <a href="#s3"><span>03</span>Head-office role</a>
+    <a href="#s4"><span>04</span>YSP partner page</a>
+    <a href="#s5"><span>05</span>Before you apply</a>
+    <a href="#s6"><span>06</span>Form opens in new tab</a>
+    <a href="#s7"><span>07</span>Poster full screen</a>
+    <a href="#s8"><span>08</span>Desktop</a>
+    <a href="#dec"><span>✓</span>Decisions + open points</a>
+  </nav>
+
+  <!-- 01 HUB -->
+  <h2 id="s1">01 · Careers page — /careers</h2>
+  <p class="cap">Reached from <b>Careers</b> in the header menu and footer. Common hiring poster on top, then <b>5 jobs</b>, then a separate <b>Partner with us</b> block for YSP.</p>
+  <div class="row">
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="scroll">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">☰ Careers</span></div>
+        <div class="body">
+          <div class="poster-wrap"><img class="poster" src="irisepro-careers/p-01-common.webp" alt="YASHHO is hiring — common poster" loading="lazy"><span class="zoom">⤢ Tap to enlarge</span></div>
+          <div class="sec">Jobs · fixed pay + incentives</div>
+          <a class="card"><span class="go">›</span><span class="chip">40 posts · your region</span><div class="t">Regional Sales Manager</div><div class="m">Lives in own region · Karnataka</div><div class="p">₹40,000/mo fixed + incentive</div></a>
+          <a class="card"><span class="go">›</span><span class="chip">1 post · Bengaluru</span><div class="t">General Manager – Sales, Karnataka</div><div class="p">₹1,00,000/mo fixed + incentive</div></a>
+          <a class="card"><span class="go">›</span><span class="chip blue">1 post · Head office</span><div class="t">Manager – Field Sales Network</div><div class="p">₹50,000/mo fixed + incentive</div></a>
+          <a class="card"><span class="go">›</span><span class="chip blue">1 post · Head office</span><div class="t">Manager – Online Sales &amp; Counselling</div><div class="p">₹50,000/mo fixed + incentive</div></a>
+          <a class="card"><span class="go">›</span><span class="chip blue">1 post · Head office</span><div class="t">Manager – Social Media Marketing</div><div class="p">₹50,000/mo fixed + incentive</div></a>
+          <div class="sec">Partner with us · commission only</div>
+          <a class="card" style="border-color:#6b4e0e"><span class="go">›</span><span class="chip warn">400 places · no fixed salary</span><div class="t">YASHHO Success Partner (YSP)</div><div class="m">Work in your own area · 40 regions × 10</div><div class="p">Commission only</div></a>
+        </div>
+      </div></div></div>
+      <figcaption>360 px · scrolled view</figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">✕</span></div>
+        <div class="body" style="font-size:15px;font-weight:700">
+          <div style="padding:13px 0;border-bottom:1px solid var(--line)">The scan</div>
+          <div style="padding:13px 0;border-bottom:1px solid var(--line)">For schools</div>
+          <div style="padding:13px 0;border-bottom:1px solid var(--line)">FAQ</div>
+          <div style="padding:13px 0;border-bottom:1px solid var(--line);color:var(--accent2)">Careers <span class="chip" style="margin-left:6px">Hiring</span></div>
+          <div style="padding:13px 0">Contact</div>
+        </div>
+      </div></div>
+      <figcaption>Header menu · "Careers" added</figcaption>
+    </figure>
+  </div>
+  <div class="note">Every card, pay figure and form link comes from <b>one roles file</b>; the cards, role pages, Google job listing data and FAQ all read it. No pay figure is typed into a page.</div>
+
+  <!-- 02 RSM -->
+  <h2 id="s2">02 · Role page — /careers/regional-sales-manager</h2>
+  <p class="cap">The role's portrait poster, key facts in big type, then details. <b>Apply</b> stays fixed at the bottom while scrolling.</p>
+  <div class="row">
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="scroll">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">‹ All roles</span></div>
+        <div class="body">
+          <div class="poster-wrap"><img class="poster" src="irisepro-careers/p-02-rsm.webp" alt="Regional Sales Manager poster" loading="lazy"><span class="zoom">⤢ Tap to enlarge</span></div>
+          <h3 style="font-size:19px;font-weight:900;text-transform:uppercase;line-height:1.1;margin:12px 0 4px">Regional Sales Manager</h3>
+          <div class="m" style="font-size:11.5px;color:var(--mut)">40 posts · one per region · Karnataka</div>
+          <div class="kv">
+            <div><small>Fixed pay</small><b>₹40,000/mo</b></div>
+            <div><small>Incentive at target</small><b>up to ₹1.76 L/mo</b></div>
+            <div><small>Yearly incentive</small><b>up to ₹21.11 L</b></div>
+            <div><small>Preferred age</small><b>30–40</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="sticky"><span class="btn">Apply for RSM ↗</span></div>
+      </div></div>
+      <figcaption>Top of page</figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="scroll">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">‹ All roles</span></div>
+        <div class="body">
+          <div class="sec" style="margin-top:4px">Who can apply</div>
+          <ul class="l"><li>Graduate / postgraduate</li><li>5+ years in admissions, field sales, teaching or EdTech</li><li>Leads and manages a team</li><li>Tech-savvy; Kannada + English</li><li>Lives in the region now</li></ul>
+          <div class="sec">What you will do</div>
+          <ul class="l"><li>Lead sales in your region</li><li>Recruit and support 10 YASHHO Success Partners</li><li>Build ties with schools, colleges, parents</li><li>Track field work and follow-ups</li></ul>
+          <div class="sec">Benefits</div>
+          <ul class="l"><li>PF, health, life and accident insurance on confirmation</li></ul>
+          <div class="sec">Before you apply</div>
+          <ol class="steps"><li>Read about YASHHO on yashho.com</li><li>Sign in to a Google account</li><li>Keep your CV ready</li><li>Record a 90-second video</li><li>Have an active WhatsApp number</li><li>Choose your region in the form (one only)</li></ol>
+          <p class="fine" style="margin-top:12px">Incentives are shown at plan target. Actual pay depends on performance and approved terms.</p>
+        </div>
+      </div>
+      <div class="sticky"><span class="btn">Apply for RSM ↗</span></div>
+      </div></div>
+      <figcaption>Scrolled down · same fixed button</figcaption>
+    </figure>
+  </div>
+  <div class="note">One <b>"Before you apply"</b> list for every role (the source copy varied by role). Region is <b>chosen in the form</b>, not on the page.</div>
+
+  <!-- 03 HO -->
+  <h2 id="s3">03 · Head-office role — same layout for all 4 salaried roles</h2>
+  <p class="cap">GM and the 3 managers use the same page, each with its own poster, facts and form. Shown: Field Sales Network and GM.</p>
+  <div class="row">
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="scroll">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">‹ All roles</span></div>
+        <div class="body">
+          <div class="poster-wrap"><img class="poster" src="irisepro-careers/p-05-field.webp" alt="Manager Field Sales Network poster" loading="lazy"><span class="zoom">⤢ Tap to enlarge</span></div>
+          <h3 style="font-size:17px;font-weight:900;text-transform:uppercase;line-height:1.1;margin:12px 0 4px">Manager – Field Sales Network</h3>
+          <div class="m" style="font-size:11.5px;color:var(--mut)">1 post · Bengaluru head office</div>
+          <div class="kv">
+            <div><small>Fixed pay</small><b>₹50,000/mo</b></div>
+            <div><small>Incentive at target</small><b>~₹95,506/mo</b></div>
+            <div><small>Yearly incentive</small><b>₹11,46,069</b></div>
+            <div><small>Experience</small><b>5+ years</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="sticky"><span class="btn">Apply for this role ↗</span></div>
+      </div></div>
+      <figcaption>Manager – Field Sales Network</figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="scroll">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">‹ All roles</span></div>
+        <div class="body">
+          <div class="poster-wrap"><img class="poster" src="irisepro-careers/p-03-gm.webp" alt="General Manager Sales poster" loading="lazy"><span class="zoom">⤢ Tap to enlarge</span></div>
+          <h3 style="font-size:17px;font-weight:900;text-transform:uppercase;line-height:1.1;margin:12px 0 4px">General Manager – Sales</h3>
+          <div class="m" style="font-size:11.5px;color:var(--mut)">1 post · Bengaluru · travels across Karnataka</div>
+          <div class="kv">
+            <div><small>Fixed pay</small><b>₹1,00,000/mo</b></div>
+            <div><small>Incentive at target</small><b>up to ₹3,18,352/mo</b></div>
+            <div><small>Yearly incentive</small><b>up to ₹38,20,229</b></div>
+            <div style="border-color:#6b4e0e"><small>Preferred age</small><b style="color:var(--warn)">35–40 ?</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="sticky"><span class="btn">Apply for GM – Sales ↗</span></div>
+      </div></div>
+      <figcaption>GM – Sales · age line pending</figcaption>
+    </figure>
+  </div>
+  <div class="note warn"><b>Open:</b> the GM poster says "Preferred age 35–40" and adds "preferably school/college admissions or EdTech" and "experience leading sales teams". The GM text document has none of these. Shown with "?" until you decide.</div>
+
+  <!-- 04 YSP -->
+  <h2 id="s4">04 · Partner page — /careers/yashho-success-partner</h2>
+  <p class="cap">Same layout, but a <b>"Commission only — no fixed salary"</b> banner sits above everything, and the earnings note is never hidden.</p>
+  <div class="row">
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="scroll">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">‹ All roles</span></div>
+        <div class="body">
+          <div class="banner">Commission only · no fixed salary · earnings not guaranteed</div>
+          <div class="poster-wrap" style="margin-top:10px"><img class="poster" src="irisepro-careers/p-07-ysp.webp" alt="YASHHO Success Partner poster" loading="lazy"><span class="zoom">⤢ Tap to enlarge</span></div>
+          <h3 style="font-size:17px;font-weight:900;text-transform:uppercase;line-height:1.1;margin:12px 0 4px">YASHHO Success Partner</h3>
+          <div class="m" style="font-size:11.5px;color:var(--mut)">400 places · 40 regions × 10 · your own area</div>
+          <div class="kv">
+            <div><small>Fixed pay</small><b>None</b></div>
+            <div><small>Commission at plan target</small><b>up to ₹20,94,050/yr</b></div>
+            <div><small>Monthly average</small><b>~₹1,74,504</b></div>
+            <div><small>Age</small><b>No age bar</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="sticky"><span class="btn">Apply to be a YSP ↗</span></div>
+      </div></div>
+      <figcaption>Top of page</figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv"><div class="scroll">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">‹ All roles</span></div>
+        <div class="body">
+          <div class="sec" style="margin-top:4px">Who can apply</div>
+          <ul class="l"><li>Graduate / postgraduate</li><li>Lives in or near the operating place</li><li>Good communication, trusted local network</li><li>No age bar</li></ul>
+          <div class="sec">Welcome backgrounds</div>
+          <p style="font-size:11.5px;margin:0">Insurance agents, teachers, lecturers, tutors, homemakers, community leaders, SHG/NGO members, entrepreneurs, field-sales people.</p>
+          <div class="sec">Before you apply</div>
+          <ol class="steps"><li>Read about YASHHO on yashho.com</li><li>Sign in to a Google account</li><li>Keep CV, address, WhatsApp number ready</li><li>Record a 90-second video</li><li>Choose your region and place in the form</li></ol>
+          <p class="fine" style="margin-top:12px">Earnings shown at approved plan target; actual commission depends on performance and eligible collections. Applying does not guarantee selection.</p>
+        </div>
+      </div>
+      <div class="sticky"><span class="btn">Apply to be a YSP ↗</span></div>
+      </div></div>
+      <figcaption>Scrolled down</figcaption>
+    </figure>
+  </div>
+
+  <!-- 05 SHEET -->
+  <h2 id="s5">05 · Tap Apply → "Before you open the form"</h2>
+  <p class="cap">A short checklist so nobody gets stuck halfway through the Google Form. One tap continues.</p>
+  <div class="row">
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span class="brand">YASH<b>HO</b></span><span class="menu">‹ All roles</span></div>
+        <div class="body" style="opacity:.5"><img class="poster" src="irisepro-careers/p-02-rsm.webp" alt="" loading="lazy"></div>
+        <div class="dim"></div>
+        <div class="sheet">
+          <div class="grip"></div>
+          <span class="chip">Regional Sales Manager</span>
+          <h4>Have these ready</h4>
+          <p class="s">The form opens in a new tab. This page stays open.</p>
+          <ol class="steps"><li>Google account (you sign in)</li><li>CV file</li><li>90-second video</li><li>Active WhatsApp number</li><li>Your region — choose it in the form</li></ol>
+          <span class="btn" style="margin-top:10px">Open the form ↗</span>
+          <span class="btn ghost" style="margin-top:8px;padding:11px">Not now</span>
+        </div>
+      </div></div>
+      <figcaption>Bottom sheet · thumb zone</figcaption>
+    </figure>
+  </div>
+
+  <!-- 06 NEW TAB -->
+  <h2 id="s6">06 · The Google Form opens in a new tab</h2>
+  <p class="cap">Outside our site. The careers tab stays open, so the applicant can switch back to check the requirements.</p>
+  <div class="row">
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top" style="background:#fff;color:#202124;border-color:#dadce0"><span style="font-family:var(--mono);font-size:10.5px">docs.google.com/forms/…</span><span style="font-size:10px;border:1.5px solid #5f6368;border-radius:4px;padding:0 5px;font-weight:800">2</span></div>
+        <div class="gf">
+          <div class="hd"><b>YASHHO – Regional Sales Manager</b><span>Round 1 application · Karnataka 2026</span></div>
+          <div class="sign"><i></i>Sign in to Google to upload your CV and video</div>
+          <div class="q">Region code and operating base <span style="color:#d93025">*</span><div class="sel"><span>Choose</span><span>▾</span></div></div>
+          <div class="q">Upload your CV <span style="color:#d93025">*</span></div>
+        </div>
+      </div></div>
+      <figcaption>Phone · tab count shows 2</figcaption>
+    </figure>
+  </div>
+  <div class="note">Every Apply link opens in a <b>new tab</b>. All 6 forms ask for a Google sign-in (checked 18 Nov). This mock is only a sketch of the form. Surya owns the real forms.</div>
+
+  <!-- 07 LIGHTBOX -->
+  <h2 id="s7">07 · Tap a poster → full screen</h2>
+  <p class="cap">Posters carry small text, so a tap opens them full screen. Close with ✕ or swipe down.</p>
+  <div class="row">
+    <figure>
+      <div class="phone"><div class="notch"></div><div class="pv" style="background:#000;display:flex;align-items:center;justify-content:center">
+        <span style="position:absolute;top:26px;right:14px;color:#fff;font-size:20px;width:44px;height:44px;display:flex;align-items:center;justify-content:center">✕</span>
+        <img src="irisepro-careers/p-03-gm.webp" alt="GM poster full screen" style="width:100%" loading="lazy">
+      </div></div>
+      <figcaption>Full-screen poster</figcaption>
+    </figure>
+  </div>
+
+  <!-- 08 DESKTOP -->
+  <h2 id="s8">08 · Desktop</h2>
+  <p class="cap">Same content and order. Desktop uses the <b>landscape</b> posters, puts the 5 jobs in a grid, and shows the checklist as a centred box.</p>
+  <div class="desk">
+    <div class="browser">
+      <div class="bchrome"><i></i><i></i><i></i><span class="url">yashho.com/careers</span></div>
+      <div class="dnav"><span class="brand">YASH<b>HO</b></span><span>The scan</span><span>For schools</span><span>FAQ</span><span class="on">Careers</span></div>
+      <div class="vp">
+        <img class="poster" src="irisepro-careers/l-01-common.webp" alt="Common hiring poster landscape" loading="lazy">
+        <div class="sec">Jobs · fixed pay + incentives</div>
+        <div class="grid3">
+          <a class="card" style="margin:0"><span class="chip">40 posts</span><div class="t">Regional Sales Manager</div><div class="p">₹40,000/mo + incentive</div></a>
+          <a class="card" style="margin:0"><span class="chip">1 post</span><div class="t">General Manager – Sales</div><div class="p">₹1,00,000/mo + incentive</div></a>
+          <a class="card" style="margin:0"><span class="chip blue">Head office</span><div class="t">Manager – Field Sales Network</div><div class="p">₹50,000/mo + incentive</div></a>
+          <a class="card" style="margin:0"><span class="chip blue">Head office</span><div class="t">Manager – Online Sales &amp; Counselling</div><div class="p">₹50,000/mo + incentive</div></a>
+          <a class="card" style="margin:0"><span class="chip blue">Head office</span><div class="t">Manager – Social Media Marketing</div><div class="p">₹50,000/mo + incentive</div></a>
+        </div>
+        <div class="sec">Partner with us · commission only</div>
+        <div class="grid2">
+          <img class="poster" src="irisepro-careers/l-07-ysp.webp" alt="YSP poster landscape" loading="lazy">
+          <div><div class="banner">Commission only · no fixed salary · earnings not guaranteed</div><div class="t" style="font-size:18px;font-weight:900;margin:10px 0 4px">YASHHO Success Partner</div><p class="m" style="font-size:12px;color:var(--mut);margin:0 0 12px">400 places across Karnataka · work in your own area</p><span class="btn" style="max-width:240px">See the YSP role</span></div>
+        </div>
+      </div>
+    </div>
+    <figcaption>/careers · 1280 px</figcaption>
+  </div>
+  <div class="desk">
+    <div class="browser">
+      <div class="tabs"><div class="on">Careers — YASHHO</div><div>Google Forms</div></div>
+      <div class="bchrome"><i></i><i></i><i></i><span class="url">yashho.com/careers/general-manager-sales</span></div>
+      <div class="vp" style="min-height:360px">
+        <div class="grid2" style="opacity:.35"><img class="poster" src="irisepro-careers/l-03-gm.webp" alt="" loading="lazy"><div><div class="t" style="font-size:20px;font-weight:900">General Manager – Sales</div></div></div>
+        <div class="overlay"><div class="modal"><span class="x">×</span><span class="chip">General Manager – Sales</span><h4>Have these ready</h4><p class="s">The form opens in a new tab. This page stays open.</p><ol class="steps"><li>Google account</li><li>CV file</li><li>Video (as asked in the form)</li><li>Active WhatsApp number</li></ol><span class="btn" style="margin-top:10px">Open the form ↗</span></div></div>
+      </div>
+    </div>
+    <figcaption>Role page · checklist box · the form opens in the second tab</figcaption>
+  </div>
+
+  <!-- DECISIONS -->
+  <h2 id="dec">✓ · Decisions used, and what is still open</h2>
+  <div class="tw"><table class="dec">
+    <tr><th>Item</th><th>State</th><th>Source</th></tr>
+    <tr><td>YSP on the careers page, in its own "Partner with us" section</td><td>Decided</td><td>Goutam 18 Nov</td></tr>
+    <tr><td>RSM preferred age 30–40 shown</td><td>Decided</td><td>Goutam 18 Nov</td></tr>
+    <tr><td>"World's first" / "Success Doctor" kept</td><td>Decided</td><td>Goutam 18 Nov</td></tr>
+    <tr><td>Region chosen in the form only</td><td>Decided</td><td>Goutam 18 Nov</td></tr>
+    <tr><td>Apply opens the form in a new tab</td><td>Decided</td><td>Goutam 18 Nov</td></tr>
+    <tr><td>PF + insurance shown on all 5 salaried roles</td><td>Proposed</td><td>Every salaried poster says it; the text documents say it only for RSM</td></tr>
+    <tr><td style="color:var(--warn)">GM "preferred age 35–40" + extra eligibility lines</td><td style="color:var(--warn)">Open</td><td>GM poster only</td></tr>
+    <tr><td style="color:var(--warn)">Poster text errors: "AVERAGF" / "GRADU^TE" (Online Sales, portrait) · "HIGH-PERPORMANCE" (common, portrait) · "NATI•VE" (RSM, landscape)</td><td style="color:var(--warn)">Ask Surya to fix</td><td>Original PNGs, checked 18 Nov</td></tr>
+    <tr><td style="color:var(--warn)">Common portrait poster names the roles differently: "GM — Sales, Marketing &amp; Network" and "Manager Field Sales &amp; Network"</td><td style="color:var(--warn)">Ask Surya to fix</td><td>Text documents and every other poster: "GM – Sales, Karnataka", "Field Sales Network"</td></tr>
+  </table></div>
+  <p class="fine" style="margin-top:20px">Posters: 14 originals (20.6 MB) compressed to WebP, 1.89 MB total, 116–167 KB each. Pay figures here match the brief §11 and the posters.</p>
+</div>
