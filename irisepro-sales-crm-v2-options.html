@@ -326,13 +326,17 @@ table.t .bar{min-width:110px}
 .pv .stp span{background:#eef2f7;color:var(--f-mute)} .pv .stp .done{background:var(--ok-soft);color:var(--ok)} .pv .stp .on{background:var(--brand);color:#1a0e02}
 .lockt{background:rgba(255,255,255,.18);border-radius:10px;padding:6px 10px;margin:0 10px 6px;font-size:11.5px}
 @media (max-width:900px){.opts{grid-template-columns:1fr}}
+.chosen{background:var(--ok);color:#fff;border-radius:8px;padding:2px 9px;font-size:12px;font-weight:800}
+.opt.pick{border:2px solid var(--ok);box-shadow:0 0 0 4px var(--ok-soft)}
+.decided{background:var(--ok-soft);border:2px solid var(--ok);color:#0b3d22;border-radius:12px;padding:10px 14px;font-size:14px;margin:8px 0 10px;max-width:110ch}
 </style>
 <div class="wrap">
 <header style="margin-bottom:8px">
  <h1 style="font-weight:900;font-size:clamp(28px,4vw,48px);line-height:1.05;text-transform:uppercase;margin:0 0 10px">V2 options<span style="display:block;color:var(--brand-ink)">Take over, escalation, cases, rating</span></h1>
  <div class="v2flag">V2 options — for decision, not in launch scope</div>
+ <div class="decided"><b>Decided 18 Nov:</b> 1A · 2B · 3A · 4 mix · 5B (+A for critical) · 6B → A at launch · 7 one store + locked Integrity menu · 8A · 9A · 10 email → WhatsApp. The chosen card in each row is marked "Chosen".</div>
  <p style="max-width:80ch;color:var(--ink-2);margin:6px 0">Ten decisions for Goutam. Each row shows Option A and Option B as real screens side by side, what each means, and the trade-off. A common case detail screen is at the end.</p>
- <p class="examples"><b>All names and numbers are examples.</b> Ravi is the YSP for Sira; Asha is his RSM on this page. Families are shown as "Kumar family"; numbers are masked (…2418). No child details anywhere.</p>
+ <p class="examples"><b>All names and numbers are examples.</b> Ravi is the YSP for Sira; Suresh is his RSM on this page. Families are shown as "Kumar family"; numbers are masked (…2418). No child details anywhere.</p>
  <div class="ladder"><b style="font-size:13px">Already decided, when a parent's message is unanswered:</b><span>Owner YSP · 5 min</span><i>→</i><span>RSM · 15 min</span><i>→</i><span>Head Office · 30 min</span></div>
  <nav class="toc" aria-label="Decisions" style="margin-top:14px"><a href="#d1">1 Take over</a><a href="#d2">2 Ask back</a><a href="#d3">3 In a visit</a><a href="#d4">4 RSM alerts</a><a href="#d5">5 Backstop</a><a href="#d6">6 Critical delivery</a><a href="#d7">7 Case system</a><a href="#d8">8 Targets shown</a><a href="#d9">9 Low rating</a><a href="#d10">10 Rating request</a><a href="#common">Case detail</a></nav>
 </header>
@@ -340,51 +344,51 @@ table.t .bar{min-width:110px}
 <!-- 1 -->
 <section class="dec" id="d1"><h2><b>1</b>Take over</h2><p class="q2">The parent has waited past the owner's 5 minutes. Can the RSM or Head Office reply instead of Ravi?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>RSM or Head Office can take over</h3><p class="means">Asha presses "Take over"; Ravi can read but not reply until she hands back with a note.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Chosen</span> RSM or Head Office can take over</h3><p class="means">Suresh presses "Take over"; Ravi can read but not reply until he hands back with a note.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
-  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Asha · RSM</span></div>
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Suresh · RSM</span></div>
   <div class="body">
    <div class="esc"><b>Parent waiting 17 min</b>Ravi has not replied. Now with you.</div>
    <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · …2418 · 6:35 PM</small></div>
   </div>
   <div class="dock"><div class="btn">Take over</div><div class="btn ghost">Nudge Ravi</div></div>
- </div></div><p class="flab">Asha (RSM)</p></div>
+ </div></div><p class="flab">Suresh (RSM)</p></div>
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
   <div class="body">
-   <div class="tko"><b>Taken over by Asha (RSM)</b>6:52 PM · you can still read everything.</div>
+   <div class="tko"><b>Taken over by Suresh (RSM)</b>6:52 PM · you can still read everything.</div>
    <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · 6:35 PM</small></div>
-   <div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Asha (RSM) · 6:53 PM</small></div>
+   <div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Suresh (RSM) · 6:53 PM</small></div>
   </div>
-  <div class="dock"><div class="lockin">🔒 Reply box locked while Asha has this family.</div></div>
+  <div class="dock"><div class="lockin">🔒 Reply box locked while Suresh has this family.</div></div>
  </div></div><p class="flab">Ravi (YSP)</p></div>
  <div><div class="phone"><div class="notch"></div><div class="pv">
-  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Asha · RSM</span></div>
-  <div class="body"><div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Asha · 6:53 PM</small></div></div>
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Suresh · RSM</span></div>
+  <div class="body"><div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Suresh · 6:53 PM</small></div></div>
   <div class="dim"></div>
   <div class="sheet"><div class="grab"></div>
    <p style="margin:0 0 6px;font-weight:800;font-size:15px">Hand back to Ravi</p>
    <div class="fld focus"><label>Note for Ravi (required)</label><span style="font-weight:500;font-size:12.5px">Confirmed Saturday 5 PM. Please call her then.</span></div>
    <div class="btn">Hand back to Ravi</div>
   </div>
- </div></div><p class="flab">Asha hands back</p></div>
+ </div></div><p class="flab">Suresh hands back</p></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>No take over</h3><p class="means">Asha can only nudge or add a note. Ravi always replies to the parent.</p>
+<div class="opt"><h3><span class="tag b">Option B</span>No take over</h3><p class="means">Suresh can only nudge or add a note. Ravi always replies to the parent.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
-  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Asha · RSM</span></div>
+  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Suresh · RSM</span></div>
   <div class="body">
    <div class="esc"><b>Parent waiting 17 min</b>Ravi has not replied.</div>
    <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · …2418 · 6:35 PM</small></div>
    <p class="mini">Only Ravi can reply to this parent.</p>
   </div>
   <div class="dock"><div class="btn">Nudge Ravi</div><div class="btn ghost">Add a note</div></div>
- </div></div><p class="flab">Asha (RSM)</p></div>
+ </div></div><p class="flab">Suresh (RSM)</p></div>
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
   <div class="body">
-   <div class="esc"><b>Asha nudged you</b>Shilpa has waited 17 min. Please reply now.</div>
+   <div class="esc"><b>Suresh nudged you</b>Shilpa has waited 17 min. Please reply now.</div>
    <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · 6:35 PM</small></div>
   </div>
   <div class="m-dock"><div class="m-win open" style="margin-bottom:6px"><span>Reply window open</span><span>23 h left</span></div><div class="m-comp"><span class="in focus">Yes, Saturday 5 PM…</span><span class="go">➤</span></div></div>
@@ -397,32 +401,32 @@ table.t .bar{min-width:110px}
 <!-- 2 -->
 <section class="dec" id="d2"><h2><b>2</b>Ask back</h2><p class="q2">Only matters if take over (1A) is chosen. Once Ravi is free again, can he ask for the family back?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>Ravi can ask to hand back</h3><p class="means">Ravi taps "Ask to hand back"; Asha gets the request and approves or keeps the family.</p>
+<div class="opt"><h3><span class="tag">Option A</span>Ravi can ask to hand back</h3><p class="means">Ravi taps "Ask to hand back"; Suresh gets the request and approves or keeps the family.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
-  <div class="body"><div class="tko"><b>Taken over by Asha (RSM)</b>6:52 PM</div><div class="lockin">🔒 Reply box locked while Asha has this family.</div></div>
+  <div class="body"><div class="tko"><b>Taken over by Suresh (RSM)</b>6:52 PM</div><div class="lockin">🔒 Reply box locked while Suresh has this family.</div></div>
   <div class="dim"></div>
-  <div class="sheet"><div class="grab"></div><p style="margin:0 0 6px;font-weight:800;font-size:15px">Ask Asha to hand back?</p>
+  <div class="sheet"><div class="grab"></div><p style="margin:0 0 6px;font-weight:800;font-size:15px">Ask Suresh to hand back?</p>
    <div class="fld"><label>Why (optional)</label><span style="font-weight:500;font-size:12.5px">Visit finished, I'm free now.</span></div>
    <div class="btn">Ask to hand back</div></div>
  </div></div><p class="flab">Ravi asks</p></div>
  <div><div class="phone"><div class="notch"></div><div class="pv">
-  <div class="top"><b>Requests</b><span class="sync">Asha · RSM</span></div>
+  <div class="top"><b>Requests</b><span class="sync">Suresh · RSM</span></div>
   <div class="body">
    <div class="fc"><h4>Ravi asks to have the Kumar family back</h4><p class="mini" style="margin:0 0 6px">"Visit finished, I'm free now." · 7:04 PM</p><p class="mini" style="margin:0">You took over at 6:52 PM and replied once.</p></div>
   </div>
   <div class="dock" style="display:flex;gap:8px"><div class="btn" style="flex:1">Hand back</div><div class="btn ghost" style="flex:1">Keep it</div></div>
- </div></div><p class="flab">Asha decides</p></div>
+ </div></div><p class="flab">Suresh decides</p></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>Only the RSM decides</h3><p class="means">No request button. Ravi waits until Asha hands back.</p>
+<div class="opt pick"><h3><span class="tag b">Option B</span><span class="chosen">Chosen</span> Only the RSM decides</h3><p class="means">No request button. Ravi waits until Suresh hands back.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
-  <div class="body"><div class="tko"><b>Taken over by Asha (RSM)</b>6:52 PM · you can still read everything.</div>
-   <div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Asha · 6:53 PM</small></div>
-   <p class="mini">Asha decides when to hand the family back.</p></div>
-  <div class="dock"><div class="lockin">🔒 Reply box locked while Asha has this family.</div></div>
+  <div class="body"><div class="tko"><b>Taken over by Suresh (RSM)</b>6:52 PM · you can still read everything.</div>
+   <div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Suresh · 6:53 PM</small></div>
+   <p class="mini">Suresh decides when to hand the family back. Ravi can comment in the team notes.</p></div>
+  <div class="dock"><div class="lockin">🔒 Reply box locked while Suresh has this family.</div></div>
  </div></div><p class="flab">Ravi (YSP)</p></div>
 </div></div>
 </div>
@@ -432,7 +436,7 @@ table.t .bar{min-width:110px}
 <!-- 3 -->
 <section class="dec" id="d3"><h2><b>3</b>"In a visit" pause</h2><p class="q2">Ravi is sitting with a family and can't reply. Can he pause the 5-minute clock?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>Pause while in a visit</h3><p class="means">A switch on Today pauses his clock for up to 45 min; each pause is logged on the timeline.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Chosen · on/off per region (setting)</span> Pause while in a visit</h3><p class="means">A switch on Today pauses his clock for up to 45 min; each pause is logged on the timeline.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><b>Namaskara, Ravi</b><span class="sync">Today</span></div>
@@ -452,12 +456,12 @@ table.t .bar{min-width:110px}
   </div></div>
  </div></div><p class="flab">Logged on the timeline</p></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>No pause</h3><p class="means">The clocks always run. A visit does not stop escalation to Asha.</p>
+<div class="opt"><h3><span class="tag b">Option B</span>No pause</h3><p class="means">The clocks always run. A visit does not stop escalation to Suresh.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><b>Namaskara, Ravi</b><span class="sync">Today</span></div>
   <div class="body">
-   <div class="esc"><b>Kumar family · parent waiting 4 min</b>Goes to Asha (RSM) at 5 min.</div>
+   <div class="esc"><b>Kumar family · parent waiting 4 min</b>Goes to Suresh (RSM) at 5 min.</div>
    <div class="fc" style="padding:2px 10px"><div class="r"><div><div class="n">Visit in progress</div><div class="s">Manjappa family · since 6:38 PM</div></div></div></div>
   </div>
   <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
@@ -468,9 +472,9 @@ table.t .bar{min-width:110px}
 </section>
 
 <!-- 4 -->
-<section class="dec" id="d4"><h2><b>4</b>RSM alerts</h2><p class="q2">How does Asha hear about families escalated to her?</p>
+<section class="dec" id="d4"><h2><b>4</b>RSM alerts</h2><p class="q2">How does Suresh hear about families escalated to him?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>One push per escalation</h3><p class="means">Each escalated family is its own notification, the moment it reaches her.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Chosen for urgent: payment issue, refund, complaint, asked for cash</span> One push per escalation</h3><p class="means">Each escalated family is its own notification, the moment it reaches him.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
   <div class="clk" style="padding-top:34px"><small>Thursday, 17 December</small><b>7:10</b></div><div style="height:18px"></div>
@@ -479,9 +483,9 @@ table.t .bar{min-width:110px}
   <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>3 min ago</span></div><b>Naik family waiting 15 min</b></div>
   <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>4 min ago</span></div><b>Rao family waiting 15 min</b></div>
   <div class="lockt">+2 more from YASHHO Partner</div>
- </div></div><p class="flab">Asha's lock screen</p></div>
+ </div></div><p class="flab">Suresh's lock screen</p></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>15-minute digest</h3><p class="means">One push every 15 minutes with a ranked list, oldest wait first.</p>
+<div class="opt pick"><h3><span class="tag b">Option B</span><span class="chosen">Chosen for routine</span> 15-minute digest</h3><p class="means">One push every 15 minutes with a ranked list, oldest wait first.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
   <div class="clk"><small>Thursday, 17 December</small><b>7:15</b></div><div style="height:120px"></div>
@@ -500,28 +504,28 @@ table.t .bar{min-width:110px}
  </div></div><p class="flab">Ranked list</p></div>
 </div></div>
 </div>
-<p class="trade"><b>Trade-off:</b>A is fastest per family but floods the phone on a busy evening. B is calm and ranked, but a family can wait up to 15 extra minutes before Asha sees it.</p>
+<p class="trade"><b>Trade-off:</b>A is fastest per family but floods the phone on a busy evening. B is calm and ranked, but a family can wait up to 15 extra minutes before Suresh sees it.</p>
 </section>
 
 <!-- 5 -->
 <section class="dec" id="d5"><h2><b>5</b>Final backstop</h2><p class="q2">Head Office's 30 minutes have passed and the parent still has no reply. What happens?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>Critical alert to the CEO</h3><p class="means">The CEO's phone gets a critical alert straight away, even in silent mode.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Chosen only for critical money or complaint cases</span> Critical alert to the CEO</h3><p class="means">The CEO's phone gets a critical alert straight away, even in silent mode.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
   <div class="clk"><small>Thursday, 17 December</small><b>7:35</b></div><div style="height:110px"></div>
-  <div class="m-ntf crit"><div class="hd"><span>⚠ CRITICAL · YASHHO CRM</span><span>now</span></div><b>Kumar family unanswered 60 min</b><div style="font-size:11.5px">YSP, RSM and Head Office all missed. Tap to open.</div></div>
+  <div class="m-ntf crit"><div class="hd"><span>⚠ CRITICAL · YASHHO CRM</span><span>now</span></div><b>Kumar family still unanswered</b><div style="font-size:11.5px">After Head Office's 30 min (setting). YSP, RSM and Head Office all missed.</div></div>
  </div></div><p class="flab">CEO's lock screen</p></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>Unresolved board for the GM</h3><p class="means">No alert at night. The GM sees an "Unresolved" board next morning, and a daily report goes out.</p>
+<div class="opt pick"><h3><span class="tag b">Option B</span><span class="chosen">Chosen</span> Unresolved board for the GM</h3><p class="means">No alert at night. The GM sees an "Unresolved" board next morning, and a daily report goes out.</p>
 <div class="frames">
  <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Unresolved · Fri 18 Dec</span></div>
  <div class="bv"><div class="main">
   <h4>Unresolved overnight · 3 <span class="op wait" style="margin-left:6px">Daily report sent 8:00 AM</span></h4>
   <div class="tw"><table class="t"><tr><th>Family</th><th>Waiting since</th><th>Missed by</th><th></th></tr>
-  <tr><td>Kumar family</td><td>Thu 6:35 PM</td><td>Ravi · Asha · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
-  <tr><td>Shetty family</td><td>Thu 8:10 PM</td><td>Deepa · Asha · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
-  <tr><td>Rao family</td><td>Thu 9:42 PM</td><td>Ravi · Asha · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr></table></div>
+  <tr><td>Kumar family</td><td>Thu 6:35 PM</td><td>Ravi · Suresh · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
+  <tr><td>Shetty family</td><td>Thu 8:10 PM</td><td>Deepa · Suresh · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
+  <tr><td>Rao family</td><td>Thu 9:42 PM</td><td>Ravi · Suresh · HO</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr></table></div>
  </div></div></div>
 </div></div>
 </div>
@@ -531,21 +535,21 @@ table.t .bar{min-width:110px}
 <!-- 6 -->
 <section class="dec" id="d6"><h2><b>6</b>Critical alert delivery</h2><p class="q2">When a critical alert fires, how is it delivered?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>Push, email and an automated call</h3><p class="means">If the push is not opened, an automated phone call follows; press 1 to acknowledge.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Switchable on at launch (setting)</span> Push, email and an automated call</h3><p class="means">If the push is not opened, an automated phone call follows; press 1 to acknowledge.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv call">
   <div class="who"><small>Incoming call</small><b>YASHHO Alerts</b><small>automated call</small></div>
-  <p style="margin:26px 18px 0;font-size:12.5px;opacity:.9">"Critical: the Kumar family has had no reply for 60 minutes. Press 1 to acknowledge."</p>
+  <p style="margin:26px 18px 0;font-size:12.5px;opacity:.9">"Critical: the Kumar family is still unanswered after Head Office's 30 minutes. Press 1 to acknowledge."</p>
   <div class="lockt" style="margin:20px 18px 0">Push sent 7:35 · email sent 7:35 · call 7:40</div>
   <div class="btns"><span style="background:#b42318">✕</span><span style="background:#1faa59">✆</span></div>
  </div></div><p class="flab">Call screen</p></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>Push and email only</h3><p class="means">A critical push and an email; no phone call.</p>
+<div class="opt pick"><h3><span class="tag b">Option B</span><span class="chosen">Chosen now</span> Push and email only</h3><p class="means">A critical push and an email; no phone call.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv m-lock">
   <div class="clk"><small>Thursday, 17 December</small><b>7:35</b></div><div style="height:90px"></div>
-  <div class="m-ntf crit"><div class="hd"><span>⚠ CRITICAL · YASHHO CRM</span><span>now</span></div><b>Kumar family unanswered 60 min</b></div>
-  <div class="m-ntf"><div class="hd"><span>✉ Mail</span><span>now</span></div><b>YASHHO CRM: critical, Kumar family</b><div class="mini">No reply for 60 minutes. Open the CRM to act.</div></div>
+  <div class="m-ntf crit"><div class="hd"><span>⚠ CRITICAL · YASHHO CRM</span><span>now</span></div><b>Kumar family still unanswered</b></div>
+  <div class="m-ntf"><div class="hd"><span>✉ Mail</span><span>now</span></div><b>YASHHO CRM: critical, Kumar family</b><div class="mini">Still unanswered after Head Office's 30 min (setting). Open the CRM to act.</div></div>
  </div></div><p class="flab">Push + email</p></div>
 </div></div>
 </div>
@@ -564,12 +568,12 @@ table.t .bar{min-width:110px}
   <tr><td>Kumar family</td><td>Parent issue</td><td>Ravi</td><td><span class="op">In progress</span></td></tr>
   <tr><td>Patil family</td><td>Refund</td><td>Finance</td><td><span class="op wait">Waiting on parent</span></td></tr>
   <tr><td>Naik family</td><td>Payment</td><td>Finance</td><td><span class="op">Open</span></td></tr>
-  <tr><td>Deepa, Tiptur</td><td>YSP support</td><td>Asha</td><td><span class="op">Open</span></td></tr>
+  <tr><td>Deepa, Tiptur</td><td>YSP support</td><td>Suresh</td><td><span class="op">Open</span></td></tr>
   <tr><td>Ravi, Sira</td><td>🔒 Integrity</td><td>Integrity desk</td><td><span class="op bad">Open</span></td></tr></table></div>
   <p class="ohint" style="margin:8px 0 0">Head Office integrity view. Others never see 🔒 rows.</p>
  </div></div></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>Two queues: Cases and Integrity</h3><p class="means">Integrity has its own menu; YSPs and RSMs never see it at all.</p>
+<div class="opt pick"><h3><span class="tag b">Option B</span><span class="chosen">Chosen: one case store, locked Integrity menu</span> Two queues: Cases and Integrity</h3><p class="means">Integrity has its own menu; YSPs and RSMs never see it at all.</p>
 <div class="frames">
  <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Cases</span></div>
  <div class="bv"><div class="side"><div class="on">Cases</div><div>Integrity 🔒</div><div>Families</div><div>Team</div></div>
@@ -578,7 +582,7 @@ table.t .bar{min-width:110px}
   <tr><td>Kumar family</td><td>Parent issue</td><td>Ravi</td><td><span class="op">In progress</span></td></tr>
   <tr><td>Patil family</td><td>Refund</td><td>Finance</td><td><span class="op wait">Waiting on parent</span></td></tr>
   <tr><td>Naik family</td><td>Payment</td><td>Finance</td><td><span class="op">Open</span></td></tr>
-  <tr><td>Deepa, Tiptur</td><td>YSP support</td><td>Asha</td><td><span class="op">Open</span></td></tr></table></div>
+  <tr><td>Deepa, Tiptur</td><td>YSP support</td><td>Suresh</td><td><span class="op">Open</span></td></tr></table></div>
   <p class="ohint" style="margin:8px 0 0">The Integrity menu appears only for Head Office integrity roles.</p>
  </div></div></div>
 </div></div>
@@ -589,7 +593,7 @@ table.t .bar{min-width:110px}
 <!-- 8 -->
 <section class="dec" id="d8"><h2><b>8</b>Targets shown on cases</h2><p class="q2">Should each case show its reply and resolve deadlines?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>Countdown on every case</h3><p class="means">Each case shows its next deadline; it turns red when missed.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Chosen, plus the weekly report</span> Countdown on every case</h3><p class="means">Each case shows its next deadline; it turns red when missed.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><b>My cases</b><span class="pill">3 open</span></div>
@@ -615,7 +619,7 @@ table.t .bar{min-width:110px}
  <div><div class="phone"><div class="notch"></div><div class="pv">
   <div class="top"><b>Weekly report</b><span class="sync">7–13 Dec</span></div>
   <div class="body">
-   <div class="k2"><div class="kp"><small>First reply on time</small><b>86%</b><em>target 90%</em></div><div class="kp"><small>Resolved on time</small><b>92%</b><em>target 90%</em></div></div>
+   <div class="k2"><div class="kp"><small>First reply on time</small><b>86%</b><em>target 90% (example)</em></div><div class="kp"><small>Resolved on time</small><b>92%</b><em>target 90% (example)</em></div></div>
    <div class="fc sub"><div class="r"><span class="s">Cases closed</span><span class="n">14</span></div><div class="r"><span class="s">Missed first reply</span><span class="n">2</span></div></div>
   </div>
  </div></div><p class="flab">Monday report</p></div>
@@ -627,17 +631,17 @@ table.t .bar{min-width:110px}
 <!-- 9 -->
 <section class="dec" id="d9"><h2><b>9</b>Low rating (1 or 2)</h2><p class="q2">A parent rates a resolved case 2 out of 5. What happens?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>Alert the RSM</h3><p class="means">The case stays resolved; Asha is asked to call the parent.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Chosen · reopens only if the parent says "not fixed"</span> Alert the RSM</h3><p class="means">The case stays resolved; Suresh is asked to call the parent.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv">
-  <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="sync">Asha · RSM</span></div>
+  <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="sync">Suresh · RSM</span></div>
   <div class="body">
    <div class="esc"><b>Parent rated 2/5</b>Refund case · resolved Wed by Finance. Please call the parent.</div>
    <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="done">Waiting on parent</span><span class="on">Resolved</span><span>Closed</span></div>
    <p class="mini">The case stays resolved. Your call is noted on the family timeline.</p>
   </div>
   <div class="dock"><div class="btn">📞 Call parent · …7731</div></div>
- </div></div><p class="flab">Asha (RSM)</p></div>
+ </div></div><p class="flab">Suresh (RSM)</p></div>
 </div></div>
 <div class="opt"><h3><span class="tag b">Option B</span>Case reopens</h3><p class="means">The case reopens and goes back to the queue, flagged with the rating.</p>
 <div class="frames">
@@ -658,7 +662,7 @@ table.t .bar{min-width:110px}
 <!-- 10 -->
 <section class="dec" id="d10"><h2><b>10</b>Rating request</h2><p class="q2">How do we ask the parent to rate a resolved case?</p>
 <div class="opts">
-<div class="opt"><h3><span class="tag">Option A</span>Email, from beta</h3><p class="means">One email after the case is resolved, with five buttons.</p>
+<div class="opt pick"><h3><span class="tag">Option A</span><span class="chosen">Chosen for beta</span> Email, from beta</h3><p class="means">One email after the case is resolved, with five buttons.</p>
 <div class="frames">
  <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
  <div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span></div><div class="eb">
@@ -668,7 +672,7 @@ table.t .bar{min-width:110px}
   <p class="mini" style="margin:0">1 = very poor · 5 = excellent</p>
  </div></div></div></div></div>
 </div></div>
-<div class="opt"><h3><span class="tag b">Option B</span>Official WhatsApp, from launch</h3><p class="means">A WhatsApp message with 1–5 quick replies from YASHHO's official number.</p>
+<div class="opt pick"><h3><span class="tag b">Option B</span><span class="chosen">Chosen from launch (setting)</span> Official WhatsApp, from launch</h3><p class="means">A WhatsApp message with 1–5 quick replies from YASHHO's official number.</p>
 <div class="frames">
  <div><div class="phone"><div class="notch"></div><div class="pv parentphone">
   <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
@@ -690,7 +694,7 @@ table.t .bar{min-width:110px}
 <div class="bv"><div class="side"><div class="on">Cases</div><div>Families</div><div>Team</div><div>Money</div></div>
 <div class="main">
  <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="on">Waiting on parent</span><span>Resolved</span><span>Closed</span></div>
- <div class="ok4"><div class="okp"><small>Owner</small><b style="font-size:16px">Ravi</b><em>YSP, Sira</em></div><div class="okp"><small>First response</small><b>12 min</b><em>target 5 min · escalated to Asha</em></div><div class="okp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far · target 2 days</em></div><div class="okp"><small>Family</small><b style="font-size:16px">Kumar family</b><em>Shilpa · …2418</em></div></div>
+ <div class="ok4"><div class="okp"><small>Owner</small><b style="font-size:16px">Ravi</b><em>YSP, Sira</em></div><div class="okp"><small>First response</small><b>12 min</b><em>target 5 min (setting) · escalated to Suresh</em></div><div class="okp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far · target 2 days (example)</em></div><div class="okp"><small>Family</small><b style="font-size:16px">Kumar family</b><em>Shilpa · …2418</em></div></div>
  <div class="split"><div class="grow oc"><h4>Case timeline</h4>
   <div class="tw"><table class="t"><tr><th>When</th><th>What</th><th>Who</th></tr>
   <tr><td>Wed 6:35 PM</td><td class="wrap">Parent wrote on WhatsApp: asked to move the counselling call</td><td>Shilpa</td></tr>
@@ -705,7 +709,7 @@ table.t .bar{min-width:110px}
  <div class="top"><span><span class="back">‹</span><b>Case · Kumar family</b></span></div>
  <div class="body">
   <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="on">Waiting on parent</span><span>Resolved</span><span>Closed</span></div>
-  <div class="k2"><div class="kp"><small>First response</small><b>12 min</b><em>target 5</em></div><div class="kp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far</em></div></div>
+  <div class="k2"><div class="kp"><small>First response</small><b>12 min</b><em>target 5 min</em></div><div class="kp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far</em></div></div>
   <div class="fc sub"><div class="r"><span class="s">Owner</span><span class="n">Ravi, Sira</span></div><div class="r"><span class="s">Type</span><span class="n">Parent issue</span></div></div>
   <div class="tl"><div class="now"><b>Waiting on parent</b><small>Thu 10:30 AM · Ravi</small></div><div class="done"><b>First response</b><small>Wed 6:47 PM · Ravi</small></div><div class="fail"><b>Escalated to RSM</b><small>Wed 6:40 PM · parent wrote 6:35 PM</small></div></div>
  </div>
