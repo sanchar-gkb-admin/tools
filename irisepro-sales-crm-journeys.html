@@ -279,6 +279,35 @@ table.t .bar{min-width:110px}
 .m-em .eh span{color:var(--brand)}
 .m-em .eb{padding:14px 16px}
 @media (max-width:720px){.m-mail .ml{display:none}}
+/* Takeover, escalation and cases (V2, decided 18 Nov 2026). */
+.badge.v2{background:#3b2a7a;color:#fff;outline:2px dashed var(--brand);outline-offset:1px}
+.esc{border-radius:12px;padding:9px 10px;margin-bottom:8px;font-size:12px;background:var(--bad-soft);border:1px solid #f0b4ad;color:#5c130c}
+.esc b{display:block;font-size:13px;color:var(--bad)}
+.esc.wt{background:var(--warn-soft);border-color:#d9a400;color:#5a3d00}.esc.wt b{color:var(--warnc)}
+.tko{background:#1d3f8a;color:#fff;border-radius:12px;padding:9px 10px;margin-bottom:8px;font-size:12px}
+.tko b{display:block;font-size:13px}
+.lockin{border:1.5px dashed var(--f-line);background:#eef1f5;border-radius:12px;padding:10px;font-size:12px;color:var(--f-mute);font-weight:600}
+.tg{display:flex;align-items:center;justify-content:space-between;gap:8px;border:2px solid var(--brand);background:var(--brand-soft);border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.tg .sw{width:44px;height:26px;border-radius:999px;background:var(--brand-ink);position:relative;flex:0 0 44px}
+.tg .sw::after{content:"";position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff}
+.tg .sw.off{background:#c9d3df}.tg .sw.off::after{right:auto;left:3px}
+.cd{display:inline-block;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:800;white-space:nowrap}
+.cd.ok{background:var(--ok-soft);color:var(--ok)}.cd.due{background:var(--warn-soft);color:var(--warnc)}.cd.miss{background:var(--bad);color:#fff}
+.browser .cd.ok{background:#0f3d28;color:#7fe0a8}.browser .cd.due{background:#44360c;color:#ffd979}
+.m-ntf.crit{background:#b42318;color:#fff}.m-ntf.crit .hd{color:#ffd6d1}
+.m-ntf.urg{border-left:5px solid var(--bad)}
+.qr5{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:8px 0}
+.qr5 span{border:1.5px solid #a7e8c3;background:#fff;color:#1faa59;border-radius:10px;text-align:center;padding:9px 0;font-weight:800}
+.qr5.em span{border-color:var(--brand);color:var(--brand-ink)}
+.stp{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.stp span{font-size:11.5px;padding:4px 9px;border-radius:8px;background:#1d3354;color:var(--o-mute);white-space:nowrap}
+.stp .done{background:#0f3d28;color:#7fe0a8}.stp .on{background:var(--brand);color:#1a0e02;font-weight:800}
+.pv .stp span{background:#eef2f7;color:var(--f-mute);font-size:10.5px;padding:3px 7px}.pv .stp .done{background:var(--ok-soft);color:var(--ok)}.pv .stp .on{background:var(--brand);color:#1a0e02}
+.ladder2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 10px}
+.ladder2 span{background:var(--o-sur2);border:1px solid var(--o-line);border-radius:10px;padding:8px 12px;font-weight:800}
+.ladder2 i{font-style:normal;color:var(--o-mute)}
+.ex{font-size:10px;font-weight:700;color:var(--q);background:var(--q-soft);border-radius:5px;padding:0 5px;margin-left:4px;font-style:normal;vertical-align:middle}
+.browser .ex{background:#44360c;color:#ffd979}
 </style>
 
 <div class="wrap">
@@ -299,7 +328,7 @@ table.t .bar{min-width:110px}
    <span><span class="q">Q4.2</span> open question for KMM, in the shared Google Doc (storyboard note only, not app text)</span>
   </div>
   <nav class="toc" aria-label="Sections">
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#msgs">Messages and materials</a><a href="#teammsg">New: team messaging</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#msgs">Messages and materials</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
   </nav>
  </div>
 
@@ -2032,6 +2061,247 @@ table.t .bar{min-width:110px}
  <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in">Write a note… type @ to mention</span><span class="go">➤</span></div></div>
 </div></div>
 <p class="note">Team notes stay open, because they never reach the parent. Same rule as a parent asking in person (A YSP's day, step 35); undone only if the parent asks.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="takeover">
+<h2>New addition (V2): takeover, escalation and cases <span class="badge v2">V2 · after launch · decided 18 Nov</span></h2>
+<p class="sub">Goutam's decisions of 18 Nov, drawn as chosen. A parent's unanswered message climbs a ladder; urgent problems reach the RSM at once; every problem is a case with status, times and a rating. Options compared: <a href="irisepro-sales-crm-v2-options.html">V2 options page</a>.</p>
+<p class="examples"><b>Settings, not code:</b> every time and target here comes from settings (changed by engineering in v1; later GM proposes, CEO approves). Figures marked <span class="ex">example</span> are examples.</p>
+<div class="flow">
+
+<div class="step full"><h3><i>1</i>The escalation ladder, from settings</h3><p class="cap">Owner 5 min → RSM 15 → Head Office 30, plus pause, alert and rating settings. Read-only.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Settings · Escalation · Tumakuru West–North</span></div>
+<div class="bv"><div class="side"><div>Control room</div><div>Cases</div><div>Unresolved</div><div class="on">Settings</div></div>
+<div class="main">
+ <div class="split"><div class="grow oc"><h4>When a parent's message is unanswered</h4>
+  <div class="ladder2"><span>Owner YSP · 5 min</span><i>→</i><span>RSM · 15 min</span><i>→</i><span>Head Office · 30 min</span><i>→</i><span>Unresolved board</span></div>
+  <div class="tw"><table class="t"><tr><th>Setting</th><th>Value</th></tr>
+  <tr><td>"In a visit" pause</td><td><span class="op ok">On in this region</span> · max 45 min</td></tr>
+  <tr><td>Urgent (one push each)</td><td class="wrap">Payment issue · refund · complaint · asked for cash</td></tr>
+  <tr><td>Routine</td><td>15-minute ranked digest</td></tr>
+  <tr><td>CEO critical alert</td><td class="wrap">Only critical money or complaint cases, after Head Office's 30 min</td></tr>
+  <tr><td>Automated phone call</td><td><span class="op">Off</span> · can be switched on at launch</td></tr>
+  <tr><td>Rating request</td><td>Email (beta) → official WhatsApp (launch)</td></tr></table></div></div>
+ <div class="fix oc"><h4>Who can change this</h4><p class="ohint" style="margin:0 0 8px">v1: engineering only, recording who proposed and who approved.</p><p class="ohint" style="margin:0 0 10px">Later: the GM proposes, the CEO approves, in the app.</p><span class="ob ghost">Propose a change</span></div></div>
+</div></div></div></div>
+
+<div class="step"><h3><i>2</i>The owner's clock</h3><p class="cap">Ravi sees how long Shilpa has waited and when it goes to Suresh.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill hot">▲ Hot</span></div>
+ <div class="body">
+  <div class="esc wt"><b>Parent waiting 3 min</b>Goes to Suresh (RSM) at 5 min.</div>
+  <div class="tl"><div class="now"><b><span class="m-wa">✓</span> Parent wrote</b><small>Shilpa · …2418 · 6:35 PM</small><p class="wa-msg" style="background:#f3f6f9;border:1px solid var(--f-line);margin:4px 0 0">Is the counselling call still on for Saturday?</p></div><div class="done"><b>Visit 1 · Warm → Hot</b><small>16 Dec</small></div></div>
+ </div>
+ <div class="dock"><div class="btn wa">Reply on WhatsApp</div></div>
+</div></div>
+<p class="note">At 5 minutes with no reply (and no visit pause) the family escalates to Suresh; the timeline records it.</p></div>
+
+<div class="step"><h3><i>3</i>Urgent: one push, straight away</h3><p class="cap">Payment, refund, complaint or asked-for-cash: one push each, at once.</p>
+<div class="phone"><div class="notch"></div><div class="pv m-lock">
+ <div class="clk"><small>Thursday, 17 December</small><b>7:02</b></div><div style="height:120px"></div>
+ <div class="m-ntf urg"><div class="hd"><span>🟠 YASHHO Partner · Urgent</span><span>now</span></div><b>Hegde family: parent says asked for cash</b><div class="mini">Case opened · tap to open</div></div>
+</div></div>
+<p class="note">Urgent cases are never held for the digest.</p></div>
+
+<div class="step"><h3><i>4</i>Routine: one digest every 15 minutes</h3><p class="cap">Routine waits arrive as one push with the count and the oldest wait.</p>
+<div class="phone"><div class="notch"></div><div class="pv m-lock">
+ <div class="clk"><small>Thursday, 17 December</small><b>7:15</b></div><div style="height:120px"></div>
+ <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>now</span></div><b>6 families waiting · oldest 22 min</b><div class="mini">Open the list</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>5</i>The ranked waiting list</h3><p class="cap">Oldest wait first, with the YSP and area. Tap a family to act on it.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Waiting for a reply</b><span class="pill bad">6</span></div>
+ <div class="body"><div class="fc" style="padding:2px 10px">
+  <div class="r"><div><div class="n">Kumar family</div><div class="s">Ravi · Sira</div></div><span class="cd miss">22 min</span></div>
+  <div class="r"><div><div class="n">Shetty family</div><div class="s">Deepa · Tiptur</div></div><span class="cd miss">19 min</span></div>
+  <div class="r"><div><div class="n">Naik family</div><div class="s">Imran · Pavagada</div></div><span class="cd miss">17 min</span></div>
+  <div class="r"><div><div class="n">Rao family</div><div class="s">Ravi · Sira</div></div><span class="cd due">16 min</span></div>
+  <div class="r"><div><div class="n">Gowda family</div><div class="s">Deepa · Tiptur</div></div><span class="cd due">15 min</span></div>
+  <div class="r"><div><div class="n">Manjappa family</div><div class="s">Imran · Pavagada</div></div><span class="cd due">15 min</span></div>
+ </div></div>
+</div></div></div>
+
+<div class="step"><h3><i>6</i>Suresh takes over</h3><p class="cap">Ravi hasn't replied in 17 minutes. Suresh can nudge him, or take over and answer himself.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Suresh · RSM</span></div>
+ <div class="body">
+  <div class="esc"><b>Parent waiting 17 min</b>Ravi has not replied. Now with you.</div>
+  <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · …2418 · 6:35 PM</small></div>
+ </div>
+ <div class="dock"><div class="btn">Take over</div><div class="btn ghost">Nudge Ravi</div></div>
+</div></div>
+<p class="note">Head Office can take over the same way after its 30 minutes start.</p></div>
+
+<div class="step"><h3><i>7</i>Ravi: taken over, read-only</h3><p class="cap">Ravi can read but not reply to the parent. Team notes stay open.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Ravi · YSP</span></div>
+ <div class="body">
+  <div class="tko"><b>Taken over by Suresh (RSM)</b>6:52 PM · you can still read everything.</div>
+  <div class="wa-msg" style="background:#f3f6f9">Is the counselling call still on for Saturday?<small>Shilpa · 6:35 PM</small></div>
+  <div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Suresh (RSM) · 6:53 PM</small></div>
+  <div class="lockin">🔒 Reply to parent locked while Suresh has this family.</div>
+ </div>
+ <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in">Team note… type @ to mention</span><span class="go">➤</span></div></div>
+</div></div>
+<p class="note">There is no "ask to hand back" button: only Suresh decides when to return the family.</p></div>
+
+<div class="step"><h3><i>8</i>Hand back to Ravi, with a note</h3><p class="cap">When he is done, Suresh hands back. A note for Ravi is required; it lands on the timeline.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Suresh · RSM</span></div>
+ <div class="body"><div class="wa-msg">Yes, Saturday 5 PM. Ravi will call you.<small>Suresh · 6:53 PM</small></div></div>
+ <div class="dim"></div>
+ <div class="sheet"><div class="grab"></div>
+  <p style="margin:0 0 6px;font-weight:800;font-size:15px">Hand back to Ravi</p>
+  <div class="fld focus"><label>Note for Ravi (required)</label><span style="font-weight:500;font-size:12.5px">Confirmed Saturday 5 PM. Please call her then.</span></div>
+  <div class="btn">Hand back to Ravi</div><div class="btn ghost">Keep it for now</div>
+ </div>
+</div></div>
+<p class="note">Ravi's reply box unlocks at once and he gets a push.</p></div>
+
+<div class="step"><h3><i>9</i>"In a visit": the clock pauses</h3><p class="cap">Sitting with a family, Ravi switches on "In a visit". His clocks pause, up to 45 minutes.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Namaskara, Ravi</b><span class="sync">Today</span></div>
+ <div class="body">
+  <div class="tg"><div><b style="font-size:13.5px">In a visit</b><div class="mini">Clock paused · 38 min left (max 45)</div></div><span class="sw"></span></div>
+  <div class="fc" style="padding:2px 10px"><div class="r"><div><div class="n">Kumar family</div><div class="s">Parent waiting 9 min · paused</div></div><span class="pill wait">Paused</span></div><div class="r"><div><div class="n">Patil family</div><div class="s">Call due 7 PM</div></div></div></div>
+  <p class="mini">At 45 minutes the pause ends by itself. The switch shows only where the region has it on.</p>
+ </div>
+ <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div></div>
+
+<div class="step"><h3><i>10</i>Every pause is on the timeline</h3><p class="cap">The family timeline shows when the clock was paused, for how long, and why.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span></div>
+ <div class="body"><div class="tl">
+  <div class="now"><b>Ravi replied</b><small>6:47 PM · 12 min after the message</small></div>
+  <div class="done"><b>Clock paused: in a visit</b><small>6:38–6:46 PM · 8 min · Manjappa family visit</small></div>
+  <div class="done"><b><span class="m-wa">✓</span> Parent wrote</b><small>6:35 PM</small></div>
+ </div></div>
+</div></div>
+<p class="note">Pauses also show in the RSM's team view, so overuse is visible.</p></div>
+
+<div class="step full"><h3><i>11</i>The GM's Unresolved board and daily report</h3><p class="cap">Still unanswered after Head Office's 30 min: on the GM's board and in the daily report.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Unresolved · Fri 18 Dec</span></div>
+<div class="bv"><div class="side"><div>Control room</div><div>Cases</div><div class="on">Unresolved<em class="m-cnt">3</em></div><div>Settings</div></div>
+<div class="main">
+ <h4>Unresolved overnight · 3 <span class="op wait" style="margin-left:6px">Daily report sent 8:00 AM</span></h4>
+ <div class="tw"><table class="t"><tr><th>Family</th><th>Type</th><th>Waiting since</th><th>Missed by</th><th>CEO alerted</th><th></th></tr>
+ <tr><td>Kumar family</td><td>Parent message</td><td>Thu 6:35 PM</td><td>Ravi · Suresh · Head Office</td><td>No (routine)</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
+ <tr><td>Patil family</td><td>Refund complaint</td><td>Thu 8:10 PM</td><td>Deepa · Suresh · Head Office</td><td class="dn">Yes · 8:55 PM</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr>
+ <tr><td>Rao family</td><td>Parent message</td><td>Thu 9:42 PM</td><td>Ravi · Suresh · Head Office</td><td>No (routine)</td><td><span class="ob ghost" style="min-height:32px">Assign</span></td></tr></table></div>
+</div></div></div></div>
+
+<div class="step"><h3><i>12</i>CEO alert: critical money or complaint only</h3><p class="cap">After Head Office's 30 min, only critical money or complaint cases alert the CEO.</p>
+<div class="phone"><div class="notch"></div><div class="pv m-lock">
+ <div class="clk"><small>Thursday, 17 December</small><b>8:55</b></div><div style="height:90px"></div>
+ <div class="m-ntf crit"><div class="hd"><span>⚠ CRITICAL · YASHHO CRM</span><span>now</span></div><b>Patil family: refund complaint</b><div style="font-size:11.5px">Unanswered after Head Office's 30 min. Tap to open.</div></div>
+ <div class="m-ntf"><div class="hd"><span>✉ Mail</span><span>now</span></div><b>YASHHO CRM: critical, Patil family</b></div>
+</div></div>
+<p class="note">Push and email now. An automated phone call is a setting that can be switched on at launch.</p></div>
+
+<div class="step full"><h3><i>13</i>The Cases queue</h3><p class="cap">Parent issues, refunds, payments, YSP support, each with a countdown. No integrity rows.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Cases · Tumakuru West–North · Suresh M</span></div>
+<div class="bv"><div class="side"><div>Region</div><div>Team</div><div class="on">Cases<em class="m-cnt">5</em></div><div>Needs my reply</div><div>Money</div></div>
+<div class="main"><div class="steps"><span class="op">All · 5</span><span class="op">Parent issue</span><span class="op">Refund</span><span class="op">Payment</span><span class="op">YSP support</span></div>
+ <div class="tw"><table class="t"><tr><th>Case</th><th>Type</th><th>Owner</th><th>Status</th><th>Next deadline</th></tr>
+ <tr><td>Kumar family</td><td>Parent issue</td><td>Ravi</td><td><span class="op">Waiting on parent</span></td><td><span class="cd ok">Resolve by Sat 5 PM</span></td></tr>
+ <tr><td>Patil family</td><td>Refund · urgent</td><td>Finance</td><td><span class="op">In progress</span></td><td><span class="cd due">Reply due in 42 min</span></td></tr>
+ <tr><td>Naik family</td><td>Payment</td><td>Finance</td><td><span class="op">Open</span></td><td><span class="cd miss">Reply missed by 12 min</span></td></tr>
+ <tr><td>Rao family</td><td>Parent issue</td><td>Ravi</td><td><span class="op">Open</span></td><td><span class="cd due">Reply due in 3 h</span></td></tr>
+ <tr><td>Deepa, Tiptur</td><td>YSP support</td><td>Suresh</td><td><span class="op">In progress</span></td><td><span class="cd ok">Resolve by Mon</span></td></tr></table></div>
+ <p class="ohint" style="margin:8px 0 0">Deadlines come from settings <span class="ex">example values</span>; red when missed.</p>
+</div></div></div></div>
+
+<div class="step"><h3><i>14</i>Ravi's cases on the phone</h3><p class="cap">Only his own cases, each with its next deadline.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>My cases</b><span class="pill">2 open</span></div>
+ <div class="body"><div class="fc" style="padding:2px 10px">
+  <div class="r" style="display:block"><div class="n">Rao family · parent issue</div><span class="cd due">Reply due in 3 h</span></div>
+  <div class="r" style="display:block"><div class="n">Kumar family · parent issue</div><span class="cd ok">Resolve by Sat 5 PM</span> <span class="pill wait">Waiting on parent</span></div>
+ </div><p class="mini">Deadlines are examples; real values come from settings.</p></div>
+ <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span class="on"><i>☰</i>Cases</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div></div>
+
+<div class="step mid"><h3><i>15</i>The locked Integrity menu (Head Office)</h3><p class="cap">Same case store, separate menu. Only Head Office integrity roles see it; YSPs and RSMs never do.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Integrity · integrity desk</span></div>
+<div class="bv"><div class="side"><div>Cases</div><div class="on">Integrity 🔒</div><div>Checks</div></div>
+<div class="main"><h4>Integrity cases · 2</h4>
+ <div class="tw"><table class="t"><tr><th>Case</th><th>Opened</th><th>Status</th></tr>
+ <tr><td>Ravi, Sira</td><td>Thu · parent report</td><td><span class="op bad">Open</span></td></tr>
+ <tr><td>Imran, Pavagada</td><td>Wed · phone blocked</td><td><span class="op">In progress</span></td></tr></table></div>
+ <p class="ohint" style="margin:8px 0 0">For anyone else the menu is absent and a direct link returns "not found".</p>
+</div></div></div></div>
+
+<div class="step full"><h3><i>16</i>Case detail on the laptop</h3><p class="cap">Status steps, owner, first response, time to resolve, next deadline and the case timeline.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Cases · Kumar family · parent issue</span></div>
+<div class="bv"><div class="side"><div>Region</div><div>Team</div><div class="on">Cases</div><div>Money</div></div>
+<div class="main">
+ <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="on">Waiting on parent</span><span>Resolved</span><span>Closed</span></div>
+ <div class="ok4"><div class="okp"><small>Owner</small><b style="font-size:16px">Ravi</b><em>YSP, Sira</em></div><div class="okp"><small>First response</small><b>12 min</b><em>owner target 5 min · escalated to Suresh</em></div><div class="okp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far · target 2 days <span class="ex">example</span></em></div><div class="okp"><small>Next deadline</small><b style="font-size:16px">Sat 5 PM</b><em>resolve by <span class="ex">example</span></em></div></div>
+ <div class="split"><div class="grow oc"><h4>Case timeline</h4>
+  <div class="tw"><table class="t"><tr><th>When</th><th>What</th><th>Who</th></tr>
+  <tr><td>Thu 6:35 PM</td><td class="wrap">Parent wrote on WhatsApp · case opened</td><td>Shilpa · …2418</td></tr>
+  <tr><td>Thu 6:40 PM</td><td class="wrap">Not answered in 5 min: escalated to RSM</td><td>System</td></tr>
+  <tr><td>Thu 6:47 PM</td><td class="wrap">First response sent · status In progress</td><td>Ravi</td></tr>
+  <tr><td>Fri 10:30 AM</td><td class="wrap">Asked the parent to confirm a new time · status Waiting on parent</td><td>Ravi</td></tr></table></div></div>
+ <div class="fix oc"><h4>Actions</h4><div style="display:flex;flex-direction:column;gap:8px"><span class="ob">Mark resolved</span><span class="ob ghost">Change owner</span><span class="ob ghost">Add a note</span></div><p class="ohint" style="margin:10px 0 0">Resolved sends the rating request. Closed after the parent rates, or after a set number of days.</p></div></div>
+</div></div></div></div>
+
+<div class="step"><h3><i>17</i>Case detail on the phone</h3><p class="cap">The same case for Ravi: where it stands, the times, and what happened.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Case · Kumar family</b></span></div>
+ <div class="body">
+  <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="on">Waiting on parent</span><span>Resolved</span><span>Closed</span></div>
+  <div class="k2"><div class="kp"><small>First response</small><b>12 min</b><em>target 5 min</em></div><div class="kp"><small>Time to resolve</small><b>1 d 4 h</b><em>so far</em></div></div>
+  <div class="fc sub"><div class="r"><span class="s">Resolve by</span><span class="cd ok">Sat 5 PM</span></div><div class="r"><span class="s">Owner</span><span class="n">Ravi, Sira</span></div></div>
+  <div class="tl"><div class="now"><b>Waiting on parent</b><small>Fri 10:30 AM · Ravi</small></div><div class="done"><b>First response</b><small>Thu 6:47 PM · Ravi</small></div><div class="fail"><b>Escalated to RSM</b><small>Thu 6:40 PM</small></div></div>
+ </div>
+ <div class="dock"><div class="btn">Mark resolved</div></div>
+</div></div></div>
+
+<div class="step mid"><h3><i>18</i>Rating request by email (beta)</h3><p class="cap">In the beta, a resolved case sends one email with five buttons.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
+<div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span></div><div class="eb">
+ <p style="margin:0 0 4px;font-weight:800;font-size:16px">How did we do?</p>
+ <p class="mini" style="margin:0 0 6px">Namaskara Shilpa. Your request was resolved today. One tap to rate it.</p>
+ <div class="qr5 em"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+ <p class="mini" style="margin:0">1 = very poor · 5 = excellent · <u>Not fixed? Tell us</u></p>
+</div></div></div></div></div></div>
+
+<div class="step"><h3><i>19</i>Rating request on WhatsApp (launch)</h3><p class="cap">From launch, YASHHO's official WhatsApp asks instead, with 1–5 quick replies.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+ <div class="body">
+  <div class="wa-msg">Namaskara Shilpa. Your request was resolved today. How did we do? 1 = very poor, 5 = excellent.<small>4:10 PM</small></div>
+  <div class="qr5"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+  <div class="btn" style="margin:0;background:#fff;color:#1faa59;border:1.5px solid #a7e8c3">Not fixed</div>
+ </div>
+</div></div>
+<p class="note">The channel is a setting: email in beta, WhatsApp from launch.</p></div>
+
+<div class="step"><h3><i>20</i>A low rating alerts Suresh</h3><p class="cap">The Patil family rated 2/5. The case stays resolved; Suresh is asked to call the parent.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Patil family</b></span><span class="sync">Suresh · RSM</span></div>
+ <div class="body">
+  <div class="esc"><b>Parent rated 2/5</b>Refund case · resolved Wed by Finance. Please call the parent.</div>
+  <div class="stp"><span class="done">Open</span><span class="done">In progress</span><span class="done">Waiting on parent</span><span class="on">Resolved</span><span>Closed</span></div>
+  <p class="mini">Your call is noted on the family timeline.</p>
+ </div>
+ <div class="dock"><div class="btn">📞 Call parent · …7731</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>21</i>"Not fixed": the case reopens</h3><p class="cap">Only a parent's "not fixed" sends the case back to In progress.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Case · Patil family</b></span></div>
+ <div class="body">
+  <div class="esc"><b>Reopened · parent said "not fixed"</b>Fri 9:20 AM · back with Finance</div>
+  <div class="stp"><span class="done">Open</span><span class="on">In progress</span><span>Waiting on parent</span><span>Resolved</span><span>Closed</span></div>
+  <div class="tl"><div class="fail"><b>Parent said: not fixed</b><small>Fri 9:20 AM · YASHHO WhatsApp</small></div><div class="done"><b>Rated 2/5 · Suresh called</b><small>Thu 5:30 PM</small></div><div class="done"><b>Resolved</b><small>Wed · Finance</small></div></div>
+ </div>
+</div></div></div>
 
 </div>
 </section>
