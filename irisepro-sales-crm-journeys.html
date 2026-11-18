@@ -211,6 +211,74 @@ table.t .bar{min-width:110px}
   .hero .two{grid-template-columns:1fr}
 }
 .examples{border-left:4px solid var(--brand);background:#fff4e8;color:#3a2a14;padding:10px 12px;border-radius:8px;font-size:14px;margin:12px 0}
+/* Team messaging and parent replies: new addition, 18 Nov 2026. m- prefix keeps these apart from older atoms. */
+.badge.newadd{background:#0e2440;color:#fff;outline:2px dashed var(--brand);outline-offset:1px}
+.badge.beta{background:#dbe7ff;color:#1d3f8a}
+.step.full{width:1280px;max-width:100%}
+.m-th{border-top:1px solid var(--f-line);margin-top:4px;padding-top:6px}
+.m-th h5{margin:0 0 6px;font-size:12.5px;display:flex;justify-content:space-between;align-items:center}
+.m-cm{display:flex;gap:7px;margin-bottom:7px}
+.m-av{width:24px;height:24px;border-radius:50%;flex:0 0 24px;display:grid;place-items:center;font-size:9.5px;font-weight:800;background:#e3e9f0;color:#33475f}
+.m-av.me{background:var(--brand-soft);color:var(--brand-ink)}
+.m-bd{min-width:0;flex:1;background:var(--f-sub);border-radius:4px 12px 12px 12px;padding:5px 9px;font-size:12px;line-height:1.35}
+.m-bd .who{display:block;font-weight:800;font-size:11px}
+.m-bd .who small{font-weight:500;color:var(--f-mute);font-size:10.5px}
+.m-at{color:#1d4ed8;font-weight:700}
+.m-ed{font-size:10.5px;color:var(--f-mute);font-style:italic}
+.m-cm.rm .m-bd{background:transparent;border:1px dashed #b5c1d0;color:var(--f-mute);font-style:italic}
+.m-cm.hl .m-bd{background:#fff4d6;box-shadow:0 0 0 2px #d9a400}
+.m-cm.sent .m-bd{background:var(--brand-soft)}
+.m-acts{display:flex;gap:10px;font-size:11px;font-weight:700;color:var(--brand-ink);margin-top:3px}
+.m-rule{display:flex;gap:6px;align-items:flex-start;background:var(--warn-soft);border:1px solid #d9a400;color:#5a3d00;border-radius:10px;padding:5px 8px;font-size:11px;font-weight:700;margin-bottom:6px;line-height:1.3}
+.m-comp{display:flex;gap:6px;align-items:center}
+.m-comp .in{flex:1;border:1.5px solid var(--f-line);border-radius:12px;padding:9px 10px;font-size:12px;color:var(--f-mute);background:#fff;min-width:0;line-height:1.3}
+.m-comp .in.focus{border-color:var(--brand);color:var(--f-ink)}
+.m-comp .in.off{background:#eef1f5}
+.m-comp .go{width:40px;height:40px;border-radius:12px;background:var(--brand);display:grid;place-items:center;font-weight:900;color:#1a0e02;flex:0 0 40px}
+.m-comp .go.off{background:#d5dde7;color:#7a8aa0}
+.m-dock{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--f-line);padding:8px 10px 12px;z-index:2}
+.m-pick{position:absolute;left:10px;right:10px;bottom:104px;background:#fff;border:1px solid var(--f-line);border-radius:12px;box-shadow:0 10px 24px rgba(11,27,51,.2);padding:4px 10px 8px;z-index:4}
+.tabs.six span{min-width:40px;font-size:10px;position:relative}
+.m-cnt{position:absolute;top:-3px;right:4px;background:var(--bad);color:#fff;border-radius:999px;font-size:10px;font-weight:800;padding:0 5px;line-height:16px;font-style:normal}
+.side .m-cnt,.m-cnt.inl{position:static;display:inline-block;margin-left:6px}
+.m-dot{width:8px;height:8px;border-radius:50%;background:var(--brand);display:inline-block;margin-right:6px;flex:0 0 8px}
+.m-wa{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#1faa59;color:#fff;font-size:10px;font-weight:900;font-style:normal;vertical-align:middle}
+.m-win{display:flex;justify-content:space-between;align-items:center;gap:6px;border-radius:10px;padding:6px 9px;font-size:11.5px;font-weight:800;margin-bottom:7px}
+.m-win.open{background:var(--ok-soft);color:var(--ok);border:1px solid #9fd6b5}
+.m-win.shut{background:var(--bad-soft);color:var(--bad);border:1px solid #f0b4ad}
+.m-out{background:#fff;border:1px solid #dfe6ef;border-radius:12px 12px 3px 12px;padding:9px 11px;font-size:12.5px;margin:6px 0 6px 34px}
+.m-out small,.wa-msg small{display:block;color:var(--f-mute);font-size:10.5px;margin-top:2px}
+.m-lock{background:linear-gradient(165deg,#1d3354 0%,#0a1626 58%,#3b2a14 100%);color:#fff}
+.m-lock .clk{text-align:center;padding-top:58px}
+.m-lock .clk b{display:block;font-size:54px;font-weight:600;line-height:1}
+.m-lock .clk small{font-size:13px;opacity:.85}
+.m-ntf{background:rgba(255,255,255,.93);color:#0b1b33;border-radius:16px;padding:10px 12px;margin:0 10px 8px;font-size:12px}
+.m-ntf .hd{display:flex;justify-content:space-between;font-size:10.5px;color:var(--f-mute);margin-bottom:3px}
+.m-dnc{background:var(--f-ink);color:#fff;border-radius:12px;padding:9px 10px;margin-bottom:8px;font-size:11.5px;line-height:1.35}
+.m-dnc b{display:block;font-size:13px;margin-bottom:2px}
+.m-tpl{border:1.5px solid var(--f-line);border-radius:10px;padding:7px 9px;margin-bottom:6px;font-size:12px;font-weight:700;display:flex;gap:8px;align-items:center}
+.m-tpl.on{border-color:var(--brand);background:var(--brand-soft)}
+.m-tpl i{width:16px;height:16px;border-radius:50%;border:2px solid var(--f-mute);flex:0 0 16px}
+.m-tpl.on i{border:5px solid var(--brand-ink)}
+.m-toast{position:absolute;left:12px;right:12px;bottom:118px;background:var(--f-ink);color:#fff;border-radius:10px;padding:8px 10px;font-size:11.5px;z-index:3}
+.browser .m-th{border-color:var(--o-line)}
+.browser .m-bd{background:var(--o-sur2);color:var(--o-ink)}
+.browser .m-bd .who small,.browser .m-ed{color:var(--o-mute)}
+.browser .m-av{background:#22406a;color:var(--o-ink)}
+.browser .m-at{color:#8cc4ff}
+.browser .m-rule{background:#44360c;color:#ffd979;border-color:#a8841f}
+.browser .m-comp .in{background:var(--o-bg);border-color:var(--o-line);color:var(--o-mute)}
+.browser .m-cm.hl .m-bd{background:#3a3010;box-shadow:0 0 0 2px #a8841f}
+.m-mail{background:#f3f5f8;color:#0b1b33;display:flex;font-size:13px}
+.m-mail .ml{width:230px;flex:0 0 auto;border-right:1px solid #dfe6ef;background:#fff}
+.m-mail .ml div{padding:9px 12px;border-bottom:1px solid #eef1f5;font-size:12px}
+.m-mail .ml .on{background:#fff4e8;box-shadow:inset 3px 0 0 var(--brand)}
+.m-mail .mv{flex:1;padding:16px;min-width:0}
+.m-em{max-width:520px;margin:0 auto;background:#fff;border:1px solid #dfe6ef;border-radius:12px;overflow:hidden}
+.m-em .eh{background:var(--o-bg);color:#fff;padding:12px 16px;font-weight:900;letter-spacing:.04em}
+.m-em .eh span{color:var(--brand)}
+.m-em .eb{padding:14px 16px}
+@media (max-width:720px){.m-mail .ml{display:none}}
 </style>
 
 <div class="wrap">
@@ -231,7 +299,7 @@ table.t .bar{min-width:110px}
    <span><span class="q">Q4.2</span> open question for KMM, in the shared Google Doc (storyboard note only, not app text)</span>
   </div>
   <nav class="toc" aria-label="Sections">
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#msgs">Messages and materials</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#msgs">Messages and materials</a><a href="#teammsg">New: team messaging</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
   </nav>
  </div>
 
@@ -1674,6 +1742,297 @@ table.t .bar{min-width:110px}
 </div></div>
 <p class="note">A "Someone else" or "Nobody" answer opens a check (Controls, step 14). Parents asked at most once a week.</p></div>
 
+</section>
+
+<section class="j" id="teammsg">
+<h2>New addition: team messaging and parent replies <span class="badge newadd">New addition · 18 Nov 2026</span><span class="badge beta">Beta: team notes</span><span class="badge now">Launch: parent WhatsApp</span></h2>
+<p class="sub">Goutam's decision of 18 Nov (option B): no chat app. The team writes notes inside the CRM, on the family, case or review they are about. Parents are messaged from YASHHO's official WhatsApp from launch; in the pilot and beta, by email only.</p>
+<p class="examples"><b>v1 rules:</b> text only, no attachments, photos or voice. Numbers are masked (…2418). Only people who can see a family can read its notes or be @mentioned. A removed note shows "Comment removed"; the audit log keeps it.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>Notes under the family timeline <span class="badge beta">Beta</span></h3><p class="cap">Notes sit under the family timeline, oldest first. One thread for everyone.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill hot">▲ Hot</span></div>
+ <div class="body">
+  <div class="tl"><div class="now"><b>Payment link sent</b><small>17 Dec · Shilpa · …2418</small></div></div>
+  <div class="m-th"><h5><span>Notes · 4</span><span class="mini">oldest first</span></h5>
+   <div class="m-cm"><span class="m-av">SM</span><div class="m-bd"><span class="who">Suresh <small>RSM · 16 Dec 10:05</small></span><span class="m-at">@Ravi</span> counselling is booked for Saturday 5 PM. Please confirm with the mother.</div></div>
+   <div class="m-cm"><span class="m-av me">RS</span><div class="m-bd"><span class="who">Ravi <small>you · 10:20</small> <span class="m-ed">edited</span></span>Confirmed. She prefers calls after 6 PM.</div></div>
+   <div class="m-cm rm"><span class="m-av me">RS</span><div class="m-bd">Comment removed · Ravi · 10:31</div></div>
+   <div class="m-cm"><span class="m-av">AN</span><div class="m-bd"><span class="who">Asha N <small>Head Office support · 17 Dec</small></span><span class="m-at">@Ravi</span> the mother emailed for the payment link again. Can you call her?</div></div>
+  </div>
+ </div>
+ <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in">Write a note… type @ to mention</span><span class="go">➤</span></div></div>
+</div></div>
+<p class="note">All four states in one thread: notes oldest→newest, "edited", and "Comment removed" (the audit log keeps the text). Text only in v1.</p></div>
+
+<div class="step"><h3><i>2</i>@mention: only people who can see this family <span class="badge beta">Beta</span></h3><p class="cap">Typing "@" lists only people who can already see this family.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Notes</span></div>
+ <div class="body">
+  <div class="m-cm"><span class="m-av">AN</span><div class="m-bd"><span class="who">Asha N <small>Head Office support · 17 Dec</small></span><span class="m-at">@Ravi</span> the mother emailed for the payment link again. Can you call her?</div></div>
+ </div>
+ <div class="dim" style="background:rgba(11,27,51,.25)"></div>
+ <div class="m-pick">
+  <p class="mini" style="margin:4px 0 2px;font-weight:700">Can see the Kumar family</p>
+  <div class="r"><span style="display:flex;align-items:center;gap:7px"><span class="m-av">SM</span><span><span class="n">Suresh M</span><br><span class="s">Your RSM</span></span></span></div>
+  <div class="r"><span style="display:flex;align-items:center;gap:7px"><span class="m-av">AN</span><span><span class="n">Asha N</span><br><span class="s">Head Office support</span></span></span></div>
+  <div class="r"><span style="display:flex;align-items:center;gap:7px"><span class="m-av">GM</span><span><span class="n">The GM</span><br><span class="s">Head Office</span></span></span></div>
+  <p class="mini" style="margin:6px 0 0">Deepa (Tiptur) can't see this family, so she isn't listed.</p>
+ </div>
+ <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in focus">@S<b style="color:var(--brand)">|</b></span><span class="go off">➤</span></div></div>
+</div></div>
+<p class="note">The list is the family's access list, worked out by the server; a mention can never widen who sees a family.</p></div>
+
+<div class="step"><h3><i>3</i>Sent <span class="badge beta">Beta</span></h3><p class="cap">The note lands at the end. Edit stays open for 5 minutes.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Notes · 5</span></div>
+ <div class="body">
+  <div class="m-cm rm"><span class="m-av me">RS</span><div class="m-bd">Comment removed · Ravi · 16 Dec 10:31</div></div>
+  <div class="m-cm"><span class="m-av">AN</span><div class="m-bd"><span class="who">Asha N <small>Head Office support · 17 Dec 9:12</small></span><span class="m-at">@Ravi</span> the mother emailed for the payment link again. Can you call her?</div></div>
+  <div class="m-cm sent"><span class="m-av me">RS</span><div class="m-bd"><span class="who">Ravi <small>you · just now · sent ✓</small></span><span class="m-at">@Asha</span> called her at 6:10 PM. She will pay tonight from the same link.<div class="m-acts"><span>Edit · 4:58 left</span><span style="color:var(--bad)">Remove</span></div></div></div>
+ </div>
+ <div class="m-toast">Asha will see this in Needs my reply.</div>
+ <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in">Write a note… type @ to mention</span><span class="go">➤</span></div></div>
+</div></div>
+<p class="note">Offline, the note waits in the outbox like every other update and sends when the signal is back.</p></div>
+
+<div class="step"><h3><i>4</i>Edit within 5 minutes <span class="badge beta">Beta</span></h3><p class="cap">Inside 5 minutes Ravi can fix a typo. The note then shows "edited".</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Notes · 5</span></div>
+ <div class="body">
+  <div class="m-cm sent"><span class="m-av me">RS</span><div class="m-bd"><span class="who">Ravi <small>you · 2 min ago</small></span><span class="m-at">@Asha</span> called her at 6:10 PM. She will pay tonight from the same link.</div></div>
+ </div>
+ <div class="dim"></div>
+ <div class="sheet"><div class="grab"></div>
+  <p style="margin:0 0 4px;font-weight:800;font-size:15px">Edit note</p>
+  <p class="mini" style="margin:0 0 8px"><b style="color:var(--warnc)">2:51 left</b> to edit. After that, it can only be removed.</p>
+  <div class="fld focus"><label>Note</label><span style="font-weight:500;font-size:12.5px"><span class="m-at">@Asha</span> called her at 6:10 PM. She will pay tonight from the same link, before 9 PM.</span></div>
+  <div class="row2"><div class="btn ghost">Cancel</div><div class="btn">Save</div></div>
+ </div>
+</div></div></div>
+
+<div class="step"><h3><i>5</i>After 5 minutes: only Remove <span class="badge beta">Beta</span></h3><p class="cap">Later, Edit is gone. Remove leaves "Comment removed" for everyone.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Notes · 5</span></div>
+ <div class="body">
+  <div class="m-cm"><span class="m-av me">RS</span><div class="m-bd"><span class="who">Ravi <small>you · 25 min ago</small> <span class="m-ed">edited</span></span><span class="m-at">@Asha</span> called her at 6:10 PM. She will pay tonight from the same link, before 9 PM.</div></div>
+ </div>
+ <div class="dim"></div>
+ <div class="sheet"><div class="grab"></div>
+  <p style="margin:0 0 8px;font-weight:800;font-size:15px">Your note · 6:12 PM</p>
+  <div class="fc sub" style="opacity:.6"><div class="r"><span class="n">✎ Edit</span><span class="s">closed after 5 minutes</span></div></div>
+  <div class="btn" style="background:#fff;color:var(--bad);border:1.5px solid var(--bad)">Remove note</div>
+  <p class="mini" style="margin:8px 0 0">Everyone will see "Comment removed". The audit log keeps the text for Head Office.</p>
+  <div class="btn ghost">Cancel</div>
+ </div>
+</div></div>
+<p class="note">Only the writer can remove their own note. The thread keeps the place, so replies still make sense.</p></div>
+
+<div class="step"><h3><i>6</i>The rule on every composer <span class="badge beta">Beta</span></h3><p class="cap">A first-time card explains the rule; then a banner stays on every composer.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Notes</span></div>
+ <div class="body">
+  <div class="fc warn"><h4>Keep family details inside YASHHO</h4>
+   <p style="margin:0 0 6px;font-weight:800;font-size:13px">No parent or child details in WhatsApp — write it here.</p>
+   <p class="mini" style="margin:0 0 4px">Notes are seen only by people who look after this family. Every note is kept in the audit log.</p>
+   <p class="mini" style="margin:0">WhatsApp groups are not YASHHO's, and anything posted there leaves our hands.</p>
+   <div class="btn" style="margin-top:10px">Got it</div></div>
+  <p class="mini" style="margin:8px 2px">Notes · 0 · be the first to write one.</p>
+ </div>
+ <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in">Write a note… type @ to mention</span><span class="go off">➤</span></div></div>
+</div></div>
+<p class="note">The same banner is on the laptop composer (next screen) and on every case, approval and review.</p></div>
+
+<div class="step wide"><h3><i>7</i>The same notes on a review page <span class="badge beta">Beta</span></h3><p class="cap">Same Notes thread on every case, approval and review. Here: the Naik family review.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Reviews · Naik family: who keeps this family?</span></div>
+<div class="bv"><div class="main">
+ <div class="split"><div class="grow oc"><h4>Ownership review</h4>
+  <div class="r" style="border-color:var(--o-line)"><span class="ohint">Family lives in</span><b style="font-size:12.5px">Pavagada (Imran's area)</b></div>
+  <div class="r" style="border-color:var(--o-line)"><span class="ohint">Found by</span><b style="font-size:12.5px">Ravi, through a friend</b></div>
+  <div class="r" style="border-color:var(--o-line)"><span class="ohint">Ravi's calls on record</span><b style="font-size:12.5px">3</b></div>
+  <div class="r" style="border-color:var(--o-line)"><span class="ohint">Asked by</span><b style="font-size:12.5px">Ravi · 17 Dec</b></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><span class="ob">Imran keeps them</span><span class="ob ghost">Move to Ravi</span></div>
+  <p class="ohint" style="margin:8px 0 0">Reason required. The decision and these notes are logged together.</p></div>
+ <div class="grow oc"><div class="m-th" style="border:0;margin:0;padding:0"><h5><span>Notes · 3</span><span class="ohint">oldest first</span></h5>
+  <div class="m-cm"><span class="m-av">RS</span><div class="m-bd"><span class="who">Ravi <small>YSP, Sira · 17 Dec 4:02 PM</small></span>The father asked me to follow up after we met at the Sira market.</div></div>
+  <div class="m-cm"><span class="m-av">IM</span><div class="m-bd"><span class="who">Imran <small>YSP, Pavagada · 17 Dec 5:30 PM</small></span><span class="m-at">@GM</span> they live two streets inside Pavagada. Happy for Ravi's calls to stay on record.</div></div>
+  <div class="m-cm"><span class="m-av">GM</span><div class="m-bd"><span class="who">The GM <small>18 Dec 9:15 AM</small></span>Thanks both. Deciding today.</div></div>
+  <div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div>
+  <div class="m-comp"><span class="in">Write a note… type @ to mention</span><span class="go">➤</span></div>
+ </div></div></div>
+</div></div></div>
+<p class="note">Same thread, same rules on a check (Controls, step 15) and on a new-phone approval (RSM, step 16). Only people who can see that case can read or be mentioned.</p></div>
+
+<div class="step"><h3><i>8</i>Needs my reply <span class="badge beta">Beta</span></h3><p class="cap">Every mention and reply waiting for Ravi, in one list. The bottom bar shows the count.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Needs my reply</b><span class="pill">3 waiting</span></div>
+ <div class="body">
+  <div class="preset"><span class="on">Waiting · 3</span><span>Done</span></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r" style="display:block"><div class="n" style="font-size:12.5px"><span class="m-dot"></span>Asha mentioned you</div><div class="s">Kumar family · 9:12 AM</div><div class="m-acts"><span>Open</span><span>✓ Mark done</span></div></div>
+   <div class="r" style="display:block"><div class="n" style="font-size:12.5px"><span class="m-dot"></span>Suresh replied to you</div><div class="s">Patil family · yesterday</div><div class="m-acts"><span>Open</span><span>✓ Mark done</span></div></div>
+   <div class="r" style="display:block"><div class="n" style="font-size:12.5px"><span class="m-dot"></span>The GM mentioned you</div><div class="s">Naik family review · yesterday</div><div class="m-acts"><span>Open</span><span>✓ Mark done</span></div></div>
+  </div>
+  <p class="mini">Tap an item to open it at the note. Different from Head Office messages, which are announcements to everyone.</p>
+ </div>
+ <div class="tabs six"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span class="on"><i>💬</i>Replies<em class="m-cnt">3</em></span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div>
+<p class="note">The list shows who and which family, never note text, so it is safe on a shared screen.</p></div>
+
+<div class="step"><h3><i>9</i>Opens at the note <span class="badge beta">Beta</span></h3><p class="cap">Tapping an item opens the family at that note, highlighted. Reply, then Mark done.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="sync">Notes · 4</span></div>
+ <div class="body">
+  <div class="m-cm"><span class="m-av me">RS</span><div class="m-bd"><span class="who">Ravi <small>you · 16 Dec 10:20</small> <span class="m-ed">edited</span></span>Confirmed. She prefers calls after 6 PM.</div></div>
+  <div class="m-cm rm"><span class="m-av me">RS</span><div class="m-bd">Comment removed · Ravi · 10:31</div></div>
+  <div class="m-cm hl"><span class="m-av">AN</span><div class="m-bd"><span class="who">Asha N <small>Head Office support · 17 Dec 9:12</small></span><span class="m-at">@Ravi</span> the mother emailed for the payment link again. Can you call her?</div></div>
+ </div>
+ <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in">Reply to Asha…</span><span class="go">➤</span></div><div class="btn ghost" style="min-height:40px">✓ Mark done</div></div>
+</div></div></div>
+
+<div class="step full"><h3><i>10</i>The same list on the laptop: RSM and GM <span class="badge beta">Beta</span></h3><p class="cap">Suresh's laptop, 1280 px: the list in the sidebar, the thread open beside it.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Needs my reply · Suresh M</span></div>
+<div class="bv"><div class="side"><div>Region</div><div>Team</div><div class="on">Needs my reply<em class="m-cnt">5</em></div><div>My ward</div><div>Areas</div><div>Money</div><div>Schools</div></div>
+<div class="main">
+ <div class="split"><div class="grow oc"><h4>Waiting · 5 <span class="ohint" style="font-weight:500">· Done</span></h4>
+  <div class="tw"><table class="t"><tr><th>From</th><th>On</th><th>What</th><th>When</th><th></th></tr>
+  <tr><td><span class="m-dot"></span>Ravi</td><td>Kumar family</td><td>Replied to you</td><td>6:14 PM</td><td><span class="ob ghost" style="min-height:32px">Mark done</span></td></tr>
+  <tr><td><span class="m-dot"></span>Imran</td><td>Naik family review</td><td>Mentioned you</td><td>5:30 PM</td><td><span class="ob ghost" style="min-height:32px">Mark done</span></td></tr>
+  <tr><td><span class="m-dot"></span>Deepa</td><td>Patil family</td><td>Mentioned you</td><td>2:05 PM</td><td><span class="ob ghost" style="min-height:32px">Mark done</span></td></tr>
+  <tr><td><span class="m-dot"></span>The GM</td><td>Check: Ravi, Sira</td><td>Mentioned you</td><td>11:40 AM</td><td><span class="ob ghost" style="min-height:32px">Mark done</span></td></tr>
+  <tr><td><span class="m-dot"></span>Asha N</td><td>New phone: Imran</td><td>Replied to you</td><td>9:02 AM</td><td><span class="ob ghost" style="min-height:32px">Mark done</span></td></tr></table></div></div>
+ <div class="fix oc" style="width:400px"><h4>Kumar family · Notes</h4>
+  <div class="m-cm"><span class="m-av">SM</span><div class="m-bd"><span class="who">You <small>16 Dec 10:05</small></span><span class="m-at">@Ravi</span> counselling is booked for Saturday 5 PM. Please confirm with the mother.</div></div>
+  <div class="m-cm hl"><span class="m-av">RS</span><div class="m-bd"><span class="who">Ravi <small>17 Dec 6:14 PM</small></span><span class="m-at">@Suresh</span> called her at 6:10 PM. She will pay tonight.</div></div>
+  <div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div>
+  <div class="m-comp"><span class="in">Reply…</span><span class="go">➤</span></div>
+  <div style="display:flex;gap:8px;margin-top:8px"><span class="ob">✓ Mark done</span><span class="ob ghost">Open family</span></div>
+ </div></div>
+</div></div></div>
+<p class="note">The GM's laptop is the same screen, with items from every region he can see.</p></div>
+
+<div class="step"><h3><i>11</i>A push on the lock screen <span class="badge beta">Beta</span></h3><p class="cap">A mention sends a push at once: who and which family, never the note text.</p>
+<div class="phone"><div class="notch"></div><div class="pv m-lock">
+ <div class="clk"><small>Thursday, 17 December</small><b>9:12</b></div>
+ <div style="height:120px"></div>
+ <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>now</span></div><b>Asha mentioned you on Kumar family</b><div class="mini">Open the app to read it.</div></div>
+ <div class="m-ntf" style="opacity:.8"><div class="hd"><span>🟠 YASHHO Partner</span><span>yesterday</span></div><b>Suresh replied to you on Patil family</b></div>
+</div></div>
+<p class="note">Tapping the push unlocks the app (PIN or fingerprint) and opens the family at the note.</p></div>
+
+<div class="step mid"><h3><i>12</i>The 7 PM email digest <span class="badge beta">Beta</span></h3><p class="cap">At 7 PM, anything still waiting comes as one email. Nothing waiting, no email.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
+<div class="m-mail"><div class="ml"><div class="on"><b>YASHHO CRM</b><br>3 notes need your reply · 7:00 PM</div><div>Training: Thursday 11 AM<br><span class="mini">Yesterday</span></div><div>Your November statement<br><span class="mini">5 Dec</span></div></div>
+<div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span> CRM</div><div class="eb">
+ <p style="margin:0 0 4px;font-weight:800;font-size:16px">Ravi, 3 notes need your reply</p>
+ <p class="mini" style="margin:0 0 10px">Still waiting at 7 PM, Thursday 17 December</p>
+ <div class="fc" style="padding:2px 10px"><div class="r"><span class="n">Asha mentioned you</span><span class="s">Kumar family</span></div><div class="r"><span class="n">Suresh replied to you</span><span class="s">Patil family</span></div><div class="r"><span class="n">The GM mentioned you</span><span class="s">Naik family review</span></div></div>
+ <div class="btn" style="max-width:260px">Open Needs my reply</div>
+ <p class="mini" style="margin:12px 0 0">Note text is never put in email. Open the app to read and reply.</p>
+</div></div></div></div></div>
+<p class="note">Sent once a day, at 7 PM local time, only to people with waiting items.</p></div>
+
+<div class="step"><h3><i>13</i>A parent replies on WhatsApp <span class="badge now">Launch</span></h3><p class="cap">From launch, YASHHO's official WhatsApp messages parents. Shilpa replies.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+ <div class="body">
+  <div class="wa-msg">Namaskara Shilpa. Ravi S (YASHHO partner, KA-R11-YSP02) has booked your counselling call for Saturday 5 PM. Reply here if you need to change it.<small>Fri 4:15 PM</small></div>
+  <div class="m-out">Saturday works. Can Ravi call at 5:30 instead?<small>6:40 PM ✓✓</small></div>
+ </div>
+</div></div>
+<p class="note">In the pilot and beta parents get email only; this WhatsApp path starts at launch, sent through a vendor.</p></div>
+
+<div class="step"><h3><i>14</i>"Parent replied" on the family timeline <span class="badge now">Launch</span></h3><p class="cap">The reply lands on the timeline with the WhatsApp icon.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill hot">▲ Hot</span></div>
+ <div class="body">
+  <div class="m-win open"><span>Reply window open</span><span>21 h left</span></div>
+  <div class="tl">
+   <div class="now"><b><span class="m-wa">✓</span> Parent replied</b><small>Shilpa · …2418 · today 6:40 PM</small><p class="wa-msg" style="margin:4px 0 0;background:#f3f6f9;border:1px solid var(--f-line)">Saturday works. Can Ravi call at 5:30 instead?</p></div>
+   <div class="done"><b><span class="m-wa">✓</span> Counselling booked message sent</b><small>YASHHO WhatsApp · Fri 4:15 PM</small></div>
+   <div class="done"><b>Visit 1 · Warm → Hot</b><small>16 Dec</small></div>
+  </div>
+ </div>
+ <div class="dock"><div class="btn wa">Reply on WhatsApp</div><div class="row2"><div class="btn ghost">📞 Call</div><div class="btn ghost">Notes · 4</div></div></div>
+</div></div></div>
+
+<div class="step"><h3><i>15</i>…and in Ravi's Needs my reply <span class="badge now">Launch</span></h3><p class="cap">Parent replies join the same list, marked with the WhatsApp icon.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Needs my reply</b><span class="pill">2 waiting</span></div>
+ <div class="body">
+  <div class="preset"><span class="on">Waiting · 2</span><span>Done</span></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r" style="display:block"><div class="n" style="font-size:12.5px"><span class="m-dot"></span><span class="m-wa">✓</span> Parent replied</div><div class="s">Kumar family · 6:40 PM · 21 h left</div><div class="m-acts"><span style="color:var(--ok)">Reply on WhatsApp</span><span>✓ Mark done</span></div></div>
+   <div class="r" style="display:block"><div class="n" style="font-size:12.5px"><span class="m-dot"></span>Suresh replied to you</div><div class="s">Patil family · yesterday</div><div class="m-acts"><span>Open</span><span>✓ Mark done</span></div></div>
+  </div>
+  <p class="mini">A parent reply clears itself when Ravi answers, or he can mark it done.</p>
+ </div>
+ <div class="tabs six"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span class="on"><i>💬</i>Replies<em class="m-cnt">2</em></span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div>
+<p class="note">Replies go to the YSP who looks after the family; a reply from an unknown number goes to Head Office support.</p></div>
+
+<div class="step"><h3><i>16</i>Reply while the window is open <span class="badge now">Launch</span></h3><p class="cap">Inside the 24-hour window Ravi types freely; it goes from YASHHO's number.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Reply to Shilpa</b></span><span class="sync">…2418</span></div>
+ <div class="body">
+  <div class="m-win open"><span>Reply window open</span><span>21 h left</span></div>
+  <div class="wa-msg" style="background:#f3f6f9">Saturday works. Can Ravi call at 5:30 instead?<small>Shilpa · 6:40 PM</small></div>
+ </div>
+ <div class="m-dock">
+  <p class="mini" style="margin:0 0 6px">Sends from YASHHO's official WhatsApp as "Ravi S, YASHHO".</p>
+  <div class="m-comp"><span class="in focus">Yes, 5:30 PM Saturday is fine. I will call you then.</span><span class="go">➤</span></div>
+ </div>
+</div></div>
+<p class="note">Text only in v1. The sent reply is added to the family timeline.</p></div>
+
+<div class="step"><h3><i>17</i>Window closed: send a template <span class="badge now">Launch</span></h3><p class="cap">24 hours after her last message, only an approved template can be sent.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Reply to Shilpa</b></span><span class="sync">…2418</span></div>
+ <div class="body">
+  <div class="m-win shut"><span>Window closed — send a template</span></div>
+  <div class="m-comp"><span class="in off">Free text is off until Shilpa writes again</span><span class="go off">➤</span></div>
+ </div>
+ <div class="dim"></div>
+ <div class="sheet"><div class="grab"></div>
+  <p style="margin:0 0 8px;font-weight:800;font-size:15px">Choose a template</p>
+  <div class="m-tpl"><i></i>Counselling reminder</div>
+  <div class="m-tpl"><i></i>Payment link reminder</div>
+  <div class="m-tpl on"><i></i>Please call me back</div>
+  <div class="wa-msg">Namaskara Shilpa. Ravi S from YASHHO would like to speak with you. Reply here or call him back.</div>
+  <div class="btn wa">Send template</div>
+ </div>
+</div></div>
+<p class="note">Templates are approved by Head Office and the vendor; the YSP only picks one and the CRM fills the names and time.</p></div>
+
+<div class="step"><h3><i>18</i>A parent replies STOP <span class="badge now">Launch</span></h3><p class="cap">Shilpa sends STOP. YASHHO confirms once and never messages her again.</p>
+<div class="phone"><div class="notch"></div><div class="pv parentphone">
+ <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
+ <div class="body">
+  <div class="wa-msg">Namaskara Shilpa. A reminder of your counselling call today at 5:30 PM with Ravi S, YASHHO.<small>Sat 8:00 AM</small></div>
+  <div class="m-out">STOP<small>8:02 AM ✓✓</small></div>
+  <div class="wa-msg">Done. YASHHO will not message or call you again.<small>8:02 AM</small></div>
+ </div>
+</div></div></div>
+
+<div class="step"><h3><i>19</i>Do not contact: messaging actions disappear <span class="badge now">Launch</span></h3><p class="cap">A Do-not-contact banner; Call, Send link, reply and templates are gone.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span></div>
+ <div class="body">
+  <div class="m-dnc"><b>⛔ Do not contact</b>Shilpa replied STOP on YASHHO's WhatsApp · 19 Dec 8:02 AM. Nobody at YASHHO can call, message or send links.</div>
+  <div class="tl">
+   <div class="fail"><b><span class="m-wa">✓</span> Parent replied STOP</b><small>YASHHO WhatsApp · 19 Dec 8:02 AM</small></div>
+   <div class="done"><b>Counselling reminder sent</b><small>19 Dec 8:00 AM</small></div>
+  </div>
+  <div class="m-th"><h5><span>Notes · 5</span><span class="mini">team only</span></h5>
+   <div class="m-cm"><span class="m-av me">RS</span><div class="m-bd"><span class="who">Ravi <small>you · 8:20 AM</small></span><span class="m-at">@Suresh</span> the mother replied STOP. Closing the family.</div></div>
+  </div>
+ </div>
+ <div class="m-dock"><div class="m-rule">⚠ No parent or child details in WhatsApp — write it here.</div><div class="m-comp"><span class="in">Write a note… type @ to mention</span><span class="go">➤</span></div></div>
+</div></div>
+<p class="note">Team notes stay open, because they never reach the parent. Same rule as a parent asking in person (A YSP's day, step 35); undone only if the parent asks.</p></div>
+
+</div>
 </section>
 
 <section class="j" id="web">
