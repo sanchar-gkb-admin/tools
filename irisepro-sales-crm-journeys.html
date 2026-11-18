@@ -308,6 +308,14 @@ table.t .bar{min-width:110px}
 .ladder2 i{font-style:normal;color:var(--o-mute)}
 .ex{font-size:10px;font-weight:700;color:var(--q);background:var(--q-soft);border-radius:5px;padding:0 5px;margin-left:4px;font-style:normal;vertical-align:middle}
 .browser .ex{background:#44360c;color:#ffd979}
+/* R66 messages to the field (18 Nov 2026): small BETA / LAUNCH tags. */
+.st{display:inline-block;font-size:9.5px;font-weight:800;border-radius:5px;padding:1px 5px;margin-left:5px;vertical-align:middle;letter-spacing:.02em;font-style:normal;white-space:nowrap}
+.st.b{background:#dbe7ff;color:#1d3f8a}.st.l{background:var(--brand);color:#1a0e02}
+.chipset{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.chipset span{border:1.5px solid var(--o-line);border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700;color:var(--o-ink)}
+.chipset span.on{border-color:var(--brand);background:#3a2410}
+.pv .chipset span{border-color:var(--f-line);color:var(--f-ink)}.pv .chipset span.on{background:var(--brand-soft)}
+.r66sub{margin:34px 0 10px;font-weight:800;font-size:18px}
 </style>
 
 <div class="wrap">
@@ -1771,6 +1779,117 @@ table.t .bar{min-width:110px}
  </div>
 </div></div>
 <p class="note">A "Someone else" or "Nobody" answer opens a check (Controls, step 14). Parents asked at most once a week.</p></div>
+
+<h3 class="r66sub">Added 18 Nov (R66): who can send, to whom, and who has read it <span class="st b">BETA</span> <span class="st l">LAUNCH</span></h3>
+<p class="sub" style="margin-top:0">Senders: the CEO (anyone), the GM (his own scope) and an RSM (his own YSPs only). Small tags mark what ships in the beta and what waits for launch.</p>
+<div class="flow">
+
+<div class="step full"><h3><i>6</i>Compose: pick the audience in one step <span class="st b">BETA</span></h3><p class="cap">One row of audience choices, a "Goes to 38 people" preview, and optional acknowledgement.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Messages · New · the GM</span></div>
+<div class="bv"><div class="side"><div class="on">Messages</div><div>Sent</div><div>Control room</div><div>Cases</div></div>
+<div class="main"><div class="split"><div class="grow oc"><h4>New message</h4>
+ <p class="ohint" style="margin:0 0 6px"><b>To</b> (one step)</p>
+ <div class="chipset"><span>Everyone</span><span class="on">Region ✓</span><span>Unit</span><span>All RSMs</span><span>All YSPs</span><span class="on">Pick named people ✓</span><span>Saved group <i class="st l">LAUNCH</i></span></div>
+ <p class="ohint" style="margin:0 0 4px">Regions: KA-R11, KA-R17, KA-R05 (33 people) · Named: 5 people</p>
+ <p class="ohint" style="margin:0 0 4px"><b>Title:</b> December offer: how to explain it to parents</p>
+ <p class="ohint" style="margin:0 0 10px"><b>Attach:</b> December offer poster (Kannada, English)</p>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span class="op ok">● Requires acknowledgement</span><span class="op">📌 Pin until acknowledged</span><span class="op">Schedule send <i class="st l">LAUNCH</i></span><span class="op">Use a template <i class="st l">LAUNCH</i></span></div>
+ <div style="display:flex;gap:10px;margin-top:12px;align-items:center"><span class="ob">Send · goes to 38 people</span><span class="ohint">Preview the list</span></div></div>
+ <div class="fix oc"><h4>Who can send to whom</h4>
+  <div class="r" style="border-color:var(--o-line)"><span class="ohint">CEO</span><b style="font-size:12.5px">Anyone</b></div>
+  <div class="r" style="border-color:var(--o-line)"><span class="ohint">GM</span><b style="font-size:12.5px">His own scope</b></div>
+  <div class="r" style="border-color:var(--o-line)"><span class="ohint">RSM</span><b style="font-size:12.5px">His own YSPs only</b></div>
+  <p class="ohint" style="margin:8px 0 0">The picker only offers people the sender may reach.</p></div></div>
+</div></div></div></div>
+
+<div class="step"><h3><i>7</i>An RSM's picker: his own YSPs only <span class="st b">BETA</span></h3><p class="cap">Suresh can send only to his own YSPs; nobody else appears in his picker.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>New message</b></span><span class="sync">Suresh · RSM</span></div>
+ <div class="body">
+  <div class="chipset"><span class="on">All my YSPs</span><span>Pick named</span></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><span class="n">Ravi · Sira</span><span class="chk" style="margin:0;min-height:0"><i class="y">✓</i></span></div>
+   <div class="r"><span class="n">Deepa · Tiptur</span><span class="chk" style="margin:0;min-height:0"><i class="y">✓</i></span></div>
+   <div class="r"><span class="n">Imran · Pavagada</span><span class="chk" style="margin:0;min-height:0"><i class="y">✓</i></span></div>
+   <div class="r"><span class="s">+ 7 more of your YSPs</span></div>
+  </div>
+  <p class="mini">Other regions, RSMs and Head Office are not offered.</p>
+ </div>
+ <div class="dock"><div class="btn">Next · goes to 10 people</div></div>
+</div></div></div>
+
+<div class="step"><h3><i>8</i>Preview before sending <span class="st b">BETA</span></h3><p class="cap">Exactly how many people, by region, and whether they must acknowledge.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Preview</b></span><span class="sync">the GM</span></div>
+ <div class="body"><div class="dim"></div>
+  <div class="sheet"><div class="grab"></div>
+   <p style="margin:0 0 4px;font-weight:800;font-size:16px">Goes to 38 people</p>
+   <div class="fc sub"><div class="r"><span class="s">KA-R11</span><span class="n">11</span></div><div class="r"><span class="s">KA-R17</span><span class="n">11</span></div><div class="r"><span class="s">KA-R05</span><span class="n">11</span></div><div class="r"><span class="s">Named people</span><span class="n">5</span></div></div>
+   <div class="chk"><i class="y">✓</i>Requires acknowledgement</div>
+   <div class="btn">Send now</div>
+  </div>
+ </div>
+</div></div></div>
+
+<div class="step"><h3><i>9</i>Ravi: pinned until he acknowledges <span class="st b">BETA</span></h3><p class="cap">The message stays pinned on top of Messages until Ravi taps "I've read this".</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Messages</b><span class="pill">1 to acknowledge</span></div>
+ <div class="body">
+  <div class="fc warn"><h4>📌 December offer: how to explain it to parents</h4><p class="mini" style="margin:0 0 6px">From the GM · today 9:00 AM · poster attached</p><p style="margin:0 0 6px;font-size:12.5px">Use the attached poster. The offer is the same on every channel.</p><div class="btn">I've read this</div></div>
+  <div class="fc" style="padding:2px 10px"><div class="r"><div><div class="n">Webinar today, 7 PM</div><div class="s">Join on Google Meet</div></div><span class="pill">Join</span></div></div>
+ </div>
+ <div class="tabs"><span><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div>
+<p class="note">Acknowledging is logged with the time. Messages without "Requires acknowledgement" only count reads.</p></div>
+
+<div class="step full"><h3><i>10</i>The sender's tracking view <span class="st b">BETA</span></h3><p class="cap">Read 31/38, acknowledged 24/38, by region. One tap reminds the 14 who haven't acknowledged.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Messages · Sent · December offer</span></div>
+<div class="bv"><div class="side"><div>Messages</div><div class="on">Sent</div><div>Control room</div><div>Cases</div></div>
+<div class="main">
+ <div class="ok4"><div class="okp"><small>Sent to</small><b>38</b><em>today 9:00 AM</em></div><div class="okp"><small>Read</small><b>31</b><em>of 38</em><div class="bar"><i style="width:82%"></i></div></div><div class="okp"><small>Acknowledged</small><b>24</b><em>of 38</em><div class="bar"><i style="width:63%"></i></div></div><div class="okp"><small>Private replies <i class="st l">LAUNCH</i></small><b>2</b><em>in your thread</em></div></div>
+ <div class="split"><div class="grow oc"><h4>By region</h4>
+  <div class="tw"><table class="t"><tr><th>Region</th><th>People</th><th>Read</th><th>Acknowledged</th></tr>
+  <tr><td>KA-R11</td><td>11</td><td>10</td><td>8</td></tr><tr><td>KA-R17</td><td>11</td><td>9</td><td>6</td></tr><tr><td>KA-R05</td><td>11</td><td>8</td><td>6</td></tr><tr><td>Named people</td><td>5</td><td>4</td><td>4</td></tr></table></div>
+  <div style="margin-top:10px"><span class="ob">Remind 14 who haven't acknowledged</span></div></div>
+ <div class="grow oc"><h4>By person <i class="st l">LAUNCH</i></h4>
+  <div class="tw"><table class="t"><tr><th>Person</th><th>Read</th><th>Acknowledged</th></tr>
+  <tr><td>Ravi · Sira</td><td>9:12 AM</td><td>9:13 AM</td></tr><tr><td>Deepa · Tiptur</td><td>9:40 AM</td><td class="dn">Not yet</td></tr><tr><td>Imran · Pavagada</td><td class="dn">Not yet</td><td class="dn">Not yet</td></tr></table></div></div></div>
+</div></div></div></div>
+
+<div class="step"><h3><i>11</i>A reminder reaches those who haven't acknowledged <span class="st b">BETA</span></h3><p class="cap">A reminder push now; still waiting at 7 PM, it is in the email digest.</p>
+<div class="phone"><div class="notch"></div><div class="pv m-lock">
+ <div class="clk"><small>Thursday, 17 December</small><b>2:05</b></div><div style="height:110px"></div>
+ <div class="m-ntf"><div class="hd"><span>🟠 YASHHO Partner</span><span>now</span></div><b>Reminder from the GM: please acknowledge</b><div class="mini">December offer: how to explain it to parents</div></div>
+</div></div></div>
+
+<div class="step mid"><h3><i>12</i>The email digest <span class="st b">BETA</span></h3><p class="cap">At 7 PM, messages still waiting for acknowledgement come as one email.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Mail · Inbox</span></div>
+<div class="m-mail"><div class="mv"><div class="m-em"><div class="eh">YASH<span>HO</span> CRM</div><div class="eb">
+ <p style="margin:0 0 4px;font-weight:800;font-size:16px">Deepa, 1 message needs your acknowledgement</p>
+ <div class="fc" style="padding:2px 10px"><div class="r"><span class="n">December offer: how to explain it to parents</span><span class="s">from the GM</span></div></div>
+ <div class="btn" style="max-width:240px">Open Messages</div>
+</div></div></div></div></div></div>
+
+<div class="step"><h3><i>13</i>A private reply to the sender <span class="st l">LAUNCH</span></h3><p class="cap">Ravi asks a question privately. Only the GM sees it, not the other 37.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>December offer</b></span><span class="sync">from the GM</span></div>
+ <div class="body">
+  <div class="fc ok"><h4>✓ You acknowledged · 9:13 AM</h4><p class="mini" style="margin:0">Use the attached poster. The offer is the same on every channel.</p></div>
+  <div class="m-cm sent"><span class="m-av me">RS</span><div class="m-bd"><span class="who">You <small>private to the GM · 9:20 AM</small></span>Can I share the poster in my own WhatsApp status?</div></div>
+ </div>
+ <div class="m-dock"><p class="mini" style="margin:0 0 6px">🔒 Private: only the GM sees replies.</p><div class="m-comp"><span class="in">Reply privately…</span><span class="go">➤</span></div></div>
+</div></div></div>
+
+<div class="step mid"><h3><i>14</i>Replies land in the sender's thread <span class="st l">LAUNCH</span></h3><p class="cap">Each private reply is a one-to-one thread in the GM's Sent view, under the message.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Messages · Sent · December offer · Replies</span></div>
+<div class="bv"><div class="main"><div class="oc"><h4>Private replies · 2</h4>
+ <div class="m-cm"><span class="m-av">RS</span><div class="m-bd"><span class="who">Ravi <small>Sira · 9:20 AM</small></span>Can I share the poster in my own WhatsApp status?</div></div>
+ <div class="m-cm"><span class="m-av">GM</span><div class="m-bd"><span class="who">You <small>9:31 AM</small></span>Yes, the poster only. Never share family details there.</div></div>
+ <div class="m-cm"><span class="m-av">DP</span><div class="m-bd"><span class="who">Deepa <small>Tiptur · 9:45 AM</small></span>Is there a Kannada video too?</div></div>
+ <div class="m-comp"><span class="in">Reply to Deepa…</span><span class="go">➤</span></div>
+</div></div></div></div></div>
+
+</div>
 
 </section>
 
