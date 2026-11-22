@@ -62,6 +62,8 @@ section>.lede{color:var(--ink-2);max-width:74ch;margin:0 0 22px}
 .tl .what span{color:var(--ink-2)}
 
 table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);border-radius:14px;overflow:hidden;font-size:14.5px}
+table:not(.t){display:block;overflow-x:auto}
+p{overflow-wrap:anywhere}
 th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
 th{background:var(--ink);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
 tr:last-child td{border-bottom:0}
@@ -735,7 +737,7 @@ table.t td:first-child{white-space:normal;min-width:100px}
 <script>
 (function(){
   function mark(){
-    document.querySelectorAll('.tw').forEach(function(el){
+    document.querySelectorAll('.tw, table:not(.t)').forEach(function(el){
       if (el.scrollWidth > el.clientWidth + 1) {
         el.tabIndex = 0;
       }
