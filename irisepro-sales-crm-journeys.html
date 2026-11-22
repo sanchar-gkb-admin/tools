@@ -4093,7 +4093,7 @@ referral_code (only when typed and verified)</div></div></div>
 
 <section class="j" id="targets">
 <h2>Targets in the app, and pace you can feel <span class="badge newadd">New addition · 22 Nov 2026</span><span class="badge now">Pilot</span></h2>
-<p class="sub">The GM sets a number for the network, a region, every YSP or one post. The CEO approves it, and it becomes a dated version — never an edit. From then on the same number drives the Today strip, the RSM's morning and the daily email. A sale counts toward it when the child submits the first task; money that has not started shows as "awaiting start". When a level misses, one reason and one action are recorded there — that is the line that climbs.</p>
+<p class="sub">The GM sets a number for the network, a region, every YSP or one post. The CEO approves it, and it becomes a dated version — never an edit. From then on the same number drives the Today strip, the RSM's morning and the daily email. A sale counts toward it when the child submits the first task; money that has not started shows as "awaiting start". When a level misses, one reason and one action are recorded there, with one or two lines in the person's own words about what actually happened — that is the line that climbs. From the CEO to the HO desk, one screen says what needs attention now and walks the tree down to a single person. Every stage, queue, approval, proposal and miss line has a stated limit and an owner, and anything past its time is on that owner's list — hourly for the short clocks, daily at least for the rest — until it moves.</p>
 <div class="flow">
 <div class="step wide"><h3><i>1</i>GM: the targets in force</h3><p class="cap">One screen, every level: the network, each region, "all YSPs", or any post. A dash means no target was set at that level — never a zero.</p>
 <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets</span></div>
@@ -4162,18 +4162,21 @@ referral_code (only when typed and verified)</div></div></div>
  <p class="mini">Pace uses activity counts and the last activity time only — never location. The bottom two are marked, not ranked.</p>
 </div></div></div>
 
-<div class="step"><h3><i>7</i>Close of day: what happened?</h3><p class="cap">Behind at the end of the day, a three-tap reason. Optional, never a block — and it lands in the RSM's morning agenda.</p>
+<div class="step"><h3><i>7</i>Close of day: what happened?</h3><p class="cap">Behind at the end of the day, a short reason from the config's list, then one or two lines in the person's own words. Optional, never a block — and it lands in the RSM's morning agenda.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Close your day</b></span><span class="sync">18:40</span></div>
  <div class="body">
   <div class="fc sub"><div class="r"><span class="s">Calls</span><span class="n">8 / 12</span></div><div class="r"><span class="s">Visits</span><span class="n">2 / 2 ✓</span></div></div>
   <p class="mini">What got in the way?</p>
-  <div class="fc sub"><div class="r"><span class="s">No leads left</span><span class="n">✓</span></div><div class="r"><span class="s">Market off</span><span class="n"> </span></div><div class="r"><span class="s">Leave</span><span class="n"> </span></div><div class="r"><span class="s">Support needed</span><span class="n"> </span></div></div>
-  <p class="mini">A note is optional. No family, parent or child detail.</p>
+  <div class="fc sub"><div class="r"><span class="s">No leads left</span><span class="n"> </span></div><div class="r"><span class="s">Market off</span><span class="n">✓</span></div><div class="r"><span class="s">Leave</span><span class="n"> </span></div><div class="r"><span class="s">Support needed</span><span class="n"> </span></div><div class="r"><span class="s">Other</span><span class="n"> </span></div></div>
+  <p class="mini">What happened?</p>
+  <p class="mini" style="border:1px dashed var(--f-line);border-radius:8px;padding:6px 8px;color:var(--f-ink)">The Sira school list is used up after the mela.</p>
+  <p class="mini">The pills come from the governed reason list — add or reword one in config, no deploy.</p>
+  <p class="mini">No family, parent or child detail.</p>
   <div class="btn">Send</div>
  </div>
 </div></div>
-<p class="note">The RSM's next-morning agenda reads "YSP02 behind 2 · support needed" and the GM's summary counts misses by reason. LLD R100.6; use case X-FLD-21.</p></div>
+<p class="note">The RSM's next-morning agenda reads the pill, the line the person typed and the action chosen — "YSP02 behind 2 · market off · the Sira school list is used up · joint visit" — and the GM's summary counts misses by reason. LLD R100.6; use case X-FLD-21.</p></div>
 
 <div class="step"><h3><i>8</i>What counts: paid vs confirmed</h3><p class="cap">Money shows the moment it is paid; the target counts when the child submits the first task. One rule everywhere — Today, the daily email, the RSM league.</p>
 <div class="phone"><div class="notch"></div><div class="pv">
@@ -4197,6 +4200,88 @@ referral_code (only when typed and verified)</div></div></div>
  <p class="mini">Escalation is computed, never stored: 3 days behind → the RSM's agenda · a region behind at week end → this Monday card · 2 weeks → a GM review · the network behind a month → the CEO's month close.</p>
 </div></div>
 <p class="note">A target review is itself a proposed change: the GM opens it and the CEO decides (value_list). Nothing here punishes — the check-in is optional, and a region with no rows reads "no check-in recorded", never zero. LLD R100.6; use cases GM-26, RSM-31, X-FLD-21.</p></div>
+
+<div class="step wide"><h3><i>10</i>CEO, GM or HO desk: what needs attention, then down the tree</h3><p class="cap">One screen for all three. The band at the top counts what wants a decision today; the tree below opens a region, its RSM and, one tap later, a person. Read-only throughout.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · Network</span></div>
+<div class="main">
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Attention now</span><span class="n">3 regions behind · 1 review open · 1 proposal waiting on the CEO · 0 approvals over 24 h · 2 miss lines with no action · 7 clocks past their time</span></div></div>
+ <div class="tw"><table class="t"><tr><th>Level</th><th>Scope</th><th>Calls</th><th>Visits</th><th>Sales</th><th>Where it stands</th><th>Building up</th></tr>
+ <tr><td>Network</td><td>All regions</td><td>4,102 / 4,800</td><td>612 / 800</td><td>188 / 260</td><td><span class="op wait">3 regions behind</span></td><td>Payment pending · 7 wks</td></tr>
+ <tr><td>Region</td><td>KA-R11</td><td>276 / 300</td><td>38 / 40</td><td>9 / 12</td><td><span class="op bad">2 weeks · open review</span></td><td>Payment pending · 9 wks</td></tr>
+ <tr><td>Region</td><td>KA-R07</td><td>288 / 300</td><td>36 / 40</td><td>10 / 12</td><td><span class="op wait">1 week · Monday card</span></td><td>Contacted · 3 wks</td></tr>
+ <tr><td>Region</td><td>KA-R28</td><td>303 / 300</td><td>41 / 40</td><td>12 / 12</td><td><span class="op ok">On pace</span></td><td>—</td></tr></table></div>
+ <p class="mini">All regions › KA-R11 › RSM · two taps to a region, three to a person. Regions are in gap order, never ranked by sales.</p>
+ <p class="mini">The GM and the HO desk see this same screen, read-only. An RSM sees only its own region; a YSP has no tree.</p>
+</div></div>
+<p class="note">The band opens the thing that explains a count — the review, the proposal, the missed line — and never acts on it: only the GM opens a review (R100.6) and only the CEO decides a proposal (R100.2). Every view is logged like any leadership view (LEAD-02). LLD R100.10; use cases LEAD-07, GM-26.</p></div>
+
+<div class="step wide"><h3><i>11</i>The last tap: one person, in plain words</h3><p class="cap">Numbers, the awaiting start, and what the person said got in the way — the pill, the detail in their own words, and the action. No buttons, no phone, no location.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · KA-R11-YSP02</span></div>
+<div class="main">
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">KA-R11-YSP02</span><span class="n">Behind 3 days · on the RSM's agenda Monday</span></div></div>
+ <div class="tw"><table class="t"><tr><th>Metric</th><th>Today</th><th>This week</th><th>Pace</th></tr>
+ <tr><td>Calls</td><td>4 / 12</td><td>31 / 72</td><td><span class="op wait">Behind by 3</span></td></tr>
+ <tr><td>Visits</td><td>2 / 6</td><td>9 / 36</td><td><span class="op wait">Behind by 2</span></td></tr>
+ <tr><td>Sales</td><td>1 / 2</td><td>4 / 12</td><td>1 awaiting start</td></tr></table></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Pipeline</span><span class="n">46 open · worst: Payment pending, 9 weeks to clear · Handed over moving nothing out · opens his stage table</span></div></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">17 Nov</span><span class="n">Market off · "the Sira school list is used up after the mela" · Joint visit</span></div><div class="r"><span class="s">16 Nov</span><span class="n">No leads left · "two villages had a festival" · Coaching</span></div><div class="r"><span class="s">15 Nov</span><span class="n">Market off · "rain all afternoon" · Plan change</span></div></div>
+ <p class="mini">Reasons and actions are pills from the governed lists — add or reword one in config, no deploy. A rewording shows on old rows too, because the code is stored and the label is read.</p>
+ <p class="mini">The detail is the person's own words, read inside the management line only. Viewed by HO-LEAD01 · 09:12 · logged.</p>
+</div></div>
+<p class="note">The YSP sees this card on Today; his RSM sees it for his region; the CEO, the GM and the HO desk see it through the drill-down. The detail never enters an email, a push or a log, and a phone number in it is masked in the response. LLD R100.10, R100.6, X-FLD-21; use cases LEAD-08, RSM-31.</p></div>
+
+<div class="step wide"><h3><i>12</i>Where the pipeline sits — at every level, and where it is piling up</h3><p class="cap">One table, three scopes: the strip answers network, region and one person before you open any of them, and the table below re-renders for whichever you pick. A stage taking longer to clear than the rest is the build-up, and it is named.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · Pipeline · Network › KA-R11 › KA-R11-YSP02</span></div>
+<div class="main">
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
+  <div class="fc sub" style="border:0;padding:6px 8px"><div class="r"><span class="s">Network</span><span class="n">4,102 open · 1,148 moved</span></div><div class="r"><span class="s">Build-up</span><span class="n">Payment pending · 7 wks</span></div><div class="r"><span class="s">Quiet 7 d+</span><span class="n">612</span></div></div>
+  <div class="fc sub" style="border:0;padding:6px 8px"><div class="r"><span class="s">Region KA-R11</span><span class="n">412 open · 96 moved</span></div><div class="r"><span class="s">Build-up</span><span class="n">Payment pending · 9 wks</span></div><div class="r"><span class="s">Quiet 7 d+</span><span class="n">83</span></div></div>
+  <div class="fc sub" style="border:0;padding:6px 8px"><div class="r"><span class="s">Person KA-R11-YSP02</span><span class="n">46 open · 9 moved</span></div><div class="r"><span class="s">Build-up</span><span class="n">Payment pending · 9 wks</span></div><div class="r"><span class="s">Quiet 7 d+</span><span class="n">11</span></div></div>
+ </div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">KA-R11</span><span class="n">412 open · 96 moved this week · building up: Payment pending, 9 weeks to clear · 83 with no activity 7 d+</span></div></div>
+ <div class="tw"><table class="t"><tr><th>Stage</th><th>Now</th><th>In 7 d</th><th>Out 7 d</th><th>To clear</th><th>Oldest</th><th>No activity 7 d+</th></tr>
+ <tr><td>New</td><td>38</td><td>44</td><td>30</td><td>1 wk</td><td>6 d</td><td>9</td></tr>
+ <tr><td>Contacted</td><td>96</td><td>52</td><td>40</td><td>2 wks</td><td>24 d</td><td>21</td></tr>
+ <tr><td>Need identified</td><td>58</td><td>31</td><td>22</td><td>3 wks</td><td>29 d</td><td>12</td></tr>
+ <tr><td>Interested</td><td>41</td><td>18</td><td>12</td><td>3 wks</td><td>33 d</td><td>8</td></tr>
+ <tr><td>Payment pending</td><td>27</td><td>9</td><td>3</td><td><span class="op bad">9 wks</span></td><td>41 d</td><td>14</td></tr>
+ <tr><td>Paid</td><td>19</td><td>10</td><td>8</td><td>2 wks</td><td>11 d</td><td>2</td></tr>
+ <tr><td>Handed over</td><td>21</td><td>4</td><td>0</td><td><span class="op wait">no flow</span></td><td>38 d</td><td>17</td></tr>
+ <tr><td>Onboarded</td><td>15</td><td>6</td><td>— terminal</td><td>—</td><td>—</td><td>0</td></tr></table></div>
+ <p class="mini">97 more families sit in the three stages below the fold; outcomes (Nurture 64 · Deferred 9 · Unqualified 12) are counted apart from the sales path.</p>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">KA-R11-YSP02</span><span class="n">46 open · 9 moved this week · building up: Payment pending, 9 weeks to clear · Handed over has no flow · 11 with no activity 7 d+</span></div></div>
+ <div class="tw"><table class="t"><tr><th>Stage</th><th>Now</th><th>Out 7 d</th><th>To clear</th><th>No activity 7 d+</th></tr>
+ <tr><td>New</td><td>4</td><td>2</td><td>2 wks</td><td>1</td></tr>
+ <tr><td>Contacted</td><td>8</td><td>2</td><td>4 wks</td><td>2</td></tr>
+ <tr><td>Need identified</td><td>6</td><td>1</td><td>6 wks</td><td>2</td></tr>
+ <tr><td>Interested</td><td>5</td><td>1</td><td>5 wks</td><td>1</td></tr>
+ <tr><td>Payment pending</td><td>9</td><td>1</td><td><span class="op bad">9 wks</span></td><td>2</td></tr>
+ <tr><td>Paid</td><td>4</td><td>1</td><td>4 wks</td><td>0</td></tr>
+ <tr><td>Handed over</td><td>5</td><td>0</td><td><span class="op wait">no flow</span></td><td>2</td></tr>
+ <tr><td>Onboarded</td><td>1</td><td>— terminal</td><td>—</td><td>0</td></tr></table></div>
+ <p class="mini">Four more of his families sit in the stages below the fold. His worst holds are the same two the region shows — Payment pending at nine weeks, and Handed over moving nothing out.</p>
+ <p class="mini">Stages and labels come from the pipeline version in force — a new stage appears without a deploy. "To clear" is families now ÷ moved out this week; "no flow" when nothing moved out.</p>
+ <p class="mini">The strip picks the scope — Network, Region or Person — and the same table re-renders for it. A region row in the tree carries its worst stage; a person's card carries his and opens this table.</p>
+</div></div>
+<p class="note">The heat-list drill (LEAD-02) walks Hot/Warm/Cold/Enrolled to a family; this answers whether the pipeline that feeds the number is moving, and where it holds — read at the network, over a region, or for one person, never a different table. The full funnel — conversion, median time per stage and the beta stage limits of R80 — reads the same stages and the same history, so the two can never disagree. LLD R100.10; use case LEAD-09.</p></div>
+
+<div class="step wide"><h3><i>13</i>Nothing sits past its time — and the speed of the week</h3><p class="cap">Every clock with a stated limit: stages, the queue, approvals, proposals and miss lines. Oldest first, with its owner, how it was delivered, whether it was acknowledged — and the speed line that says whether the level is moving, slowing or stuck.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · Clocks · Network › KA-R11</span></div>
+<div class="main">
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Speed this week</span><span class="n">open 23 · oldest 9 d · acknowledged in 40 m median · cleared in 3 d median · moves 96 · last week 118 → slowing</span></div></div>
+ <div class="tw"><table class="t"><tr><th>Clock</th><th>What is waiting</th><th>Limit</th><th>Past it by</th><th>Owner</th><th>Alert</th><th>Acknowledged</th></tr>
+ <tr><td>Stage · Contacted</td><td>KA-R07 · 4 families</td><td>72 h</td><td>2 d</td><td>RSM</td><td><span class="op wait">hourly</span></td><td>09:40</td></tr>
+ <tr><td>Stage · Payment pending</td><td>KA-R11 · 11 families</td><td>48 h</td><td>3 d</td><td>RSM</td><td><span class="op bad">hourly</span></td><td>not yet</td></tr>
+ <tr><td>Queue · unowned family</td><td>KA-R07 · 1 family</td><td>2 h</td><td>3 h</td><td>RSM</td><td><span class="op bad">continuous</span></td><td>not yet</td></tr>
+ <tr><td>Approval · access change</td><td>HO · 1 request</td><td>24 h</td><td>26 h</td><td>GM</td><td>hourly</td><td>not yet</td></tr>
+ <tr><td>Proposal · KA-R11 November</td><td>1 target review</td><td>24 h</td><td>2 d</td><td>CEO</td><td>daily 08:30</td><td>not yet</td></tr>
+ <tr><td>Miss line · KA-R11-YSP02</td><td>no action recorded</td><td>24 h</td><td>2 d</td><td>RSM</td><td>daily 08:30</td><td>Mon 08:45</td></tr>
+ <tr><td>Families untouched</td><td>KA-R11 · 83 families</td><td>7 d</td><td>5 d</td><td>RSM</td><td>daily 08:30</td><td>—</td></tr>
+ <tr><td>Stage · Handed over</td><td>KA-R11 · no flow</td><td>168 h</td><td><span class="op wait">no flow</span></td><td>GM</td><td>daily</td><td>not yet</td></tr></table></div>
+ <p class="mini">Every clock is stated in the governed registry and owned by a level. Continuous clocks page at once, hourly clocks at the top of the hour, and every clock is on the 08:30 summary at least. Past its acknowledgement time an alert steps one level up — RSM, GM, CEO — and a vacant step is skipped.</p>
+ <p class="mini">Acknowledged is not cleared: the row stays until the condition clears, and both times are kept. Alerts carry the clock, the post code and counts only — no family, no phone, no words from a check-in. If the monitor itself goes quiet, engineering is paged.</p>
+</div></div>
+<p class="note">This is the operating-efficiency read: what waits, how long, who owns it, how fast they acknowledge and clear, and whether the level is moving against last week. The stage rows use the same limits as Today's "overdue in stage" (one answer, R80), the queue keeps its 2/4/8-hour ladder, and the pipeline numbers are the ones in step 12. LLD R101, SYS-40; use cases LEAD-10, GM-02.</p></div>
 </div></section>
 
 <p class="note" style="margin-top:44px;max-width:80ch">Names, families and numbers here are made up to show how it works. Sales figures are for one sample month (December 2026) and add up across screens. Open questions are in the shared Google Doc "Role Journeys: Open Questions".</p>

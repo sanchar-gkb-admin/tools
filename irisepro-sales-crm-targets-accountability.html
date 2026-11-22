@@ -248,6 +248,7 @@ table.t td:first-child{white-space:normal;min-width:100px}
   <div class="card" style="margin-top:16px">
     <h3>Who sees my number?</h3>
     <p>You see your own target and your own pace. Your RSM sees the team's pace for the region. The GM sees every region, and the CEO sees the network. Nobody outside that line sees your individual numbers, and nobody is ranked publicly. The board marks the two people who need help today; it does not publish a league table of individuals.</p>
+    <p>The CEO, the GM and the Head Office desk can also walk down from the network to one region, its RSM and one person, and read the reason, the detail and the action recorded there. The reasons carry our own words, and the short list of reasons comes from configuration, so it can be reworded without a new release. Every one of those views is written into the audit log; there is no quiet look.</p>
   </div>
 </section>
 
@@ -260,14 +261,14 @@ table.t td:first-child{white-space:normal;min-width:100px}
     <div class="tl"><div class="t">09:30</div><div class="what"><b>The day opens</b><span>The working window for the field is 09:30 to 19:30, Monday to Saturday. On Today, each person sees their calls, visits and sales as "done against what should be done by now". When they are ahead, the line stays quiet.</span></div></div>
     <div class="tl"><div class="t">11:30</div><div class="what"><b>The first nudge, if needed</b><span>A short message arrives only when a person is behind by more than ten percent. It names the gap and opens the work that closes it. If the person is on pace, no message is sent.</span></div></div>
     <div class="tl"><div class="t">15:30</div><div class="what"><b>The second and last nudge</b><span>The same rule applies once more in the afternoon. This is the second and final message of the day. Nobody is messaged every hour, and nothing is sent in the evening or on Sunday.</span></div></div>
-    <div class="tl"><div class="t">19:30</div><div class="what"><b>Close of day</b><span>If the day is behind, the YSP is offered a three-tap check-in: what got in the way, what would help, and, if they wish, a short note. It is always optional. It never blocks the next day's work.</span></div></div>
-    <div class="tl"><div class="t">Next morning</div><div class="what"><b>The RSM reads it</b><span>Each check-in appears in the RSM's morning agenda, next to the person's numbers. After three days in a row behind, the name is already there, waiting with the reason the person gave.</span></div></div>
+    <div class="tl"><div class="t">19:30</div><div class="what"><b>Close of day</b><span>If the day is behind, the YSP is offered a three-tap check-in: a short reason from the list, one or two lines in their own words about what actually happened, and what would help. It is always optional. It never blocks the next day's work.</span></div></div>
+    <div class="tl"><div class="t">Next morning</div><div class="what"><b>The RSM reads it</b><span>Each check-in appears in the RSM's morning agenda, next to the person's numbers: the reason, the line the person wrote and the action chosen. After three days in a row behind, the name is already there, waiting with the reason the person gave. The CEO, the GM and the HO desk can read the same line when they drill into the region.</span></div></div>
   </div>
 </section>
 
 <section id="screens">
   <h2>What you see</h2>
-  <p class="lede">The routines above are not paperwork. Each one is a small screen, designed for a phone in the field and a laptop in the office. Here they are, in the order a person meets them during a day.</p>
+  <p class="lede">The routines above are not paperwork. Each one is a small screen, designed for a phone in the field and a laptop in the office. Here they are, in the order a person meets them during a day, and then the screens the leadership uses to see what needs attention, to walk from the network down to one person, and to see what has gone past its time.</p>
 
   <div class="shots">
 
@@ -449,6 +450,103 @@ table.t td:first-child{white-space:normal;min-width:100px}
       <figcaption>The GM's accountability card. Reasons and actions, by region, with the escalation already shown. The one button that matters is the review, and only the GM can press it.</figcaption>
     </figure>
 
+    <figure class="shot wide">
+      <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · Network</span></div>
+        <div class="main2">
+          <div class="trio">
+            <div class="okp"><small>Regions behind</small><b class="dn">3</b><em>of 40, today</em></div>
+            <div class="okp"><small>Reviews open</small><b>1</b><em>KA-R11 · 2 weeks</em></div>
+            <div class="okp"><small>Waiting on the CEO</small><b>1</b><em>target proposal</em></div>
+            <div class="okp"><small>Miss lines, no action</small><b class="dn">2</b><em>recorded yesterday</em></div>
+          </div>
+          <div class="tw"><table class="t">
+            <tr><th>Scope</th><th>Calls</th><th>Sales</th><th>Where it stands</th><th>Building up</th></tr>
+            <tr><td>All regions</td><td>4,102 / 4,800</td><td>188 / 260</td><td><span class="op wait">3 regions behind</span></td><td>Payment pending · 7 wks</td></tr>
+            <tr><td>KA-R11</td><td><span class="dn">276 / 300</span></td><td><span class="dn">9 / 12</span></td><td><span class="op bad">2 weeks · open review</span></td><td><span class="tag bad">Payment pending · 9 wks</span></td></tr>
+            <tr><td>KA-R07</td><td><span class="dn">288 / 300</span></td><td><span class="dn">10 / 12</span></td><td><span class="op wait">1 week · Monday card</span></td><td>Contacted · 3 wks</td></tr>
+            <tr><td>KA-R28</td><td><span class="up">303 / 300</span></td><td><span class="up">12 / 12</span></td><td><span class="op ok">On pace</span></td><td>—</td></tr>
+          </table></div>
+          <p class="mini">All regions › KA-R11 › RSM · two taps to a region, three to a person. Regions are in gap order, never ranked by sales. The CEO, the GM and the Head Office desk see this same screen; an RSM sees only its own region.</p>
+        </div>
+      </div>
+      <figcaption>What needs attention, in one place. The band counts the things that want a decision today, and the tree below walks from the whole network to a region, its RSM and, one tap later, a person. It opens the thing that explains a count; it never changes anything by itself.</figcaption>
+    </figure>
+
+    <figure class="shot wide">
+      <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · KA-R11-YSP02</span></div>
+        <div class="main2">
+          <div class="trio">
+            <div class="okp"><small>Calls today</small><b class="dn">4 / 12</b><em>behind by 3</em></div>
+            <div class="okp"><small>Visits today</small><b class="dn">2 / 6</b><em>behind by 2</em></div>
+            <div class="okp"><small>Sales this week</small><b>4 / 12</b><em>1 awaiting start</em></div>
+            <div class="okp"><small>Escalation</small><b class="dn">3 days</b><em>on the RSM's Monday agenda</em></div>
+          </div>
+          <div class="fc sub"><div class="r"><span class="s">17 Nov</span><span class="n">Market off · "the Sira school list is used up after the mela" · Joint visit</span></div>
+            <div class="r"><span class="s">16 Nov</span><span class="n">No leads left · "two villages had a festival" · Coaching</span></div>
+            <div class="r"><span class="s">15 Nov</span><span class="n">Market off · "rain all afternoon" · Plan change</span></div></div>
+          <p class="mini">The short reason is a pill from the governed list; the line beside it is what the person actually wrote. Reasons and actions are added or reworded in config, not in code. The detail is read inside the management line only, and it never appears in an email, a push or a log.</p>
+          <p class="mini">The YSP sees this card on Today, his RSM sees it for the region, and the CEO, the GM and the HO desk reach it through the drill-down. Every view is logged.</p>
+        </div>
+      </div>
+      <figcaption>One person, in plain words. The numbers against their own targets, the awaiting start, and the last three reasons with the detail they typed and the action chosen — so the conversation begins from facts, not from a hunch.</figcaption>
+    </figure>
+
+    <figure class="shot wide">
+      <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · KA-R11 · Pipeline</span></div>
+        <div class="main2">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px">
+            <div class="okp"><small>Network</small><b>4,102</b><em>open · build-up Payment pending, 7 wks · 612 quiet</em></div>
+            <div class="okp"><small>Region KA-R11</small><b>412</b><em>open · build-up Payment pending, 9 wks · 83 quiet</em></div>
+            <div class="okp"><small>One person · KA-R11-YSP02</small><b>46</b><em>open · build-up Payment pending, 9 wks · 11 quiet</em></div>
+          </div>
+          <p class="mini">Pick a scope and the table below re-renders for it — the same stages, the same two sources. The region is open here.</p>
+          <div class="trio">
+            <div class="okp"><small>Open</small><b>412</b><em>families in the region</em></div>
+            <div class="okp"><small>Moved this week</small><b>96</b><em>any stage, forward or outcome</em></div>
+            <div class="okp"><small>Building up</small><b class="dn">9 wks</b><em>Payment pending</em></div>
+            <div class="okp"><small>No activity 7 d+</small><b class="dn">83</b><em>still open</em></div>
+          </div>
+          <div class="tw"><table class="t">
+            <tr><th>Stage</th><th>Now</th><th>In 7 d</th><th>Out 7 d</th><th>To clear</th><th>Oldest</th><th>No activity 7 d+</th></tr>
+            <tr><td>New</td><td>38</td><td>44</td><td>30</td><td>1 wk</td><td>6 d</td><td>9</td></tr>
+            <tr><td>Contacted</td><td>96</td><td>52</td><td>40</td><td>2 wks</td><td>24 d</td><td>21</td></tr>
+            <tr><td>Interested</td><td>41</td><td>18</td><td>12</td><td>3 wks</td><td>33 d</td><td>8</td></tr>
+            <tr><td>Payment pending</td><td>27</td><td>9</td><td>3</td><td><span class="op bad">9 wks</span></td><td>41 d</td><td><span class="dn">14</span></td></tr>
+            <tr><td>Handed over</td><td>21</td><td>4</td><td>0</td><td><span class="op wait">no flow</span></td><td>38 d</td><td><span class="dn">17</span></td></tr>
+          </table></div>
+          <p class="mini">Six more stages and the outcomes (nurture, deferred, unqualified) sit below the fold, counted apart. "To clear" is families now divided by the families that moved out this week. Stages come from the pipeline version in force, so a new stage appears without a deploy.</p>
+          <p class="mini">Open one person and the same table reads his 46 families: payment pending still the worst at nine weeks, five stuck in handed over with nothing moving out, eleven quiet for a week. The count under a stage opens his families in it.</p>
+        </div>
+      </div>
+      <figcaption>Where the pipeline sits, and whether it is moving — one table at three levels: the network, a region, or one person. Families in each stage, what moved in and out this week, how many weeks the stage would take to clear, and how many have gone quiet. The build-up has a name at every level — here, payment pending — so the answer to a missed number is a cause, not a shrug.</figcaption>
+    </figure>
+
+    <figure class="shot wide">
+      <div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · Clocks · Network › KA-R11</span></div>
+        <div class="main2">
+          <div class="trio">
+            <div class="okp"><small>Past their time</small><b>23</b><em>clocks open now</em></div>
+            <div class="okp"><small>Oldest</small><b class="dn">9 d</b><em>the longest wait</em></div>
+            <div class="okp"><small>Acknowledged in</small><b>40 m</b><em>median, this week</em></div>
+            <div class="okp"><small>Cleared in</small><b>3 d</b><em>median, this week</em></div>
+          </div>
+          <p class="mini">Moves this week 96, against 118 last week — slowing. The speed line is the same read at network, region, team or one person.</p>
+          <div class="tw"><table class="t">
+            <tr><th>Clock</th><th>What is waiting</th><th>Limit</th><th>Past it by</th><th>Owner</th><th>Alert</th><th>Acknowledged</th></tr>
+            <tr><td>Stage · Contacted</td><td>KA-R07 · 4 families</td><td>72 h</td><td>2 d</td><td>RSM</td><td><span class="op wait">hourly</span></td><td>09:40</td></tr>
+            <tr><td>Stage · Payment pending</td><td>KA-R11 · 11 families</td><td>48 h</td><td>3 d</td><td>RSM</td><td><span class="op bad">hourly</span></td><td>not yet</td></tr>
+            <tr><td>Queue · unowned family</td><td>KA-R07 · 1 family</td><td>2 h</td><td>3 h</td><td>RSM</td><td><span class="op bad">continuous</span></td><td>not yet</td></tr>
+            <tr><td>Approval · access change</td><td>HO · 1 request</td><td>24 h</td><td>26 h</td><td>GM</td><td>hourly</td><td>not yet</td></tr>
+            <tr><td>Proposal · KA-R11 November</td><td>1 target review</td><td>24 h</td><td>2 d</td><td>CEO</td><td>daily 08:30</td><td>not yet</td></tr>
+            <tr><td>Miss line · KA-R11-YSP02</td><td>no action recorded</td><td>24 h</td><td>2 d</td><td>RSM</td><td>daily 08:30</td><td>Mon 08:45</td></tr>
+            <tr><td>Families untouched</td><td>KA-R11 · 83 families</td><td>7 d</td><td>5 d</td><td>RSM</td><td>daily 08:30</td><td>—</td></tr>
+          </table></div>
+          <p class="mini">Continuous clocks page at once, hourly clocks at the top of the hour, and every clock is on the 08:30 summary at least. Past its acknowledgement time an alert steps one level up — RSM, GM, CEO — and a vacant step is skipped. Acknowledged is not cleared: both times are kept. Alerts carry the clock, the post code and counts only; the words a person wrote never travel. If the monitor itself goes quiet, engineering is paged.</p>
+        </div>
+      </div>
+      <figcaption>Nothing sits past its stated time. Every stage, queue, approval, proposal and miss line has a limit and an owner, and the list is oldest first — so a bottleneck is never discovered late and never discovered by the wrong level. The speed line beside it answers the harder question: is the work moving faster than last week, or is it slowing?</figcaption>
+    </figure>
+
   </div>
 </section>
 
@@ -481,9 +579,11 @@ table.t td:first-child{white-space:normal;min-width:100px}
       <h3>Help the team, not police it</h3>
       <p class="aim">Suresh runs a region. His job is to know by mid-morning who needs help and to bring the right kind of help by the afternoon.</p>
       <h4>Every morning</h4>
-      <p>His agenda names the people who were behind three days running, with the reason each one gave, and the ones who have gone quiet. He starts his day with those names, not with a spreadsheet.</p>
+      <p>His agenda names the people who were behind three days running, with the reason each one gave, the line they wrote about what happened, and the ones who have gone quiet. He starts his day with those names, not with a spreadsheet.</p>
       <h4>Mid-morning and mid-afternoon</h4>
       <p>The team pace board shows every YSP in his region as one row: calls, visits, sales, and when they last did something. The two people furthest behind are marked. The mark is an invitation to a conversation, not a punishment, and no row ever shows a location.</p>
+      <h4>Anything past its time</h4>
+      <p>The clock list puts the region's late things in one place, oldest first: families past their stage limit, the unowned queue, an approval waiting, a miss line with no action. Each carries its owner and how it was delivered. He acknowledges with a note; an alert nobody acknowledges steps up to the GM, and then to the CEO. Acknowledged is not cleared — the row stays until the thing itself moves.</p>
       <h4>At four o'clock</h4>
       <p>He takes the names and the reasons into his afternoon round and the update he sends. Where he can help, he does: a joint visit, a different plan, a coaching session. He records the action he chose.</p>
       <h4>Every week</h4>
@@ -504,6 +604,10 @@ table.t td:first-child{white-space:normal;min-width:100px}
       <p>He opens the accountability card. It lists the regions that missed last week, the reason each one recorded, the action the RSM chose, and any YSP who was behind three days. He reads it with the week's other numbers, not instead of them.</p>
       <h4>Through the week</h4>
       <p>He watches the network from one screen: every region and every post, each number in force, each level resolved on its own. When something needs to change, he proposes it: old number to new number, for which level, from which date, and why. The CEO decides.</p>
+      <h4>When a number worries him</h4>
+      <p>He opens the same drill-down the CEO and the HO desk use. The attention band names the regions behind today, the reviews open and the proposals waiting. He can walk to a region, its RSM and one YSP, and read the reasons and actions there. The pipeline view beneath it says whether the families are moving and where they are piling up: families in each stage, moves in and out this week, weeks to clear and the families that have gone quiet.</p>
+      <h4>What is late, and what is slowing</h4>
+      <p>The clock list shows the network's late stages, approvals and proposals with the level that owns each. He acknowledges what is his, sees the escalations that nobody below picked up, and reads the speed line: moves this week against last, and the places that are slowing or stuck. His own desk has a stated time too, and it is on the same list.</p>
       <h4>At month end</h4>
       <p>When a region has missed two weeks running, he may open a target review, which is itself a proposal the CEO decides. He also records the network's monthly line: the main reason, and the action being taken. If the network misses a month, that line goes to the CEO's month close.</p>
       <h4>What he is not asked to do</h4>
@@ -518,6 +622,8 @@ table.t td:first-child{white-space:normal;min-width:100px}
       <div class="who">The CEO</div>
       <h3>Decide, and set the standard</h3>
       <p class="aim">The CEO is the only person who can make a target real, and the only one who sees the network when it misses a month.</p>
+      <h4>Before the morning call</h4>
+      <p>One screen tells him what needs attention: the regions behind pace today, the reviews open, the proposals waiting on him, the approvals that have waited more than a day and the miss lines with no action recorded. Each one opens the thing that explains it. Beneath it the clock list names everything past its stated time with the level that owns it, and the escalations nobody below picked up arrive with him. From there he walks the tree — network, region, the region's RSM and one person — and reads the numbers, the reason, the line the person wrote and the action taken. He can also see where the pipeline is piling up, stage by stage, and whether it is moving at all. He changes nothing from that screen; it is there to point him at the right conversation.</p>
       <h4>When a proposal waits</h4>
       <p>Everything only the CEO can decide sits in one queue: target versions now, prices and access later. Each row shows who proposed it, what changes, why, and how long it has waited. He approves, or rejects with a note. A rejection changes nothing and returns to the proposer with the note attached.</p>
       <h4>At month and quarter end</h4>
@@ -525,7 +631,7 @@ table.t td:first-child{white-space:normal;min-width:100px}
       <h4>What he is not asked to do</h4>
       <ul>
         <li>Approve his own proposal, or one whose next step belongs to another role.</li>
-        <li>Read individual check-ins. He sees reasons counted by level, never one person's private note.</li>
+        <li>Read a person's card in secret. He reaches it only through the drill-down, the detail stays inside the management line, and every view is written into the audit log.</li>
         <li>Chase the week. The Monday card and the month close keep the rhythm; the queue is there when a decision is actually needed.</li>
       </ul>
     </div>
@@ -547,15 +653,15 @@ table.t td:first-child{white-space:normal;min-width:100px}
     <tr>
       <td><b>Every day, 08:30</b></td>
       <td>Reads yesterday against his own numbers.</td>
-      <td>Reads the region's summary, including anyone red for three days.</td>
-      <td>Reads the state summary.</td>
-      <td>Reads the network summary.</td>
+      <td>Reads the region's summary, including anyone red for three days, with their reason and detail.</td>
+      <td>Reads the state summary, then the attention band, the biggest build-up and what is past its time.</td>
+      <td>Reads the network summary; drills to any region or person when something is behind; holds every second escalation.</td>
     </tr>
     <tr>
       <td><b>Through the day</b></td>
-      <td>Works his calls, visits and sales; sees pace on Today.</td>
-      <td>Works the team pace board; helps the two furthest behind.</td>
-      <td>Watches every region on one screen.</td>
+      <td>Works his calls, visits and sales; sees pace and anything overdue on Today.</td>
+      <td>Works the team pace board; helps the two furthest behind; acknowledges the region's clocks.</td>
+      <td>Watches every region on one screen; takes the escalations below him.</td>
       <td>—</td>
     </tr>
     <tr>
@@ -588,8 +694,8 @@ table.t td:first-child{white-space:normal;min-width:100px}
 
   <div class="ladder">
     <div class="rung"><div class="n"></div><div><b>One day behind</b><p>Nothing happens beyond the line on Today and, if the gap is large enough, one of the two daily nudges. There is no meeting, no message to the manager, and no mark against anyone's name.</p></div></div>
-    <div class="rung"><div class="n"></div><div><b>Close of day, and the person says why</b><p>If they choose to, the YSP records a reason (no leads left, the market was off, leave, data entered late, support needed, or something else), an action if one is obvious, and a short note. It is a check-in, not a confession, and it is always optional.</p></div></div>
-    <div class="rung"><div class="n"></div><div><b>Three days running</b><p>The person appears on their RSM's morning agenda with the reasons they gave. The RSM comes to them with help, which usually means a joint visit, a different plan or some coaching, and records what was chosen.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Close of day, and the person says why</b><p>If they choose to, the YSP taps a short reason from the list (no leads left, the market was off, leave, data entered late, support needed, or something else), writes one or two lines about what actually happened, and picks an action if one is obvious. The list of reasons and actions is configuration, so it can be added to or reworded without a new release. It is a check-in, not a confession, and it is always optional.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Three days running</b><p>The person appears on their RSM's morning agenda with the reason they gave, the line they wrote and the action chosen. The RSM comes to them with help, which usually means a joint visit, a different plan or some coaching, and records what was chosen.</p></div></div>
     <div class="rung"><div class="n"></div><div><b>A region behind at week end</b><p>The RSM records one line for the region and chooses an action. That line, with the region's numbers, sits on the GM's Monday card. The GM is reading a region's reason, not naming a person.</p></div></div>
     <div class="rung"><div class="n"></div><div><b>Two weeks running</b><p>The GM may open a target review. This is a formal conversation about whether the plan or the number is wrong. Opening it is the GM's decision alone, and deciding it is the CEO's.</p></div></div>
     <div class="rung"><div class="n"></div><div><b>A month behind, across the network</b><p>The network's monthly line reaches the CEO with the reasons counted by level and the actions already taken. If the same reason repeats across regions, the answer is a change of plan, not a round of blame.</p></div></div>
@@ -607,13 +713,15 @@ table.t td:first-child{white-space:normal;min-width:100px}
 
   <div class="fair">
     <div><b>No location, ever.</b><p>The system reads activity counts and the time of the last activity. It never reads or shows where anyone is.</p></div>
-    <div><b>Two messages a day at most.</b><p>No hourly pings, no evening messages, nothing on Sunday. If someone is ahead, they are left alone.</p></div>
+    <div><b>Two messages a day at most, for the person in the field.</b><p>No hourly pings to the YSP, no evening messages, nothing on Sunday. If someone is ahead, they are left alone. The clock alerts are a different thing: they go to the manager who owns the late work, never to the person doing it, and they carry counts and post codes, not names.</p></div>
     <div><b>One rule for a sale.</b><p>A sale is confirmed when the child submits the first task, everywhere. Money paid but not started stays visible as "awaiting start".</p></div>
     <div><b>No silent zeros.</b><p>Where no target has been set, the screen shows the count alone. Nobody is shown as failing a number that was never given to them.</p></div>
     <div><b>A check-in, not a block.</b><p>The end-of-day reason is optional. It cannot stop a person from working, and it is never used on its own to judge them.</p></div>
     <div><b>Two names on every change.</b><p>The GM proposes; the CEO approves. A person never sets the number they are measured by, and a vacant post decides nothing.</p></div>
-    <div><b>The action is public, the note is not.</b><p>Managers see the action taken. The CEO sees reasons counted by level. Nobody sees another person's private note.</p></div>
+    <div><b>The line the person wrote stays in the line of command.</b><p>Their RSM reads the detail, and so do the levels above once the miss climbs — the name and the words travel only that far. It never goes into an email, a push, a report or a league table, and every look is logged.</p></div>
+    <div><b>The reasons are ours to change.</b><p>The short lists of reasons and actions live in configuration, in English and Kannada. A new reason is added by a governed change, not by waiting for a release, and a stored reason never disappears when the list is reworded.</p></div>
     <div><b>Help comes with the mark.</b><p>A person is marked on the board so the RSM can help them, not so the team can watch them fail. The bottom two are marked; nobody is ranked.</p></div>
+    <div><b>Nothing is left to go quiet.</b><p>Every stage, queue, approval, proposal and miss line has a stated limit and an owner. Past that time it appears on that owner's list, is delivered at least daily — hourly for the short clocks — and steps up a level if nobody acknowledges it. Acknowledging is not clearing: the row stays until the thing itself moves, and both times are kept. If the monitor fails, engineering is paged.</p></div>
   </div>
 </section>
 
