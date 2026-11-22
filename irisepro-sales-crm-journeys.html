@@ -54,7 +54,7 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .step.wide{width:820px;max-width:100%}
 .step.mid{width:560px;max-width:100%}
 .step h3{font-size:15px;font-weight:800;margin:0 0 4px;color:var(--ink)}
-.step h3 i{font-style:normal;color:var(--brand-ink);margin-right:6px}
+.step h3 i{font-style:normal;color:#9a4400;margin-right:6px}
 .step .cap{font-size:13.5px;color:var(--ink-2);margin:0 0 12px;min-height:60px}
 .q{display:inline-block;background:var(--q-soft);color:var(--q);border:1px dashed #c99a1a;border-radius:6px;padding:0 6px;font-size:11px;font-weight:700;white-space:nowrap}
 .note{font-size:12.5px;color:var(--ink-2);margin-top:10px;border-left:3px solid var(--rule);padding-left:9px}
@@ -74,6 +74,7 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .tabs i{font-style:normal;font-size:17px;line-height:1}
 .tabs .on{color:var(--brand-ink);font-weight:700}
 .fc{background:var(--f-bg);border:1px solid var(--f-line);border-radius:12px;padding:10px;margin-bottom:8px}
+.browser .fc{color:var(--f-ink)}
 .fc.sub{background:var(--f-sub)}
 .fc.ok{border-color:var(--ok);background:var(--ok-soft)}
 .fc.bad{border-color:var(--bad);background:var(--bad-soft)}
@@ -94,14 +95,14 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .kp em{display:block;font-style:normal;font-size:11.5px;color:var(--f-mute);line-height:1.3}
 .bar{height:7px;background:#e3e9f0;border-radius:6px;overflow:hidden;margin-top:6px}
 .bar i{display:block;height:100%;background:var(--brand)}
-.fld{border:1.5px solid var(--f-line);border-radius:12px;padding:8px 11px;margin-bottom:8px;position:relative;background:#fff}
+.fld{border:1.5px solid var(--f-line);border-radius:12px;padding:8px 11px;margin-bottom:8px;position:relative;background:#fff;color:var(--f-ink)}
 .fld label{display:block;font-size:11.5px;color:var(--f-mute)}
 .fld span{font-weight:600}
 .fld.focus{border-color:var(--brand)}
 .fld .hint{display:block;font-size:11px;color:var(--ok);font-weight:600}
 .btn{display:flex;align-items:center;justify-content:center;min-height:48px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:14px;margin-top:8px;font-size:14px;text-align:center;padding:0 10px}
 .btn.ghost{background:#fff;border:1.5px solid var(--f-line);color:var(--f-ink)}
-.btn.wa{background:#1faa59;color:#fff}
+.btn.wa{background:#157a3f;color:#fff}
 .btn.dark{background:var(--f-ink);color:#fff}
 .row2{display:flex;gap:8px}
 .row2>*{flex:1}
@@ -142,6 +143,7 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .qr{width:150px;height:150px;margin:6px auto 8px;background:conic-gradient(from 90deg at 18% 18%,#0b1b33 25%,#fff 0 50%,#0b1b33 0 75%,#fff 0) 0 0/30px 30px;border:10px solid #fff;outline:2px solid var(--f-line);border-radius:6px}
 .mask{background:#e3e9f0;color:var(--f-mute);border-radius:5px;padding:0 6px;font-size:11.5px}
 .mini{font-size:11.5px;color:var(--f-mute)}
+.browser .main .mini{color:var(--o-mute)}
 .wa-msg{background:#e7ffdb;border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:12.5px;color:#0b1b33;margin:6px 0}
 .parentphone{background:#f1f3f6}
 .tbar{display:flex;justify-content:space-between;gap:4px;align-items:center;background:#fff4e8;border-bottom:2px solid var(--brand);padding:5px 10px;font-size:12px;font-weight:700;color:#3a2207;white-space:nowrap;overflow:hidden}
@@ -186,6 +188,7 @@ section.j>p.sub{color:var(--ink-2);margin:0 0 22px;max-width:80ch}
 .split>.grow{flex:1;min-width:0}
 .split>.fix{width:290px;flex:0 0 auto}
 .tw{overflow-x:auto}
+.tw:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 table.t{width:100%;border-collapse:collapse;font-size:12.5px;color:var(--o-ink);font-family:inherit}
 table.t th{text-align:left;color:var(--o-mute);font-weight:600;font-size:11.5px;padding:6px 8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
 table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
@@ -299,7 +302,7 @@ table.t .bar{min-width:110px}
 .m-ntf.crit{background:#b42318;color:#fff}.m-ntf.crit .hd{color:#ffd6d1}
 .m-ntf.urg{border-left:5px solid var(--bad)}
 .qr5{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:8px 0}
-.qr5 span{border:1.5px solid #a7e8c3;background:#fff;color:#1faa59;border-radius:10px;text-align:center;padding:9px 0;font-weight:800}
+.qr5 span{border:1.5px solid #a7e8c3;background:#fff;color:#157a3f;border-radius:10px;text-align:center;padding:9px 0;font-weight:800}
 .qr5.em span{border-color:var(--brand);color:var(--brand-ink)}
 .stp{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
 .stp span{font-size:11.5px;padding:4px 9px;border-radius:8px;background:#1d3354;color:var(--o-mute);white-space:nowrap}
@@ -1900,7 +1903,7 @@ table.t .bar{min-width:110px}
  <div class="top" style="background:#fff"><b>YASHHO</b><span class="sync">WhatsApp</span></div>
  <div class="body">
   <div class="wa-msg">Namaskara Shilpa. Thank you for meeting our partner today. Was it Ravi S, partner KA-R11-YSP02, who visited you at 11:20 AM?</div>
-  <div style="display:grid;gap:6px;margin-top:8px"><div class="btn wa" style="margin:0">Yes, it was Ravi</div><div class="btn" style="margin:0;background:#fff;color:#1faa59;border:1.5px solid #a7e8c3">Someone else came</div><div class="btn" style="margin:0;background:#fff;color:#1faa59;border:1.5px solid #a7e8c3">Nobody visited</div></div>
+  <div style="display:grid;gap:6px;margin-top:8px"><div class="btn wa" style="margin:0">Yes, it was Ravi</div><div class="btn" style="margin:0;background:#fff;color:#157a3f;border:1.5px solid #a7e8c3">Someone else came</div><div class="btn" style="margin:0;background:#fff;color:#157a3f;border:1.5px solid #a7e8c3">Nobody visited</div></div>
   <div class="wa-msg" style="margin-top:10px">After a payment: "Did you pay anyone other than the yashho.com link?"</div>
  </div>
 </div></div>
@@ -2097,7 +2100,7 @@ table.t .bar{min-width:110px}
  <div class="dim"></div>
  <div class="sheet"><div class="grab"></div>
   <p style="margin:0 0 8px;font-weight:800;font-size:15px">Your note · 6:12 PM</p>
-  <div class="fc sub" style="opacity:.6"><div class="r"><span class="n">✎ Edit</span><span class="s">closed after 5 minutes</span></div></div>
+  <div class="fc sub" style="opacity:.85"><div class="r"><span class="n">✎ Edit</span><span class="s">closed after 5 minutes</span></div></div>
   <div class="btn" style="background:#fff;color:var(--bad);border:1.5px solid var(--bad)">Remove note</div>
   <p class="mini" style="margin:8px 0 0">Everyone will see "Comment removed". The audit log keeps the text for Head Office.</p>
   <div class="btn ghost">Cancel</div>
@@ -2532,7 +2535,7 @@ table.t .bar{min-width:110px}
  <div class="top" style="background:#fff"><b>YASHHO <span class="m-wa">✓</span></b><span class="sync">WhatsApp · official</span></div>
  <div class="body">
   <div class="wa-msg">Namaskara Shilpa. Your request was resolved today. Tell us how we did: yashho.com/s/4Rt8<small>4:10 PM</small></div>
-  <div class="btn" style="margin:0;background:#fff;color:#1faa59;border:1.5px solid #a7e8c3">Tell us how we did</div>
+  <div class="btn" style="margin:0;background:#fff;color:#157a3f;border:1.5px solid #a7e8c3">Tell us how we did</div>
  </div>
 </div></div>
 <p class="note">The channel is a setting: email in beta, WhatsApp from launch. Both open the same survey page.</p></div>
@@ -2880,7 +2883,7 @@ table.t .bar{min-width:110px}
 <div class="phone"><div class="notch"></div><div class="pv">
  <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span><span class="pill ok">Paid</span></div>
  <div class="body">
-  <div class="btn ghost" style="opacity:.55">Invite to the YASHHO community</div>
+  <div class="btn ghost" style="opacity:.55" aria-disabled="true">Invite to the YASHHO community</div>
   <p class="mini">Community invitations are for webinar registrants only, never for families who have paid.</p>
   <div class="fc sub"><div class="r"><span class="s">Patil family</span><span class="n">Invited today · first invitation 12 Dec</span></div></div>
  </div>
@@ -3169,8 +3172,8 @@ table.t .bar{min-width:110px}
 .sfb .dim{background:rgba(4,10,20,.72);padding:14px;border-radius:10px}
 .payload{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;background:#0f1b2d;color:#cfe3ff;border-radius:8px;padding:8px;white-space:pre-wrap;margin:6px 0 0}
 .payload .nw{color:#ffb259;font-weight:700}
-.sheet{position:relative;background:rgba(4,10,20,.72);border-radius:10px;padding:60px 0 0}
-.sheet .in-sheet{background:#10223c;border-radius:16px 16px 0 0;padding:10px;border-top:2px solid #f5821f}
+.sf .sheet{position:relative;background:rgba(4,10,20,.72);border-radius:10px;padding:60px 0 0}
+.sf .sheet .in-sheet{background:#10223c;border-radius:16px 16px 0 0;padding:10px;border-top:2px solid #f5821f}
 </style>
 
 <section class="j" id="webattr">
@@ -4074,7 +4077,7 @@ referral_code (only when typed and verified)</div></div></div>
  <div class="top"><span><span class="back">‹</span><b>Naik family</b></span><span class="sync">No owner yet</span></div>
  <div class="body">
   <div class="fc sub"><div class="r"><span class="s">Where</span><span class="n">Sira · in your area</span></div><div class="r"><span class="s">Status</span><span class="n">Paid · YASHHO Direct · no partner owns it</span></div><div class="r"><span class="s">What happens next</span><span class="n">Head Office assigns this family</span></div></div>
-  <div class="btn" style="opacity:.55">Send payment link · wait for an owner</div>
+  <div class="btn" style="opacity:.55" aria-disabled="true">Send payment link · wait for an owner</div>
   <p class="mini">An unpaid unowned family in your area is different: you may claim it, like any family you add.</p>
  </div>
 </div></div>
@@ -4299,5 +4302,19 @@ referral_code (only when typed and verified)</div></div></div>
       b.setAttribute('aria-pressed','true'); card.setAttribute('data-role',b.dataset.r); cap.textContent=caps[b.dataset.r];
     });
   });
+})();
+</script>
+<script>
+(function(){
+  function mark(){
+    document.querySelectorAll('.tw').forEach(function(el){
+      if (el.scrollWidth > el.clientWidth + 1) {
+        el.tabIndex = 0;
+      }
+    });
+  }
+  mark();
+  addEventListener('resize', mark);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(mark);
 })();
 </script>
