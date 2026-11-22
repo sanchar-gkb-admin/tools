@@ -196,6 +196,8 @@ table.t .bar{min-width:110px}
 .ob.ghost{background:transparent;border:1.5px solid var(--o-line);color:var(--o-ink)}
 .op{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;white-space:nowrap;background:#1d3354;color:var(--o-ink)}
 .op.ok{background:#0f3d28;color:#7fe0a8}.op.bad{background:#4a1714;color:#ffb3aa}.op.wait{background:#44360c;color:#ffd979}
+.pdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#8a94a3;vertical-align:middle;margin-right:5px}
+.pdot.ok{background:#1f7a3d}.pdot.wait{background:#c98a00}.pdot.bad{background:#b3261e}.pdot.off{background:#8a94a3}
 .up{color:#7fe0a8}.dn{color:#ffb3aa}
 .ohint{font-size:12px;color:var(--o-mute)}
 .browser .q{background:#44360c;color:#ffd979;border-color:#a8841f}
@@ -338,8 +340,8 @@ table.t .bar{min-width:110px}
    <span><span class="q">Q4.2</span> open question for KMM, in the shared Google Doc (storyboard note only, not app text)</span>
   </div>
   <nav class="toc" aria-label="Sections">
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#leadership-messages">Leadership messages</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#spotcheck">Spot checks</a><a href="#familymsg">Family messages</a><a href="#parentbulk">New: bulk WhatsApp to parents</a><a href="#devicecheck">New: device check &amp; sign-off</a><a href="#links">New: campaign links &amp; QR</a><a href="#payfail">Payment failed</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
-   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#leadership-messages">Leadership messages</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#spotcheck">Spot checks</a><a href="#familymsg">Family messages</a><a href="#parentbulk">New: bulk WhatsApp to parents</a><a href="#devicecheck">New: device check &amp; sign-off</a><a href="#payfail">Payment failed</a><a href="#own19">New: ownership edge cases</a><a href="#intake19">New: enquiries &amp; webinars</a><a href="#svc19">New: HQ service activities</a><a href="#report19">Report a problem</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#leadership-messages">Leadership messages</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#spotcheck">Spot checks</a><a href="#familymsg">Family messages</a><a href="#parentbulk">New: bulk WhatsApp to parents</a><a href="#devicecheck">New: device check &amp; sign-off</a><a href="#links">New: campaign links &amp; QR</a><a href="#webattr">Pilot: website attribution</a><a href="#ctabeta">Beta: CTA hierarchy</a><a href="#payfail">Payment failed</a><a href="#targets">New: targets, pace &amp; accountability</a><a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-targets-accountability.html">New: how accountability works (plain guide)</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
+   <a href="#ysp">A YSP's day</a><a href="#rsm">An RSM's day</a><a href="#lead">Leaders</a><a href="#controls">Controls on the ground</a><a href="#special">Special features</a><a href="#money">Money and payouts</a><a href="#credit">Who gets credit</a><a href="#school">Schools and colleges</a><a href="#leadership-messages">Leadership messages</a><a href="#teammsg">New: team messaging</a><a href="#takeover">New (V2): takeover &amp; cases</a><a href="#spotcheck">Spot checks</a><a href="#familymsg">Family messages</a><a href="#parentbulk">New: bulk WhatsApp to parents</a><a href="#devicecheck">New: device check &amp; sign-off</a><a href="#webattr">Pilot: website attribution</a><a href="#ctabeta">Beta: CTA hierarchy</a><a href="#payfail">Payment failed</a><a href="#own19">New: ownership edge cases</a><a href="#targets">New: targets, pace &amp; accountability</a><a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-targets-accountability.html">New: how accountability works (plain guide)</a><a href="#intake19">New: enquiries &amp; webinars</a><a href="#svc19">New: HQ service activities</a><a href="#report19">Report a problem</a><a href="#web">On yashho.com</a><a href="irisepro-sales-crm-onboarding.html">Onboarding YSPs and RSMs (separate storyboard)</a>
   </nav>
  </div>
 
@@ -847,6 +849,50 @@ table.t .bar{min-width:110px}
   <div class="sheet"><div class="grab"></div><p style="margin:0 0 6px;font-weight:800">Stop all contact with the Rao family?</p><p class="mini" style="margin:0 0 8px">Calls, WhatsApp and payment links stop for everyone at YASHHO. You can undo this only if the parent asks.</p><div class="btn dark">Stop all contact</div><div class="btn ghost">Cancel</div></div>
  </div></div></div></div>
 
+
+<div class="step wide"><h3><i>36</i>Forgot your password</h3><p class="cap">Ravi has forgotten his password. He asks for a new one-time link from the sign-in screen. No password is ever sent by email (UC-ADM-01).</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><b>YASHHO Partner</b></span><span>English · ಕನ್ನಡ</span></div>
+ <div class="body">
+  <p style="margin:0 0 6px;font-weight:800">Forgot your password?</p>
+  <p class="mini" style="margin:0 0 8px">Type the email you sign in with. We'll send a one-time link to set a new password.</p>
+  <div class="fld focus"><label>Email</label><span>ravi.s@…</span></div>
+  <div class="fc ok"><h4>Check your email</h4><p class="mini" style="margin:0">If this email belongs to a YASHHO partner, a link is on its way. It works once and expires.</p></div>
+ </div>
+ <div class="dock"><div class="btn">Send reset link</div><div class="btn ghost">Back to sign in</div></div>
+</div></div>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Sign in</span></div>
+<div class="bv"><div class="main">
+ <p style="margin:0 0 6px;font-weight:800">Forgot your password?</p>
+ <div class="ok4"><div class="okp"><small>Email</small><b>meera.desk@…</b><em>office sign-in</em></div></div>
+ <p class="ohint">The same answer for every email, so nobody can find out who has an account. The link opens the set-password page (onboarding step 11).</p>
+ <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="ob">Send reset link</span><span class="ob ghost">Back to sign in</span></div>
+</div></div></div>
+</div><p class="note">"Forgot password?" sits under Sign in. The reply never says whether the email is known. YSP-37 · UC-ADM-01 · POST /crm/password/forgot.</p></div>
+
+<div class="step wide"><h3><i>37</i>Changing a family's details</h3><p class="cap">Ravi corrects the parent's name, adds the child's class or changes the PIN. A new PIN is checked against his area like a new family; numbers are added on their own screen (step 14).</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Kumar family · details</b></span></div>
+ <div class="tbar"><span>📞 <b class="behind">14</b>/40</span><span>📍 <b class="behind">3</b>/10</span><span>🎥 0</span><span>RP 4</span></div>
+ <div class="body">
+  <div class="fld"><label>Parent's name</label><span>Shilpa Kumar</span></div>
+  <div class="fld"><label>Relation</label><span>Mother</span></div>
+  <div class="fld"><label>Child's name (optional)</label><span>Aarav</span></div>
+  <div class="fld"><label>Class (optional)</label><span>Class 9</span></div>
+  <div class="fld focus"><label>PIN code</label><span>572137</span><span class="hint">Sira · in your area</span></div>
+  <div class="fc warn"><h4>This PIN is outside your area</h4><p class="mini" style="margin:0">Not saved. Ask Head Office to correct a wrong PIN.</p></div>
+ </div>
+ <div class="dock"><div class="btn">Save changes</div></div>
+</div></div>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Kumar family · details</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>Parent</small><b>Shilpa Kumar</b><em>Mother</em></div><div class="okp"><small>Child</small><b>Aarav</b><em>Class 9</em></div><div class="okp"><small>PIN</small><b>572137</b><em>Sira</em></div></div>
+ <p class="ohint">Suresh can make the same change for a family in his region from the laptop. Each change is logged with who and when.</p>
+ <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="ob">Save changes</span><span class="ob ghost">Cancel</span></div>
+</div></div></div>
+</div><p class="note">Child details stay optional and are masked for senior roles. YSP-15 · UC-CUS-03 · PATCH /crm/families/{id}.</p></div>
 </div>
 </section>
 
@@ -1208,6 +1254,60 @@ table.t .bar{min-width:110px}
  <tr><td>141</td><td>Ravi, Sira</td><td>Tumakuru W–N</td><td>11</td><td>₹0.55 L</td><td>78%</td><td>9</td></tr>
  <tr><td>400</td><td>Imran, Pavagada</td><td>Tumakuru W–N</td><td>3</td><td>₹0.15 L</td><td>21%</td><td>12</td></tr></table></div></div></div></div></div>
 
+
+<div class="step wide"><h3><i>8</i>Onboarding desk: recording a candidate</h3><p class="cap">When an RSM nominates a YSP, or recruitment hires an RSM, the desk records the candidate against the post. The candidate then waits for HR (YSPs) or the GM (RSMs) to approve in the app.</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>New candidate</b></span></div>
+ <div class="body">
+  <div class="fld"><label>Post</label><span>KA-R11-YSP07 · Nonavinakere</span></div>
+  <div class="fld"><label>Full name</label><span>Lakshmi R</span></div>
+  <div class="fld"><label>Email</label><span>lakshmi.r@…</span></div>
+  <div class="fld"><label>Mobile</label><span>99012 34567</span></div>
+  <div class="fld"><label>Age · home PIN</label><span>27 · 572106</span></div>
+ </div>
+ <div class="dock"><div class="btn">Record candidate</div></div>
+</div></div>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · New candidate</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>Kind</small><b>YSP</b><em>or RSM</em></div><div class="okp"><small>Post</small><b>KA-R11-YSP07</b><em>Nonavinakere</em></div><div class="okp"><small>Candidate</small><b>Lakshmi R</b><em>age 27</em></div><div class="okp"><small>Nominated</small><b>12 Dec</b><em>by Suresh</em></div></div>
+ <p class="ohint">No PAN, bank or documents here: those stay in the onboarding tracker. Status: In progress until approved.</p>
+ <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="ob">Record candidate</span><span class="ob ghost">Cancel</span></div>
+</div></div></div>
+</div><p class="note">MFS-08 · UC-NET-01, UC-NET-02 · POST /crm/appointments. Approval happens only in the app (step 5 for HR, step 9 for the GM).</p></div>
+
+<div class="step wide"><h3><i>9</i>GM: RSMs to approve</h3><p class="cap">An RSM needs the GM's approval before the desk can switch her on. The GM approves in the app; one RSM per region.</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><b>RSMs to approve</b></span></div>
+ <div class="body">
+  <div class="fc"><h4>Anitha M</h4><p class="mini" style="margin:0 0 6px">KA-R27-RSM01 · Chikkamagaluru · In progress</p><div class="btn" style="min-height:44px">Approve</div></div>
+ </div>
+</div></div>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · RSM approvals</span></div>
+<div class="bv"><div class="main">
+ <div class="tw"><table class="t"><tr><th>Candidate</th><th>Post</th><th>Status</th><th></th></tr>
+ <tr><td>Anitha M</td><td>KA-R27-RSM01</td><td><span class="op wait">In progress</span></td><td><span class="ob">Approve</span></td></tr></table></div>
+ <p class="ohint">After approval the desk's switch-on list shows "Approved by the GM on 18 Dec".</p>
+</div></div></div>
+</div><p class="note">GM-08 · UC-NET-01 · POST /crm/appointments/{id}/approve. A second RSM for a region with one is refused.</p></div>
+
+<div class="step wide"><h3><i>10</i>Onboarding desk: training or live</h3><p class="cap">Everyone starts in training mode. When the RSM says a new YSP is ready to sell, the desk moves her to live. A leaver is switched off from the same list.</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><b>Switched on</b></span></div>
+ <div class="body">
+  <div class="fc"><h4>Lakshmi R · KA-R11-YSP07</h4><p class="mini" style="margin:0 0 6px">Training · switched on 13 Dec by Meera</p><div class="btn" style="min-height:44px">Move to live</div><div class="btn ghost" style="min-height:44px">Switch off</div></div>
+ </div>
+</div></div>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · People · Switched on</span></div>
+<div class="bv"><div class="main">
+ <div class="tw"><table class="t"><tr><th>Person</th><th>Post</th><th>Mode</th><th>PAN · bank</th><th></th></tr>
+ <tr><td>Lakshmi R</td><td>KA-R11-YSP07</td><td><span class="op wait">Training</span></td><td><span class="op ok">Verified</span></td><td><span class="ob">Move to live</span> <span class="ob ghost">Switch off</span></td></tr>
+ <tr><td>Ravi S</td><td>KA-R11-YSP02</td><td><span class="op ok">Live</span></td><td><span class="op ok">Verified</span></td><td><span class="ob ghost">Move to training</span> <span class="ob ghost">Switch off</span></td></tr></table></div>
+ <p class="ohint">Switch off asks for a reason (at least 10 characters) and ends access on every phone at once (onboarding, "When someone leaves").</p>
+</div></div></div>
+</div><p class="note">MFS-09 · UC-NET-08 · POST /crm/people/{post}/mode and /switch-off. A whole region is switched on or off by Engineering (crm:region:enable / disable), not from this screen.</p></div>
 </div>
 </section>
 
@@ -1456,6 +1556,28 @@ table.t .bar{min-width:110px}
  <tr><td>Yesterday</td><td>Engineering</td><td class="wrap">December targets loaded · requested by KMM</td></tr></table></div>
 </div></div></div></div>
 
+
+<div class="step wide"><h3><i>20</i>Stage moves</h3><p class="cap">Every time a family moves stage — by a rule, by hand or by the first backfill — who moved it, when, why and under which settings. Read-only, beside the change log.</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Stage moves</b></span></div>
+ <div class="body">
+  <div class="fld"><label>Family</label><span>Kumar family</span></div>
+  <div class="fc"><h4>Interested → Payment pending</h4><p class="mini" style="margin:0">Today 11:20 · auto · rule link_sent · by system · settings v3</p></div>
+  <div class="fc"><h4>Contacted → Interested</h4><p class="mini" style="margin:0">Yesterday 16:05 · manual · reason asked_for_sample · by KA-R11-YSP02 (Ravi S) · v3</p></div>
+  <div class="fc"><h4>— → Assigned</h4><p class="mini" style="margin:0">3 Dec · backfill · by command · v2</p></div>
+ </div>
+ <div class="dock"><div class="btn ghost">Show more</div></div>
+</div></div>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Change log · Stage moves</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>Family</small><b>Kumar</b><em>or any</em></div><div class="okp"><small>By post</small><b>KA-R11-YSP02</b><em>person at that time</em></div><div class="okp"><small>Stage</small><b>any → Payment pending</b><em>from / to</em></div><div class="okp"><small>Source · rule · dates</small><b>auto</b><em>link_sent · 1–19 Dec</em></div></div>
+ <div class="tw"><table class="t"><tr><th>When</th><th>Family</th><th>From → to</th><th>Source</th><th>Rule or reason</th><th>By</th><th>Settings</th></tr>
+ <tr><td>Today 11:20</td><td>Kumar family</td><td>Interested → Payment pending</td><td><span class="op ok">auto</span></td><td>link_sent</td><td>system</td><td>v3</td></tr>
+ <tr><td>Yesterday 16:05</td><td>Kumar family</td><td>Contacted → Interested</td><td><span class="op wait">manual</span></td><td>asked_for_sample</td><td>KA-R11-YSP02 · Ravi S</td><td>v3</td></tr></table></div>
+ <p class="ohint">Scoped like the change log (an office role sees what its scope allows). Newest first, a page at a time. Nothing here can be edited.</p>
+</div></div></div>
+</div><p class="note">GM-18 · UC-ADM-02 · R76 · reads crm_family_stage_history (append-only); "by" is the post and the person holding it at that time.</p></div>
 </div>
 </section>
 
@@ -1793,7 +1915,7 @@ table.t .bar{min-width:110px}
 <div class="bv"><div class="side"><div class="on">Messages</div><div>Sent</div><div>Control room</div><div>Cases</div></div>
 <div class="main"><div class="split"><div class="grow oc"><h4>New message</h4>
  <p class="ohint" style="margin:0 0 6px"><b>To</b> (one step)</p>
- <div class="chipset"><span>Everyone</span><span class="on">Region ✓</span><span>Unit</span><span>All RSMs</span><span>All YSPs</span><span class="on">Pick named people ✓</span><span>Saved group <i class="st l">LAUNCH</i></span></div>
+ <div class="chipset"><span>Everyone</span><span class="on">Region ✓</span><span>Unit</span><span>All RSMs</span><span>All YSPs</span><span class="on">Pick named people ✓</span><span>Saved group <i class="st b">BETA</i></span></div>
  <p class="ohint" style="margin:0 0 4px">Regions: KA-R11, KA-R17, KA-R05 (33 people) · Named: 5 people</p>
  <p class="ohint" style="margin:0 0 4px"><b>Title:</b> December offer: how to explain it to parents</p>
  <p class="ohint" style="margin:0 0 10px"><b>Attach:</b> December offer poster (Kannada, English)</p>
@@ -2607,7 +2729,7 @@ table.t .bar{min-width:110px}
 
 <section class="j" id="parentbulk">
 <h2>Bulk WhatsApp to parents, and the community invite from the app <span class="badge newadd">New addition · 18 Nov 2026</span><span class="badge now">Launch</span></h2>
-<p class="sub">Goutam's rulings of 18 Nov. Head Office and the GM send to any parents in their scope; an RSM to the parents of his own region only; a YSP never sends in bulk, only to one family (the community invite, steps 11-12). Senders build lists with family tags (steps 14-18). Audiences come from data we already hold: webinar registrants and paid families. Every message is an approved template from YASHHO's official WhatsApp, paced within the messaging limit all our numbers share (WhatsApp sets it per business portfolio) and each number's send rate, and lands in each family's conversation (UC-MSG-05, UC-ENQ-10; LLD R74).</p>
+<p class="sub">Goutam's rulings of 18 Nov, amended 21 Nov. Head Office and the GM send to any parents in their scope; an RSM to the parents of his own region only; a YSP sends in bulk only through a community it owns, and its RSM approves the send (D-45; the group-communications section below), while a single family is still invited to the YASHHO community by hand (steps 11-12). Senders build lists with family tags (steps 14-18). Audiences come from data we already hold: webinar registrants and paid families. Every message is an approved template from YASHHO's official WhatsApp, paced within the messaging limit all our numbers share (WhatsApp sets it per business portfolio) and each number's send rate, and lands in each family's conversation (UC-MSG-05, UC-ENQ-10; LLD R74).</p>
 <p class="examples"><b>Rules on every send:</b> opted-out and do-not-contact parents are excluded, and checked again just before each message goes · WhatsApp only with consent · the community invitation never goes to families who have paid · quiet hours 9 PM-9 AM hold the send · a large send waits for a second person's approval in the app · nothing is free text.</p>
 <div class="flow">
 
@@ -3012,9 +3134,226 @@ table.t .bar{min-width:110px}
 </div>
 </section>
 
+<style>
+/* Storefront frames (yashho.com real theme: navy #0a1626 / surface #10223c / orange #f5821f, CTA #c2410c, Montserrat) */
+.sf{background:#0a1626;color:#eaf1f9;font-family:Montserrat,sans-serif}
+.sf .top{background:#0a1626;color:#eaf1f9;border-bottom:1px solid #1d3354}
+.sf .top b{color:#eaf1f9}.sf .sync{color:#8ea3bd}
+.sf .body{background:#0a1626}
+.sf h5{font-weight:900;text-transform:uppercase;font-size:14px;letter-spacing:.02em;margin:4px 0 6px;color:#eaf1f9}
+.sf .sub2{font-size:11px;color:#8ea3bd;margin:0 0 8px}
+.sf .in{background:#10223c;border:1px solid #1d3354;border-radius:10px;padding:7px 9px;font-size:11.5px;color:#eaf1f9;margin:0 0 6px;display:flex;justify-content:space-between}
+.sf .in i{font-style:normal;color:#8ea3bd}
+.sf .in.newf{border-color:#f5821f}
+.sf .new{font-size:9px;font-weight:800;color:#1a0e02;background:#ffb259;border-radius:4px;padding:1px 4px;margin-left:4px}
+.sf .seg2{display:flex;gap:6px;margin:0 0 6px}.sf .seg2 span{flex:1;text-align:center;border:1px solid #1d3354;border-radius:999px;padding:5px 0;font-size:11px;color:#8ea3bd}
+.sf .seg2 span.on{border-color:#f5821f;color:#ff9b3d;font-weight:700}
+.sf .ck{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:#8ea3bd;margin:4px 0}
+.sf .ck b{width:14px;height:14px;border:1.5px solid #8ea3bd;border-radius:3px;flex:0 0 14px;display:inline-block}
+.sf .ck b.on{background:#f5821f;border-color:#f5821f}
+.sf .cta{background:#c2410c;color:#fff;font-weight:800;border-radius:999px;text-align:center;padding:9px 0;font-size:12px;margin-top:6px}
+.sf .ghost2{border:1px solid #1d3354;color:#eaf1f9;border-radius:999px;text-align:center;padding:8px 0;font-size:12px;margin-top:6px}
+.sf .hero{background:linear-gradient(160deg,#10223c,#0a1626);border-radius:12px;padding:10px;margin:0 0 8px}
+.sf .hero p{margin:0;font-weight:900;text-transform:uppercase;font-size:13px;line-height:1.15}
+.sf .ok{background:#10223c;border:1px solid #2eb67d;border-radius:12px;padding:10px;text-align:center;font-size:12px}
+.sf .chips{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 6px}.sf .chips span{border:1px solid #1d3354;border-radius:8px;padding:4px 7px;font-size:10.5px;color:#8ea3bd}
+.sf .chips span.on{border-color:#f5821f;color:#ff9b3d;font-weight:700}
+.sfb{background:#0a1626;color:#eaf1f9;font-family:Montserrat,sans-serif;padding:12px;min-height:230px}
+.sfb .nav{display:flex;justify-content:space-between;align-items:center;font-size:12px;border-bottom:1px solid #1d3354;padding-bottom:8px;margin-bottom:10px}
+.sfb .nav .r{display:flex;gap:8px;align-items:center}
+.sfb .pill{border:1px solid #1d3354;border-radius:8px;padding:5px 9px;font-size:11px}
+.sfb .pill.o{background:#c2410c;border-color:#c2410c;color:#fff;font-weight:800}
+.sfb .cols{display:flex;gap:12px}.sfb .cols>div{flex:1}
+.sfb .card{background:#10223c;border:1px solid #1d3354;border-radius:12px;padding:10px}
+.sfb .modal{background:#10223c;border:1px solid #f5821f;border-radius:14px;padding:12px;max-width:340px;margin:0 auto;box-shadow:0 10px 40px rgba(4,10,20,.7)}
+.sfb .dim{background:rgba(4,10,20,.72);padding:14px;border-radius:10px}
+.payload{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;background:#0f1b2d;color:#cfe3ff;border-radius:8px;padding:8px;white-space:pre-wrap;margin:6px 0 0}
+.payload .nw{color:#ffb259;font-weight:700}
+.sheet{position:relative;background:rgba(4,10,20,.72);border-radius:10px;padding:60px 0 0}
+.sheet .in-sheet{background:#10223c;border-radius:16px 16px 0 0;padding:10px;border-top:2px solid #f5821f}
+</style>
+
+<section class="j" id="webattr">
+<h2>Pilot: website attribution on every live form <span class="badge newadd">New addition · 19 Nov 2026</span><span class="badge now">Pilot</span></h2>
+<p class="sub">Every form live on yashho.com today, drawn as it will be after the 19 Nov fixes (website #124, #125; Backend #2030, #2033). Rulings: R77.4 and R77.9 (campaign link adds <code>utm_id</code> + <code>ref</code>; the storefront reads them on any page), R78.10 and C30 (UTM on every capture path), C27 (a partner link always carries its partner code), C23 (consent before a vendor channel), C10 (children's data never leaves the tenancy), OWN-1 / R78.1 (a direct buyer stays YASHHO Direct). R78.7 is now a pilot item: language and session on the webinar form (Goutam, 19 Nov). Session times come from the <code>cfg_webinar_sessions</code> settings.</p>
+<p class="examples"><b>Forms on the live site (enumerated 19 Nov):</b> the webinar form (/webinar) and the enrolment form (/enrollment_form, the checkout). The KAS form is removed along with the KAS page (website #125; /kas now 301s to the KAS scan page). The old lead-capture form was dead code and is deleted (website #124); it comes back at beta as PAR-09. <b>New</b> marks a field or value that reaches the backend for the first time.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>Parent lands from a partner's campaign link (phone)</h3><p class="cap">/go/{code} sends the parent here with the UTMs, <code>utm_id</code> and the partner's <code>ref</code>. Nothing on the page changes for the parent.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>yashho.com</b></span><span class="sync">🔒</span></div>
+ <div class="body">
+<div class="hero"><p>Know your child's<br>success path</p></div><div class="cta">Get Your Success Path Chart Now</div><div class="ghost2">CEO Webinar · free</div>
+<div class="payload">?utm_source=whatsapp&amp;utm_medium=social
+&amp;utm_campaign=dec_scan<span class="nw">&amp;utm_id=k7m2p9q4rt</span>
+<span class="nw">&amp;ref=ravi-k</span></div>
+ </div>
+</div></div>
+<p class="note">PAR-04 · UC-SALE-08 · R77.4, R77.9 (a). <b>New:</b> <code>?ref=</code> on ANY page records the partner touch server to server and sets <code>ym_attr</code>, the same as /ref/{slug}. The first touch is kept for the whole visit.</p></div>
+
+<div class="step mid"><h3><i>2</i>Same landing on a laptop</h3><p class="cap">The same URL; the partner credit is stored before the parent clicks anything.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">yashho.com/?utm_source=whatsapp&amp;utm_medium=social&amp;utm_campaign=dec_scan&amp;utm_id=k7m2p9q4rt&amp;ref=ravi-k</span></div>
+<div class="bv"><div class="sfb"><div class="nav"><b>YASHHO</b><div class="r"><span class="pill">WhatsApp</span><span class="pill o">Get Your Success Path Chart Now</span></div></div>
+<div class="cols"><div><p style="font-weight:900;text-transform:uppercase;font-size:18px;margin:0">Know your child's success path</p><p style="color:#8ea3bd;font-size:12px">AACE64 Success Scan · 21 tasks</p></div><div class="card"><p style="margin:0;font-size:11px;color:#8ea3bd">Stored for this visit (first touch)</p><div class="payload">utm_source whatsapp · utm_medium social
+utm_campaign dec_scan · <span class="nw">utm_id k7m2p9q4rt</span>
+<span class="nw">ref ravi-k → ym_attr cookie</span></div></div></div>
+</div></div></div>
+<p class="note">C27: a field link always carries its partner's code, which the parent cannot change. An unknown or retired partner code still shows the page, with no cookie set.</p></div>
+
+<div class="step"><h3><i>3</i>Webinar form (phone)</h3><p class="cap">Every field it captures. WhatsApp is <b>not</b> pre-ticked. Language and session are new for the pilot.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>yashho.com/webinar</b></span><span class="sync">🔒</span></div>
+ <div class="body">
+<h5>Free CEO webinar</h5>
+<div class="in"><span>Meena</span><i>First name</i></div><div class="in"><span>R</span><i>Last name</i></div><div class="in"><span>98860 •••••</span><i>Mobile</i></div><div class="in"><i>Email (optional)</i></div><div class="in"><span>Classes 5–12</span><i>▾</i></div>
+<div class="seg2"><span class="on">I am a parent</span><span>I am the student</span></div>
+<div class="seg2"><span class="on">ಕನ್ನಡ <em class="new">NEW</em></span><span>English</span></div>
+<div class="chips"><span>11:00 AM</span><span>2:00 PM</span><span class="on">7:30 PM</span><em class="new">NEW</em></div>
+<div class="ck"><b></b><span>Send me the joining link and reminders on WhatsApp.</span></div>
+<div class="cta">Register free →</div>
+ </div>
+</div></div>
+<p class="note">PAR-11 · UC-ENQ-11, UC-ENQ-12 · R78.7 (pilot, Goutam 19 Nov). Sessions: kn 11:00, 14:00, 19:30 · en 12:00, 15:00, 20:30 (<code>cfg_webinar_sessions</code>). The page shows the start time only, never an end time. PIN code and a typed partner code are <b>not</b> drawn: they need a backend column, which waits for the lead-schema design (#2031).</p></div>
+
+<div class="step mid"><h3><i>4</i>Webinar form on a laptop</h3><p class="cap">English chosen, so the English sessions show. The box is opt-in.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">yashho.com/webinar</span></div>
+<div class="bv"><div class="sfb"><div class="cols"><div><p style="font-weight:900;text-transform:uppercase;font-size:18px;margin:0">How the Success Scan works</p><p style="color:#8ea3bd;font-size:12px">Live with our CEO · free</p></div>
+<div class="card sf" style="padding:10px"><div class="in"><span>Meena</span><i>First</i></div><div class="in"><span>98860 •••••</span><i>Mobile</i></div><div class="seg2"><span>ಕನ್ನಡ</span><span class="on">English</span></div><div class="chips"><span>12:00 PM</span><span class="on">3:00 PM</span><span>8:30 PM</span></div><div class="ck"><b></b><span>WhatsApp joining link and reminders</span></div><div class="cta">Register free →</div></div></div>
+</div></div></div>
+<p class="note">Two columns on a wide screen. Same fields, same rules.</p></div>
+
+<div class="step"><h3><i>5</i>Registered: what reaches the backend</h3><p class="cap">The thank-you screen, and the request sent to <code>POST /api/webinar-register</code>.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>yashho.com/webinar</b></span><span class="sync">🔒</span></div>
+ <div class="body">
+<div class="ok"><b>You're registered.</b><br><span style="color:#8ea3bd">Kannada · today 7:30 PM. We'll send the joining link before the session.</span></div>
+<div class="payload">first_name Meena · last_name R
+phone 98860••••• · role parent
+stream regular · whatsapp_consent false
+utm_source whatsapp · utm_medium social
+utm_campaign dec_scan
+<span class="nw">utm_id k7m2p9q4rt · ref ravi-k</span>
+<span class="nw">language kn · session_key kn-1930</span></div>
+ </div>
+</div></div>
+<p class="note">R77.9 (c), C30. Until 19 Nov this form sent <b>no</b> UTMs. <code>utm_id</code> is counted for the link through R77.6. A re-registration keeps the first campaign (#2030).</p></div>
+
+<div class="step"><h3><i>6</i>Checkout: the enrolment form (phone)</h3><p class="cap">Name, mobile, email and an optional referral code. The campaign tags ride along to the order.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>yashho.com/enrollment_form</b></span><span class="sync">🔒</span></div>
+ <div class="body">
+<h5>AACE64 Success Scan</h5><p class="sub2">₹4,999 + GST = ₹5,898.82</p>
+<div class="in"><span>Meena</span><i>First name</i></div><div class="in"><span>R</span><i>Last name</i></div><div class="in"><span>98860 •••••</span><i>Mobile</i></div><div class="in"><span>meena@…</span><i>Email</i></div><div class="in"><i>Referral code (optional)</i></div>
+<p class="sub2">By paying you accept the Terms, Refunds and Privacy Policy.</p>
+<div class="cta">Pay ₹5,898.82 securely</div>
+ </div>
+</div></div>
+<p class="note">PAR-03 · D22 · one price on every channel (C8). The sign-off ends here, short of payment.</p></div>
+
+<div class="step mid"><h3><i>7</i>Checkout on a laptop: the order notes</h3><p class="cap">What the Razorpay order carries (notes contract v5).</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">yashho.com/enrollment_form?plan=ultimate-champion-64</span></div>
+<div class="bv"><div class="sfb"><div class="cols"><div class="card sf"><div class="in"><span>Meena R</span><i>Name</i></div><div class="in"><span>98860 •••••</span><i>Mobile</i></div><div class="cta">Pay ₹5,898.82 securely</div></div>
+<div><div class="payload">notes: plan 4999 · stream regular · checkoutId …
+utm_source whatsapp · utm_medium social
+utm_campaign dec_scan · <span class="nw">utm_id k7m2p9q4rt</span>
+attribution_id 01J… (from ym_attr, server-read)
+referral_code (only when typed and verified)</div></div></div>
+</div></div></div>
+<p class="note">R77.9 (b). Contract v5 adds <code>utm_id</code>. Backend #2033 must be deployed before website #124, or the webhook's canary flags the new key.</p></div>
+
+<div class="step wide"><h3><i>8</i>The paid order in the CRM: who gets the credit</h3><p class="cap">Partner link → the partner's family. No link → YASHHO Direct, and the Head Office desk assigns a care owner.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Orders</span></div>
+<div class="bv"><div class="main">
+<div class="tw"><table class="t"><tr><th>Order</th><th>Parent</th><th>Came from</th><th>Credited to</th><th>Link</th></tr>
+<tr><td>#5521</td><td>Meena R · ••••3421</td><td>whatsapp · social · dec_scan</td><td><b>Ravi K (YSP)</b> · partner link</td><td>k7m2p9q4rt · 1 payment</td></tr>
+<tr><td>#5522</td><td>Anil M · ••••0912</td><td>google · cpc · brand</td><td><b>YASHHO Direct</b> → desk assigns care owner</td><td>—</td></tr></table></div>
+</div></div></div>
+<p class="note">PAR-04, HQD-01 · D22 (attribution decides the credit), OWN-1 / R78.1, C26 (credit is never retroactive). The link's counts come from <code>utm_id</code> (R77.6).</p></div>
+
+<div class="step"><h3><i>9</i>What Meta receives (Conversions API)</h3><p class="cap">Parents who ticked marketing consent only. Students and parents who did not tick are never sent.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>Meta · Lead events</b></span><span class="sync">server</span></div>
+ <div class="body">
+<div class="in"><span>Parent · marketing consent ✓</span><i style="color:#2eb67d">Lead sent (hashed)</i></div>
+<div class="in"><span>Parent · no consent</span><i>not sent</i></div>
+<div class="in"><span>Student (any consent)</span><i>not sent</i></div>
+<div class="in"><span>Re-registration</span><i>not sent</i></div>
+<p class="sub2">Hashed email and phone only. The server log keeps ids only.</p>
+ </div>
+</div></div>
+<p class="note">C10, C23 · settings <code>services.meta.lead_roles</code> = parent, <code>lead_requires_marketing_consent</code> = true (Backend #2030). The site has no marketing-consent box yet, so <b>no</b> registration reaches Meta until one is added. That is an open question for Goutam.</p></div>
+
+<div class="step mid"><h3><i>10</i>The team's Slack alert: last 4 digits only</h3><p class="cap">The lead alert names the parent and shows ••••3421. The team opens the lead by its id to call.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">Slack · #alerts-leads</span></div>
+<div class="bv"><div class="main"><div class="oc"><h4>🎓 WEBINAR · New webinar registration</h4><p class="ohint">Name Meena R · Mobile ••••3421 · WhatsApp: open the lead (id below) to chat · Campaign whatsapp · social · dec_scan · Lead #812</p></div></div></div></div>
+<p class="note">HLD NFR-P05, AGENT-RULES 25. The mask runs in one place (<code>OpsAlert</code>) for every alert (Backend #2030).</p></div>
+
+</div>
+</section>
+
+<section class="j" id="ctabeta">
+<h2>Beta (2 Dec): call-to-action hierarchy on yashho.com <span class="badge newadd">New addition · 19 Nov 2026</span><span class="badge beta">Beta</span></h2>
+<p class="sub">Goutam's ruling of 19 Nov: at beta, the enquiry form ("Talk to a YASHHO expert", PAR-09 / UC-ENQ-13, routed through the one intake, R78.8) becomes the <b>secondary</b> call to action wherever WhatsApp is secondary today. That covers the header button, the hero CTA bar and the compact phone pill. The scan stays primary. WhatsApp moves into the hamburger menu, and the floating WhatsApp bubble is removed. Not in the pilot PRs.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>Before: header and hero today (phone)</h3><p class="cap">The scan pill is primary and WhatsApp is secondary. The floating bubble sits over the page.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>YASHHO</b></span><span class="sync">☰</span></div>
+ <div class="body"><div class="hero"><p>Know your child's success path</p></div><div class="cta">Get Your Success Path Chart Now</div><div class="ghost2">💬 WhatsApp us</div><p style="text-align:right;margin:10px 0 0"><span style="background:#25d366;color:#fff;border-radius:50%;padding:8px 10px">💬</span></p></div>
+</div></div>
+<p class="note">Today: site-nav.tsx:172 (WhatsApp button), hero.tsx:174 (WhatsApp in the CTA bar), whatsapp-float.tsx.</p></div>
+
+<div class="step"><h3><i>2</i>After: header and hero at beta (phone)</h3><p class="cap">The scan stays primary. "Talk to an expert" replaces WhatsApp. No floating bubble.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>YASHHO</b></span><span class="sync">☰</span></div>
+ <div class="body"><div class="hero"><p>Know your child's success path</p></div><div class="cta">Get Your Success Path Chart Now</div><div class="ghost2">Talk to a YASHHO expert</div></div>
+</div></div>
+<p class="note">PAR-09 · UC-ENQ-13 · D50.</p></div>
+
+<div class="step mid"><h3><i>3</i>Before and after: the header on a laptop</h3><p class="cap">Top row: today. Bottom row: beta.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">yashho.com</span></div>
+<div class="bv"><div class="sfb" style="min-height:0"><div class="nav"><b>YASHHO</b><div class="r"><span class="pill">💬 WhatsApp</span><span class="pill o">Get Your Success Path Chart Now</span></div></div>
+<div class="nav" style="border:0"><b>YASHHO</b><div class="r"><span class="pill">Talk to a YASHHO expert</span><span class="pill o">Get Your Success Path Chart Now</span></div></div>
+<div class="cols"><div class="card"><p style="margin:0;font-size:11px;color:#8ea3bd">Hero CTA bar · before</p><span class="pill o">Get Your Success Path Chart Now</span> <span class="pill">💬 WhatsApp</span></div><div class="card"><p style="margin:0;font-size:11px;color:#8ea3bd">Hero CTA bar · beta</p><span class="pill o">Get Your Success Path Chart Now</span> <span class="pill">Talk to a YASHHO expert</span></div></div></div></div></div>
+<p class="note">Same order on every page. The scan is always the solid orange button.</p></div>
+
+<div class="step"><h3><i>4</i>The hamburger menu at beta: WhatsApp lives here</h3><p class="cap">WhatsApp is still one tap away, as a menu item.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>YASHHO</b></span><span class="sync">✕</span></div>
+ <div class="body"><div class="in"><span>Plans &amp; prices</span><i>›</i></div><div class="in"><span>CEO Webinar</span><i>›</i></div><div class="in"><span>FAQ</span><i>›</i></div><div class="in"><span>💬 WhatsApp us</span><i>›</i></div><div class="cta">Get Your Success Path Chart Now</div><div class="ghost2">Talk to a YASHHO expert</div></div>
+</div></div>
+<p class="note">The WhatsApp number is the one on the site today. Only its placement moves.</p></div>
+
+<div class="step"><h3><i>5</i>The enquiry form opens as a sheet (phone)</h3><p class="cap">The PAR-09 fields. The UTMs, <code>utm_id</code> and <code>ref</code> ride along from the visit.</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>yashho.com</b></span><span class="sync">🔒</span></div>
+ <div class="body" style="padding:0"><div class="sheet"><div class="in-sheet"><h5>Talk to a YASHHO expert</h5><div class="in"><span>Shilpa Kumar</span><i>Name</i></div><div class="in"><span>98450 •••••</span><i>Mobile</i></div><div class="in"><span>572137</span><i>PIN code</i></div><div class="in"><span>Class 9–10</span><i>▾</i></div><div class="in"><i>Your question</i></div><div class="in"><span>After 4 PM</span><i>▾</i></div><div class="ck"><b></b><span>WhatsApp updates (optional)</span></div><div class="cta">Request a call</div></div></div></div>
+</div></div>
+<p class="note">PAR-09 · UC-ENQ-13 · R78.8 (one intake, routing). The consent box is opt-in (C23).</p></div>
+
+<div class="step mid"><h3><i>6</i>The enquiry form as a modal on a laptop</h3><p class="cap">Centred over the dimmed page. Same fields.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">yashho.com</span></div>
+<div class="bv"><div class="sfb"><div class="dim"><div class="modal sf"><h5>Talk to a YASHHO expert</h5><div class="in"><span>Shilpa Kumar</span><i>Name</i></div><div class="in"><span>98450 •••••</span><i>Mobile</i></div><div class="in"><span>572137</span><i>PIN code</i></div><div class="in"><span>Class 9–10 · After 4 PM</span><i>▾</i></div><div class="cta">Request a call</div></div></div></div></div></div>
+<p class="note">Esc or the ✕ closes it. Nothing is saved until "Request a call".</p></div>
+
+<div class="step"><h3><i>7</i>Thank-you: the 2-hour call promise (phone)</h3><p class="cap">We call within 2 hours, 9 AM to 9 PM. The acknowledgement email follows (F25).</p>
+<div class="phone"><div class="notch"></div><div class="pv sf">
+ <div class="top"><span><b>yashho.com</b></span><span class="sync">🔒</span></div>
+ <div class="body"><div class="ok"><b>Thank you, Shilpa.</b><br><span style="color:#8ea3bd">A YASHHO expert will call you within 2 hours (9 AM–9 PM).</span></div><div class="ghost2">Meanwhile: Get Your Success Path Chart</div></div>
+</div></div>
+<p class="note">UC-ENQ-16 · <code>enquiry_first_call_min</code> = 120 (R78.8, R62).</p></div>
+
+<div class="step mid"><h3><i>8</i>Thank-you on a laptop</h3><p class="cap">The same promise, in the modal.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">yashho.com</span></div>
+<div class="bv"><div class="sfb"><div class="dim"><div class="modal sf"><div class="ok"><b>Thank you, Shilpa.</b><br><span style="color:#8ea3bd">A YASHHO expert will call you within 2 hours (9 AM–9 PM).</span></div></div></div></div></div></div>
+<p class="note">The routed enquiry lands on the owner's Today list with the 2-hour timer (intake19:6).</p></div>
+
+</div>
+</section>
+
 <section class="j" id="payfail">
 <h2>A payment fails: parent and YSP both told, then the recovery follow-up <span class="badge now">Launch</span></h2>
-<p class="sub">UC-ORD-07 (Goutam ruling, 18 Nov 2026; supersedes NEW-SALE-07 "never the parent"). Razorpay reports a failed payment on the Kumar family's link. The parent gets the retry notice (urgent: WhatsApp AND email together from launch; email only in the pilot and beta) and Ravi gets an alert. The existing recovery job then follows up on a fixed, configured cadence and hands the lead to a person.</p>
+<p class="sub">UC-ORD-07 (Goutam ruling, 18 Nov 2026; supersedes NEW-SALE-07 "never the parent"). Razorpay reports a failed payment on the Kumar family's link. The parent gets the retry notice (urgent: WhatsApp AND email together from launch; email only in the pilot and beta) and Ravi gets an alert. A person item is created at once with a 1-hour SLA to call (Goutam, 19 Nov); the recovery job sends one automated follow-up at 24 h if the family has still not paid.</p>
 <div class="flow">
 <div class="step"><h3><i>1</i>Parent: "Your payment didn't go through"</h3><p class="cap">Sent the moment Razorpay reports the failure. No child details on WhatsApp.</p>
 <div class="phone"><div class="notch"></div><div class="pv parentphone">
@@ -3036,7 +3375,18 @@ table.t .bar{min-width:110px}
 </div></div>
 <p class="note">YSP-14 shows the same timeline steps; T14 in the message catalogue (LLD R69).</p></div>
 
-<div class="step"><h3><i>3</i>Next day: one follow-up to the parent</h3><p class="cap">If the family has not paid, the recovery job (every 15 minutes) sends one follow-up 24 hours after the failure.</p>
+<div class="step"><h3><i>3</i>Within the hour: a call on Ravi's Today list</h3><p class="cap">Created at the failure, due in 1 hour. No owner? The same item goes to the HQ desk recovery screen.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><b>Today</b></span><span class="sync">7:22 PM</span></div>
+ <div class="body">
+  <div class="fc"><div class="r"><div><div class="n">📞 Call: payment failed · Kumar family</div><div class="s">Due by 8:21 PM · UPI timed out · urgent</div></div></div><div class="row2"><div class="btn ghost">Resend link</div><div class="btn">📞 Call</div></div></div>
+  <p class="mini" style="margin:10px 0 0">Not called by 8:21 PM → shown overdue here and on the RSM's review.</p>
+ </div>
+ <div class="tabs"><span class="on"><i>⌂</i>Today</span><span><i>👪</i>Families</span><span><i>＋</i>New</span><span><i>🏫</i>Schools</span><span><i>₹</i>Money</span></div>
+</div></div>
+<p class="note">Goutam, 19 Nov: the hand-off happens within the hour, not at 48 h. The 1-hour SLA is a governed setting (rule 33). Paid or written off closes the item. An unfinished checkout gets the same item at 1 h.</p></div>
+
+<div class="step"><h3><i>4</i>Next day: one follow-up to the parent</h3><p class="cap">If the family has still not paid, the recovery job (every 15 minutes) sends one follow-up 24 hours after the failure.</p>
 <div class="phone"><div class="notch"></div><div class="pv parentphone">
  <div class="top" style="background:#fff"><b>Mail</b><span class="sync">no-reply</span></div>
  <div class="body">
@@ -3046,16 +3396,7 @@ table.t .bar{min-width:110px}
   <p class="mini" style="margin:10px 0 0">Don't want these reminders? Unsubscribe.</p>
  </div>
 </div></div>
-<p class="note">config/recovery.php: payment_failed follow_up_hours [24]; an unfinished checkout gets 1 h, 24 h and 72 h. Paid, lost, written-off or opted-out families never get a nudge.</p></div>
-
-<div class="step"><h3><i>4</i>48 hours: handed to a person</h3><p class="cap">Auto-mail stops; the lead moves to a person. The family is still Ravi's.</p>
-<div class="phone"><div class="notch"></div><div class="pv">
- <div class="top"><span><span class="back">‹</span><b>Kumar family</b></span></div>
- <div class="body">
-  <div class="tl"><div class="now"><b>Recovery ended · handed to a person</b><small>Thu 7:21 PM · 48 h after the failure</small></div><div class="done"><b>Follow-up email sent</b><small>Wed 7:21 PM</small></div><div class="done"><b>Payment failed · parent and Ravi told</b><small>Tue 7:21 PM</small></div></div>
- </div>
-</div></div>
-<p class="note">config/recovery.php payment_failed lost_after_hours 48; RunPaymentRecovery flips the lead to lost and stops. Cadence is governed configuration (rule 33).</p></div>
+<p class="note">Failed payment: one follow-up at 24 h. Unfinished checkout: 1 h, 24 h and 72 h. Governed settings. Paid, lost, written-off or opted-out families never get a nudge.</p></div>
 </div>
 </section>
 
@@ -3149,6 +3490,23 @@ table.t .bar{min-width:110px}
 </div></div></div>
 <p class="note">GM-16 · UC-TER-08 · D41 (beta; pilot only if KMM names the PINs by 23 Nov). A version that puts a PIN in a unit and a ward is refused (C28).</p></div>
 
+
+<div class="step wide"><h3><i>11</i>Head Office lifts a do-not-contact, only when the parent asks</h3><p class="cap">A parent who asked not to be contacted later asks Head Office to hear from YASHHO again. Only the Head Office desk can lift it, and only on the parent's own request.</p>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Rao family</b></span></div>
+ <div class="body"><div class="dim"></div>
+  <div class="sheet"><div class="grab"></div><p style="margin:0 0 6px;font-weight:800">Lift do-not-contact for the Rao family?</p><p class="mini" style="margin:0 0 8px">Only when the parent asked Head Office. Calls and links open again for the family's owner.</p><div class="btn dark">The parent asked: lift it</div><div class="btn ghost">Cancel</div></div>
+ </div>
+</div></div>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Do not contact</span></div>
+<div class="bv"><div class="main">
+ <div class="ok4"><div class="okp"><small>Find a family</small><b>Rao</b><em>name, number or PIN</em></div></div>
+ <div class="tw"><table class="t"><tr><th>Family</th><th>Status</th><th></th></tr>
+ <tr><td>Rao family</td><td><span class="op wait">Do not contact</span></td><td><span class="ob">Lift</span></td></tr></table></div>
+ <p class="ohint">Recorded as "the parent asked Head Office", with who and when, in the change log. Enquiries and payments by the parent lift it by themselves.</p>
+</div></div></div>
+</div><p class="note">MFS-10 · UC-CUS-04 · R58.3 · POST /crm/families/{id}/lift-do-not-contact.</p></div>
 </div>
 </section>
 
@@ -3291,6 +3649,101 @@ table.t .bar{min-width:110px}
 </div>
 </section>
 
+<section class="j" id="funnel19">
+<h2>Funnel with drop-off, and time limits per stage <span class="badge newadd">New addition · 19 Nov 2026</span><span class="badge beta">Beta</span></h2>
+<p class="sub">Goutam, 19 Nov (01 D53; UC-DASH-08, UC-SALE-09; LLD R80). Asked as pilot, ruled beta. Built from the CRM's own data, precomputed every night. All numbers below are sample figures; the limits are proposals for KMM to confirm.</p>
+<p class="examples"><b>Rules:</b> one source, many views (the RSM card and the GM table are the same read) · the steps are the governed pipeline stages (no list of its own); limits are governed (GM proposes, CEO approves) · the two website steps arrive with the one intake · scan started / completed and the marketing cost view come later.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>RSM: the funnel in the 4 PM review</h3><p class="cap">Where families wait, how long, and why they drop. Tap a row for the families.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Funnel · December</b><span class="sync">Built 02:00</span></div>
+ <div class="body">
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">Visited (campaign/landing) <span class="badge beta">Beta</span></div><div class="s">website · from the one intake</div></div><span class="pill ">1,980</span></div>
+   <div class="r"><div><div class="n">Lead captured · 21% <span class="badge beta">Beta</span></div><div class="s">enquiry or webinar registration</div></div><span class="pill ">412</span></div>
+   <div class="r"><div><div class="n">New · 100%</div><div class="s">median 0 d · p90 0 d</div></div><span class="pill ">412</span></div>
+   <div class="r"><div><div class="n">Profiled · 96%</div><div class="s">median 0.5 d · p90 2 d</div></div><span class="pill ">396</span></div>
+   <div class="r"><div><div class="n">Assigned · 97%</div><div class="s">median 0.5 d · p90 1 d</div></div><span class="pill ">384</span></div>
+   <div class="r"><div><div class="n">Contact pending · 88%</div><div class="s">median 1 d · p90 3 d</div></div><span class="pill ">338</span></div>
+   <div class="r"><div><div class="n">Contacted · 73%</div><div class="s">median 1.5 d · p90 5 d</div></div><span class="pill ">301</span></div>
+   <div class="r"><div><div class="n">Need identified · 58%</div><div class="s">median 2 d · p90 6 d</div></div><span class="pill ">175</span></div>
+   <div class="r"><div><div class="n">Interested · 61%</div><div class="s">median 3 d · p90 9 d</div></div><span class="pill ">107</span></div>
+   <div class="r"><div><div class="n">Payment pending · 62%</div><div class="s">median 1 d · p90 4 d</div></div><span class="pill wait">66</span></div>
+   <div class="r"><div><div class="n">Paid · 55%</div><div class="s">median 1 d · p90 3 d</div></div><span class="pill ok">36</span></div>
+   <div class="r"><div><div class="n">Handed over · 94%</div><div class="s">median 2 d · p90 6 d</div></div><span class="pill ">34</span></div>
+   <div class="r"><div><div class="n">Onboarded</div><div class="s">end of the sales path</div></div><span class="pill ">30</span></div>
+  </div>
+  <div class="fc warn"><h4>Parked, can come back</h4><p class="mini" style="margin:0">Nurture 41 (re-entry 22%) · Deferred 17 (re-entry 18%)</p></div>
+  <div class="fc warn"><h4>Exits, with reasons</h4><p class="mini" style="margin:0">Unqualified 22: wrong class 12, out of area 10 · Lost 58: not interested 31, price 14, other 13 · No consent 6 · Unable to contact 33</p></div>
+  <div class="fc"><h4>Overdue in stage · 9</h4><div class="r"><div><div class="n">Kumar family</div><div class="s" style="color:var(--bad)">overdue in Contacted · 4 days</div></div></div></div>
+  <p class="mini">By YSP · By source</p>
+ </div>
+ <div class="tabs"><span class="on"><i>⌂</i>Region</span><span><i>📋</i>Team</span><span><i>👪</i>My ward</span><span><i>🗺</i>Areas</span><span><i>₹</i>Money</span></div>
+</div></div>
+<p class="note">RSM-22 · UC-DASH-08 · R80.4. One read of the nightly table (< 300 ms). Conversion = reached the next step or later (a skipped stage counts as passed). Time from crm_family_stage_history, over families that left the step. Labels shown in English; Kannada comes from the config.</p></div>
+
+<div class="step wide"><h3><i>2</i>GM: the funnel table, with drill-down</h3><p class="cap">Regions side by side; tap a region for its YSPs, tap a step for the families. Cut by RSM, YSP or source.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Funnel · December · By region</span></div>
+<div class="bv"><div class="side"><div class="on">Funnel</div><div>State</div><div>Alerts</div><div>Decisions</div></div>
+<div class="main">
+ <div class="oc"><h4>Steps, whole state (from the pipeline config, by sort)</h4><div class="tw"><table class="t"><tr><th>Step</th><th>Reached</th><th>To next</th><th>Median</th><th>p90</th></tr>
+ <tr><td>New</td><td>16,480</td><td>96%</td><td>0 d</td><td>0 d</td></tr>
+ <tr><td>Contacted</td><td>11,700</td><td>58%</td><td>1.8 d</td><td>6 d</td></tr>
+ <tr><td>Interested</td><td>4,310</td><td>62%</td><td>3 d</td><td>10 d</td></tr>
+ <tr><td>Paid</td><td>1,420</td><td>94%</td><td>1 d</td><td>3 d</td></tr>
+ <tr><td colspan="5" class="ohint">Also New → Profiled → Assigned → Contact pending → Need identified → Payment pending → Handed over → Onboarded</td></tr></table></div></div>
+ <div class="oc"><h4>Drop-off buckets, with reasons</h4><div class="tw"><table class="t"><tr><th>Outcome</th><th>Families</th><th>Top reason</th><th>Re-entry</th></tr>
+ <tr><td>Nurture</td><td>610</td><td>—</td><td>22%</td></tr><tr><td>Deferred</td><td>240</td><td>Exam next year</td><td>18%</td></tr>
+ <tr><td>Unqualified</td><td>310</td><td>Wrong class</td><td>—</td></tr><tr><td>Lost</td><td>820</td><td>Not interested</td><td>—</td></tr>
+ <tr><td>No consent</td><td>88</td><td>—</td><td>—</td></tr><tr><td>Unable to contact</td><td>470</td><td>Wrong number</td><td>—</td></tr></table></div></div>
+ <div class="oc"><h4>By region · Contacted → next</h4><div class="tw"><table class="t"><tr><th>Region</th><th>RSM</th><th>Created</th><th>Contacted</th><th>To next</th><th>p90</th></tr>
+ <tr><td>Tumakuru W–N ▾</td><td>Suresh</td><td>412</td><td>301</td><td>58%</td><td>5 d</td></tr>
+ <tr><td>&nbsp;&nbsp;↳ Ravi, Sira</td><td></td><td>61</td><td>52</td><td>64%</td><td>4 d</td></tr>
+ <tr><td>&nbsp;&nbsp;↳ Imran, Pavagada</td><td></td><td>48</td><td>21</td><td class="dn">33%</td><td class="dn">11 d</td></tr>
+ <tr><td>Region 17</td><td>Mahesh</td><td>390</td><td>244</td><td>49%</td><td>8 d</td></tr></table></div></div>
+ <p class="ohint">Cut: Region · RSM · YSP · Source. Beta adds "Visited (campaign/landing)" → "Lead captured" before New.</p>
+</div></div></div><p class="note">GM-17 · UC-DASH-08, UC-DASH-03/04 · R80. The steps are the governed pipeline stages (R76; a new or retired stage changes the funnel with no code); a family that skips a stage counts as passing through it. Same numbers as the RSM card for the same region.</p></div>
+
+<div class="step"><h3><i>3</i>Owner: "overdue in stage" on Today</h3><p class="cap">A family past its stage's limit joins the overdue group, with the stage named.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Today</b><span class="sync">Synced 10:42</span></div>
+ <div class="body">
+  <div class="fc"><div class="r"><div><div class="n">Patil family</div><div class="s" style="color:var(--bad)">Call 3 · overdue since yesterday</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div></div>
+  <div class="fc"><div class="r"><div><div class="n">Kumar family</div><div class="s" style="color:var(--bad)">overdue in Contacted · 4 days (limit 3)</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div></div>
+  <div class="fc"><div class="r"><div><div class="n">Manjappa family</div><div class="s">Due 11:30 · Warm</div></div><div class="act"><span class="ib call">📞</span><span class="ib wa">💬</span></div></div></div>
+  <div class="fc warn"><h4>YASHHO · stage check (beta)</h4><p class="mini" style="margin:0">4 families are overdue in their stage. Push and email, once a day, with the reminders.</p></div>
+ </div>
+</div></div>
+<p class="note">YSP-38 · UC-SALE-09 · R80.5–R80.7. Proposed limits (hours): New 24, Profiled 24, Assigned 24, Contact pending 24, Contacted 72, Need identified 72, Interested 72, Payment pending 48, Paid 48, Handed over 168 — placeholders for KMM to confirm. The RSM's review list shows the same line.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="stagecond19">
+<h2>Stage rules with conditions: the approval sheet <span class="badge newadd">New addition · 19 Nov 2026</span><span class="badge beta">Beta</span></h2>
+<p class="sub">Goutam, 19 Nov (01 D54; UC-SALE-10; LLD R81, an amendment to R76). A rule can carry conditions. The approver reads the rule in plain words. There is no rule editor in v1: an engineer applies the approved version.</p>
+<p class="examples"><b>Rules:</b> GM proposes, CEO approves, YSP and RSM never · unknown fields or ops are refused before approval · time conditions run in an hourly sweep · events stay a fixed list (handover and first scan task come with their features).</p>
+<div class="flow">
+
+<div class="step wide"><h3><i>1</i>HQ (desktop): a stage rule with conditions, up for approval</h3><p class="cap">The CEO sees the rule in plain words, what it uses, and how many families it would move today.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Decisions · Stage rule change</span></div>
+<div class="bv"><div class="side"><div class="on">Decisions (7)</div><div>Alerts</div><div>Change log</div></div>
+<div class="main">
+ <div class="oc"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>Pipeline change · rule "park_quiet_contacted"</b><span class="op wait">Proposed by GM · waiting for CEO</span></div>
+ <p class="ohint" style="margin:4px 0 8px">Event: StageSweep (hourly) · From: Contacted · To: Nurture · Ability: system</p>
+ <div class="tw"><table class="t"><tr><th>All of</th><th>Field</th><th>Test</th><th>Value</th></tr>
+ <tr><td>1</td><td>In stage for</td><td>more than</td><td>168 hours</td></tr>
+ <tr><td>2</td><td>No activity for</td><td>more than</td><td>7 days</td></tr>
+ <tr><td>3</td><td>Any of</td><td colspan="2">heat is cold · heat is not set</td></tr></table></div>
+ <p class="ohint" style="margin:8px 0">Checked by the schema: yes · depth 2 of 4 · 5 of 20 nodes · would move 38 families today (count only)</p>
+ <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="ob">Approve</span><span class="ob ghost">Send back with a reason</span></div></div>
+ <div class="oc"><b>Refused before it got here</b><p class="ohint" style="margin:4px 0 0">Rule "x_rule": field "parent_income" is not a field of ActivityRecorded. Nothing was applied.</p></div>
+</div></div></div><p class="note">GM-19 · UC-SALE-10 · R81. The same sheet shows the old R76 rules, converted to the same form. An engineer applies the approved version; the approval is recorded (proposer is not the approver).</p></div>
+
+</div>
+</section>
+
 <section class="j" id="web">
 <h2>On yashho.com: find your local partner <span class="badge now">At launch</span></h2>
 <p class="sub">Every RSM and YSP is listed on the website, so local families can reach them directly. Their enquiries arrive in the right YSP's app.</p>
@@ -3320,6 +3773,431 @@ table.t .bar{min-width:110px}
 
 </div>
 </section>
+
+<section class="j" id="stagehistory">
+<h2>Who moved this family, and why <span class="badge now">At launch</span></h2>
+<p class="sub">Every stage move is kept with who moved it, when and why. The person who owns the family can read it; so can the RSM for every family in the region, and the office for every family.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>Ravi's own family, read-only</h3><p class="cap">On the family page, History lists the moves newest first: when, from → to, how it moved, and who held the post at the time.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Kumar family</b><span class="pill ok">Interested</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Owner</span><span class="n">Ravi S · KA-R11-YSP02</span></div><div class="r"><span class="s">Moves</span><span class="n">4 · latest 19 Nov</span></div></div>
+  <h4 style="margin:6px 0">History</h4>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><div><div class="n">Contacted → Interested</div><div class="s">19 Nov 4:12 PM · by Ravi · asked for sample</div></div><span class="pill">Manual</span></div>
+   <div class="r"><div><div class="n">Assigned → Contacted</div><div class="s">17 Nov 11:02 AM · by Ravi · first call done</div></div><span class="pill">Manual</span></div>
+   <div class="r"><div><div class="n">New → Assigned</div><div class="s">16 Nov 9:40 AM · by Ravi · from his own link</div></div><span class="pill">Auto</span></div>
+   <div class="r"><div><div class="n">Profile completed</div><div class="s">16 Nov 9:38 AM · settings version 2026-11-21.1</div></div><span class="pill">Auto</span></div>
+  </div>
+ </div>
+ <div class="dock"><div class="btn ghost">Back to family</div></div>
+</div></div>
+<p class="note">Read-only: nobody can edit or delete a move, and Ravi cannot open this sheet for another YSP's family (it answers "not found"). Suresh sees every family in his region under the same screen; the GM and Head Office keep the full change log. LLD R85; use cases YSP-39 and RSM-23.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="yspsheet">
+<h2>One YSP, one page <span class="badge now">At launch</span></h2>
+<p class="sub">Suresh opens any YSP in his region from the team list: who they are, how the month is going, what is on the route today, and which phones are signed in.</p>
+<div class="flow">
+
+<div class="step wide"><h3><i>1</i>Who they are, and the month</h3><p class="cap">Profile, post and target against sales for this month, with the same measures as the region dashboard.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Deepa · KA-R11-YSP01</span></div>
+<div class="bv"><div class="side"><div class="on">YSP sheet</div><div>Route</div><div>Phones</div></div>
+<div class="main">
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Person</span><span class="n"><span class="pdot ok"></span>Deepa · YASHHO Success Partner</span></div><div class="r"><span class="s">Post</span><span class="n">KA-R11-YSP01 · Tiptur · Tumakuru West–North</span></div><div class="r"><span class="s">With YASHHO since</span><span class="n">14 Feb 2026</span></div></div>
+ <div class="ok4"><div class="okp"><small>Sold this month</small><b>24</b> <em>of 20</em></div><div class="okp"><small>Pace</small><b class="ok">Ahead</b></div><div class="okp"><small>Families</small><b>312</b> <em>hot 18</em></div><div class="okp"><small>Calls this week</small><b>61%</b> <em>of her list</em></div></div>
+ <div class="tw"><table class="t"><tr><th>Measure</th><th>This month</th><th>Same point last month</th></tr><tr><td>Sales</td><td>24</td><td>19</td></tr><tr><td>Visits</td><td>31</td><td>26</td></tr><tr><td>Families added</td><td>64</td><td>58</td></tr><tr><td>Campaign links made</td><td>3</td><td>2</td></tr></table></div>
+</div></div></div><p class="note">Every number is read from the same source as the region dashboard, so the sheet can never disagree with it. The dot beside her name is her live presence state — the same dot as the Team list and the Presence board, and the same thing the team list showed before he tapped through. LLD R86, R89.3; use case RSM-24.</p></div>
+
+<div class="step wide"><h3><i>2</i>Today's route and activity</h3><p class="cap">The working day as Deepa's phone recorded it: what is planned next and what has already happened.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Deepa · today</span></div>
+<div class="bv"><div class="side"><div>YSP sheet</div><div class="on">Route</div><div>Phones</div></div>
+<div class="main">
+ <div class="tw"><table class="t"><tr><th>Time</th><th>Family</th><th>Place</th><th>What</th><th>Status</th></tr><tr><td>10:20</td><td>Kumar family</td><td>Tiptur</td><td>Visit</td><td><span class="op ok">Done</span></td></tr><tr><td>11:05</td><td>Rao family</td><td>Tiptur</td><td>Call</td><td><span class="op ok">Done</span></td></tr><tr><td>14:30</td><td>Patil family</td><td>Nonavinakere</td><td>Visit</td><td><span class="op wait">Planned</span></td></tr><tr><td>16:00</td><td>Kumar family</td><td>—</td><td>Meet</td><td><span class="op wait">Planned</span></td></tr></table></div>
+ <div class="fc sub"><div class="r"><span class="s">Working day</span><span class="n">Started 9:58 AM · 8 calls · 2 visits</span></div><div class="r"><span class="s">Last sync</span><span class="n">12:10 PM</span></div></div>
+</div></div></div><p class="note">Read-only, and limited to the YSP's own day in the region: Suresh can read a field target's route (the route reader accepts a region-wide viewer reading a YSP post), but not another region's.</p></div>
+
+<div class="step mid"><h3><i>3</i>Phones, and signing one out</h3><p class="cap">Which phone each person uses, when it last synced, and the same remote sign-out as the team screen.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Deepa · phones</span></div>
+<div class="bv"><div class="side"><div>YSP sheet</div><div>Route</div><div class="on">Phones</div></div>
+<div class="main">
+ <div class="oc"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>Redmi 9A · Android 13</b><span class="op ok">Signed in</span></div><p class="ohint" style="margin:4px 0 8px">Last sync 12:10 PM · app 3.4.1</p><span class="ob ghost">Sign out this phone</span></div>
+ <div class="oc"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>Previous phone · wiped</b><span class="op wait">Signed out</span></div><p class="ohint" style="margin:4px 0 8px">Signed out 18 Nov · reason: replaced</p></div>
+</div></div></div><p class="note">A sign-out here is a real revocation: the phone is wiped when it next connects. The nightly 02:00 sign-out and the 24-hour cap apply to every field phone whether or not anyone presses this.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="sessions">
+<h2>The day ends, and the phone does too <span class="badge now">At launch</span></h2>
+<p class="sub">Field sign-in ends every night. Office laptops are unchanged.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>Signed out for the night</h3><p class="cap">At 02:00 Ravi's phone is signed out and its local data is wiped. If work was still waiting to send, he is warned from 23:45.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>YASHHO Success Partner</b><span class="sync">2:00 AM</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Status</span><span class="n">Signed out for the night</span></div><div class="r"><span class="s">Signed out</span><span class="n">02:00 · reason nightly</span></div><div class="r"><span class="s">Local data</span><span class="n">Cleared from this phone</span></div></div>
+  <div class="fld"><label>Work waiting at 23:45</label><span>2 visits saved, both sent before 2:00</span></div>
+  <div class="btn">Sign in again</div>
+ </div>
+</div></div>
+<p class="note">From 23:45 a banner names any work still waiting to send; after 01:30 a new offline visit cannot be started. At 02:00 — or 24 hours after sign-in, whichever comes first — the device is revoked, the next request gets a wipe signal and the PWA clears its local data. A field phone offline at 02:00 is wiped when it next connects. Suresh and the GM on office laptops keep their session. LLD R87; use cases YSP-40 and SYS-35.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="presence">
+<h2>Who is working, and whose phone has gone quiet <span class="badge newadd">New addition · 21 Nov 2026</span><span class="badge beta">Pilot</span></h2>
+<p class="sub">A field phone sends a quiet heartbeat while the app is open. The office sees presence, device health and — for RSM, GM and HO only — a coarse location, inside the working day. In the 25 November pilot.</p>
+<div class="flow">
+
+<div class="step wide"><h3><i>1</i>The region board, on the map and as a list</h3><p class="cap">Suresh opens Presence. Every YSP phone in his region is a dot; the exception list names the ones that need a call.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Presence · KA-R11 · as of 11:42 AM</span></div>
+<div class="bv"><div class="side"><div>Today</div><div class="on">Presence</div><div>Team</div><div>Stage moves</div></div>
+<div class="main">
+ <div class="ok4"><div class="okp"><small>Working now</small><b>8</b> <em>of 10</em></div><div class="okp"><small>Idle 30m+</small><b>2</b></div><div class="okp"><small>Offline 2h+</small><b class="ok">1</b> <em>needs a call</em></div><div class="okp"><small>Location off 4h+</small><b>1</b></div></div>
+ <div style="position:relative;height:230px;background:#e6ece4;border:1px solid #cdd8cb;border-radius:8px;overflow:hidden;margin:10px 0">
+  <span style="position:absolute;left:8%;top:12%;width:12px;height:12px;border-radius:50%;background:#1f7a3d"></span>
+  <span style="position:absolute;left:26%;top:34%;width:12px;height:12px;border-radius:50%;background:#1f7a3d"></span>
+  <span style="position:absolute;left:41%;top:19%;width:12px;height:12px;border-radius:50%;background:#1f7a3d"></span>
+  <span style="position:absolute;left:58%;top:46%;width:12px;height:12px;border-radius:50%;background:#c98a00"></span>
+  <span style="position:absolute;left:72%;top:28%;width:12px;height:12px;border-radius:50%;background:#1f7a3d"></span>
+  <span style="position:absolute;left:84%;top:58%;width:12px;height:12px;border-radius:50%;background:#b3261e"></span>
+  <span style="position:absolute;left:12%;top:70%;width:12px;height:12px;border-radius:50%;background:#8a94a3"></span>
+  <span style="position:absolute;right:10px;bottom:8px;font-size:11px;color:#4b5a52;background:#fff;padding:2px 6px;border-radius:6px">Newest dot ≤ 15 min old · © OpenStreetMap</span>
+ </div>
+ <div class="tw"><table class="t"><tr><th>Person · post</th><th>State</th><th>Last heartbeat</th><th>Location</th><th>Outbox</th></tr><tr><td><span class="pdot ok"></span>Deepa · KA-R11-YSP01</td><td><span class="op ok">Working</span></td><td>2 min ago</td><td>Sent 11:40 AM · ±110 m</td><td>0</td></tr><tr><td><span class="pdot wait"></span>Naveen · KA-R11-YSP04</td><td><span class="op wait">Idle 40m</span></td><td>40 min ago</td><td>Sent 11:05 AM</td><td>0</td></tr><tr><td><span class="pdot bad"></span>Asha · KA-R11-YSP07</td><td><span class="op wait">Offline 2h10</span></td><td>2 h 10 ago</td><td>—</td><td>3 waiting</td></tr><tr><td><span class="pdot ok"></span>Ravi · KA-R11-YSP09</td><td><span class="op ok">Working</span></td><td>4 min ago</td><td>Location off 4h20</td><td>0</td></tr></table></div>
+</div></div></div><p class="note">Every dot is a latest-state row, not a trail: the board never reads the history. "Working", "Idle" and "Offline" are computed from timestamps in the browser, so a dot ages between polls without a round-trip. Green = working, amber = idle, red = offline inside the work window, grey = outside it. <b>The same small dot sits beside a YSP's name everywhere the office meets it</b> — on the Team list and on the YSP sheet — so a name always carries its owner's state without opening Presence. Asha's "3 waiting" is the outbox count her last ping reported. LLD R89.2, R89.3, R89.7; use cases RSM-25 and GM-20.</p></div>
+
+<div class="step"><h3><i>2</i>Ravi's own card, and the notice behind it</h3><p class="cap">The field phone sees only its own presence card. The first sign-in explains what is recorded before any fix is kept.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>YASHHO Success Partner</b><span class="sync">11:42 AM</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Status</span><span class="n"><span class="pdot ok"></span>Working · heartbeat 4 min ago</span></div><div class="r"><span class="s">Location</span><span class="n">Off · tap to allow for the CRM</span></div><div class="r"><span class="s">Last sent</span><span class="n">11:05 AM · ±110 m</span></div><div class="r"><span class="s">Work waiting</span><span class="n">0</span></div></div>
+  <div class="fc sub"><div class="r"><span class="s">What is recorded</span><span class="n">That this phone is open, and a coarse place while you work</span></div><div class="r"><span class="s">Who sees it</span><span class="n">Your RSM, the GM and HO leaders — not other YSPs</span></div><div class="r"><span class="s">How long</span><span class="n">30 days, then deleted</span></div></div>
+  <div class="btn">Turn location on</div>
+ </div>
+</div></div>
+<p class="note">Presence works without location: a locked vault or a denied permission sends the heartbeat and no fix, and the board says "location off". The in-app notice shown on first sign-in is the same text as the written HR policy; acknowledging it is recorded once per `presence_notice_version`, and a new version asks again. No tracking when the app is closed or signed out. LLD R89.1, R89.6; use case YSP-41.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="commsgroups">
+<h2>Groups of families, and one place for what needs me <span class="badge newadd">New addition · 21 Nov 2026</span><span class="badge beta">Beta</span></h2>
+<p class="sub">A YSP, RSM, GM or HO leader forms a named group from the families they own, and sends an approved message to one or more groups. Every message still leaves as an individual WhatsApp/email inside each family's own conversation — never a provider group. The office sees every group read-only; only its creator edits or sends. One inbox then gathers families, team and "needs my reply". Beta; not in the 25 November pilot.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>My communities</h3><p class="cap">Every group Ravi owns, with how many families are in it and when it last heard from him.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Communities</b><span class="sync">Ravi · YSP</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Sira · Class 10</span><span class="n">64 families · last sent 12 Nov</span></div><div class="r"><span class="s">Board-exam parents</span><span class="n">38 families · last sent 3 Nov</span></div><div class="r"><span class="s">Sira school fair leads</span><span class="n">27 families · never sent</span></div></div>
+  <div class="fc sub"><div class="r"><span class="s">Yours to edit</span><span class="n">Only the post that made a group changes its members or sends</span></div><div class="r"><span class="s">Seen above you</span><span class="n">Your RSM reads them; the GM and HO read every region</span></div></div>
+  <div class="btn">New community</div>
+  <p class="mini">A community is a list in our CRM, not a WhatsApp group: every family is messaged on its own number, in its own conversation.</p>
+ </div>
+</div></div>
+<p class="note">Membership comes from the creator's whole PostScope: Ravi picks from his own families, Suresh from anything in his region, the GM and HO from every post. Another YSP cannot see Ravi's groups at all, and nobody below him can see them. LLD R92.2–R92.3; use case UC-MSG-07, YSP-42.</p></div>
+
+<div class="step"><h3><i>2</i>Build a community from my families</h3><p class="cap">Select families, or add them by tag, area or a saved list. The picker never shows a family outside Ravi's own area.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Board-exam parents</b></span><span class="sync">38</span></div>
+ <div class="body">
+  <div class="chipset"><span class="on">My families ✓</span><span>Tag</span><span>Saved list</span></div>
+  <div class="fc" style="padding:2px 10px">
+   <div class="r"><span class="n">Kumar family · Sira</span><span class="chk" style="margin:0;min-height:0"><i class="y">✓</i></span></div>
+   <div class="r"><span class="n">Rao family · Sira</span><span class="chk" style="margin:0;min-height:0"><i class="y">✓</i></span></div>
+   <div class="r"><span class="n">Patil family · Nonavinakere</span><span class="chk" style="margin:0;min-height:0"></span></div>
+   <div class="r"><span class="s">+ 35 more with the board-exam tag</span></div>
+  </div>
+  <p class="mini">Another YSP's family is not offered, even when Ravi types its name.</p>
+ </div>
+ <div class="dock"><div class="btn">Save · 38 families</div></div>
+</div></div></div>
+<p class="note">Adding is soft: a removed family keeps its history row and simply stops receiving. A family that moves out of the creator's scope later is re-checked when the send is submitted and excluded with the reason "outside scope" — never messaged. Caps: 500 families per community and 20 communities per post, both governed settings. LLD R92.3, R92.5; use case YSP-42.</p>
+
+<div class="step"><h3><i>3</i>Send to communities, with the truth up front</h3><p class="cap">Pick one or more communities and an approved message. Every exclusion is counted before Ravi submits; the RSM approves.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Send</b></span><span class="sync">Step 2 of 3</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">To</span><span class="n">Board-exam parents + Sira · Class 10</span></div><div class="r"><span class="s">Message</span><span class="n">Reminder: scan starts Monday</span></div><div class="r"><span class="s">Attachment</span><span class="n">None · approved documents only</span></div></div>
+  <div class="fc sub"><div class="r"><span class="s">Families reached</span><span class="n">96</span></div><div class="r"><span class="s">In both groups</span><span class="n">6 · sent once</span></div><div class="r"><span class="s">Skipped</span><span class="n">4 opted out · 2 at the daily cap · 1 moved area</span></div></div>
+  <div class="fc sub"><div class="r"><span class="s">Duplicate sends</span><span class="n">A family in two groups gets one message, not two</span></div><div class="r"><span class="s">Approval</span><span class="n">Suresh (RSM) approves every YSP send</span></div></div>
+  <div class="btn">Submit for approval</div>
+ </div>
+</div></div>
+<p class="note">The bulk engine is unchanged: approved template and governed variables only, consent and opt-out re-checked per message, quiet hours held, and the per-family daily AND weekly caps still apply (a community is never an exemption). YSP bulk reach is new and is limited to its own families; the approval kind is `parent_bulk_send_own` — the YSP proposes, the RSM approves, and the proposer never approves its own send. LLD R92.4–R92.7; use cases UC-MSG-07, YSP-42.</p></div>
+
+<div class="step wide"><h3><i>4</i>Up the line: read-only, never edit</h3><p class="cap">Suresh opens Deepa's communities from her sheet. He can read every group in his region; he cannot change a member or send from her group.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Communities · KA-R11 · Deepa</span></div>
+<div class="bv"><div class="side"><div>Today</div><div>Team</div><div class="on">Communities</div><div>Presence</div></div>
+<div class="main">
+ <div class="tw"><table class="t"><tr><th>Community</th><th>Owner post</th><th>Families</th><th>Last sent</th><th>This month</th><th>Your access</th></tr><tr><td>Sira · Class 10</td><td>Deepa · YSP01</td><td>64</td><td>12 Nov</td><td>3 sends · 1 approval waiting</td><td><span class="op">Read only</span></td></tr><tr><td>Board-exam parents</td><td>Deepa · YSP01</td><td>38</td><td>3 Nov</td><td>1 send</td><td><span class="op">Read only</span></td></tr><tr><td>Nonavinakere follow-ups</td><td>Imran · YSP04</td><td>21</td><td>—</td><td>—</td><td><span class="op">Read only</span></td></tr></table></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Region total</span><span class="n">7 communities · 402 family memberships across 10 YSP posts</span></div><div class="r"><span class="s">Approvals</span><span class="n">1 YSP send waiting for you — read it in Approvals</span></div></div>
+</div></div></div><p class="note">Visibility runs up the reporting line and stops there: no editing, no sending, and no access sideways or down. A community outside Suresh's region is a 404, so ids cannot be probed. LLD R92.2, R92.9; use case RSM-26.</p></div>
+
+<div class="step wide"><h3><i>5</i>The office library: approved documents and offers</h3><p class="cap">The GM approves what may travel. A region or institution offer is an asset, approved by the GM — never created by the field.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Assets · KA-R11</span></div>
+<div class="bv"><div class="side"><div>Control room</div><div>Messages</div><div class="on">Assets</div><div>Communities</div></div>
+<div class="main">
+ <div class="chipset"><span class="on">Needs approval 1</span><span>Approved 12</span><span>Retired</span></div>
+ <div class="tw"><table class="t"><tr><th>Asset</th><th>Kind</th><th>Applies to</th><th>Version</th><th>Scan</th><th>Status</th></tr><tr><td>December offer · Kannada + English</td><td>Offer</td><td>KA-R11</td><td>v2</td><td><span class="op ok">Clean</span></td><td><span class="op wait">Waiting for you</span></td></tr><tr><td>Success Scan parent brochure</td><td>Document</td><td>All regions</td><td>v4</td><td><span class="op ok">Clean</span></td><td><span class="op ok">Approved</span></td></tr><tr><td>Sira school fair poster</td><td>Document</td><td>KA-R11 · Sira institution</td><td>v1</td><td><span class="op ok">Clean</span></td><td><span class="op ok">Approved</span></td></tr></table></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Who approves</span><span class="n">GM for a region or institution offer, HO for a network-wide document — never the creator</span></div><div class="r"><span class="s">What reaches a parent</span><span class="n">A signed link, valid 60 minutes, one per family — opened 41 times, counted, no family trail</span></div></div>
+</div></div></div><p class="note">Text stays the default and the only thing a field user can type. A message type may carry one asset slot; a YSP or RSM can only pick from what is approved and applies to their post, and a field user can never create or approve an asset. No field discounts: an offer is an HO/GM decision (D11). LLD R94; use case UC-MSG-09, GM-21.</p></div>
+
+<div class="step wide"><h3><i>6</i>One inbox: Families, Team, Needs my reply, Mine</h3><p class="cap">Suresh's whole day in one queue. Each chip is a filter over sources that already exist — not a second thread.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Inbox · Suresh · Needs my reply</span></div>
+<div class="bv"><div class="side"><div>Today</div><div class="on">Inbox</div><div>Approvals</div><div>Team</div></div>
+<div class="main">
+ <div class="chipset"><span>Families <b>12</b></span><span>Team <b>4</b></span><span class="on">Needs my reply <b>3</b></span><span>Mine</span></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Parent · Kumar family · replied on WhatsApp</span><span class="n">"Can we do the scan after 5 pm?" · to the December campaign · 12 min ago · Sira</span></div><div class="r"><span class="s">Parent · Rao family · replied on RCS</span><span class="n">"Send the brochure again please" · 26 min ago · Sira</span></div><div class="r"><span class="s">Deepa · community send</span><span class="n">Waiting for your approval · 96 families · 40 min ago</span></div><div class="r"><span class="s">Ravi · note on Patil family</span><span class="n">Asked you a question · yesterday 6:10 PM</span></div></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Ordering</span><span class="n">Newest first across every source; opening a row goes to the existing screen</span></div><div class="r"><span class="s">Privacy</span><span class="n">Masked family display and message snippet only — no full phone, email or child's name</span></div></div>
+</div></div></div><p class="note">The queue composes the conversation list, "Needs my reply", team mentions and leadership messages. A parent's reply to a campaign or community send on WhatsApp, RCS or SMS is recorded in the family's thread and appears here exactly like any other reply; email is no-reply with a call/WhatsApp footer, so it never carries a reply. Each row keeps its source's scope rule, so a family outside Suresh's region cannot appear, and a cursor can never widen a scope. Counts are index-only reads; the inbox stores no unread per person. LLD R93, R98; use cases UC-MSG-08, UC-MSG-13.</p></div>
+
+<div class="step"><h3><i>7</i>The same queue on the phone</h3><p class="cap">The chips are 44 px targets, and the queue is readable offline — cached last-good, actions need a connection.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Inbox</b><span class="sync">3 need you</span></div>
+ <div class="body">
+  <div class="chipset"><span>Families 12</span><span>Team 4</span><span class="on">Needs reply 3</span><span>Mine</span></div>
+  <div class="fc sub"><div class="r"><span class="s">Kumar family</span><span class="n">"Can we do the scan after 5 pm?"</span></div><div class="r"><span class="s">Deepa · send</span><span class="n">Approve 96 families</span></div><div class="r"><span class="s">Patil family · note</span><span class="n">Ravi asked you a question</span></div></div>
+  <p class="mini">Offline: the list opens from the last sync; tapping an item asks for a connection.</p>
+ </div>
+ <div class="dock"><div class="btn">Open inbox</div></div>
+</div></div></div>
+
+<div class="step wide"><h3><i>8</i>A team segment: staff only, in the app only</h3><p class="cap">Suresh addresses his own YSPs as a named segment. Delivery is in-app and push — never WhatsApp, SMS or email to staff.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Messages · Team segment · Suresh</span></div>
+<div class="bv"><div class="side"><div>Inbox</div><div class="on">Messages</div><div>Team</div><div>Approvals</div></div>
+<div class="main">
+ <div class="chipset"><span class="on">All my YSPs ✓</span><span>Pick named</span><span class="on">Sira cluster ✓</span><span>Saved segment</span></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Goes to</span><span class="n">10 people · 8 in All my YSPs, 2 in Sira cluster, none counted twice</span></div><div class="r"><span class="s">Title</span><span class="n">Saturday review moved to 4:30 PM</span></div><div class="r"><span class="s">Delivery</span><span class="n">In-app + push · requires acknowledgement</span></div><div class="r"><span class="s">Not available</span><span class="n">WhatsApp, SMS and email to staff are not offered</span></div></div>
+ <div class="btn">Send · goes to 10 people</div>
+</div></div></div><p class="note">A team segment is a saved team audience (R66): region, unit, role, named posts or a union, owned and editable only by its creator. An RSM addresses its own YSPs, the GM and HO their scope; a YSP never broadcasts. Read and acknowledgement counts behave exactly as leadership messages already do. LLD R92.8; use case UC-MSG-10, RSM-26.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="campaigns">
+<h2>Campaigns: one message, many families, the right channel each time <span class="badge newadd">New addition · 21 Nov 2026</span><span class="badge beta">Beta</span></h2>
+<p class="sub">A campaign is the named envelope around one broadcast: one approved message, one set of audiences (communities, saved lists or filters), and a channel plan — RCS, WhatsApp, SMS or email — where each family receives it <b>once</b>, on its assigned channel, with the next channel used only when the first cannot deliver. Every limit and approval the bulk engine already enforces applies unchanged. Beta; not in the 25 November pilot, which stays email-only.</p>
+<div class="flow">
+
+<div class="step wide"><h3><i>1</i>Compose the campaign</h3><p class="cap">The GM names the broadcast, picks one approved message and the audiences. Nothing is typed free-form.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Campaigns · New · December fee reminder</span></div>
+<div class="bv"><div class="side"><div>Today</div><div class="on">Campaigns</div><div>Communities</div><div>Assets</div></div>
+<div class="main">
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Name</span><span class="n">December fee reminder · KA-R11</span></div><div class="r"><span class="s">Message</span><span class="n">Fee reminder · utility · approved catalogue #F17</span></div><div class="r"><span class="s">Asset</span><span class="n">December offer v2 · approved by the GM · one signed link per family</span></div></div>
+ <div class="chipset"><span class="on">Board-exam parents ✓</span><span class="on">Sira · Class 10 ✓</span><span>Paid, no scan booked · saved list</span><span>Sira school fair leads</span></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Audience so far</span><span class="n">3 sources · 141 families · 6 in two sources, counted once</span></div><div class="r"><span class="s">Schedule</span><span class="n">Tomorrow 10:00 · inside quiet hours</span></div></div>
+ <div class="btn">Next: channels</div>
+</div></div></div><p class="note">The campaign unions communities, saved lists and the same filters the family list uses, deduplicated by phone identity, each audience checked against the creator's PostScope at submit. The content is a catalogue type plus governed parameters — an unknown or free-text parameter is refused — and at most one approved asset (R94). LLD R96.1–R96.3; use case UC-MSG-11, GM-22.</p></div>
+
+<div class="step wide"><h3><i>2</i>Choose the channels — and see what each costs</h3><p class="cap">RCS first for Android, WhatsApp next, email for the rest. The plan can narrow what the message type allows; it can never widen it.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Campaigns · Channels</span></div>
+<div class="bv"><div class="side"><div>Campaigns</div><div class="on">New campaign</div><div>Approvals</div><div>Messages</div></div>
+<div class="main">
+ <div class="tw"><table class="t"><tr><th>Order</th><th>Channel</th><th>Template</th><th>Families</th><th>Estimate</th><th>Allowed</th></tr><tr><td>1</td><td>RCS</td><td>fee-reminder-rcs v2 · rich card</td><td>96</td><td>₹14.40</td><td><span class="op ok">Yes · family route</span></td></tr><tr><td>2</td><td>WhatsApp</td><td>fee-reminder-wa v3 · utility</td><td>24</td><td>₹3.60</td><td><span class="op ok">Yes · family route</span></td></tr><tr><td>3</td><td>Email</td><td>fee-reminder-email v5 · no-reply footer</td><td>21</td><td>₹0.21</td><td><span class="op ok">Yes · fallback</span></td></tr><tr><td>—</td><td>SMS</td><td>—</td><td>—</td><td>—</td><td><span class="op">Not on this route</span></td></tr></table></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">How placement works</span><span class="n">RCS-capable phones first; a phone without RCS falls to WhatsApp, then email — one message per family, never two</span></div><div class="r"><span class="s">Estimate</span><span class="n">141 families · about ₹18.21 before approval; actual counts shown after the send</span></div></div>
+ <div class="btn">Submit for approval</div>
+</div></div></div><p class="note">Channel choice has three layers: the route row says what a message type may use, the campaign may only narrow and reorder that list, and each recipient's capability decides at send time. RCS is a family channel only — never staff — and needs the Gupshup agent and template approvals before it can be enabled. The rate card is a governed display-only setting; nothing here bills anyone. LLD R97; use cases UC-MSG-12, D-50, D-51.</p></div>
+
+<div class="step wide"><h3><i>3</i>Preview, approve once, deliver once per family</h3><p class="cap">Every exclusion is counted before approval, and one approval covers every channel of the campaign.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Campaigns · Preview</span></div>
+<div class="bv"><div class="side"><div>Campaigns</div><div class="on">December fee reminder</div><div>Approvals</div><div>Assets</div></div>
+<div class="main">
+ <div class="chipset"><span class="on">Reached 141</span><span>In two sources 6</span><span>Skipped 9</span><span class="on">One approval</span></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Skipped by reason</span><span class="n">4 opted out · 2 at the daily cap · 1 moved area · 2 no consent for a vendor channel</span></div><div class="r"><span class="s">Duplicates</span><span class="n">A family in two communities or on two channels is messaged once</span></div><div class="r"><span class="s">Approval</span><span class="n">Campaign approved by the CEO · every channel run inherits it</span></div><div class="r"><span class="s">Caps</span><span class="n">Counted once for this campaign, not once per channel</span></div></div>
+ <div class="btn">Send now</div>
+</div></div></div><p class="note">One delivery per family is structural: the recipient plan holds one row per campaign per phone identity and carries the channel and its fallback position. A failed RCS attempt that is re-delivered on WhatsApp is the same message and does not count twice against the family's caps; the sender and portfolio limits still pace each channel run. LLD R96.2, R96.4–R96.6; use case UC-MSG-11.</p></div>
+
+<div class="step wide"><h3><i>4</i>Progress by channel, and the replies where they belong</h3><p class="cap">The campaign shows delivery; every reply lives in the family's conversation and in the one inbox.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Campaigns · KA-R11 · December fee reminder</span></div>
+<div class="bv"><div class="side"><div>Campaigns</div><div class="on">December fee reminder</div><div>Inbox</div><div>Today</div></div>
+<div class="main">
+ <div class="tw"><table class="t"><tr><th>Channel</th><th>Planned</th><th>Sent</th><th>Delivered</th><th>Failed</th><th>Fell to next</th><th>Spend</th></tr><tr><td>RCS</td><td>96</td><td>96</td><td>88</td><td>0</td><td>8 → WhatsApp</td><td>₹13.20</td></tr><tr><td>WhatsApp</td><td>32</td><td>32</td><td>30</td><td>0</td><td>2 → Email</td><td>₹4.80</td></tr><tr><td>Email</td><td>23</td><td>23</td><td>23</td><td>0</td><td>—</td><td>₹0.23</td></tr></table></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Families messaged</span><span class="n">141 · exactly once each, whichever channel carried it</span></div><div class="r"><span class="s">Replies</span><span class="n">7 replies · 5 waiting in Needs my reply · shown in each family's thread</span></div><div class="r"><span class="s">Cost</span><span class="n">₹18.23 actual · estimate ₹18.21</span></div></div>
+</div></div></div><p class="note">A reply on RCS or WhatsApp is recorded by the same inbound path as any other message, with its channel and reply window, and appears in the one inbox's "Needs my reply". Email is no-reply with the single call-or-WhatsApp footer, so it never carries a response. The campaign screen never owns a reply and cannot be used to chat. LLD R98; use case UC-MSG-13, D-52.</p></div>
+
+<div class="step"><h3><i>5</i>The same campaign on the RSM's phone</h3><p class="cap">Suresh checks his region's campaign from the field, sees the fallback counts, and works the replies from the inbox.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>December fee reminder</b></span><span class="sync">KA-R11</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Families</span><span class="n">141 · sent once each</span></div><div class="r"><span class="s">By channel</span><span class="n">RCS 88 · WhatsApp 30 · Email 23</span></div><div class="r"><span class="s">Replies</span><span class="n">5 need an answer</span></div><div class="r"><span class="s">Cost</span><span class="n">₹18.23</span></div></div>
+  <div class="btn">Open Needs my reply</div>
+  <p class="mini">A phone that could not take RCS was not left out: it fell to WhatsApp, then email.</p>
+ </div>
+</div></div>
+<p class="note">The campaign view is role-scoped like every other read: an RSM sees its region's campaigns, the GM and HO see all, and an RSM can run one for its own region subject to the same approval plane. Staff still receive nothing over vendor channels. LLD R96.9, R97; use cases UC-MSG-11, RSM-29.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="ownership">
+<h2>Nobody's family: the unowned queue and its two-hour clock <span class="badge newadd">New addition · 21 Nov 2026</span><span class="badge now">Pilot</span></h2>
+<p class="sub">A family YASHHO sells to directly can reach payment before any partner owns it. Today it waits. From the pilot it is a queue with a wall-clock: the region's RSM is alerted at 2 hours, the GM at 4, the HO desk at 8 — and a person allocates it. Nothing assigns itself. Unowned families are visible, never a 404, and never messaged, linked or put in a group until they have an owner.</p>
+<div class="flow">
+
+<div class="step"><h3><i>1</i>The RSM's unowned queue</h3><p class="cap">Suresh opens the queue: families with no owner, oldest first, with the place and how they came.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><b>Unowned families</b><span class="sync">RSM · KR01</span></div>
+ <div class="body">
+  <div class="chipset"><span class="on">My region · 3</span><span>Escalated to GM · 1</span></div>
+  <div class="fc sub"><div class="r"><span class="s">Naik family · Sira</span><span class="n">2 h 14 m · paid direct · no YSP owns it</span></div><div class="r"><span class="s">Hegde family · Nonavinakere</span><span class="n">1 h 02 m · paid direct</span></div><div class="r"><span class="s">Rao family · Hiriyur</span><span class="n">4 h 40 m · escalated to the GM</span></div></div>
+  <div class="fc sub"><div class="r"><span class="s">Clock</span><span class="n">RSM 2 h · GM 4 h · HO 8 h</span></div><div class="r"><span class="s">Suggested</span><span class="n">The area YSP from the PIN, never automatic</span></div></div>
+  <div class="btn">Allocate the oldest</div>
+  <p class="mini">The clock runs on the wall, not on office hours: a family paid at 23:40 reaches Suresh at 01:40.</p>
+ </div>
+</div></div>
+<p class="note">The queue is one indexed read, scoped by post: an RSM sees its region, the GM and HO every region, and a YSP does not get the queue at all. Ordering is by how long the family has waited, so the oldest cannot be buried by new arrivals. LLD R90.2–R90.3, R91.4; use cases UC-CUS-22, RSM-30.</p></div>
+
+<div class="step"><h3><i>2</i>Allocate it, with a reason on the record</h3><p class="cap">Suresh picks a filled YSP post in his region. An owned family cannot come here — that is the GM's move.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Naik family</b></span><span class="sync">Unowned</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Place</span><span class="n">Sira · KA-R11</span></div><div class="r"><span class="s">Came from</span><span class="n">Paid direct · 26 Nov</span></div><div class="r"><span class="s">Someone must own it</span><span class="n">Yashho Direct paid sale · care owner needed</span></div></div>
+  <div class="chipset"><span class="on">Ravi S · YSP02 ✓</span><span>Deepa · YSP01</span><span>My ward</span></div>
+  <div class="fc sub"><div class="r"><span class="s">Reason</span><span class="n">Allocate · area YSP for the PIN</span></div><div class="r"><span class="s">Audit</span><span class="n">Whose post allocated it, and when</span></div></div>
+  <div class="btn">Allocate to Ravi</div>
+  <p class="mini">Ravi becomes the care owner and earns on future sales; the paid sale stays YASHHO Direct's (D42).</p>
+ </div>
+</div></div>
+<p class="note">The allocator is the one writer for an unowned family: it opens the ownership, writes `family.allocated` with the actor's post, and clears the alert in the same transaction. The RSM may allocate only inside its region and only to a filled post in its scope; the GM and HO anywhere. The Head Office desk's care-owner action for paid direct families is the same allocator with its own reason and audit. LLD R90.5; use cases UC-CUS-21, RSM-30.</p></div>
+
+<div class="step"><h3><i>3</i>The YSP sees it in his own area — and cannot touch it</h3><p class="cap">A family in Ravi's area has no owner. He sees why, and what he may do — which is nothing until it is allocated.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Naik family</b></span><span class="sync">No owner yet</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Where</span><span class="n">Sira · in your area</span></div><div class="r"><span class="s">Status</span><span class="n">Paid · YASHHO Direct · no partner owns it</span></div><div class="r"><span class="s">What happens next</span><span class="n">Head Office assigns this family</span></div></div>
+  <div class="btn" style="opacity:.55">Send payment link · wait for an owner</div>
+  <p class="mini">An unpaid unowned family in your area is different: you may claim it, like any family you add.</p>
+ </div>
+</div></div>
+<p class="note">Read-only for the YSP and visible only when the family's PIN is in its area: no dial, no link, no edit until an owner exists, because every action comes from the owner's abilities. An unpaid unowned family keeps the ordinary claim (D7, D42); a paid one is never self-claimed. LLD R91.1–R91.3; use cases UC-CUS-22, YSP-43.</p></div>
+
+<div class="step wide"><h3><i>4</i>The GM's view: every region, and what is late</h3><p class="cap">The GM sees open alerts by step, the oldest first, and can allocate any of them anywhere.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Unowned families · all regions</span></div>
+<div class="bv"><div class="side"><div>Today</div><div class="on">Unowned</div><div>Approvals</div><div>Watch</div></div>
+<div class="main">
+ <div class="tw"><table class="t"><tr><th>Region</th><th>At RSM (2 h)</th><th>At GM (4 h)</th><th>At HO (8 h)</th><th>Oldest</th><th>Action</th></tr><tr><td>KA-R11</td><td>2</td><td>1</td><td>0</td><td>4 h 40 m</td><td><span class="op">Allocate</span></td></tr><tr><td>KA-R07</td><td>0</td><td>0</td><td>1</td><td>9 h 05 m</td><td><span class="op">Allocate</span></td></tr><tr><td>KA-R22</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr></table></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Open alerts</span><span class="n">4 · 2 with the RSM · 1 with the GM · 1 with HO</span></div><div class="r"><span class="s">Notification</span><span class="n">Email digest: counts and post codes only, no family detail</span></div></div>
+</div></div></div><p class="note">The watch panel carries one row, `families_unowned`: open alerts by step and the oldest age; anything past the HO step pages. Auto-claim is off, so nothing is assigned without a person. The email digest is the pilot's delivery; push is a later increment. LLD R90.3, R90.6–R90.7; use cases UC-CUS-21, UC-CUS-23, GM-24.</p></div>
+
+</div>
+</section>
+
+<section class="j" id="targets">
+<h2>Targets in the app, and pace you can feel <span class="badge newadd">New addition · 22 Nov 2026</span><span class="badge now">Pilot</span></h2>
+<p class="sub">The GM sets a number for the network, a region, every YSP or one post. The CEO approves it, and it becomes a dated version — never an edit. From then on the same number drives the Today strip, the RSM's morning and the daily email. A sale counts toward it when the child submits the first task; money that has not started shows as "awaiting start". When a level misses, one reason and one action are recorded there — that is the line that climbs.</p>
+<div class="flow">
+<div class="step wide"><h3><i>1</i>GM: the targets in force</h3><p class="cap">One screen, every level: the network, each region, "all YSPs", or any post. A dash means no target was set at that level — never a zero.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets</span></div>
+<div class="main">
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">In force</span><span class="n">2026-11-24.1 · from 24 Nov · proposed by GM · approved by CEO</span></div></div>
+ <div class="tw"><table class="t"><tr><th>Level</th><th>Scope</th><th>Calls / day</th><th>Visits / day</th><th>Sales / day</th><th></th></tr>
+ <tr><td>Network</td><td>All regions</td><td>—</td><td>—</td><td>—</td><td><span class="op">Change</span></td></tr>
+ <tr><td>Role</td><td>YSP</td><td>12</td><td>2</td><td>1</td><td><span class="op">Change</span></td></tr>
+ <tr><td>Region</td><td>KA-R11</td><td>300</td><td>40</td><td>12</td><td><span class="op">Change</span></td></tr>
+ <tr><td>Post</td><td>KA-R11-YSP04</td><td>15</td><td>3</td><td>2</td><td><span class="op">Change</span></td></tr></table></div>
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Per</span><span class="n">Daily · Weekly · Monthly · Quarterly</span></div><div class="r"><span class="s">Resolution</span><span class="n">Post → role → region → network, each metric on its own</span></div></div>
+</div></div></div>
+
+<div class="step"><h3><i>2</i>GM: propose a new number</h3><p class="cap">The GM sees exactly what changes, per metric, and why it is being asked. Nothing is written until the CEO approves.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Change: KA-R11-YSP04</b></span><span class="sync">Daily</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Calls</span><span class="n">15 → 18</span></div><div class="r"><span class="s">Visits</span><span class="n">3 → 3 (unchanged)</span></div><div class="r"><span class="s">Sales</span><span class="n">2 → 2 (unchanged)</span></div></div>
+  <p class="mini">Effective 24 Nov 2026 · 00:00 IST</p>
+  <div class="btn">Send to the CEO</div>
+  <p class="mini">Reason: "Sira school list grew by 120 families."</p>
+  <div class="op wait">Waiting for the CEO</div>
+ </div>
+</div></div>
+<p class="note">A proposal can be withdrawn by the GM before it is decided. A rejected proposal returns with the CEO's note and changes nothing.</p></div>
+
+<div class="step wide"><h3><i>3</i>CEO: the approvals queue</h3><p class="cap">Everything only the CEO can decide, in one queue: target versions now, prices and access later. A row shows who proposed it, how long it has waited and the next step.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Approvals</span></div>
+<div class="main">
+ <div class="tw"><table class="t"><tr><th>Decision</th><th>Proposed by</th><th>Waiting</th><th></th></tr>
+ <tr><td>December targets — KA-R11-YSP04 calls 18/day</td><td>GM</td><td>2 h</td><td><span class="op">Review</span></td></tr>
+ <tr><td>Access: second RSM post, Region 07</td><td>GM</td><td>1 d</td><td><span class="op">Review</span></td></tr></table></div>
+ <p class="mini">The queue shows only requests whose next step the CEO's post may decide. Separation of duties is enforced by the server.</p>
+</div></div></div>
+
+<div class="step"><h3><i>4</i>CEO: approve</h3><p class="cap">One approval writes a new dated version — the old one is never edited. The change log names both posts and the reason.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Approve targets</b></span><span class="sync">Diff</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Calls</span><span class="n">15 → 18</span></div><div class="r"><span class="s">Effective</span><span class="n">24 Nov 2026</span></div></div>
+  <div class="btn">Approve</div>
+  <div class="btn ghost">Reject with a note</div>
+  <p class="mini">Applied. Change log: "December targets · proposed by GM · approved by CEO".</p>
+ </div>
+</div></div>
+<p class="note">The GM cannot approve his own proposal: the engine compares the person holding the post, not just the post. A vacant post neither proposes nor decides. LLD R100.1–R100.3, R64.2; use cases UC-TGT-01, GM-25, GM-26, LEAD-06.</p></div>
+
+<div class="step"><h3><i>5</i>YSP: pace on Today</h3><p class="cap">One line per metric, expected by this hour, and the work that closes the gap. Silent when ahead.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><b>Today</b></span><span class="sync">11:20</span></div>
+ <div class="body">
+  <div class="fc"><div class="r"><span class="s">Calls</span><span class="n">4 / 12 · on pace</span></div><div class="r"><span class="s">Visits</span><span class="n">1 / 2 · behind by 1</span></div><div class="r"><span class="s">Sales</span><span class="n">0 / 1 · 1 awaiting start</span></div></div>
+  <div class="btn">Call the next 3 · follow-ups due</div>
+  <p class="mini">No target at this level: the count shows alone, never a zero.</p>
+ </div>
+</div></div>
+<p class="note">A nudge arrives at most twice a day — late morning and mid-afternoon — and only when behind by more than 10%. In-app and push only; no WhatsApp, no email per hour. LLD R100.4–R100.5; use case X-FLD-21.</p></div>
+
+<div class="step wide"><h3><i>6</i>RSM: the team pace board</h3><p class="cap">Who is on pace, who is behind and who has been quiet — the 10 minutes that change the day, feeding the 4 PM agenda.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Team pace · KA-R11</span></div>
+<div class="main">
+ <div class="tw"><table class="t"><tr><th>YSP</th><th>Calls</th><th>Visits</th><th>Sales</th><th>Last activity</th><th></th></tr>
+ <tr><td>KA-R11-YSP04</td><td>4 / 3 ✓</td><td>1 / 1 ✓</td><td>1 / 1 ✓</td><td>11:05</td><td>—</td></tr>
+ <tr><td>KA-R11-YSP02</td><td>1 / 3</td><td>0 / 1</td><td>0 / 1</td><td>09:40</td><td><span class="op wait">Behind · marked</span></td></tr>
+ <tr><td>KA-R11-YSP07</td><td>2 / 3</td><td>1 / 1 ✓</td><td>0 / 0</td><td>no activity 2 h</td><td><span class="op wait">Quiet · marked</span></td></tr></table></div>
+ <p class="mini">Pace uses activity counts and the last activity time only — never location. The bottom two are marked, not ranked.</p>
+</div></div></div>
+
+<div class="step"><h3><i>7</i>Close of day: what happened?</h3><p class="cap">Behind at the end of the day, a three-tap reason. Optional, never a block — and it lands in the RSM's morning agenda.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><span class="back">‹</span><b>Close your day</b></span><span class="sync">18:40</span></div>
+ <div class="body">
+  <div class="fc sub"><div class="r"><span class="s">Calls</span><span class="n">8 / 12</span></div><div class="r"><span class="s">Visits</span><span class="n">2 / 2 ✓</span></div></div>
+  <p class="mini">What got in the way?</p>
+  <div class="fc sub"><div class="r"><span class="s">No leads left</span><span class="n">✓</span></div><div class="r"><span class="s">Market off</span><span class="n"> </span></div><div class="r"><span class="s">Leave</span><span class="n"> </span></div><div class="r"><span class="s">Support needed</span><span class="n"> </span></div></div>
+  <p class="mini">A note is optional. No family, parent or child detail.</p>
+  <div class="btn">Send</div>
+ </div>
+</div></div>
+<p class="note">The RSM's next-morning agenda reads "YSP02 behind 2 · support needed" and the GM's summary counts misses by reason. LLD R100.6; use case X-FLD-21.</p></div>
+
+<div class="step"><h3><i>8</i>What counts: paid vs confirmed</h3><p class="cap">Money shows the moment it is paid; the target counts when the child submits the first task. One rule everywhere — Today, the daily email, the RSM league.</p>
+<div class="phone"><div class="notch"></div><div class="pv">
+ <div class="top"><span><b>Sales</b></span><span class="sync">November</span></div>
+ <div class="body">
+  <div class="fc"><div class="r"><span class="s">Confirmed</span><span class="n">6 of 12</span></div><div class="r"><span class="s">Awaiting start</span><span class="n">2</span></div><div class="r"><span class="s">Not started in 7 days</span><span class="n">1 · call the family</span></div></div>
+  <p class="mini">Paid but not started never hides: it is beside the target, with the family to call.</p>
+ </div>
+</div></div>
+<p class="note">The same definition drives the daily and weekly email (R99), the Today banner and the Launch leaderboards (D34), so no two screens can disagree. D38, UC-TGT-02.</p></div>
+
+<div class="step wide"><h3><i>9</i>GM: Monday, and the month's line</h3><p class="cap">A miss is explained once at each level, with an action. The GM reads the network by region, records the network's monthly line, and is the only person who can open a target review.</p>
+<div class="browser"><div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">YASHHO CRM · Targets · Accountability</span></div>
+<div class="main">
+ <div class="fc sub" style="border:0;padding:4px 8px"><div class="r"><span class="s">Monday</span><span class="n">week of 16 Nov · 2 regions behind · 1 YSP behind 3 days</span></div></div>
+ <div class="tw"><table class="t"><tr><th>Level</th><th>Scope</th><th>Behind</th><th>Reason</th><th>Action</th><th></th></tr>
+ <tr><td>Region</td><td>KA-R11</td><td>2 weeks</td><td>Market off</td><td>Joint visit</td><td><span class="op wait">Open review</span></td></tr>
+ <tr><td>Region</td><td>KA-R07</td><td>1 week</td><td>No leads left</td><td>Coaching</td><td>—</td></tr>
+ <tr><td>Network</td><td>All regions</td><td>—</td><td>—</td><td>—</td><td><span class="op">Record month</span></td></tr></table></div>
+ <p class="mini">Reasons and actions come from governed lists. The action travels up; the excuse does not.</p>
+ <p class="mini">Escalation is computed, never stored: 3 days behind → the RSM's agenda · a region behind at week end → this Monday card · 2 weeks → a GM review · the network behind a month → the CEO's month close.</p>
+</div></div>
+<p class="note">A target review is itself a proposed change: the GM opens it and the CEO decides (value_list). Nothing here punishes — the check-in is optional, and a region with no rows reads "no check-in recorded", never zero. LLD R100.6; use cases GM-26, RSM-31, X-FLD-21.</p></div>
+</div></section>
 
 <p class="note" style="margin-top:44px;max-width:80ch">Names, families and numbers here are made up to show how it works. Sales figures are for one sample month (December 2026) and add up across screens. Open questions are in the shared Google Doc "Role Journeys: Open Questions".</p>
 </div>

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>Targets, pace and accountability — a plain guide</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#e8edf3; --ink:#0e2440; --ink-2:#3b5070; --rule:#c9d3df;
+  --brand:#f5821f; --brand-ink:#b4530a; --brand-soft:#fff1e3;
+  --ok:#137a43; --ok-soft:#e3f5ea; --bad:#b42318; --bad-soft:#fde8e6; --warn:#8a5a00; --warn-soft:#fff4d6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:400 16px/1.65 Montserrat,system-ui,sans-serif}
+h1,h2,h3{line-height:1.2;margin:0}
+a{color:#8f4207}
+.wrap{max-width:1060px;margin:0 auto;padding:40px 20px 100px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+.top .crumb{font-size:13px;color:var(--ink-2)}
+.top .crumb a{text-decoration:none;font-weight:600}
+.top .pill{background:#fff;border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+
+.hero{background:#fff;border:1px solid var(--rule);border-radius:18px;padding:44px 44px 36px;margin-bottom:34px}
+.hero .kicker{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:14px}
+.hero h1{font-weight:800;font-size:clamp(30px,4.4vw,46px);letter-spacing:-.01em}
+.hero h1 span{display:block;color:var(--brand-ink)}
+.hero p{max-width:70ch;color:var(--ink-2);margin:18px 0 0}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0}
+.toc a{background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 13px;border-radius:10px}
+.toc a:hover{background:#1b3a63}
+
+section{margin:44px 0 0}
+section>h2{font-weight:800;font-size:clamp(22px,2.8vw,29px);margin-bottom:8px}
+section>.lede{color:var(--ink-2);max-width:74ch;margin:0 0 22px}
+
+.card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:28px 30px}
+.card+p{margin-top:18px}
+
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.role{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:26px 28px;border-top:6px solid var(--ink)}
+.role.ysp{border-top-color:var(--brand)}
+.role.rsm{border-top-color:#1d4ed8}
+.role.gm{border-top-color:#137a43}
+.role.ceo{border-top-color:#7a5200}
+.role .who{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.role h3{font-size:21px;margin:6px 0 4px}
+.role .aim{color:var(--ink-2);font-size:14.5px;margin:0 0 16px}
+.role h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);margin:18px 0 6px}
+.role p{margin:0 0 10px}
+.role ul{margin:0;padding-left:18px}
+.role li{margin:0 0 6px}
+
+.timeline{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:10px 30px 18px}
+.tl{display:grid;grid-template-columns:112px 1fr;gap:0 18px;padding:16px 0;border-bottom:1px dashed var(--rule)}
+.tl:last-child{border-bottom:0}
+.tl .t{font-weight:800;font-size:15px;color:var(--brand-ink);white-space:nowrap;padding-top:2px}
+.tl .what b{display:block;margin-bottom:2px}
+.tl .what span{color:var(--ink-2)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);border-radius:14px;overflow:hidden;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
+th{background:var(--ink);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+tr:last-child td{border-bottom:0}
+td b{font-weight:700}
+
+.ladder{display:grid;gap:14px;counter-reset:rung}
+.rung{display:grid;grid-template-columns:42px 1fr;gap:16px;background:#fff;border:1px solid var(--rule);border-radius:14px;padding:18px 20px}
+.rung .n{counter-increment:rung;width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.rung .n::before{content:counter(rung)}
+.rung b{display:block;margin-bottom:2px}
+.rung p{margin:0;color:var(--ink-2);font-size:14.5px}
+
+.callout{background:var(--brand-soft);border:1px solid #f3cfa8;border-radius:14px;padding:20px 24px;margin:20px 0}
+.callout b{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#5d3a17}
+
+.fair{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.fair div{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:18px 20px}
+.fair b{display:block;margin-bottom:4px}
+.fair p{margin:0;font-size:14.5px;color:var(--ink-2)}
+
+footer{margin-top:60px;padding-top:22px;border-top:2px solid var(--rule);color:var(--ink-2);font-size:13.5px}
+footer a{font-weight:600}
+
+@media (max-width:820px){
+  .roles,.fair{grid-template-columns:1fr}
+  .hero{padding:30px 24px}
+  .tl{grid-template-columns:84px 1fr}
+}
+@media print{
+  body{background:#fff}
+  .hero,.card,.role,.timeline,table,.rung,.fair div{break-inside:avoid}
+  .toc{display:none}
+}
+</style>
+
+<div class="wrap">
+
+<div class="top">
+  <div class="crumb">YASHHO CRM · <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-journeys.html">the storyboard</a> · <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-onboarding.html">how people join</a></div>
+  <div class="pill">Pilot · 22 November 2026</div>
+</div>
+
+<div class="hero">
+  <div class="kicker">A plain guide for everyone in the field and the office</div>
+  <h1>Targets, pace and accountability<span>who does what, day by day</span></h1>
+  <p>Every person in the field has a number to meet, and every manager has a team to look after. This guide explains where those numbers come from, what each person is expected to do every day and every week to stay close to them, and what happens, honestly and fairly, when someone falls behind. It is written to be read by a YSP on a phone as easily as by the CEO on a laptop.</p>
+  <div class="toc">
+    <a href="#basics">The basics</a>
+    <a href="#day">A day in the CRM</a>
+    <a href="#roles">What each person does</a>
+    <a href="#week">The week at a glance</a>
+    <a href="#missed">When a number is missed</a>
+    <a href="#fair">What keeps it fair</a>
+  </div>
+</div>
+
+<section id="basics">
+  <h2>The basics, in four short answers</h2>
+  <p class="lede">Before the routines make sense, here is what a target is and how one becomes real.</p>
+
+  <div class="card">
+    <h3>What is a target?</h3>
+    <p>A target is a simple set of numbers, kept for a day, a week, a month or a quarter: how many calls, how many visits, and how many sales. A target can be set for the whole network, for one region, for everyone in a role, or for one person's post. When two of these apply at the same time, the more specific one wins for that person. If nobody has set a number at any level, the screen shows only what the person has actually done. It never shows a zero in place of a target, because a zero would read like a failure when the truth is that no one has set a number yet.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Who sets a target?</h3>
+    <p>The General Manager proposes it. The CEO approves it. Only then does it take effect, and from that moment it is a dated version that nobody edits. If the number needs to change later, that is a new proposal and a new approval, with a reason on the record. The GM can never approve his own proposal, a vacant post can neither propose nor approve, and the people who are measured by a target never decide it for themselves. This is deliberate: it keeps the conversation about the number honest, and it means every change has two names against it.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>When does a sale count?</h3>
+    <p>A sale counts toward a target on the day the child submits their first task. Until then, money that has been paid is shown clearly as "awaiting start". This way the family's payment is never hidden, and the target is never credited before the work has begun. The same rule is used everywhere: on the YSP's Today screen, in the daily email, in the team board, and in the leaderboards when they open. There is one definition, so no two screens can disagree.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Who sees my number?</h3>
+    <p>You see your own target and your own pace. Your RSM sees the team's pace for the region. The GM sees every region, and the CEO sees the network. Nobody outside that line sees your individual numbers, and nobody is ranked publicly. The board marks the two people who need help today; it does not publish a league table of individuals.</p>
+  </div>
+</section>
+
+<section id="day">
+  <h2>A day in the CRM</h2>
+  <p class="lede">The day has a rhythm, and it is the same rhythm for everyone. Nothing here asks a person to stare at a dashboard; each moment has one small job.</p>
+
+  <div class="timeline">
+    <div class="tl"><div class="t">08:30</div><div class="what"><b>The morning email</b><span>Each person receives a short summary of yesterday against their own targets. On Mondays it covers the whole of the previous week. It shows counts, and it shows a dash where no target exists, never a zero.</span></div></div>
+    <div class="tl"><div class="t">09:30</div><div class="what"><b>The day opens</b><span>The working window for the field is 09:30 to 19:30, Monday to Saturday. On Today, each person sees their calls, visits and sales as "done against what should be done by now". When they are ahead, the line stays quiet.</span></div></div>
+    <div class="tl"><div class="t">11:30</div><div class="what"><b>The first nudge, if needed</b><span>A short message arrives only when a person is behind by more than ten percent. It names the gap and opens the work that closes it. If the person is on pace, no message is sent.</span></div></div>
+    <div class="tl"><div class="t">15:30</div><div class="what"><b>The second and last nudge</b><span>The same rule applies once more in the afternoon. This is the second and final message of the day. Nobody is messaged every hour, and nothing is sent in the evening or on Sunday.</span></div></div>
+    <div class="tl"><div class="t">19:30</div><div class="what"><b>Close of day</b><span>If the day is behind, the YSP is offered a three-tap check-in: what got in the way, what would help, and, if they wish, a short note. It is always optional. It never blocks the next day's work.</span></div></div>
+    <div class="tl"><div class="t">Next morning</div><div class="what"><b>The RSM reads it</b><span>Each check-in appears in the RSM's morning agenda, next to the person's numbers. After three days in a row behind, the name is already there, waiting with the reason the person gave.</span></div></div>
+  </div>
+</section>
+
+<section id="roles">
+  <h2>What each person does</h2>
+  <p class="lede">The same numbers, seen from four chairs. Each person has a short routine and a clear limit on what they are asked to do.</p>
+
+  <div class="roles">
+
+    <div class="role ysp">
+      <div class="who">The YSP</div>
+      <h3>Meet the day's number</h3>
+      <p class="aim">Ravi works his own families. His job is to do the calls, the visits and the sales, and to say plainly when something outside his control got in the way.</p>
+      <h4>Every morning</h4>
+      <p>He opens Today and looks at one line: how he stands against the number for this hour. If he is ahead, the line is quiet and he simply works. If he is behind, the screen tells him what closes the gap.</p>
+      <h4>During the day</h4>
+      <p>He works his follow-ups and planned visits. At most two nudges arrive, late morning and mid-afternoon, and only if he is genuinely behind. He is never asked to keep the phone open or to check in at set times.</p>
+      <h4>At the end of the day</h4>
+      <p>If he is behind, he is offered three taps: what got in the way, what would help, and a note if he wants one. He can skip it. If he has a sale that has been paid but not started, it sits beside his sales line as "awaiting start" so it is never forgotten.</p>
+      <h4>What he is not asked to do</h4>
+      <ul>
+        <li>Share his location. The CRM never reads it.</li>
+        <li>Explain himself more than once. One check-in is enough.</li>
+        <li>Compete publicly. He sees his own pace and his team's top three, not a ranking of everyone.</li>
+      </ul>
+    </div>
+
+    <div class="role rsm">
+      <div class="who">The RSM</div>
+      <h3>Help the team, not police it</h3>
+      <p class="aim">Suresh runs a region. His job is to know by mid-morning who needs help and to bring the right kind of help by the afternoon.</p>
+      <h4>Every morning</h4>
+      <p>His agenda names the people who were behind three days running, with the reason each one gave, and the ones who have gone quiet. He starts his day with those names, not with a spreadsheet.</p>
+      <h4>Mid-morning and mid-afternoon</h4>
+      <p>The team pace board shows every YSP in his region as one row: calls, visits, sales, and when they last did something. The two people furthest behind are marked. The mark is an invitation to a conversation, not a punishment, and no row ever shows a location.</p>
+      <h4>At four o'clock</h4>
+      <p>He takes the names and the reasons into his afternoon round and the update he sends. Where he can help, he does: a joint visit, a different plan, a coaching session. He records the action he chose.</p>
+      <h4>Every week</h4>
+      <p>When his region misses its weekly number, he records one line for the region: the main reason and the action he is taking. That line goes up to the GM with the region's numbers. If the region misses two weeks running, the GM may open a target review.</p>
+      <h4>What he is not asked to do</h4>
+      <ul>
+        <li>Chase people with hourly messages. The system sends at most two, and only to the person concerned.</li>
+        <li>Decide the target. He can ask the GM for a change, with a reason, but he cannot set it.</li>
+        <li>Watch anyone's location. The board shows activity, never coordinates.</li>
+      </ul>
+    </div>
+
+    <div class="role gm">
+      <div class="who">The General Manager</div>
+      <h3>Own the numbers, and the reasons</h3>
+      <p class="aim">The GM is the one person who proposes targets and the only person who can open a target review. He reads the whole state, but he works through the people who run it.</p>
+      <h4>Every Monday</h4>
+      <p>He opens the accountability card. It lists the regions that missed last week, the reason each one recorded, the action the RSM chose, and any YSP who was behind three days. He reads it with the week's other numbers, not instead of them.</p>
+      <h4>Through the week</h4>
+      <p>He watches the network from one screen: every region and every post, each number in force, each level resolved on its own. When something needs to change, he proposes it: old number to new number, for which level, from which date, and why. The CEO decides.</p>
+      <h4>At month end</h4>
+      <p>When a region has missed two weeks running, he may open a target review, which is itself a proposal the CEO decides. He also records the network's monthly line: the main reason, and the action being taken. If the network misses a month, that line goes to the CEO's month close.</p>
+      <h4>What he is not asked to do</h4>
+      <ul>
+        <li>Edit a target directly. Every change is a proposed version, approved by the CEO and written by the system.</li>
+        <li>Approve his own proposal. The engine compares the person, not just the post.</li>
+        <li>Read a reason without an action. Every miss he sees carries what was done about it.</li>
+      </ul>
+    </div>
+
+    <div class="role ceo">
+      <div class="who">The CEO</div>
+      <h3>Decide, and set the standard</h3>
+      <p class="aim">The CEO is the only person who can make a target real, and the only one who sees the network when it misses a month.</p>
+      <h4>When a proposal waits</h4>
+      <p>Everything only the CEO can decide sits in one queue: target versions now, prices and access later. Each row shows who proposed it, what changes, why, and how long it has waited. He approves, or rejects with a note. A rejection changes nothing and returns to the proposer with the note attached.</p>
+      <h4>At month and quarter end</h4>
+      <p>He receives the network's line, the reasons counted by level, and the actions already taken. Where the same reason appears across regions, that is a conversation about the plan, not about the people. He can ask the GM to bring a review, and he decides it.</p>
+      <h4>What he is not asked to do</h4>
+      <ul>
+        <li>Approve his own proposal, or one whose next step belongs to another role.</li>
+        <li>Read individual check-ins. He sees reasons counted by level, never one person's private note.</li>
+        <li>Chase the week. The Monday card and the month close keep the rhythm; the queue is there when a decision is actually needed.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <b>And the office behind it</b>
+    <p>A proposal becomes a real target in one way only. The GM proposes; the CEO approves; the system writes a new dated version. Nobody types over an old number, and the record keeps both names and the reason. If anything were ever applied without that record, the system would refuse it. This is what makes the numbers worth trusting when someone is held to them.</p>
+  </div>
+</section>
+
+<section id="week">
+  <h2>The week at a glance</h2>
+  <p class="lede">If you only remember one page, remember this one. It is the whole routine, from Monday to month end.</p>
+
+  <table>
+    <tr><th style="width:15%">When</th><th>YSP</th><th>RSM</th><th>GM</th><th>CEO</th></tr>
+    <tr>
+      <td><b>Every day, 08:30</b></td>
+      <td>Reads yesterday against his own numbers.</td>
+      <td>Reads the region's summary, including anyone red for three days.</td>
+      <td>Reads the state summary.</td>
+      <td>Reads the network summary.</td>
+    </tr>
+    <tr>
+      <td><b>Through the day</b></td>
+      <td>Works his calls, visits and sales; sees pace on Today.</td>
+      <td>Works the team pace board; helps the two furthest behind.</td>
+      <td>Watches every region on one screen.</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><b>Close of day</b></td>
+      <td>If behind, three taps: what got in the way, what would help.</td>
+      <td>Reads the morning after, with the reason already there.</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><b>Monday, 08:30</b></td>
+      <td>Gets the week just gone against the weekly number.</td>
+      <td>Records the region's weekly line if it missed: reason and action.</td>
+      <td>Opens the accountability card for the whole state.</td>
+      <td>Sees the network's weekly result.</td>
+    </tr>
+    <tr>
+      <td><b>Month end</b></td>
+      <td>Sees the month against the monthly number.</td>
+      <td>Nothing extra; the weekly lines already tell the story.</td>
+      <td>Records the network's monthly line; may open a review after two missed weeks.</td>
+      <td>Reads reasons by level and the actions already taken; decides any review.</td>
+    </tr>
+  </table>
+</section>
+
+<section id="missed">
+  <h2>When a number is missed</h2>
+  <p class="lede">Missing a day is normal. What matters is that somebody knows why, sooner rather than later, and that something sensible happens next. Here is the ladder, in the order it happens.</p>
+
+  <div class="ladder">
+    <div class="rung"><div class="n"></div><div><b>One day behind</b><p>Nothing happens beyond the line on Today and, if the gap is large enough, one of the two daily nudges. There is no meeting, no message to the manager, and no mark against anyone's name.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Close of day, and the person says why</b><p>If they choose to, the YSP records a reason (no leads left, the market was off, leave, data entered late, support needed, or something else), an action if one is obvious, and a short note. It is a check-in, not a confession, and it is always optional.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Three days running</b><p>The person appears on their RSM's morning agenda with the reasons they gave. The RSM comes to them with help, which usually means a joint visit, a different plan or some coaching, and records what was chosen.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>A region behind at week end</b><p>The RSM records one line for the region and chooses an action. That line, with the region's numbers, sits on the GM's Monday card. The GM is reading a region's reason, not naming a person.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Two weeks running</b><p>The GM may open a target review. This is a formal conversation about whether the plan or the number is wrong. Opening it is the GM's decision alone, and deciding it is the CEO's.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>A month behind, across the network</b><p>The network's monthly line reaches the CEO with the reasons counted by level and the actions already taken. If the same reason repeats across regions, the answer is a change of plan, not a round of blame.</p></div></div>
+  </div>
+
+  <div class="callout" style="margin-top:22px">
+    <b>The one rule that matters in this ladder</b>
+    <p>What travels up the ladder is the action, not the excuse. A reason explains a day; an action changes the next one. That is why every line, at every level, carries both, and why the person who missed the number still owns the answer to it.</p>
+  </div>
+</section>
+
+<section id="fair">
+  <h2>What keeps it fair</h2>
+  <p class="lede">Accountability only works if people trust how it is done. These are the promises that make it something people can work with.</p>
+
+  <div class="fair">
+    <div><b>No location, ever.</b><p>The system reads activity counts and the time of the last activity. It never reads or shows where anyone is.</p></div>
+    <div><b>Two messages a day at most.</b><p>No hourly pings, no evening messages, nothing on Sunday. If someone is ahead, they are left alone.</p></div>
+    <div><b>One rule for a sale.</b><p>A sale is confirmed when the child submits the first task, everywhere. Money paid but not started stays visible as "awaiting start".</p></div>
+    <div><b>No silent zeros.</b><p>Where no target has been set, the screen shows the count alone. Nobody is shown as failing a number that was never given to them.</p></div>
+    <div><b>A check-in, not a block.</b><p>The end-of-day reason is optional. It cannot stop a person from working, and it is never used on its own to judge them.</p></div>
+    <div><b>Two names on every change.</b><p>The GM proposes; the CEO approves. A person never sets the number they are measured by, and a vacant post decides nothing.</p></div>
+    <div><b>The action is public, the note is not.</b><p>Managers see the action taken. The CEO sees reasons counted by level. Nobody sees another person's private note.</p></div>
+    <div><b>Help comes with the mark.</b><p>A person is marked on the board so the RSM can help them, not so the team can watch them fail. The bottom two are marked; nobody is ranked.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>This guide follows the pilot design of 22 November 2026, and it will change only by the same route as a target: proposed, approved, and dated. For the screen-by-screen flows, see <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-journeys.html">the storyboard</a>. The detailed rules are in the low-level design, R99 and R100.</p>
+</footer>
+
+</div>
+</html>
