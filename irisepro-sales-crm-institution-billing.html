@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>Institution billing — the school is invoiced, the money arrives in instalments</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#e8edf3; --ink:#0e2440; --ink-2:#3b5070; --rule:#c9d3df;
+  --brand:#f5821f; --brand-ink:#b4530a; --brand-soft:#fff1e3;
+  --ok:#137a43; --ok-soft:#e3f5ea; --bad:#b42318; --bad-soft:#fde8e6; --warn:#8a5a00; --warn-soft:#fff4d6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:400 16px/1.65 Montserrat,system-ui,sans-serif}
+h1,h2,h3{line-height:1.2;margin:0}
+a{color:#8f4207}
+.wrap{max-width:1060px;margin:0 auto;padding:40px 20px 100px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+.top .crumb{font-size:13px;color:var(--ink-2)}
+.top .crumb a{text-decoration:none;font-weight:600}
+.top .pill{background:#fff;border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+
+.hero{background:#fff;border:1px solid var(--rule);border-radius:18px;padding:44px 44px 36px;margin-bottom:34px}
+.hero .kicker{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:14px}
+.hero h1{font-weight:800;font-size:clamp(30px,4.4vw,46px);letter-spacing:-.01em}
+.hero h1 span{display:block;color:var(--brand-ink)}
+.hero p{max-width:70ch;color:var(--ink-2);margin:18px 0 0}
+.hero .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.hero .two div{background:#f7fafc;border:1px solid var(--rule);border-radius:14px;padding:16px 18px}
+.hero .two b{display:block;margin-bottom:4px}
+.hero .two span{font-size:14.5px;color:var(--ink-2)}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0}
+.toc a{background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 13px;border-radius:10px}
+.toc a:hover{background:#1b3a63}
+
+section{margin:44px 0 0}
+section>h2{font-weight:800;font-size:clamp(22px,2.8vw,29px);margin-bottom:8px}
+section>.lede{color:var(--ink-2);max-width:74ch;margin:0 0 22px}
+h3{font-size:19px;margin-bottom:6px}
+
+.card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:26px 30px}
+.card+p{margin-top:16px}
+.card h3+ p{margin-top:6px}
+
+.timeline{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:10px 30px 18px}
+.tl{display:grid;grid-template-columns:150px 1fr;gap:0 18px;padding:16px 0;border-bottom:1px dashed var(--rule)}
+.tl:last-child{border-bottom:0}
+.tl .t{font-weight:800;font-size:14.5px;color:var(--brand-ink);padding-top:2px}
+.tl .what b{display:block;margin-bottom:2px}
+.tl .what span{color:var(--ink-2)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);border-radius:14px;overflow:hidden;font-size:14px}
+table.wrapx{display:block;overflow-x:auto}
+p{overflow-wrap:anywhere}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{background:var(--ink);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+tr:last-child td{border-bottom:0}
+td b{font-weight:700}
+td code, .card code{background:#eef3f8;border-radius:5px;padding:1px 5px;font-size:12.5px}
+table.zebra tr:nth-child(even) td{background:#f7fafc}
+
+.callout{background:var(--brand-soft);border:1px solid #f3cfa8;border-radius:14px;padding:20px 24px;margin:20px 0}
+.callout b{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#5d3a17}
+.callout.rule{background:#eef4fb;border-color:#bfd3ea}
+.callout.rule p{color:#17395f}
+.callout.stop{background:var(--bad-soft);border-color:#f0b8b2}
+.callout.stop p{color:#6b1710}
+
+.fair{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.fair div{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:18px 20px}
+.fair b{display:block;margin-bottom:4px}
+.fair p{margin:0;font-size:14.5px;color:var(--ink-2)}
+
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:4px 11px;background:#eef3f8;border:1px solid var(--rule);color:var(--ink-2)}
+.tag.done{background:var(--ok-soft);border-color:#b9dfc8;color:var(--ok)}
+.tag.next{background:var(--warn-soft);border-color:#ecd391;color:var(--warn)}
+.tag.review{background:#eef4fb;border-color:#bfd3ea;color:#17395f}
+
+footer{margin-top:60px;padding-top:22px;border-top:2px solid var(--rule);color:var(--ink-2);font-size:13.5px}
+footer a{font-weight:600}
+
+@media (max-width:820px){
+  .fair,.hero .two{grid-template-columns:1fr}
+  .hero{padding:30px 24px}
+  .tl{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}
+  .hero,.card,.timeline,table,.fair div{break-inside:avoid}
+  .toc{display:none}
+}
+</style>
+
+<div class="wrap">
+
+<div class="top">
+  <div class="crumb">YASHHO CRM · <a href="irisepro-sales-crm-institutions.html">the institutional storyboard</a> · <a href="irisepro-sales-crm-institutional-lifecycle.html">institutional lifecycle</a> · <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-journeys.html">the storyboard</a></div>
+  <div class="pill">Institutional billing · design of record · 23 November 2026</div>
+</div>
+
+<div class="hero">
+  <div class="kicker">Design before build · R110 · contract §3.23</div>
+  <h1>The school is invoiced.<span>The money arrives in three.</span></h1>
+  <p>The storyboard says it plainly: the ₹15,000 package is paid in three instalments, and the RSM raises each
+  invoice and records each instalment when the money lands. That is a different animal from a family paying by
+  card — there is no checkout, no Razorpay order, no single moment where "paid" is decided. This page is the design
+  of that second money path: the records, the arithmetic, who records and who confirms, how the chasing and the
+  reconciliation work — and the seven rulings of 23 Nov that fix its numbers.</p>
+  <div class="two">
+    <div><b>What exists today</b><span>One-shot gateway payments, offers with negotiated prices and seat caps, an
+    attribution stamp naming the institution and both earners, and commission accrued per payment. Plus an
+    <code>institutions</code> table from July that nobody bills against yet.</span></div>
+    <div><b>What this adds</b><span>Agreements, a schedule of instalments per offer line, tax invoices, recorded
+    collections (partial ones too), the weekly seat batch that a realised payment unlocks, commission per collection,
+    aging, reminders, Finance confirmation and an institution statement. No school login, no school checkout, no
+    second ledger.</span></div>
+  </div>
+  <div class="toc">
+    <a href="#why">Why a second path</a>
+    <a href="#records">The seven records</a>
+    <a href="#walk">One instalment, end to end</a>
+    <a href="#maths">The arithmetic</a>
+    <a href="#seats">Seats, payments and batches</a>
+    <a href="#who">Who records, who confirms</a>
+    <a href="#chase">Chasing and reconciling</a>
+    <a href="#frozen">What stays frozen</a>
+    <a href="#open">The rulings</a>
+    <a href="#build">The three slices</a>
+  </div>
+</div>
+
+<section id="why">
+  <h2>Two money paths, one ledger</h2>
+  <p class="lede">A school does not check out. It signs, gets invoiced, and pays by bank transfer or cheque. The
+  design keeps that money entirely out of the gateway path, and still pays commission through the one ledger and the
+  one calculator that already exist.</p>
+
+  <div class="fair">
+    <div>
+      <b>Gateway path — unchanged</b>
+      <p>A family or a person pays through Razorpay: <code>payments</code>, a checkout link, the webhook amount gate,
+      the offer redemption. One payment, one seat, commission keyed <code>payment:{rzp}:…</code>. This remains the
+      only path a storefront or a family link can use.</p>
+    </div>
+    <div>
+      <b>Invoice path — new</b>
+      <p>A school pays against a tax invoice, and an RSM records each instalment collected. Commission is keyed
+      <code>collection:{id}:…</code>. The collection row is the money event; nothing downstream waits for a gateway
+      callback that will never come.</p>
+    </div>
+  </div>
+
+  <div class="callout stop">
+    <b>A school never checks out, and a link never prices its line</b>
+    <p>An institutional line is not sold through <code>/go/{slug}</code> and never appears in a storefront catalogue.
+    The negotiated price resolves only through the institution's offer when a referred <i>family</i> pays for its own
+    scan; a batch's money — package, Acharya, Academy — always moves through the invoice path. Keeping the two apart
+    is what stops a school payment being counted as a family sale, or a family sale being counted as an instalment.</p>
+  </div>
+</section>
+
+<section id="records">
+  <h2>The seven records, and nothing more</h2>
+  <p class="lede">Each record answers one question and is frozen once it has to be. Money is integer paise
+  everywhere. Rows are appended, not edited; a mistake is corrected by a credit note, never by rewriting history.</p>
+
+  <table class="zebra wrapx">
+    <tr><th>Record</th><th>What it holds</th><th>Why it exists</th><th>Status</th></tr>
+    <tr>
+      <td><b><code>institutions</code></b> <span class="tag done">exists</span></td>
+      <td>Name, contact, email, phone, status — extended with nullable <code>code</code>, <code>kind</code>,
+      <code>region</code>, and the GST identity a tax invoice needs: <code>gstin</code>, legal name, billing address,
+      <code>state_code</code>.</td>
+      <td>One canonical school or college. Existing rows are untouched; it is still a tag on a sale, never an owner
+      of a family and never a login.</td>
+      <td>Table exists (7 Jul 2026); the billing columns are not built.</td>
+    </tr>
+    <tr>
+      <td><b><code>institution_agreements</code></b></td>
+      <td>Institution, signing YSP post, approving RSM, term start and end, signed and approved dates, status,
+      document reference. One active agreement per institution.</td>
+      <td>The commercial record under which seats and a schedule exist. Signing is not a sale and moves no money.</td>
+      <td>Not built.</td>
+    </tr>
+    <tr>
+      <td><b><code>institution_invoice_schedules</code></b></td>
+      <td>Offer line, sequence, due date, seats billed, net — validated so the schedule sums exactly to the
+      negotiated net price × seats × (1 + GST).</td>
+      <td>The instalment plan. KMM's shape is three × ₹5,000 net per seat (₹5,900 invoiced with 18% GST; May, Aug,
+      Nov 2027); the split is the line's terms, not code.</td>
+      <td>Not built.</td>
+    </tr>
+    <tr>
+      <td><b><code>institution_invoices</code></b></td>
+      <td>A gap-free number per financial year, issue and due dates, gross, GST rate, net, CGST/SGST/IGST split,
+      place of supply, status, who issued it — and the rendered tax-invoice document.</td>
+      <td>Freezes what is owed. A later rate change never restates an issued invoice; a number is never reused.</td>
+      <td>Not built.</td>
+    </tr>
+    <tr>
+      <td><b><code>institution_collections</code></b></td>
+      <td>Invoice, date received, amount settled, any TDS withheld, the frozen net share, mode (NEFT/RTGS/UPI/cheque/
+      cash), UTR or cheque reference, recorded by, confirmed by.</td>
+      <td>The money event. Bank credit + TDS = amount settled. Unique on (invoice, reference), so recording one bank
+      credit twice is refused, not netted. Partial payments are allowed; overpayment is refused.</td>
+      <td>Not built.</td>
+    </tr>
+    <tr>
+      <td><b><code>institution_batches</code></b></td>
+      <td>Offer line, agreement, sequence, start date, seat count, status — one row per delivery batch.</td>
+      <td>The week's delivery unit. A batch starts on the configured cadence (Sunday by default) with the seats whose
+      first instalment was realised by its cut-off — typically 30–50, up to 1,000, never above the line's cap. Unpaid
+      seats wait for a later batch.</td>
+      <td>Not built.</td>
+    </tr>
+    <tr>
+      <td><b><code>institution_credit_notes</code></b></td>
+      <td>Invoice, number, date, gross and net credited, reason, who issued it, the collection it reverses if any.</td>
+      <td>Corrects an issued-and-collected invoice without editing it; reverses both commission lines pro rata.</td>
+      <td>Not built.</td>
+    </tr>
+  </table>
+
+  <div class="callout rule">
+    <b>How it fits the catalogue ruling</b>
+    <p>The schedule hangs off an offer line (R109.3), so a single agreement can carry 1,000 package seats at one
+    negotiated price, 200 Acharya seats at another and 60 Academy seats at a third — each with its own instalments
+    and its own closing cap. Nothing here is a per-school SKU, and every price still comes from the one price
+    authority through the institution's offer.</p>
+  </div>
+</section>
+
+<section id="walk">
+  <h2>One instalment, end to end</h2>
+  <p class="lede">The May instalment for a 640-student college, as KMM's RSM-19 describes it — followed through every
+  record it touches.</p>
+
+  <div class="timeline">
+    <div class="tl"><div class="t">Agreement</div><div class="what"><b>The school signs; the RSM approves</b><span>An
+    agreement is recorded against the institution, naming the YSP and the RSM. The offer line already exists with its
+    negotiated price and seat cap. Nothing is owed yet and no commission moves.</span></div></div>
+    <div class="tl"><div class="t">Schedule</div><div class="what"><b>Three instalments are written</b><span>640
+    students × ₹5,000 net, three times: May, August, November 2027. Each instalment invoices ₹5,900 per seat with 18%
+    GST, and the schedule is validated to sum to the line's negotiated net total.</span></div></div>
+    <div class="tl"><div class="t">Invoice</div><div class="what"><b>The RSM raises the May invoice — ₹37,76,000</b>
+    <span>₹32,00,000 net plus ₹5,76,000 GST, numbered in the year's series, with both GSTINs and the place of supply.
+    The gross, the GST split and the net are frozen at that moment and rendered as a tax invoice.</span></div></div>
+    <div class="tl"><div class="t">Reminders</div><div class="what"><b>The system chases, once per step</b><span>Fifteen
+    days before the due date, on it, a week after and a month after. The coordinator gets the invoice by email from
+    the YASHHO billing desk, and the RSM sends the WhatsApp nudge; the YSP is copied. One reminder per invoice per
+    step — a rerun never sends twice.</span></div></div>
+    <div class="tl"><div class="t">Collection</div><div class="what"><b>The money lands; the RSM records it</b><span>The
+    date, the amount, the mode and the UTR — plus any TDS the school withheld, which together with the bank credit is
+    the amount settled. Recording it twice is refused. A short payment is recorded as it is; the remainder stays
+    outstanding.</span></div></div>
+    <div class="tl"><div class="t">Batch</div><div class="what"><b>The next Sunday batch starts — the seats that were
+    paid</b><span>Settled money ÷ ₹5,900 per seat gives the seats this collection unlocked; they join the next weekly
+    batch, typically 30–50 seats. Each unlocked seat's scan starts. The roster is only the candidate list — the
+    realised payment is what starts a seat.</span></div></div>
+    <div class="tl"><div class="t">Commission</div><div class="what"><b>Both earners are paid on the net collected</b>
+    <span>The designated YSP at 5% and the designated RSM at 0.5% — the same institutional rate on every line
+    (package, Acharya, Academy) — on the collection's net, TDS included, written once to the one ledger.</span></div></div>
+    <div class="tl"><div class="t">Confirm</div><div class="what"><b>Finance matches it to the bank</b><span>A recorded
+    collection is confirmed against the bank credit (plus any TDS certificate). Until then the field sees "recorded",
+    Finance sees "recorded, not confirmed", and the unmatched view lists it.</span></div></div>
+    <div class="tl"><div class="t">Statement</div><div class="what"><b>The school's page shows the balance</b><span>
+    Invoices, collections and what is still due, computed from the rows — never from a stored total. August and
+    November repeat the same walk on the same seats.</span></div></div>
+  </div>
+</section>
+
+<section id="maths">
+  <h2>The arithmetic, ruled</h2>
+  <p class="lede">Commission is a share of net revenue — what is left after GST — never of what the school sent. The
+  invoice freezes both numbers so no later change can silently move a payout.</p>
+
+  <div class="card">
+    <h3>One instalment, worked through</h3>
+    <p>The negotiated price is <b>net</b>, and the school pays 18% GST on top (ruled 23 Nov 2026). The 640-seat May
+    instalment is therefore <b>₹32,00,000 net</b> + ₹5,76,000 GST = <b>₹37,76,000 invoiced</b>. On the net, the YSP
+    earns 5% = <b>₹1,60,000</b> and the RSM 0.5% = <b>₹16,000</b>.</p>
+    <p>If the school pays in two bank credits, each collection carries its gross de-GST'd at the frozen rate, and the
+    <b>final collection absorbs the paise residual</b> so the collections sum exactly to the invoice net. Commission
+    runs once per collection on that net — and on any TDS withheld, because the school settled it.</p>
+    <p><b>One source figure is superseded.</b> RSM-19's unit test treated ₹32,00,000 as gross and got ₹1,35,593.22;
+    that assumed an inclusive fee. The 23 Nov ruling rejects it: the same seats now invoice ₹37,76,000 and the net,
+    and both commission lines, are exact in the lakhs.</p>
+  </div>
+
+  <div class="callout">
+    <b>Credit notes, not edits</b>
+    <p>Overpayment is refused. A genuine correction — our own error, a seat removed before the term starts — is a
+    credit note that debits both earners pro rata to the credited net. The original ledger rows stay visible forever.
+    A school that withholds, disputes or exits mid-term is <b>not</b> credited: that is a commercial conversation and
+    the published no-refund policy stands. A credit note is a correction, never a refund product.</p>
+  </div>
+</section>
+
+<section id="seats">
+  <h2>Seats, payments and batches</h2>
+  <p class="lede">A seat does not start because a list arrived. It starts because money did.</p>
+
+  <div class="callout rule">
+    <b>A realised first instalment unlocks and starts a seat</b>
+    <p>Invoiced ₹5,900 per seat for the first instalment (₹5,000 net + GST). Settled money ÷ that per-seat price,
+    floored, is the number of seats a collection unlocks; the remainder carries to the next collection. Nothing else
+    gates a seat — the roster is the candidate list, uploaded when the agreement is approved, and a student's first
+    task is still what makes it a sale (R107.1), not what starts it.</p>
+  </div>
+
+  <div class="callout">
+    <b>Paid seats start in a weekly batch</b>
+    <p>Seats are delivered in batches on a configured cadence — Sunday by default. A batch takes the seats whose first
+    instalment was realised by its cut-off: typically 30–50, up to 1,000, whatever the payments support, never above
+    the line's cap (R109.3). Unpaid seats wait for a later batch; a batch is never padded with money that has not
+    arrived.</p>
+  </div>
+
+  <div class="callout rule">
+    <b>The combo unlocks in two steps</b>
+    <p>The annual package is a scan plus monthly Godparent, so its components are instalment-gated: <b>the scan starts
+    on instalment 1, the Godparent on instalment 2</b> — never before its gate is paid and never earlier than the
+    month-2 offset (R109.2). Instalments 2 and 3 bill the same seats again and add none; they fund the package year,
+    and instalment 3 unlocks no new component. <b>The window is fixed</b> — a late payment never moves the seat's start
+    or the 12-month anniversary; it shortens the months delivered, and Godparent runs month-on-month for as long as
+    the money behind it is realised. <b>Late money has a path, not an instant cut:</b> a 30–60 day grace window keeps
+    Godparent running with no interruption; unpaid at its end the package pauses (the scan already delivered stands);
+    unpaid 120 days past the due date the line is terminated as not paid, and what was collected is not refunded. A
+    package whose second instalment never comes runs the scan and nothing else; it never silently degrades to
+    scan-only.</p>
+  </div>
+
+  <p>The deal's <b>active</b> status for reporting still moves on the first collection against the first instalment.
+  Everything else — aging, reminders, the unmatched-credit view — follows the money, not the batch.</p>
+</section>
+
+<section id="who">
+  <h2>Who records, who confirms</h2>
+  <p class="lede">Recording money and having money reconciled are two different acts, and the design refuses to blur
+  them — that blur is how a field report and a bank statement stop agreeing.</p>
+
+  <table class="zebra">
+    <tr><th>Person</th><th>May do</th><th>May never do</th></tr>
+    <tr><td><b>RSM</b></td><td>Raise an invoice for a scheduled instalment; record a collection with its date, amount
+    and UTR; see the aging for their schools.</td><td>Record a collection for another region's school; void a
+    collected invoice (a credit note instead).</td></tr>
+    <tr><td><b>YSP</b></td><td>See the line, its seats, its invoices and the money against them.</td><td>Record or
+    raise anything — refused (D17, RSM-19).</td></tr>
+    <tr><td><b>Finance</b></td><td>Confirm a recorded collection against the bank credit and any TDS it was settled
+    with; see every school's aging and unmatched credits.</td><td>Change a recorded amount (credit note
+    instead).</td></tr>
+    <tr><td><b>GM / <code>ho_view</code></b></td><td>Read everything; the GM holds the operational approvals
+    (D17).</td><td>Record money; set a price (the CEO's — D17).</td></tr>
+    <tr><td><b>The school</b></td><td>Receive the invoice and its reminders; see its own statement.</td><td>Log in,
+    check out, or see any other school's numbers.</td></tr>
+  </table>
+</section>
+
+<section id="chase">
+  <h2>Chasing and reconciling — designed in, not bolted on</h2>
+  <p class="lede">The follow-ups are the reason this is a project rather than a field. Each is a small, idempotent
+  piece with a visible list, so nothing depends on somebody remembering.</p>
+
+  <div class="fair">
+    <div>
+      <b>Aging, derived</b>
+      <p>Per invoice: outstanding = gross − collected, bucketed 0–30, 31–60, 61–90 and 90+ days past due, plus "not
+      yet due". Computed from the rows on every read; never a stored number that can rot.</p>
+    </div>
+    <div>
+      <b>Reminders, once per step</b>
+      <p>Offsets and channels are a dated config version. The invoice goes by email from the YASHHO billing desk; the
+      nudge goes by WhatsApp from the designated RSM, with the YSP copied. A daily command writes one row per invoice
+      per offset before it sends, so a rerun or a second box never double-sends. Logs carry invoice numbers and
+      counts — never a full phone number or email.</p>
+    </div>
+    <div>
+      <b>Reconciliation</b>
+      <p>Two lists: collections recorded but not yet confirmed, and bank credits that match no invoice reference.
+      Both visible; neither silently zero. This is where "the school says it paid" becomes a fact Finance can stand
+      behind.</p>
+    </div>
+    <div>
+      <b>The school's statement</b>
+      <p>Invoices, collections and balance on the institution's page, rendered from the same rows. A coordinator's
+      call ("what do we owe?") gets one answer, and it is the one Finance sees.</p>
+    </div>
+  </div>
+
+  <div class="callout stop">
+    <b>Two totals that never disagree</b>
+    <p>Commission is computed from collections, not from the invoice. A ₹37,76,000 invoice with ₹18,88,000 collected
+    earns on the ₹16,00,000 net those collections carry, and the invoice stays part-paid. This is why the schedule,
+    the invoice and the collection are three records and not one: collapsing them is how "invoiced" becomes "paid" by
+    accident.</p>
+  </div>
+</section>
+
+<section id="frozen">
+  <h2>What stays frozen</h2>
+  <div class="callout rule">
+    <p>One ledger and one commission calculator, used by both paths. One price authority; a school's price still
+    resolves only through its offer. No school login and no school payee. No institutional family, no school-owned
+    family. No gateway checkout for a school. Rates, reminder offsets and schedule shapes are dated config versions
+    with a proposer and an approver; nothing about a particular school is hard-coded. Append-only money: corrections
+    are credit notes, and a recorded collection is never edited.</p>
+  </div>
+</section>
+
+<section id="open">
+  <h2>The rulings — fixed 23 Nov 2026</h2>
+  <p class="lede">None of these is open any more. Each one is recorded in the contract (R110.13) and binds the build;
+  items (i)–(v) unblock slice A, and (vi)–(viii) the chasing, pause/termination and correction parts of slice B.</p>
+
+  <table class="zebra wrapx">
+    <tr><th>#</th><th>Question</th><th>Ruling</th></tr>
+    <tr><td><b>(i)</b></td><td>Are ₹15,000 / ₹5,000 per instalment / ₹1,00,000 GST-inclusive, and is the service
+    taxable?</td><td><b>Exclusive at 18%.</b> The negotiated price is net; the school pays GST on top (₹15,000 →
+    ₹17,700 invoiced). The offer item stores the gross, as R105.6(a) already requires. Taxable, as the direct scan
+    already is. **Every figure in KMM's document is net revenue**; leadership's GST-inclusive billings view is display
+    only and never the target denominator.</td></tr>
+    <tr><td><b>(ii)</b></td><td>Commission rounded per invoice total or per student?</td><td><b>Per invoice</b>, and the
+    final collection absorbs the paise residual so the collections sum exactly to the invoice net.</td></tr>
+    <tr><td><b>(iii)</b></td><td>Tax point: GST due at issue or at receipt?</td><td><b>Earlier of the two.</b> An
+    invoice issued in May and paid in June recognises GST in May; a prepayment before invoicing recognises it on the
+    advance. Commission stays per collection.</td></tr>
+    <tr><td><b>(iv)</b></td><td>What unlocks and starts a seat, and when?</td><td><b>A realised first instalment.</b>
+    A seat starts when its first instalment is realised, in the next weekly batch (Sunday by default; 30–50 typical,
+    up to 1,000 — the size is what was paid). The roster is only the candidate list. Because the package is a combo,
+    its scan unlocks on instalment 1 and its Godparent on instalment 2; instalments 2–3 add no seats.</td></tr>
+    <tr><td><b>(v)</b></td><td>Does a school deduct TDS?</td><td><b>Recorded as a settlement line.</b> Bank credit +
+    TDS = amount settled; the invoice settles at gross; commission is on the full net settled, TDS included.</td></tr>
+    <tr><td><b>(vi)</b></td><td>Reminder channels and sender</td><td><b>Email from the YASHHO billing desk</b> (with the
+    invoice) and <b>WhatsApp from the designated RSM</b>, the YSP copied.</td></tr>
+    <tr><td><b>(vii)</b></td><td>What may a credit note cover?</td><td><b>Correction of our own error only.</b> A
+    withholding, dispute or mid-term exit is not credited; the no-refund policy stands.</td></tr>
+    <tr><td><b>(viii)</b></td><td>What happens when the second instalment is late?</td><td><b>Grace, then pause, then
+    termination.</b> A <b>30–60 day grace window</b> keeps Godparent running with no disruption; unpaid at its end the
+    package pauses (Godparent stops, the scan stands); unpaid <b>120 days past the due date</b> the line is terminated
+    as not paid. The anniversary never moves, and money already collected is not refunded.</td></tr>
+  </table>
+</section>
+
+<section id="build">
+  <h2>The three slices</h2>
+  <p class="lede">Each slice is its own PR and its own deploy, with the new tables read only by new code. Nothing
+  ships to a real school until slice A is green with the rulings above implemented.</p>
+
+  <div class="pills">
+    <span class="tag review">all designed</span><span class="tag next">none built</span><span class="tag done">ruled 23 Nov</span>
+  </div>
+
+  <table class="zebra">
+    <tr><th>Slice</th><th>Contains</th><th>Done when</th></tr>
+    <tr><td><b>A · Money core</b></td><td>Institution billing columns; agreements; schedules; invoices with
+    gap-free numbering, frozen split and a rendered tax invoice; collections (record, partial, TDS, idempotent); seat
+    unlock and the weekly batches with their component gates; commission per collection; deal activation; RSM and
+    Finance abilities.</td><td>A 640-student May instalment can be raised, recorded, paid out to both earners, its
+    paid seats started in a Sunday batch and shown on the school's page — end to end, in a test.</td></tr>
+    <tr><td><b>B · Corrections and chasing</b></td><td>Credit notes and pro-rata reversals; aging; reminder config,
+    daily command and the one-row-per-offset log; the grace window, pause and termination at 120 days past
+    due.</td><td>A short payment shows the right outstanding, a credit note reverses both lines, a late instalment
+    pauses the package at the end of its grace window and terminates it at 120 days, and a rerun sends no second
+    reminder.</td></tr>
+    <tr><td><b>C · Reconciliation and statements</b></td><td>Finance confirmation, the unmatched-credit view, the
+    institution statement.</td><td>Recorded, confirmed and unmatched money are three visible, non-overlapping
+    sets.</td></tr>
+  </table>
+
+  <div class="callout">
+    <b>The tests that matter most</b>
+    <p>The schedule sums to net × seats × (1 + GST), always. Invoice numbers are gap-free under concurrency. A frozen
+    split ignores a later rate change. The same (invoice, reference) cannot be recorded twice. A partial payment earns
+    on the amount received, and the collections together earn exactly rate × net. A credit note reverses both lines and
+    leaves the originals. A seat starts only on a realised first instalment, in the next batch; instalments 2–3 add no
+    seat; Godparent never starts before instalment 2. A late instalment keeps Godparent running through its grace
+    window, pauses it at the window's end and terminates the line at 120 days past due. A YSP recording is refused. No
+    institutional line ever reaches the gateway or the storefront. And no log line ever carries a full phone number or
+    email.</p>
+  </div>
+</section>
+
+<footer>
+  Binding where it cites <b>R110</b> (contract §3.23, 23 Nov 2026); reads R109/R105/R107 and D8/D17. The KMM source is
+  <code>part2_rsm.txt</code> RSM-19 and the instalment cards in the journey storyboard. Everything else here is
+  explanation. Journey pages: <a href="irisepro-sales-crm-institutional-lifecycle.html">institutional lifecycle</a> ·
+  <a href="02c-targets-accountability.html">targets and accountability</a>.
+</footer>
+
+</div>
+</html>
