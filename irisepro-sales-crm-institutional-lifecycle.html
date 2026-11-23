@@ -220,13 +220,17 @@ footer a{font-weight:600}
     <tr>
       <td><b>Participant</b></td>
       <td>The person the school bought for: a child for a child programme, a teacher for Acharya (R108.13). Each has
-      their own payment and their own start.</td>
-      <td>A deal-level lump, a seat (a seat is capacity, not a person), or a new customer record per participant.</td>
+      their own start; in a batch the school pays for the seat and the participant never checks out.</td>
+      <td>A deal-level lump, a new customer record per participant, or a seat treated as a mere count — a seat holds
+      one named person (R111.2).</td>
     </tr>
     <tr>
       <td><b>Seat</b></td>
-      <td>The negotiated capacity of a school's offer. Each paid redemption takes one; the last one closes the link.</td>
-      <td>A student. Seats sold is a measure under the deal, never a pipeline row.</td>
+      <td>The place one unit of the school's money bought: a ledger row that names one person at a time and moves
+      <code>unlocked → assigned → started → ended</code>, carrying the student and the admin batch (R111.2). The last
+      place closes the link.</td>
+      <td>A mere capacity count, a student created by the sales side, or a second counter beside the link's
+      redemptions — both paths decrement one line.</td>
     </tr>
     <tr>
       <td><b>Offer</b></td>
@@ -593,6 +597,48 @@ footer a{font-weight:600}
     discipline as the family funnel (R99.8). The commission follows the same unit: per participant payment, never a
     deal-level lump (R107.2) — for a person who pays their own way. An institutional line is a batch: its commission
     accrues on money collected against the offer line (D17, R109.6), and a participant never pays for it.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>5 · From money to a student — the batch request and the handoff</h3>
+    <p>Money unlocks a seat; the student's onboarding starts it (R111.1). The two clocks are kept apart on purpose: a
+    settled instalment names the places the school bought, and a place starts only when the student's unit is minted
+    at the end of onboarding — never at the signature, the invoice, the collection, the roster or the batch's planned
+    date.</p>
+    <table style="margin:12px 0 6px">
+      <tr><th>Who</th><th>Does</th><th>Never</th></tr>
+      <tr><td><b>System</b></td><td>Writes one seat per paid place; drafts the request; refuses an incomplete candidate;
+        applies the 7-day rule; writes the batch id, student id and start back onto the seat; flags a late start
+        once.</td><td>Creates a batch or a student.</td></tr>
+      <tr><td><b>RSM</b></td><td>Names candidates from the roster, sends the batch request, calls the onboarding desk,
+        and tracks planned versus actual start and the line's money.</td><td>Provisions, prices, creates a student or
+        records a collection.</td></tr>
+      <tr><td><b>Onboarding desk</b></td><td>Creates the batch in the existing SuperAdmin flow, selecting the request
+        in one optional field; resolves a no-show withdrawal.</td><td>Sells, prices, approves or records money.</td></tr>
+      <tr><td><b>Finance</b></td><td>Bills and confirms collections; confirms a termination with the GM.</td>
+        <td>Assigns seats.</td></tr>
+    </table>
+    <p><b>The seat is a record.</b> It starts <code>unlocked</code> (money has arrived, no name yet), becomes
+    <code>assigned</code> when a candidate is named, <code>started</code> at the unit's day 0, and <code>ended</code>
+    with a reason — completed, not paid, institution ended or no-show. A seat still assigned <b>7 days</b> after its
+    batch's planned date <b>returns to the roster</b>: no refund, the place can be refilled once the original
+    placement is withdrawn, and it never counts as a sale (R111.5).</p>
+    <p><b>The handoff does not change who provisions.</b> The admin batch tool keeps its rules — challenge, Yashodarshi
+    mentor, start date, funding, institution, a roster carrying the batch's required details, attested consent. The
+    CRM adds the linked request and the write-back, not a second way to make a batch (R111.3). A provisioned batch continues through
+    grace; a pause stops Godparent and sends no new request; a termination cancels an unprovisioned request, ends live
+    seats as not paid and revokes the line's platform access (R111.7).</p>
+  </div>
+
+  <div class="callout rule" style="margin-top:16px">
+    <b>Two lists, on purpose</b>
+    <p>The joining list (R108) is the candidate roster — name and class, a lead list. The handoff list is the same
+    people with <b>everything the batch tool consumes</b>: a valid email (login and the child picker are email-keyed),
+    a DOB (the school's §9 attestation cannot cover a child whose age is unknown), and for a minor a guardian's name
+    and relationship; phone, guardian contact and funding are validated when present. The request is refused
+    <b>whole</b> — named row errors, nothing written — until every candidate is complete, and the desk's tool
+    re-validates every row (R111.3). The sales side never creates a student or a <code>crm_family</code> from either
+    list (R105.2).</p>
   </div>
 </section>
 

@@ -103,7 +103,7 @@ footer a{font-weight:600}
 </div>
 
 <div class="hero">
-  <div class="kicker">Design before build · R110 · contract §3.23</div>
+  <div class="kicker">Design before build · R110 + R111 · contract §3.23–§3.24</div>
   <h1>The school is invoiced.<span>The money arrives in three.</span></h1>
   <p>The storyboard says it plainly: the ₹15,000 package is paid in three instalments, and the RSM raises each
   invoice and records each instalment when the money lands. That is a different animal from a family paying by
@@ -115,13 +115,13 @@ footer a{font-weight:600}
     attribution stamp naming the institution and both earners, and commission accrued per payment. Plus an
     <code>institutions</code> table from July that nobody bills against yet.</span></div>
     <div><b>What this adds</b><span>Agreements, a schedule of instalments per offer line, tax invoices, recorded
-    collections (partial ones too), the weekly seat batch that a realised payment unlocks, commission per collection,
-    aging, reminders, Finance confirmation and an institution statement. No school login, no school checkout, no
-    second ledger.</span></div>
+    collections (partial ones too), the seat ledger a realised payment unlocks, the batch request handed to the
+    onboarding desk, commission per collection, aging, reminders, Finance confirmation and an institution statement.
+    No school login, no school checkout, no second ledger, no second provisioning path.</span></div>
   </div>
   <div class="toc">
     <a href="#why">Why a second path</a>
-    <a href="#records">The seven records</a>
+    <a href="#records">The eight records</a>
     <a href="#walk">One instalment, end to end</a>
     <a href="#maths">The arithmetic</a>
     <a href="#seats">Seats, payments and batches</a>
@@ -129,7 +129,7 @@ footer a{font-weight:600}
     <a href="#chase">Chasing and reconciling</a>
     <a href="#frozen">What stays frozen</a>
     <a href="#open">The rulings</a>
-    <a href="#build">The three slices</a>
+    <a href="#build">The four slices</a>
   </div>
 </div>
 
@@ -164,7 +164,7 @@ footer a{font-weight:600}
 </section>
 
 <section id="records">
-  <h2>The seven records, and nothing more</h2>
+  <h2>The eight records, and nothing more</h2>
   <p class="lede">Each record answers one question and is frozen once it has to be. Money is integer paise
   everywhere. Rows are appended, not edited; a mistake is corrected by a credit note, never by rewriting history.</p>
 
@@ -210,11 +210,23 @@ footer a{font-weight:600}
       <td>Not built.</td>
     </tr>
     <tr>
+      <td><b><code>institution_seats</code></b></td>
+      <td>Offer line, agreement, sequence, status (<code>unlocked</code> | <code>assigned</code> | <code>started</code>
+      | <code>ended</code>), the candidate, the roster row, the request, <code>admin_batch_id</code>,
+      <code>student_id</code>, <code>started_on</code>, <code>ended_on</code> and the end reason — one row per paid place
+      (R111.2).</td>
+      <td>The bridge from money to a person. Money unlocks it; the candidate names it; the unit's day 0 starts it; a
+      reason ends it. Both paths — link redemptions and batch seats — decrement one line.</td>
+      <td>Not built.</td>
+    </tr>
+    <tr>
       <td><b><code>institution_batches</code></b></td>
-      <td>Offer line, agreement, sequence, start date, seat count, status — one row per delivery batch.</td>
-      <td>The week's delivery unit. A batch starts on the configured cadence (Sunday by default) with the seats whose
-      first instalment was realised by its cut-off — typically 30–50, up to 1,000, never above the line's cap. Unpaid
-      seats wait for a later batch.</td>
+      <td>Offer line, agreement, sequence, planned start, status, the requesting RSM, accepted/provisioned timestamps,
+      <code>admin_batch_id</code> and the first actual start — the CRM's batch request and its link to the admin batch
+      (R111.4).</td>
+      <td>The planned delivery container and the handoff record. The cadence sets the planned date; the RSM sends the
+      request, the onboarding desk creates the admin batch, and each seat starts at its student's unit day 0. A batch's
+      date never starts a seat; a seat not started in 7 days returns to the roster.</td>
       <td>Not built.</td>
     </tr>
     <tr>
@@ -257,10 +269,11 @@ footer a{font-weight:600}
     date, the amount, the mode and the UTR — plus any TDS the school withheld, which together with the bank credit is
     the amount settled. Recording it twice is refused. A short payment is recorded as it is; the remainder stays
     outstanding.</span></div></div>
-    <div class="tl"><div class="t">Batch</div><div class="what"><b>The next Sunday batch starts — the seats that were
-    paid</b><span>Settled money ÷ ₹5,900 per seat gives the seats this collection unlocked; they join the next weekly
-    batch, typically 30–50 seats. Each unlocked seat's scan starts. The roster is only the candidate list — the
-    realised payment is what starts a seat.</span></div></div>
+    <div class="tl"><div class="t">Batch</div><div class="what"><b>The next Sunday batch is requested — its seats start
+    as students onboard</b><span>Settled money ÷ ₹5,900 per seat names the places this collection unlocked; they are
+    assigned to the next weekly batch request, typically 30–50. The RSM sends it, the onboarding desk creates the batch
+    in the existing admin tool, and each seat starts at its student's unit day 0 — the money unlocks, the learner
+    starts. A seat not started in 7 days returns to the roster, with no refund.</span></div></div>
     <div class="tl"><div class="t">Commission</div><div class="what"><b>Both earners are paid on the net collected</b>
     <span>The designated YSP at 5% and the designated RSM at 0.5% — the same institutional rate on every line
     (package, Acharya, Academy) — on the collection's net, TDS included, written once to the one ledger.</span></div></div>
@@ -302,22 +315,36 @@ footer a{font-weight:600}
 
 <section id="seats">
   <h2>Seats, payments and batches</h2>
-  <p class="lede">A seat does not start because a list arrived. It starts because money did.</p>
+  <p class="lede">Money unlocks a seat; the student's onboarding starts it. A list never starts anything.</p>
 
   <div class="callout rule">
-    <b>A realised first instalment unlocks and starts a seat</b>
+    <b>A realised first instalment unlocks a seat</b>
     <p>Invoiced ₹5,900 per seat for the first instalment (₹5,000 net + GST). Settled money ÷ that per-seat price,
-    floored, is the number of seats a collection unlocks; the remainder carries to the next collection. Nothing else
-    gates a seat — the roster is the candidate list, uploaded when the agreement is approved, and a student's first
-    task is still what makes it a sale (R107.1), not what starts it.</p>
+    floored, is the number of places a collection unlocks — one ledger row each; the remainder carries to the next
+    collection. Nothing else unlocks a place: not the roster, the signature or the invoice. And nothing else starts it:
+    the start is the student's unit day 0, minted when onboarding completes, and the CRM writes that date back onto the
+    seat (R111.1). A student's first task is still what makes it a sale (R107.1), not what starts it.</p>
   </div>
 
   <div class="callout">
-    <b>Paid seats start in a weekly batch</b>
-    <p>Seats are delivered in batches on a configured cadence — Sunday by default. A batch takes the seats whose first
-    instalment was realised by its cut-off: typically 30–50, up to 1,000, whatever the payments support, never above
-    the line's cap (R109.3). Unpaid seats wait for a later batch; a batch is never padded with money that has not
-    arrived.</p>
+    <b>Paid seats are delivered through a weekly batch request</b>
+    <p>The cadence sets the planned date — Sunday by default. A request takes the seats whose first instalment was
+    realised by its cut-off: typically 30–50, up to 1,000, whatever the payments support, never above the line's cap
+    (R109.3). Unpaid seats wait for a later request; a batch is never padded with money that has not arrived. The RSM
+    sends the request; the onboarding desk creates the batch in the existing admin tool; the CRM links the two and
+    writes back each student's id and start (R111.3–R111.4). <b>A request is sent only when every named candidate is
+    complete</b> — name, valid email, DOB, guardian for a minor, class and the line's stream/product, funding where it
+    differs; the CRM refuses the whole request with named row errors, and the desk's tool re-validates every row.</p>
+  </div>
+
+  <div class="callout rule">
+    <b>Unlocked, assigned, started — and what a pause or a termination does</b>
+    <p>A seat is <code>unlocked</code> when the money arrives and <code>assigned</code> when a candidate is named. It
+    <code>started</code> at the unit's day 0; still assigned <b>7 days</b> after the planned batch date it returns to
+    the roster, no refund, refillable once the original placement is withdrawn (R111.5). Grace changes nothing; a pause
+    stops Godparent and sends no new request while a provisioned batch keeps its scan; a termination ends live seats as
+    not paid, cancels unprovisioned requests and revokes the line's platform access, leaving logins, history and
+    collected money (R111.7).</p>
   </div>
 
   <div class="callout rule">
@@ -443,10 +470,19 @@ footer a{font-weight:600}
     package pauses (Godparent stops, the scan stands); unpaid <b>120 days past the due date</b> the line is terminated
     as not paid. The anniversary never moves, and money already collected is not refunded.</td></tr>
   </table>
+
+  <div class="callout">
+    <b>R111 fixes the people side of the same line (23 Nov 2026)</b>
+    <p>Money unlocks a seat; the student's onboarding starts it at the unit's day 0. The RSM names candidates and sends
+    a batch request; the onboarding desk creates the batch in the existing admin tool; the CRM writes back the batch
+    and student ids. A seat not started in 7 days returns to the roster, with no refund. Pause and termination act on
+    the running batch as ruled — termination revokes the line's platform access. Contract §3.24 is binding where it
+    cites R111.</p>
+  </div>
 </section>
 
 <section id="build">
-  <h2>The three slices</h2>
+  <h2>The four slices</h2>
   <p class="lede">Each slice is its own PR and its own deploy, with the new tables read only by new code. Nothing
   ships to a real school until slice A is green with the rulings above implemented.</p>
 
@@ -469,6 +505,12 @@ footer a{font-weight:600}
     <tr><td><b>C · Reconciliation and statements</b></td><td>Finance confirmation, the unmatched-credit view, the
     institution statement.</td><td>Recorded, confirmed and unmatched money are three visible, non-overlapping
     sets.</td></tr>
+    <tr><td><b>D · Seat ledger and handoff</b></td><td>The seat rows (<code>institution_seats</code>), the request
+    states on <code>institution_batches</code>, one optional selector on the existing admin batch form, the write-back
+    of batch/student/start, the 7-day return and the termination revoke. Reads slice A's seats; independent of
+    B and C.</td><td>A settled collection's seats appear as places; the RSM's request is provisioned by the desk; the
+    student id and start appear on the seat from the unit's day 0; a seat not started in 7 days returns; a termination
+    revokes access and mints no unit — each in a test.</td></tr>
   </table>
 
   <div class="callout">
@@ -476,19 +518,22 @@ footer a{font-weight:600}
     <p>The schedule sums to net × seats × (1 + GST), always. Invoice numbers are gap-free under concurrency. A frozen
     split ignores a later rate change. The same (invoice, reference) cannot be recorded twice. A partial payment earns
     on the amount received, and the collections together earn exactly rate × net. A credit note reverses both lines and
-    leaves the originals. A seat starts only on a realised first instalment, in the next batch; instalments 2–3 add no
-    seat; Godparent never starts before instalment 2. A late instalment keeps Godparent running through its grace
-    window, pauses it at the window's end and terminates the line at 120 days past due. A YSP recording is refused. No
-    institutional line ever reaches the gateway or the storefront. And no log line ever carries a full phone number or
-    email.</p>
+    leaves the originals. A first instalment unlocks seats; only a unit's day 0 starts one — never the batch date, the
+    invoice, the collection or the roster. The write-back lands the batch and student ids on the seat; a seat not
+    started in 7 days returns, cannot be reassigned until the original placement is withdrawn, and can be refilled;
+    instalments 2–3 add no seat; Godparent never starts before instalment 2. A late instalment keeps Godparent running
+    through its grace window, pauses it at the window's end and terminates the line at 120 days past due; termination
+    revokes the line's access and mints no new unit. A YSP recording is refused. No institutional line ever reaches the
+    gateway or the storefront. And no log line ever carries a full phone number or email.</p>
   </div>
 </section>
 
 <footer>
-  Binding where it cites <b>R110</b> (contract §3.23, 23 Nov 2026); reads R109/R105/R107 and D8/D17. The KMM source is
+  Binding where it cites <b>R110</b> (contract §3.23, 23 Nov 2026) and <b>R111</b> (contract §3.24, 23 Nov 2026); reads
+  R109/R105/R107 and D8/D17. The KMM source is
   <code>part2_rsm.txt</code> RSM-19 and the instalment cards in the journey storyboard. Everything else here is
   explanation. Journey pages: <a href="irisepro-sales-crm-institutional-lifecycle.html">institutional lifecycle</a> ·
-  <a href="02c-targets-accountability.html">targets and accountability</a>.
+  <a href="irisepro-sales-crm-targets-accountability.html">targets and accountability</a>.
 </footer>
 
 </div>

@@ -196,18 +196,19 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
 </div>
 
 <div class="hero">
-  <div class="kicker">Design before build · R108–R110 · contract §3.21–§3.23</div>
+  <div class="kicker">Design before build · R108–R111 · contract §3.21–§3.24</div>
   <h1>The school buys seats.<span>The money arrives by invoice.</span></h1>
   <p>Everything exclusive to the institutional funnel, screen by screen: the agreement and its roster, the negotiated
   offer and per-line seats, the tax invoice and its three instalments, recorded collections with TDS, commission on
-  what is collected, seats that start only when money is realised, the weekly delivery batch, the scan/Godparent
-  gates, and the grace → pause → termination ladder. A school never checks out and never logs in; its money moves
-  on its own path and still lands in the one ledger.</p>
+  what is collected, the seats money unlocks, the batch request the onboarding desk turns into an admin batch, the
+  scan/Godparent gates, and the grace → pause → termination ladder. A school never checks out and never logs in; its
+  money moves on its own path and still lands in the one ledger.</p>
   <div class="two">
-    <div><b>What this page is</b><span>The institutional storyboard: 18 screens in the order a school goes through
+    <div><b>What this page is</b><span>The institutional storyboard: 19 screens in the order a school goes through
     them, each with what the person sees, what the screen writes, and the rule it must not break.</span></div>
-    <div><b>What it is not</b><span>Not a build. The money core (slice A) is next; chasing and correction (B) and
-    reconciliation and statements (C) follow. No institutional line is sold until those slices are green.</span></div>
+    <div><b>What it is not</b><span>Not a build. The money core (slice A) is next; chasing and correction (B),
+    reconciliation and statements (C) and the seat ledger and handoff (D) follow. No institutional line is sold until
+    those slices are green.</span></div>
   </div>
   <div class="toc">
     <a href="#seam">The seam</a><a href="#cast">The cast</a><a href="#products">The three products</a>
@@ -247,8 +248,11 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
     line; see the line, its seats and the money against them read-only.</td><td>Raise an invoice, record a collection,
     set a price (the CEO's — D17).</td></tr>
     <tr><td><b>RSM</b></td><td>Approve the agreement; build the offer and its lines; raise each instalment invoice;
-    record each collection; run the weekly batch; see the aging for their schools.</td><td>Record another region's
-    school; void a collected invoice (a credit note instead).</td></tr>
+    record each collection; name candidates and send the weekly batch request; call the onboarding desk; track planned
+    versus actual start; see the aging for their schools.</td><td>Create a student, batch or unit; set a price; record
+    another region's school; void a collected invoice (a credit note instead).</td></tr>
+    <tr><td><b>Onboarding desk</b></td><td>Create the batch in the existing admin tool, selecting the CRM request in
+    one optional field; resolve a no-show withdrawal.</td><td>Sell, price, approve or record money.</td></tr>
     <tr><td><b>Finance</b></td><td>Confirm a recorded collection against the bank credit and any TDS; see every
     school's aging and unmatched credits; hold <code>billing.confirm</code>.</td><td>Change a recorded amount (credit
     note instead).</td></tr>
@@ -421,7 +425,7 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
 
   </div>
 
-  <div class="pills" style="margin-top:30px"><span class="tag done">Money · invoice → batch · S6–S10</span></div>
+  <div class="pills" style="margin-top:30px"><span class="tag done">Money · invoice → batch → handoff · S6–S10a</span></div>
 
   <div class="flow">
 
@@ -504,8 +508,9 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
     </div>
 
     <div class="step">
-      <h3><i>S9</i>System · Seats start when money is realised</h3>
-      <p class="cap">Settled money ÷ the instalment's per-seat price, floored; the remainder carries forward.</p>
+      <h3><i>S9</i>System · Money unlocks; onboarding starts</h3>
+      <p class="cap">Settled money ÷ the first instalment's per-seat price names the places. A place starts only when
+      its student completes onboarding.</p>
       <div class="phone"><div class="notch"></div><div class="pv">
         <div class="top"><span><span class="back">‹</span><b>Seats · line A</b></span><span class="pill ok">Unlocked</span></div>
         <div class="body">
@@ -514,39 +519,77 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
             <div class="kp"><small>Per seat, gross</small><b>₹5,900</b></div>
           </div>
           <div class="fc ok">
-            <div class="r"><span class="n">Seats started</span><span class="n">640</span></div>
+            <div class="r"><span class="n">Seats unlocked</span><span class="n">640</span></div>
             <div class="r"><span class="s">Remainder carried</span><span class="s">₹0</span></div>
           </div>
-          <div class="fc sub"><p class="mini" style="margin:0">Roster 812 candidates · 640 started · 172 wait for
-            money</p><div class="bar"><i style="width:79%"></i></div></div>
+          <div class="fc">
+            <div class="r"><span class="n">Seats started</span><span class="n">0</span></div>
+            <div class="r"><span class="s">First batch planned</span><span class="s">Sun 23 May</span></div>
+          </div>
+          <div class="fc sub"><p class="mini" style="margin:0">Roster 812 candidates · 640 places bought · first
+            batch planned Sun 23 May</p><div class="bar"><i style="width:2%"></i></div></div>
         </div>
         <div class="dock"><div class="btn ghost">Open roster</div></div>
       </div></div>
-      <p class="note"><b>Writes</b> seat assignments against the line; the roster stays the candidate list.
-      <b>Rule</b> a realised first instalment is the only thing that starts a seat — not the upload, the signature
-      or the invoice.</p>
+      <p class="note"><b>Writes</b> <code>institution_seats</code> — one row per paid place, still unnamed.
+      <b>Rule</b> a realised first instalment is the only thing that unlocks a seat; the student's onboarding at the
+      unit's day 0 is the only thing that starts it — not the upload, the signature, the invoice or the batch date
+      (R111.1).</p>
     </div>
 
     <div class="step">
-      <h3><i>S10</i>RSM · The weekly delivery batch</h3>
-      <p class="cap">Paid seats leave on a dated cadence — Sunday by default, 30–50 typical, never above the cap.</p>
+      <h3><i>S10</i>RSM · The batch request — planned, then started</h3>
+      <p class="cap">The cadence sets the planned date; starts are per seat — 30–50 typical, never above the cap.</p>
       <div class="phone"><div class="notch"></div><div class="pv">
         <div class="top"><span><span class="back">‹</span><b>Batches · line A</b></span><span class="pill">Weekly</span></div>
         <div class="body">
-          <div class="fc ok"><h4>Next · Sunday 7 Feb 2027</h4>
-            <div class="r"><span class="s">Cut-off</span><span class="n">Fri 23:59</span></div>
-            <div class="r"><span class="s">Seats ready</span><span class="n">40</span></div></div>
-          <div class="fc"><h4>Batch 1 · 24 Jan</h4>
-            <div class="r"><span class="n">42 seats</span><span class="pill ok">Started</span></div></div>
-          <div class="fc"><h4>Batch 2 · 31 Jan</h4>
-            <div class="r"><span class="n">38 seats</span><span class="pill ok">Started</span></div></div>
-          <p class="mini" style="margin:2px">Line cap 640 · 120 started · 520 to go</p>
+          <div class="fc ok"><h4>Next · Sunday 23 May 2027</h4>
+            <div class="r"><span class="s">Seats requested</span><span class="n">640</span></div></div>
+          <div class="fc"><h4>Batch 1 · 23 May · 320 requested</h4>
+            <div class="r"><span class="n">312 started · 8 returned</span><span class="pill ok">Started</span></div></div>
+          <div class="fc"><h4>Batch 2 · 30 May · 320 requested</h4>
+            <div class="r"><span class="n">300 started · 20 returned</span><span class="pill ok">Started</span></div></div>
         </div>
-        <div class="dock"><div class="btn">Create batch · 40 seats</div></div>
+        <div class="dock"><div class="btn">Send request to onboarding desk</div></div>
       </div></div>
-      <p class="note"><b>Writes</b> <code>institution_batches</code> — line, sequence, starts_on, seat count.
-      <b>Rule</b> a batch is never padded with money that has not arrived; unpaid seats wait for a later batch;
-      cadence and size are dated config.</p>
+      <p class="note"><b>Writes</b> <code>institution_batches</code> — the request (line, sequence, planned date, seats,
+      status) — and nothing else. <b>Rule</b> the RSM never creates the batch: the onboarding desk does, in the existing
+      admin tool. The request is refused whole until every named candidate is complete (name, valid email, DOB,
+      guardian for a minor, class/stream as the line needs). A batch is never padded with money that has not arrived;
+      a seat not started in 7 days returns to the roster, with no refund (R111.3, R111.5).</p>
+    </div>
+
+    <div class="step wide">
+      <h3><i>S10a</i>Onboarding desk · The request becomes the admin batch</h3>
+      <p class="cap">The desk keeps its own tool; the CRM links the request and writes the result back.</p>
+      <div class="browser">
+        <div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">admin.yashho.in › batches › new</span></div>
+        <div class="bv">
+          <div class="side"><div>Dashboard</div><div class="on">Batches</div><div>Challenges</div><div>Roster</div><div>Yashodarshi</div></div>
+          <div class="main">
+            <div class="ok4">
+              <div class="okp"><small>Challenge</small><b style="font-size:14px">Annual Package</b><em>institutional</em></div>
+              <div class="okp"><small>Start</small><b style="font-size:15px">Sun 23 May 2027</b><em>planned batch 1</em></div>
+              <div class="okp"><small>Funding</small><b style="font-size:15px">external</b><em>school-paid seats</em></div>
+              <div class="okp"><small>CRM request</small><b style="font-size:15px">B-114</b><em>320 seats · linked</em></div>
+            </div>
+            <div class="oc"><h4 style="margin:0 0 8px">Roster · 320 rows (complete records required)</h4>
+              <div class="tw"><table class="t">
+                <tr><th>Candidate</th><th>Email</th><th>Placement</th></tr>
+                <tr><td>Name (masked)</td><td>•••@springdale.edu</td><td>awaiting onboarding</td></tr>
+                <tr><td>Name (masked)</td><td>•••@springdale.edu</td><td>placed now</td></tr>
+              </table></div>
+            </div>
+            <div class="oc"><span class="op ok">Institution Springdale</span> <span class="op">Consent attested</span> <span class="op">Yashodarshi assigned</span></div>
+            <span class="ob">Create batch · 320 seats</span> <span class="ob ghost">Decline request</span>
+          </div>
+        </div>
+      </div>
+      <p class="note"><b>Writes</b> <code>batches</code>, <code>enrollments</code> and the CRM link:
+      <code>admin_batch_id</code>, each seat's <code>student_id</code>, then <code>started_on</code> from the unit's
+      day 0. <b>Rule</b> the RSM never provisions; the desk does, in this existing tool. A candidate missing a
+      required detail — email, DOB, guardian for a minor, class/stream where the programme asks — is refused until
+      the RSM completes it; the batch rules are unchanged (R111.3).</p>
     </div>
 
   </div>
@@ -583,7 +626,7 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
         <div class="top"><span><span class="back">‹</span><b>Line A · timeline</b></span><span class="pill warm">In grace</span></div>
         <div class="body">
           <div class="tl">
-            <div class="done"><b>Seat started · 7 Feb 2027</b><small>anniversary 7 Feb 2028 — never moves</small></div>
+            <div class="done"><b>Seat started · 23 May 2027</b><small>unit day 0 · anniversary 23 May 2028 — never moves</small></div>
             <div class="done"><b>Instalment 2 due · 15 Aug 2027</b><small>₹37,76,000 unpaid</small></div>
             <div class="now"><b>Grace window · 30–60 days</b><small>to 14 Oct 2027 · Godparent keeps running</small></div>
             <div class="fail"><b>Paused · after the window</b><small>Godparent stops; the scan delivered stands</small></div>
@@ -733,10 +776,11 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
             <div class="r"><span class="s">Invoiced</span><span class="n">₹37,76,000</span></div>
             <div class="r"><span class="s">Collected</span><span class="n">₹37,76,000</span></div></div>
           <div class="k2">
-            <div class="kp"><small>Seats started</small><b>640</b></div>
+            <div class="kp"><small>Seats started</small><b>612</b></div>
             <div class="kp"><small>My accrual · 5%</small><b>₹1,60,000</b></div>
           </div>
-          <div class="fc sub"><p class="mini" style="margin:0">A recording attempt is refused — D17, RSM-19.</p></div>
+          <div class="fc sub"><p class="mini" style="margin:0">640 places paid · 612 started · 28 returned to roster.
+            A recording attempt is refused — D17, RSM-19.</p></div>
         </div>
         <div class="dock"><div class="btn ghost" style="opacity:.55">Record collection · not available</div></div>
       </div></div>
@@ -760,10 +804,12 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
     GST-inclusive billings view is a display lens, never a target denominator.</p></div>
     <div><b>4 · TDS is a settlement line</b><p>Bank credit + TDS = amount settled; commission is on the full net
     settled, TDS included.</p></div>
-    <div><b>5 · Seats are money</b><p>Settled money ÷ the per-seat first instalment, floored; the remainder carries.
-    The roster is only the candidate list.</p></div>
-    <div><b>6 · Weekly batches, sized by what was paid</b><p>Sunday by default; typically 30–50, up to 1,000; never
-    above the line's cap; a batch is never padded.</p></div>
+    <div><b>5 · Money unlocks; onboarding starts</b><p>Settled money ÷ the per-seat first instalment names the
+    places; a place starts at the student's unit day 0. A seat is one ledger row that names one person, and 7 days
+    without a start returns it to the roster (R111).</p></div>
+    <div><b>6 · Weekly batch requests, not weekly creations</b><p>Sunday by default; typically 30–50, up to 1,000;
+    never above the line's cap. The RSM sends the request, the onboarding desk creates the admin batch, and starts are
+    measured per seat.</p></div>
     <div><b>7 · The combo has two gates</b><p>Scan on instalment 1, Godparent on instalment 2 — scan is the precursor
     that gates Godparent. Acharya is a separate teachers' scan with no Godparent.</p></div>
     <div><b>8 · The window never moves</b><p>A late payment never shifts a seat's start or the 12-month anniversary;
@@ -777,7 +823,7 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
 
 <section id="rulings">
   <h2>The rulings — fixed 23 November 2026</h2>
-  <p class="lede">Recorded in the contract (R110.13 and R109), not guessed. Nothing here is pending Finance.</p>
+  <p class="lede">Recorded in the contract (R110.13, R111 and R109), not guessed. Nothing here is pending Finance.</p>
 
   <table class="zebra wrapx">
     <tr><th>#</th><th>Question</th><th>Ruling</th></tr>
@@ -787,8 +833,9 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
     <tr><td><b>(ii)</b></td><td>Rounding basis</td><td><b>Per invoice</b>, final collection absorbs the paise
     residual.</td></tr>
     <tr><td><b>(iii)</b></td><td>Tax point</td><td><b>Earlier of issue and receipt.</b></td></tr>
-    <tr><td><b>(iv)</b></td><td>What unlocks a seat?</td><td><b>A realised first instalment</b>, in the next weekly
-    batch. Scan on instalment 1, Godparent on instalment 2; instalments 2–3 add no seats.</td></tr>
+    <tr><td><b>(iv)</b></td><td>What unlocks a seat — and what starts it?</td><td><b>A realised first instalment
+    unlocks a place; the student's onboarding starts it</b>, at the unit's day 0 (R111.1). It is assigned to the next
+    weekly batch request. Scan on instalment 1, Godparent on instalment 2; instalments 2–3 add no seats.</td></tr>
     <tr><td><b>(v)</b></td><td>School TDS</td><td><b>A settlement line</b>; commission on the full net settled.</td></tr>
     <tr><td><b>(vi)</b></td><td>Reminders</td><td><b>Email from the YASHHO billing desk</b>; <b>WhatsApp from the
     designated RSM</b>; YSP copied.</td></tr>
@@ -799,6 +846,14 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
     <tr><td><b>Pricing</b></td><td>Mission Acharya</td><td><b>₹4,999 net per teacher</b> (₹5,898.82 invoiced),
     KMM-confirmed; listed under the academic products catalogue; separate from the students-only annual
     package.</td></tr>
+    <tr><td><b>(ix)</b></td><td>Who links a school's money to its students?</td><td><b>A seat ledger and a batch
+    request.</b> The RSM names candidates and sends the request; the onboarding desk creates the batch in the existing
+    admin tool; the CRM writes back the batch and student ids and each start. A request is refused whole until every
+    candidate is complete — name, email, DOB, guardian for a minor, class/stream as the line needs, funding where it
+    differs. The RSM never provisions (R111.2–R111.4, D69).</td></tr>
+    <tr><td><b>(x)</b></td><td>A paid seat whose student never onboards?</td><td><b>It returns to the roster after 7
+    days</b>, with no refund; it can be refilled once the original placement is withdrawn, and it never counts as a
+    sale (R111.5).</td></tr>
   </table>
 
   <div class="callout">
@@ -830,6 +885,12 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
     <tr><td><b>C · Reconciliation and statements</b></td><td>Finance confirmation, the unmatched-credit view, the
     institution statement.</td><td>Recorded, confirmed and unmatched money are three visible, non-overlapping
     sets.</td></tr>
+    <tr><td><b>D · Seat ledger and handoff</b></td><td><code>institution_seats</code>; the request states on
+    <code>institution_batches</code>; one optional selector on the existing admin batch form; the write-back of the
+    batch, student ids and starts; the 7-day return; the termination revoke. Reads slice A's seats; independent of B
+    and C.</td><td>A collection's seats appear as places; the RSM's request is provisioned by the desk; each student id
+    and start appears on its seat from the unit's day 0; a seat not started in 7 days returns; a termination revokes
+    access and mints no unit — each in a test.</td></tr>
   </table>
 
   <div class="callout rule">
@@ -837,11 +898,14 @@ table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
     <p>The schedule sums to net × seats × (1 + GST), always. Invoice numbers are gap-free under concurrency. A frozen
     split ignores a later rate change. The same (invoice, reference) cannot be recorded twice. A partial payment earns
     on the amount received, and the collections together earn exactly rate × net. A TDS-bearing collection earns on
-    the full net settled. A credit note reverses both lines and leaves the originals. A seat starts only on a realised
-    first instalment, in the next batch; instalments 2–3 add no seat; Godparent never starts before instalment 2. A
-    late instalment keeps Godparent running through grace, pauses it at the window's end and terminates at 120 days.
-    A YSP recording is refused. No institutional line ever reaches the gateway or the storefront. No log line carries
-    a full phone number or email.</p>
+    the full net settled. A credit note reverses both lines and leaves the originals. A realised first instalment
+    unlocks seats; only a unit's day 0 starts one — never the batch date, the invoice, the collection or the roster.
+    The write-back lands the batch and student ids on the seat; a seat not started in 7 days returns, cannot be
+    reassigned until the original placement is withdrawn, and can be refilled; instalments 2–3 add no seat; Godparent
+    never starts before instalment 2. A late instalment keeps Godparent running through grace, pauses it at the
+    window's end and terminates at 120 days; termination revokes the line's access and mints no new unit. A YSP
+    recording is refused. No institutional line ever reaches the gateway or the storefront. No log line carries a full
+    phone number or email.</p>
   </div>
 
   <p>The arithmetic on a 640-student May instalment: <b>₹32,00,000 net</b> + ₹5,76,000 GST = <b>₹37,76,000
