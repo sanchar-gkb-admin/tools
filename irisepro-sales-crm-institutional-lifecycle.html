@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>Institutional sales — one school, one deal, one funnel</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#e8edf3; --ink:#0e2440; --ink-2:#3b5070; --rule:#c9d3df;
+  --brand:#f5821f; --brand-ink:#b4530a; --brand-soft:#fff1e3;
+  --ok:#137a43; --ok-soft:#e3f5ea; --bad:#b42318; --bad-soft:#fde8e6; --warn:#8a5a00; --warn-soft:#fff4d6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:400 16px/1.65 Montserrat,system-ui,sans-serif}
+h1,h2,h3{line-height:1.2;margin:0}
+a{color:#8f4207}
+.wrap{max-width:1060px;margin:0 auto;padding:40px 20px 100px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+.top .crumb{font-size:13px;color:var(--ink-2)}
+.top .crumb a{text-decoration:none;font-weight:600}
+.top .pill{background:#fff;border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+
+.hero{background:#fff;border:1px solid var(--rule);border-radius:18px;padding:44px 44px 36px;margin-bottom:34px}
+.hero .kicker{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:14px}
+.hero h1{font-weight:800;font-size:clamp(30px,4.4vw,46px);letter-spacing:-.01em}
+.hero h1 span{display:block;color:var(--brand-ink)}
+.hero p{max-width:70ch;color:var(--ink-2);margin:18px 0 0}
+.hero .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.hero .two div{background:#f7fafc;border:1px solid var(--rule);border-radius:14px;padding:16px 18px}
+.hero .two b{display:block;margin-bottom:4px}
+.hero .two span{font-size:14.5px;color:var(--ink-2)}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0}
+.toc a{background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:8px 13px;border-radius:10px}
+.toc a:hover{background:#1b3a63}
+
+section{margin:44px 0 0}
+section>h2{font-weight:800;font-size:clamp(22px,2.8vw,29px);margin-bottom:8px}
+section>.lede{color:var(--ink-2);max-width:74ch;margin:0 0 22px}
+h3{font-size:19px;margin-bottom:6px}
+
+.card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:26px 30px}
+.card+p{margin-top:16px}
+.card h3+ p{margin-top:6px}
+
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.role{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:24px 26px;border-top:6px solid var(--ink)}
+.role.ysp{border-top-color:var(--brand)}
+.role.rsm{border-top-color:#1d4ed8}
+.role.ho{border-top-color:#137a43}
+.role.gov{border-top-color:#7a5200}
+.role .who{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.role h3{font-size:20px;margin:6px 0 4px}
+.role .aim{color:var(--ink-2);font-size:14.5px;margin:0 0 14px}
+.role p{margin:0 0 10px}
+.role ul{margin:0;padding-left:18px}
+.role li{margin:0 0 6px}
+
+.timeline{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:10px 30px 18px}
+.tl{display:grid;grid-template-columns:150px 1fr;gap:0 18px;padding:16px 0;border-bottom:1px dashed var(--rule)}
+.tl:last-child{border-bottom:0}
+.tl .t{font-weight:800;font-size:14.5px;color:var(--brand-ink);padding-top:2px}
+.tl .what b{display:block;margin-bottom:2px}
+.tl .what span{color:var(--ink-2)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);border-radius:14px;overflow:hidden;font-size:14px}
+table.wrapx{display:block;overflow-x:auto}
+p{overflow-wrap:anywhere}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{background:var(--ink);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+tr:last-child td{border-bottom:0}
+td b{font-weight:700}
+td code, .card code, .rush code{background:#eef3f8;border-radius:5px;padding:1px 5px;font-size:12.5px}
+table.zebra tr:nth-child(even) td{background:#f7fafc}
+
+.ladder{display:grid;gap:12px;counter-reset:rung}
+.rung{display:grid;grid-template-columns:42px 1fr;gap:16px;background:#fff;border:1px solid var(--rule);border-radius:14px;padding:16px 20px}
+.rung .n{counter-increment:rung;width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.rung .n::before{content:counter(rung)}
+.rung b{display:block;margin-bottom:2px}
+.rung p{margin:0;color:var(--ink-2);font-size:14.5px}
+.rung .key{font-size:12px;font-weight:700;color:var(--ink-2);letter-spacing:.04em;text-transform:uppercase}
+.rung.auto{border-left:6px solid var(--ok)}
+.rung.auto .n{background:var(--ok)}
+
+.callout{background:var(--brand-soft);border:1px solid #f3cfa8;border-radius:14px;padding:20px 24px;margin:20px 0}
+.callout b{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#5d3a17}
+.callout.rule{background:#eef4fb;border-color:#bfd3ea}
+.callout.rule p{color:#17395f}
+.callout.stop{background:var(--bad-soft);border-color:#f0b8b2}
+.callout.stop p{color:#6b1710}
+
+.fair{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.fair div{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:18px 20px}
+.fair b{display:block;margin-bottom:4px}
+.fair p{margin:0;font-size:14.5px;color:var(--ink-2)}
+
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:4px 11px;background:#eef3f8;border:1px solid var(--rule);color:var(--ink-2)}
+.tag.done{background:var(--ok-soft);border-color:#b9dfc8;color:var(--ok)}
+.tag.next{background:var(--warn-soft);border-color:#ecd391;color:var(--warn)}
+.tag.review{background:#eef4fb;border-color:#bfd3ea;color:#17395f}
+
+footer{margin-top:60px;padding-top:22px;border-top:2px solid var(--rule);color:var(--ink-2);font-size:13.5px}
+footer a{font-weight:600}
+
+@media (max-width:820px){
+  .roles,.fair,.hero .two{grid-template-columns:1fr}
+  .hero{padding:30px 24px}
+  .tl{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}
+  .hero,.card,.role,.timeline,table,.rung,.fair div{break-inside:avoid}
+  .toc{display:none}
+}
+</style>
+
+<div class="wrap">
+
+<div class="top">
+  <div class="crumb">YASHHO CRM · <a href="irisepro-sales-crm-institutions.html">the institutional storyboard</a> · <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-journeys.html">the storyboard</a> · <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-targets-accountability.html">targets and accountability</a></div>
+  <div class="pill">Institutional funnel · 23 November 2026</div>
+</div>
+
+<div class="hero">
+  <div class="kicker">A plain guide for the field, the office and the board</div>
+  <h1>A school is the customer.<span>One deal, one ladder, many students.</span></h1>
+  <p>Families and institutions are sold to in two different ways, and this guide says exactly how. It follows one
+  school from the first visit to the last seat of its agreed batch, and it lines the institutional lifecycle up
+  against the family one, so that anyone can see what is the same, what is genuinely different, and — most
+  importantly — which parts are single pieces of machinery used twice rather than two systems that will drift.
+  It is binding where it cites the rulings <b>R105–R108</b>; everything else here is explanation.</p>
+  <div class="two">
+    <div><b>Family direct</b><span>A household buys for its own child. The customer is a family, the contact is a parent, and the child's data lives under that family's consent.</span></div>
+    <div><b>Institutional</b><span>A school buys for its people. The customer is the school, the deal has stages of its own, and the students (or teachers) arrive as a roster on the school's link.</span></div>
+  </div>
+  <div class="toc">
+    <a href="#seam">Two funnels, one owner</a>
+    <a href="#abstractions">The abstractions</a>
+    <a href="#who">Who is who</a>
+    <a href="#ladder">The school ladder</a>
+    <a href="#products">What a school buys</a>
+    <a href="#money">Money, seats and credit</a>
+    <a href="#roster">The roster upload</a>
+    <a href="#walk">One school, end to end</a>
+    <a href="#diff">Family vs institutional</a>
+    <a href="#screens">What each role sees</a>
+    <a href="#built">Built, in review, next</a>
+    <a href="#rules">Where the rules live</a>
+  </div>
+</div>
+
+<section id="seam">
+  <h2>Two funnels, one owner</h2>
+  <p class="lede">The single most important sentence in this document: every lead and contact belongs to exactly one
+  funnel, and that is decided when the record is created — never re-decided later by looking at who paid for what.</p>
+
+  <div class="card">
+    <h3>The funnel is carried by the record</h3>
+    <p>A <b>family lead</b> lives in the family funnel: a household record (<code>crm_families</code>) with its own
+    consent, its own do-not-contact, and its children's data. An <b>institution account</b> lives in the institutional
+    funnel: a school record whose people are adults buying for the school. The funnel is a property of the owning
+    record and is inherited by everything that points at it — activities, links, stamps, reports. It is not a flag on
+    each row that some later job could flip.</p>
+    <p>The old <code>institutions</code> table that tags enrolment records is <i>not</i> the CRM account, and it does
+    not become one (R105.1). The institutional account is its own record, defined with the pipeline that reads it.</p>
+  </div>
+
+  <div class="callout rule" style="margin-top:16px">
+    <b>The invariant that decides every edge case</b>
+    <p>An institution's contact never enters <code>crm_families</code> (R105.2). There is no borrowed consent, no
+    household do-not-contact and no children's-data semantics for a school. And the reverse holds too: a family that
+    bought because a school pointed at Yashho is <i>still a family</i> — it stays in the family funnel and obeys every
+    family rule. The institution is a tag on that sale, never the owner of the household.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>What that buys us</h3>
+    <p>One contact can never become two customers. A parent's number is found by the same identity map whether the
+    lead came from a field visit, a joining list, a school roster or a payment (R108.11). A sale is credited in one
+    funnel and counted once (R107.4). And privacy stays honest: the school's record holds adults, while any child's
+    data stays inside the tenancy, under the family's own consent (C7, R56.6, R56.7).</p>
+  </div>
+</section>
+
+<section id="abstractions">
+  <h2>The abstractions, and what each one is not</h2>
+  <p class="lede">If this section is right, the rest of the build follows. Each row is one concept with one meaning,
+  used by both funnels where that is honest and kept separate where the two genuinely differ.</p>
+
+  <table class="wrapx zebra">
+    <tr><th style="width:16%">Abstraction</th><th style="width:42%">It is</th><th style="width:42%">It is never</th></tr>
+    <tr>
+      <td><b>Funnel</b></td>
+      <td>The side a record was created on — <i>family</i> or <i>institution</i>. Fixed at intake, carried by the
+      owning record, inherited by references.</td>
+      <td>A per-row flag, a report filter, or something a payment can move. One record, one funnel, permanently.</td>
+    </tr>
+    <tr>
+      <td><b>Account</b></td>
+      <td>The customer record: a household (<code>crm_families</code>) or a school (the institution account). It holds
+      the owner post, and for a school the current stage and stage history.</td>
+      <td>The legacy <code>institutions</code> table, a duplicate of the household model, or a family with a tag on it.</td>
+    </tr>
+    <tr>
+      <td><b>Contact</b></td>
+      <td>One normalised phone/identity in the one de-duplication map (<code>family_identifiers</code>). A school's
+      people are adults on the institutional side; a family's contacts are the parent(s).</td>
+      <td>A second map for institutions, or a child's name matched fuzzily. Two parent numbers for one child stay
+      two leads until the field merges them by hand.</td>
+    </tr>
+    <tr>
+      <td><b>Deal</b></td>
+      <td>The school's opportunity: one institution account, one stage, one ladder, from prospect to renewal.</td>
+      <td>The sale. A signed agreement, an <code>active</code> deal or a paid seat is progress, not revenue.</td>
+    </tr>
+    <tr>
+      <td><b>Participant</b></td>
+      <td>The person the school bought for: a child for a child programme, a teacher for Acharya (R108.13). Each has
+      their own payment and their own start.</td>
+      <td>A deal-level lump, a seat (a seat is capacity, not a person), or a new customer record per participant.</td>
+    </tr>
+    <tr>
+      <td><b>Seat</b></td>
+      <td>The negotiated capacity of a school's offer. Each paid redemption takes one; the last one closes the link.</td>
+      <td>A student. Seats sold is a measure under the deal, never a pipeline row.</td>
+    </tr>
+    <tr>
+      <td><b>Offer</b></td>
+      <td>A price for an agreed number of seats, keyed to one institution, stored as a GST-inclusive gross and
+      resolved by the one price authority (R105.6(a)).</td>
+      <td>A second SKU, a second price list, a public discount code, or a price that varies by when a parent buys.</td>
+    </tr>
+    <tr>
+      <td><b>Link</b></td>
+      <td>One <code>campaign_links</code> row served by <code>/go/{code}</code>, whose partner is the institution and
+      which names the two designated posts who earn (R105.3).</td>
+      <td>A second link type, an editable link, or a mapping table beside the link. Codes are 10-character CSPRNG
+      and cannot be enumerated.</td>
+    </tr>
+    <tr>
+      <td><b>Attribution stamp</b></td>
+      <td>The append-only record written once at payment: who is attributed, who earns in the network, and which
+      institution the buyer came through (R105.4).</td>
+      <td>An updatable mapping, a manual reconciliation step, or a place where an owner is transferred.</td>
+    </tr>
+    <tr>
+      <td><b>Sale</b></td>
+      <td>A participant who submits their first task. One definition, both funnels (R107.1).</td>
+      <td>A payment, a seat, a signature, a stage, or an upload. Those are shown as "awaiting start", openly.</td>
+    </tr>
+    <tr>
+      <td><b>Target</b></td>
+      <td>The same metric set (calls, visits, sales) with a <i>funnel</i> dimension added to level × scope × period
+      (R107.3).</td>
+      <td>A second pace engine, a second nudge ladder, or a personal target that replaces the governed row.</td>
+    </tr>
+    <tr>
+      <td><b>Activity</b></td>
+      <td>A call, visit or meet recorded against exactly one subject: a family <i>or</i> an institution (R106.6).</td>
+      <td>Against both, against neither, or an institutional activity that names a child or a household's location.</td>
+    </tr>
+    <tr>
+      <td><b>Roster upload</b></td>
+      <td>The one joining-list utility, with an optional institution tag (R108.1).</td>
+      <td>A second endpoint, a second report, a second import table, a second PWA upload screen.</td>
+    </tr>
+    <tr>
+      <td><b>Tag</b></td>
+      <td>An append-only row linking a claimed family to the institution whose list carried it (R108.4).</td>
+      <td>Ownership, consent, a sale, or a second family store. An <code>owned_by_other</code> family is not tagged.</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <b>The test we will keep applying</b>
+    <p>Whenever the institutional work needs behaviour that already exists for families, the question is not "how do
+    we build it for institutions?" but "which one piece of machinery does this become a second use of?" A proposal
+    that adds a parallel engine — a second importer, a second stage engine, a second commission formula, a second
+    identity map — fails review by default.</p>
+  </div>
+</section>
+
+<section id="who">
+  <h2>Who is who, and who earns</h2>
+  <p class="lede">A school relationship has three interests: the person who found it, the person who owns it, and the
+  office that can price it. The design keeps all three visible at once, on the link itself.</p>
+
+  <div class="roles">
+    <div class="role ysp">
+      <div class="who">Field · sourcing</div>
+      <h3>The designated YSP</h3>
+      <p class="aim">Finds and signs the school, and keeps the sale credit.</p>
+      <ul>
+        <li>Named on the institution's link as its designated YSP.</li>
+        <li>Earns the own-sale commission rule on every participant payment through that link (R105.5).</li>
+        <li>May upload the school's roster; the claim runs as this post whoever uploaded (R108.3).</li>
+        <li>Sees the institution's calls, visits and students started in their own scope.</li>
+      </ul>
+    </div>
+    <div class="role rsm">
+      <div class="who">Field · relationship</div>
+      <h3>The designated RSM</h3>
+      <p class="aim">Owns the institution record and the relationship, and earns the network line.</p>
+      <ul>
+        <li>Named on the link as its designated RSM.</li>
+        <li>Earns the RSM network rule (0.5%) on the same payments (R105.5) — no <code>threshold_sales</code> gate
+        on this line.</li>
+        <li>Moves the deal with the YSP; approves the agreement per D17.</li>
+        <li>May upload the school's roster; the resulting families are still the designated YSP's (R108.3).</li>
+      </ul>
+    </div>
+    <div class="role ho">
+      <div class="who">Head Office</div>
+      <h3>The HO desk</h3>
+      <p class="aim">Mints the institution link and keeps the negotiated offer honest.</p>
+      <ul>
+        <li>Only a holder of <code>campaign_link.create_hq</code> creates an institution link — a field role never
+        mints one (R105: the negotiated price and seat count are an HO line).</li>
+        <li>Chooses the governed destination and the UTMs; the code is minted, never chosen.</li>
+        <li>Sees both pipelines and can drill into an institution's deal.</li>
+      </ul>
+    </div>
+    <div class="role gov">
+      <div class="who">Governance</div>
+      <h3>GM and CEO</h3>
+      <p class="aim">Own the configuration, not the deals.</p>
+      <ul>
+        <li>The institutional pipeline is a governed <code>value_list</code> change: the GM proposes, the CEO
+        approves, YSPs and RSMs never (R106.1).</li>
+        <li>Targets gain a funnel dimension, each a complete governed snapshot (R107.3).</li>
+        <li>Pricing stays with the CEO (D17); region- and institution-specific offers follow the same approval
+        path as other assets (D59).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout rule" style="margin-top:18px">
+    <b>Ownership and credit are two different things — deliberately</b>
+    <p>D51 gives the RSM the institution record and the relationship; the YSP who sourced and signed it keeps the
+    sourcing credit. R105.3 puts both people on the link, so a payment never has to guess who earned. Ownership
+    decides who works the deal; designation decides who is paid. A family's ownership is untouched by any of
+    this (D22, R26).</p>
+  </div>
+</section>
+
+<section id="ladder">
+  <h2>The school ladder — institutional, not a household's journey</h2>
+  <p class="lede">A family's ladder follows a household from a new lead to an onboarded child. A school's ladder is a
+  B2B closing sequence: visit the site, propose a price per seat, negotiate, sign, activate, sell seats, renew.
+  They are two vocabularies, configured separately (R106).</p>
+
+  <div class="ladder">
+    <div class="rung"><div class="n"></div><div><b>Prospect</b> <span class="key">prospect</span><p>A school exists and someone is working it. The account starts here — or at <code>onboarding</code> when an agreement is signed before the record is made (R106.7).</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Contacted</b> <span class="key">contacted</span><p>Someone at the school has been reached. The call is an institutional activity — about the school, never about a household (R106.6).</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Visit needed</b> <span class="key">needs_visit</span><p>A visit to the principal or the site is the qualification. Until the visit happens the deal stays here; this is the institutional equivalent of meeting the decision-maker.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Proposal</b> <span class="key">proposal</span><p>A price per seat and a seat count are put to the school. One offer, one price for the whole batch, stored GST-inclusive (R105.6(a)).</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Negotiation</b> <span class="key">negotiation</span><p>Terms move. What can change is the offer (price and seats) as a new governed value — never a per-parent price at checkout.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Agreement</b> <span class="key">agreement</span><p>The school signs or accepts. The RSM approves the agreement (D17). Nothing is sold yet, and no commission moves.</p></div></div>
+    <div class="rung"><div class="n"></div><div><b>Onboarding</b> <span class="key">onboarding</span><p>The two designated posts are named and the negotiated offer is activated — in one in-app flow (R106.7). This is the only way a school enters the funnel.</p></div></div>
+    <div class="rung auto"><div class="n"></div><div><b>Active</b> <span class="key">active</span><p>Seats are selling on the school's link. Not terminal: participants keep paying and starting. <b>Moved automatically</b> by the first paid redemption through an institutional link (R106.5).</p></div></div>
+    <div class="rung auto"><div class="n"></div><div><b>Renewal due</b> <span class="key">renewal_due</span><p>The last seat of the agreed batch is redeemed. <b>Moved automatically</b>, and the link closes with "offer ended" — it never falls back to the list price. The school agrees a new batch to continue (R105.6(a), R106.5).</p></div></div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>Outcomes, not stages</h3>
+    <p><b>Deferred</b> (still possible later), <b>lost</b> (terminal) and <b>no consent</b> (terminal, and only from
+    the institution's own do-not-contact). As on the family ladder, a manual move must come from a listed
+    from-stage and carry the ability; an automatic move may only name an event the system actually emits, so a rule
+    can never point at a listener nobody has (R106.2, R106.4).</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Same engine, separate vocabulary</h3>
+    <p>Both ladders are rows in the same version-scoped configuration tables (<code>cfg_stages</code>,
+    <code>cfg_stage_transitions</code>), validated by the same schema, applied by the same
+    <code>crm:config:apply</code> and rolled the same way (R31, R43, R47.2). What differs is the content: the
+    institutional ladder is its own config family, <code>institution_pipeline</code>, under
+    <code>config/sales-crm/institution_pipeline/</code>. A version is a complete snapshot — nothing is edited in
+    place. Adding a stage, a reason or an outcome is a dated config version, never a release (R76, R107.5).</p>
+    <p>The family ladder today reads: <i>new → profiled → assigned → contact_pending → contacted → need_identified →
+    interested → payment_pending → paid → handed_over → onboarded</i>, with <i>nurture, deferred, unqualified, lost,
+    no_consent, unable_to_contact</i> as outcomes. Nothing on this list moves a school.</p>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Open point, flagged rather than papered over</b>
+    <p>R106.1 says no stage key may be shared between the two ladders; R106.2's seed names four institutional
+    outcomes with the same words the family ladder uses (<code>contacted</code>, <code>deferred</code>,
+    <code>lost</code>, <code>no_consent</code>). R106.9's own test ("no family stage key appears in the
+    institutional version") would fail on that seed. The resolution is a config-version decision — most simply an
+    <code>inst_</code> prefix on every institutional key — and needs no code. It is recorded here so the seed is
+    written correctly the first time.</p>
+  </div>
+</section>
+
+<section id="products">
+  <h2>What a school buys — three products, one catalogue</h2>
+  <p class="lede">A school does not buy "an institutional programme". It buys one or more of three products, each a
+  row in the same sellable-products catalogue the family scans live in, each priced by that school's own offer line
+  and each capped by its own seats (R109). Every one of them is a <b>batch</b>: the school buys the seats, and the
+  people who receive them never checkout.</p>
+
+  <div class="card">
+    <h3>The three products</h3>
+    <table style="margin:12px 0 6px">
+      <tr><th style="width:22%">Product</th><th>What it is</th><th style="width:14%">Delivery</th><th style="width:18%">Participants</th></tr>
+      <tr><td><b>Annual Package</b><br><span class="key">institution_package</span></td><td>One scan plus Godparent monthly for the package year. One product, two components — a component schedule on the row, not two SKUs.</td><td>Online</td><td>Students (a child programme)</td></tr>
+      <tr><td><b>Mission Acharya</b><br><span class="key">acharya</span></td><td>The scan product for the school's teachers, <b>listed under the academic products catalogue</b>, at <b>₹4,999 net per teacher</b> (KMM-confirmed; ₹5,898.82 invoiced). It has nothing to do with the annual package — that scan and Godparent mentoring are students-only — and carries no Godparent. It lists the platform's live <code>acharya_*</code> product; no second product is minted for teachers.</td><td>Online</td><td>Teachers (adults, never families) — delivered, not paying</td></tr>
+      <tr><td><b>Academy courses</b><br><span class="key">academy_course</span></td><td>Six annual courses, one partner institution per Region, sold <b>as a cohort batch</b> — never one admission at a time. The CRM records the sale, its seats, targets and commission; the partner delivers.</td><td><b>Offline</b> (partner)</td><td>Enrolled students — delivered, not paying</td></tr>
+    </table>
+    <p>All three are in the one catalogue (<code>sellable_products</code>) under a dated version. None is served to the
+    storefront — institutional products reach admin, never <code>/brochure</code> or a direct checkout (R58).</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>The package timeline — scan first, Godparent from month 2</h3>
+    <div class="two">
+      <div><b>Month 1 · the scan</b><span>Starts on day 0 and runs about a month. The package is not deliverable before this finishes, so the second component is scheduled, not merely listed.</span></div>
+      <div><b>Month 2 → month 12 · Godparent</b><span>Monthly, from month 2 after the scan is complete, to the package's 12-month anniversary (Goutam, 23 Nov).</span></div>
+    </div>
+    <p>Godparent is still being built. Until it is ready the package row is <b>catalogued but not sellable</b>, and the
+    gate is <b>1 Jan 2027</b> (Goutam, 23 Nov: "we can start from Jan 2027 when the Godparent product will be
+    ready"). An undeliverable component keeps the whole package unsellable — it never degrades silently to scan-only,
+    and the price authority refuses it exactly as it refuses any unlisted row (R109.2).</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>The offer — a line per product, seats per line</h3>
+    <p>One school, one offer, a line for each product it buys: 1,000 package seats, 200 Acharya seats and 60 Academy
+    seats can sit on the same agreement, each at its own negotiated GST-inclusive price (R109.3).</p>
+    <table style="margin:12px 0 6px">
+      <tr><th>Layer</th><th>What it holds</th><th>What closes it</th></tr>
+      <tr><td><b>Offer line</b> — <code>offer_items</code></td><td>One product, that school's price, its own <code>cap_seats</code>.</td><td>Its own redeemed seats reach the line's cap.</td></tr>
+      <tr><td><b>Offer</b> — <code>offers</code></td><td>The outer <code>cap_total</code> for the whole school agreement.</td><td>Every line is closed.</td></tr>
+      <tr><td><b>Link</b> — <code>campaign_links</code></td><td>The designated YSP and RSM who earn on every seat.</td><td>With the offer: "offer ended", never the list price.</td></tr>
+    </table>
+    <p>Neither the price nor the seats come from the catalogue: the catalogue says <i>what</i> may be sold, the offer
+    says <i>at what price</i> and <i>how many</i>. No per-school SKU is ever minted (R109.1).</p>
+    <p><b>The seats are bought by the school.</b> A participant receives a seat the school paid for; the participant
+    does not buy one (R109.4, R109.5). That is why an institutional line's commission accrues on the money collected against the
+    offer line, not on a checkout — and why "how many seats an instalment covers" is part of the invoice question
+    below.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Mission Acharya — the scan product for teachers, listed under the academic products catalogue</h3>
+    <p>Acharya is a teacher-strengthening programme for schools, and it is an institutional offering (R108.13). It
+    uses the same scan instrument and engine; what differs is the audience — <code>audience = teacher</code> — and
+    the landing: its participants are the school's <b>people</b>, adults, never <code>crm_families</code> (R105.2).
+    It is listed under the <b>academic products catalogue</b>, at <b>₹4,999 net per teacher</b> (KMM-confirmed;
+    ₹5,898.82 invoiced). It is a separate product with nothing to do with the annual package — the package's scan
+    and Godparent mentoring are <b>students-only</b> — and it carries no Godparent. It is sold as a <b>batch</b>, not
+    seat by seat (Goutam, 23 Nov): the school buys the seats, and its teachers are the batch's delivery — a roster,
+    never individual checkouts. The catalogue lists the platform's existing <code>acharya_*</code> product by
+    <code>platform_product_key</code>; nothing about it is free, demo or hidden.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>The Academy is offline — and sold as a cohort batch</h3>
+    <p>The six Academy courses are annual, delivered offline through the partner institution (Goutam, 23 Nov: "the
+    offline product will be delivered offline anyways as its more like a course delivered through our partner
+    institutions"). Seats are sold to the school as a cohort batch, never as individual admissions — "not … one a
+    piece". The CRM records the sale, the seats, the targets and the commission; it creates no digital entitlement,
+    batch or login. The academic year is the offer's start and end, and a course seat is never converted into a scan
+    or a package seat (R109.5).</p>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Open points, named rather than guessed</b>
+    <p><b>(a)</b> The GST reading is <b>ruled</b> (23 Nov 2026): ₹15,000 and ₹1,00,000 are net and GST is added at 18%,
+    so a package seat invoices ₹17,700 and the offer line stores that gross; RSM-19's inclusive unit test is
+    superseded. <b>(b)</b> No invoice or instalment entity exists yet — a batch cannot be invoiced, and its commission
+    cannot run, until one is built; the design is <a href="irisepro-sales-crm-institution-billing.html">institution billing</a> (R110),
+    and its seven rulings are recorded. <b>(c)</b> Godparent's own design is a draft board (PR #1904), and 1 Jan 2027 is the gate.
+    <b>(d)</b> The Academy's collection path is ours (our invoice, our commission); a partner that collects is a new
+    ruling, not a setting. <b>(e)</b> KMM's batch money path is designed: the RSM raises an invoice per instalment and
+    records each instalment when collected (D17; <code>part2_rsm.txt</code> RSM-19 — May / Aug / Nov 2027, idempotent
+    on invoice + payment reference, partial payment assumed). None of it exists yet — no institution, agreement,
+    invoice, instalment or collection row, no aging or collection reminder, no reconciliation. The full design, with
+    GST, rounding, tax point, seat start, TDS, reminders and credit-note grounds all ruled on 23 Nov, is
+    <a href="irisepro-sales-crm-institution-billing.html">institution billing</a> (R110), in three build slices.
+    <b>(f)</b> The Academy offering itself is unconfirmed ("if we offer this at all").</p>
+  </div>
+
+  <div class="callout rule" style="margin-top:16px">
+    <b>The institutional rate is one rate for every institutional line</b>
+    <p><b>All three — the Annual Package, Acharya and the Academy — earn 5% YSP + 0.5% RSM</b> (Goutam, 23 Nov
+    2026: "all institutional at same commission rates"; R109.6, matching KMM — "School (5%) and Academy (5%) lines",
+    "YSP 5% and RSM 0.5% of net"). Acharya is deliberately included: it is a scan, but it is sold to a school, so it
+    takes the institutional rate. The <b>direct</b> scan's 7% is a different channel and is untouched — it is what a
+    family pays for its own scan. A ₹15,000 package line therefore earns ₹750 / ₹75, and the package's embedded scan
+    does not earn the scan rate separately — nothing records a component price to split it against.</p>
+  </div>
+
+  <div class="callout rule" style="margin-top:16px">
+    <b>What stays frozen</b>
+    <p>One catalogue, one price authority, no per-school SKU, no storefront exposure, and the invariant that a
+    school's people never enter <code>crm_families</code>. Products, prices, component schedules, caps and rates are
+    dated config versions with a proposer and an approver (R31, R43, R107.5, R109.8).</p>
+  </div>
+</section>
+
+<section id="money">
+  <h2>Money, seats and credit — the order things happen in</h2>
+  <p class="lede">The school negotiates a price and a number of seats on its offer. A referred family pays for its own
+  scan through the link; a batch's seats are bought by the school and its people are delivered, never checkout.
+  Each payment is attributed once and paid to two people. A start — not a signature — is the sale.</p>
+
+  <div class="card">
+    <h3>1 · The offer: a line per product, a negotiated price and its own seats</h3>
+    <p>There is no per-school SKU. A catalogue product (R109) is sold at a price negotiated with one school, for an
+    agreed number of seats, and resolved by the one price authority only when the buyer arrived through that school's
+    link (R105.6(a); <code>Price::forInstitution</code>). An offer may carry several product lines — each with its own
+    price and seat cap — and every line closes independently. A direct buyer never sees it, and one school's offer is never
+    another's. The price is the same for every family of that school: a running band where two parents of one school
+    pay different amounts depending on when they buy is refused.</p>
+    <p>The negotiated "₹4,000 + GST" is stored as its GST-inclusive gross, ₹4,720, so the existing quote, cap, grace
+    and capture gate apply unchanged. Each paid redemption takes one seat. When the agreed seats are gone the
+    institution's link <b>closes</b>: it says the offer has ended and asks the school for a new batch — it never
+    silently falls back to the regular price.</p>
+    <p><b>What is built and what is not.</b> The paragraph above is the built path: a referred family paying through
+    the school's link, one payment, one redemption. A school-paid batch — the ₹15,000 package in three instalments
+    (D17), or an Acharya/Academy batch — has no money path today: there is no invoice, no instalment row, no
+    partial-payment record and no collection reminder. Its design is written in
+    <a href="irisepro-sales-crm-institution-billing.html">institution billing</a> (R110): agreement, schedule, tax invoice,
+    recorded collections, commission per collection, aging, reminders and reconciliation, in three slices. Until
+    slice A is built and the Finance rulings in that page are answered, no dated catalogue version sells an
+    institutional line.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>2 · The link: one model, two names on it</h3>
+    <p>An institution's referral link is a <code>campaign_links</code> row whose partner is the institution instead
+    of a person's partner ref, and it names the two designated posts that own its sales — the YSP and the RSM
+    (R105.3). Because the designation lives on the link, a payment can never be attributed to an institution without
+    also naming who earns. <code>/go/{slug}</code>, its <code>utm_id</code> stamp and the QR drawn from the same URL
+    are unchanged; a link is deactivated, never edited, and its history stays.</p>
+    <p>Only the HO line creates one (today: <code>campaign_link.create_hq</code>). Both designated posts must be live,
+    filled posts of the right type — a link that names a vacant or wrong-role post would pay nobody and is refused.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>3 · The payment: attribution is automatic, and written once</h3>
+    <p>A person who arrives through the link and pays — a referred family buying its own scan — is attributed
+    automatically, no manual step (R105.4). A school's batch does not run on this path: the school pays for its
+    seats, and the participants are delivery, never checkouts (R109.4–R109.6).</p>
+    <p>The payment path already writes the conversion row (<code>kind = payment</code>) from the
+    <code>utm_id</code>; the append-only stamp is where the link's <b>referrer institution</b> is recorded, beside the
+    selling post's credit. The designated YSP is the stamp's attributed/credited post; the designated RSM is stamped
+    in its own network pair and resolved to whoever holds that post at the moment of payment — exactly as an
+    attributed post is.</p>
+    <p>The family is found or created by the existing claim path. The institution is a tag on the sale, never an
+    owner of the family, so ownership, vacancy credit and target credit do not move (R26, R78.3, R99).</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>4 · The ledger: two lines from one rate source</h3>
+    <p>Every institutional payment credits two commission lines, each at the earner's own defined rule, from the one
+    rule source (R6, R25, R105.5):</p>
+    <table style="margin:12px 0 6px">
+      <tr><th>Earner</th><th>Rule used</th><th>Launch value</th><th>Ledger key</th></tr>
+      <tr><td>Designated <b>YSP</b></td><td>its own-sale rule (<code>scan</code>, basis net)</td><td>7% <span class="muted">(direct scan — the built path)</span></td><td><code>payment:{rzp}:commission</code></td></tr>
+      <tr><td>Designated <b>RSM</b></td><td>its network rule — no <code>threshold_sales</code> gate here</td><td>0.5%</td><td><code>payment:{rzp}:commission:network</code></td></tr>
+    </table>
+    <p>Both run on the same stamped <code>net_paise</code> and the same <code>paid_at</code>, each with its own rule
+    version and ceiling. A refund reverses <b>both</b> lines, in the same one-reversal-per-refund path, and nothing
+    else (R29). No new payee role and no new formula were introduced.</p>
+    <p>The table's 7% is today's rule for the <code>scan</code> family, which is what the built seam prices: a
+    referred family buying its own scan. The institutional families — package, Acharya, Academy — carry their own
+    configured rows once applied; the rate is config keyed by <code>payee_role + product_family</code>, never code
+    (R109.6). <b>All three take the same 5% YSP / 0.5% RSM</b>; the direct scan's 7% stays its own, because it is a
+    different channel. The RSM's 0.5% network line is identical on every line.</p>
+  </div>
+
+  <div class="callout stop" style="margin-top:16px">
+    <b>The school is not paid at the pilot</b>
+    <p>The attribution is reporting, not money (R105.5). No institution earns commission, and no institution login or
+    payee exists. If an institutional payee is ever wanted, it is a <code>payee_role</code> on the existing rules
+    keyed <code>payee_role + product_family</code>, implemented in the backend — the stamp already names the
+    institution and both earners, so nothing would be re-attributed or backfilled. The recorded 5% (RSM 0.5%) for a
+    future institution payee (D51, Q12) is untouched.</p>
+  </div>
+
+  <div class="callout rule" style="margin-top:16px">
+    <b>When a sale counts — the rule that does not change</b>
+    <p>A sale is a participant who submits their first task, in both funnels (R107.1). For a school that means
+    <b>per participant</b>: a signed agreement, an <code>active</code> deal or a paid seat is operational progress
+    and is not a sale. Payments awaiting a start are shown openly as "awaiting start" — the same "no silent zeros"
+    discipline as the family funnel (R99.8). The commission follows the same unit: per participant payment, never a
+    deal-level lump (R107.2) — for a person who pays their own way. An institutional line is a batch: its commission
+    accrues on money collected against the offer line (D17, R109.6), and a participant never pays for it.</p>
+  </div>
+</section>
+
+<section id="roster">
+  <h2>The roster — one upload, two audiences</h2>
+  <p class="lede">A school does not hand over its students one by one. It hands over a spreadsheet. That spreadsheet
+  travels through the <i>existing</i> joining-list utility with an institution tag — not through a second importer
+  (R108).</p>
+
+  <div class="card">
+    <h3>What is sent</h3>
+    <p>The same endpoint and the same action as today (<code>POST /crm/families/joining-list</code> →
+    <code>ImportJoiningList</code>) gain one optional field, <code>institution_id</code>. Absent, the direct joining
+    list is unchanged. Present, the same rows are processed as that school's list: the idempotency checksum covers
+    the tag, so the same file under two schools is two imports and the same file twice under one school returns the
+    stored report (R108.2).</p>
+    <p>The template's minimum fields follow the offering, and never more (R108.7, R108.13):</p>
+    <table style="margin:12px 0 6px">
+      <tr><th>School's offering</th><th>Participant</th><th>Minimum fields</th><th>Where the row lands</th></tr>
+      <tr><td>Child programme</td><td>A child</td><td>name + class</td><td>A family lead (the parent's contact), in <code>crm_families</code></td></tr>
+      <tr><td><b>Acharya</b> — a teacher-strengthening programme</td><td>A teacher (an adult)</td><td>name + the school's own <code>student_ref</code></td><td>The institution's <b>people</b> — never <code>crm_families</code> (R105.2)</td></tr>
+    </table>
+    <p>No address, no date of birth, no marks. A school's list is a lead list, not consent: nothing is sent to anyone
+    before the family's own consent (R108.7).</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Who may upload, and as whom</h3>
+    <p>A tagged file needs <code>institutions.import_students</code>, granted to the school's two designated people
+    and refused to everyone else. The action also checks the designation itself, so the ability alone can never file
+    one school's list under another (R108.3). Whether the YSP or the RSM uploads, ownership, territory checks, unit,
+    region and the claim all run <b>as the designated YSP</b> — an RSM's upload creates no RSM-owned family.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>What each row does, and what it does not</h3>
+    <p>Rows clear the same checks in the same order as today — invalid → do-not-contact → outside area →
+    duplicate in file → identity match → claim — with one addition: each claimed family gains an <b>append-only
+    tag</b> (family, institution, import, uploading post). The tag is a tag: not ownership, not consent, not a
+    second family store. An <code>already_yours</code> family may be tagged; an <code>owned_by_other</code> family
+    is not — no upload lets one post claim another post's family.</p>
+    <p>An uploaded student is <b>not</b> a sale, a payment, a seat or consent. They become sales only when each
+    participant starts, and that start counts once, on the institution's line (R107.4, R108.5). Tagged rows carry
+    <code>source = institution_list</code>, so they never count toward the direct joining list's 500; the cap
+    exemption applies for the same reason — a school's list is not grabbing (R108.6).</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>One identity, two lists — and one reference that is the school's own</h3>
+    <p>De-duplication stays exactly one map: the normalised contact hash in <code>family_identifiers</code>, shared by
+    direct adds, both upload variants and payments. A child is not the identity: names and classes are never matched
+    fuzzily. Inside one institution's file the school may supply its own admission or roll number as
+    <code>student_ref</code>; the same institution + the same reference on a later upload is
+    <code>already_listed</code>, changes nothing, and survives a changed parent number. The reference is stored on
+    the tag and never matches across institutions (R108.11).</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>When two rules meet, the order is fixed</h3>
+    <p>Conflict resolution is one ordered setting, not guesswork (R108.10, R108.12):</p>
+    <table style="margin:12px 0 6px">
+      <tr><th style="width:60px">Step</th><th>Rule</th><th>Consequence</th></tr>
+      <tr><td><b>1</b></td><td>Consent</td><td>A suppressed number is never claimed or tagged, whatever the file.</td></tr>
+      <tr><td><b>2</b></td><td>Owner</td><td>The owner keeps the family; neither an upload nor a link transfers it.</td></tr>
+      <tr><td><b>3</b></td><td>Stamp</td><td>A start already recorded is never reclassified.</td></tr>
+      <tr><td><b>4</b></td><td>Link on this payment</td><td>One payment carries exactly one <code>utm_id</code>, so one link decides that start's funnel and earners.</td></tr>
+      <tr><td><b>5</b></td><td>Tag</td><td>A roster entry with no sale behind it is a tag only.</td></tr>
+    </table>
+    <p>So: a family owned by another post is not tagged, yet if it later starts through the institution's link that
+    start is still the institution's sale — the owner keeps the household, the school gets the sale it drove. A
+    completed direct sale is never reclassified. A refund reverses the line it was paid on and never the other
+    funnel's (R108.10(a)–(d)).</p>
+  </div>
+
+  <div class="callout rule" style="margin-top:16px">
+    <b>Today's rules are defaults, not constants</b>
+    <p>The conflict order, the institution-list switch, the source code, the template's fields and the cap exemption
+    are all dated config versions (R108.12, R107.5). Each step's behaviour is one policy class — the single place to
+    change it. The shape stays reverse-able too: <code>institution_id</code> is nullable, the tag is append-only, the
+    institution list is a <code>source</code> value, and no funnel category is written onto
+    <code>crm_families</code> — so a later reversal costs a config version, not a data rewrite.</p>
+  </div>
+</section>
+
+<section id="walk">
+  <h2>One school, end to end</h2>
+  <p class="lede">A concrete walk through the seam, in the order it happens. The example is a school buying a
+  200-seat batch of a child programme whose families pay through its link — the money path that is built. Where the
+  school pays for the batch by invoice (the Acharya and Academy shape), the same ladder runs with the invoice in
+  place of the checkout; that path is designed in R110 (<a href="irisepro-sales-crm-institution-billing.html">institution
+  billing</a>).</p>
+
+  <div class="timeline">
+    <div class="tl"><div class="t">Week 1 · visit</div><div class="what"><b>The YSP finds the school</b><span>The YSP records the visit as an <i>institutional</i> activity — subject: the school. The deal moves <code>prospect → contacted → needs_visit</code>. Nobody's family pipeline moves, and no child's data exists anywhere yet.</span></div></div>
+    <div class="tl"><div class="t">Week 2 · proposal</div><div class="what"><b>Price per seat, seat count</b><span>The proposal is one price for 200 seats, stored GST-inclusive. The GM/CEO approve the offer as configuration (D17). The deal sits at <code>proposal</code>, then <code>negotiation</code>. No commission, no target credit, no sale.</span></div></div>
+    <div class="tl"><div class="t">Week 4 · agreement</div><div class="what"><b>The school signs</b><span>The RSM approves the agreement. The deal moves to <code>agreement</code>. Still no sale: a signature is progress (R107.1).</span></div></div>
+    <div class="tl"><div class="t">Week 4 · onboarding</div><div class="what"><b>Two posts named, offer activated</b><span>The in-app onboarding flow creates the institution account, names the designated YSP and RSM, and activates the offer (R106.7). The deal is at <code>onboarding</code>. The HO line mints the institution's link for the governed destination.</span></div></div>
+    <div class="tl"><div class="t">Week 5 · roster</div><div class="what"><b>The school's teacher list arrives</b><span>The YSP (or the RSM) uploads one spreadsheet through the joining-list utility with <code>institution_id</code>. Each row lands as the institution's person — <i>not</i> a family record — with the tag recording the school, the import and the school's own <code>student_ref</code>. Owners are unchanged; no consent is implied; no sale is counted.</span></div></div>
+    <div class="tl"><div class="t">Week 5 · link</div><div class="what"><b>The link reaches the families</b><span>The school's link carries the negotiated offer and names the two earners. A parent opens <code>/go/{code}</code>; the click is counted; the offer's price is resolved for this school only.</span></div></div>
+    <div class="tl"><div class="t">Week 6 · first payment</div><div class="what"><b>The first family pays, and the deal goes active</b><span>The payment writes a <code>payment</code> conversion and one append-only stamp: referrer institution, attributed YSP, network RSM. Two commission lines accrue at their own rules. One seat is taken; the first paid redemption moves the deal to <code>active</code>.</span></div></div>
+    <div class="tl"><div class="t">Week 7 · first task</div><div class="what"><b>The student starts — now it is a sale</b><span>The participant submits their first task. That is the institution's sale, once, on the institution's line (R107.4). It increments the institutional target, not the family target, and the digest shows it in the institutional section.</span></div></div>
+    <div class="tl"><div class="t">Month 3 · last seat</div><div class="what"><b>The batch sells out</b><span>The 200th paid redemption takes the last seat. The link closes with "offer ended" and the deal moves to <code>renewal_due</code>. The school agrees a new batch — a new offer and a new link — and the ladder starts again from a position of strength.</span></div></div>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <b>The batch shape differs at weeks 5–7</b>
+    <p>An Acharya or Academy batch never has a participant checkout: the school pays for its seats by invoice, and
+    <b>each realised first instalment unlocks its seat</b> — paid seats start in the next weekly delivery batch (Sunday
+    by default; typically 30–50, up to 1,000, whatever was paid). The roster is only the candidate list; the payment
+    starts the seat. For the annual package, the scan starts on instalment 1 and the Godparent on instalment 2 — and
+    the dates never move: a late payment shortens the months delivered rather than shifting the anniversary. Late
+    money is not cut off on the due date: a 30–60 day grace window keeps Godparent running, after which the package
+    pauses, and 120 days past due it is terminated as not paid. The
+    commission accrues on the money collected. Weeks 5–7 above describe the referred-family path that is built today
+    (R109.4–R109.6, R110).</p>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>The same walk, as records written</h3>
+    <table style="margin-top:10px">
+      <tr><th>Moment</th><th>What is written</th><th>What is deliberately not written</th></tr>
+      <tr><td>Visit, call, meet</td><td>An activity with the <b>institution</b> as its one subject; the deal's stage history.</td><td>Any family record, any child field, any household location.</td></tr>
+      <tr><td>Proposal / agreement</td><td>The offer (institution, price, seats) and the stage moves.</td><td>A sale, a seat consumed, a commission line, a family target count.</td></tr>
+      <tr><td>Link created</td><td>A <code>campaign_links</code> row with kind <i>institution</i>, the institution, and the two designated posts.</td><td>An editable link, a second mapping table, a partner ref that could be removed.</td></tr>
+      <tr><td>Payment</td><td>A <code>payment</code> conversion, one append-only stamp (institution + YSP + RSM pair), two ledger lines.</td><td>A new owner, a vacancy transfer, a lump-sum deal commission, a public discounted price.</td></tr>
+      <tr><td>Start</td><td>The participant's first task; the funnel's sale count for the period.</td><td>A second count in the other funnel; a reclassification of an earlier direct sale.</td></tr>
+      <tr><td>Roster upload</td><td>The import row (with the tag in its checksum), a tag per claimed family or person, the stored report.</td><td>Ownership, consent, a sale, a seat, a second family store.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <b>What the school never becomes</b>
+    <p>Not the owner of a household, not a payee, not a consent holder, not a second CRM. It is an account with a
+    ladder, a link, an offer and a roster — and the payments it drives are attributed to two named people who earn.</p>
+  </div>
+</section>
+
+<section id="diff">
+  <h2>Family direct and institutional, side by side</h2>
+  <p class="lede">The differences are real, and they are few. Everything not on this list is the same machinery,
+  which is why the two funnels do not drift.</p>
+
+  <table class="wrapx zebra">
+    <tr><th style="width:22%">Question</th><th style="width:39%">Family direct</th><th style="width:39%">Institutional</th></tr>
+    <tr><td><b>Who is the customer?</b></td><td>A household (<code>crm_families</code>).</td><td>A school — its own account; the legacy <code>institutions</code> table is not it.</td></tr>
+    <tr><td><b>Whose data is it?</b></td><td>A parent's contact and a child's data, under the family's consent.</td><td>Adults of the school. No child data, no household, no borrowed consent.</td></tr>
+    <tr><td><b>When is the funnel fixed?</b></td><td>At intake, on the family record.</td><td>At intake, on the institution account. A family referred by a school stays a family.</td></tr>
+    <tr><td><b>What is the lifecycle?</b></td><td>The family ladder: <i>new → profiled → assigned → … → paid → handed over → onboarded</i>, with outcomes.</td><td>The B2B ladder: <i>prospect → contacted → needs visit → proposal → negotiation → agreement → onboarding → active → renewal due</i>.</td></tr>
+    <tr><td><b>What does the ladder track?</b></td><td>One household's journey to a starting child.</td><td>The school's deal. It stays <code>active</code> while many participants buy; it renews when the batch ends.</td></tr>
+    <tr><td><b>Who moves it?</b></td><td>The owning post, with <code>family.stage_set</code>.</td><td>The account's owning post — its designated YSP/RSM — with HO/GM per access config.</td></tr>
+    <tr><td><b>What is a sale?</b></td><td>A child's first task.</td><td><b>The same rule</b>, per participant. Never the agreement, the deal or the seat.</td></tr>
+    <tr><td><b>What does money look like?</b></td><td>The list price through quote, cap, grace and capture.</td><td>A negotiated price for an agreed batch of seats, resolved only through that school's link; the link closes when the seats run out.</td></tr>
+    <tr><td><b>Who is the link's partner?</b></td><td>A person's own partner ref.</td><td>The institution, plus the two designated posts who earn.</td></tr>
+    <tr><td><b>Who is paid?</b></td><td>The owner, at the owner's role rule.</td><td>The designated YSP at its own-sale rule <b>and</b> the designated RSM at its network rule — two lines, two keys.</td></tr>
+    <tr><td><b>What does a refund reverse?</b></td><td>That payment's commission line.</td><td><b>Both</b> of that payment's lines, and nothing else.</td></tr>
+    <tr><td><b>How do targets work?</b></td><td>The family funnel's rows.</td><td>A separate funnel dimension with its own rows; the two resolve independently.</td></tr>
+    <tr><td><b>What do activities attach to?</b></td><td>A family.</td><td>An institution — exactly one subject, never both.</td></tr>
+    <tr><td><b>How do contacts arrive in bulk?</b></td><td>The joining list.</td><td>The <b>same</b> joining list with an institution tag.</td></tr>
+    <tr><td><b>What do reports count?</b></td><td>Families and their sales.</td><td>Deals (institutions) and their participants' sales; seats are measures under a deal, never rows.</td></tr>
+    <tr><td><b>What may a report reveal?</b></td><td>Family-level facts, within scope.</td><td>The institution's name, counts and amounts only — no family, phone, child or location (C7, R56).</td></tr>
+  </table>
+
+  <div class="card" style="margin-top:18px">
+    <h3>The same under the hood — the list that must not grow</h3>
+    <div class="fair" style="margin-top:12px">
+      <div><b>One price authority</b><p>List price and institutional offer are resolved by the same code; the institution is a parameter, not a second price list.</p></div>
+      <div><b>One attribution stamp</b><p>Written once at payment for both funnels; the institution is an extra column, not an extra process.</p></div>
+      <div><b>One commission engine</b><p>Two lines are two calls at two rules; no institutional formula exists.</p></div>
+      <div><b>One stage engine</b><p>Two configured ladders over <code>cfg_stages</code> and <code>cfg_stage_transitions</code>.</p></div>
+      <div><b>One target engine</b><p>A funnel dimension added to level × scope × period; pace and nudges stay single.</p></div>
+      <div><b>One importer</b><p>The joining list, with or without an institution tag.</p></div>
+      <div><b>One identity map</b><p><code>family_identifiers</code>, shared by every way a contact can arrive.</p></div>
+      <div><b>One link model</b><p><code>campaign_links</code> and <code>/go</code>; the institution is a partner type, not a link type.</p></div>
+      <div><b>One activity record</b><p>Exactly one subject, with the same counters, heat and next action as a family.</p></div>
+      <div><b>One audit trail</b><p>Institutional moves and link creation are audited like every other CRM action.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <h2>What each role sees</h2>
+  <p class="lede">The screens follow the abstractions: a lens switch, not a second application. Their detailed design
+  comes with the build; this is the contract they must satisfy.</p>
+
+  <div class="card">
+    <h3>Two lenses, one product (R107.6)</h3>
+    <p>Leadership screens — RSM, GM, HO desk, CEO — show <b>Families | Institutions</b> as tabs. The field Today
+    screen shows the same two lenses as a switch that filters in place, because a YSP works both in one day. The
+    daily digest stays <b>one email per person</b>, split into two sections; there is no second email engine and no
+    third nudge. The two-nudge rule and the merged day plan are unchanged.</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>What a role can expect</h3>
+    <table style="margin-top:10px">
+      <tr><th>Role</th><th>Institutional view</th><th>What it must never show</th></tr>
+      <tr><td><b>YSP</b></td><td>My schools, their stages, my next action, the participants who started, my link's performance.</td><td>Another post's schools; any child's data through a school screen.</td></tr>
+      <tr><td><b>RSM</b></td><td>The region's institutions ranked, the deals by stage, the designated pair and the roster status; the per-person sheet.</td><td>A school's household-level details; any other region.</td></tr>
+      <tr><td><b>HO desk</b></td><td>All institutions, links, offers and seats left; both pipelines.</td><td>Families' contact details beyond what the family screens already mask.</td></tr>
+      <tr><td><b>GM / CEO</b></td><td>Both funnels' pace, build-up and misses, with the same drill-down as families.</td><td>A merged denominator — the two funnels never share one.</td></tr>
+      <tr><td><b>School</b></td><td>Nothing. At the pilot the school is a record and a partner, not a CRM user.</td><td>A login, a portal, a payout statement.</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Reports: two pipelines, two denominators (R106.8)</h3>
+    <p>An institution → link → lead, registration and payment → paid sales is a GROUP BY over the indexed
+    conversion rows and the attribution index (R105.7). A referred family counts in the family funnel; the deal it
+    belongs to counts in the institutional funnel; no sale is counted in both. Seats sold and participants enrolled
+    are measures under a deal, never pipeline rows of their own. An institutional report carries counts, amounts and
+    the institution's name only.</p>
+  </div>
+</section>
+
+<section id="built">
+  <h2>Built, in review, next</h2>
+  <p class="lede">This guide is written docs-first. Here is exactly how much of it exists in code today, so nobody
+  mistakes the document for the build.</p>
+
+  <div class="pills"><span class="tag review">In review: release PR #2142</span><span class="tag review">Billing designed: R110</span><span class="tag done">Billing ruled: 23 Nov</span><span class="tag next">Next: catalogue, importer tag, pipeline, screens</span></div>
+
+  <table class="wrapx">
+    <tr><th style="width:30%">Part of the seam</th><th style="width:16%">Status</th><th>What that means</th></tr>
+    <tr><td>Schema: institution partner, designated posts, offer seats, institution and network stamps</td><td><span class="tag review">In review</span></td><td>Nullable, expand-only columns on <code>campaign_links</code>, <code>offers</code> and <code>crm_attributions</code>.</td></tr>
+    <tr><td>Institution price authority</td><td><span class="tag review">In review</span></td><td>The one price authority resolves a school's offer; the list price is refused; a closed offer refuses.</td></tr>
+    <tr><td>Institution link creation and <code>/go</code> closure</td><td><span class="tag review">In review</span></td><td>HO-only mint with validated designated posts; click counted; closed offer says so and never falls back.</td></tr>
+    <tr><td>Attribution stamp with institution and both earners</td><td><span class="tag review">In review</span></td><td>Stamped once at payment; designated RSM in the network pair; no raw phone stored.</td></tr>
+    <tr><td>Two-line institutional commission and refund</td><td><span class="tag review">In review</span></td><td>YSP own rule + RSM network rule, two ledger keys, both reversed by one refund.</td></tr>
+    <tr><td>Institutional catalogue: three products, component schedule, per-line seats (R109)</td><td><span class="tag next">Next</span></td><td>Dated <code>sellable_products</code> rows with <code>delivery_mode</code>/<code>audience</code>/<code>platform_product_key</code>/<code>components</code>, <code>offer_items.cap_seats</code>, the Jan 2027 package gate, the Acharya platform mapping and the Academy's offline rows.</td></tr>
+    <tr><td>Institution invoice and instalments (R109.6, R110)</td><td><span class="tag review">Designed</span></td><td>Agreement, per-line schedule, tax invoice with a frozen split, recorded collections, seat unlock and weekly delivery batches, commission per collection, credit notes, aging, reminders and reconciliation — the design and its three slices are in <a href="irisepro-sales-crm-institution-billing.html">institution billing</a>. Its rulings are recorded (23 Nov 2026); nothing is built yet.</td></tr>
+    <tr><td>Joining-list institution tag (R108)</td><td><span class="tag next">Next</span></td><td>The one importer gains <code>institution_id</code>, the tag rows, <code>institution_list</code> source and the adult-roster landing.</td></tr>
+    <tr><td>Institutional pipeline and account runtime (R106)</td><td><span class="tag next">Next</span></td><td>The <code>institution_pipeline</code> config family, the account's stage and history, the onboarding flow, the activities subject.</td></tr>
+    <tr><td>Funnel dimension for targets (R107)</td><td><span class="tag next">Next</span></td><td>Institutional target rows, independent resolution, the two lenses and the split digest.</td></tr>
+    <tr><td>Lenses, screens and institutional reports</td><td><span class="tag next">Next</span></td><td>Per the section above; each screen ships behind its ability in the access config.</td></tr>
+  </table>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Why this order</b>
+    <p>The link, price, stamp and money had to exist first: they are the parts a payment touches, and no part of the
+    institutional build ships before the payments and attribution seam is solved (R105). The roster, pipeline and
+    targets sit on top of that seam and change no family rule.</p>
+  </div>
+</section>
+
+<section id="rules">
+  <h2>Where the rules live, and how they change</h2>
+  <p class="lede">Everything here is traceable to a binding ruling, and every number and list is governed
+  configuration — a dated version, not a release.</p>
+
+  <div class="card">
+    <table>
+      <tr><th style="width:18%">Ruling</th><th>What it settles</th><th style="width:22%">Where</th></tr>
+      <tr><td><b>R105</b></td><td>The funnel seam: two funnels one owner, the invariant, one link model with designated people, payment as attribution, two commission lines, the negotiated offer and seats, reports.</td><td>Contract §3.18</td></tr>
+      <tr><td><b>R106</b></td><td>The institutional pipeline: its own config family and ladder, the account as subject, moves, the seat-driven transitions, activities' one subject, in-app onboarding, two denominators.</td><td>Contract §3.19</td></tr>
+      <tr><td><b>R107</b></td><td>One sale rule both funnels; per-participant commission; the funnel dimension on targets; two lenses and one digest; nothing hard-coded.</td><td>Contract §3.20</td></tr>
+      <tr><td><b>R108</b></td><td>The one bulk upload with an institution tag: ability, designation, landing, tag semantics, source and caps, privacy, the conflict order, one identity map, adult rosters (Acharya).</td><td>Contract §3.21</td></tr>
+      <tr><td><b>R109</b></td><td>The institutional catalogue: three products in the one catalogue, the package's component schedule and Jan 2027 gate, per-line seat caps, Acharya's platform mapping, the Academy's offline delivery, commission by product family, targets by product and pair, and the named open points.</td><td>Contract §3.22</td></tr>
+      <tr><td><b>R110</b></td><td>The institutional money path: agreement, instalments per offer line, the tax invoice with a frozen split, recorded collections (partial and idempotent), commission per collection, credit notes, aging, reminders, Finance confirmation and the statement — designed, in <a href="irisepro-sales-crm-institution-billing.html">three build slices</a>.</td><td>Contract §3.23</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Change a number or a list, not a release</h3>
+    <p>Stages and transitions, targets and their funnel, outcome and miss-reason lists, digest sections, day windows,
+    the upload's rows and template fields, the institution-list switch and the conflict order are each a governed,
+    dated version applied by <code>crm:config:apply</code> (R31, R43, R107.5, R108.8, R108.12). Code reads
+    configuration; a new stage, reason, target row or digest section is a config change. The abilities that expose
+    each institutional screen live in the access config like every other ability — and a field with no mask row is
+    not sent, by design.</p>
+  </div>
+
+  <div class="callout rule" style="margin-top:16px">
+    <b>The only things deliberately frozen</b>
+    <p>The invariant (R105.2), the one-sale rule (R107.1), the append-only stamp and the one identity map are not
+    knobs. Everything else is a dated version with a proposer and an approver, and a reversal costs configuration —
+    not a data rewrite.</p>
+  </div>
+</section>
+
+<footer>
+  <p>This guide follows the rulings of 22 November 2026 (R105–R108), the Acharya clarification and the product
+  ruling of 23 November 2026 (R109), and the billing design of 23 November 2026 (R110). It changes only by the same
+  route as any governed value: proposed, approved and dated. For the
+  screen-by-screen family flows see <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-journeys.html">the storyboard</a>;
+  for targets and accountability see <a href="https://sanchar-gkb-admin.github.io/tools/irisepro-sales-crm-targets-accountability.html">the plain guide</a>.
+  The detailed rules are in the low-level design, contract §3.18–§3.23.</p>
+</footer>
+
+</div>
+</body>
+</html>
