@@ -9,6 +9,9 @@
   --page:#e8edf3; --ink:#0e2440; --ink-2:#3b5070; --rule:#c9d3df;
   --brand:#f5821f; --brand-ink:#b4530a; --brand-soft:#fff1e3;
   --ok:#137a43; --ok-soft:#e3f5ea; --bad:#b42318; --bad-soft:#fde8e6; --warn:#8a5a00; --warn-soft:#fff4d6;
+  --f-bg:#ffffff; --f-sub:#f3f6f9; --f-ink:#0b1b33; --f-mute:#4a5b73; --f-line:#d5dde7;
+  --warnc:#8a5a00; --hot:#b8360a; --hot-soft:#ffe6dc; --warm:#8a5a00; --warm-soft:#fff1c7;
+  --o-bg:#0a1626; --o-sur:#10223c; --o-sur2:#16304f; --o-ink:#eaf1f9; --o-mute:#9fb3c9; --o-line:#22406a;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--page);color:var(--ink);font:400 16px/1.65 Montserrat,system-ui,sans-serif}
@@ -44,17 +47,7 @@ h4{font-size:15px;margin:0 0 4px}
 .card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:26px 30px}
 .card+p{margin-top:16px}
 
-.screen{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:0;margin:0 0 16px;overflow:hidden}
-.screen .head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;background:#f7fafc;border-bottom:1px solid var(--rule);padding:14px 24px}
-.screen .no{font-weight:800;color:var(--brand-ink);font-size:13px;letter-spacing:.06em}
-.screen .who{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#fff;background:var(--ink);border-radius:999px;padding:3px 10px}
-.screen .what{font-weight:700;font-size:16px}
-.screen .body{padding:16px 24px 20px}
-.screen dl{margin:0;display:grid;grid-template-columns:132px 1fr;gap:8px 16px;font-size:14.5px}
-.screen dt{font-weight:700;color:var(--ink-2);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
-.screen dd{margin:0}
-.screen dd code, .card code, td code{background:#eef3f8;border-radius:5px;padding:1px 5px;font-size:12.5px}
-.screen .rule{margin-top:12px;border-left:3px solid var(--brand);background:var(--brand-soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:14px;color:#5d3a17}
+.card code, td code, .note code{background:#eef3f8;border-radius:5px;padding:1px 5px;font-size:12.5px}
 
 table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);border-radius:14px;overflow:hidden;font-size:14px}
 table.wrapx{display:block;overflow-x:auto}
@@ -86,14 +79,111 @@ table.zebra tr:nth-child(even) td{background:#f7fafc}
 footer{margin-top:60px;padding-top:22px;border-top:2px solid var(--rule);color:var(--ink-2);font-size:13.5px}
 footer a{font-weight:600}
 
+/* ---- drawn screens: field phones and office laptops (mirrors the main storyboard) ---- */
+.flow{display:flex;flex-wrap:wrap;gap:30px 26px;align-items:flex-start}
+.step{width:300px;flex:0 0 auto}
+.step.wide{width:820px;max-width:100%}
+.step h3{font-size:15px;font-weight:800;margin:0 0 4px;color:var(--ink)}
+.step h3 i{font-style:normal;color:#9a4400;margin-right:6px}
+.step .cap{font-size:13.5px;color:var(--ink-2);margin:0 0 12px;min-height:56px}
+.note{font-size:12.5px;color:var(--ink-2);margin-top:10px;border-left:3px solid var(--rule);padding-left:9px}
+.note b{color:var(--ink)}
+.phone{width:280px;margin:0 auto;background:#1a2433;border:10px solid #1a2433;border-radius:36px;box-shadow:0 18px 40px rgba(14,36,64,.25);position:relative;overflow:hidden}
+.phone .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:92px;height:20px;background:#1a2433;border-radius:0 0 14px 14px;z-index:6}
+.pv{height:560px;position:relative;background:var(--f-bg);color:var(--f-ink);overflow:hidden;font-size:13px}
+.pv .top{padding:26px 14px 8px;display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--f-line)}
+.pv .top b{font-weight:800;font-size:15px}
+.pv .top>span:first-child{display:flex;align-items:center;min-width:0}
+.pv .back{font-weight:800;font-size:18px;margin-right:6px;color:var(--f-mute)}
+.pv .body{padding:10px 12px}
+.dock{position:absolute;left:0;right:0;bottom:0;padding:10px 12px 14px;background:linear-gradient(to top,#fff 75%,rgba(255,255,255,0))}
+.tabs{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#fff;border-top:1px solid var(--f-line);padding:6px 0 9px;font-size:11px;color:var(--f-mute)}
+.tabs span{display:flex;flex-direction:column;align-items:center;min-width:52px;min-height:44px;justify-content:center}
+.tabs i{font-style:normal;font-size:17px;line-height:1}
+.tabs .on{color:var(--brand-ink);font-weight:700}
+.fc{background:var(--f-bg);border:1px solid var(--f-line);border-radius:12px;padding:10px;margin-bottom:8px}
+.fc.sub{background:var(--f-sub)}
+.fc.ok{border-color:var(--ok);background:var(--ok-soft)}
+.fc.bad{border-color:var(--bad);background:var(--bad-soft)}
+.fc.warn{border-color:#d9a400;background:var(--warn-soft)}
+.fc h4{margin:0 0 6px;font-size:13.5px}
+.r{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--f-line)}
+.r:last-child{border-bottom:0}
+.r .n{font-weight:700;min-width:0}
+.r .s{color:var(--f-mute);font-size:12px}
+.k2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.kp{background:var(--f-sub);border-radius:12px;padding:9px}
+.kp small{display:block;color:var(--f-mute);font-size:11.5px}
+.kp b{font-size:16px;font-weight:800}
+.fld{border:1.5px solid var(--f-line);border-radius:12px;padding:8px 11px;margin-bottom:8px;position:relative;background:#fff;color:var(--f-ink)}
+.fld label{display:block;font-size:11.5px;color:var(--f-mute)}
+.fld span{font-weight:600}
+.fld.focus{border-color:var(--brand)}
+.fld.lock{background:#eef1f5}
+.btn{display:flex;align-items:center;justify-content:center;min-height:48px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:14px;margin-top:8px;font-size:14px;text-align:center;padding:0 10px}
+.btn.ghost{background:#fff;border:1.5px solid var(--f-line);color:var(--f-ink)}
+.btn.dark{background:var(--f-ink);color:#fff}
+.row2{display:flex;gap:8px}
+.row2>*{flex:1}
+.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;white-space:nowrap;background:#eef2f7;color:var(--f-ink)}
+.pill.hot{background:var(--hot-soft);color:var(--hot)}
+.pill.warm{background:var(--warm-soft);color:var(--warm)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.wait{background:var(--warn-soft);color:var(--warnc)}
+.chk{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;margin:7px 0;min-height:32px}
+.chk i{width:22px;height:22px;border:2px solid var(--f-ink);border-radius:6px;flex:0 0 22px;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:900}
+.chk i.y{background:var(--ok);border-color:var(--ok);color:#fff}
+.tl{margin-left:6px;border-left:2px solid var(--f-line);padding-left:13px}
+.tl div{position:relative;margin-bottom:9px}
+.tl div::before{content:"";position:absolute;left:-20px;top:4px;width:12px;height:12px;border-radius:50%;background:#c9d3df;border:2px solid #fff}
+.tl .done::before{background:var(--ok)}
+.tl .now::before{background:var(--brand)}
+.tl .fail::before{background:var(--bad)}
+.tl b{font-size:13px}
+.tl small{display:block;color:var(--f-mute);font-size:11.5px}
+.mini{font-size:11.5px;color:var(--f-mute)}
+.mask{background:#e3e9f0;color:var(--f-mute);border-radius:5px;padding:0 6px;font-size:11.5px}
+.bar{height:7px;background:#e3e9f0;border-radius:6px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--brand)}
+.browser{border:1px solid #1b2f4c;border-radius:14px;overflow:hidden;background:var(--o-bg);color:var(--o-ink);box-shadow:0 18px 40px rgba(14,36,64,.28)}
+.chrome{display:flex;align-items:center;gap:6px;background:#06101d;padding:9px 12px}
+.chrome .d{width:10px;height:10px;border-radius:50%;background:#2c415d;flex:0 0 auto}
+.chrome .url{margin-left:10px;flex:1;min-width:0;background:#0f1d31;border-radius:999px;padding:4px 12px;color:var(--o-mute);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bv{display:flex;font-size:13px}
+.side{width:170px;background:#081425;border-right:1px solid var(--o-line);padding:14px 10px;flex:0 0 auto}
+.side div{padding:8px 10px;border-radius:8px;color:var(--o-mute);margin-bottom:2px}
+.side .on{background:var(--o-sur2);color:var(--o-ink);font-weight:700;box-shadow:inset 3px 0 0 var(--brand)}
+.main{flex:1;padding:16px;min-width:0}
+.main h4{margin:0 0 10px;font-size:15px}
+.ok4{display:grid;gap:8px;margin-bottom:12px;grid-template-columns:repeat(4,1fr)}
+.okp{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:10px;min-width:0}
+.okp small{display:block;color:var(--o-mute);font-size:11.5px}
+.okp b{font-size:20px;font-weight:800}
+.okp em{display:block;font-style:normal;font-size:11.5px;color:var(--o-mute);line-height:1.3}
+.oc{background:var(--o-sur);border:1px solid var(--o-line);border-radius:12px;padding:12px;margin-bottom:10px;min-width:0}
+.ob{display:inline-flex;align-items:center;justify-content:center;min-height:42px;background:var(--brand);color:#1a0e02;font-weight:800;border-radius:12px;padding:0 16px;font-size:13px;white-space:nowrap}
+.ob.ghost{background:transparent;border:1.5px solid var(--o-line);color:var(--o-ink)}
+.op{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;white-space:nowrap;background:#1d3354;color:var(--o-ink)}
+.op.ok{background:#0f3d28;color:#7fe0a8}.op.bad{background:#4a1714;color:#ffb3aa}.op.wait{background:#44360c;color:#ffd979}
+table.t{width:100%;border-collapse:collapse;font-size:12.5px;color:var(--o-ink);font-family:inherit;background:transparent;border:0;border-radius:0}
+table.t th{text-align:left;color:var(--o-mute);font-weight:600;font-size:11.5px;padding:6px 8px;border-bottom:1px solid var(--o-line);white-space:nowrap;background:transparent;text-transform:none;letter-spacing:0}
+table.t td{padding:8px;border-bottom:1px solid var(--o-line);white-space:nowrap}
+.tw{overflow-x:auto}
+@media (max-width:720px){
+  .bv{flex-direction:column}
+  .side{width:auto;display:flex;flex-wrap:wrap;gap:4px;border-right:0;border-bottom:1px solid var(--o-line)}
+  .ok4{grid-template-columns:repeat(2,1fr)}
+  .step.wide{width:100%}
+}
+
 @media (max-width:820px){
   .fair,.hero .two{grid-template-columns:1fr}
   .hero{padding:30px 24px}
-  .screen dl{grid-template-columns:1fr}
 }
 @media print{
   body{background:#fff}
-  .hero,.card,.screen,table,.fair div{break-inside:avoid}
+  .hero,.card,.step,table,.fair div{break-inside:avoid}
   .toc{display:none}
 }
 </style>
@@ -208,271 +298,452 @@ footer a{font-weight:600}
 
 <section id="screens">
   <h2>Screen by screen</h2>
-  <p class="lede">The order a school actually goes through. Each screen names its actor, what it writes, and the rule
-  that binds it.</p>
+  <p class="lede">The order a school actually goes through, drawn as the frames each person works in: <b>phones</b>
+  for the field (YSP and RSM), <b>laptops</b> for the back office (Finance and GM). Under every frame: what that
+  screen writes, and the rule it must not break.</p>
 
-  <div class="screen">
-    <div class="head"><span class="no">S1</span><span class="who">YSP</span><span class="what">The institution record</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Name, contact, coordinator, status — and now the GST identity a tax invoice needs: legal name,
-        GSTIN, billing address, state code. Existing rows stay untouched (nullable columns).</dd>
-        <dt>Writes</dt><dd><code>institutions</code> extension: <code>code</code>, <code>kind</code> (school /
-        college / institute), <code>region</code>, <code>gstin</code>, <code>state_code</code>.</dd>
-      </dl>
-      <div class="rule">An institution is a tag and a partner in reporting — never an owner of a family, never a
-      login. The list that will become the roster is filed under it.</div>
+  <div class="pills"><span class="tag review">Setup · agreement → schedule · S1–S5</span></div>
+
+  <div class="flow">
+
+    <div class="step">
+      <h3><i>S1</i>YSP · The institution record</h3>
+      <p class="cap">Find or file the school, with the GST identity a tax invoice will need.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Institutions</b></span><span class="pill wait">Draft</span></div>
+        <div class="body">
+          <div class="fld focus"><label>Legal name (on the GST certificate)</label><span>Springdale Public School</span></div>
+          <div class="row2">
+            <div class="fld"><label>Kind</label><span>School</span></div>
+            <div class="fld"><label>State code</label><span>29 · Karnataka</span></div>
+          </div>
+          <div class="fld"><label>GSTIN</label><span>29ABCDE1234F1Z5</span></div>
+          <div class="fld"><label>Coordinator</label><span>+91 ••••• 43210 · •••@springdale.edu</span></div>
+          <p class="mini" style="margin:2px">Bengaluru 560034 · roster filed as candidates (812)</p>
+        </div>
+        <div class="dock"><div class="btn">Save institution</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>institutions</code> — code, kind, region, gstin, state_code. <b>Rule</b>
+      a tag on a sale and a partner in reporting — never an owner of a family, never a login.</p>
     </div>
+
+    <div class="step">
+      <h3><i>S2</i>YSP · Draft the agreement</h3>
+      <p class="cap">One active agreement per institution; a new term is a new agreement.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Agreement</b></span><span class="pill wait">Draft</span></div>
+        <div class="body">
+          <div class="fc sub"><h4>Springdale Public School</h4>
+            <div class="r"><span class="s">Term</span><span class="n">2027–28</span></div>
+            <div class="r"><span class="s">Signing YSP</span><span class="n">Rhea S. (designated)</span></div>
+            <div class="r"><span class="s">Document</span><span class="n">AG/2027/031</span></div></div>
+          <div class="tl">
+            <div class="done"><b>Drafted</b><small>22 Apr 2027 · YSP</small></div>
+            <div class="now"><b>Signed</b><small>signed_on to be stamped</small></div>
+            <div><b>Approval</b><small>the RSM's, never the YSP's</small></div>
+          </div>
+          <div class="row2" style="margin-top:10px">
+            <div class="btn ghost" style="margin:0">Upload scan</div>
+            <div class="btn" style="margin:0">Mark signed</div>
+          </div>
+        </div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>institution_agreements</code> — term, signed_on, document_ref.
+      <b>Rule</b> signing is not a sale: it moves no money and starts no seat (R107.1).</p>
+    </div>
+
+    <div class="step">
+      <h3><i>S3</i>RSM · Approve the agreement</h3>
+      <p class="cap">Approval stamps both designated earners and files the roster as candidates.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Approval</b></span><span class="pill warm">Awaiting RSM</span></div>
+        <div class="body">
+          <div class="k2">
+            <div class="kp"><small>Student strength</small><b>812</b></div>
+            <div class="kp"><small>Agreement</small><b style="font-size:14px">Signed ✓</b></div>
+          </div>
+          <div class="fc"><h4>Designated earners — fixed for every seat</h4>
+            <div class="r"><span class="s">YSP · 5%</span><span class="n">Rhea S.</span></div>
+            <div class="r"><span class="s">RSM · 0.5% network</span><span class="n">Arjun M.</span></div></div>
+          <div class="fc sub"><h4>Roster attaches now</h4>
+            <div class="r"><span class="s">Status</span><span class="pill wait">Candidate list</span></div></div>
+        </div>
+        <div class="dock"><div class="btn dark">Approve agreement → active</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> approved_at / approved_by; the roster as the <b>candidate list</b>.
+      <b>Rule</b> the roster exists from approval whatever the invoice status — but a place on it is only a
+      candidate. Money starts the seat.</p>
+    </div>
+
+    <div class="step">
+      <h3><i>S4</i>RSM · Build the offer — one line per product</h3>
+      <p class="cap">Each line carries its own negotiated price and its own seat cap; the offer an outer ceiling.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Offer · draft</b></span><span class="pill">3 lines</span></div>
+        <div class="body">
+          <div class="fc"><h4>Annual Package</h4>
+            <div class="r"><span class="s">₹5,000 net / seat</span><span class="pill ok">cap 640</span></div></div>
+          <div class="fc"><h4>Mission Acharya</h4>
+            <div class="r"><span class="s">₹4,999 net / teacher</span><span class="pill ok">cap 120</span></div></div>
+          <div class="fc"><h4>Academy course</h4>
+            <div class="r"><span class="s">₹1,00,000 net / admission</span><span class="pill ok">cap 40</span></div></div>
+          <div class="fc sub"><div class="r"><span class="n">Outer ceiling</span><span class="n">800 seats</span></div></div>
+        </div>
+        <div class="dock"><div class="btn">Send offer</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>offer_items</code> — product, negotiated net, cap_seats; a line closes at
+      its cap. <b>Rule</b> no per-institution SKU; a closed line never falls back to list price.</p>
+    </div>
+
+    <div class="step">
+      <h3><i>S5</i>RSM · The instalment schedule</h3>
+      <p class="cap">Three instalments per package seat — their nets must sum exactly to the line's net.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Schedule</b></span><span class="pill ok">Sums exact</span></div>
+        <div class="body">
+          <div class="fc">
+            <div class="r"><span class="n">1 · 15 May 2027</span><span class="s">640 · ₹37,76,000</span></div>
+            <div class="r"><span class="n">2 · 15 Aug 2027</span><span class="s">640 · ₹37,76,000</span></div>
+            <div class="r"><span class="n">3 · 15 Nov 2027</span><span class="s">640 · ₹37,76,000</span></div>
+          </div>
+          <div class="fc sub">
+            <div class="r"><span class="s">Net total</span><span class="n">₹96,00,000</span></div>
+            <div class="r"><span class="s">Gross at 18%</span><span class="n">₹1,13,28,000</span></div>
+          </div>
+          <p class="mini" style="margin:4px 2px 0">A schedule row is invoiced once; cancelling one never re-splits
+          the rest.</p>
+        </div>
+        <div class="dock"><div class="btn ghost">Lock schedule</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>institution_invoice_schedules</code> — seq, due_on, seats_billed,
+      net/gross. <b>Rule</b> nets sum exactly to the line's negotiated net, grosses to that × (1 + GST).</p>
+    </div>
+
   </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S2</span><span class="who">YSP</span><span class="what">Draft the agreement</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>The institution, the signing YSP, the term dates, the signed document, and status
-        <code>draft → signed</code>. One active agreement per institution; a new term is a new agreement.</dd>
-        <dt>Writes</dt><dd><code>institution_agreements</code>: institution, signing YSP, term, <code>signed_on</code>,
-        <code>document_ref</code>.</dd>
-      </dl>
-      <div class="rule">Signing is not a sale: it moves no money and starts no seat (R107.1). Approval is the RSM's,
-      not the YSP's.</div>
+  <div class="pills" style="margin-top:30px"><span class="tag done">Money · invoice → batch · S6–S10</span></div>
+
+  <div class="flow">
+
+    <div class="step wide">
+      <h3><i>S6</i>RSM · Raise the instalment invoice</h3>
+      <p class="cap">One schedule row becomes one numbered tax invoice — the split frozen at issue, with its PDF.</p>
+      <div class="browser">
+        <div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.in › institutions › springdale › invoices › INV/2027-28/0042</span></div>
+        <div class="bv">
+          <div class="side"><div>Schools</div><div class="on">Invoices</div><div>Collections</div><div>Aging</div><div>Statements</div><div>Batches</div></div>
+          <div class="main">
+            <div class="ok4">
+              <div class="okp"><small>Invoice</small><b style="font-size:15px">INV/2027-28/0042</b><em>issued 02 May · due 15 May 2027</em></div>
+              <div class="okp"><small>Seats billed</small><b>640</b><em>instalment 1 of 3</em></div>
+              <div class="okp"><small>Net</small><b>₹32,00,000</b><em>place of supply 29 · Karnataka</em></div>
+              <div class="okp"><small>Gross</small><b>₹37,76,000</b><em>CGST 2,88,000 · SGST 2,88,000</em></div>
+            </div>
+            <div class="oc"><h4 style="margin:0 0 8px">Tax invoice · frozen at issue</h4>
+              <div class="tw"><table class="t">
+                <tr><th>Description</th><th>HSN/SAC</th><th>Qty</th><th>Net</th><th>GST 18%</th><th>Gross</th></tr>
+                <tr><td>Annual Package — 2027–28</td><td>999293</td><td>640 seats</td><td>₹32,00,000</td><td>₹5,76,000</td><td>₹37,76,000</td></tr>
+              </table></div>
+            </div>
+            <div class="oc"><span class="op ok">Series gap-free</span> <span class="op">Buyer GSTIN 29ABCDE1234F1Z5</span> <span class="op wait">Void only before the first collection</span></div>
+            <span class="ob">Download tax invoice (PDF)</span> <span class="ob ghost">Bank details for the school</span>
+          </div>
+        </div>
+      </div>
+      <p class="note"><b>Writes</b> <code>institution_invoices</code> — number under a row lock, issued_on, due_on,
+      gross, gst_bp, net, the CGST/SGST-or-IGST split, place of supply. <b>Rule</b> a number is never reused or
+      re-sequenced; GST follows the earlier of issue and receipt; after the first collection the only correction is
+      a credit note; a number without its PDF is not a tax invoice.</p>
     </div>
+
+    <div class="step">
+      <h3><i>S7</i>RSM · Record a collection</h3>
+      <p class="cap">Money arrives by bank, often in parts, and the school withholds TDS.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Record collection</b></span><span class="pill">INV 0042</span></div>
+        <div class="body">
+          <div class="fld focus"><label>Bank credit · 18 May 2027</label><span>₹34,56,000</span></div>
+          <div class="fld"><label>TDS withheld (194J)</label><span>₹3,20,000</span></div>
+          <div class="fc ok">
+            <div class="r"><span class="n">Settled</span><span class="n">₹37,76,000 ✓</span></div>
+            <div class="r"><span class="s">De-GST'd net</span><span class="s">₹32,00,000</span></div>
+          </div>
+          <div class="row2">
+            <div class="fld"><label>Mode</label><span>NEFT</span></div>
+            <div class="fld"><label>Reference</label><span>UTR •••4417</span></div>
+          </div>
+        </div>
+        <div class="dock"><div class="btn">Record collection</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>institution_collections</code> — gross = bank credit + tds_paise, net at
+      the invoice's frozen rate, recorder. <b>Rule</b> the same (invoice, reference) never records twice; overpayment
+      is refused, never absorbed; rows are append-only; the final collection absorbs the paise residual.</p>
+    </div>
+
+    <div class="step">
+      <h3><i>S8</i>System · Commission on the collected net</h3>
+      <p class="cap">Two ledger lines per collection, keyed to it so a replay can never double-credit.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Ledger · collection</b></span><span class="pill ok">Accrued</span></div>
+        <div class="body">
+          <div class="k2">
+            <div class="kp"><small>Net settled</small><b>₹32,00,000</b></div>
+            <div class="kp"><small>TDS inside it</small><b>₹3,20,000</b></div>
+          </div>
+          <div class="fc">
+            <div class="r"><span class="n">YSP · 5%</span><span class="n">₹1,60,000</span></div>
+            <div class="r"><span class="n">RSM · 0.5% network</span><span class="n">₹16,000</span></div>
+          </div>
+          <div class="fc sub"><p class="mini" style="margin:0">collection:9f1c:commission<br>collection:9f1c:commission:network</p></div>
+          <div class="chk"><i class="y">✓</i>Idempotent — a replay changes nothing</div>
+        </div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>partner_ledger_entries</code>, distinct from <code>payment:{rzp}:…</code>.
+      <b>Rule</b> TDS is part of the net the school settled, so it never cuts an earner; at full collection the
+      commissions equal rate × the invoice's net.</p>
+    </div>
+
+    <div class="step">
+      <h3><i>S9</i>System · Seats start when money is realised</h3>
+      <p class="cap">Settled money ÷ the instalment's per-seat price, floored; the remainder carries forward.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Seats · line A</b></span><span class="pill ok">Unlocked</span></div>
+        <div class="body">
+          <div class="k2">
+            <div class="kp"><small>Settled</small><b>₹37,76,000</b></div>
+            <div class="kp"><small>Per seat, gross</small><b>₹5,900</b></div>
+          </div>
+          <div class="fc ok">
+            <div class="r"><span class="n">Seats started</span><span class="n">640</span></div>
+            <div class="r"><span class="s">Remainder carried</span><span class="s">₹0</span></div>
+          </div>
+          <div class="fc sub"><p class="mini" style="margin:0">Roster 812 candidates · 640 started · 172 wait for
+            money</p><div class="bar"><i style="width:79%"></i></div></div>
+        </div>
+        <div class="dock"><div class="btn ghost">Open roster</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> seat assignments against the line; the roster stays the candidate list.
+      <b>Rule</b> a realised first instalment is the only thing that starts a seat — not the upload, the signature
+      or the invoice.</p>
+    </div>
+
+    <div class="step">
+      <h3><i>S10</i>RSM · The weekly delivery batch</h3>
+      <p class="cap">Paid seats leave on a dated cadence — Sunday by default, 30–50 typical, never above the cap.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Batches · line A</b></span><span class="pill">Weekly</span></div>
+        <div class="body">
+          <div class="fc ok"><h4>Next · Sunday 7 Feb 2027</h4>
+            <div class="r"><span class="s">Cut-off</span><span class="n">Fri 23:59</span></div>
+            <div class="r"><span class="s">Seats ready</span><span class="n">40</span></div></div>
+          <div class="fc"><h4>Batch 1 · 24 Jan</h4>
+            <div class="r"><span class="n">42 seats</span><span class="pill ok">Started</span></div></div>
+          <div class="fc"><h4>Batch 2 · 31 Jan</h4>
+            <div class="r"><span class="n">38 seats</span><span class="pill ok">Started</span></div></div>
+          <p class="mini" style="margin:2px">Line cap 640 · 120 started · 520 to go</p>
+        </div>
+        <div class="dock"><div class="btn">Create batch · 40 seats</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>institution_batches</code> — line, sequence, starts_on, seat count.
+      <b>Rule</b> a batch is never padded with money that has not arrived; unpaid seats wait for a later batch;
+      cadence and size are dated config.</p>
+    </div>
+
   </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S3</span><span class="who">RSM</span><span class="what">Approve the agreement</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Student strength, the agreement and its documents; approves to <code>active</code>. The
-        designated YSP and RSM are stamped on the line here.</dd>
-        <dt>Writes</dt><dd><code>approved_at</code>/<code>approved_by</code>; the roster attaches as the
-        <b>candidate list</b>; the designated earners are fixed for every seat on the line.</dd>
-      </dl>
-      <div class="rule">The roster exists from approval whatever the invoice status — but a rosters place is only
-      <b>candidate</b>. Money is what starts the seat.</div>
-    </div>
-  </div>
+  <div class="pills" style="margin-top:30px"><span class="tag next">Control · gates → statement · S11–S18</span></div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S4</span><span class="who">RSM</span><span class="what">Build the offer: one line per product, seats per line</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>1,000 package seats, 200 Acharya seats and 60 Academy seats can sit on one agreement — each
-        line with its own negotiated price and its own <code>cap_seats</code>; <code>offers.cap_total</code> is the
-        outer ceiling.</dd>
-        <dt>Writes</dt><dd><code>offer_items</code>: product, negotiated price (net; stored GST-inclusive as R105.6(a)
-        provides), <code>cap_seats</code>; the line closes independently at its cap.</dd>
-      </dl>
-      <div class="rule">No per-institution SKU. One school's price is never another's, and a closed line never falls
-      back to the list price.</div>
-    </div>
-  </div>
+  <div class="flow">
 
-  <div class="screen">
-    <div class="head"><span class="no">S5</span><span class="who">RSM</span><span class="what">The instalment schedule</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Three instalments per package seat: May, August, November 2027. Each row: sequence, due date,
-        seats billed, net and gross.</dd>
-        <dt>Writes</dt><dd><code>institution_invoice_schedules</code>: <code>seq</code>, <code>due_on</code>,
-        <code>seats_billed</code>, <code>gross_paise</code>, status.</dd>
-      </dl>
-      <div class="rule">The schedule's nets must sum <b>exactly</b> to the line's negotiated net total, and its
-      grosses to that × (1 + GST). A schedule row is invoiced once; cancelling one never silently re-splits the
-      rest.</div>
+    <div class="step">
+      <h3><i>S11</i>System · Scan first, Godparent second</h3>
+      <p class="cap">The package's two components have two different gates.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Package · gates</b></span><span class="pill">Seq 1 + 2</span></div>
+        <div class="body">
+          <div class="fc ok"><h4>1 · Scan</h4>
+            <div class="r"><span class="s">Unlocks on</span><span class="pill ok">instalment 1</span></div>
+            <div class="r"><span class="s">Starts</span><span class="n">day 0</span></div></div>
+          <div class="fc warn"><h4>2 · Godparent mentoring</h4>
+            <div class="r"><span class="s">Unlocks on</span><span class="pill wait">instalment 2</span></div>
+            <div class="r"><span class="s">Starts</span><span class="n">later of month 2 and the gate</span></div></div>
+          <div class="fc sub"><p class="mini" style="margin:0">Instalments 2 and 3 bill the same seats and add none;
+            instalment 3 unlocks nothing new.</p></div>
+        </div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>unlock_on_seq</code> on the catalogue component, never earlier than the
+      day-0 / month-2 offsets. <b>Rule</b> the scan is the precursor that gates Godparent — the package never
+      degrades silently to scan-only.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S6</span><span class="who">RSM</span><span class="what">Raise the instalment invoice</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Series <code>INV/{FY}/{seq}</code> assigned under a row lock; both GSTINs, place of supply,
-        HSN/SAC, CGST/SGST or IGST split; net, GST and gross frozen at issue; a rendered tax-invoice PDF.</dd>
-        <dt>Writes</dt><dd><code>institution_invoices</code>: number, <code>issued_on</code>, <code>due_on</code>,
-        <code>gross_paise</code>, <code>gst_bp</code>, <code>net_paise</code>, the split,
-        <code>place_of_supply_state</code>, status.</dd>
-      </dl>
-      <div class="rule">A tax-invoice number is never reused or re-sequenced. GST liability follows the <b>earlier of
-      issue and receipt</b>. An issued invoice is voided only before the first collection; after that the correction
-      is a credit note. A number without a document is not a tax invoice — the PDF is slice A.</div>
+    <div class="step">
+      <h3><i>S12</i>System · Fixed window; late money has a path</h3>
+      <p class="cap">Services continue through grace; then pause; then the line is terminated as not paid.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Line A · timeline</b></span><span class="pill warm">In grace</span></div>
+        <div class="body">
+          <div class="tl">
+            <div class="done"><b>Seat started · 7 Feb 2027</b><small>anniversary 7 Feb 2028 — never moves</small></div>
+            <div class="done"><b>Instalment 2 due · 15 Aug 2027</b><small>₹37,76,000 unpaid</small></div>
+            <div class="now"><b>Grace window · 30–60 days</b><small>to 14 Oct 2027 · Godparent keeps running</small></div>
+            <div class="fail"><b>Paused · after the window</b><small>Godparent stops; the scan delivered stands</small></div>
+            <div class="fail"><b>Terminated as not paid · 13 Dec 2027</b><small>120 days past due · recorded once on the line</small></div>
+          </div>
+        </div>
+        <div class="dock"><div class="btn ghost">A late collection resumes Godparent</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> grace and pause derived; termination recorded once on the agreement line
+      (<code>ended</code>) with the reason. <b>Rule</b> no disruption inside grace; the anniversary never moves; money
+      already collected is not refunded.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S7</span><span class="who">RSM</span><span class="what">Record a collection</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Date received, the bank credit, <b>TDS withheld</b>, the mode (NEFT/RTGS/UPI/cheque/cash),
-        the UTR/cheque reference, a note. Partial payments are normal.</dd>
-        <dt>Writes</dt><dd><code>institution_collections</code>: <code>amount_gross_paise</code> (bank credit +
-        <code>tds_paise</code>), <code>net_paise</code> (de-GST'd at the invoice's frozen rate), recorder,
-        <code>confirmed_at</code>.</dd>
-      </dl>
-      <div class="rule">The same (invoice, reference) cannot be recorded twice — a double entry of one bank credit is
-      refused. Overpayment is refused, never absorbed. Rows are append-only; a correction is a credit note plus a new
-      collection. The final collection absorbs the paise residual, so collections sum exactly to the invoice's frozen
-      net.</div>
+    <div class="step">
+      <h3><i>S13</i>System + RSM · Reminders, once per step</h3>
+      <p class="cap">Email from the YASHHO billing desk; the nudge by WhatsApp from the designated RSM.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Reminders</b></span><span class="pill">INV 0042</span></div>
+        <div class="body">
+          <div class="fc">
+            <div class="r"><span class="n">−15 days</span><span class="pill ok">30 Apr · email</span></div>
+            <div class="r"><span class="n">On due</span><span class="pill ok">15 May · email + WhatsApp</span></div>
+            <div class="r"><span class="n">+7 days</span><span class="pill wait">scheduled 22 May</span></div>
+            <div class="r"><span class="n">+30 days</span><span class="pill">queued 14 Jun</span></div>
+          </div>
+          <div class="fc sub"><p class="mini" style="margin:0">To coordinator •••@springdale.edu ·
+            +91 ••••• 43210<br>WhatsApp from Arjun M. (RSM) · YSP copied</p></div>
+          <div class="chk"><i class="y">✓</i>Row written before sending — a rerun never double-sends</div>
+        </div>
+      </div></div>
+      <p class="note"><b>Writes</b> one row per (invoice, offset) in <code>institution_invoice_reminders</code>.
+      <b>Rule</b> logs carry counts, post codes and invoice numbers — never a full phone number or email.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S8</span><span class="who">System</span><span class="what">Commission accrues on the collected net</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Two ledger lines per collection: the designated YSP's 5% and the designated RSM's 0.5% of the
-        net settled.</dd>
-        <dt>Writes</dt><dd><code>partner_ledger_entries</code> keyed <code>collection:{id}:commission</code> and
-        <code>collection:{id}:commission:network</code> — idempotent, distinct from <code>payment:{rzp}:…</code>.</dd>
-      </dl>
-      <div class="rule">TDS is part of the net the school settled, so it never cuts either earner's share. Sum of
-      collections' commissions equals rate × the invoice's net when fully collected. The "paid on the 5th" payout run
-      does not exist; this stops at accrual plus a manual admin payout.</div>
+    <div class="step wide">
+      <h3><i>S14</i>System · Aging — derived, never stored</h3>
+      <p class="cap">Outstanding is gross − collected, bucketed past due; the grace → pause → termination ladder reads the same figure.</p>
+      <div class="browser">
+        <div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.in › institutions › aging</span></div>
+        <div class="bv">
+          <div class="side"><div>Schools</div><div>Invoices</div><div>Collections</div><div class="on">Aging</div><div>Statements</div><div>Batches</div></div>
+          <div class="main">
+            <div class="ok4">
+              <div class="okp"><small>Outstanding</small><b>₹1,01,28,000</b><em>4 open invoices</em></div>
+              <div class="okp"><small>Not yet due</small><b>₹37,76,000</b><em>1 invoice</em></div>
+              <div class="okp"><small>In grace</small><b>2</b><em>schools · services running</em></div>
+              <div class="okp"><small>Paused / terminated</small><b>1 / 1</b><em>ladder, not a credit note</em></div>
+            </div>
+            <div class="tw"><table class="t">
+              <tr><th>School</th><th>Invoice</th><th>Due</th><th>Gross</th><th>Collected</th><th>Outstanding</th><th>State</th></tr>
+              <tr><td>Springdale</td><td>0042</td><td>15 May 27</td><td>₹37,76,000</td><td>₹37,76,000</td><td>₹0</td><td><span class="op ok">Paid</span></td></tr>
+              <tr><td>Greenwood</td><td>0051</td><td>15 May 27</td><td>₹37,76,000</td><td>₹0</td><td>₹37,76,000</td><td><span class="op wait">In grace → 14 Oct</span></td></tr>
+              <tr><td>Lakeside</td><td>0058</td><td>15 May 27</td><td>₹37,76,000</td><td>₹12,00,000</td><td>₹25,76,000</td><td><span class="op bad">Paused</span></td></tr>
+              <tr><td>Hillcrest</td><td>0056</td><td>15 May 27</td><td>₹37,76,000</td><td>₹0</td><td>₹37,76,000</td><td><span class="op bad">Terminated · 120 d</span></td></tr>
+            </table></div>
+            <p style="color:var(--o-mute);font-size:12px;margin:10px 0 0">Nothing stored: every figure renders from
+            invoice and collection rows (R99.8).</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><b>Writes</b> nothing — only a termination is recorded. <b>Rule</b> no stored total and no
+      silent zero; a school's page and Finance's view render from the same rows.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S9</span><span class="who">System</span><span class="what">Seats unlock when money is realised</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>The seats a collection unlocks: settled money ÷ the instalment's per-seat price, floored;
-        the remainder carries to the next collection.</dd>
-        <dt>Writes</dt><dd>Seat assignments against the line; the roster stays the candidate list.</dd>
-      </dl>
-      <div class="rule">A realised first instalment is the <b>only</b> thing that unlocks and starts a seat — not the
-      upload, not the signature, not the invoice. A student's first task still makes it a sale and a target (R107.1),
-      but does not start it.</div>
+    <div class="step wide">
+      <h3><i>S15</i>Finance · Confirm the collection</h3>
+      <p class="cap">Recording is the field's; confirming against the bank credit is Finance's, under <code>billing.confirm</code>.</p>
+      <div class="browser">
+        <div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.in › finance › collections › confirm</span></div>
+        <div class="bv">
+          <div class="side"><div>Recorded</div><div>Unmatched</div><div class="on">Confirm</div><div>Aging</div><div>Statements</div></div>
+          <div class="main">
+            <div class="oc"><h4 style="margin:0 0 8px">Recorded, awaiting confirmation</h4>
+              <div class="tw"><table class="t">
+                <tr><th>Invoice</th><th>School</th><th>Settled</th><th>Bank credit</th><th>TDS</th><th>UTR</th><th>Recorded by</th><th></th></tr>
+                <tr><td>0042</td><td>Springdale</td><td>₹37,76,000</td><td>₹34,56,000</td><td>₹3,20,000</td><td>•••4417</td><td>Arjun M.</td><td><span class="ob">Confirm</span></td></tr>
+              </table></div>
+            </div>
+            <div class="oc"><span class="op wait">Unmatched bank credit · ₹37,76,000 · no invoice reference</span>
+              <p style="margin:8px 0 0;color:var(--o-mute);font-size:12px">Parked for the next statement run —
+              never guessed onto an invoice.</p></div>
+            <div class="oc"><span class="op ok">billing.confirm</span> <span class="op">A recorded amount is never
+              edited — a credit note instead</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="note"><b>Writes</b> confirmed_at / confirmed_by. <b>Rule</b> money shown to the field is
+      <b>recorded</b>; Finance distinguishes recorded, confirmed and unmatched.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S10</span><span class="who">RSM</span><span class="what">The weekly delivery batch</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Paid seats go out in batches on a configured cadence — <b>Sunday by default</b>. A batch takes
-        the seats whose money was realised by its cut-off: typically <b>30–50</b>, up to <b>1,000</b>, whatever the
-        payments support.</dd>
-        <dt>Writes</dt><dd><code>institution_batches</code>: offer line, agreement, sequence, <code>starts_on</code>,
-        seat count, status.</dd>
-      </dl>
-      <div class="rule">A batch never exceeds the line's cap and is never padded with money that has not arrived;
-      unpaid seats wait for a later batch. Cadence, cut-off, typical size and ceiling are dated config, never
-      code.</div>
+    <div class="step wide">
+      <h3><i>S16</i>Finance / GM · The institution statement</h3>
+      <p class="cap">One school's invoices, collections and balance — rendered from the rows, never a stored total.</p>
+      <div class="browser">
+        <div class="chrome"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">crm.yashho.in › institutions › springdale › statement › FY 2027-28</span></div>
+        <div class="bv">
+          <div class="side"><div>Schools</div><div>Invoices</div><div>Collections</div><div>Aging</div><div class="on">Statements</div></div>
+          <div class="main">
+            <div class="oc"><h4 style="margin:0 0 8px">Springdale Public School · FY 2027–28</h4>
+              <div class="tw"><table class="t">
+                <tr><th>Date</th><th>Document</th><th>Debit</th><th>Credit</th><th>Balance</th></tr>
+                <tr><td>02 May 27</td><td>INV/2027-28/0042 · issued</td><td>₹37,76,000</td><td>—</td><td>₹37,76,000</td></tr>
+                <tr><td>18 May 27</td><td>Collection · NEFT •••4417</td><td>—</td><td>₹37,76,000</td><td>₹0</td></tr>
+                <tr><td>15 Aug 27</td><td>INV/2027-28/0107 · due</td><td>₹37,76,000</td><td>—</td><td>₹37,76,000</td></tr>
+              </table></div>
+            </div>
+            <span class="ob">Download statement (PDF · slice C)</span>
+            <span class="ob ghost">Send to coordinator •••@springdale.edu</span>
+          </div>
+        </div>
+      </div>
+      <p class="note"><b>Writes</b> nothing — it is a view. <b>Rule</b> a school's people receive their own statement;
+      no school ever logs in to the CRM.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S11</span><span class="who">System</span><span class="what">The combo's two gates — scan first, Godparent second</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>The package's scan starts on <b>instalment 1</b>; its Godparent starts on <b>instalment 2</b>.
-        Each component carries its unlocking sequence as data (<code>unlock_on_seq</code>), never earlier than
-        R109.2's day-0 / month-2 offsets.</dd>
-        <dt>Writes</dt><dd>Component gate data on the catalogue row; the component's start is the later of its offset
-        and its gate being paid.</dd>
-      </dl>
-      <div class="rule">Scan is the precursor that gates Godparent — that is exactly why instalment 1 unlocks the
-      scan and not Godparent. Instalments 2 and 3 bill the same seats and add none; instalment 3 unlocks no new
-      component. The package never degrades silently to scan-only.</div>
+    <div class="step">
+      <h3><i>S17</i>RSM · Credit note — correction, not refund</h3>
+      <p class="cap">For our own error only: a corrected seat count, a wrong or duplicate line, a service missed through our fault.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>Credit note</b></span><span class="pill">New</span></div>
+        <div class="body">
+          <div class="fld lock"><label>Corrects</label><span>INV/2027-28/0042</span></div>
+          <div class="row2">
+            <div class="fld"><label>Seats</label><span>10</span></div>
+            <div class="fld"><label>Net</label><span>₹50,000</span></div>
+          </div>
+          <div class="fld focus"><label>Reason</label><span>Our error — 10 seats double-counted</span></div>
+          <div class="fc sub"><h4>Reversal, pro rata</h4>
+            <div class="r"><span class="s">YSP · 5%</span><span class="n">−₹2,500</span></div>
+            <div class="r"><span class="s">RSM · 0.5%</span><span class="n">−₹250</span></div></div>
+        </div>
+        <div class="dock"><div class="btn dark">Issue CN/2027-28/007</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> <code>institution_credit_notes</code> plus reversal keys
+      <code>credit_note:{id}:commission[:network]</code>; the original rows stay. <b>Rule</b> our error only — KMM's
+      no-refund policy stands.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S12</span><span class="who">System</span><span class="what">The window is fixed — and late money has a path</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>A seat's start and its 12-month anniversary never move. A late instalment keeps Godparent
-        running through a <b>30–60 day grace window</b>; unpaid at its end the package <b>pauses</b>; unpaid
-        <b>120 days past due</b> the line is <b>terminated as not paid</b>.</dd>
-        <dt>Writes</dt><dd>Grace/pause derived from due dates and collections; termination recorded once on the
-        agreement line (<code>ended</code>) with the reason — never a credit note.</dd>
-      </dl>
-      <div class="rule">Services continue through the grace window so a late school sees no disruption. After it,
-      Godparent stops and the scan already delivered stands. A later payment resumes Godparent but never moves the
-      anniversary; collected money on a terminated line is not refunded.</div>
+    <div class="step">
+      <h3><i>S18</i>YSP · The read-only line view</h3>
+      <p class="cap">The designated YSP sees the line, its seats and its money — and records nothing.</p>
+      <div class="phone"><div class="notch"></div><div class="pv">
+        <div class="top"><span><span class="back">‹</span><b>My schools · line A</b></span><span class="pill">Read-only</span></div>
+        <div class="body">
+          <div class="fc"><h4>Springdale · Annual Package</h4>
+            <div class="r"><span class="s">Line</span><span class="n">A · 640 seats</span></div>
+            <div class="r"><span class="s">Invoiced</span><span class="n">₹37,76,000</span></div>
+            <div class="r"><span class="s">Collected</span><span class="n">₹37,76,000</span></div></div>
+          <div class="k2">
+            <div class="kp"><small>Seats started</small><b>640</b></div>
+            <div class="kp"><small>My accrual · 5%</small><b>₹1,60,000</b></div>
+          </div>
+          <div class="fc sub"><p class="mini" style="margin:0">A recording attempt is refused — D17, RSM-19.</p></div>
+        </div>
+        <div class="dock"><div class="btn ghost" style="opacity:.55">Record collection · not available</div></div>
+      </div></div>
+      <p class="note"><b>Writes</b> nothing. <b>Rule</b> the designated YSP earns on every seat of the line and the
+      designated RSM the 0.5% network line — both stamped at approval, never re-decided per collection.</p>
     </div>
-  </div>
 
-  <div class="screen">
-    <div class="head"><span class="no">S13</span><span class="who">System + RSM</span><span class="what">Reminders, once per step</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Offsets in days (e.g. −15, 0, +7, +30) from a dated config family; the invoice by
-        <b>email from the YASHHO billing desk</b> to the coordinator; the nudge by <b>WhatsApp from the designated
-        RSM</b>, with the YSP copied.</dd>
-        <dt>Writes</dt><dd>One row per (invoice, offset) in <code>institution_invoice_reminders</code> <i>before</i>
-        sending, so a rerun never double-sends.</dd>
-      </dl>
-      <div class="rule">Logs and responses carry counts, post codes and invoice numbers — never a full phone number or
-      email.</div>
-    </div>
-  </div>
-
-  <div class="screen">
-    <div class="head"><span class="no">S14</span><span class="who">System</span><span class="what">Aging — derived, never stored</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Per invoice: outstanding = gross − collected, bucketed <b>0–30 / 31–60 / 61–90 / 90+</b> days
-        past due, plus not-yet-due.</dd>
-        <dt>Writes</dt><dd>Nothing. The buckets and the grace/pause/termination ladder read from the same outstanding
-        figure; only a termination is recorded.</dd>
-      </dl>
-      <div class="rule">No stored total, no silent zero (R99.8). A school's page and Finance's view render from the
-      rows.</div>
-    </div>
-  </div>
-
-  <div class="screen">
-    <div class="head"><span class="no">S15</span><span class="who">Finance</span><span class="what">Confirm the collection</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Recorded collections not yet matched, and bank credits with no invoice reference
-        (unmatched). Confirms a recorded collection against the credit and any TDS.</dd>
-        <dt>Writes</dt><dd><code>confirmed_at</code>/<code>confirmed_by</code>; the ability is
-        <code>billing.confirm</code>.</dd>
-      </dl>
-      <div class="rule">Recording is not reconciling. Money shown to the field is <b>recorded</b>; Finance
-      distinguishes recorded, confirmed and unmatched. Recorded amounts are never edited (credit note instead).</div>
-    </div>
-  </div>
-
-  <div class="screen">
-    <div class="head"><span class="no">S16</span><span class="who">Finance / GM</span><span class="what">The institution statement</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Invoices, collections and balance for one institution, rendered from the rows — never from a
-        stored total.</dd>
-        <dt>Writes</dt><dd>Nothing; it is a view.</dd>
-      </dl>
-      <div class="rule">A school's people see their own statement; no school ever logs in to the CRM.</div>
-    </div>
-  </div>
-
-  <div class="screen">
-    <div class="head"><span class="no">S17</span><span class="who">RSM</span><span class="what">Credit note — correction, not refund</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>Number, date, amount, reason, the invoice it corrects; the reversal debits each earner pro
-        rata to the credited net.</dd>
-        <dt>Writes</dt><dd><code>institution_credit_notes</code>; ledger keys
-        <code>credit_note:{id}:commission[:network]</code>; the original rows stay.</dd>
-      </dl>
-      <div class="rule">Grounds are <b>our own error only</b> — a corrected seat count, a wrong or duplicate line, a
-      service not delivered through our fault. A withholding, dispute or mid-term exit is never credited; KMM's
-      no-refund policy stands.</div>
-    </div>
-  </div>
-
-  <div class="screen">
-    <div class="head"><span class="no">S18</span><span class="who">YSP</span><span class="what">The read-only line view</span></div>
-    <div class="body">
-      <dl>
-        <dt>Sees</dt><dd>The line, its seats, its invoices, the money against them, and their own commission accrual.</dd>
-        <dt>Writes</dt><dd>Nothing. A YSP recording attempt is refused (D17, RSM-19).</dd>
-      </dl>
-      <div class="rule">The designated YSP earns on every seat of the line; the designated RSM earns the 0.5% network
-      line. Neither is re-decided per collection.</div>
-    </div>
   </div>
 </section>
 
