@@ -414,7 +414,7 @@ footer a{font-weight:600}
       <tr><th style="width:22%">Product</th><th>What it is</th><th style="width:14%">Delivery</th><th style="width:18%">Participants</th></tr>
       <tr><td><b>Annual Package</b><br><span class="key">institution_package</span></td><td>One scan plus Godparent monthly for the package year. One product, two components — a component schedule on the row, not two SKUs.</td><td>Online</td><td>Students (a child programme)</td></tr>
       <tr><td><b>Mission Acharya</b><br><span class="key">acharya</span></td><td>The scan product for the school's teachers, <b>listed under the academic products catalogue</b>, at <b>₹4,999 net per teacher</b> (KMM-confirmed; ₹5,898.82 invoiced). It has nothing to do with the annual package — that scan and Godparent mentoring are students-only — and carries no Godparent. It lists the platform's live <code>acharya_*</code> product; no second product is minted for teachers.</td><td>Online</td><td>Teachers (adults, never families) — delivered, not paying</td></tr>
-      <tr><td><b>Academy courses</b><br><span class="key">academy_course</span></td><td>Six annual courses, one partner institution per Region, sold <b>as a cohort batch</b> — never one admission at a time. The CRM records the sale, its seats, targets and commission; the partner delivers.</td><td><b>Offline</b> (partner)</td><td>Enrolled students — delivered, not paying</td></tr>
+      <tr><td><b>Academy courses</b><br><span class="key">academy_course</span></td><td>Six annual courses, one partner institution per Region, sold <b>as a cohort batch</b> — never one admission at a time. The CRM records the sale, its seats, targets and commission; the partner delivers. <b>Parked for now (D70)</b> — designed and catalogued, not sold until a partner per Region and the course list are committed.</td><td><b>Offline</b> (partner)</td><td>Enrolled students — delivered, not paying</td></tr>
     </table>
     <p>All three are in the one catalogue (<code>sellable_products</code>) under a dated version. None is served to the
     storefront — institutional products reach admin, never <code>/brochure</code> or a direct checkout (R58).</p>
@@ -464,7 +464,7 @@ footer a{font-weight:600}
   </div>
 
   <div class="card" style="margin-top:16px">
-    <h3>The Academy is offline — and sold as a cohort batch</h3>
+    <h3>The Academy is offline — and parked for now</h3>
     <p>The six Academy courses are annual, delivered offline through the partner institution (Goutam, 23 Nov: "the
     offline product will be delivered offline anyways as its more like a course delivered through our partner
     institutions"). Seats are sold to the school as a cohort batch, never as individual admissions — "not … one a
@@ -487,7 +487,8 @@ footer a{font-weight:600}
     invoice, instalment or collection row, no aging or collection reminder, no reconciliation. The full design, with
     GST, rounding, tax point, seat start, TDS, reminders and credit-note grounds all ruled on 23 Nov, is
     <a href="irisepro-sales-crm-institution-billing.html">institution billing</a> (R110), in three build slices.
-    <b>(f)</b> The Academy offering itself is unconfirmed ("if we offer this at all").</p>
+    <b>(f)</b> The Academy is <b>parked for now</b> (D70): designed and catalogued, not sold until a partner per
+    Region and the course list are committed.</p>
   </div>
 
   <div class="callout rule" style="margin-top:16px">
@@ -750,7 +751,8 @@ footer a{font-weight:600}
     by default; typically 30–50, up to 1,000, whatever was paid). The roster is only the candidate list; the payment
     starts the seat. For the annual package, the scan starts on instalment 1 and the Godparent on instalment 2 — and
     the dates never move: a late payment shortens the months delivered rather than shifting the anniversary. Late
-    money is not cut off on the due date: a 30–60 day grace window keeps Godparent running, after which the package
+    money is not cut off on the due date: a 30–60 day grace window keeps the package alive — an unpaid instalment 2
+    leaves Godparent unstarted, and once started the grace keeps it running (D70); after the window the package
     pauses, and 120 days past due it is terminated as not paid. The
     commission accrues on the money collected. Weeks 5–7 above describe the referred-family path that is built today
     (R109.4–R109.6, R110).</p>
