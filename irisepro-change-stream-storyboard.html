@@ -54,7 +54,7 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
 <div class="wrap">
 <header class="top">
   <h1>Change stream — superadmin process</h1>
-  <p>From the merged spec <i>2026-11-24-learner-placement-and-stream-change-design.md</i> (§5, §5.1a–c, §5.2). Same enrolment row, payment untouched, old stream superseded and voided, learner lands on a clean slate. Worked example: the 23-Nov case — <b>Marks Booster ₹4,999 → JEE ₹4,999</b>, batch 1888, Yashodarshi Sutirtha (YD). Learner shown as a Candidate code.</p>
+  <p>From the merged spec <i>2026-11-24-learner-placement-and-stream-change-design.md</i> (§5, §5.1a–c, §5.2). Same enrolment row, payment untouched, old stream superseded and voided, learner lands on a clean slate. Worked example: the 23-Nov case — <b>Marks Booster ₹4,999 → JEE ₹4,999</b>, batch 2001, Yashodarshi A (senior). Learner shown as a Candidate code.</p>
   <div class="legend"><span>01 Entry</span><span>02 Request</span><span>03 Preview · allowed</span><span>04 Preview · needs approval</span><span>05 Preview · refused</span><span>06 Approval queue</span><span>07 Done + history</span><span>08 Learner after</span><span>09 Mobile preview</span><span style="background:#1e3a8a">dashed blue = new UI</span></div>
 </header>
 
@@ -62,18 +62,18 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
 <section>
 <h2>01 · Enrolment page — two new actions</h2>
 <p class="cap">Existing Enrolment Details page. "Change stream" and "Move batch" are the only doors; Revoke on a paid learner now refuses and points here.</p>
-<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006</span></div>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/2002</span></div>
 <div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a>Batches</a><a class="on">Enrollments</a><a>Students</a><a>Yashodarshis</a><a>Approvals <span class="tag tr" style="margin-left:4px">1</span></a></div>
 <div class="main"><div class="ptitle">Enrollment Details</div>
 <div class="row"><div class="col2">
  <div class="card"><h3><i class="fas fa-user"></i>Learner</h3><div class="cb grid2">
   <div><div class="lbl">Candidate</div><div class="val">Candidate 7C21A</div></div><div><div class="lbl">Stream</div><div class="val">Marks Booster (Class 5–7) · ₹4,999</div></div>
   <div><div class="lbl">Batch</div><div class="val">Marks Booster — auto · 29 Nov 2026</div></div><div><div class="lbl">Onboarding</div><div class="val"><span class="tag tg">complete</span></div></div>
-  <div><div class="lbl">Progress</div><div class="val">0 of 21 challenges opened</div></div><div><div class="lbl">Yashodarshi</div><div class="val">Sutirtha (YD)</div></div>
+  <div><div class="lbl">Progress</div><div class="val">0 of 21 challenges opened</div></div><div><div class="lbl">Yashodarshi</div><div class="val">Yashodarshi A (senior)</div></div>
  </div></div>
  <div class="card"><h3><i class="fas fa-receipt"></i>Payment</h3><div class="cb grid2">
   <div><div class="lbl">Status</div><div class="val"><span class="tag tg">paid</span> · Razorpay</div></div><div><div class="lbl">Amount</div><div class="val">₹5,898.82 (₹4,999 + GST)</div></div>
-  <div><div class="lbl">Receipt</div><div class="val">pay_U3Ruq…452gZ</div></div><div><div class="lbl">Funding</div><div class="val">razorpay</div></div>
+  <div><div class="lbl">Receipt</div><div class="val">pay_XXXXX…XXXXX</div></div><div><div class="lbl">Funding</div><div class="val">razorpay</div></div>
  </div></div>
 </div><div class="col1">
  <div class="card"><h3><i class="fas fa-bolt"></i>Actions</h3><div class="cb">
@@ -89,13 +89,13 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
 <section>
 <h2>02 · Request — what, where, who asked, why <span class="flow">→</span></h2>
 <p class="cap">Only active streams at the same price are offered. Batch list filters to the chosen stream; "Auto batch" is the default. Who asked + via + reason are required — no Slack-only decisions.</p>
-<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006/change-stream</span></div>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/{id}/change-stream</span></div>
 <div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a>Batches</a><a class="on">Enrollments</a><a>Students</a></div>
 <div class="main"><div class="ptitle">Change stream · Candidate 7C21A</div>
 <div class="row"><div class="col2"><div class="card new"><h3><i class="fas fa-random"></i>New stream</h3><div class="cb">
  <div class="field"><label>Current stream</label><div class="inp" style="background:var(--g50)">Marks Booster (Class 5–7) · ₹4,999</div></div>
  <div class="field"><label>Move to stream <span class="req">*</span></label><div class="inp sel">JEE Booster — Ultimate Asli Champion 64 · ₹4,999</div><div class="help">Same price only. NEET · JEE · Board Booster · Career Readiness · IAS · KAS shown; different-price streams are hidden (refused by rule <code>stream_change.price_delta</code>).</div></div>
- <div class="field"><label>Batch</label><div class="inp sel">JEE Booster — Ultimate Asli Champion 64 (batch 1888) · Sutirtha (YD)</div><div class="help">Or "Auto batch for this stream".</div></div>
+ <div class="field"><label>Batch</label><div class="inp sel">JEE Booster — Ultimate Asli Champion 64 (batch 2001) · Yashodarshi A (senior)</div><div class="help">Or "Auto batch for this stream".</div></div>
  <div class="grid2"><div class="field"><label>Who asked <span class="req">*</span></label><div class="seg"><span class="on">Parent</span><span>Learner</span><span>Staff</span></div></div>
  <div class="field"><label>Via <span class="req">*</span></label><div class="seg"><span class="on">Call</span><span>WhatsApp</span><span>Email</span><span>In person</span></div></div></div>
  <div class="field"><label>Reason <span class="req">*</span></label><div class="inp" style="height:58px">Parent paid for Marks Booster by mistake; child is a JEE aspirant. Called 23-Nov 08:40.</div><div class="help">At least 10 characters. Recorded on the change history.</div></div>
@@ -108,18 +108,18 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
 <section>
 <h2>03 · Preview — allowed (nothing started) <span class="flow">→</span></h2>
 <p class="cap">Plain before → after. Payment line is stated explicitly. Confirm runs everything in one transaction; any failed check rolls the whole change back.</p>
-<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006/change-stream/preview</span></div>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/{id}/change-stream/preview</span></div>
 <div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a>Batches</a><a class="on">Enrollments</a></div>
 <div class="main"><div class="ptitle">Preview · Candidate 7C21A <span class="tag tg" style="vertical-align:middle">Allowed</span></div>
 <div class="card new"><div class="cb">
 <table class="ba"><tr><th></th><th>Before</th><th></th><th>After</th></tr>
 <tr><td class="lbl">Stream</td><td>Marks Booster (Class 5–7)</td><td class="arrow">→</td><td><b>JEE Booster</b></td></tr>
-<tr><td class="lbl">Batch</td><td>Marks Booster — auto · 29 Nov</td><td class="arrow">→</td><td>Batch 1888</td></tr>
+<tr><td class="lbl">Batch</td><td>Marks Booster — auto · 29 Nov</td><td class="arrow">→</td><td>Batch 2001</td></tr>
 <tr><td class="lbl">Seat</td><td>Seat 612 (0 of 21 opened)</td><td class="arrow">→</td><td>New seat · JEE task set · challenge 1 of 21</td></tr>
-<tr><td class="lbl">Yashodarshi</td><td>Sutirtha (YD)</td><td class="arrow">→</td><td>Sutirtha (YD) · senior ✓</td></tr>
+<tr><td class="lbl">Yashodarshi</td><td>Yashodarshi A (senior)</td><td class="arrow">→</td><td>Yashodarshi A (senior) · senior ✓</td></tr>
 <tr><td class="lbl">Deadline</td><td>18 Dec 2026</td><td class="arrow">→</td><td>19 Dec 2026 <span class="small">(never shortened)</span></td></tr>
 <tr><td class="lbl">Price</td><td>₹4,999</td><td class="arrow">→</td><td>₹4,999</td></tr></table>
-<div class="callout cg"><i class="fas fa-shield-alt"></i><b>Payment: unchanged</b> — ₹5,898.82 · receipt pay_U3Ruq…452gZ · stays on this enrolment.</div>
+<div class="callout cg"><i class="fas fa-shield-alt"></i><b>Payment: unchanged</b> — ₹5,898.82 · receipt pay_XXXXX…XXXXX · stays on this enrolment.</div>
 <div class="callout ci"><i class="fas fa-list-check"></i>Clean-slate checks run before commit: one live seat · nothing pre-filled · old seat closed · nothing left on any desk · learner can open challenge 1.</div>
 <span class="btn bp"><i class="fas fa-check"></i>Confirm change</span> <span class="btn bo">Back</span>
 </div></div></div></div></div>
@@ -129,7 +129,7 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
 <section>
 <h2>04 · Preview — work exists → needs a supervisor <span class="flow">→</span></h2>
 <p class="cap">Stream change = a new challenge. Everything on the old stream is voided (kept, never deleted). The person requesting cannot approve their own request.</p>
-<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006/change-stream/preview</span></div>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/{id}/change-stream/preview</span></div>
 <div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a class="on">Enrollments</a></div>
 <div class="main"><div class="ptitle">Preview · Candidate 7C21A <span class="tag ta" style="vertical-align:middle">Needs approval</span></div>
 <div class="card new"><div class="cb">
@@ -137,9 +137,9 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
 <table class="ba"><tr><th>On the old seat</th><th>Becomes</th></tr>
 <tr><td>Seat 612</td><td><span class="tag tr">superseded</span> · never produces a card</td></tr>
 <tr><td>2 evaluated challenges</td><td><span class="tag tr">superseded</span> · completed marking stays billable</td></tr>
-<tr><td>1 submitted, awaiting marking</td><td><span class="tag tr">voided</span> · removed from Sutirtha's desk now</td></tr>
+<tr><td>1 submitted, awaiting marking</td><td><span class="tag tr">voided</span> · removed from Yashodarshi A's desk now</td></tr>
 <tr><td>Expired / opened rows</td><td><span class="tag tr">voided</span></td></tr></table>
-<div class="callout cg"><i class="fas fa-shield-alt"></i><b>Payment: unchanged</b> — ₹5,898.82 · receipt pay_U3Ruq…452gZ.</div>
+<div class="callout cg"><i class="fas fa-shield-alt"></i><b>Payment: unchanged</b> — ₹5,898.82 · receipt pay_XXXXX…XXXXX.</div>
 <span class="btn bp"><i class="fas fa-paper-plane"></i>Request approval</span> <span class="btn bo">Back</span> <span class="small" style="margin-left:8px">Rule: <code>stream_change.started_needs_approval = true</code></span>
 </div></div></div></div></div>
 </section>
@@ -179,12 +179,12 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
 <section>
 <h2>07 · Done — banner + change history</h2>
 <p class="cap">Every change is one append-only ledger row: from → to, who asked / approved / executed, reason, what was voided. Undo = another change back while the new seat is unstarted.</p>
-<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006</span></div>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/2002</span></div>
 <div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a class="on">Enrollments</a></div>
 <div class="main"><div class="ptitle">Enrollment Details</div>
-<div class="banner"><i class="fas fa-circle-check"></i> Stream changed to <b>JEE Booster</b>. Seat created in batch 1888; learner and Yashodarshi notified. Payment unchanged.</div>
+<div class="banner"><i class="fas fa-circle-check"></i> Stream changed to <b>JEE Booster</b>. Seat created in batch 2001; learner and Yashodarshi notified. Payment unchanged.</div>
 <div class="card new"><h3><i class="fas fa-clock-rotate-left"></i>Change history</h3><div class="cb">
- <div class="hist"><b>24 Nov 2026 10:58</b> · <span class="tag tb">stream change</span> Marks Booster → <b>JEE Booster</b> · batch → 1888 · seat 612 → 640<br>Asked by <b>Parent</b> via Call · requested by Ops Admin · approved by Supervisor · executed by Supervisor<br>Reason: "Parent paid for Marks Booster by mistake; child is a JEE aspirant." · voided: 3 submissions, 2 evaluations · payment unchanged ✓</div>
+ <div class="hist"><b>24 Nov 2026 10:58</b> · <span class="tag tb">stream change</span> Marks Booster → <b>JEE Booster</b> · batch → 2001 · seat 612 → 640<br>Asked by <b>Parent</b> via Call · requested by Ops Admin · approved by Supervisor · executed by Supervisor<br>Reason: "Parent paid for Marks Booster by mistake; child is a JEE aspirant." · voided: 3 submissions, 2 evaluations · payment unchanged ✓</div>
  <div class="hist" style="border-color:var(--g300)"><b>23 Nov 2026 07:50</b> · <span class="tag tg">enrolled</span> Marks Booster · Razorpay ₹5,898.82</div>
 </div></div></div></div></div>
 </section>
@@ -205,7 +205,7 @@ table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-ali
  <div><div class="phone"><div class="pv white">
   <div class="ptop"><i class="fas fa-random"></i>Preview · Candidate 7C21A</div>
   <span class="tag tg">Allowed</span>
-  <div class="pcard" style="margin-top:8px;font-size:12px;line-height:1.7"><span class="lbl">Stream</span><br><span class="strike">Marks Booster</span> → <b>JEE Booster</b><br><span class="lbl">Batch</span><br>→ 1888 · Sutirtha (YD)<br><span class="lbl">Seat</span><br>→ new · challenge 1 of 21<br><span class="lbl">Deadline</span><br>18 Dec → 19 Dec</div>
+  <div class="pcard" style="margin-top:8px;font-size:12px;line-height:1.7"><span class="lbl">Stream</span><br><span class="strike">Marks Booster</span> → <b>JEE Booster</b><br><span class="lbl">Batch</span><br>→ 2001 · Yashodarshi A (senior)<br><span class="lbl">Seat</span><br>→ new · challenge 1 of 21<br><span class="lbl">Deadline</span><br>18 Dec → 19 Dec</div>
   <div class="callout cg" style="font-size:12px"><b>Payment unchanged</b> — ₹5,898.82</div>
   <div class="pbtn">Confirm change</div>
  </div></div><p class="note" style="max-width:290px">Confirm is a full-width thumb-zone button (≥44px).</p></div>
