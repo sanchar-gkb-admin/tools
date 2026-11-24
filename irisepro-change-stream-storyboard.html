@@ -1,0 +1,214 @@
+<title>Change stream — storyboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#FF8A3D;--primary-dark:#E67E35;--primary-light:#FFB380;--secondary:#FFF1E6;--accent:#FFC107;--success:#4CAF50;--info:#2196F3;--card:#fff;
+--g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;--g500:#6b7280;--g700:#374151;--g900:#111827;--red:#dc2626;--redbg:#fef2f2;--grn:#15803d;--grnbg:#f0fdf4;--amb:#b45309;--ambbg:#fffbeb}
+*{box-sizing:border-box}body{margin:0;font-family:Montserrat,system-ui,sans-serif;background:#2b2f36;color:var(--g900)}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 80px}
+header.top{color:#fff;margin-bottom:22px}header.top h1{margin:0 0 6px;font-size:26px;font-weight:800}header.top p{margin:0;color:#c9ced6;font-size:14px;line-height:1.5}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.legend span{font-size:12px;background:#3a3f48;color:#e5e7eb;padding:4px 10px;border-radius:999px}
+section{margin:38px 0}section h2{color:#fff;font-size:18px;margin:0 0 4px}section .cap{color:#c9ced6;font-size:13px;margin:0 0 12px;line-height:1.5}
+.note{color:#ffd8b8;font-size:12px;margin-top:8px}.flow{color:var(--primary);font-weight:800;margin:0 6px}
+.browser{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.chrome{background:#e8eaed;padding:8px 12px;display:flex;align-items:center;gap:8px}.dot{width:11px;height:11px;border-radius:50%}.d1{background:#ff5f57}.d2{background:#febc2e}.d3{background:#28c840}
+.url{flex:1;background:#fff;border-radius:999px;padding:4px 14px;font-size:12px;color:var(--g500);margin-left:8px}
+.app{display:flex;min-height:460px;background:var(--secondary)}
+.side{width:190px;background:var(--primary);color:#fff;padding:16px 0;flex-shrink:0}.side .brand{font-weight:800;padding:0 18px 14px;border-bottom:1px solid rgba(0,0,0,.08);font-size:15px}
+.side a{display:block;padding:9px 18px;font-size:13px;color:#fff;opacity:.92}.side a.on{background:var(--primary-dark);opacity:1;font-weight:700}
+.main{flex:1;padding:18px 22px;min-width:0}.ptitle{font-size:19px;font-weight:700;margin:0 0 14px}
+.card{background:var(--card);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:14px}.card h3{margin:0;padding:12px 18px;border-bottom:1px solid var(--g200);font-size:15px;font-weight:600}
+.card h3 i{color:var(--primary);margin-right:6px}.cb{padding:14px 18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px}.lbl{font-size:12px;color:var(--g500);font-weight:500}.val{font-size:13px;margin-top:2px}
+.row{display:flex;gap:14px}.col2{flex:2;min-width:0}.col1{flex:1;min-width:0}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:7px;font-size:13px;font-weight:600;border:0;cursor:default}
+.bp{background:var(--primary);color:#fff}.bo{background:#fff;color:var(--g700);border:1px solid var(--g300)}.bg{background:var(--success);color:#fff}.br{background:var(--red);color:#fff}.bdis{background:var(--g200);color:var(--g500)}
+.bw{width:100%;justify-content:center;margin-bottom:8px}
+.new{outline:3px dashed var(--info);outline-offset:3px;border-radius:8px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}.tg{background:var(--grnbg);color:var(--grn)}.ta{background:var(--ambbg);color:var(--amb)}.tr{background:var(--redbg);color:var(--red)}.tb{background:#eff6ff;color:#1d4ed8}
+.field{margin-bottom:12px}.field label{display:block;font-size:12px;font-weight:600;color:var(--g700);margin-bottom:4px}.req{color:var(--red)}
+.inp{border:1px solid var(--g300);border-radius:6px;padding:8px 10px;font-size:13px;background:#fff;color:var(--g900)}.inp.ph{color:#9ca3af}.inp.sel:after{content:"\f078";font-family:"Font Awesome 6 Free";font-weight:900;float:right;color:var(--g500);font-size:11px}
+.help{font-size:11px;color:var(--g500);margin-top:3px}
+.seg{display:flex;border:1px solid var(--g300);border-radius:6px;overflow:hidden}.seg span{flex:1;text-align:center;padding:7px;font-size:12px;border-right:1px solid var(--g300)}.seg span:last-child{border:0}.seg .on{background:var(--primary);color:#fff;font-weight:700}
+table.ba{width:100%;border-collapse:collapse;font-size:13px}table.ba th{text-align:left;font-size:11px;color:var(--g500);text-transform:uppercase;letter-spacing:.04em;padding:7px 8px;border-bottom:1px solid var(--g200)}table.ba td{padding:8px;border-bottom:1px solid var(--g100);vertical-align:top}
+.arrow{color:var(--primary);font-weight:800}.strike{color:var(--g500);text-decoration:line-through}
+.callout{border-radius:8px;padding:11px 14px;font-size:13px;line-height:1.5;margin:10px 0}.cg{background:var(--grnbg);border:1px solid #86efac;color:#14532d}.cr{background:var(--redbg);border:1px solid #fca5a5;color:#7f1d1d}.ca{background:var(--ambbg);border:1px solid #fcd34d;color:#78350f}.ci{background:#eff6ff;border:1px solid #93c5fd;color:#1e3a8a}
+.callout b{font-weight:700}.callout i{margin-right:6px}
+.refgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.q{border:1px solid var(--g200);border-radius:8px;padding:12px;margin-bottom:10px;background:#fff}
+.hist{border-left:3px solid var(--primary);padding:8px 12px;margin-bottom:10px;background:var(--g50);border-radius:0 6px 6px 0;font-size:12px;line-height:1.55}
+.banner{background:#dcfce7;border:1px solid #4ade80;color:#14532d;padding:10px 14px;border-radius:7px;font-size:13px;margin-bottom:14px}
+.phones{display:flex;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.phone{width:290px;background:#111;border-radius:38px;padding:10px;box-shadow:0 12px 40px rgba(0,0,0,.5);position:relative}.phone:before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:110px;height:22px;background:#111;border-radius:0 0 14px 14px;z-index:2}
+.pv{background:var(--secondary);border-radius:30px;height:580px;overflow:hidden;padding:38px 14px 14px;position:relative}
+.pv.white{background:#fff}.ptop{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:12px}.ptop i{color:var(--primary)}
+.pcard{background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:10px}
+.prog{height:8px;background:var(--g200);border-radius:99px;overflow:hidden;margin:8px 0}.prog b{display:block;height:100%;width:0;background:var(--primary)}
+.chal{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;border:1px solid var(--g200);margin-bottom:8px;background:#fff;font-size:12px}.chal .n{width:26px;height:26px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+.chal.next{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-light)}.chal.next .n{background:var(--primary);color:#fff}.chal.lock{opacity:.5}
+.pbtn{position:absolute;left:14px;right:14px;bottom:18px;background:var(--primary);color:#fff;text-align:center;padding:13px;border-radius:12px;font-weight:700;font-size:14px}
+.small{font-size:11px;color:var(--g500)}
+@media(max-width:820px){.app{flex-direction:column}.side{width:100%;display:flex;overflow:auto;padding:8px}.side .brand{display:none}.row,.refgrid,.grid2{display:block}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>Change stream — superadmin process</h1>
+  <p>From the merged spec <i>2026-11-24-learner-placement-and-stream-change-design.md</i> (§5, §5.1a–c, §5.2). Same enrolment row, payment untouched, old stream superseded and voided, learner lands on a clean slate. Worked example: the 23-Nov case — <b>Marks Booster ₹4,999 → JEE ₹4,999</b>, batch 1888, Yashodarshi Sutirtha (YD). Learner shown as a Candidate code.</p>
+  <div class="legend"><span>01 Entry</span><span>02 Request</span><span>03 Preview · allowed</span><span>04 Preview · needs approval</span><span>05 Preview · refused</span><span>06 Approval queue</span><span>07 Done + history</span><span>08 Learner after</span><span>09 Mobile preview</span><span style="background:#1e3a8a">dashed blue = new UI</span></div>
+</header>
+
+<!-- 01 -->
+<section>
+<h2>01 · Enrolment page — two new actions</h2>
+<p class="cap">Existing Enrolment Details page. "Change stream" and "Move batch" are the only doors; Revoke on a paid learner now refuses and points here.</p>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006</span></div>
+<div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a>Batches</a><a class="on">Enrollments</a><a>Students</a><a>Yashodarshis</a><a>Approvals <span class="tag tr" style="margin-left:4px">1</span></a></div>
+<div class="main"><div class="ptitle">Enrollment Details</div>
+<div class="row"><div class="col2">
+ <div class="card"><h3><i class="fas fa-user"></i>Learner</h3><div class="cb grid2">
+  <div><div class="lbl">Candidate</div><div class="val">Candidate 7C21A</div></div><div><div class="lbl">Stream</div><div class="val">Marks Booster (Class 5–7) · ₹4,999</div></div>
+  <div><div class="lbl">Batch</div><div class="val">Marks Booster — auto · 29 Nov 2026</div></div><div><div class="lbl">Onboarding</div><div class="val"><span class="tag tg">complete</span></div></div>
+  <div><div class="lbl">Progress</div><div class="val">0 of 21 challenges opened</div></div><div><div class="lbl">Yashodarshi</div><div class="val">Sutirtha (YD)</div></div>
+ </div></div>
+ <div class="card"><h3><i class="fas fa-receipt"></i>Payment</h3><div class="cb grid2">
+  <div><div class="lbl">Status</div><div class="val"><span class="tag tg">paid</span> · Razorpay</div></div><div><div class="lbl">Amount</div><div class="val">₹5,898.82 (₹4,999 + GST)</div></div>
+  <div><div class="lbl">Receipt</div><div class="val">pay_U3Ruq…452gZ</div></div><div><div class="lbl">Funding</div><div class="val">razorpay</div></div>
+ </div></div>
+</div><div class="col1">
+ <div class="card"><h3><i class="fas fa-bolt"></i>Actions</h3><div class="cb">
+  <div class="new" style="padding:6px"><span class="btn bp bw"><i class="fas fa-random"></i>Change stream</span><span class="btn bo bw"><i class="fas fa-people-arrows"></i>Move batch</span></div>
+  <span class="btn bo bw"><i class="fas fa-calendar-plus"></i>Grant extension</span>
+  <span class="btn bdis bw" title="Paid learner"><i class="fas fa-ban"></i>Revoke access</span>
+  <div class="help">Revoke is disabled for a paid learner — use Change stream, or Refund.</div>
+ </div></div>
+</div></div></div></div></div>
+</section>
+
+<!-- 02 -->
+<section>
+<h2>02 · Request — what, where, who asked, why <span class="flow">→</span></h2>
+<p class="cap">Only active streams at the same price are offered. Batch list filters to the chosen stream; "Auto batch" is the default. Who asked + via + reason are required — no Slack-only decisions.</p>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006/change-stream</span></div>
+<div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a>Batches</a><a class="on">Enrollments</a><a>Students</a></div>
+<div class="main"><div class="ptitle">Change stream · Candidate 7C21A</div>
+<div class="row"><div class="col2"><div class="card new"><h3><i class="fas fa-random"></i>New stream</h3><div class="cb">
+ <div class="field"><label>Current stream</label><div class="inp" style="background:var(--g50)">Marks Booster (Class 5–7) · ₹4,999</div></div>
+ <div class="field"><label>Move to stream <span class="req">*</span></label><div class="inp sel">JEE Booster — Ultimate Asli Champion 64 · ₹4,999</div><div class="help">Same price only. NEET · JEE · Board Booster · Career Readiness · IAS · KAS shown; different-price streams are hidden (refused by rule <code>stream_change.price_delta</code>).</div></div>
+ <div class="field"><label>Batch</label><div class="inp sel">JEE Booster — Ultimate Asli Champion 64 (batch 1888) · Sutirtha (YD)</div><div class="help">Or "Auto batch for this stream".</div></div>
+ <div class="grid2"><div class="field"><label>Who asked <span class="req">*</span></label><div class="seg"><span class="on">Parent</span><span>Learner</span><span>Staff</span></div></div>
+ <div class="field"><label>Via <span class="req">*</span></label><div class="seg"><span class="on">Call</span><span>WhatsApp</span><span>Email</span><span>In person</span></div></div></div>
+ <div class="field"><label>Reason <span class="req">*</span></label><div class="inp" style="height:58px">Parent paid for Marks Booster by mistake; child is a JEE aspirant. Called 23-Nov 08:40.</div><div class="help">At least 10 characters. Recorded on the change history.</div></div>
+ <span class="btn bp"><i class="fas fa-eye"></i>Preview change</span> <span class="btn bo">Cancel</span>
+</div></div></div><div class="col1"><div class="callout ci"><i class="fas fa-info-circle"></i>Nothing changes until you confirm on the next screen. Payment is never touched by this action.</div></div></div>
+</div></div></div>
+</section>
+
+<!-- 03 -->
+<section>
+<h2>03 · Preview — allowed (nothing started) <span class="flow">→</span></h2>
+<p class="cap">Plain before → after. Payment line is stated explicitly. Confirm runs everything in one transaction; any failed check rolls the whole change back.</p>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006/change-stream/preview</span></div>
+<div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a>Batches</a><a class="on">Enrollments</a></div>
+<div class="main"><div class="ptitle">Preview · Candidate 7C21A <span class="tag tg" style="vertical-align:middle">Allowed</span></div>
+<div class="card new"><div class="cb">
+<table class="ba"><tr><th></th><th>Before</th><th></th><th>After</th></tr>
+<tr><td class="lbl">Stream</td><td>Marks Booster (Class 5–7)</td><td class="arrow">→</td><td><b>JEE Booster</b></td></tr>
+<tr><td class="lbl">Batch</td><td>Marks Booster — auto · 29 Nov</td><td class="arrow">→</td><td>Batch 1888</td></tr>
+<tr><td class="lbl">Seat</td><td>Seat 612 (0 of 21 opened)</td><td class="arrow">→</td><td>New seat · JEE task set · challenge 1 of 21</td></tr>
+<tr><td class="lbl">Yashodarshi</td><td>Sutirtha (YD)</td><td class="arrow">→</td><td>Sutirtha (YD) · senior ✓</td></tr>
+<tr><td class="lbl">Deadline</td><td>18 Dec 2026</td><td class="arrow">→</td><td>19 Dec 2026 <span class="small">(never shortened)</span></td></tr>
+<tr><td class="lbl">Price</td><td>₹4,999</td><td class="arrow">→</td><td>₹4,999</td></tr></table>
+<div class="callout cg"><i class="fas fa-shield-alt"></i><b>Payment: unchanged</b> — ₹5,898.82 · receipt pay_U3Ruq…452gZ · stays on this enrolment.</div>
+<div class="callout ci"><i class="fas fa-list-check"></i>Clean-slate checks run before commit: one live seat · nothing pre-filled · old seat closed · nothing left on any desk · learner can open challenge 1.</div>
+<span class="btn bp"><i class="fas fa-check"></i>Confirm change</span> <span class="btn bo">Back</span>
+</div></div></div></div></div>
+</section>
+
+<!-- 04 -->
+<section>
+<h2>04 · Preview — work exists → needs a supervisor <span class="flow">→</span></h2>
+<p class="cap">Stream change = a new challenge. Everything on the old stream is voided (kept, never deleted). The person requesting cannot approve their own request.</p>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006/change-stream/preview</span></div>
+<div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Dashboard</a><a class="on">Enrollments</a></div>
+<div class="main"><div class="ptitle">Preview · Candidate 7C21A <span class="tag ta" style="vertical-align:middle">Needs approval</span></div>
+<div class="card new"><div class="cb">
+<div class="callout cr"><i class="fas fa-triangle-exclamation"></i><b>3 submissions and 2 evaluations on Marks Booster will be voided.</b> The learner starts JEE Booster from challenge 1 with a fresh deadline. Voided work stays on record for audit; it never appears on a desk, a card or the learner's screens.</div>
+<table class="ba"><tr><th>On the old seat</th><th>Becomes</th></tr>
+<tr><td>Seat 612</td><td><span class="tag tr">superseded</span> · never produces a card</td></tr>
+<tr><td>2 evaluated challenges</td><td><span class="tag tr">superseded</span> · completed marking stays billable</td></tr>
+<tr><td>1 submitted, awaiting marking</td><td><span class="tag tr">voided</span> · removed from Sutirtha's desk now</td></tr>
+<tr><td>Expired / opened rows</td><td><span class="tag tr">voided</span></td></tr></table>
+<div class="callout cg"><i class="fas fa-shield-alt"></i><b>Payment: unchanged</b> — ₹5,898.82 · receipt pay_U3Ruq…452gZ.</div>
+<span class="btn bp"><i class="fas fa-paper-plane"></i>Request approval</span> <span class="btn bo">Back</span> <span class="small" style="margin-left:8px">Rule: <code>stream_change.started_needs_approval = true</code></span>
+</div></div></div></div></div>
+</section>
+
+<!-- 05 -->
+<section>
+<h2>05 · Preview — refused (no confirm button; next step named)</h2>
+<p class="cap">Refusals write nothing. Each says exactly why and what to do instead.</p>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/…/change-stream/preview</span></div>
+<div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a class="on">Enrollments</a></div>
+<div class="main"><div class="ptitle">Preview · <span class="tag tr" style="vertical-align:middle">Refused</span></div>
+<div class="refgrid new" style="padding:6px">
+ <div class="callout cr"><b><i class="fas fa-stopwatch"></i>A challenge timer is running</b><br>"THE REAL ME" ends in 12 min. Changing now would burn the attempt.<br><b>Next:</b> try again after 14:32.</div>
+ <div class="callout cr"><b><i class="fas fa-id-card"></i>Scorecard already made</b><br>Marks Booster was completed and a card was generated on 12 Nov.<br><b>Next:</b> a new stream is a new purchase.</div>
+ <div class="callout cr"><b><i class="fas fa-indian-rupee-sign"></i>Different price</b><br>NEET–JEE 2X is ₹7,999; this enrolment is ₹4,999.<br><b>Next:</b> top-up link (coming) or refund and re-purchase.</div>
+ <div class="callout cr"><b><i class="fas fa-clone"></i>Already enrolled on JEE Booster</b><br>Enrolment #1012 (paid) exists for this learner.<br><b>Next:</b> open #1012; refund this one if it was a duplicate.</div>
+</div>
+<span class="btn bo" style="margin-top:8px">Back to enrolment</span>
+</div></div></div>
+</section>
+
+<!-- 06 -->
+<section>
+<h2>06 · Approval queue (supervisor) <span class="flow">→</span></h2>
+<p class="cap">Approve re-runs the preview; if anything changed since (stale), it refuses and asks for a fresh preview. Reject needs a reason.</p>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/stream-changes/approvals</span></div>
+<div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a>Enrollments</a><a class="on">Approvals <span class="tag tr" style="margin-left:4px">1</span></a></div>
+<div class="main"><div class="ptitle">Stream changes awaiting approval</div>
+<div class="q new"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><div><b>Candidate 7C21A</b> · Marks Booster <span class="arrow">→</span> JEE Booster <span class="tag ta">3 submissions · 2 evaluations voided</span></div><span class="small">requested by Ops Admin · 24 Nov 10:52</span></div>
+<div class="small" style="margin:6px 0">Asked by Parent via Call · "Parent paid for Marks Booster by mistake; child is a JEE aspirant."</div>
+<div class="callout cg" style="margin:6px 0"><i class="fas fa-shield-alt"></i>Payment unchanged — ₹5,898.82</div>
+<span class="btn bg"><i class="fas fa-check"></i>Approve &amp; apply</span> <span class="btn bo"><i class="fas fa-xmark"></i>Reject…</span> <span class="small" style="margin-left:6px">You cannot approve a request you made.</span></div>
+</div></div></div>
+</section>
+
+<!-- 07 -->
+<section>
+<h2>07 · Done — banner + change history</h2>
+<p class="cap">Every change is one append-only ledger row: from → to, who asked / approved / executed, reason, what was voided. Undo = another change back while the new seat is unstarted.</p>
+<div class="browser"><div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="url">app.irisepro.in/superadmin/enrollments/1006</span></div>
+<div class="app"><div class="side"><div class="brand">iRisePro Admin</div><a class="on">Enrollments</a></div>
+<div class="main"><div class="ptitle">Enrollment Details</div>
+<div class="banner"><i class="fas fa-circle-check"></i> Stream changed to <b>JEE Booster</b>. Seat created in batch 1888; learner and Yashodarshi notified. Payment unchanged.</div>
+<div class="card new"><h3><i class="fas fa-clock-rotate-left"></i>Change history</h3><div class="cb">
+ <div class="hist"><b>24 Nov 2026 10:58</b> · <span class="tag tb">stream change</span> Marks Booster → <b>JEE Booster</b> · batch → 1888 · seat 612 → 640<br>Asked by <b>Parent</b> via Call · requested by Ops Admin · approved by Supervisor · executed by Supervisor<br>Reason: "Parent paid for Marks Booster by mistake; child is a JEE aspirant." · voided: 3 submissions, 2 evaluations · payment unchanged ✓</div>
+ <div class="hist" style="border-color:var(--g300)"><b>23 Nov 2026 07:50</b> · <span class="tag tg">enrolled</span> Marks Booster · Razorpay ₹5,898.82</div>
+</div></div></div></div></div>
+</section>
+
+<!-- 08 + 09 -->
+<section>
+<h2>08 · Learner after the change &nbsp;·&nbsp; 09 · Preview on a 390px phone</h2>
+<p class="cap">Learner sees only the new stream: challenge 1 of 21, nothing done, can open and submit straight away. The admin preview stacks cleanly on mobile.</p>
+<div class="phones">
+ <div><div class="phone"><div class="pv">
+  <div class="ptop"><i class="fas fa-house"></i>My challenges</div>
+  <div class="pcard"><div class="small">Your programme</div><div style="font-weight:800;font-size:15px">JEE Booster</div><div class="prog"><b></b></div><div class="small">0 of 21 done · deadline 19 Dec</div></div>
+  <div class="chal next"><span class="n">1</span><div><b>THE REAL ME — MY JEE JOURNEY</b><div class="small">Video · 90 s · keep it ready before you open</div></div></div>
+  <div class="chal lock"><span class="n">2</span><div>CAN YOU PREDICT THE NEXT DANGER ZONE?</div></div>
+  <div class="chal lock"><span class="n">3</span><div>Challenge 3</div></div>
+  <div class="pbtn">Start challenge 1</div>
+ </div></div><p class="note" style="max-width:290px">No Marks Booster anywhere. Gates pass: onboarding, consent, sequence, open window.</p></div>
+ <div><div class="phone"><div class="pv white">
+  <div class="ptop"><i class="fas fa-random"></i>Preview · Candidate 7C21A</div>
+  <span class="tag tg">Allowed</span>
+  <div class="pcard" style="margin-top:8px;font-size:12px;line-height:1.7"><span class="lbl">Stream</span><br><span class="strike">Marks Booster</span> → <b>JEE Booster</b><br><span class="lbl">Batch</span><br>→ 1888 · Sutirtha (YD)<br><span class="lbl">Seat</span><br>→ new · challenge 1 of 21<br><span class="lbl">Deadline</span><br>18 Dec → 19 Dec</div>
+  <div class="callout cg" style="font-size:12px"><b>Payment unchanged</b> — ₹5,898.82</div>
+  <div class="pbtn">Confirm change</div>
+ </div></div><p class="note" style="max-width:290px">Confirm is a full-width thumb-zone button (≥44px).</p></div>
+</div>
+</section>
+</div>
