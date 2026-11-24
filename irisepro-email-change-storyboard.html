@@ -1,0 +1,140 @@
+<title>YASHHO · Learner email change — storyboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Sans+Kannada:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--o:#FF8A3D;--od:#E67E35;--ol:#FFB380;--cream:#FFF1E6;--sand:#EFCAA6;--ink:#1f2937;--mut:#6b7280;--line:#e5e7eb;--ok:#4CAF50;--blue:#2196F3;--red:#dc2626;--amber:#FFC107}
+*{box-sizing:border-box}body{margin:0;font-family:Montserrat,system-ui,sans-serif;background:#f6efe8;color:var(--ink)}
+header{background:var(--o);color:#fff;padding:22px 28px}header h1{margin:0;font-size:22px;font-weight:800}header p{margin:6px 0 0;font-size:13px;opacity:.95}
+.wrap{max-width:1180px;margin:0 auto;padding:22px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;font-weight:700;margin:4px 0 22px}.flow span{background:#fff;border:1px solid var(--sand);border-radius:999px;padding:5px 10px}.flow b{color:var(--o)}
+section{background:#fff;border-radius:14px;padding:18px 20px;margin:0 0 22px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+section h2{margin:0 0 4px;font-size:16px;font-weight:800}section h2 em{font-style:normal;color:var(--o)}.cap{margin:0 0 14px;font-size:13px;color:var(--mut)}
+.row{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.phone{width:282px;border:9px solid #111;border-radius:34px;background:var(--cream);position:relative;overflow:hidden;flex:none}
+.phone:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:20px;background:#111;border-radius:0 0 14px 14px;z-index:2}
+.pv{height:560px;overflow:auto;padding:30px 14px 14px;font-size:12.5px}
+.appbar{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--od);margin-bottom:12px}.appbar i{font-style:normal;background:var(--o);color:#fff;border-radius:8px;padding:2px 7px;font-size:11px}
+.card{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #f3e1cf}
+.lbl{font-size:11px;color:var(--mut)}.val{font-weight:600;margin-top:2px;word-break:break-all}
+.kn{font-family:'Noto Sans Kannada',sans-serif;font-size:11px;color:var(--mut)}
+.link{color:var(--od);font-weight:700;text-decoration:underline;font-size:12px}
+.field{border:1px solid #d1d5db;border-radius:10px;background:#fff;padding:10px;margin:4px 0 10px;color:#9ca3af}.field.f{color:var(--ink)}
+.btn{display:block;text-align:center;background:linear-gradient(180deg,var(--o),var(--od));color:#fff;font-weight:800;border-radius:12px;padding:12px;min-height:44px}
+.btn.g{background:#fff;color:var(--ink);border:1px solid #d1d5db}.btn.r{background:#fff;color:var(--red);border:1px solid #fecaca}
+.code{display:flex;gap:6px;justify-content:center;margin:10px 0}.code b{width:34px;height:42px;border:1.5px solid var(--o);border-radius:9px;display:grid;place-items:center;font-size:18px;background:#fff}
+.note{font-size:11.5px;border-radius:10px;padding:9px 10px;margin:8px 0}.note.ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}.note.warn{background:#fffbeb;color:#92400e;border:1px solid #fde68a}.note.bad{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}.note.info{background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+.pill{display:inline-block;font-size:10.5px;font-weight:700;border-radius:999px;padding:3px 8px}.pill.p{background:#fff7ed;color:var(--od);border:1px solid var(--ol)}
+.browser{flex:1;min-width:560px;border:1px solid #d6d3d1;border-radius:12px;overflow:hidden;background:var(--cream)}
+.bar{background:#f3f4f6;padding:8px 10px;display:flex;align-items:center;gap:6px}.bar i{width:10px;height:10px;border-radius:50%;background:#d1d5db;display:inline-block}.url{flex:1;margin-left:8px;background:#fff;border-radius:999px;padding:4px 12px;font-size:11px;color:var(--mut)}
+.adm{display:flex;min-height:430px}.side{width:170px;background:var(--o);color:#fff;padding:14px 10px;font-size:12px;font-weight:600}.side div{padding:7px 9px;border-radius:8px;margin-bottom:3px}.side .on{background:var(--od)}
+.main{flex:1;padding:16px;font-size:12.5px}.tabs{display:flex;gap:6px;margin-bottom:12px}.tabs span{padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--sand);font-weight:700;font-size:12px}.tabs .on{background:var(--o);color:#fff;border-color:var(--o)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:top}th{color:var(--mut);font-weight:600;background:#fafafa}
+.ab{display:inline-block;padding:6px 10px;border-radius:8px;font-weight:700;font-size:11.5px;margin:2px 4px 2px 0}.ab.y{background:var(--o);color:#fff}.ab.n{background:#f3f4f6}
+.mail{flex:1;min-width:300px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:12.5px}.mail .h{padding:10px 12px;border-bottom:1px solid var(--line);background:#fafafa}.mail .h b{display:block}.mail .b{padding:12px;line-height:1.5}
+.tag{font-size:10.5px;font-weight:800;color:#fff;background:var(--blue);border-radius:6px;padding:2px 6px;margin-right:6px}
+.arrow{align-self:center;font-size:26px;color:var(--o);font-weight:800}
+footer{font-size:12px;color:var(--mut);text-align:center;padding:10px 0 30px}
+</style>
+
+<header><h1>Learner email change — request · verify · admin approval</h1>
+<p>Design: docs/superpowers/specs/2026-11-24-learner-email-change-design.md (PR #2163). Child only. All names, emails and ids on this page are invented.</p></header>
+<div class="wrap">
+<div class="flow"><span><b>01</b> Profile</span><span><b>02</b> New address</span><span><b>03</b> Code to NEW address</span><span><b>04</b> Pending</span><span><b>05</b> Refusals</span><span><b>06</b> Admin approves</span><span><b>07</b> Admin student page</span><span><b>08</b> Emails</span><span><b>09</b> New email logs in · old does not</span></div>
+
+<section><h2><em>01</em> · Learner profile — "Change email"</h2><p class="cap">Email is shown, not editable. One link starts the request. Kannada label beside every string.</p>
+<div class="row"><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> My profile</div>
+<div class="card"><div class="lbl">Name</div><div class="val">Aarav S.</div></div>
+<div class="card"><div class="lbl">Email · <span class="kn">ಇಮೇಲ್</span></div><div class="val">aarav.parent@example.com</div>
+<div style="margin-top:8px"><span class="link">Change email</span> <span class="kn">· ಇಮೇಲ್ ಬದಲಾಯಿಸಿ</span></div></div>
+<div class="card"><div class="lbl">Programme</div><div class="val">JEE Booster · ₹4,999</div></div>
+<div class="note info">You log in with this email. Changing it needs an admin's approval.<br><span class="kn">ಈ ಇಮೇಲ್‌ನಿಂದ ನೀವು ಲಾಗಿನ್ ಆಗುತ್ತೀರಿ. ಬದಲಾವಣೆಗೆ ನಿರ್ವಾಹಕರ ಅನುಮೋದನೆ ಬೇಕು.</span></div>
+</div></div></div></section>
+
+<section><h2><em>02</em> · New address + reason</h2><p class="cap">We send a code to the NEW address — proof they control it before any admin sees the request.</p>
+<div class="row"><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Change email</div>
+<div class="lbl">Current email</div><div class="field f" style="background:#f9fafb">aarav.parent@example.com</div>
+<div class="lbl">New email · <span class="kn">ಹೊಸ ಇಮೇಲ್</span></div><div class="field f">aarav@example.com</div>
+<div class="lbl">Why? (at least 10 characters)</div><div class="field f">Aarav now has his own email for school</div>
+<div class="note warn">Only <b>this learner's</b> login changes. Brothers or sisters using the same email keep using it.</div>
+<span class="btn">Send code to new email</span>
+</div></div></div></section>
+
+<section><h2><em>03</em> · Enter the 6-digit code</h2><p class="cap">Code valid 15 minutes; 5 tries, then a 30-minute lock. Resend available.</p>
+<div class="row"><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Check your new email</div>
+<p style="margin:0 0 6px">We sent a code to <b>aarav@example.com</b>.</p>
+<div class="code"><b>4</b><b>8</b><b>1</b><b>2</b><b>7</b><b></b></div>
+<div class="note warn">That code didn't match — 3 tries left.</div>
+<span class="btn">Confirm</span><p style="text-align:center;margin:10px 0 0"><span class="link">Resend code</span> · <span class="lbl">valid 14 min</span></p>
+</div></div><div class="arrow">→</div><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Request sent</div>
+<div class="note ok"><b>Request sent.</b> An admin will review it. You keep logging in with your current email until it's approved.<br><span class="kn">ವಿನಂತಿ ಕಳುಹಿಸಲಾಗಿದೆ.</span></div>
+<p class="lbl">We've also told aarav.parent@example.com, in case this wasn't you.</p>
+<span class="btn g">Back to profile</span>
+</div></div></div></section>
+
+<section><h2><em>04</em> · Profile while the request is pending</h2><p class="cap">Visible state + Cancel. A new request replaces the pending one; undecided requests expire after 7 days.</p>
+<div class="row"><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> My profile</div>
+<div class="card"><div class="lbl">Email</div><div class="val">aarav.parent@example.com</div>
+<div style="margin-top:8px"><span class="pill p">Change to aarav@example.com — waiting for approval</span></div>
+<div style="margin-top:8px"><span class="link" style="color:var(--red)">Cancel request</span></div></div>
+</div></div></div></section>
+
+<section><h2><em>05</em> · Refusals</h2><p class="cap">Each names the next step. Nothing is created.</p>
+<div class="row"><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Change email</div>
+<div class="lbl">New email</div><div class="field f">riya.k@example.com</div>
+<div class="note bad"><b>That email is already linked to another learner.</b> Use a different email, or contact support if it's yours.</div>
+<span class="btn" style="opacity:.5">Send code to new email</span>
+</div></div><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Check your new email</div>
+<div class="code"><b>·</b><b>·</b><b>·</b><b>·</b><b>·</b><b>·</b></div>
+<div class="note bad"><b>Too many wrong tries.</b> For safety, try again in 30 minutes — or ask for a new code then.</div>
+<div class="note bad"><b>This code has expired.</b> Tap Resend to get a new one.</div>
+</div></div></div></section>
+
+<section><h2><em>06</em> · Admin ▸ Approvals ▸ Email changes</h2><p class="cap">Same Approvals area as stream changes. Only verified requests appear. Reject needs a reason (sent to the learner).</p>
+<div class="row"><div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">app.example.com/superadmin/approvals/email-changes</span></div>
+<div class="adm"><div class="side"><div>Dashboard</div><div>Manage Enrollments</div><div class="on">Approvals · 2</div><div>Batches</div></div>
+<div class="main"><div class="tabs"><span>Stream changes</span><span class="on">Email changes · 1</span></div>
+<table><tr><th>#</th><th>Learner</th><th>Old → new</th><th>Verified</th><th>Reason</th><th></th></tr>
+<tr><td>12</td><td>Candidate 7C21A<br><span class="lbl">Aarav S.</span></td><td>aarav.parent@example.com<br>→ <b>aarav@example.com</b></td><td>24 Nov 18:42<br><span class="lbl">code confirmed</span></td><td>Aarav now has his own email for school</td>
+<td><span class="ab y">Approve</span><br><span class="field f" style="display:block;font-size:11px;padding:6px">Reason for rejecting…</span><span class="ab n">Reject</span></td></tr></table>
+<div class="note info" style="margin-top:10px">Approving changes <b>this learner only</b>. Siblings on the old email are not touched. Payments, receipts and consents are not changed.</div>
+</div></div></div></div></section>
+
+<section><h2><em>07</em> · Admin ▸ Student page</h2><p class="cap">Email is read-only (an admin cannot type one). A badge links to the pending request.</p>
+<div class="row"><div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">app.example.com/superadmin/students/edit</span></div>
+<div class="adm"><div class="side"><div>Dashboard</div><div class="on">Students</div><div>Approvals · 2</div></div>
+<div class="main"><div class="lbl">Full name</div><div class="field f">Aarav S.</div>
+<div class="lbl">Email (login identity — read-only)</div><div class="field f" style="background:#f3f4f6">aarav.parent@example.com &nbsp; <span class="pill p">Change pending → aarav@example.com</span></div>
+<div class="note warn">A learner's email cannot be changed here. The learner requests it in the app; it is approved in Approvals ▸ Email changes.</div>
+<div class="lbl">Phone</div><div class="field f">+91 9•••••••12</div>
+</div></div></div></div></section>
+
+<section><h2><em>08</em> · The emails</h2><p class="cap">Code to the new address; a heads-up to the old address; the result to both.</p>
+<div class="row">
+<div class="mail"><div class="h"><span class="tag">to new</span><b>Your YASHHO email-change code</b><span class="lbl">To: aarav@example.com</span></div><div class="b">Your code is <b>48127•</b>. It expires in 15 minutes. If you didn't ask to use this email for YASHHO, ignore this message.</div></div>
+<div class="mail"><div class="h"><span class="tag" style="background:var(--amber);color:#111">to old</span><b>A change to your YASHHO login email was requested</b><span class="lbl">To: aarav.parent@example.com</span></div><div class="b">Someone asked to change Aarav's login email to a•••v@example.com. An admin will review it. <b>Not you?</b> Reply or contact support before it is approved.</div></div>
+<div class="mail"><div class="h"><span class="tag" style="background:var(--ok)">to both</span><b>Login email updated</b><span class="lbl">To: aarav.parent@example.com, aarav@example.com</span></div><div class="b">Aarav now logs in with <b>aarav@example.com</b>. The old email no longer opens Aarav's account. (If rejected: "Your request was not approved — reason: …")</div></div>
+</div></section>
+
+<section><h2><em>09</em> · After approval — new email logs in, old one does not</h2><p class="cap">Guaranteed by the login rules (spec §4); each panel is a test.</p>
+<div class="row"><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Log in</div><div class="lbl">Email</div><div class="field f">aarav@example.com</div><span class="btn">Send login code</span>
+<div class="note ok" style="margin-top:12px"><b>✓ Lands on Aarav's dashboard</b> — JEE Booster, his own progress.</div>
+</div></div><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Session ended</div>
+<div class="note warn"><b>Your login email changed — please log in with your new email.</b><br><span class="kn">ನಿಮ್ಮ ಲಾಗಿನ್ ಇಮೇಲ್ ಬದಲಾಗಿದೆ — ಹೊಸ ಇಮೇಲ್‌ನಿಂದ ಲಾಗಿನ್ ಆಗಿ.</span></div>
+<p class="lbl">Shown to any browser still logged in as Aarav through the old email. The mobile app's token is revoked.</p><span class="btn">Log in</span>
+</div></div><div class="phone"><div class="pv">
+<div class="appbar"><i>YASHHO</i> Choose a learner</div>
+<p class="lbl">Logged in with aarav.parent@example.com</p>
+<div class="card"><div class="val">Diya S.</div><div class="lbl">Marks Booster</div></div>
+<div class="note info">Aarav is no longer on this email. His sister Diya keeps logging in exactly as before.</div>
+</div></div></div></section>
+
+<footer>Storyboard · invented data only · YASHHO theme (orange #FF8A3D · cream #FFF1E6 · Montserrat; Kannada in Noto Sans Kannada)</footer>
+</div>
