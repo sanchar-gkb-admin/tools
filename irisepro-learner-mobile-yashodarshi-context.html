@@ -1,0 +1,199 @@
+<title>Learner Mobile & Yashodarshi Context</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --sa-orange:#FF8A3D; --sa-cream:#FFF1E6; --sa-soft:#FFB380; --white:#FFFFFF; --g200:#e5e7eb; --g500:#6b7280; --g800:#1f2937;
+  --ob-cream:#F1E6D9; --ob-coral:#FF6B57; --ob-ink:#2a2622; --ob-paper:#FFFDFA;
+  --yd-paper:#F5EFE3; --yd-card:#FCFAF3; --yd-ink:#241E14; --yd-soft:#6B6152; --yd-muted:#A0957F; --yd-line:#E6DDCB; --yd-accent:#E8611F; --yd-ok:#4E9A5F; --yd-due:#C4462F;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; --sans:"Montserrat",system-ui,sans-serif;
+  --page:#eee7dc; --wa:#25D366; --bad:#dc2626; --warn:#b45309;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--page);font-family:var(--sans);color:var(--g800);padding:24px max(16px,env(safe-area-inset-right,0px)) 60px max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:1180px;margin:0 auto}
+header.top h1{font-size:28px;font-weight:800;margin:0 0 6px} header.top p{margin:0;color:var(--g500);max-width:820px;font-size:14px;line-height:1.5}
+.part{margin-top:42px;padding-top:18px;border-top:3px solid var(--sa-orange)} .part h2{font-size:20px;margin:0 0 4px} .part .src{font-size:12px;color:var(--g500);margin:0 0 6px}
+.ruling{background:#fff;border-left:4px solid var(--yd-accent);padding:10px 14px;font-size:13px;margin:10px 0 0;border-radius:6px}
+.screen{margin-top:26px} .screen h3{font-size:15px;margin:0 0 4px} .cap{font-size:13px;color:var(--g500);margin:0 0 12px}
+.row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start} .row>*{min-width:0}
+.note{font-size:12px;color:var(--g500);margin-top:8px;max-width:520px}
+.browser{background:#fff;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.12);overflow:hidden;flex:1 1 640px;max-width:780px}
+.chrome{background:#e9e4dc;padding:8px 10px;display:flex;gap:6px;align-items:center}.chrome i{width:10px;height:10px;border-radius:50%;background:#cfc6b8}.chrome span{margin-left:10px;background:#fff;border-radius:10px;font-size:11px;padding:3px 10px;color:var(--g500);flex:1}
+.phone{width:280px;flex:0 0 280px;background:#111;border-radius:34px;padding:9px;box-shadow:0 10px 30px rgba(0,0,0,.18)} .phone .scr{border-radius:26px;overflow:hidden;height:560px;position:relative} .notch{width:90px;height:20px;background:#111;border-radius:0 0 12px 12px;margin:0 auto;position:absolute;left:0;right:0;top:0;z-index:2}
+/* superadmin shell */
+.sa{display:flex;min-height:380px;font-size:12px}.sa nav{width:150px;background:var(--sa-orange);color:#fff;padding:14px 10px;font-weight:600}.sa nav b{display:block;font-size:14px;margin-bottom:14px}.sa nav div{padding:6px 8px;border-radius:6px;opacity:.9}.sa nav .on{background:rgba(255,255,255,.22);opacity:1}
+.sa main{flex:1;background:var(--sa-cream);padding:14px 16px;min-width:0}.sa h4{margin:0 0 10px;font-size:15px}
+.card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:11.5px} th{text-align:left;color:var(--g500);font-weight:600;padding:6px;border-bottom:1px solid var(--g200);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em} td{padding:6px;border-bottom:1px solid #f1ede7}
+.tw{overflow-x:auto}
+.ok{color:#15803d;font-weight:600}.bad{color:var(--bad);font-weight:600}.warn{color:var(--warn);font-weight:600}
+.pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:10.5px;font-weight:600}.p-ok{background:#dcfce7;color:#166534}.p-bad{background:#fee2e2;color:#991b1b}.p-warn{background:#fef3c7;color:#92400e}.p-src{background:#f3efe9;color:var(--g500)}
+.btn{display:inline-block;background:var(--sa-orange);color:#fff;border-radius:8px;padding:7px 12px;font-weight:700;font-size:11.5px}.btn.ghost{background:#fff;color:var(--sa-orange);border:1px solid var(--sa-soft)}.btn.wa{background:var(--wa)}.btn.call{background:#16a34a}
+.field{border:1px solid #d1d5db;border-radius:8px;padding:7px 9px;background:#fff;font-size:12px;color:var(--g800)}.field.ph{color:#9ca3af}.lab{font-size:10.5px;color:var(--g500);font-weight:600;margin-bottom:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mob{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.big{font-size:16px;font-weight:700;letter-spacing:.02em}
+.empty{border:1px dashed var(--sa-soft);border-radius:8px;padding:10px;background:#fffaf5}
+/* onboarding */
+.ob{background:var(--ob-cream);height:100%;padding:34px 16px 16px;color:var(--ob-ink);display:flex;flex-direction:column;font-size:13px}
+.ob .prog{height:5px;background:#e3d5c4;border-radius:5px;margin-bottom:16px}.ob .prog i{display:block;height:5px;width:70%;background:var(--ob-coral);border-radius:5px}
+.ob h5{font-size:19px;margin:0 0 6px;font-weight:800}.ob p{margin:0 0 12px;color:#6b5f52;font-size:12.5px;line-height:1.45}
+.ob .seg{display:flex;background:#e9dccd;border-radius:10px;padding:3px;margin-bottom:12px}.ob .seg span{flex:1;text-align:center;padding:8px;border-radius:8px;font-weight:600;font-size:12px}.ob .seg .on{background:#fff}
+.ob .in{display:flex;background:#fff;border-radius:12px;border:2px solid var(--ob-coral);overflow:hidden;margin-bottom:8px}.ob .in b{background:#f7efe6;padding:12px 10px;font-size:14px}.ob .in span{padding:12px 10px;font-size:15px;letter-spacing:.06em}
+.ob .cta{margin-top:auto;background:var(--ob-coral);color:#fff;text-align:center;border-radius:14px;padding:14px;font-weight:800;font-size:14px}
+.ob .err{color:var(--bad);font-size:11.5px;font-weight:600}
+/* yashodarshi */
+.yd{background:var(--yd-paper);color:var(--yd-ink);padding:14px 16px;font-size:12px;min-height:300px}
+.yd h4{font-family:var(--serif);font-size:20px;margin:0 0 10px;font-weight:600}
+.drow{background:var(--yd-card);border:1px solid var(--yd-line);border-radius:12px;padding:10px 12px;display:flex;gap:12px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.who{flex:1;min-width:0}.who .nm{font-size:14px;font-weight:700}.who .ctx{font-size:11.5px;color:var(--yd-soft);margin-top:2px}.code{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:var(--yd-muted);border:1px solid var(--yd-line);border-radius:6px;padding:1px 6px;margin-left:6px}
+.sla{font-size:11px;font-weight:700}.due{color:var(--yd-due)}.okc{color:var(--yd-ok)}
+.ctxchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.chip{background:#efe6d4;color:var(--yd-soft);border-radius:999px;padding:2px 9px;font-size:10.5px;font-weight:600}.chip.inst{background:#f6e2d2;color:#8a4b1c}
+.hdr{background:var(--yd-card);border-bottom:1px solid var(--yd-line);padding:12px 14px}.hdr .nm{font-family:var(--serif);font-size:19px;font-weight:600}
+.before{opacity:.65;filter:grayscale(.3)} .tag{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g500);margin-bottom:4px}
+.flow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;font-size:11.5px}.flow span{background:#fff;border-radius:999px;padding:3px 10px;border:1px solid var(--g200)}.flow b{color:var(--sa-orange)}
+.open{background:#fff;border-radius:8px;padding:12px 14px;margin-top:30px;font-size:13px}.open li{margin:4px 0}
+@media (max-width:640px){.grid4{grid-template-columns:1fr 1fr}.sa nav{display:none}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>Learner mobile &amp; Yashodarshi context</h1>
+  <p>Two rulings, 25-Nov-2026. Each screen names its source. Sample learners are fictional.</p>
+</header>
+
+<!-- ═══════════════ PART A ═══════════════ -->
+<section class="part">
+  <h2>A · The learner's registered mobile: captured, then visible to admins</h2>
+  <p class="src">Source: the ops lead, 23-Nov: <i>"make the student's registered mobile number visible and accessible in the Superadmin dashboard."</i> Prod, 25-Nov: 144 of 207 learners since 29-Jul have no mobile, and 143 of them are waiver learners added from school rosters who were never asked.</p>
+  <div class="ruling"><b>Ruling (Goutam, 25-Nov):</b> capture at <b>both</b> ends: the admin adds it with the roster, and the learner or parent is asked at onboarding if it is still missing. One stored number, shown everywhere.</div>
+  <div class="flow"><span><b>01</b> roster import</span>→<span><b>02</b> manual add</span>→<span><b>03</b> onboarding asks if missing</span>→<span><b>04</b> student page</span>→<span><b>05</b> enrolment page</span>→<span><b>06</b> list + search</span></div>
+
+  <div class="screen"><h3>01 · Roster import: a Mobile column, checked before anything is saved</h3>
+  <p class="cap">The admin uploads the school's sheet. Each row's mobile is checked; a blank one is allowed but flagged, so onboarding will ask for it.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/batches/88/add-students</span></div>
+    <div class="sa"><nav><b>Super Admin</b><div>Dashboard</div><div>Manage Students</div><div class="on">Manage Batches</div><div>Enrolments</div></nav>
+    <main><h4>Add students to "Greenfield School · Nov cohort"</h4>
+      <div class="card"><div class="tw"><table><tr><th>#</th><th>Learner</th><th>Email</th><th>Standard</th><th>Mobile</th><th>Check</th></tr>
+        <tr><td>1</td><td>Aarav Kulkarni</td><td>aarav.k@example.com</td><td>9</td><td>98450 12345</td><td><span class="pill p-ok">✓ valid</span></td></tr>
+        <tr><td>2</td><td>Meera Iyer</td><td>meera.i@example.com</td><td>10</td><td>9845 0123</td><td><span class="pill p-bad">✗ needs 10 digits</span></td></tr>
+        <tr><td>3</td><td>Rohan Das</td><td>rohan.d@example.com</td><td>9</td><td class="warn">—</td><td><span class="pill p-warn">blank · asked at onboarding</span></td></tr>
+        <tr><td>4</td><td>Sana Sheikh</td><td>sana.s@example.com</td><td>11</td><td>+91 99000 54321</td><td><span class="pill p-ok">✓ valid</span></td></tr>
+      </table></div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><span class="btn">Fix row 2, then add 4 learners</span><span class="btn ghost">Download template (has Mobile column)</span></div></div>
+    </main></div></div>
+    <p class="note">Saved as +91 and 10 digits. An invalid number blocks only its own row, never the whole roster. If a number is already on another learner's account, it is shown, never silently re-bound (the #2161 rule: never bind an unverified number to an existing account).</p></div></div>
+
+  <div class="screen"><h3>02 · Manual add: the same field, the same check</h3>
+  <p class="cap">Adding one learner by hand asks for the mobile too. Optional, but marked if left blank.</p>
+  <div class="row"><div class="browser" style="max-width:620px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/batches/88/edit</span></div>
+    <div class="sa" style="min-height:250px"><nav><b>Super Admin</b><div>Manage Students</div><div class="on">Manage Batches</div></nav>
+    <main><h4>Add a learner</h4><div class="card"><div class="grid2">
+      <div><div class="lab">Learner name</div><div class="field">Kabir Rao</div></div>
+      <div><div class="lab">Email</div><div class="field">kabir.r@example.com</div></div>
+      <div><div class="lab">Standard</div><div class="field">8</div></div>
+      <div><div class="lab">Mobile (parent or learner)</div><div class="field ph">+91 · 10 digits</div><div class="warn" style="font-size:10.5px;margin-top:3px">Blank → asked at onboarding</div></div>
+    </div><div style="margin-top:10px"><span class="btn">Add learner</span></div></div></main></div></div></div></div>
+
+  <div class="screen"><h3>03 · Onboarding: asked only when the number is missing</h3>
+  <p class="cap">A learner with no mobile on file sees one extra step. Anyone who already has a number skips it.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="ob"><div class="prog"><i></i></div>
+      <h5>Your mobile number</h5><p>So the YASHHO team can reach you or your parent if a challenge gets stuck. We never share it.</p>
+      <div class="seg"><span class="on">Parent's</span><span>My own</span></div>
+      <div class="in"><b>+91</b><span>98450 67890</span></div>
+      <div class="cta">Continue</div></div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="ob"><div class="prog"><i></i></div>
+      <h5>Your mobile number</h5><p>So the YASHHO team can reach you or your parent if a challenge gets stuck. We never share it.</p>
+      <div class="seg"><span class="on">Parent's</span><span>My own</span></div>
+      <div class="in" style="border-color:var(--bad)"><b>+91</b><span>98450 678</span></div><div class="err">Enter all 10 digits.</div>
+      <div class="cta" style="opacity:.45">Continue</div></div></div></div>
+    <div class="browser" style="flex:1 1 380px;max-width:460px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/onboarding</span></div>
+      <div style="background:var(--ob-cream);padding:22px;min-height:300px;display:flex;justify-content:center"><div style="background:var(--ob-paper);border-radius:16px;padding:18px;width:100%;max-width:340px" class="ob">
+      <div class="prog"><i></i></div><h5>Your mobile number</h5><p>So the YASHHO team can reach you or your parent if a challenge gets stuck.</p>
+      <div class="seg"><span class="on">Parent's</span><span>My own</span></div><div class="in"><b>+91</b><span>98450 67890</span></div><div class="cta" style="margin-top:12px">Continue</div></div></div></div>
+  </div><p class="note">Desktop shows the same step centred. The "Parent's / My own" choice is recorded with the number. <b>Open for you:</b> can a learner skip this step (as drawn: no, Continue needs 10 digits)?</p></div>
+
+  <div class="screen"><h3>04 · Student page: one registered mobile, ready to use</h3>
+  <p class="cap">Shows the number, whose it is and where it came from, with one-tap Call, WhatsApp and Copy. If it's missing, the page says so and what happens next.</p>
+  <div class="row">
+    <div class="browser" style="max-width:700px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/students/1204</span></div>
+      <div class="sa" style="min-height:280px"><nav><b>Super Admin</b><div class="on">Manage Students</div><div>Enrolments</div></nav>
+      <main><h4>Aarav Kulkarni · Standard 9</h4>
+        <div class="card"><div class="lab">Registered mobile</div>
+          <div class="mob"><span class="big">+91 98450 12345</span><span class="pill p-src">Parent's · from roster import, 25 Nov</span></div>
+          <div class="mob" style="margin-top:8px"><span class="btn call">📞 Call</span><span class="btn wa">WhatsApp</span><span class="btn ghost">Copy</span><span class="btn ghost">Edit</span></div></div>
+        <div class="card empty"><div class="lab">Registered mobile · Rohan Das</div><div class="warn">Not collected yet</div><div style="font-size:11px;color:var(--g500);margin:4px 0 8px">He will be asked at onboarding. You can add it now if the school gave it.</div><span class="btn ghost">+ Add mobile</span></div>
+      </main></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div style="background:var(--sa-cream);height:100%;padding:34px 12px 12px;font-size:12px">
+      <div style="background:var(--sa-orange);color:#fff;border-radius:10px;padding:10px;font-weight:700;margin-bottom:10px">Aarav Kulkarni · Std 9</div>
+      <div class="card"><div class="lab">Registered mobile</div><div class="big">+91 98450 12345</div><div style="margin:4px 0 8px"><span class="pill p-src">Parent's · roster, 25 Nov</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><span class="btn call" style="text-align:center;padding:11px">📞 Call</span><span class="btn wa" style="text-align:center;padding:11px">WhatsApp</span></div></div></div></div></div>
+  </div><p class="note">On a phone, Call and WhatsApp are full-width 44 px targets. Only superadmins see this block; it never appears on any learner or Yashodarshi screen.</p></div>
+
+  <div class="screen"><h3>05 · Enrolment page: the same number, from the same place</h3>
+  <p class="cap">Today this page reads its own copy of the phone, which is blank for 154 enrolments. It will show the learner's one registered mobile instead.</p>
+  <div class="row"><div class="browser" style="max-width:640px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/enrollments/1006</span></div>
+    <div class="sa" style="min-height:220px"><nav><b>Super Admin</b><div class="on">Enrolments</div></nav>
+    <main><h4>Enrolment #001006 · Paid</h4><div class="grid2">
+      <div class="card"><div class="lab">Learner</div><b>Aarav Kulkarni</b><div style="color:var(--g500);font-size:11px">aarav.k@example.com</div></div>
+      <div class="card"><div class="lab">Registered mobile</div><div class="big" style="font-size:14px">+91 98450 12345</div><div class="mob" style="margin-top:6px"><span class="btn call">Call</span><span class="btn wa">WhatsApp</span></div></div>
+    </div></main></div></div>
+    <p class="note">One function answers "what is this learner's mobile?". The student page, enrolment page, list and search all read it, so they can never disagree.</p></div></div>
+
+  <div class="screen"><h3>06 · Student list: the mobile column, searchable</h3>
+  <p class="cap">The column exists today but is mostly empty. With capture it fills in, and a "No mobile" filter shows who's still missing.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/students?q=98450</span></div>
+    <div class="sa" style="min-height:230px"><nav><b>Super Admin</b><div class="on">Manage Students</div></nav>
+    <main><div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><div class="field" style="flex:1;min-width:180px">98450</div><span class="btn ghost">No mobile (144)</span></div>
+      <div class="card"><div class="tw"><table><tr><th>Learner</th><th>Standard</th><th>Mobile</th><th>Institution</th></tr>
+        <tr><td><b>Aarav Kulkarni</b></td><td>9</td><td>+91 98450 12345</td><td>Greenfield School</td></tr>
+        <tr><td><b>Kabir Rao</b></td><td>8</td><td>+91 98450 67890</td><td>Greenfield School</td></tr>
+      </table></div></div></main></div></div></div></div>
+</section>
+
+<!-- ═══════════════ PART B ═══════════════ -->
+<section class="part" style="border-top-color:var(--yd-accent)">
+  <h2>B · Yashodarshi panel: who the learner is</h2>
+  <p class="src">Today the panel is blind (rule #80): pseudonym plus age, board, standard and stream. Name and institution are never shown.</p>
+  <div class="ruling"><b>Ruling (Goutam, 25-Nov):</b> <i>"show the student name, stream, institution if present and standard in the yashodarshi panel"</i>, shown <b>everywhere</b>, including while marking. This ends blind marking; rule #80 and the design docs are updated in the same change. The candidate code stays as a small reference so codes already quoted still work.</div>
+  <div class="flow"><span><b>07</b> desk row</span>→<span><b>08</b> challenge marking header</span>→<span><b>09</b> 7-task session + review</span></div>
+
+  <div class="screen"><h3>07 · Desk: name first, then standard · stream · institution</h3>
+  <p class="cap">Before → after. The queue reads as people, not codes. Institution appears only when the enrolment has one.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/desk</span></div>
+    <div class="yd"><h4>Your desk</h4>
+      <div class="tag">Before (today)</div>
+      <div class="drow before"><div class="who"><div class="nm">◆ Candidate 3F9C1</div><div class="ctx">Age 14 · CBSE · Class 9 · Board Booster</div></div><div class="sla due">Due in 6 h</div></div>
+      <div class="tag" style="margin-top:12px">After</div>
+      <div class="drow"><div class="who"><div class="nm">Aarav Kulkarni <span class="code">3F9C1</span></div><div class="ctxchips"><span class="chip">Standard 9</span><span class="chip">Board Booster</span><span class="chip inst">Greenfield School</span></div></div><div class="sla due">Due in 6 h</div></div>
+      <div class="drow"><div class="who"><div class="nm">Ishita Menon <span class="code">A71D0</span></div><div class="ctxchips"><span class="chip">Full-time aspirant</span><span class="chip">KAS Prelims</span></div></div><div class="sla okc">2 days left</div></div>
+    </div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="yd" style="height:100%;padding-top:34px"><h4 style="font-size:17px">Your desk</h4>
+      <div class="drow"><div class="who"><div class="nm">Aarav Kulkarni</div><div class="ctxchips"><span class="chip">Std 9</span><span class="chip">Board Booster</span><span class="chip inst">Greenfield School</span></div><div style="margin-top:4px"><span class="code" style="margin:0">3F9C1</span></div></div><div class="sla due">6 h</div></div>
+      <div class="drow"><div class="who"><div class="nm">Ishita Menon</div><div class="ctxchips"><span class="chip">Aspirant</span><span class="chip">KAS Prelims</span></div><div style="margin-top:4px"><span class="code" style="margin:0">A71D0</span></div></div><div class="sla okc">2 d</div></div>
+    </div></div></div>
+  </div><p class="note">"Standard" uses the existing display rule, so an aspirant reads "Full-time aspirant", never "Class Full-time aspirant". Institution comes from the enrolment, so it's the right one for this stream.</p></div>
+
+  <div class="screen"><h3>08 · Marking a challenge: the same identity strip at the top</h3>
+  <p class="cap">Whoever marks sees who the work belongs to, in one line above the submission.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/task/4412/evaluate</span></div>
+    <div style="background:var(--yd-paper);min-height:250px"><div class="hdr"><div class="nm">Aarav Kulkarni <span class="code">3F9C1</span></div><div class="ctxchips"><span class="chip">Standard 9</span><span class="chip">Board Booster</span><span class="chip inst">Greenfield School</span></div></div>
+      <div class="yd" style="min-height:0"><div class="drow" style="display:block"><b>Challenge 7 · The Thank You Talk with your Parents</b><div style="color:var(--yd-soft);margin-top:4px">▶ Video · 1:42 · submitted 24 Nov, 7:10 pm</div></div>
+      <div class="drow" style="display:block"><div class="lab" style="color:var(--yd-soft)">Score each ability</div><div class="grid4"><span class="chip">Empathy ●●●○</span><span class="chip">Clarity ●●○○</span><span class="chip">Courage ●●●○</span><span class="chip">Reflection ●●○○</span></div></div></div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div style="background:var(--yd-paper);height:100%;padding-top:24px"><div class="hdr"><div class="nm" style="font-size:16px">Aarav Kulkarni</div><div class="ctxchips"><span class="chip">Std 9</span><span class="chip">Board Booster</span><span class="chip inst">Greenfield</span></div></div>
+      <div class="yd" style="min-height:0;padding:10px"><div class="drow" style="display:block"><b>Challenge 7</b><div style="color:var(--yd-soft);margin-top:3px">▶ Video · 1:42</div></div></div></div></div></div>
+  </div></div>
+
+  <div class="screen"><h3>09 · 7-task session and review: same strip, nothing else changes</h3>
+  <p class="cap">The session and review headers swap "Candidate 3F9C1" for the name and context. Scoring is unchanged.</p>
+  <div class="row"><div class="browser" style="max-width:640px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/session/…</span></div>
+    <div style="background:var(--yd-paper);min-height:160px"><div class="hdr"><div class="tag">Before</div><div class="before"><span class="chip">◆ Candidate 3F9C1</span> <span class="chip">AGE 14 · CBSE · CLASS 9 · BOARD BOOSTER</span></div>
+      <div class="tag" style="margin-top:10px">After</div><div class="nm">Aarav Kulkarni <span class="code">3F9C1</span></div><div class="ctxchips"><span class="chip">Standard 9</span><span class="chip">Board Booster</span><span class="chip inst">Greenfield School</span></div></div>
+      <div class="yd" style="min-height:0"><b>7-task session · 3 of 7 reviewed</b></div></div></div></div></div>
+</section>
+
+<div class="open"><b>Open for you before the build</b><ul>
+  <li><b>03:</b> can a learner skip the mobile step at onboarding? Drawn as required, with 10 digits needed to continue.</li>
+  <li><b>B:</b> should the Yashodarshi still see age and board? The ruling names name, stream, institution and standard, so they are drawn without age and board.</li>
+  <li>Once you approve, the build updates rule #80, the enrolment model doc and the design docs first, then ships as one release.</li>
+</ul></div>
+</div>
