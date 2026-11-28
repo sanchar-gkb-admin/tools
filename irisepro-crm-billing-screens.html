@@ -1,0 +1,299 @@
+<html lang="en">
+<title>CRM Billing Screens</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<style>
+:root{
+  /* CRM PWA tokens — crm/pwa/theme.blade.php:21-35 (release/2026-11-27-crm-golive-final @ d6beff8fb) */
+  --brand:#f5821f;--brand-ink:#b4530a;--brand-soft:#fff1e3;--on-brand:#1a0e02;
+  --bg:#ffffff;--sub:#f3f6f9;--ink:#0b1b33;--mute:#4a5b73;--line:#d5dde7;--line-strong:#6b7a90;
+  --ok:#137a43;--ok-soft:#e3f5ea;--bad:#b42318;--bad-soft:#fde8e6;--warn:#8a5a00;--warn-soft:#fff4d6;--warn-line:#d9a400;
+  --fs-caption:.75rem;--fs-label:.8125rem;--fs-sm:.875rem;--fs-body:1rem;--fs-title:1.0625rem;--fs-h2:1.125rem;--fs-h1:1.5rem;--fs-stat:1.625rem;
+  --radius:12px;--radius-btn:14px;--font:"Montserrat",system-ui,sans-serif;--page:#e9eef4;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);font:400 var(--fs-body)/1.55 var(--font);color:var(--ink);padding:24px 16px 60px;font-variant-numeric:tabular-nums}
+.wrap{max-width:1200px;margin:0 auto}
+.top h1{font-size:28px;font-weight:800;margin:0 0 6px}.top p{margin:0 0 4px;color:var(--mute);font-size:var(--fs-sm);max-width:900px}
+.theme{font-size:var(--fs-label);color:var(--mute);background:#fff;border-radius:8px;padding:8px 12px;margin-top:8px;max-width:900px}
+.part{margin-top:40px;padding-top:16px;border-top:3px solid var(--brand-ink)}
+.part h2{font-size:21px;margin:0 0 4px;font-weight:800}.lead{font-size:var(--fs-sm);color:var(--mute);margin:0}
+.flow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:var(--fs-label);align-items:center}
+.flow span{background:#fff;border-radius:999px;padding:3px 10px;border:1px solid var(--line)}.flow b{color:#9a4708}
+.screen{margin-top:26px}.screen h3{font-size:15px;margin:0 0 3px;font-weight:800}.screen h3 em{font-style:normal;color:#9a4708}
+.cap{font-size:var(--fs-sm);color:var(--mute);margin:0 0 6px}
+.src{font-size:11px;color:var(--mute);margin-top:8px;max-width:640px;line-height:1.45;font-family:ui-monospace,Menlo,monospace;overflow-wrap:anywhere}
+.src b{font-family:var(--font)}
+.row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}.row>*{min-width:0}
+.phone{width:300px;flex:0 0 300px;background:#141414;border-radius:36px;padding:9px;box-shadow:0 12px 30px rgba(11,27,51,.18)}
+.phone .scr{border-radius:28px;overflow:hidden;height:620px;position:relative;background:var(--bg)}
+.notch{width:92px;height:22px;background:#141414;border-radius:0 0 13px 13px;position:absolute;left:0;right:0;top:0;margin:auto;z-index:5}
+.pv{padding:36px 14px 14px;height:100%;overflow:hidden}
+.browser{background:#fff;border-radius:12px;box-shadow:0 12px 30px rgba(11,27,51,.14);overflow-x:auto;flex:1 1 640px;max-width:none}
+.chrome{background:#dfe5ec;padding:9px 12px;display:flex;gap:6px;align-items:center;position:sticky;left:0}
+.chrome i{width:10px;height:10px;border-radius:50%;background:#b9c3cf}.chrome span{margin-left:10px;background:#fff;border-radius:10px;font-size:11px;padding:3px 12px;color:var(--mute);flex:1}
+@media (max-width:960px){.browser>:not(.chrome){min-width:900px}.browser .chrome span::after{content:"  ·  desktop view, scroll sideways";color:var(--brand-ink);font-weight:600}}
+.office{padding:14px 22px 22px;background:var(--bg)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:0 auto 12px;max-width:960px}
+.tabs a{font-size:var(--fs-sm);font-weight:700;padding:8px 12px;border-radius:10px;color:var(--mute);border:1.5px solid transparent;min-height:44px;display:inline-flex;align-items:center}
+.tabs a.on{color:var(--ink);border-color:var(--line-strong);background:var(--sub)}
+h4{font-size:var(--fs-h1);font-weight:800;margin:4px 0 4px;line-height:1.25}
+.mini{font-size:var(--fs-sm);color:var(--mute)}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:10px 0}
+.stat{background:var(--sub);border-radius:var(--radius);padding:10px 12px}.stat .k{font-size:var(--fs-label);color:var(--mute);font-weight:600}.stat .v{font-size:var(--fs-stat);font-weight:800;line-height:1.2;margin-top:2px}
+.stat.hl{background:var(--brand-soft)}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.sel{border:1.5px solid var(--line-strong);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-body);font-weight:600;min-height:44px;display:inline-flex;align-items:center;gap:8px;background:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;background:var(--brand);color:var(--on-brand);font-weight:800;border-radius:var(--radius-btn);font-size:var(--fs-body);border:0}
+.btn.ghost{background:var(--bg);border:1.5px solid var(--line-strong);color:var(--ink)}
+.btn.off{background:#e6eaef;color:var(--mute);font-weight:700}
+.btn.full{display:flex;width:100%}
+.btn.sm{min-height:44px;padding:0 14px;font-size:var(--fs-sm)}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:var(--fs-label);font-weight:700}
+.p-ok{background:var(--ok-soft);color:var(--ok)}.p-warn{background:var(--warn-soft);color:var(--warn)}.p-bad{background:var(--bad-soft);color:var(--bad)}.p-mute{background:var(--sub);color:var(--mute)}
+.banner{border-radius:var(--radius);padding:12px 14px;margin:10px 0;font-size:var(--fs-sm);line-height:1.5}
+.banner.bad{background:var(--bad-soft);border:1.5px solid #f1b5ae;color:#7a1810}.banner.warn{background:var(--warn-soft);border:1.5px solid var(--warn-line);color:#5c3c00}.banner.ok{background:var(--ok-soft);border:1.5px solid #a7d8bb;color:#0c4d2a}
+.banner b{display:block;font-size:var(--fs-body);margin-bottom:2px}
+code{font-size:12px;background:var(--sub);border-radius:4px;padding:1px 5px}
+/* one grid per table: header + rows share the template */
+.grid{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.g{display:grid;gap:10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);font-size:var(--fs-sm)}
+.g.h{border-top:0;background:var(--sub);font-size:var(--fs-label);font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.03em}
+.g.t{background:var(--brand-soft);font-weight:800}
+.g .n{text-align:right;white-space:nowrap}.g .neg{color:var(--bad)}
+.g .who b{display:block;font-size:var(--fs-sm)}.g .who small{color:var(--mute);font-size:var(--fs-label)}
+.stmt{grid-template-columns:minmax(150px,1.4fr) repeat(4,minmax(90px,1fr)) minmax(110px,1fr)}
+.run{grid-template-columns:minmax(150px,1.3fr) repeat(5,minmax(84px,1fr)) 190px}
+.mob .g{grid-template-columns:1fr auto;padding:9px 12px}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:22px 22px 0 0;padding:10px 16px 18px;z-index:4;box-shadow:0 -6px 20px rgba(0,0,0,.15)}
+.sheet .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 10px}
+.dim{position:absolute;inset:0;background:rgba(11,27,51,.5);z-index:3}
+.fld{display:block;border:1.5px solid var(--line-strong);border-radius:var(--radius);padding:8px 12px;margin-bottom:10px}
+.fld span{display:block;font-size:var(--fs-label);color:var(--mute)}.fld i{display:block;font-style:normal;font-size:var(--fs-title);font-weight:600;min-height:26px}
+.fld.err{border-color:var(--bad)}.ferr{color:var(--bad);font-weight:600;font-size:var(--fs-sm);margin:-4px 0 10px}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--warn-soft);color:var(--warn);border-radius:6px;padding:2px 7px}
+.uctag{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:10px;font-weight:700;color:#8a3f07;background:var(--brand-soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.sacard{background:#fff;border-radius:12px;padding:12px}.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;color:var(--mute);font-weight:700;padding:6px;border-bottom:1px solid var(--line);font-size:11px;text-transform:uppercase}td{padding:6px;border-bottom:1px solid #edf1f5;vertical-align:top}
+.foot{background:#fff;border-radius:12px;padding:16px 18px;margin-top:40px;font-size:var(--fs-sm);line-height:1.6}.foot li{margin:3px 0}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="wrap" role="main">
+<div class="top">
+  <h1>CRM billing screens · commission statement, payout run, refund override</h1>
+  <p>Source: <b>Goutam 28-Nov</b> (build these into the go-live release; storyboard first). Every screen draws a backend that is already built on <code>release/2026-11-27-crm-golive-final</code> @ d6beff8fb; each frame cites file:line. People, post codes and amounts are samples.</p>
+  <p>Money is shown in ₹ with Indian grouping; the backend stores paise. Commission is earned on the amount before GST (memory: decision-one-price-all-channels).</p>
+  <div class="theme"><b>Theme:</b> CRM PWA tokens from crm/pwa/theme.blade.php:21-35 (brand #f5821f, brand-ink #b4530a, ink #0b1b33, mute #4a5b73, ok / warn / bad pairs, type scale --fs-label 13 … --fs-stat 26 px, radius 12 / 14), office screens laid out like office/decisions.blade.php (office tab bar at the top, rows with actions at the right). Standard: .claude/skills/crm-ui-standard (44 px targets, 48 px buttons, tabular figures).</div>
+</div>
+
+<!--UC-REG-START--><section class="part" id="register"><h2>Use-case register: 14 use cases, 14 frames</h2><p class="lead">One row per action per role. Generated from docs/2026-11-28-crm-billing-screens-use-cases.md. Check run both ways: every UC names a drawn frame, every frame is named by a UC, and every screen heading carries its UC tags. Result: <b>0 gaps</b>. By role: Finance 4 · YSP / RSM 1 · System 6 · GM / CEO 1 · Finance / GM 1 · CEO 1.</p><div class="sacard tw" tabindex="0" role="region" aria-label="Use-case register table" style="margin-top:10px;max-height:520px;overflow:auto"><table class="matrix"><tr><th>ID</th><th>Role</th><th>Use case</th><th>Trigger</th><th>Sees / does</th><th>Frames</th><th>Rules / config</th><th>Audit</th></tr><tr><td><b>BILL-F-01</b></td><td>Finance</td><td>Reads the closed month&#x27;s commission statement for every post</td><td>Opens Commission, picks a month</td><td>Totals + one row per post: accrued, reversed, adjustments, held, net payable</td><td>1a</td><td>CommissionStatementView::forMonth (null post filter); routes/crm.php:652-659</td><td>office read audited (26-Nov ruling)</td></tr><tr><td><b>BILL-YSP-01</b></td><td>YSP / RSM</td><td>Reads their own post&#x27;s statement</td><td>Opens My commission</td><td>One card for their post only</td><td>1b</td><td>field post passes its own post id (CommissionStatementController)</td><td>none (own data)</td></tr><tr><td><b>BILL-SYS-01</b></td><td>System</td><td>Refuses a month that is not closed</td><td>Month still open</td><td>&quot;Not closed yet&quot; with the reason</td><td>1c</td><td>refusal period_open (CommissionStatementView.php:37-39)</td><td>none</td></tr><tr><td><b>BILL-SYS-02</b></td><td>System</td><td>Shows an empty closed month</td><td>No ledger or hold rows</td><td>Net payable ₹0 and a plain line</td><td>1d</td><td>zero totals (CommissionStatementView.php:46-61)</td><td>none</td></tr><tr><td><b>BILL-SYS-03</b></td><td>System</td><td>Refuses a payout run until the CA sets the TDS rules</td><td>Finance opens or proposes a run</td><td>Lists the missing payout keys; Propose off</td><td>2a</td><td>refusal tds_rules_unset (PayoutRules.php:20-35); no code default</td><td>none</td></tr><tr><td><b>BILL-F-02</b></td><td>Finance</td><td>Proposes the month&#x27;s payout run</td><td>Month closed, rules in force</td><td>Propose → 202; run waits for approval</td><td>2b, 2c</td><td>ProposePayoutRun (closed, no run yet, in month order; payout_run_pending)</td><td>proposal on the approvals engine</td></tr><tr><td><b>BILL-A-01</b></td><td>GM / CEO</td><td>Approves or rejects the payout run</td><td>Request on the approvals queue</td><td>Month, lines, payable, TDS; approve or reject with reason</td><td>2d</td><td>kind partner_payout_run, GM or CEO, expiry D4; ApplyPayoutRun writes the same run</td><td>decision audited</td></tr><tr><td><b>BILL-F-03</b></td><td>Finance</td><td>Sees approved lines incl. carried minimum and clawback</td><td>Run approved</td><td>One grid: statement net, carry in, due, payable, TDS, transfer; carried lines marked</td><td>2e</td><td>PayoutRunBuilder (min ₹500 net, carry, TDS by CA rules)</td><td>none</td></tr><tr><td><b>BILL-F-04</b></td><td>Finance</td><td>Records a line paid with bank reference and date</td><td>Taps Mark paid</td><td>Reference (max 64) + date; ledger moves only now</td><td>2f, 2g</td><td>RecordPayoutPaid (reference_required, bad_date, already_paid, not_payable)</td><td>PAYOUT_LINE_PAID (reference last 4)</td></tr><tr><td><b>BILL-SYS-04</b></td><td>System</td><td>Refuses paying an unverified partner (edge)</td><td>Partner PAN, identity or bank not verified</td><td>&quot;Not paid&quot;; nothing recorded</td><td>2f</td><td>refusal partner_not_verified / insufficient_balance (RecordPayoutPaid.php:61-63)</td><td>none</td></tr><tr><td><b>BILL-SYS-05</b></td><td>System</td><td>Locks paid lines and runs</td><td>Line paid</td><td>Paid line written once; no deletes</td><td>2g</td><td>triggers partner_payout_lines_payment_once, no_delete (migration :71-83)</td><td>none</td></tr><tr><td><b>BILL-F-05</b></td><td>Finance / GM</td><td>Proposes a CEO override for a blocked Annual refund</td><td>Refund blocked by NoRefundAfterStart</td><td>Reason required; refused when the rule does not block</td><td>3a</td><td>ProposeAnnualRefundOverride (override_reason_required, override_not_needed, override_pending)</td><td>proposal on the approvals engine</td></tr><tr><td><b>BILL-A-02</b></td><td>CEO</td><td>Approves or rejects the refund override</td><td>Request on the approvals queue</td><td>Payment, amount, proposer, reason; approve or reject</td><td>3b</td><td>policy annual_refund_override, CEO alone, expiry D4</td><td>decision audited</td></tr><tr><td><b>BILL-SYS-06</b></td><td>System</td><td>Lets that one payment be refunded</td><td>Override approved</td><td>&quot;CEO override in force&quot;; covers this payment only</td><td>3c</td><td>ApplyAnnualRefundOverride; NoRefundAfterStart lets that subject through</td><td>override audited</td></tr></table></div></section><!--UC-REG-END-->
+
+<!-- ═════════ PART 1 ═════════ -->
+<section class="part">
+  <h2>1 · Monthly commission statement</h2>
+  <p class="lead">GET /crm/billing/commission-statements?month=YYYY-MM (routes/crm.php:652-659). Finance reads every post; an RSM or YSP reads only their own post (CommissionStatementController.php: field posts pass their own post id). Closed months only; once closed the figures never move (CommissionStatementView.php:10-25).</p>
+  <div class="flow"><span><b>1a</b> Finance · all posts</span><span><b>1b</b> YSP · own post</span><span><b>1c</b> month not closed</span><span><b>1d</b> empty month</span></div>
+
+  <div class="screen"><h3><em>1a</em> · Finance: the closed month, every post, one grid <span class="uctag">BILL-F-01</span></h3>
+  <p class="cap">Pick a closed month. Five totals on top, then one row per post with the same columns as the totals.</p>
+  <p class="src">Lives in: CRM › office › Commission statements (new screen under the billing desk)</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Commission statements</span></div>
+    <div class="office">
+      <div class="tabs"><a>Collections</a><a>Aging</a><a class="on">Commission</a><a>Payout run</a><a>Approvals</a></div>
+      <h4>Commission statement</h4><div class="mini">Closed months only. A refund after the close shows in the next month's adjustments, never here.</div>
+      <div class="ctl"><span class="sel">Month: October 2026 ▾</span><span class="pill p-ok">Closed · stable</span></div>
+      <div class="stats"><div class="stat"><div class="k">Accrued</div><div class="v">₹1,84,250</div></div><div class="stat"><div class="k">Reversed</div><div class="v">−₹12,400</div></div><div class="stat"><div class="k">Adjustments in</div><div class="v">₹3,100</div></div><div class="stat"><div class="k">Held (not payable)</div><div class="v">3 · ₹4,500</div></div><div class="stat hl"><div class="k">Net payable</div><div class="v">₹1,74,950</div></div></div>
+      <div class="grid">
+        <div class="g h stmt"><span>Post</span><span class="n">Accrued</span><span class="n">Reversed</span><span class="n">Adjustments</span><span class="n">Held</span><span class="n">Net payable</span></div>
+        <div class="g stmt"><span class="who"><b>RSM-BLR-01</b><small>RSM</small></span><span class="n">₹42,000</span><span class="n neg">−₹3,000</span><span class="n">₹0</span><span class="n">1 · ₹1,500</span><span class="n"><b>₹39,000</b></span></div>
+        <div class="g stmt"><span class="who"><b>YSP-BLR-014</b><small>YSP</small></span><span class="n">₹18,750</span><span class="n">₹0</span><span class="n">₹1,600</span><span class="n">—</span><span class="n"><b>₹20,350</b></span></div>
+        <div class="g stmt"><span class="who"><b>YSP-MYS-007</b><small>YSP</small></span><span class="n">₹9,000</span><span class="n neg">−₹9,400</span><span class="n">₹0</span><span class="n">2 · ₹3,000</span><span class="n neg"><b>−₹400</b></span></div>
+        <div class="g stmt"><span class="who"><b>+ 31 more posts</b><small>sorted by post code</small></span><span class="n">₹1,14,500</span><span class="n">₹0</span><span class="n">₹1,500</span><span class="n">—</span><span class="n"><b>₹1,16,000</b></span></div>
+        <div class="g t stmt"><span>Total</span><span class="n">₹1,84,250</span><span class="n">−₹12,400</span><span class="n">₹3,100</span><span class="n">3 · ₹4,500</span><span class="n">₹1,74,950</span></div>
+      </div>
+    </div></div></div>
+  <div class="src"><b>Sources:</b> columns accrued / reversed / adjustments / held count + held net / net payable and the totals row = CommissionStatementView.php:46-61 · held = sales still on hold at month end, informational and not payable (:17-18) · closed-only (:37-39) · Finance reads all posts, field posts their own (CommissionStatementController.php, show) · post codes from PostDirectory (:43); the code format drawn is a sample.</div></div>
+
+  <div class="screen"><h3><em>1b</em> · YSP: their own post only · <em>1c</em> · Month not closed yet · <em>1d</em> · Closed month with nothing earned <span class="uctag">BILL-YSP-01 · BILL-SYS-01 · BILL-SYS-02</span></h3>
+  <p class="cap">A YSP sees one card for their own post. An open month is refused with a plain reason; an empty closed month says so.</p>
+  <p class="src">Lives in: CRM › Earnings (field) for 1b; same screen for 1c and 1d</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
+      <h4 style="font-size:var(--fs-h2)">My commission</h4><div class="ctl"><span class="sel">October 2026 ▾</span></div>
+      <div class="grid mob">
+        <div class="g"><span>Accrued</span><span class="n">₹18,750</span></div>
+        <div class="g"><span>Reversed</span><span class="n">₹0</span></div>
+        <div class="g"><span>Adjustments carried in</span><span class="n">₹1,600</span></div>
+        <div class="g"><span>Held (not payable yet)</span><span class="n">—</span></div>
+        <div class="g t"><span>Net payable</span><span class="n">₹20,350</span></div>
+      </div>
+      <p class="mini" style="margin-top:10px">Commission is on the amount paid before GST. This month is closed, so these figures will not change.</p>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
+      <h4 style="font-size:var(--fs-h2)">My commission</h4><div class="ctl"><span class="sel">November 2026 ▾</span></div>
+      <div class="banner warn"><b>November is not closed yet</b>A statement is for a closed month, because an open month's figures can still move. Finance closes the month after it ends.</div>
+      <span class="btn ghost full">See October 2026</span>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
+      <h4 style="font-size:var(--fs-h2)">My commission</h4><div class="ctl"><span class="sel">September 2026 ▾</span></div>
+      <div class="grid mob"><div class="g t"><span>Net payable</span><span class="n">₹0</span></div></div>
+      <p class="mini" style="margin-top:10px">No commission was credited to your post in September 2026.</p>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> 1b scope = own post (CommissionStatementController.php: <code>$v->hasAttribute('field') ? [postId] : null</code>) · 1c = refusal <code>period_open</code> (CommissionStatementView.php:37-39) · a bad month string is <code>bad_period_month</code> (:34-36) · 1d = the view returns zero totals when no ledger or hold rows exist (:46-61) · "before GST" = memory decision-one-price-all-channels.</div></div>
+</section>
+
+<!-- ═════════ PART 2 ═════════ -->
+<section class="part">
+  <h2>2 · Monthly payout run</h2>
+  <p class="lead">GET and POST /crm/billing/payout-runs, POST …/paid (routes/crm.php:660-672), ability payout.manage. Finance proposes from the closed month's statement; the GM or CEO approves on the approvals queue (routes/crm.php:825-833); Finance records each line paid with bank reference and date.</p>
+  <div class="flow"><span><b>2a</b> refused: TDS rules unset</span>→<span><b>2b</b> ready to propose</span>→<span><b>2c</b> approval pending</span>→<span><b>2d</b> GM/CEO approves</span>→<span><b>2e</b> approved · mark paid</span>→<span><b>2f</b> paid sheet</span>→<span><b>2g</b> all paid</span></div>
+
+  <div class="screen"><h3><em>2a</em> · Refused: the CA has not set the TDS rules <span class="uctag">BILL-SYS-03</span></h3>
+  <p class="cap">Until every governed payout key is set, Propose is off and the screen names exactly which keys are missing.</p>
+  <p class="src">Lives in: CRM › office › Payout run</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run</span></div>
+    <div class="office">
+      <div class="tabs"><a>Collections</a><a>Aging</a><a>Commission</a><a class="on">Payout run</a><a>Approvals</a></div>
+      <h4>Payout run</h4><div class="ctl"><span class="sel">Month: October 2026 ▾</span><span class="pill p-ok">Month closed</span></div>
+      <div class="banner bad"><b>The payout run waits for its governed rules</b>The CA decides the TDS rules. These must be set in a governed settings version before a run can be proposed: <code>payout_tds_rate_bp</code>, <code>payout_tds_no_pan_rate_bp</code>, <code>payout_tds_threshold_paise</code>, <code>payout_tds_timing</code>.</div>
+      <div class="ctl"><span class="btn off" aria-disabled="true">Propose October run</span><span class="mini">Minimum payout ₹500 net is set. TDS: none of the four keys has a default.</span></div>
+    </div></div></div>
+  <div class="src"><b>Sources:</b> refusal <code>tds_rules_unset</code> listing the missing keys = PayoutRules.php:20-35 · every payout_* key except cadence must be set, none has a code default (:12-14, :24-25) · ₹500 net minimum and monthly cadence = ruled values shipped in settings 2026-12-09.1 (:12) · keys and allowed values = SettingsSchema.php:324-329 (timing payout | accrual).</div></div>
+
+  <div class="screen"><h3><em>2b</em> · Ready to propose · <em>2c</em> · Waiting for the GM or CEO <span class="uctag">BILL-F-02</span></h3>
+  <p class="cap">With the rules set, Finance proposes. The run is built from the closed month and shown read-only while it waits for approval.</p>
+  <p class="src">Lives in: CRM › office › Payout run</p>
+  <div class="row">
+    <div class="browser" style="flex:1 1 420px"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run</span></div>
+      <div class="office"><h4>Payout run</h4><div class="ctl"><span class="sel">Month: October 2026 ▾</span><span class="pill p-ok">Month closed</span><span class="pill p-ok">TDS rules in force</span></div>
+        <p class="mini">No run for October yet. Proposing builds one line per earner and post from October's statement plus what the September run carried.</p>
+        <span class="btn">Propose October run</span>
+        <p class="mini" style="margin-top:10px">Runs go month by month: the last run is September 2026.</p></div></div>
+    <div class="browser" style="flex:1 1 520px"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run</span></div>
+      <div class="office"><h4>Payout run · October 2026</h4>
+        <div class="banner warn"><b>Waiting for the GM or CEO</b>Proposed by Finance on 3 Nov 2026. Nothing is paid until it is approved.</div>
+        <div class="stats" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="stat"><div class="k">Lines</div><div class="v">34</div></div><div class="stat"><div class="k">Payable</div><div class="v">₹1,73,900</div></div><div class="stat"><div class="k">TDS withheld</div><div class="v">₹9,120</div></div></div>
+        <span class="btn off" aria-disabled="true">Propose October run</span><span class="mini" style="margin-left:10px">already waiting</span></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> POST returns 202 with request, status, lines, payable, tds (PayoutRunController.php, store) · proposable only when the month is closed, has no run, and follows the last run in order (ProposePayoutRun.php:45-60: <code>period_open</code>, <code>payout_run_exists</code>, <code>payout_run_out_of_order</code>) · a second proposal while one waits is <code>payout_run_pending</code> (:34) · approval kind partner_payout_run, GM or CEO, with expiry (:12-15; ApprovalAppliers.php:28) · TDS figure is a sample; the rate is the CA's.</div></div>
+
+  <div class="screen"><h3><em>2d</em> · The GM or CEO approves on the approvals queue <span class="uctag">BILL-A-01</span></h3>
+  <p class="cap">The approver sees the month, line count and totals, then approves or rejects. What is approved is exactly what gets written.</p>
+  <p class="src">Lives in: CRM › office › Approvals (routes/crm.php:825-833)</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
+      <h4 style="font-size:var(--fs-h2)">Approvals</h4>
+      <div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>Payout run · October 2026</b><span class="pill p-warn">waiting</span></div>
+        <div class="grid mob" style="margin-top:8px"><div class="g"><span>Lines</span><span class="n">34</span></div><div class="g"><span>Payable</span><span class="n">₹1,73,900</span></div><div class="g"><span>TDS withheld</span><span class="n">₹9,120</span></div><div class="g"><span>Proposed by</span><span class="n">Finance · 3 Nov</span></div></div>
+        <span class="btn full" style="margin-top:10px">Approve</span><span class="btn ghost full" style="margin-top:8px">Reject with reason</span></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> shared approvals queue: GET /crm/approvals, GET /crm/approvals/{id}, POST …/decide (routes/crm.php:825-833) · ApplyPayoutRun writes the run from the same rules and the same closed month (ProposePayoutRun.php:12-15) · the decide form fields drawn are a sample of the existing queue (office/approvals.blade.php).</div></div>
+
+  <div class="screen"><h3><em>2e</em> · Approved: lines to pay, including a carried minimum and a clawback <span class="uctag">BILL-F-03</span></h3>
+  <p class="cap">One grid: statement net, carry in, due, payable, TDS, transfer. Below ₹500 or negative carries to next month; each payable line has Mark paid.</p>
+  <p class="src">Lives in: CRM › office › Payout run</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run · October 2026</span></div>
+    <div class="office"><h4>Payout run · October 2026</h4><div class="ctl"><span class="pill p-ok">Approved by the CEO · 4 Nov</span><span class="mini">Min ₹500 net · TDS rules as set by the CA</span></div>
+      <div class="grid">
+        <div class="g h run"><span>Earner · post</span><span class="n">Statement net</span><span class="n">Carry in</span><span class="n">Due</span><span class="n">Payable</span><span class="n">TDS</span><span>Transfer · action</span></div>
+        <div class="g run"><span class="who"><b>Ravi K.</b><small>RSM-BLR-01</small></span><span class="n">₹39,000</span><span class="n">₹0</span><span class="n">₹39,000</span><span class="n">₹39,000</span><span class="n">₹3,900</span><span><b>₹35,100</b> <span class="btn sm" style="margin-left:8px">Mark paid</span></span></div>
+        <div class="g run"><span class="who"><b>Asha M.</b><small>YSP-BLR-014</small></span><span class="n">₹20,350</span><span class="n">₹420</span><span class="n">₹20,770</span><span class="n">₹20,770</span><span class="n">₹0</span><span><b>₹20,770</b> <span class="btn sm" style="margin-left:8px">Mark paid</span></span></div>
+        <div class="g run"><span class="who"><b>Kiran S.</b><small>YSP-MYS-022</small></span><span class="n">₹380</span><span class="n">₹0</span><span class="n">₹380</span><span class="n">₹0</span><span class="n">₹0</span><span><span class="pill p-mute">Carried: under ₹500</span></span></div>
+        <div class="g run"><span class="who"><b>Neha P.</b><small>YSP-MYS-007</small></span><span class="n neg">−₹400</span><span class="n neg">−₹1,100</span><span class="n neg">−₹1,500</span><span class="n">₹0</span><span class="n">₹0</span><span><span class="pill p-bad">Clawback carried −₹1,500</span></span></div>
+      </div></div></div></div>
+  <div class="src"><b>Sources:</b> line columns = partner_payout_lines (migration 2026_12_32_000008:48-69: statement_net, carry_in, due, payable, tds, transfer, carry_out, bank_reference, paid_on) · due = net + carry in; payable = due when due ≥ the minimum, else 0, and carry out = due (PayoutRunBuilder.php:14-19, 49) · transfer = payable − TDS, enforced by a CHECK (migration :68) · TDS amounts are samples.</div></div>
+
+  <div class="screen"><h3><em>2f</em> · Mark paid: bank reference and date · refused when the partner is not verified <span class="uctag">BILL-F-04 · BILL-SYS-04</span></h3>
+  <p class="cap">Finance enters the bank reference and the paid date. Only then does the ledger move; an unverified partner is refused and nothing is recorded.</p>
+  <p class="src">Lives in: CRM › office › Payout run › Mark paid</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv"><h4 style="font-size:var(--fs-h2)">Payout run · Oct</h4></div>
+      <div class="dim"></div>
+      <div class="sheet"><div class="grab"></div>
+        <b style="font-size:var(--fs-title)">Mark paid · Ravi K.</b><div class="mini" style="margin-bottom:10px">Transfer ₹35,100 · TDS ₹3,900</div>
+        <label class="fld"><span>Bank reference (max 64)</span><i>UTR 4471 0938 2210</i></label>
+        <label class="fld"><span>Paid on</span><i>5 Nov 2026</i></label>
+        <span class="btn full">Record paid</span></div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv"><h4 style="font-size:var(--fs-h2)">Payout run · Oct</h4></div>
+      <div class="dim"></div>
+      <div class="sheet"><div class="grab"></div>
+        <b style="font-size:var(--fs-title)">Mark paid · Asha M.</b><div class="mini" style="margin-bottom:10px">Transfer ₹20,770</div>
+        <div class="banner bad" style="margin-top:0"><b>Not paid</b>This partner's PAN, identity or bank is not verified, so nothing is recorded.</div>
+        <label class="fld"><span>Bank reference (max 64)</span><i>UTR 4471 0938 2211</i></label>
+        <span class="btn off full" aria-disabled="true">Record paid</span></div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> RecordPayoutPaid.php:15-20 (ledger moves only when paid: a payout debit for the transfer, a tds debit for the withholding) · refusals <code>reference_required</code> (:32), <code>bad_date</code> not in the future (:36), <code>payout_line_already_paid</code> (:45), <code>payout_line_not_payable</code> (:48), <code>partner_not_verified</code> (:61), <code>insufficient_balance</code> (:63) · audit PAYOUT_LINE_PAID keeps only the reference's last 4 (:67-68).</div></div>
+
+  <div class="screen"><h3><em>2g</em> · All payable lines paid <span class="uctag">BILL-F-04 · BILL-SYS-05</span></h3>
+  <p class="cap">Each paid line shows its reference (last 4 only) and date. Carried lines stay as carried; nothing on a paid line can change.</p>
+  <p class="src">Lives in: CRM › office › Payout run</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run · October 2026</span></div>
+    <div class="office"><h4>Payout run · October 2026</h4><div class="ctl"><span class="pill p-ok">Paid · 32 of 32 payable lines</span><span class="mini">2 lines carried to November</span></div>
+      <div class="grid">
+        <div class="g h run"><span>Earner · post</span><span class="n">Statement net</span><span class="n">Carry in</span><span class="n">Due</span><span class="n">Payable</span><span class="n">TDS</span><span>Transfer · status</span></div>
+        <div class="g run"><span class="who"><b>Ravi K.</b><small>RSM-BLR-01</small></span><span class="n">₹39,000</span><span class="n">₹0</span><span class="n">₹39,000</span><span class="n">₹39,000</span><span class="n">₹3,900</span><span><b>₹35,100</b><br><span class="pill p-ok">Paid 5 Nov · ref …2210</span></span></div>
+        <div class="g run"><span class="who"><b>Asha M.</b><small>YSP-BLR-014</small></span><span class="n">₹20,350</span><span class="n">₹420</span><span class="n">₹20,770</span><span class="n">₹20,770</span><span class="n">₹0</span><span><b>₹20,770</b><br><span class="pill p-ok">Paid 6 Nov · ref …2211</span></span></div>
+        <div class="g run"><span class="who"><b>Kiran S.</b><small>YSP-MYS-022</small></span><span class="n">₹380</span><span class="n">₹0</span><span class="n">₹380</span><span class="n">₹0</span><span class="n">₹0</span><span><span class="pill p-mute">Carried: under ₹500</span></span></div>
+        <div class="g run"><span class="who"><b>Neha P.</b><small>YSP-MYS-007</small></span><span class="n neg">−₹400</span><span class="n neg">−₹1,100</span><span class="n neg">−₹1,500</span><span class="n">₹0</span><span class="n">₹0</span><span><span class="pill p-bad">Clawback carried −₹1,500</span></span></div>
+      </div></div></div></div>
+  <div class="src"><b>Sources:</b> a paid line is written once (trigger partner_payout_lines_payment_once, migration :73) and lines and runs cannot be deleted (:71-72, :83) · Asha's line is drawn paid after verification; the 2f refusal was the earlier attempt.</div></div>
+</section>
+
+<!-- ═════════ PART 3 ═════════ -->
+<section class="part">
+  <h2>3 · CEO override for an Annual refund</h2>
+  <p class="lead">POST /crm/billing/refund-overrides (routes/crm.php:674-678), ability refund_override.propose (Finance or GM). The one exception to the Annual no-refund-after-first-challenge rule: a reason is required, the CEO alone approves, and the override is audited (ProposeAnnualRefundOverride.php:10-16).</p>
+  <div class="flow"><span><b>3a</b> propose (reason required)</span>→<span><b>3b</b> CEO approves</span>→<span><b>3c</b> override in force</span></div>
+
+  <div class="screen"><h3><em>3a</em> · Finance or the GM proposes the override, with a reason <span class="uctag">BILL-F-05</span></h3>
+  <p class="cap">The refund is blocked because the first challenge has started. Proposing needs a reason; without one it is refused.</p>
+  <p class="src">Lives in: CRM › office › the payment's refund panel</p>
+  <div class="row">
+    <div class="browser" style="flex:1 1 560px"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payment PAY-7Q3K · refund</span></div>
+      <div class="office"><h4>Refund · Rao family</h4><div class="mini">Annual programme · paid ₹4,999 before GST (₹5,898.82 with GST)</div>
+        <div class="banner warn"><b>No refund after the first challenge</b>The learner started their first challenge on 12 Oct, so the Annual no-refund rule blocks this refund. Only a CEO override can let it through.</div>
+        <label class="fld"><span>Reason for the CEO (required)</span><i>Medical emergency; family moving abroad. Learner did 1 of 21.</i></label>
+        <span class="btn">Ask the CEO for an override</span></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
+      <h4 style="font-size:var(--fs-h2)">Refund · Rao family</h4>
+      <label class="fld err"><span>Reason for the CEO (required)</span><i></i></label><div class="ferr">A refund override carries its reason.</div>
+      <span class="btn full">Ask the CEO for an override</span>
+      <div class="banner bad" style="margin-top:12px"><b>Not needed</b>For a payment the rule does not block, the request is refused: an override is never a blank cheque.</div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> refusals <code>override_reason_required</code> (ProposeAnnualRefundOverride.php:28), <code>override_pending</code> (:33), <code>no_payment</code> (:48), <code>override_not_needed</code> (:51, :58), <code>bad_override_subject</code> (:63) · subject = one payment or one institution invoice (:11-13) · the blocking rule = NoRefundAfterStart (:14) · ₹4,999 before GST and ₹5,898.82 with GST = memory decision-only-4999-scan-sellable · names and IDs are samples.</div></div>
+
+  <div class="screen"><h3><em>3b</em> · The CEO approves on the approvals queue · <em>3c</em> · Override in force: the refund can go through <span class="uctag">BILL-A-02 · BILL-SYS-06</span></h3>
+  <p class="cap">The CEO reads the reason and approves. From then that one payment may be refunded; the audit trail records who, when and why.</p>
+  <p class="src">Lives in: CRM › office › Approvals (3b) · the payment's refund panel (3c)</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
+      <h4 style="font-size:var(--fs-h2)">Approvals</h4>
+      <div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>Annual refund override</b><span class="pill p-warn">CEO only</span></div>
+        <div class="grid mob" style="margin-top:8px"><div class="g"><span>Payment</span><span class="n">PAY-7Q3K</span></div><div class="g"><span>Amount</span><span class="n">₹4,999 + GST</span></div><div class="g"><span>Proposed by</span><span class="n">Finance · 14 Nov</span></div></div>
+        <p class="mini" style="margin:8px 0 0">"Medical emergency; family moving abroad. Learner did 1 of 21."</p>
+        <span class="btn full" style="margin-top:10px">Approve override</span><span class="btn ghost full" style="margin-top:8px">Reject with reason</span></div>
+    </div></div></div>
+    <div class="browser" style="flex:1 1 520px"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payment PAY-7Q3K · refund</span></div>
+      <div class="office"><h4>Refund · Rao family</h4>
+        <div class="banner ok"><b>CEO override in force</b>Approved by the CEO on 15 Nov 2026. This one payment may now be refunded. Reason and approval are in the audit trail.</div>
+        <span class="btn">Continue to refund</span><p class="mini" style="margin-top:10px">The override covers this payment only; any other Annual refund still needs its own.</p></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> policy annual_refund_override, CEO alone, expiry D4; ApplyAnnualRefundOverride audits it and NoRefundAfterStart then lets that one subject through (ProposeAnnualRefundOverride.php:11-15; ApprovalAppliers.php:27) · queue routes = routes/crm.php:825-833.</div></div>
+</section>
+
+<div class="foot">
+  <b>Notes</b>
+  <ul>
+    <li><b>Built backend, new screens:</b> the routes, actions and refusals above exist on <code>release/2026-11-27-crm-golive-final</code> @ d6beff8fb (not yet on main). The screens are new PWA views to build into the go-live release.</li>
+    <li><b>Every number on these screens comes from the server:</b> statement figures from CommissionStatementView, run lines from partner_payout_lines; the screens compute nothing.</li>
+    <li><b>Governed values:</b> ₹500 minimum and monthly cadence are ruled settings; the four TDS keys have no default and the CA must set them (PayoutRules.php:12-14).</li>
+    <li><b>Audit:</b> payout lines paid (PAYOUT_LINE_PAID), approvals and the refund override are audited by the backend; office reads follow the 26-Nov ruling (every office read audited).</li>
+    <li><b>Copy:</b> en + kn translation keys like the other CRM screens; Kannada not drawn here.</li>
+  </ul>
+</div>
+</div>
