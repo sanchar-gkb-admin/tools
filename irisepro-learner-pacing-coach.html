@@ -123,13 +123,75 @@ header.top p{margin:0 0 4px;color:var(--g500);font-size:14px;line-height:1.5;max
 .foot h3{margin:0 0 6px;font-size:15px}.foot code{font-size:11px;background:#f6efe6;border-radius:4px;padding:1px 5px}
 .foot ul{margin:6px 0;padding-left:18px}
 .tw{overflow-x:auto}
+/* ── Yashodarshi panel (Evaluation Atelier) — tokens from yashodarshi/desk.blade.php:46-52 ── */
+.yd{--paper:#F5EFE3;--ycard:#FCFAF3;--yink:#241E14;--soft:#6B6152;--muted:#A0957F;--yline:#E6DDCB;--yacc:#E8611F;--due:#C4462F;--soon:#B7791F;--ok:#4E9A5F;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,monospace;
+  background:var(--paper);color:var(--yink);font-family:"Montserrat",sans-serif;font-size:12.5px;padding:16px 18px;min-height:100%}
+.yd .mast{display:flex;align-items:center;gap:10px;margin-bottom:10px}.yd .wm{font-weight:900;letter-spacing:.08em;font-size:13px;color:var(--yacc)}
+.yd .logo{font-family:var(--serif);font-size:19px;font-weight:600;margin-right:auto}.yd .logo em{color:var(--yacc)}
+.yd .who{display:flex;gap:7px;align-items:center;font-size:11.5px}.yd .who .av{width:26px;height:26px;border-radius:50%;background:#efe6d4;border:1px solid var(--yline);display:grid;place-items:center;font-family:var(--serif);color:var(--yacc)}
+.yd .ynav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.yd .ynav a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--yline);background:var(--ycard);padding:5px 11px;border-radius:999px}
+.yd .ynav a.on{background:var(--yink);color:#fff;border-color:var(--yink)}.yd .ynav .bdg{display:inline-block;background:var(--yacc);color:#fff;border-radius:999px;padding:0 6px;margin-left:5px;font-weight:800}
+.yd .eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.yd h4{font-family:var(--serif);font-size:24px;font-weight:600;margin:4px 0 2px;letter-spacing:-.02em}.yd .sub{color:var(--soft);font-size:12px;margin-bottom:10px}
+.yd .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}.yd .tile{background:var(--ycard);border:1px solid var(--yline);border-radius:12px;padding:9px 11px}
+.yd .tile .k{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.yd .tile .v{font-family:var(--serif);font-size:24px;font-weight:600;margin-top:4px}
+.yd .tile.warn{border-color:#e9c7a0;background:#fbf1e3}
+.yrow{background:var(--ycard);border:1px solid var(--yline);border-radius:12px;padding:9px 11px;display:grid;grid-template-columns:minmax(170px,1.6fr) .8fr .9fr 1fr 1.1fr auto;gap:10px;align-items:center;margin-bottom:7px}
+.yrow .nm{font-weight:700;font-size:13.5px}.yrow .chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.ychip{font-size:10.5px;padding:2px 8px;border-radius:999px;background:#F1EADB;border:1px solid var(--yline);color:var(--soft)}
+.ycode{font-family:var(--mono);font-size:9.5px;color:var(--muted);letter-spacing:.04em}
+.yrow .fig{font-family:var(--mono);font-size:11px;color:var(--soft)}.yrow .fig b{font-family:"Montserrat";font-size:13px;color:var(--yink)}
+.st{font-family:var(--mono);font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;border:1px solid var(--yline);white-space:nowrap;display:inline-block}
+.st.ok{color:var(--ok);background:#eaf3ea;border-color:#cfe3cf}.st.up{color:#2b6a8a;background:#e7f1f6;border-color:#cde0ea}.st.beh{color:var(--soon);background:#faf0dd;border-color:#ecd7ae}
+.st.cls{color:var(--due);background:#f8e7e2;border-color:#eccabf}.st.done{color:var(--soft);background:#efe9dd}
+.chh{font-size:10.5px;line-height:1.5}.chh .g{color:var(--ok)}.chh .b{color:var(--due);font-weight:700}.chh .m{color:var(--muted)}
+.ybtn{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;border-radius:8px;padding:6px 9px;border:1px solid var(--yink);background:var(--yink);color:#fff;white-space:nowrap;display:inline-block}
+.ybtn.gh{background:transparent;color:var(--yink)}.ybtn.off{opacity:.4}
+.yhead{display:grid;grid-template-columns:minmax(170px,1.6fr) .8fr .9fr 1fr 1.1fr auto;gap:10px;padding:0 11px 5px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.yd .empty{border:1px dashed var(--yline);border-radius:12px;padding:26px;text-align:center;color:var(--soft);background:var(--ycard)}
+.yd .empty .t{font-family:var(--serif);font-size:20px;color:var(--yink);margin-bottom:4px}
+.ym .yrow{grid-template-columns:1fr auto;gap:6px}.ym .yrow .wide{grid-column:1/-1}
+@media (max-width:760px){.yrow,.yhead{grid-template-columns:1fr auto}.yhead{display:none}.yd .tiles{grid-template-columns:1fr 1fr}}
+/* ── Superadmin shell — tokens from superadmin/layout.blade.php:17-26,61,82 ── */
+.sa{display:flex;min-height:430px;font-size:12px;background:var(--secondary)}
+.sa nav{width:168px;flex:0 0 168px;background:var(--primary);color:#fff;padding:14px 10px;font-weight:600}
+.sa nav b{display:block;font-size:14px;margin:0 0 14px 6px}.sa nav div{padding:7px 9px;border-radius:8px;margin-bottom:2px;font-size:11.5px}.sa nav .on{background:var(--primary-dk)}
+.sa main{flex:1;padding:14px 16px;min-width:0}.sa h4{margin:0 0 10px;font-size:16px;font-weight:800}
+.sacard{background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:10px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}.kpi{background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-top:3px solid var(--primary)}
+.kpi .k{font-size:10.5px;color:var(--g500);font-weight:700}.kpi .v{font-size:22px;font-weight:800;margin-top:2px}.kpi.on{outline:2px solid var(--primary);background:var(--card-soft)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+.sel{border:1px solid #d1d5db;border-radius:8px;padding:5px 9px;background:#fff;font-size:11px;color:var(--g700)}.sel.on{border-color:var(--primary);color:var(--primary-dk);font-weight:700}
+.sabtn{display:inline-block;background:var(--primary);color:#fff;border-radius:8px;padding:6px 11px;font-weight:700;font-size:11px}.sabtn.gh{background:#fff;color:var(--primary-dk);border:1px solid var(--primary-lt)}
+.sa table td .nm{font-weight:700}.sa table td small{color:var(--g500);display:block}
+.chpb{color:#b42318;font-weight:700}
+@media (max-width:760px){.sa nav{display:none}.kpis{grid-template-columns:1fr 1fr}}
+/* nudge log */
+.log{border-left:2px solid var(--line);margin-left:6px;padding-left:12px}
+.log .e{position:relative;margin-bottom:9px;font-size:11.5px;line-height:1.45}.log .e::before{content:"";position:absolute;left:-17px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--primary)}
+.log .e.sys::before{background:#c9b9a5}.log .e.par::before{background:#8a7a5f}.log .e .w{font-weight:700}.log .e .r{color:var(--g500);font-size:10.5px}
+.cool{background:#fff8ec;border:1.5px solid #f4c77d;border-radius:10px;padding:8px 10px;font-size:11.5px;color:#6b4a10;margin-bottom:8px}
+.yd .log{border-color:var(--yline)}.yd .log .e::before{background:var(--yacc)}.yd .log .e.sys::before{background:#cdbfa6}.yd .log .e.par::before{background:#8a7a5f}.yd .cool{background:#fbf1e3;border-color:#e9c7a0}
+/* slack */
+.slack{background:#fff;font-size:12.5px;display:flex;min-height:260px}.slack aside{width:150px;background:#3f0e40;color:#cfc3cf;padding:12px 10px;font-size:11.5px}.slack aside div{padding:3px 6px;border-radius:5px}.slack aside .on{background:#1164a3;color:#fff}
+.slack main{flex:1;padding:12px 16px}.slack .m{display:flex;gap:9px;margin-bottom:10px}.slack .m .a{width:30px;height:30px;border-radius:6px;background:var(--orange);color:#fff;display:grid;place-items:center;font-weight:800;font-size:11px;flex:0 0 30px}
+.slack .att{border-left:4px solid #d9a400;padding:4px 10px;margin-top:4px;background:#fafafa}
+/* CRM PWA — tokens from crm/pwa/theme.blade.php:21-26 */
+.crm{--brand:#f5821f;--brand-ink:#b4530a;--brand-soft:#fff1e3;--cbg:#fff;--sub:#f3f6f9;--cink:#0b1b33;--mute:#4a5b73;--cline:#d5dde7;--warn:#8a5a00;--warn-soft:#fff4d6;--warn-line:#d9a400;
+  background:var(--sub);color:var(--cink);font-size:12.5px;height:100%;padding:34px 12px 12px}
+.crm .ccard{background:var(--cbg);border:1px solid var(--cline);border-radius:12px;padding:11px 12px;margin-bottom:9px}
+.crm h1{font-size:18px;margin:0 0 2px;font-weight:800}.crm .mini{font-size:10.5px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.crm .cchip{display:inline-block;border:1px solid #6b7a90;border-radius:999px;padding:3px 9px;font-size:11px;margin:0 4px 4px 0}.crm .cchip.cur{background:var(--brand);color:#1a0e02;border-color:var(--brand);font-weight:700}
+.proposal{display:inline-block;background:#fff3d6;color:#8a5a00;font-weight:800;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:2px 7px;vertical-align:middle}
+.matrix td,.matrix th{font-size:11.5px}.matrix td b{display:block}
 table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;color:var(--g500);font-weight:700;padding:6px;border-bottom:1px solid var(--line);font-size:10.5px;text-transform:uppercase}td{padding:6px;border-bottom:1px solid #f4ede4;vertical-align:top}
 </style>
 
 <div class="wrap">
 <header class="top">
   <h1>"10 minutes today" · learner pacing coach</h1>
-  <p>Source: <b>Goutam 28-Nov pacing coach</b> (approved feature). Five parts, every state, mobile and desktop. Sample learner <b>Anika Rao</b> and her parent are made up.</p>
+  <p>Source: <b>Goutam 28-Nov pacing coach</b> (approved feature). Parts 1-5 are the learner and parent screens; parts 6-10 are the Yashodarshi, admin, alert, shared nudge log and YSP-owner views (Goutam 28-Nov). Every state, mobile and desktop. Sample learner <b>Anika Rao</b> and her parent are made up.</p>
   <p>Example plan: the ₹4,999 21-challenge programme on the <b>25-Day Steady</b> pace (<code>relaxed_25</code>, config/enrolment.php:202-204).</p>
   <div class="theme"><b>Theme read from the repo:</b> Montserrat (dashboard.blade.php:10, onboarding/index.blade.php:14) · primary #FF8A3D, primary-dark #E67E35, primary-light #FFB380, secondary #FFF1E6 (onboarding/index.blade.php:21-24; partials/app.blade.php:25,28) · dashboard orange #F58321 (most-used colour in dashboard.blade.php) · onboarding page #FFF6EE (onboarding/index.blade.php:56) · page = secondary→white gradient (partials/app.blade.php:412) · CTA gradient primary→#FF6B57 (onboarding/index.blade.php, "Lock in &amp; finish").</div>
 </header>
@@ -506,6 +568,338 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
   <div class="src"><b>Sources:</b> official WhatsApp for parents at launch (memory: decision-messaging-option-b) · 5c figures = the 1d state (one source) · WhatsApp templates need vendor approval before launch (UNVERIFIED timing).</div></div></div>
 </section>
 
+<!-- ═════════ ONE SOURCE BANNER ═════════ -->
+<div class="gap" style="margin-top:44px;border-left-color:var(--orange)"><b>Parts 6-10 use the same pacing source as the learner's card.</b> Every Day X / 25, done / 21, status chip and "behind by N" below comes from the one pacing read in Part 1: the unit window (LearnerWindow) plus <code>completed_count</code>. The Yashodarshi list, the admin table, the alerts, the nudge log and the YSP owner card compute nothing of their own. A guard test should compare each view with the learner card in both directions. <span class="proposal">proposal</span> The pacing answer is stored when a challenge is submitted, so every list is a plain read.</div>
+
+<!-- ═════════ PART 6 ═════════ -->
+<section class="part">
+  <h2>6 · Yashodarshi view: "Pacing" in the YD panel</h2>
+  <p class="lead">Source: <b>Goutam 28-Nov</b> ("an admin and Yashodarshi view of this student pacing dashboard"). Scope: only the units assigned to this Yashodarshi (<code>units.yashodarshi_id</code>, the same scope as Mentorship, YashodarshiAuthController.php:276-278). Each unit holds one learner (LearnerWindow.php header).</p>
+  <div class="flow"><span><b>6a</b> some behind (desktop)</span><span><b>6b</b> all on pace</span><span><b>6c</b> mobile list</span>→<span><b>6d</b> send a nudge</span><span><b>6e</b> empty</span></div>
+
+  <div class="screen"><h3><em>6a</em> · Some behind, one with an undeliverable email (desktop)</h3>
+  <p class="cap">A new "Pacing" pill joins Desk, Mentorship and My evaluations. Most behind sorts first; a channel problem shows in red text, never as a red row.</p>
+  <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/pacing</span></div>
+    <div class="yd">
+      <div class="mast"><span class="wm">YASHHO</span><div class="logo">Evaluation <em>Atelier</em></div><span class="who"><span class="av">K</span><span>Kavya N.<br><span class="ycode">YASHODARSHI</span></span></span></div>
+      <div class="ynav"><a>Desk</a><a>Mentorship</a><a>My evaluations</a><a class="on">Pacing <span class="bdg">2</span></a></div>
+      <div class="eyebrow">Friday · 28 Nov · your learners</div>
+      <h4>2 of your 5 learners could use a nudge.</h4>
+      <div class="sub">Sorted by most behind. All figures come from the same source as each learner's own card.</div>
+      <div class="tiles"><div class="tile"><div class="k">On pace / ahead</div><div class="v">2</div></div><div class="tile warn"><div class="k">Behind</div><div class="v">2</div></div><div class="tile"><div class="k">Closing soon</div><div class="v">0</div></div><div class="tile warn"><div class="k">Channel problem</div><div class="v">1</div></div></div>
+      <div class="yhead"><span>Learner</span><span>Window</span><span>Status</span><span>Last activity</span><span>Reminders</span><span></span></div>
+      <div class="yrow"><div><div class="nm">Rohan Das</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 7Q2LD</span></div>
+        <div class="fig"><b>Day 14</b> / 25<br>7 / 21 done</div><div><span class="st beh">Behind by 4</span><div class="ycode" style="margin-top:3px">no catch-up plan</div></div><div class="fig">4 days ago</div>
+        <div class="chh"><span class="g">● push on</span><br><span class="g">● email ok</span></div><div><span class="ybtn">Send a nudge</span><br><span class="ybtn gh" style="margin-top:4px">Open</span></div></div>
+      <div class="yrow"><div><div class="nm">Anika Rao</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div>
+        <div class="fig"><b>Day 12</b> / 25<br>8 / 21 done</div><div><span class="st beh">Behind by 2</span><div class="ycode" style="margin-top:3px">plan: 2 this weekend</div></div><div class="fig">yesterday</div>
+        <div class="chh"><span class="g">● push on</span><br><span class="b">● email can't receive mail</span></div><div><span class="ybtn off">Nudged 2 h ago</span><br><span class="ybtn gh" style="margin-top:4px">Open</span></div></div>
+      <div class="yrow"><div><div class="nm">Meera Iyer</div><div class="chips"><span class="ychip">Class 10</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 3HX8P</span></div>
+        <div class="fig"><b>Day 10</b> / 25<br>8 / 21 done</div><div><span class="st ok">On pace</span></div><div class="fig">today, 7:12 pm</div>
+        <div class="chh"><span class="m">○ push off</span><br><span class="g">● email ok</span></div><div><span class="ybtn gh">Open</span></div></div>
+      <div class="yrow"><div><div class="nm">Kabir Shetty</div><div class="chips"><span class="ychip">Class 6</span><span class="ychip">MARKS BOOSTER</span></div><span class="ycode">Candidate 9TB2C</span></div>
+        <div class="fig"><b>Day 8</b> / 25<br>9 / 21 done</div><div><span class="st up">Ahead by 3</span></div><div class="fig">today, 6:40 am</div>
+        <div class="chh"><span class="g">● push on</span><br><span class="g">● email ok</span></div><div><span class="ybtn gh">Open</span></div></div>
+      <div class="yrow"><div><div class="nm">Sana Sheikh</div><div class="chips"><span class="ychip">Class 11</span><span class="ychip">NEET</span></div><span class="ycode">Candidate 5RW1E</span></div>
+        <div class="fig"><b>Day 24</b> / 25<br>21 / 21 done</div><div><span class="st done">Done</span></div><div class="fig">2 days ago</div>
+        <div class="chh"><span class="m">reminders stopped</span></div><div><span class="ybtn gh">Open</span></div></div>
+    </div></div>
+  <div class="src"><b>Sources:</b> theme = yashodarshi/desk.blade.php:46-52 (paper #F5EFE3, card #FCFAF3, accent #E8611F, ok/soon/due) · nav pills = desk.blade.php:126-133 · name + standard · stream · institution chips, pseudonym as a small code = partials/_learner_strip.blade.php:1-8 (Goutam 25-Nov) · stream chip = upper-cased stream key (_learner_strip:13) · "Candidate XXXXX" format = Student.php:241-250 · standard labels and all learners are samples · "email can't receive mail" = DeliverableEmail check (Part 2e) · statuses and "behind by N" = the Part 1 rule.</div></div></div>
+
+  <div class="screen"><h3><em>6b</em> · All on pace · <em>6e</em> · Empty unit</h3>
+  <p class="cap">When nobody needs help, the heading says so and the nudge buttons go quiet. A Yashodarshi with no units sees the same empty note as Mentorship.</p>
+  <div class="row">
+    <div class="browser" style="flex:1 1 420px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/pacing</span></div>
+      <div class="yd"><div class="ynav"><a>Desk</a><a>Mentorship</a><a>My evaluations</a><a class="on">Pacing</a></div>
+        <div class="eyebrow">Friday · 28 Nov · your learners</div><h4>All 5 learners are on pace. 🌿</h4><div class="sub">Nothing to nudge today. Daily reminders are doing the work.</div>
+        <div class="tiles"><div class="tile"><div class="k">On pace / ahead</div><div class="v">5</div></div><div class="tile"><div class="k">Behind</div><div class="v">0</div></div><div class="tile"><div class="k">Closing soon</div><div class="v">0</div></div><div class="tile"><div class="k">Channel problem</div><div class="v">0</div></div></div>
+        <div class="yrow"><div><div class="nm">Meera Iyer</div><div class="chips"><span class="ychip">Class 10</span><span class="ychip">BOARD BOOSTER</span></div></div><div class="fig"><b>Day 10</b> / 25<br>8 / 21</div><div><span class="st ok">On pace</span></div><div class="fig">today</div><div class="chh"><span class="g">● email ok</span></div><div><span class="ybtn gh">Open</span></div></div>
+      </div></div>
+    <div class="browser" style="flex:1 1 380px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/pacing</span></div>
+      <div class="yd"><div class="ynav"><a>Desk</a><a>Mentorship</a><a>My evaluations</a><a class="on">Pacing</a></div>
+        <div class="empty"><div class="t">No learners assigned to you yet.</div>When you're assigned a unit, that learner's pace appears here.</div>
+      </div></div>
+  </div>
+  <div class="src"><b>Sources:</b> empty copy mirrors mentorship.blade.php:117 ("No students assigned to you yet…").</div></div>
+
+  <div class="screen"><h3><em>6c</em> · Mobile list · <em>6d</em> · Send a nudge (one tap, logged, rate-limited)</h3>
+  <p class="cap">On a phone, each learner is one card. The nudge goes out on the learner's own chosen channel, so an email that can't receive mail is skipped.</p>
+  <div class="row">
+    <div class="phone"><div class="scr" style="background:#F5EFE3"><div class="notch"></div><div class="yd ym" style="padding-top:34px">
+      <div class="ynav"><a>Desk</a><a>Mentor</a><a class="on">Pacing <span class="bdg">2</span></a></div>
+      <h4 style="font-size:20px">2 could use a nudge.</h4>
+      <div class="yrow"><div><div class="nm">Rohan Das</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 7Q2LD</span></div><span class="st beh">Behind by 4</span>
+        <div class="wide fig">Day 14 / 25 · 7 / 21 · last active 4 days ago · no plan</div><div class="wide chh"><span class="g">● push on · ● email ok</span></div><div class="wide"><span class="ybtn">Send a nudge</span></div></div>
+      <div class="yrow"><div><div class="nm">Anika Rao</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div><span class="st beh">Behind by 2</span>
+        <div class="wide fig">Day 12 / 25 · 8 / 21 · plan: 2 this weekend</div><div class="wide chh"><span class="g">● push on</span> · <span class="b">● email can't receive mail</span></div><div class="wide"><span class="ybtn off">Nudged 2 h ago · next at 6 pm</span></div></div>
+    </div></div></div>
+    <div class="phone"><div class="scr" style="background:#F5EFE3"><div class="notch"></div><div class="yd ym" style="padding-top:34px">
+      <h4 style="font-size:20px">Pacing</h4><div class="yrow"><div class="nm">Rohan Das</div><span class="st beh">Behind by 4</span></div></div>
+      <div class="dim"></div>
+      <div class="sheet" style="background:#FCFAF3"><div class="grab"></div>
+        <h6 style="font-family:'Iowan Old Style',Georgia,serif;font-size:19px">Nudge Rohan?</h6>
+        <p>Goes by <b>app notification</b> and <b>email</b>, his chosen channels. He sees:</p>
+        <div class="notif" style="background:#fff;border:1px solid #E6DDCB"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Kavya, your Yashodarshi, is cheering you on 🌟</b><br>10 minutes today gets you moving: "Life Without Video Games" is next.</div>
+        <div class="ycode" style="margin:6px 0 10px;line-height:1.5">Logged to the shared nudge log (Part 9) · 1 per learner per 6 h across all roles <span class="proposal">proposal</span></div>
+        <div class="ybtn" style="display:block;text-align:center;padding:10px">Send nudge</div>
+      </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> channels = the learner's Part 2 choice · the cool-down, who may nudge and the message copy are config <span class="proposal">proposal</span> · every list open and every nudge is written to the audit trail (like ConsentAccessLog::record, ConsentAccessLog.php) <span class="proposal">proposal</span> · the YD sees no email, phone or guardian, matching the _learner_strip projection (_learner_strip.blade.php:6-7).</div></div>
+</section>
+
+<!-- ═════════ PART 7 ═════════ -->
+<section class="part">
+  <h2>7 · Admin view (superadmin): every batch, every unit</h2>
+  <p class="lead">The same columns across all units, with counts, filters, "most behind" sort and export. Drill into a learner to see the exact card they see, plus their reminder history.</p>
+  <div class="flow"><span><b>7a</b> normal</span>→<span><b>7b</b> filtered: channel problems</span>→<span><b>7c</b> one learner</span><span><b>7d</b> mobile list</span><span><b>7e</b> mobile drill-down</span></div>
+
+  <div class="screen"><h3><em>7a</em> · Normal: counts on top, sorted by most behind</h3>
+  <p class="cap">Four counts double as filters. Columns match the Yashodarshi list, plus batch and Yashodarshi.</p>
+  <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/pacing</span></div>
+    <div class="sa"><nav><b>Super Admin</b><div>Dashboard</div><div>Operations</div><div>Manage Students</div><div>Manage Yashodarshis</div><div class="on">Pacing</div><div>Manage Batches</div><div>Manage Enrollments</div><div>Reports</div></nav>
+    <main><h4>Learner pacing</h4>
+      <div class="kpis"><div class="kpi"><div class="k">On pace / ahead</div><div class="v">142</div></div><div class="kpi"><div class="k">Behind</div><div class="v">37</div></div><div class="kpi"><div class="k">Closing soon</div><div class="v">9</div></div><div class="kpi"><div class="k">Channel problems</div><div class="v">6</div></div></div>
+      <div class="filters"><span class="sel">Batch: all ▾</span><span class="sel">Yashodarshi: all ▾</span><span class="sel">Stream: all ▾</span><span class="sel">Status: all ▾</span><span class="sel">Channel problem: any ▾</span><span class="sel on">Sort: most behind ▾</span><span style="margin-left:auto" class="sabtn gh">⤓ Export CSV</span></div>
+      <div class="sacard tw"><table><tr><th>Learner</th><th>Batch · YD</th><th>Window</th><th>Status</th><th>Last activity</th><th>Reminders</th><th>Plan</th><th></th></tr>
+        <tr><td><span class="nm">Arjun M.</span><small>Class 8 · BOARD BOOSTER · Candidate 2ZK7Q</small></td><td>Nov cohort A<small>Kavya N.</small></td><td>Day 21/25<small>11/21</small></td><td><span class="pill p-warm">Behind by 7</span></td><td>6 days ago</td><td>push off · <span class="chpb">email bounced</span></td><td>—</td><td><span class="sabtn">Nudge</span></td></tr>
+        <tr><td><span class="nm">Rohan Das</span><small>Class 9 · BOARD BOOSTER · Greenfield School</small></td><td>Greenfield · Nov<small>Kavya N.</small></td><td>Day 14/25<small>7/21</small></td><td><span class="pill p-warm">Behind by 4</span></td><td>4 days ago</td><td>push on · email ok</td><td>—</td><td><span class="sabtn">Nudge</span></td></tr>
+        <tr><td><span class="nm">Isha P.</span><small>Class 12 · JEE</small></td><td>Nov cohort B<small>Ravi S.</small></td><td>Day 23/25<small>16/21</small></td><td><span class="pill p-or">Closing soon</span></td><td>yesterday</td><td>push on · email ok</td><td>2 a day</td><td><span class="sabtn">Nudge</span></td></tr>
+        <tr><td><span class="nm">Anika Rao</span><small>Class 9 · BOARD BOOSTER</small></td><td>Nov cohort A<small>Kavya N.</small></td><td>Day 12/25<small>8/21</small></td><td><span class="pill p-warm">Behind by 2</span></td><td>yesterday</td><td>push on · <span class="chpb">no MX</span></td><td>weekend</td><td><span class="sabtn gh">2 h ago</span></td></tr>
+        <tr><td><span class="nm">Meera Iyer</span><small>Class 10 · BOARD BOOSTER · Greenfield School</small></td><td>Greenfield · Nov<small>Kavya N.</small></td><td>Day 10/25<small>8/21</small></td><td><span class="pill p-ok">On pace</span></td><td>today</td><td>push off · email ok</td><td>—</td><td></td></tr>
+      </table></div>
+    </main></div></div>
+  <div class="src"><b>Sources:</b> theme = superadmin/layout.blade.php (primary #FF8A3D sidebar :82, bg-secondary :61, Montserrat :7, tokens :17-26) · existing nav labels read from layout.blade.php; "Pacing" is new · counts and rows are illustrative · "email bounced" = SES permanent bounce, already recorded (SesNotificationController.php:86-89,172-177) · export obeys the same scope and is audited <span class="proposal">proposal</span>.</div></div></div>
+
+  <div class="screen"><h3><em>7b</em> · Filtered to "Channel problems" · <em>7c</em> · One learner: the card she sees + her reminder history</h3>
+  <p class="cap">Clicking the count filters the table. Drill-down repeats the learner's own Part 1 card, drawn by the same component, so it cannot differ.</p>
+  <div class="row">
+    <div class="browser" style="flex:1 1 520px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/pacing?problem=channel</span></div>
+      <div class="sa"><main style="padding:14px">
+        <div class="kpis"><div class="kpi"><div class="k">On pace</div><div class="v">142</div></div><div class="kpi"><div class="k">Behind</div><div class="v">37</div></div><div class="kpi"><div class="k">Closing soon</div><div class="v">9</div></div><div class="kpi on"><div class="k">Channel problems</div><div class="v">6</div></div></div>
+        <div class="filters"><span class="sel on">Channel problem: any ✕</span><span class="sel">Sort: most behind ▾</span><span style="margin-left:auto" class="sabtn gh">⤓ Export</span></div>
+        <div class="sacard tw"><table><tr><th>Learner</th><th>Problem</th><th>Since</th><th>Way to reach</th></tr>
+          <tr><td><span class="nm">Arjun M.</span><small>Nov cohort A · Kavya N.</small></td><td class="chpb">Email bounced (permanent) · push off</td><td>22 Nov</td><td>Ask the YD to call · fix email</td></tr>
+          <tr><td><span class="nm">Anika Rao</span><small>Nov cohort A · Kavya N.</small></td><td class="chpb">Email domain can't receive mail</td><td>onboarding</td><td>Push on ✓</td></tr>
+          <tr><td><span class="nm">Dev K.</span><small>Nov cohort B · Ravi S.</small></td><td class="chpb">Push token expired</td><td>26 Nov</td><td>Email ok ✓</td></tr>
+          <tr><td colspan="4" style="color:var(--g500)">+ 3 more</td></tr></table></div>
+      </main></div></div>
+    <div class="browser" style="flex:1 1 520px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/pacing/units/…</span></div>
+      <div class="sa"><main style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><div class="meta" style="margin-bottom:4px">What Anika sees right now</div>
+          <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big" style="font-size:15px">Day 12 of 25 · 8 of 21 done</div><div class="meta"><span class="pill p-warm">2 to catch up</span></div><div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>timer 45 min once opened</small></div></div><div class="btn" style="opacity:.6">Start (learner only)</div></div>
+          <div class="sacard"><b>Channels</b><br>push ✓ · email <span class="chpb">can't receive mail</span> · WhatsApp at launch<br><b>Time</b> 7:00 pm · <b>Plan</b> 2 this weekend</div></div>
+        <div class="sacard"><b>Reminder history</b>
+          <div class="tw"><table style="margin-top:6px"><tr><th>When</th><th>What</th><th>Ch.</th><th>Result</th></tr>
+            <tr><td>28 Nov 4:10 pm</td><td>Nudge · Kavya (YD)</td><td>push</td><td>delivered · opened</td></tr>
+            <tr><td>27 Nov 7:00 pm</td><td>Daily reminder</td><td>push</td><td>delivered</td></tr>
+            <tr><td>27 Nov 7:00 pm</td><td>Daily reminder</td><td>email</td><td class="chpb">skipped: no MX</td></tr>
+            <tr><td>23 Nov 10:00 am</td><td>Parent note</td><td>email</td><td>sent</td></tr>
+            <tr><td>22 Nov 9:00 am</td><td>Window nudge 50%</td><td>email</td><td class="chpb">skipped: no MX</td></tr></table></div>
+          <div class="src" style="margin-top:6px">Opened by Ops · 28 Nov 4:32 pm · audited</div></div>
+      </main></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> delivered/read receipts exist for CRM comms (comms_messages delivered_at / read_at, Support/Comms/Receipts.php:3-6); whether learner reminder emails pass through that door is UNVERIFIED, and email "opened" tracking was not found (UNVERIFIED) · window nudge 50% = config/tasks.php:93 · the access trail is a proposal modelled on ConsentAccessLog (ConsentAccessLog.php) · the 26-Nov ruling says all office reads are audited (memory: decision-crm-golive-privacy-rulings-26nov).</div></div>
+
+  <div class="screen"><h3><em>7d</em> · Mobile list · <em>7e</em> · Mobile drill-down</h3>
+  <p class="cap">On a phone the sidebar folds away: counts become chips and each row a card. The drill-down stacks the card above the history.</p>
+  <div class="row">
+    <div class="phone"><div class="scr" style="background:var(--secondary)"><div class="notch"></div><div style="padding:36px 12px 12px;font-size:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mi" style="color:var(--primary)">menu</span><b style="font-size:15px">Learner pacing</b></div>
+      <div class="filters"><span class="sel">On pace 142</span><span class="sel">Behind 37</span><span class="sel">Closing 9</span><span class="sel on">Channel 6</span></div>
+      <div class="sacard"><b>Arjun M.</b> <span class="pill p-warm">Behind by 7</span><div class="meta">Nov cohort A · Kavya N. · Day 21/25 · 11/21</div><div class="chpb" style="font-size:11px;margin-top:3px">email bounced · push off</div></div>
+      <div class="sacard"><b>Anika Rao</b> <span class="pill p-warm">Behind by 2</span><div class="meta">Nov cohort A · Kavya N. · Day 12/25 · 8/21</div><div class="chpb" style="font-size:11px;margin-top:3px">email can't receive mail · push ok</div></div>
+      <div class="sacard"><b>Dev K.</b> <span class="pill p-ok">On pace</span><div class="meta">Nov cohort B · Ravi S. · Day 9/25 · 7/21</div><div class="chpb" style="font-size:11px;margin-top:3px">push token expired · email ok</div></div>
+    </div></div></div>
+    <div class="phone"><div class="scr" style="background:var(--secondary)"><div class="notch"></div><div style="padding:36px 12px 12px;font-size:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mi">arrow_back</span><b style="font-size:15px">Anika Rao</b></div>
+      <div class="card plan"><div class="kick">What she sees</div><div class="big" style="font-size:14px">Day 12 of 25 · 8 of 21 done</div><div class="meta"><span class="pill p-warm">2 to catch up</span> · plan: weekend</div></div>
+      <div class="cool">Nudged 2 h ago by Kavya (YD). Next nudge available at 6:00 pm.</div>
+      <div class="sacard"><b>Nudge log</b><div class="log" style="margin-top:6px">
+        <div class="e"><span class="w">Kavya (YD)</span> · push · 4:10 pm<div class="r">delivered · opened</div></div>
+        <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered</div></div>
+        <div class="e par"><span class="w">Parent note</span> · email · Sun 10:00 am<div class="r">sent</div></div></div></div>
+      <div class="sabtn gh" style="display:block;text-align:center;opacity:.5">Nudge · available 6:00 pm</div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> as 7a-7c. The cool-down applies across all roles; see Part 9.</div></div>
+</section>
+
+<!-- ═════════ PART 8 ═════════ -->
+<section class="part">
+  <h2>8 · Awareness: automatic heads-ups when a learner crosses a line</h2>
+  <p class="lead">Source: <b>Goutam 28-Nov</b> ("so that everyone involved is aware and can nudge accordingly"). Each threshold tells the right people, each in their own place. Every threshold and recipient is config. <span class="proposal">proposal</span></p>
+  <div class="sacard tw" style="margin-top:12px"><table class="matrix"><tr><th>Trigger <span class="proposal">proposal</span></th><th>Learner</th><th>Parent</th><th>Yashodarshi</th><th>Admin / ops</th></tr>
+    <tr><td><b>Behind by ≥ 2</b>Part 1 rule</td><td>in-app card + their channel</td><td>weekly note (Part 5c)</td><td>YD badge + digest line</td><td>counter</td></tr>
+    <tr><td><b>No activity 3 days</b>last submission</td><td>in-app + channel</td><td>their channel, once</td><td>badge + digest line</td><td>counter</td></tr>
+    <tr><td><b>Seat closes in 3 days</b>window end</td><td>in-app + channel</td><td>their channel, once</td><td>badge + digest line</td><td>counter</td></tr>
+    <tr><td><b>Channel problem</b>no MX · bounce · push expired</td><td>in-app "fix your email"</td><td>—</td><td>digest line</td><td>counter + <b style="display:inline">#alerts-login</b></td></tr></table></div>
+  <div class="flow"><span><b>8a</b> learner</span><span><b>8b</b> parent</span><span><b>8c</b> Yashodarshi</span><span><b>8d</b> admin + Slack</span></div>
+
+  <div class="screen"><h3><em>8a</em> · Learner (no activity 3 days) · <em>8b</em> · Parent (seat closes in 3 days)</h3>
+  <p class="cap">The learner gets a warm in-app line plus her channel. The parent gets one calm message with a date, never a countdown.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good evening</small>Hi Rohan 👋</div><div class="av">R</div></div>
+      <div class="okbox" style="margin-bottom:10px;background:#fff8ec;border-color:#f4c77d;color:#6b4a10">👋 We missed you! 10 minutes today gets you moving again. Your 7 finished challenges are safe.</div>
+      <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 14 of 25 · 7 of 21 done</div><div class="meta"><span class="pill p-warm">4 to catch up</span></div><div class="btn" style="margin-top:8px">Make a catch-up plan</div></div>
+      <div class="notif" style="border:1px solid var(--line)"><div class="ap"><span>iRisePro · push</span><span>7:00 pm</span></div><b>Rohan, 10 minutes today? ⏱️</b><br>"Life Without Video Games" is ready when you are.</div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="wa">
+      <div class="wh"><div class="av">iR</div>iRisePro <span class="pill p-gr" style="margin-left:auto">at launch</span></div>
+      <div class="msgs"><div class="bub"><span class="tagline">Heads-up</span><br>Namaste! Isha's challenge seat stays open until <b>1 Dec</b>. She has 5 challenges left, about 2 a day. A word of encouragement from you goes a long way. 🌱<span class="lnk">See Isha's dashboard</span><div class="tm">9:00</div></div>
+      <div style="font-size:10.5px;color:var(--g500);text-align:center;margin-top:6px">Email carries the same text until WhatsApp launches.</div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> figures = Part 1 source · parent channel = email now, WhatsApp at launch (memory: decision-email-primary-pilot-beta, decision-messaging-option-b) · thresholds 2 / 3 / 3 are proposals · existing window nudges (50/80/95%) stay as they are (config/tasks.php:93).</div></div>
+
+  <div class="screen"><h3><em>8c</em> · Yashodarshi: panel badge + one line in the daily digest</h3>
+  <p class="cap">The "Pacing" pill carries a count. The morning digest adds one line per learner who crossed a line.</p>
+  <div class="row">
+    <div class="browser" style="flex:1 1 380px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/desk</span></div>
+      <div class="yd"><div class="mast"><span class="wm">YASHHO</span><div class="logo">Evaluation <em>Atelier</em></div></div><div class="ynav"><a class="on">Desk</a><a>Mentorship</a><a>My evaluations</a><a>Pacing <span class="bdg">3</span></a></div>
+        <div class="eyebrow">Friday · 28 Nov · your desk</div><h4>4 to read today.</h4><div class="sub">The Pacing badge = learners who crossed a line since yesterday.</div></div></div>
+    <div class="browser" style="flex:1 1 420px"><div class="chrome"><i></i><i></i><i></i><span>mail.example.com/inbox</span></div>
+      <div class="mail"><div class="mh"><b>Subject:</b> Your morning digest · 4 to read, 3 learners to cheer on</div>
+        <div class="mb"><div class="brand">YASHHO · Yashodarshi digest</div><div class="body" style="font-size:12.5px">
+          <b>Pacing</b><br>• Rohan Das: no activity for 4 days (behind by 4)<br>• Isha P.: seat closes 1 Dec, 5 left<br>• Arjun M.: can't be reached by email or push. Please call via the office.<br><br><span class="btn sm">Open Pacing</span></div></div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> desk heading pattern = desk.blade.php ("{{ in_queue }} to read today.") · a YD daily digest email does not exist today as far as I checked (UNVERIFIED); the digest is a proposal.</div></div>
+
+  <div class="screen"><h3><em>8d</em> · Admin: counter on the pacing page + a Slack line for channel problems only</h3>
+  <p class="cap">Only "can't reach this learner" goes to Slack. Behind and closing soon stay as counters, so the channel stays quiet.</p>
+  <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.slack.com</span></div>
+    <div class="slack"><aside><div style="font-weight:800;color:#fff;margin-bottom:8px">YASHHO</div><div>#alerts-high</div><div>#alerts-normal</div><div class="on">#alerts-login</div></aside>
+      <main><div class="m"><div class="a">iR</div><div><b>iRisePro ops</b> <span style="color:var(--g500);font-size:11px">9:00 AM</span>
+        <div class="att"><b>Learner can't be reached</b>: Arjun M. (Nov cohort A · YD Kavya N.)<br>Email bounced (permanent) · push off · behind by 7, seat closes 2 Dec<br><span style="color:#1164a3">Open in admin → Pacing</span></div></div></div>
+        <div class="m"><div class="a">iR</div><div><b>iRisePro ops</b> <span style="color:var(--g500);font-size:11px">9:00 AM</span>
+        <div class="att"><b>Learner email can't receive mail</b>: Anika Rao · push is on, so reminders still reach her. FYI only.</div></div></div></main></div></div>
+  <div class="src"><b>Sources:</b> today's Slack feeds are #alerts-critical / #alerts-high / #alerts-normal / #alerts-payments (OpsAlert.php:13-21). <b>#alerts-login was not found in the repo</b>; it would be a new channel mapping (UNVERIFIED that it exists in Slack) <span class="proposal">proposal</span> · the Slack message shows the learner's name, which would leave the tenancy. Showing only the pseudonym is an option for Goutam.</div></div></div>
+</section>
+
+<!-- ═════════ PART 9 ═════════ -->
+<section class="part">
+  <h2>9 · One shared nudge log, one cool-down for every role</h2>
+  <p class="lead">One log per learner, the same on the Yashodarshi and admin drill-downs. It holds every nudge: reminder system, Yashodarshi, admin, the family's YSP owner (Part 10), parent note. A cool-down stops a second role from nudging minutes later. <span class="proposal">proposal</span></p>
+  <div class="flow"><span><b>9a</b> YD drill-down (desktop)</span><span><b>9b</b> cool-down on mobile</span></div>
+
+  <div class="screen"><h3><em>9a</em> · Yashodarshi opens a learner: the shared log and the cool-down</h3>
+  <p class="cap">The YD sees who nudged, when, how, and whether it landed. The button stays off until the cool-down ends.</p>
+  <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/pacing/units/…</span></div>
+    <div class="yd" style="display:grid;grid-template-columns:1fr 1.2fr;gap:16px">
+      <div><div class="eyebrow">Learner</div>
+        <div style="margin:6px 0 10px"><div class="nm" style="font-weight:700;font-size:17px">Anika Rao</div><div class="chips" style="display:flex;gap:5px;margin-top:4px"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div>
+        <div class="card plan" style="font-family:Montserrat"><div class="kick">What she sees</div><div class="big" style="font-size:15px">Day 12 of 25 · 8 of 21 done</div><div class="meta"><span class="pill p-warm">2 to catch up</span> · plan: 2 this weekend</div></div>
+        <div class="chh"><span class="g">● push on</span> · <span class="b">● email can't receive mail</span> · <span class="m">WhatsApp at launch</span></div></div>
+      <div><div class="eyebrow">Shared nudge log · all roles</div>
+        <div class="cool" style="margin-top:8px">Nudged 2 h ago by <b>Ops · Deepa</b>. Next nudge available at <b>6:00 pm</b>.</div>
+        <div class="log">
+          <div class="e"><span class="w">Ops · Deepa (admin)</span> · push · today 4:00 pm<div class="r">delivered · opened 4:06 pm</div></div>
+          <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered</div></div>
+          <div class="e sys"><span class="w">Reminder system</span> · email · yesterday 7:00 pm<div class="r">skipped: email can't receive mail</div></div>
+          <div class="e"><span class="w">Kavya N. (Yashodarshi)</span> · push · Wed 5:30 pm<div class="r">delivered · not opened</div></div>
+          <div class="e par"><span class="w">Weekly parent note</span> · email · Sun 10:00 am<div class="r">sent to parent</div></div></div>
+        <span class="ybtn off">Send a nudge · 6:00 pm</span></div>
+    </div></div>
+  <div class="src"><b>Sources:</b> the log reads one store written by every sender. The reminder rows are today's StudentNotification writes (SendWindowNudge.php:150) plus the new pacing reminders <span class="proposal">proposal</span> · cool-down 6 h across roles, and who may nudge (YD for own units, ops for all), are config <span class="proposal">proposal</span> · delivered/opened depends on receipts (see 7c, UNVERIFIED for email opens) · staff names are made up.</div></div></div>
+
+  <div class="screen"><h3><em>9b</em> · Mobile: an admin tries to nudge during the cool-down</h3>
+  <p class="cap">The same rule on a phone: the button explains why it's off and when it comes back.</p>
+  <div class="row"><div class="phone"><div class="scr" style="background:var(--secondary)"><div class="notch"></div><div style="padding:36px 12px 12px;font-size:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mi">arrow_back</span><b style="font-size:15px">Rohan Das</b> <span class="pill p-warm">Behind by 4</span></div>
+      <div class="cool">Nudged 2 h ago by <b>Kavya (Yashodarshi)</b>. Next nudge available at <b>6:00 pm</b>. Nudging again now would be the 2nd today.</div>
+      <div class="sacard"><b>Nudge log</b><div class="log" style="margin-top:6px">
+        <div class="e"><span class="w">Kavya (YD)</span> · push + email · 4:00 pm<div class="r">push delivered · email sent</div></div>
+        <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered · not opened</div></div>
+        <div class="e sys"><span class="w">Reminder system</span> · push · Tue 7:00 pm<div class="r">delivered · not opened</div></div></div></div>
+      <div class="sabtn gh" style="display:block;text-align:center;opacity:.5;padding:10px">Nudge · available 6:00 pm</div>
+      <div class="meta" style="text-align:center;margin-top:8px">Ops can override with a reason. The override is logged. <span class="proposal">proposal</span></div>
+  </div></div></div></div>
+</section>
+
+
+<!-- ═════════ PART 10 ═════════ -->
+<section class="part">
+  <h2>10 · The family's owner sees the pace on the CRM family page</h2>
+  <p class="lead">Source: <b>Goutam 28-Nov: ownership-driven</b> ("a good addition especially as YSP already owns that relationship so it's not a privacy issue as long as it's ownership driven"). Only the family's <b>current owner</b> sees it. The read checks the active ownership row, so when ownership moves, visibility moves at the same instant.</p>
+  <div class="flow"><span><b>10a</b> owner sees it</span>→<span><b>10b</b> send a nudge (shared log)</span><span><b>10c</b> non-owner YSP: nothing</span><span><b>10d</b> ownership moved</span><span><b>10e</b> desktop</span></div>
+
+  <div class="screen"><h3><em>10a</em> · The owner sees the pace · <em>10b</em> · Send a nudge through the shared log and cool-down</h3>
+  <p class="cap">A read-only card under the stage chips. "Send a nudge" uses the same log and cool-down as the Yashodarshi and admin (Part 9).</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
+      <h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Paid · your family</div>
+      <div class="ccard"><p class="mini">Stage</p><span class="cchip">New</span><span class="cchip">Talking</span><span class="cchip cur">Paid</span></div>
+      <div class="ccard"><p class="mini">Anika's pace · read-only</p>
+        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">Day 12 of 25 · 8 of 21</b><span class="pill p-warm">2 to catch up</span></div>
+        <div class="dots" style="margin:6px 0"><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <div style="font-size:11.5px;color:#4a5b73;line-height:1.5">Last activity: yesterday<br>Reminders: push ✓ · <span style="color:#b42318;font-weight:700">email can't receive mail</span></div>
+        <div style="margin-top:8px;background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800;min-height:44px">Send a nudge</div></div>
+      <div style="font-size:10.5px;color:#4a5b73">Visible to you as this family's owner · every view is logged</div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="crm"><h1>Rao family</h1></div>
+      <div class="dim"></div>
+      <div class="sheet"><div class="grab"></div>
+        <h6>Nudge Anika?</h6>
+        <p>Goes by app notification, her chosen channel. Email is skipped because it can't receive mail.</p>
+        <div class="notif" style="background:#f3f6f9;border:1px solid #d5dde7"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Your YASHHO partner is cheering you on 🌟</b><br>10 minutes today: "Life Without Video Games" is next.</div>
+        <div style="font-size:11px;color:#4a5b73;margin:6px 0 10px">Last nudge: Kavya (Yashodarshi), yesterday 5:30 pm · the shared cool-down allows one now · logged for all roles</div>
+        <div style="background:#f5821f;color:#1a0e02;border-radius:10px;padding:11px;text-align:center;font-weight:800">Send nudge</div>
+        <div style="text-align:center;font-size:11.5px;margin-top:8px;color:#b4530a;font-weight:700">See nudge log</div>
+      </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> CRM theme = crm/pwa/theme.blade.php:21-26 (brand #f5821f, on-brand #1a0e02, ink #0b1b33, mute #4a5b73, line #d5dde7) · family page + stage chips = crm/pwa/families/family-page.blade.php:31-66 · pace figures = the one Part 1 source · who may nudge is config, YSP on by default <span class="proposal">proposal</span> · the 44 px tap target follows crm-ui-standard · learner and staff names are made up.</div></div>
+
+  <div class="screen"><h3><em>10c</em> · A YSP who does not own the family sees nothing</h3>
+  <p class="cap">No card, no empty placeholder, no hint that a child's pace exists. The page looks exactly as it does today.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
+      <h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Owned by another partner</div>
+      <div class="ccard"><p class="mini">Stage</p><span class="cchip">New</span><span class="cchip">Talking</span><span class="cchip cur">Paid</span></div>
+      <div class="ccard"><p class="mini">Notes</p><div style="font-size:12px;color:#4a5b73">Only the owner's notes are shown.</div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> what a non-owner sees of the family page today follows the CRM's existing access rules (not changed here; exact non-owner view UNVERIFIED) · the pace read must return nothing for a non-owner, with no "hidden" marker, enforced server-side <span class="proposal">proposal</span>.</div></div>
+
+  <div class="screen"><h3><em>10d</em> · Ownership moved: the new owner sees it, the previous owner loses it at once</h3>
+  <p class="cap">The GM moves the family. On their next load the old owner's card is gone and the new owner's card is there. The nudge log moves too.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
+      <div style="font-size:10px;font-weight:800;color:#4a5b73;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px">Previous owner · after the move</div>
+      <h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Moved to another partner · 28 Nov</div>
+      <div class="ccard"><p class="mini">Stage</p><span class="cchip cur">Paid</span></div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
+      <div style="font-size:10px;font-weight:800;color:#4a5b73;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px">New owner · same moment</div>
+      <h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Paid · your family since 28 Nov</div>
+      <div class="ccard"><p class="mini">Stage</p><span class="cchip cur">Paid</span></div>
+      <div class="ccard"><p class="mini">Anika's pace · read-only</p>
+        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">Day 12 of 25 · 8 of 21</b><span class="pill p-warm">2 to catch up</span></div>
+        <div style="font-size:11.5px;color:#4a5b73;margin-top:6px">Last activity: yesterday · push ✓</div>
+        <div style="font-size:11.5px;color:#4a5b73;margin-top:4px">Nudge history comes with the family: 3 earlier nudges</div>
+        <div style="margin-top:8px;background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800">Send a nudge</div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> ownership rules OWN-1..10 (docs/sales-crm/01-roles-and-use-cases.md:37,60-65) · MoveFamily ends the active ownership row and opens the new one in one transaction, then emits OwnershipChanged (MoveFamily.php:18-25) · a paid direct customer gets an HQ-assigned care owner, who would see the card (D42, :61) · the pace read keys on that active row, so no copy or sync is needed <span class="proposal">proposal</span>.</div></div>
+
+  <div class="screen"><h3><em>10e</em> · Desktop: the same card in the family page's right column</h3>
+  <p class="cap">Same rule and same card. The nudge log opens inline beside it.</p>
+  <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>CRM · families · Rao family</span></div>
+    <div class="crm" style="padding:16px;height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div><h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Paid · your family</div><div class="ccard"><p class="mini">Stage</p><span class="cchip">New</span><span class="cchip">Talking</span><span class="cchip cur">Paid</span></div>
+        <div class="ccard"><p class="mini">Anika's pace · read-only</p><div style="display:flex;justify-content:space-between"><b>Day 12 of 25 · 8 of 21</b><span class="pill p-warm">2 to catch up</span></div>
+        <div class="dots" style="grid-template-columns:repeat(21,1fr);margin:6px 0"><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <div style="font-size:11.5px;color:#4a5b73">Last activity yesterday · push ✓ · <span style="color:#b42318;font-weight:700">email can't receive mail</span></div></div></div>
+      <div class="ccard"><p class="mini">Shared nudge log</p>
+        <div class="log"><div class="e"><span class="w">Kavya (Yashodarshi)</span> · push · yesterday 5:30 pm<div class="r">delivered · opened</div></div>
+          <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered</div></div>
+          <div class="e par"><span class="w">Weekly parent note</span> · email · Sun 10:00 am<div class="r">sent</div></div></div>
+        <div style="background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800;margin-top:6px">Send a nudge</div></div>
+    </div></div>
+  <div class="src"><b>Sources:</b> as 10a-10d.</div></div></div>
+
+  <div class="gap" style="border-left-color:#b42318"><b>Every view is audited (26-Nov privacy rulings).</b> Note: the CRM's view audit today <b>exempts field roles reading their own families</b> (<code>audit_exempt</code>, AuditViews.php:4-6). To keep the "every view audited" line true, the pace read must write its own audit row for the owner too, outside that exemption. <span class="proposal">proposal</span> The 26-Nov ruling also needs a partner attestation for child fields (memory: decision-crm-golive-privacy-rulings-26nov), so whether this card also needs an attestation on file is a question for Goutam.</div>
+</section>
+
 <!-- ═════════ FOOTER ═════════ -->
 <div class="foot">
   <h3>Everything is configurable, nothing hard-coded</h3>
@@ -513,6 +907,8 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
     <li><b>One source for every figure:</b> Day X / 25 / days left come from the unit window written by <code>LearnerWindow</code>; done / 21 from the dashboard's existing <code>$progress</code>. The card, the strip, the catch-up plan, push, email and the parent note all read these. None keeps its own copy.</li>
     <li><b>Proposed config keys</b> (values drawn here are proposals): <code>pacing.enabled</code> · <code>pacing.time_slots</code> (6:30 / 16:30 / 19:00 / 20:30) · <code>pacing.on_pace_rule</code> (floor(total × day ÷ duration)) · <code>pacing.closing_soon_days</code> (3) · <code>pacing.catchup_max_per_day</code> (≤ daily cap when on) · <code>pacing.channels</code> (push, email; whatsapp at launch) · <code>pacing.parent_note.day_time</code> (Sun 10:00) · <code>pacing.streak.enabled</code>.</li>
     <li><b>All copy in en + kn</b> as translation keys, including the prep line, the five card states, the streak lines, both catch-up plans and the parent note. Kannada is not drawn here; it needs native review before build.</li>
+    <li><b>Parts 6-10 proposals, all config:</b> <code>pacing.nudge.cooldown_hours</code> (6, shared across every role) · <code>pacing.nudge.allowed_roles</code> (Yashodarshi for own units, ops for all, YSP owner on by default) · <code>pacing.nudge.ops_override</code> (with reason) · <code>pacing.alerts.behind_by</code> (2) · <code>pacing.alerts.idle_days</code> (3) · <code>pacing.alerts.closing_days</code> (3) · <code>pacing.alerts.recipients</code> per trigger (Part 8 table) · <code>pacing.alerts.slack_channel</code> (channel problems only).</li>
+    <li><b>Every view is audited:</b> the YD list, the admin table + export + drill-down, and the YSP owner card each write an audit row (26-Nov privacy rulings). Every nudge is written to the one shared log.</li>
     <li><b>Existing emails stay</b> (onboarding 1/3/5, completion 7/18/23/24, window 50/80/95%). Pacing reminders join them under the same <code>MailGate</code> brake (SendWindowNudge.php:43).</li>
     <li><b>Voice:</b> YASHHO no-fear. No red, no ticking countdown, always one next step. Learners see "challenge", never "task".</li>
   </ul>
@@ -521,6 +917,10 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
     <li>Timer minutes are from the seed snapshot (prod-catalog-mapping.tsv: 30-120 min for this programme). Prod values were not read. The timer is the submission window, not how long the work takes, so "10 minutes" is the daily habit, not a challenge's length.</li>
     <li>Whether any learner push is sent today (Firebase SW + device_token exist; no sender was checked).</li>
     <li>The "F8112" no-MX case comes from the brief and is not in the repo.</li>
+    <li>#alerts-login is not in OpsAlert.php (existing: critical / high / normal / payments).</li>
+    <li>Whether learner reminder emails get delivered / opened receipts (CRM comms receipts exist, Receipts.php; email opens not found).</li>
+    <li>A Yashodarshi daily digest email was not found.</li>
+    <li>The CRM view audit exempts field roles reading their own families (AuditViews.php:4-6), so the YSP pace card needs its own audit write to keep "every view audited" true.</li>
   </ul>
 </div>
 </div>
