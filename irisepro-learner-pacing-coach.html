@@ -192,13 +192,14 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
 
 <div class="wrap">
 <header class="top">
-  <h1>"10 minutes today" · learner pacing coach</h1>
+  <h1>"20 minutes a day" · learner pacing coach</h1>
   <p>Source: <b>Goutam 28-Nov pacing coach</b> (approved feature). Parts 1-5 are the learner and parent screens; parts 6-10 are the Yashodarshi, admin, alert, shared nudge log and YSP-owner views (Goutam 28-Nov). Every state, mobile and desktop. Sample learner <b>Anika Rao</b> and her parent are made up.</p>
   <p>Example plan: the ₹4,999 21-challenge programme on the <b>25-Day Steady</b> pace (<code>relaxed_25</code>, config/enrolment.php:202-204).</p>
+  <div class="theme"><b>"20 minutes a day":</b> Why 20: the 25-day pace is 21 ÷ 25 ≈ 0.84 challenges a day; designed 15–20 min per challenge → about 13–17 min a day; measured median 22.7 min → about 19 min a day (Goutam 28-Nov final wording ruling).</div>
   <div class="theme"><b>Theme read from the repo:</b> Montserrat (dashboard.blade.php:10, onboarding/index.blade.php:14) · primary #FF8A3D, primary-dark #E67E35, primary-light #FFB380, secondary #FFF1E6 (onboarding/index.blade.php:21-24; partials/app.blade.php:25,28) · dashboard orange #F58321 (most-used colour in dashboard.blade.php) · onboarding page #FFF6EE (onboarding/index.blade.php:56) · page = secondary→white gradient (partials/app.blade.php:412) · CTA gradient primary→#FF6B57 (onboarding/index.blade.php, "Lock in &amp; finish").</div>
 </header>
 
-<!--UC-REG-START--><section class="part" id="register"><h2>Use-case register: 52 use cases, 46 frames</h2><p class="lead">One row per action per role. Generated from docs/2026-11-28-learner-pacing-coach-use-cases.md. Check run both ways: every UC names a drawn frame, every frame is named by a UC, and every screen heading carries its UC tags. Result: <b>0 gaps</b>. By role: Learner 18 · Parent 4 · Yashodarshi 10 · Admin / ops 8 · Owning YSP 4 · System 8.</p><div class="sacard tw" style="margin-top:10px;max-height:520px;overflow:auto"><table class="matrix"><tr><th>ID</th><th>Role</th><th>Use case</th><th>Trigger</th><th>Sees / does</th><th>Frames</th><th>Rules / config</th><th>Audit</th></tr><tr><td><b>PACE-L-01</b></td><td>Learner</td><td>Sees today&#x27;s plan</td><td>Opens the dashboard</td><td>Day X of 25, N of 21 done, status, today&#x27;s challenge with its timer, one Start button, prep line</td><td>1a, 1g</td><td>unit window (LearnerWindow); completed_count; pacing.on_pace_rule (proposal)</td><td>none (own data)</td></tr><tr><td><b>PACE-L-02</b></td><td>Learner</td><td>Starts today&#x27;s challenge after a timer heads-up</td><td>Taps Start</td><td>Sheet: the timer starts on open; Open, or &quot;Not yet, remind me&quot;</td><td>1b</td><td>timer on open (TaskDetailsController.php:885-938)</td><td>none</td></tr><tr><td><b>PACE-L-03</b></td><td>Learner</td><td>Is ahead and may rest</td><td>Done &gt; expected</td><td>&quot;Ahead by N&quot;, Keep going or Rest today</td><td>1c</td><td>pacing.on_pace_rule (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-04</b></td><td>Learner</td><td>Is behind</td><td>Done &lt; expected</td><td>&quot;N to catch up&quot;, Start, or make a catch-up plan</td><td>1d</td><td>pacing.on_pace_rule (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-05</b></td><td>Learner</td><td>Seat closing soon (edge)</td><td>Window end within N days</td><td>&quot;Seat open N more days&quot;, how many a day finishes it, end date</td><td>1e</td><td>pacing.closing_soon_days = 3 (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-06</b></td><td>Learner</td><td>All done (edge)</td><td>21 of 21 done</td><td>Celebration, all dots filled, reminders stop</td><td>1f</td><td>total_count</td><td>none</td></tr><tr><td><b>PACE-L-07</b></td><td>Learner</td><td>Picks a daily reminder time</td><td>Onboarding Step 5</td><td>Chooses a time slot or any time</td><td>2a, 2f</td><td>pacing.time_slots (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-08</b></td><td>Learner</td><td>Picks reminder channels</td><td>Onboarding Step 5</td><td>App notification, WhatsApp (at launch), email</td><td>2b, 2f</td><td>pacing.channels (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-09</b></td><td>Learner</td><td>Installs the app and allows push</td><td>Chooses app notification</td><td>Add-to-home-screen and allow-notifications sheet; &quot;not now&quot; falls back to email</td><td>2c</td><td>web manifest (new); Firebase SW at login</td><td>none</td></tr><tr><td><b>PACE-L-10</b></td><td>Learner</td><td>Receives the daily reminder</td><td>Chosen time</td><td>Push and/or email naming today&#x27;s challenge</td><td>2d</td><td>pacing.time_slots; pacing.channels (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-L-11</b></td><td>Learner</td><td>Email can&#x27;t receive mail (edge, no-MX)</td><td>Onboarding email check fails</td><td>Warning, push recommended, email off, &quot;fix my email&quot;</td><td>2e</td><td>DeliverableEmail rule (app/Rules/DeliverableEmail.php)</td><td>none</td></tr><tr><td><b>PACE-L-12</b></td><td>Learner</td><td>Sees 21-dot strip and streak</td><td>Dashboard</td><td>Filled dots, today&#x27;s ring, &quot;N days in a row&quot;, week view on desktop</td><td>3a, 3c, 1g</td><td>completed_count; streak = days with a submission (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-13</b></td><td>Learner</td><td>Streak paused (edge)</td><td>A day without a submission</td><td>&quot;Fresh start today&quot;, best streak kept, dots untouched</td><td>3b</td><td>pacing.streak.enabled (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-14</b></td><td>Learner</td><td>Chooses a catch-up plan</td><td>Behind; taps &quot;Make a catch-up plan&quot;</td><td>Two plans: 2 this weekend, or 1 extra on two days</td><td>4a, 4d</td><td>pacing.catchup_max_per_day &lt;= daily cap (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-15</b></td><td>Learner</td><td>Confirms the plan</td><td>Taps &quot;Use this plan&quot;</td><td>Plan set, the dates, reminders will say &quot;2 today&quot;</td><td>4b</td><td>as PACE-L-14</td><td>none</td></tr><tr><td><b>PACE-L-16</b></td><td>Learner</td><td>Follows a catch-up day</td><td>Plan day</td><td>Card shows &quot;Catch-up day 1 of 2&quot;, two challenges</td><td>4c</td><td>as PACE-L-14</td><td>none</td></tr><tr><td><b>PACE-L-17</b></td><td>Learner</td><td>Gets a heads-up when idle</td><td>No activity N days</td><td>Warm in-app line plus a push on their channel</td><td>8a</td><td>pacing.alerts.idle_days = 3 (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-L-18</b></td><td>Learner</td><td>Receives a nudge from a person</td><td>YD, admin or owning YSP sends one</td><td>Push and/or email naming the sender&#x27;s role and the next challenge</td><td>6d, 10b</td><td>pacing.nudge.allowed_roles (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-01</b></td><td>Parent</td><td>Weekly note, on pace</td><td>Weekly send time</td><td>Email: did N this week, on pace, dots, one link</td><td>5a</td><td>pacing.parent_note.day_time (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-02</b></td><td>Parent</td><td>Weekly note on WhatsApp</td><td>Weekly send time, after launch</td><td>Same note on WhatsApp, marked &quot;at launch&quot;</td><td>5b</td><td>pacing.channels (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-03</b></td><td>Parent</td><td>Weekly note, quieter week</td><td>Behind at send time</td><td>Gentle note, catch-up plan ready, no red</td><td>5c</td><td>pacing.on_pace_rule (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-04</b></td><td>Parent</td><td>Heads-up: seat closing</td><td>Window end within N days</td><td>One calm message with the date and how many are left</td><td>8b</td><td>pacing.alerts.closing_days = 3 (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-YD-01</b></td><td>Yashodarshi</td><td>Opens the full pacing list in Mentorship (own units only)</td><td>Opens Mentorship</td><td>Name + standard, stream, institution chips, pseudonym code, Day X, N/21, status, last activity, channels, plan; filters and most-behind sort</td><td>6a, 6c</td><td>units.yashodarshi_id scope</td><td>list view audited (proposal)</td></tr><tr><td><b>PACE-YD-02</b></td><td>Yashodarshi</td><td>Sees channel health, incl. no-MX</td><td>Desk row or Mentorship list</td><td>&quot;email can&#x27;t receive mail&quot; in red text</td><td>6a, 6c, 6f</td><td>DeliverableEmail; push token state</td><td>as PACE-YD-01</td></tr><tr><td><b>PACE-YD-03</b></td><td>Yashodarshi</td><td>Sends a nudge</td><td>Taps &quot;Send a nudge&quot; on a Desk row or in Mentorship</td><td>Preview of what the learner sees, the learner&#x27;s own channels, Send</td><td>6d, 6f</td><td>pacing.nudge.allowed_roles; pacing.nudge.cooldown_hours (proposal)</td><td>nudge logged + audited</td></tr><tr><td><b>PACE-YD-04</b></td><td>Yashodarshi</td><td>All on pace</td><td>No learner behind</td><td>&quot;All N learners are on pace&quot;, nothing to nudge</td><td>6b</td><td>pacing.on_pace_rule (proposal)</td><td>as PACE-YD-01</td></tr><tr><td><b>PACE-YD-05</b></td><td>Yashodarshi</td><td>Empty unit (edge)</td><td>No units assigned</td><td>&quot;No learners assigned to you yet&quot;</td><td>6e</td><td>units.yashodarshi_id scope</td><td>as PACE-YD-01</td></tr><tr><td><b>PACE-YD-06</b></td><td>Yashodarshi</td><td>Opens a learner&#x27;s nudge log in Mentorship</td><td>Taps &quot;Nudge log&quot;</td><td>The learner&#x27;s own card, channels, shared nudge log</td><td>9a</td><td>one pacing source; shared nudge log</td><td>drill-down audited (proposal)</td></tr><tr><td><b>PACE-YD-07</b></td><td>Yashodarshi</td><td>Nudge cool-down hit (edge)</td><td>Someone nudged within the cool-down</td><td>Button off: &quot;Nudged 2 h ago by ..., next at 6 pm&quot;</td><td>9a, 6c</td><td>pacing.nudge.cooldown_hours = 6 (proposal)</td><td>none (no send)</td></tr><tr><td><b>PACE-YD-08</b></td><td>Yashodarshi</td><td>Panel badge and daily digest line</td><td>A learner crossed a threshold</td><td>Count on the Mentorship pill; one digest line per learner</td><td>8c</td><td>pacing.alerts.recipients (proposal)</td><td>none</td></tr><tr><td><b>PACE-YD-09</b></td><td>Yashodarshi</td><td>Sees pace on each Desk row (daily home)</td><td>Opens the Desk</td><td>Day X of 25, N/21, status, last activity, channel health, Send a nudge beside Read</td><td>6f</td><td>one pacing source; shared cool-down</td><td>list view audited (proposal)</td></tr><tr><td><b>PACE-YD-10</b></td><td>Yashodarshi</td><td>Sees the pace chip while evaluating</td><td>Opens evaluate detail or review</td><td>Read-only chip beside the learner strip</td><td>6g</td><td>one pacing source</td><td>none (existing page)</td></tr><tr><td><b>PACE-A-01</b></td><td>Admin / ops</td><td>Sees counts and the all-units table</td><td>Opens Cohort Scoreboard › Pacing tab</td><td>On pace, behind, closing soon, channel problems; sorted by most behind</td><td>7a, 7d</td><td>one pacing source</td><td>list view audited (proposal)</td></tr><tr><td><b>PACE-A-02</b></td><td>Admin / ops</td><td>Filters by batch, YD, stream, status, channel</td><td>Picks a filter</td><td>Filtered table</td><td>7a</td><td>none</td><td>as PACE-A-01</td></tr><tr><td><b>PACE-A-03</b></td><td>Admin / ops</td><td>Filters to channel problems</td><td>Taps the count</td><td>Problem, since when, the way to reach them</td><td>7b, 7d</td><td>DeliverableEmail; SES bounces; push token state</td><td>as PACE-A-01</td></tr><tr><td><b>PACE-A-04</b></td><td>Admin / ops</td><td>Exports</td><td>Taps Export</td><td>CSV of the current filter, same scope</td><td>7a, 7b</td><td>none</td><td>export audited (proposal)</td></tr><tr><td><b>PACE-A-05</b></td><td>Admin / ops</td><td>Drills into one learner on Enrollment Details</td><td>Taps a row</td><td>The learner&#x27;s own card, channels, reminder history (sent / delivered / opened)</td><td>7c, 7e</td><td>one pacing source; receipts</td><td>drill-down audited</td></tr><tr><td><b>PACE-A-06</b></td><td>Admin / ops</td><td>Nudges from the table</td><td>Taps Nudge</td><td>Same nudge as PACE-YD-03</td><td>7a</td><td>pacing.nudge.allowed_roles (proposal)</td><td>nudge logged + audited</td></tr><tr><td><b>PACE-A-07</b></td><td>Admin / ops</td><td>Cool-down hit, override with a reason (edge)</td><td>Nudge within the cool-down</td><td>Button off with the reason; ops override with a reason</td><td>9b, 7e</td><td>pacing.nudge.cooldown_hours; pacing.nudge.ops_override (proposal)</td><td>override audited</td></tr><tr><td><b>PACE-A-08</b></td><td>Admin / ops</td><td>Slack line for a channel problem</td><td>Learner can&#x27;t be reached</td><td>Message in the alerts channel; behind / closing stay counters</td><td>8d</td><td>pacing.alerts.slack_channel (proposal; #alerts-login not in repo)</td><td>none</td></tr><tr><td><b>PACE-YSP-01</b></td><td>Owning YSP</td><td>Owner sees the pace card</td><td>Opens the family page as current owner</td><td>Day X of 25, N/21, status chip, dots, last activity, channel health</td><td>10a, 10e</td><td>active ownership row (MoveFamily is a writer); one pacing source</td><td>every view audited (26-Nov rulings)</td></tr><tr><td><b>PACE-YSP-02</b></td><td>Owning YSP</td><td>Owner sends a nudge</td><td>Taps &quot;Send a nudge&quot;</td><td>Preview; uses the shared log and cool-down</td><td>10b, 10e</td><td>pacing.nudge.allowed_roles (YSP on by default, proposal); cool-down</td><td>nudge logged + audited</td></tr><tr><td><b>PACE-YSP-03</b></td><td>Owning YSP</td><td>Non-owner sees nothing (edge)</td><td>A non-owner YSP opens the family</td><td>No card, no hint</td><td>10c</td><td>active ownership row</td><td>none</td></tr><tr><td><b>PACE-YSP-04</b></td><td>Owning YSP</td><td>Ownership moved (edge)</td><td>GM moves the family</td><td>Old owner loses the card at once; new owner sees it with the nudge history</td><td>10d</td><td>MoveFamily ends + opens the ownership row (MoveFamily.php:18-25)</td><td>move audited (existing)</td></tr><tr><td><b>PACE-SYS-01</b></td><td>System</td><td>Computes pacing once, from one source</td><td>A challenge is submitted</td><td>Stores Day X, done, expected, status for every view to read</td><td>1a, 6a, 7a</td><td>LearnerWindow; completed_count; pacing.on_pace_rule (proposal)</td><td>none</td></tr><tr><td><b>PACE-SYS-02</b></td><td>System</td><td>Sends the daily reminder; skips undeliverable channels</td><td>Learner&#x27;s chosen time</td><td>Push / email; skipped email logged as &quot;no MX&quot;</td><td>2d, 7c</td><td>pacing.channels; MailGate brake</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-03</b></td><td>System</td><td>Detects an undeliverable email (no-MX)</td><td>Email entered at onboarding</td><td>Marks email undeliverable; recommends push</td><td>2e</td><td>DeliverableEmail (DNS canary)</td><td>none</td></tr><tr><td><b>PACE-SYS-04</b></td><td>System</td><td>Fires a heads-up at a threshold, per recipient</td><td>Behind by N, idle N days, closing in N days, channel problem</td><td>Routes to learner, parent, YD, admin per the matrix</td><td>8a, 8b, 8c, 8d</td><td>pacing.alerts.* (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-05</b></td><td>System</td><td>Shared nudge log and cross-role cool-down</td><td>Any nudge or reminder</td><td>One log per learner; blocks a second nudge inside the cool-down</td><td>9a, 9b</td><td>pacing.nudge.cooldown_hours (proposal)</td><td>the log itself</td></tr><tr><td><b>PACE-SYS-06</b></td><td>System</td><td>Stops reminders when all done</td><td>21 of 21</td><td>No more daily reminders or heads-ups</td><td>1f</td><td>total_count</td><td>none</td></tr><tr><td><b>PACE-SYS-07</b></td><td>System</td><td>Sends the weekly parent note</td><td>Weekly send time</td><td>Email now, WhatsApp at launch</td><td>5a, 5b</td><td>pacing.parent_note.day_time (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-08</b></td><td>System</td><td>Keeps today&#x27;s emails running</td><td>Existing schedule</td><td>Onboarding 1/3/5, completion 7/18/23/24, window 50/80/95%</td><td>7c</td><td>config/enrolment.php:140-142; config/tasks.php:93</td><td>existing</td></tr></table></div></section><!--UC-REG-END-->
+<!--UC-REG-START--><section class="part" id="register"><h2>Use-case register: 70 use cases, 54 frames</h2><p class="lead">One row per action per role. Generated from docs/2026-11-28-learner-pacing-coach-use-cases.md. Check run both ways: every UC names a drawn frame, every frame is named by a UC, and every screen heading carries its UC tags. Result: <b>0 gaps</b>. By role: Learner 23 · Parent 6 · Yashodarshi 11 · Admin / ops 13 · Owning YSP 4 · System 13.</p><div class="sacard tw" style="margin-top:10px;max-height:520px;overflow:auto"><table class="matrix"><tr><th>ID</th><th>Role</th><th>Use case</th><th>Trigger</th><th>Sees / does</th><th>Frames</th><th>Rules / config</th><th>Audit</th></tr><tr><td><b>PACE-L-01</b></td><td>Learner</td><td>Sees today&#x27;s plan</td><td>Opens the dashboard</td><td>Day X of N, done of 21, status, today&#x27;s challenge with its measured estimate, one Start button, prep line</td><td>1a, 1g</td><td>LearnerPace::for() (read time; N = completionDeadline − start) (proposal); habit minutes from Settings</td><td>none (own data)</td></tr><tr><td><b>PACE-L-02</b></td><td>Learner</td><td>Starts today&#x27;s challenge after a timer heads-up</td><td>Taps Start</td><td>Sheet: the timer starts on open; Open, or &quot;Not yet, remind me&quot;</td><td>1b</td><td>timer on open (TaskDetailsController.php:885-938)</td><td>none</td></tr><tr><td><b>PACE-L-03</b></td><td>Learner</td><td>Is ahead and may rest</td><td>Done &gt; expected</td><td>&quot;Ahead by N&quot;, Keep going or &quot;Rest today (keeps your streak)&quot;</td><td>1c</td><td>LearnerPace::for() (read time; N = completionDeadline − start) (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-04</b></td><td>Learner</td><td>Is behind</td><td>Done &lt; expected</td><td>&quot;N to catch up&quot;, Start, or make a catch-up plan</td><td>1d</td><td>pacing.on_pace_rule (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-05</b></td><td>Learner</td><td>Seat closing soon (edge)</td><td>Window end within N days</td><td>&quot;Seat open N more days&quot;, how many a day finishes it, end date</td><td>1e</td><td>pacing.closing_soon_days = 3 (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-06</b></td><td>Learner</td><td>All done, or nothing left to do (edge)</td><td>21 of 21 done, or actionable left = 0</td><td>Celebration; &quot;20 done · 1 missed&quot; with no blame; reminders stop</td><td>1f, 1h</td><td>COMPLETED vs ATTEMPTED (StudentTaskResponse.php:75,91)</td><td>none</td></tr><tr><td><b>PACE-L-07</b></td><td>Learner</td><td>Picks a daily reminder time</td><td>Onboarding Step 5</td><td>Chooses a slot between 9 am and 9 pm IST</td><td>2a, 2f</td><td>reminder slots 09:00-21:00 (Settings, proposal); family quiet hours (channel_routes yaml:14)</td><td>none</td></tr><tr><td><b>PACE-L-08</b></td><td>Learner</td><td>Picks reminder channels</td><td>Onboarding Step 5</td><td>In the app + family email (one note per inbox); app notification &quot;later&quot;; no WhatsApp for learners</td><td>2b, 2f</td><td>channel_routes rows via ChannelRouter (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-09</b></td><td>Learner</td><td>Installs the app and allows push (later)</td><td>When push ships</td><td>Add-to-home-screen and allow sheet; not in v1</td><td>2c</td><td>needs manifest + SW + FCM sender (none in v1)</td><td>none</td></tr><tr><td><b>PACE-L-10</b></td><td>Learner</td><td>Receives the daily reminder</td><td>Chosen time, outside quiet hours, under the daily cap</td><td>In-app card + family email; when push ships, a generic lock-screen line with no name or pace</td><td>2d</td><td>channel_routes row; ChannelRouter; daily cap (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-L-11</b></td><td>Learner</td><td>Family email can&#x27;t receive mail (edge, no-MX)</td><td>Step 5 email check fails</td><td>Warning; app card still works; &quot;fix the email&quot;</td><td>2e</td><td>DeliverableEmail re-run at Step 5; student_channel_state (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-12</b></td><td>Learner</td><td>Sees 21-dot strip and streak</td><td>Dashboard</td><td>Filled dots, today&#x27;s ring, &quot;N days in a row (rest days count)&quot;, the next challenge&#x27;s real estimate</td><td>3a, 3c, 1g</td><td>COMPLETED by submitted_at (reviewed counts) (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-13</b></td><td>Learner</td><td>Streak paused (edge)</td><td>A day with no submission and no chosen rest</td><td>&quot;Fresh start today&quot;, best streak kept, dots untouched</td><td>3b</td><td>pacing.streak (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-14</b></td><td>Learner</td><td>Chooses a catch-up plan</td><td>Behind; taps &quot;Make a catch-up plan&quot;</td><td>Two plans: 2 this weekend, or 1 extra on two days</td><td>4a, 4d</td><td>pacing.catchup_max_per_day &lt;= daily cap (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-15</b></td><td>Learner</td><td>Confirms the plan</td><td>Taps &quot;Use this plan&quot;</td><td>Plan set, the dates, reminders will say &quot;2 today&quot;</td><td>4b</td><td>as PACE-L-14</td><td>none</td></tr><tr><td><b>PACE-L-16</b></td><td>Learner</td><td>Follows a catch-up day</td><td>Plan day</td><td>Card shows &quot;Catch-up day 1 of 2&quot;, two challenges</td><td>4c</td><td>as PACE-L-14</td><td>none</td></tr><tr><td><b>PACE-L-17</b></td><td>Learner</td><td>Gets a heads-up when idle</td><td>No activity N days</td><td>Warm in-app line plus the family email; respects quiet hours and cap</td><td>8a</td><td>idle days (Settings, proposal); channel_routes row</td><td>logged to nudge log</td></tr><tr><td><b>PACE-L-18</b></td><td>Learner</td><td>Receives a nudge from a person</td><td>YD or office sends one</td><td>In-app line + family email naming the sender&#x27;s role and the next challenge</td><td>6d</td><td>who may nudge (governed); cool-down; caps (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-L-19</b></td><td>Learner</td><td>Sees how long today&#x27;s challenge usually takes</td><td>Plan card or Start sheet</td><td>&quot;Usually about 20 min · set aside 25&quot; from that challenge&#x27;s measured median</td><td>1a, 1b, 1g</td><td>per-challenge open→submit stat, refreshed nightly (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-20</b></td><td>Learner</td><td>Long challenge: told to start it on a day with more time (edge)</td><td>Challenge p75 &gt;= ~35 min</td><td>&quot;A longer one. Best started on a day with more time&quot;</td><td>1c, 4c</td><td>per-challenge p75 threshold (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-21</b></td><td>Learner</td><td>Sees &quot;your time this week&quot;</td><td>Plan card</td><td>&quot;3 challenges, about 18 min each&quot;</td><td>1a, 1g</td><td>per-learner open→submit times this week, from the same nightly stat (proposal)</td><td>none</td></tr><tr><td><b>PACE-L-22</b></td><td>Learner</td><td>Pauses reminders</td><td>Taps Pause (3 days / 1 week / exam dates)</td><td>Reminders stop until the date; the plan card stays</td><td>9d</td><td>pause ranges (Settings, proposal)</td><td>none</td></tr><tr><td><b>PACE-L-23</b></td><td>Learner</td><td>Sees their own window: 8-day pace or an extension</td><td>Dashboard</td><td>&quot;Day 3 of 8&quot; for rapid_8; &quot;Day 27 of 32&quot; after an extension</td><td>1h</td><td>LearnerPace::for() (read time; N = completionDeadline − start) (proposal)</td><td>none</td></tr><tr><td><b>PACE-P-01</b></td><td>Parent</td><td>Weekly note, on pace</td><td>Weekly send time</td><td>Email: did N this week, on pace, dots, one link</td><td>5a</td><td>pacing.parent_note.day_time (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-02</b></td><td>Parent</td><td>Weekly note on WhatsApp</td><td>Weekly send time, after launch</td><td>Same note on WhatsApp, marked &quot;at launch&quot;</td><td>5b</td><td>pacing.channels (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-03</b></td><td>Parent</td><td>Weekly note, quieter week</td><td>Behind at send time</td><td>Gentle note, catch-up plan ready, no red</td><td>5c</td><td>pacing.on_pace_rule (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-04</b></td><td>Parent</td><td>Heads-up: seat closing</td><td>Window end within N days</td><td>One calm message with the date and how many are left</td><td>8b</td><td>pacing.alerts.closing_days = 3 (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-05</b></td><td>Parent</td><td>One note for all children in one inbox (siblings)</td><td>Daily reminder time</td><td>One email listing each child&#x27;s plan; counted once against the cap</td><td>5d</td><td>dedupe by address; ENROLMENT-MODEL.md:19,50 (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-P-06</b></td><td>Parent</td><td>Mutes staff nudges (programme messages continue)</td><td>Taps &quot;Mute staff nudges&quot;</td><td>YD / office / partner nudges stop; deadlines and results continue</td><td>9d, 5d</td><td>26-Nov ruling: paid families keep programme messages; F9 opt-out row</td><td>change logged</td></tr><tr><td><b>PACE-YD-01</b></td><td>Yashodarshi</td><td>Opens the full pacing list in Mentorship (own units only)</td><td>Opens Mentorship</td><td>Name + standard, stream, institution chips, pseudonym code, Day X, N/21, status, last activity, channels, plan; filters and most-behind sort</td><td>6a, 6c</td><td>units.yashodarshi_id scope</td><td>list view audited (proposal)</td></tr><tr><td><b>PACE-YD-02</b></td><td>Yashodarshi</td><td>Sees channel health, incl. no-MX</td><td>Desk row or Mentorship list</td><td>&quot;email can&#x27;t receive mail&quot; in red text</td><td>6a, 6c, 6f</td><td>DeliverableEmail; push token state</td><td>as PACE-YD-01</td></tr><tr><td><b>PACE-YD-03</b></td><td>Yashodarshi</td><td>Sends a nudge</td><td>Taps &quot;Send a nudge&quot; on a Desk row or in Mentorship</td><td>Preview; in-app + family email; under the shared cool-down and caps</td><td>6d, 6f</td><td>who may nudge (governed); cool-down; caps (proposal)</td><td>nudge logged + audited</td></tr><tr><td><b>PACE-YD-04</b></td><td>Yashodarshi</td><td>All on pace</td><td>No learner behind</td><td>&quot;All N learners are on pace&quot;, nothing to nudge</td><td>6b</td><td>pacing.on_pace_rule (proposal)</td><td>as PACE-YD-01</td></tr><tr><td><b>PACE-YD-05</b></td><td>Yashodarshi</td><td>Empty unit (edge)</td><td>No units assigned</td><td>&quot;No learners assigned to you yet&quot;</td><td>6e</td><td>units.yashodarshi_id scope</td><td>as PACE-YD-01</td></tr><tr><td><b>PACE-YD-06</b></td><td>Yashodarshi</td><td>Opens a learner&#x27;s nudge log in Mentorship</td><td>Taps &quot;Nudge log&quot;</td><td>The learner&#x27;s own card, channels, shared nudge log</td><td>9a</td><td>one pacing source; shared nudge log</td><td>drill-down audited (proposal)</td></tr><tr><td><b>PACE-YD-07</b></td><td>Yashodarshi</td><td>Nudge cool-down hit (edge)</td><td>Someone nudged within the cool-down</td><td>Button off: &quot;Nudged 2 h ago by ..., next at 6 pm&quot;</td><td>9a, 6c</td><td>pacing.nudge.cooldown_hours = 6 (proposal)</td><td>none (no send)</td></tr><tr><td><b>PACE-YD-08</b></td><td>Yashodarshi</td><td>Panel badge and daily digest line</td><td>A learner crossed a threshold</td><td>Count on the Mentorship pill; one digest line per learner</td><td>8c</td><td>pacing.alerts.recipients (proposal)</td><td>none</td></tr><tr><td><b>PACE-YD-09</b></td><td>Yashodarshi</td><td>Sees pace on each Desk row (daily home)</td><td>Opens the Desk</td><td>Day X of 25, N/21, status, last activity, channel health, Send a nudge beside Read</td><td>6f</td><td>one pacing source; shared cool-down</td><td>list view audited (proposal)</td></tr><tr><td><b>PACE-YD-10</b></td><td>Yashodarshi</td><td>Sees the pace chip on the review screen only</td><td>Opens review after marking</td><td>Read-only chip; nothing on the evaluate screen while marking</td><td>6g</td><td>LearnerPace::for() (read time; N = completionDeadline − start) (proposal)</td><td>none (existing page)</td></tr><tr><td><b>PACE-YD-11</b></td><td>Yashodarshi</td><td>Nudge after 9 pm is queued (edge, quiet hours)</td><td>Sends during 21:00-09:00</td><td>&quot;Will be sent at 9:00 am&quot;, cancel until then</td><td>9c</td><td>family quiet hours (yaml:14)</td><td>queued nudge logged</td></tr><tr><td><b>PACE-A-01</b></td><td>Admin / ops</td><td>Sees counts and the all-units table</td><td>Opens Cohort Scoreboard › Pacing tab</td><td>On pace, behind, closing soon, channel problems; sorted by most behind</td><td>7a, 7d</td><td>one pacing source</td><td>list view audited (proposal)</td></tr><tr><td><b>PACE-A-02</b></td><td>Admin / ops</td><td>Filters by batch, YD, stream, status, channel</td><td>Picks a filter</td><td>Filtered table</td><td>7a</td><td>none</td><td>as PACE-A-01</td></tr><tr><td><b>PACE-A-03</b></td><td>Admin / ops</td><td>Filters to channel problems</td><td>Taps the count</td><td>Problem, since when, the way to reach them</td><td>7b, 7d</td><td>DeliverableEmail; SES bounces; push token state</td><td>as PACE-A-01</td></tr><tr><td><b>PACE-A-04</b></td><td>Admin / ops</td><td>Exports</td><td>Taps Export</td><td>CSV of the current filter, same scope</td><td>7a, 7b</td><td>none</td><td>export audited (proposal)</td></tr><tr><td><b>PACE-A-05</b></td><td>Admin / ops</td><td>Drills into one learner on Enrollment Details</td><td>Taps a row</td><td>The learner&#x27;s own card, channels, reminder history (sent / delivered / opened)</td><td>7c, 7e</td><td>one pacing source; receipts</td><td>drill-down audited</td></tr><tr><td><b>PACE-A-06</b></td><td>Admin / ops</td><td>Nudges from the table</td><td>Taps Nudge</td><td>Same nudge as PACE-YD-03</td><td>7a</td><td>pacing.nudge.allowed_roles (proposal)</td><td>nudge logged + audited</td></tr><tr><td><b>PACE-A-07</b></td><td>Admin / ops</td><td>Cool-down or cap hit; override with a reason (edge)</td><td>Nudge inside the cool-down or over a cap</td><td>Button off with the reason; one override a day, with a reason</td><td>9b, 7e, 9c</td><td>cool-down; override cap 1/day (Settings, proposal)</td><td>override audited</td></tr><tr><td><b>PACE-A-08</b></td><td>Admin / ops</td><td>Slack line for a channel problem</td><td>Learner can&#x27;t be reached</td><td>Pseudonym only, once per problem, then a daily count; a guard fails on a name field</td><td>8d</td><td>new Slack mapping (proposal; #alerts-login not in repo)</td><td>none</td></tr><tr><td><b>PACE-A-09</b></td><td>Admin / ops</td><td>Compares designed vs measured time per challenge</td><td>Opens Pacing › Challenge time</td><td>Designed 15–20 min vs measured median and p75; overruns highlighted</td><td>7f, 7g</td><td>pacing.designed_minutes_per_challenge (config, per-challenge override, proposal); nightly per-challenge stat</td><td>panel view audited (proposal)</td></tr><tr><td><b>PACE-A-10</b></td><td>Admin / ops</td><td>Tracks the cohort average time this week</td><td>Challenge time panel</td><td>Cohort average vs last week, to test &quot;prepare first, then open&quot;</td><td>7f, 7g</td><td>nightly per-challenge stat</td><td>as PACE-A-09</td></tr><tr><td><b>PACE-A-11</b></td><td>Admin / ops</td><td>Works the channel-problem queue</td><td>Channel problems count</td><td>Problem, since, way to reach; owner role and resolved state</td><td>7b</td><td>student_channel_state; owner role (config, proposal)</td><td>as PACE-A-01</td></tr><tr><td><b>PACE-A-12</b></td><td>Admin / ops</td><td>Sees a learner&#x27;s caps used today</td><td>Opens the Pacing card</td><td>Messages today (all tracks), nudges this week, own nudges today, overrides</td><td>9c</td><td>caps in Settings (proposal)</td><td>drill-down audited</td></tr><tr><td><b>PACE-A-13</b></td><td>Admin / ops</td><td>Changes a pacing coach setting</td><td>Settings › Pacing coach</td><td>Current, default, last changed, applies from; change history; preview of re-rendered copy</td><td>11a, 11b</td><td>app setting (new); who-may-nudge governed; second approver (proposal)</td><td>every change audited</td></tr><tr><td><b>PACE-YSP-01</b></td><td>Owning YSP</td><td>Owner sees family-level status</td><td>Opens the family page as current owner</td><td>One word per child (on track / could use a word / needs help / done); no days, counts or activity</td><td>10a, 10e</td><td>active ownership row; governed setting; live enrolment only (Goutam 28-Nov)</td><td>own audit row (AuditViews skips field roles today)</td></tr><tr><td><b>PACE-YSP-02</b></td><td>Owning YSP</td><td>Owner nudges the parent with an approved template</td><td>Taps &quot;Nudge the parent&quot;</td><td>Fixed template to the family email; shared log, cool-down, caps, quiet hours</td><td>10b, 10e</td><td>channel_routes template row; governed who-may-nudge (Goutam 28-Nov)</td><td>nudge logged + audited</td></tr><tr><td><b>PACE-YSP-03</b></td><td>Owning YSP</td><td>Non-owner sees nothing (edge)</td><td>A non-owner YSP opens the family</td><td>No card, no hint</td><td>10c</td><td>active ownership row</td><td>none</td></tr><tr><td><b>PACE-YSP-04</b></td><td>Owning YSP</td><td>Ownership moved (edge)</td><td>GM moves the family</td><td>Old owner loses the card at once; new owner sees it with the nudge history</td><td>10d</td><td>MoveFamily ends + opens the ownership row (MoveFamily.php:18-25)</td><td>move audited (existing)</td></tr><tr><td><b>PACE-SYS-01</b></td><td>System</td><td>Computes pace at read time from stored inputs</td><td>Any read</td><td>Day X, expected, status, actionable left from start, deadline, done, attempted</td><td>1a, 1h, 6a, 7a</td><td>LearnerPace::for() (read time; N = completionDeadline − start) (proposal)</td><td>none</td></tr><tr><td><b>PACE-SYS-02</b></td><td>System</td><td>Sends the daily reminder through ChannelRouter</td><td>Learner&#x27;s chosen time</td><td>In-app + family email; skips undeliverable; respects quiet hours, pause and cap</td><td>2d, 7c</td><td>channel_routes row; ChannelRouter::plan; daily cap (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-03</b></td><td>System</td><td>Detects an undeliverable email (no-MX)</td><td>Email entered at onboarding</td><td>Marks email undeliverable; recommends push</td><td>2e</td><td>DeliverableEmail (DNS canary)</td><td>none</td></tr><tr><td><b>PACE-SYS-04</b></td><td>System</td><td>Fires a heads-up at a threshold, per recipient</td><td>Behind by N, idle N days, closing in N days, channel problem</td><td>Routes to learner, parent, YD, admin per the matrix</td><td>8a, 8b, 8c, 8d</td><td>pacing.alerts.* (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-05</b></td><td>System</td><td>Shared nudge log and cross-role cool-down</td><td>Any person nudge</td><td>One log per learner; cool-down for person nudges only (reminders count toward the cap); atomic claim</td><td>9a, 9b</td><td>cool-down (Settings); inline UNIQUE KEY (proposal)</td><td>the log itself; erasure + retention</td></tr><tr><td><b>PACE-SYS-06</b></td><td>System</td><td>Stops reminders when nothing is left</td><td>actionable left = 0 or window closed</td><td>No more reminders or heads-ups</td><td>1f, 1h</td><td>LearnerPace::isActive() (proposal)</td><td>none</td></tr><tr><td><b>PACE-SYS-07</b></td><td>System</td><td>Sends the weekly parent note</td><td>Weekly send time</td><td>Email now, WhatsApp at launch</td><td>5a, 5b</td><td>pacing.parent_note.day_time (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-09</b></td><td>System</td><td>Precomputes per-challenge time estimates</td><td>Nightly job</td><td>Median and p75 of measured open→submit times per challenge, stored once; every view reads it</td><td>1a</td><td>nightly refresh; p75 long threshold ~35 min (proposal)</td><td>none</td></tr><tr><td><b>PACE-SYS-08</b></td><td>System</td><td>Keeps today&#x27;s emails running</td><td>Existing schedule</td><td>Onboarding 1/3/5, completion 7/18/23/24, window 50/80/95%</td><td>7c</td><td>config/enrolment.php:140-142; config/tasks.php:93</td><td>existing</td></tr><tr><td><b>PACE-SYS-10</b></td><td>System</td><td>Queues person nudges to 09:00 in quiet hours</td><td>Nudge during 21:00-09:00</td><td>Queued and sent at 09:00 unless cancelled</td><td>9c</td><td>family quiet hours (yaml:14)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-11</b></td><td>System</td><td>Enforces the daily cap across all tracks</td><td>Any message to a learner</td><td>At most 2 a day incl. existing email tracks; extra ones wait</td><td>9c</td><td>cap (Settings); existing tracks behind the same gate (proposal)</td><td>logged to nudge log</td></tr><tr><td><b>PACE-SYS-12</b></td><td>System</td><td>Re-renders all copy from the habit-minutes setting</td><td>Setting changed</td><td>&quot;{N} minutes a day&quot; everywhere on the next refresh, no deploy</td><td>11b, 1a</td><td>daily habit minutes (Settings, proposal)</td><td>change audited</td></tr><tr><td><b>PACE-SYS-13</b></td><td>System</td><td>Sends one note per family inbox</td><td>Daily reminder time</td><td>Children sharing an email get one combined note</td><td>5d</td><td>dedupe by address (proposal)</td><td>logged to nudge log</td></tr></table></div></section><!--UC-REG-END-->
 
 <!-- ═════════ BASELINE ═════════ -->
 <section class="part">
@@ -216,64 +217,66 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
 <!-- ═════════ PART 1 ═════════ -->
 <section class="part">
   <h2>1 · Daily plan card: the top of the dashboard</h2>
-  <p class="lead">One card, one challenge, one button. Every figure comes from <b>one source</b>: the learner's window (unit start/end, written only by <code>App\Support\LearnerWindow</code>, LearnerWindow.php:52-78) plus the done count the dashboard already shows (<code>$progress['completed_count']/['total_count']</code>, dashboard.blade.php:956).</p>
-  <div class="flow"><span><b>1a</b> on pace</span>→<span><b>1b</b> tap Start</span><span><b>1c</b> ahead</span><span><b>1d</b> behind</span><span><b>1e</b> seat closing soon</span><span><b>1f</b> all done</span><span><b>1g</b> desktop</span></div>
+  <p class="lead">One card, one challenge, one button. Every figure comes from <b>one function</b>, <code>LearnerPace::for(enrolment)</code> <span class="proposal">proposal</span>, computed at read time from stored inputs: start = the learner's window start, end = <code>Enrollment::completionDeadline()</code> (the learner's own deadline incl. extensions, Enrollment.php:560-571), N = end − start in days, done = COMPLETED (submitted + reviewed), actionable left = total − ATTEMPTED (StudentTaskResponse.php:75,91). Day 1 = the start date. Expected = min(total, ceil(total × day ÷ N)). The dashboard, SendWindowNudge, RemindIncompleteEnrolments and every staff view call it.</p>
+  <div class="flow"><span><b>1a</b> on pace</span>→<span><b>1b</b> tap Start</span><span><b>1c</b> ahead</span><span><b>1d</b> behind</span><span><b>1e</b> seat closing soon</span><span><b>1f</b> all done</span><span><b>1g</b> desktop</span><span><b>1h</b> own window · missed</span></div>
 
-  <div class="screen"><h3><em>1a</em> · On pace (Day 10, 8 of 21 done)   <span class="uctag">PACE-L-01 · PACE-SYS-01</span></h3>
+  <div class="screen"><h3><em>1a</em> · On pace (Day 10, 8 of 21 done) <span class="uctag">PACE-L-01 · PACE-L-19 · PACE-L-21 · PACE-SYS-01 · PACE-SYS-09 · PACE-SYS-12</span></h3>
   <p class="cap">The plan sits above everything else. One challenge today keeps her on pace. The prep line explains the timer up front.</p>
   <p class="src">Lives in: Learner dashboard, top, replacing the commented-out "Days Left" card (dashboard.blade.php:925)</p>
   <div class="row"><div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●● 4G</span></div><div class="pv">
     <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
     <div class="card plan">
-      <div class="kick">Your 10 minutes today</div>
+      <div class="kick">20 minutes a day · today</div>
       <div class="big">Day 10 of 25 · 8 of 21 done</div>
       <div class="meta"><span class="pill p-ok">On pace</span>&nbsp; 1 challenge today keeps you on pace</div>
-      <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · timer 45 min once opened</small></div></div>
+      <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · usually about 20 min · set aside 25</small></div></div>
       <div class="btn">Start today's challenge</div>
       <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
+      <div class="prep"><i class="mi">timer</i><span>Your time this week: 3 challenges, about 18 min each.</span></div>
     </div>
     <div class="card"><div class="meta">8 of 21 completed</div><div class="bar" style="margin-top:6px"><i style="width:38%"></i></div></div>
   </div></div></div>
-  <div class="src"><b>Sources:</b> "25" = mode duration_days, config/enrolment.php:203 (not hard-coded) · "21" = $progress total_count, dashboard.blade.php:956 · Day X = today − unit.start_date (LearnerWindow.php:52-78) · challenge 10 title + 45-min timer = seed snapshot database/seeders/data/prod-catalog-mapping.tsv:31 (prod value UNVERIFIED) · timer = Task::sprintTimerMinutes(), Task.php:185 · timer starts on open: TaskDetailsController.php:885-938 · on-pace rule (proposed): expected = floor(21 × day ÷ 25); Day 11 expects 9.</div></div></div>
+  <div class="src"><b>Sources:</b> "25" = N from LearnerPace (end − start of this learner's own window, never the batch length; relaxed_25 here) · "21" = $progress total_count, dashboard.blade.php:956 · Day X = today − unit.start_date (LearnerWindow.php:52-78) · challenge 10 title = prod-catalog-mapping.tsv:31 · <b>time estimate</b> = that challenge's measured open→submit median and p75, from one precomputed per-challenge stat refreshed nightly <span class="proposal">proposal</span>; "set aside" = median rounded up + 5 min; the per-challenge figures drawn are illustrative · prod read 28-Nov (3,599 submissions since 1 Aug, open→submit): p25 14.3, median 22.7, p75 36.8, p90 55.5 min; 13.7% within 10 min; 551 expired (figures supplied by the coordinator, not re-run by me) · habit name "20 minutes a day" = Goutam 28-Nov · Why 20: the 25-day pace is 21 ÷ 25 ≈ 0.84 challenges a day; designed 15–20 min per challenge → about 13–17 min a day; measured median 22.7 min → about 19 min a day (Goutam 28-Nov final wording ruling) · the per-challenge timer itself = Task::sprintTimerMinutes(), Task.php:185 · timer starts on open: TaskDetailsController.php:885-938 · on-pace rule (proposal): expected = min(21, ceil(21 × day ÷ N)); Day 10 of 25 expects 9, so 8 done = "1 today keeps you on pace" counts today's challenge.</div></div></div>
 
-  <div class="screen"><h3><em>1b</em> · Tap Start: a heads-up before the clock runs   <span class="uctag">PACE-L-02</span></h3>
+  <div class="screen"><h3><em>1b</em> · Tap Start: a heads-up before the clock runs <span class="uctag">PACE-L-02 · PACE-L-19</span></h3>
   <p class="cap">Opening the challenge starts its timer, so a sheet asks first. "Not yet" keeps the clock off.</p>
   <p class="src">Lives in: Learner dashboard › plan card › Start</p>
   <div class="row"><div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:42</span><span>●●● 4G</span></div><div class="pv">
     <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
-    <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 10 of 25 · 8 of 21 done</div></div>
+    <div class="card plan"><div class="kick">20 minutes a day · today</div><div class="big">Day 10 of 25 · 8 of 21 done</div></div>
   </div>
   <div class="dim"></div>
   <div class="sheet"><div class="grab"></div>
     <h6>Ready for "Life Without Video Games"?</h6>
-    <p>The 45-minute timer starts the moment you open it. Have your video recorded and your phone charged.</p>
+    <p>The timer starts the moment you open it. This one usually takes about 20 min, so set aside 25. Have your video recorded and your phone charged.</p>
     <div class="okbox" style="margin-bottom:10px">✔ Video recorded &nbsp;·&nbsp; ✔ Quiet place &nbsp;·&nbsp; ✔ Good network</div>
     <div class="btn">Open challenge · start timer</div>
     <div class="btn ghost" style="margin-top:8px">Not yet, remind me at 7:00 pm</div>
   </div></div></div>
   <div class="src"><b>Sources:</b> write-once timer on first open, never reset on re-open: TaskDetailsController.php:885-887, 927-938 · "7:00 pm" = the time she picked in Part 2 (2a).</div></div></div>
 
-  <div class="screen"><h3><em>1c</em> · Ahead · <em>1d</em> · Behind · <em>1e</em> · Seat closing soon · <em>1f</em> · All done   <span class="uctag">PACE-L-03 · PACE-L-04 · PACE-L-05 · PACE-L-06 · PACE-SYS-06</span></h3>
+  <div class="screen"><h3><em>1c</em> · Ahead · <em>1d</em> · Behind · <em>1e</em> · Seat closing soon · <em>1f</em> · All done <span class="uctag">PACE-L-03 · PACE-L-20 · PACE-L-04 · PACE-L-05 · PACE-L-06 · PACE-SYS-06</span></h3>
   <p class="cap">Same card, four more states. The tone stays calm: no red, no countdown clock, always one next step.</p>
   <p class="src">Lives in: Learner dashboard, top (same card)</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
       <div class="apphd"><div class="hi"><small>Good morning</small>Hi Anika 👋</div><div class="av">A</div></div>
-      <div class="card plan"><div class="kick">Your 10 minutes today</div>
+      <div class="card plan"><div class="kick">20 minutes a day · today</div>
         <div class="big">Day 10 of 25 · 11 of 21 done</div>
         <div class="meta"><span class="pill p-up">Ahead by 3</span>&nbsp; You've earned a lighter day</div>
-        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Escape from the Forest<small>Challenge 12 · timer 90 min once opened</small></div></div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Escape from the Forest<small>Challenge 12 · usually about 30 min · some take 45</small></div></div>
+        <div class="prep"><i class="mi">event_available</i><span>A longer one. Best started on a day with more time, like the weekend.</span></div>
         <div class="btn">Keep going</div>
-        <div class="btn ghost" style="margin-top:8px">Rest today, I'm ahead</div>
+        <div class="btn ghost" style="margin-top:8px">Rest today (keeps your streak)</div>
         <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
       </div>
     </div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
       <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
-      <div class="card plan"><div class="kick">Your 10 minutes today</div>
+      <div class="card plan"><div class="kick">20 minutes a day · today</div>
         <div class="big">Day 12 of 25 · 8 of 21 done</div>
         <div class="meta"><span class="pill p-warm">2 to catch up</span>&nbsp; Easy to fix, and you have 13 days</div>
-        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · timer 45 min once opened</small></div></div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · usually about 20 min · set aside 25</small></div></div>
         <div class="btn">Start today's challenge</div>
         <div class="btn ghost" style="margin-top:8px">Make a catch-up plan →</div>
         <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
@@ -284,7 +287,7 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div class="card plan"><div class="kick">Last stretch</div>
         <div class="big">Day 23 of 25 · 17 of 21 done</div>
         <div class="meta"><span class="pill p-or">Seat open 3 more days</span>&nbsp; 2 a day finishes it</div>
-        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">My Future: Their Dream, My Dream<small>Challenge 17 · timer 90 min once opened</small></div></div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">My Future: Their Dream, My Dream<small>Challenge 17 · usually about 25 min · set aside 30</small></div></div>
         <div class="btn">Start today's challenge</div>
         <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
         <div class="prep"><i class="mi">event</i><span>Your seat stays open until 1 Dec, 11:59 pm.</span></div>
@@ -296,7 +299,7 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
         <div style="font-size:34px;margin:6px 0">🎉</div>
         <div class="kick">All 21 done</div>
         <div class="big">You finished on Day 22 of 25</div>
-        <div class="meta">You built a real habit: 10 minutes, day after day.</div>
+        <div class="meta">You built a real habit: 20 minutes a day.</div>
         <div class="dots" style="margin-top:12px">
           <i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i></div>
         <div class="btn" style="margin-top:10px">See my achievements</div>
@@ -304,9 +307,9 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       </div>
     </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> challenge 12 + 17 titles and 90-min timers: prod-catalog-mapping.tsv:33,38 (seed snapshot) · 1d: expected by Day 12 = floor(21×12÷25) = 10, done 8 → 2 behind; days left = 25 − 12 = 13 · 1e: window end = unit end_date (LearnerWindow); "closing soon" threshold (proposed, config) = 3 days; end date shown is illustrative · 1f: "See my achievements" links the existing achievements page (frontendapp/achievements.blade.php) · daily cap is OFF by default (config/tasks.php:24, DailySubmissionLimit.php:22-24), so "2 a day" is allowed.</div></div>
+  <div class="src"><b>Sources:</b> challenge 12 + 17 titles: prod-catalog-mapping.tsv:33,38 · estimates from the nightly per-challenge stat; a p75 of about 35 min or more adds the "day with more time" line <span class="proposal">proposal</span> · 1d: expected by Day 12 = ceil(21×12÷25) = 11; the card shows "2 to catch up" once today's is counted (done 8 + today 1 = 9 vs 11); days left = 25 − 12 = 13 · 1e: window end = unit end_date (LearnerWindow); "closing soon" threshold (proposed, config) = 3 days; end date shown is illustrative · 1f: "See my achievements" links the existing achievements page (frontendapp/achievements.blade.php) · daily cap is OFF by default (config/tasks.php:24, DailySubmissionLimit.php:22-24), so "2 a day" is allowed.</div></div>
 
-  <div class="screen"><h3><em>1g</em> · Desktop: the plan card leads the dashboard; progress sits beside it   <span class="uctag">PACE-L-01 · PACE-L-12</span></h3>
+  <div class="screen"><h3><em>1g</em> · Desktop: the plan card leads the dashboard; progress sits beside it <span class="uctag">PACE-L-01 · PACE-L-12 · PACE-L-19 · PACE-L-21</span></h3>
   <p class="cap">Same card and the same numbers. On wide screens, the 21-dot strip (Part 3) moves to the right column.</p>
   <p class="src">Lives in: Learner dashboard on desktop</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/dashboard</span></div>
@@ -314,12 +317,13 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div>
         <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
         <div class="card plan">
-          <div class="kick">Your 10 minutes today</div>
+          <div class="kick">20 minutes a day · today</div>
           <div class="big">Day 10 of 25 · 8 of 21 done</div>
           <div class="meta"><span class="pill p-ok">On pace</span>&nbsp; 1 challenge today keeps you on pace</div>
-          <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · timer 45 min once opened</small></div></div>
+          <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · usually about 20 min · set aside 25</small></div></div>
           <div style="display:flex;gap:10px;align-items:center"><div class="btn" style="flex:0 0 240px">Start today's challenge</div>
           <div class="prep" style="margin:0"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div></div>
+          <div class="prep"><i class="mi">timer</i><span>Your time this week: 3 challenges, about 18 min each.</span></div>
         </div>
       </div>
       <div class="card" style="margin-top:42px">
@@ -331,45 +335,75 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       </div>
     </div></div>
   <div class="src"><b>Sources:</b> route path from the existing learner dashboard (frontendapp/dashboard.blade.php extends partials/app) · all figures as 1a (one source).</div></div></div>
+
+  <div class="screen"><h3><em>1h</em> · Each learner's own window: 8-day pace, an extension, and a missed challenge <span class="uctag">PACE-L-06 · PACE-L-23 · PACE-SYS-01 · PACE-SYS-06</span></h3>
+  <p class="cap">N always comes from the learner's own deadline. A missed (expired) challenge is shown kindly and never counted as "to catch up".</p>
+  <p class="src">Lives in: Learner dashboard, top (same card)</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>8-Day Intensive</small>Hi Kabir 👋</div><div class="av">K</div></div>
+      <div class="card plan"><div class="kick">20 minutes a day · today</div>
+        <div class="big">Day 3 of 8 · 8 of 21 done</div>
+        <div class="meta"><span class="pill p-ok">On pace</span>&nbsp; 3 today keeps you on pace</div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Captain for a Day<small>Challenge 8 · usually about 20 min · set aside 25</small></div></div>
+        <div class="btn">Start today's challenge</div></div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Extended by the office</small>Hi Rohan 👋</div><div class="av">R</div></div>
+      <div class="card plan"><div class="kick">20 minutes a day · today</div>
+        <div class="big">Day 27 of 32 · 15 of 21 done</div>
+        <div class="meta"><span class="pill p-or">Seat open 6 more days</span>&nbsp; 1 a day finishes it</div>
+        <div class="prep"><i class="mi">event</i><span>Your window was extended to 4 Dec.</span></div>
+        <div class="btn" style="margin-top:8px">Start today's challenge</div></div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good evening</small>Hi Meera 👋</div><div class="av">M</div></div>
+      <div class="card plan" style="text-align:center"><div style="font-size:30px;margin:4px 0">🌟</div><div class="kick">Nothing left to do</div>
+        <div class="big">20 done · 1 missed</div>
+        <div class="meta">The one that ran out of time is not held against your pace. Reminders stop now.</div>
+        <div class="btn" style="margin-top:10px">See my achievements</div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> rapid_8 = 8 days (config/enrolment.php:207-209); its N is 8 because completionDeadline() takes the later of the unit window and onboarding + mode days (Enrollment.php:560-571). Whether an 8-day learner sees 8 or the longer unit window is a product ruling <span class="proposal">proposal: 8</span> · extension = the admin Completion Extension card (superadmin/enrollments/show.blade.php:280) moves the deadline, so N grows · "missed" = expired rows (StudentTaskResponse.php:91 ATTEMPTED includes expired); reminders stop when actionable left = 0 or the window closes (LearnerPace::isActive) <span class="proposal">proposal</span> · names and figures are samples; challenge 8 title = prod-catalog-mapping.tsv:29.</div></div>
 </section>
 
 <!-- ═════════ PART 2 ═════════ -->
 <section class="part">
-  <h2>2 · Pick your 10 minutes: a new onboarding step</h2>
-  <p class="lead">Onboarding today: Step 1 You → Step 2 Permissions → Step 3 Guide → Step 4 Your pace → done (onboarding/index.blade.php:183, 256/354, 387, 489, 525). This adds <b>Step 5 · Your 10 minutes</b> after the pace is picked.</p>
-  <div class="flow"><span><b>2a</b> pick a time</span>→<span><b>2b</b> how to remind you</span>→<span><b>2c</b> install the app (push)</span>→<span><b>2d</b> reminder arrives</span><span><b>2e</b> email can't receive mail</span><span><b>2f</b> desktop</span></div>
+  <h2>2 · Pick your 20 minutes a day: a new onboarding step</h2>
+  <p class="lead">Onboarding today: Step 1 You → Step 2 Permissions → Step 3 Guide → Step 4 Your pace → done (onboarding/index.blade.php:183, 256/354, 387, 489, 525). This adds <b>Step 5 · Your 20 minutes a day</b> after the pace is picked.</p>
+  <div class="flow"><span><b>2a</b> pick a time</span>→<span><b>2b</b> how to remind you</span>→<span><b>2c</b> install (later)</span>→<span><b>2d</b> push (later)</span><span><b>2e</b> email can't receive mail</span><span><b>2f</b> desktop</span></div>
 
-  <div class="screen"><h3><em>2a</em> · Pick a time · <em>2b</em> · How to remind you · <em>2c</em> · Install for reminders   <span class="uctag">PACE-L-07 · PACE-L-08 · PACE-L-09</span></h3>
-  <p class="cap">She taps a time slot, then picks channels. Push needs the app installed, so the install prompt comes next.</p>
+  <div class="screen"><h3><em>2a</em> · Pick a time · <em>2b</em> · How to remind you · <em>2c</em> · Install for reminders <span class="proposal">later: push not in v1</span> <span class="uctag">PACE-L-07 · PACE-L-08 · PACE-L-09</span></h3>
+  <p class="cap">She picks a time between 9 am and 9 pm. v1 reminds in the app and by family email; the install prompt (2c) waits until push is built.</p>
   <p class="src">Lives in: Learner onboarding, new Step 5 after "Step 4 · Your pace" (onboarding/index.blade.php:488)</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
       <div class="prog"><i style="width:88%"></i></div>
-      <div class="step">Step 5 · Your 10 minutes</div>
+      <div class="step">Step 5 · Your 20 minutes a day</div>
       <h5>When suits you every day?</h5>
-      <p class="s">Pick a time you're usually free. We'll remind you, and you can change it anytime.</p>
+      <p class="s">Pick a time you're usually free, between 9 am and 9 pm. You can change it or pause reminders anytime.</p>
       <div class="slots">
-        <div class="slot">6:30 am<small>Before school</small></div>
+        <div class="slot">10:00 am<small>Weekends</small></div>
         <div class="slot">4:30 pm<small>After school</small></div>
         <div class="slot on">7:00 pm<small>After homework</small></div>
         <div class="slot">8:30 pm<small>Before bed</small></div>
       </div>
-      <div class="chan" style="margin-top:8px"><div class="ic" style="background:var(--primary-lt)"><i class="mi">schedule</i></div><div class="t">Another time<small>Choose any time</small></div></div>
+      <div class="chan" style="margin-top:8px"><div class="ic" style="background:var(--primary-lt)"><i class="mi">schedule</i></div><div class="t">Another time<small>Between 9 am and 9 pm (IST)</small></div></div>
       <div class="btn" style="margin-top:auto">Next</div>
     </div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
       <div class="prog"><i style="width:92%"></i></div>
-      <div class="step">Step 5 · Your 10 minutes</div>
+      <div class="step">Step 5 · Your 20 minutes a day</div>
       <h5>How should we remind you at 7:00 pm?</h5>
-      <p class="s">Pick one or more.</p>
-      <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">notifications_active</i></div><div class="t">App notification<small>Needs the app on your home screen</small></div><span class="tog on"></span></div>
-      <div class="chan off"><div class="ic" style="background:var(--wa)"><i class="mi">chat</i></div><div class="t">WhatsApp <span class="pill p-gr">at launch</span><small>Coming soon</small></div><span class="tog"></span></div>
-      <div class="chan on"><div class="ic" style="background:#8a7a5f"><i class="mi">mail</i></div><div class="t">Email<small>anika.r@example.com</small></div><span class="tog on"></span></div>
+      <p class="s">Your plan card is always on the dashboard. Reminders also go to your family's email.</p>
+      <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">dashboard</i></div><div class="t">In the app<small>Plan card on your dashboard</small></div><span class="tog on"></span></div>
+      <div class="chan on"><div class="ic" style="background:#8a7a5f"><i class="mi">mail</i></div><div class="t">Family email<small>rao.family@example.com · one note for all your children</small></div><span class="tog on"></span></div>
+      <div class="chan off"><div class="ic" style="background:var(--primary-lt)"><i class="mi">notifications_active</i></div><div class="t">App notification <span class="pill p-gr">later</span><small>Not in v1</small></div><span class="tog"></span></div>
       <div class="btn" style="margin-top:auto">Lock in &amp; finish →</div>
     </div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
       <div class="prog"><i style="width:92%"></i></div>
-      <div class="step">Step 5 · Your 10 minutes</div>
+      <div class="step">Step 5 · Your 20 minutes a day</div>
       <h5>Get your reminder</h5>
     </div>
     <div class="dim"></div>
@@ -381,45 +415,44 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div class="meta" style="text-align:center;margin-top:8px">Not now: email will remind you instead</div>
     </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> step layout copies Step 4 (onboarding/index.blade.php:488-521: kicker, h1, cards, "Lock in &amp; finish" gradient CTA) · WhatsApp for parents at launch (decision, Messaging option B; email primary for pilot and beta) · no learner web-app manifest in public/ today (only crm-manifest.webmanifest), so the install prompt is new work · Firebase SW already registered at login (login.blade.php:252-256).</div></div>
+  <div class="src"><b>Sources:</b> step layout copies Step 4 (onboarding/index.blade.php:488-521) · slots limited to 09:00–21:00 because the family quiet window is 21:00–09:00 (config/sales-crm/channel_routes/2026-11-18.1.yaml:14) · the learner email is usually the guardian's and siblings share it (docs/ENROLMENT-MODEL.md:19,50), so email is a family channel, one digest per inbox · WhatsApp is for parents only (Messaging option B), never offered to the learner · push is not built: the FCM job is retired (Kernel.php:59-63) and public/ has no learner manifest, so 2c-2d are "later" · times are IST (config/app.php timezone).</div></div>
 
-  <div class="screen"><h3><em>2d</em> · 7:00 pm: the reminder arrives · <em>2e</em> · The email address can't receive mail   <span class="uctag">PACE-L-10 · PACE-SYS-02 · PACE-L-11 · PACE-SYS-03</span></h3>
-  <p class="cap">Push on the lock screen names today's challenge. If the email domain has no mail server, we say so kindly and offer push instead.</p>
+  <div class="screen"><h3><em>2d</em> · Later, when push ships: a generic lock-screen reminder · <em>2e</em> · The family email can't receive mail <span class="uctag">PACE-L-10 · PACE-SYS-02 · PACE-L-11 · PACE-SYS-03</span></h3>
+  <p class="cap">The lock screen never shows a name or pace, only that today's plan is ready. If the family email has no mail server, the app card still works and we ask for a fix.</p>
   <p class="src">Lives in: Learner's phone lock screen (2d) · onboarding Step 5 (2e)</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="lock">
       <div class="tm">7:00</div><div class="dt">Friday, 28 November</div>
-      <div class="notif"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Your 10 minutes, Anika ⏱️</b><br>Day 10 · 1 challenge keeps you on pace: "Life Without Video Games".</div>
-      <div class="notif"><div class="ap"><span>Mail</span><span>now</span></div><b>iRisePro · Your 10 minutes today</b><br>Day 10 of 25 · 8 of 21 done…</div>
+      <div class="notif"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Your 20 minutes a day are ready ⏱️</b><br>Open the app to see today's plan.</div>
+      <div class="notif"><div class="ap"><span>Mail</span><span>now</span></div><b>iRisePro · Today's plan for your children</b><br>Anika: 1 challenge today · Aarav: all done…</div>
     </div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
       <div class="prog"><i style="width:92%"></i></div>
-      <div class="step">Step 5 · Your 10 minutes</div>
+      <div class="step">Step 5 · Your 20 minutes a day</div>
       <h5>How should we remind you at 7:00 pm?</h5>
-      <div class="warnbox"><b>We can't send email to anika@gmial.con</b><br>That address has no mail server, so reminders would never arrive. Use an app notification instead, or fix the email.</div>
-      <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">notifications_active</i></div><div class="t">App notification <span class="pill p-ok">recommended</span><small>Works without email</small></div><span class="tog on"></span></div>
-      <div class="chan off"><div class="ic" style="background:var(--wa)"><i class="mi">chat</i></div><div class="t">WhatsApp <span class="pill p-gr">at launch</span><small>We'll switch it on when ready</small></div><span class="tog"></span></div>
-      <div class="chan off"><div class="ic" style="background:#8a7a5f"><i class="mi">unsubscribe</i></div><div class="t">Email · can't deliver<small><u>Fix my email</u></small></div><span class="tog"></span></div>
+      <div class="warnbox"><b>We can't send email to rao@gmial.con</b><br>That address has no mail server, so reminders would never arrive. Your plan card in the app still works. Ask a parent to fix the email.</div>
+      <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">dashboard</i></div><div class="t">In the app <span class="pill p-ok">works</span><small>Plan card on your dashboard</small></div><span class="tog on"></span></div>
+      <div class="chan off"><div class="ic" style="background:#8a7a5f"><i class="mi">unsubscribe</i></div><div class="t">Family email · can't deliver<small><u>Fix the email</u></small></div><span class="tog"></span></div>
       <div class="btn" style="margin-top:auto">Lock in &amp; finish →</div>
     </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> no-MX check already exists with a DNS canary so a DNS outage never blocks anyone: app/Rules/DeliverableEmail.php:8-34 (commit e1611c782) · the "28-Nov F8112 case" is from the brief; not found in the repo (UNVERIFIED) · the sample address is made up.</div></div>
+  <div class="src"><b>Sources:</b> the no-MX rule exists today only at checkout (DeliverableEmail.php:8-34, caller PaymentController.php:106) and stores nothing; re-running it at Step 5 and storing the result in a new student_channel_state (email_ok / no_mx / bounced, since) is new work <span class="proposal">proposal</span> · the "28-Nov F8112 case" is from the brief; not found in the repo (UNVERIFIED) · the sample address is made up.</div></div>
 
-  <div class="screen"><h3><em>2f</em> · Desktop: the same step, centred card   <span class="uctag">PACE-L-07 · PACE-L-08</span></h3>
-  <p class="cap">Time and channel on one wide card. On desktop, browser notifications stand in for the home-screen install.</p>
+  <div class="screen"><h3><em>2f</em> · Desktop: the same step, centred card <span class="uctag">PACE-L-07 · PACE-L-08</span></h3>
+  <p class="cap">Time and channel on one wide card. Browser notifications come later, with push.</p>
   <p class="src">Lives in: Learner onboarding Step 5 on desktop</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/onboarding</span></div>
     <div style="background:var(--cream);padding:24px;display:flex;justify-content:center">
       <div class="card" style="max-width:560px;width:100%;padding:20px">
         <div class="ob" style="padding:0;background:none">
           <div class="prog"><i style="width:92%"></i></div>
-          <div class="step">Step 5 · Your 10 minutes</div>
+          <div class="step">Step 5 · Your 20 minutes a day</div>
           <h5>When suits you every day, and how should we remind you?</h5>
-          <div class="slots" style="grid-template-columns:repeat(4,1fr)"><div class="slot">6:30 am<small>Before school</small></div><div class="slot">4:30 pm<small>After school</small></div><div class="slot on">7:00 pm<small>After homework</small></div><div class="slot">8:30 pm<small>Before bed</small></div></div>
+          <div class="slots" style="grid-template-columns:repeat(4,1fr)"><div class="slot">10:00 am<small>Weekends</small></div><div class="slot">4:30 pm<small>After school</small></div><div class="slot on">7:00 pm<small>After homework</small></div><div class="slot">8:30 pm<small>Before bed</small></div></div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
-            <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">notifications</i></div><div class="t">Browser<small>Allow</small></div></div>
-            <div class="chan off"><div class="ic" style="background:var(--wa)"><i class="mi">chat</i></div><div class="t">WhatsApp<small>at launch</small></div></div>
-            <div class="chan on"><div class="ic" style="background:#8a7a5f"><i class="mi">mail</i></div><div class="t">Email<small>on</small></div></div>
+            <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">dashboard</i></div><div class="t">In the app<small>on</small></div></div>
+            <div class="chan on"><div class="ic" style="background:#8a7a5f"><i class="mi">mail</i></div><div class="t">Family email<small>on</small></div></div>
+            <div class="chan off"><div class="ic" style="background:var(--primary-lt)"><i class="mi">notifications</i></div><div class="t">Browser<small>later</small></div></div>
           </div>
           <div class="btn" style="margin-top:14px">Lock in &amp; finish →</div>
         </div>
@@ -434,8 +467,8 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
   <p class="lead">A filled dot for every finished challenge, a ring on today's. The streak counts days in a row with at least one submission. It praises effort and never counts down.</p>
   <div class="flow"><span><b>3a</b> streak running</span><span><b>3b</b> streak paused</span><span><b>3c</b> desktop week view</span></div>
 
-  <div class="screen"><h3><em>3a</em> · 4 days in a row · <em>3b</em> · The streak paused: a fresh start, no blame   <span class="uctag">PACE-L-12 · PACE-L-13</span></h3>
-  <p class="cap">Missing a day resets the streak but never touches the dots. The copy points to today and never to what was missed.</p>
+  <div class="screen"><h3><em>3a</em> · 4 days in a row · <em>3b</em> · The streak paused: a fresh start, no blame <span class="uctag">PACE-L-12 · PACE-L-13</span></h3>
+  <p class="cap">A chosen rest day keeps the streak; an unplanned gap pauses it but never touches the dots. Today's real time estimate is shown, so nobody opens a challenge without time.</p>
   <p class="src">Lives in: Learner dashboard, under the plan card</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
@@ -445,10 +478,11 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
         <div class="dots">
           <i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot n"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
         <div class="meta">8 done · 13 to go</div>
-        <div class="streak"><span class="flame">🔥</span>4 days in a row. Keep it glowing!</div>
+        <div class="streak"><span class="flame">🔥</span>4 days in a row (rest days count). Keep it glowing!</div>
+        <div class="prep"><i class="mi">timer</i><span>Next one usually takes about 20 min. Open it when you have 25 free.</span></div>
         <div class="wk"><span><i class="on"></i>M</span><span><i></i>T</span><span><i class="on"></i>W</span><span><i class="on"></i>T</span><span><i class="on"></i>F</span><span><i class="on"></i>S</span><span><i></i>S</span></div>
       </div>
-      <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 10 of 25 · 8 of 21 done</div><div class="btn" style="margin-top:8px">Start today's challenge</div></div>
+      <div class="card plan"><div class="kick">20 minutes a day · today</div><div class="big">Day 10 of 25 · 8 of 21 done</div><div class="btn" style="margin-top:8px">Start today's challenge</div></div>
     </div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
       <div class="apphd"><div class="hi"><small>Good morning</small>Hi Anika 👋</div><div class="av">A</div></div>
@@ -460,12 +494,12 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
         <div class="streak"><span class="flame">🌱</span>Fresh start today. One challenge starts a new streak.</div>
         <div class="meta" style="margin-top:4px">Your best so far: 4 days in a row</div>
       </div>
-      <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 12 of 25 · 8 of 21 done</div><div class="btn" style="margin-top:8px">Start today's challenge</div></div>
+      <div class="card plan"><div class="kick">20 minutes a day · today</div><div class="big">Day 12 of 25 · 8 of 21 done</div><div class="btn" style="margin-top:8px">Start today's challenge</div></div>
     </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> filled dots = completed_count (dashboard.blade.php:956, same source as Part 1) · a streak day = a day with ≥1 row where status = 'submitted', the same per-day query the daily cap already uses (TaskDetailsController.php:686-695, submissionsToday) · "best so far" is a new stored figure, written on submit and read for free (no per-view recount).</div></div>
+  <div class="src"><b>Sources:</b> filled dots = completed_count (dashboard.blade.php:956, same source as Part 1) · a streak day = a day with ≥1 COMPLETED row by submitted_at (submitted or reviewed, so marking never shrinks it), or a chosen rest day; one function shared with the daily cap (TaskDetailsController.php:686-695) <span class="proposal">proposal</span> · "best so far" is a new stored figure, written on submit and read for free (no per-view recount).</div></div>
 
-  <div class="screen"><h3><em>3c</em> · Desktop: the strip with a week-by-week view   <span class="uctag">PACE-L-12</span></h3>
+  <div class="screen"><h3><em>3c</em> · Desktop: the strip with a week-by-week view <span class="uctag">PACE-L-12</span></h3>
   <p class="cap">Wide screens add one row per week of the window: a calm calendar, not a timer.</p>
   <p class="src">Lives in: Learner dashboard on desktop, right column</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/dashboard</span></div>
@@ -490,7 +524,7 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
   <p class="lead">"You're 2 behind." Two plans to choose from, a confirm step, and then the daily card follows the chosen plan.</p>
   <div class="flow"><span><b>4a</b> choose a plan</span>→<span><b>4b</b> confirm</span>→<span><b>4c</b> card follows the plan</span><span><b>4d</b> desktop</span></div>
 
-  <div class="screen"><h3><em>4a</em> · Choose · <em>4b</em> · Confirm · <em>4c</em> · The card now follows the plan   <span class="uctag">PACE-L-14 · PACE-L-15 · PACE-L-16</span></h3>
+  <div class="screen"><h3><em>4a</em> · Choose · <em>4b</em> · Confirm · <em>4c</em> · The card now follows the plan <span class="uctag">PACE-L-14 · PACE-L-15 · PACE-L-16 · PACE-L-20</span></h3>
   <p class="cap">She opens "Make a catch-up plan" from 1d and picks one. Reminders then say "2 today" on the extra days.</p>
   <p class="src">Lives in: Learner dashboard › plan card (behind state)</p>
   <div class="row">
@@ -519,16 +553,17 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div class="card plan"><div class="kick">Catch-up day 1 of 2</div>
         <div class="big">Day 13 of 25 · 9 of 21 done</div>
         <div class="meta"><span class="pill p-warm">2 today</span>&nbsp; Then you're back on pace</div>
-        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Escape from the Forest<small>Challenge 12 · timer 90 min once opened</small></div></div>
-        <div class="ch" style="margin-top:0;opacity:.75"><div class="ic" style="background:var(--primary-lt)"><i class="mi">videocam</i></div><div class="t">News Flash: Your Rule!<small>Challenge 13 · next, timer 90 min</small></div></div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Escape from the Forest<small>Challenge 12 · usually about 30 min · some take 45</small></div></div>
+        <div class="prep"><i class="mi">event_available</i><span>A longer one. Best started on a day with more time, like the weekend.</span></div>
+        <div class="ch" style="margin-top:0;opacity:.75"><div class="ic" style="background:var(--primary-lt)"><i class="mi">videocam</i></div><div class="t">News Flash: Your Rule!<small>Challenge 13 · next · usually about 20 min</small></div></div>
         <div class="btn">Start challenge 1 of 2</div>
         <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
       </div>
     </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> "2 behind" = the 1d figure (one source) · titles + timers: prod-catalog-mapping.tsv:33-34 (seed snapshot) · plans never exceed the daily cap when it is on (config/tasks.php:24-30, default cap 3, OFF by default) · the plan only moves reminders and card copy; it never changes the window or the seat.</div></div>
+  <div class="src"><b>Sources:</b> "2 behind" = the 1d figure (one source) · titles: prod-catalog-mapping.tsv:33-34 · estimates from the nightly per-challenge stat · plans never exceed the daily cap when it is on (config/tasks.php:24-30, default cap 3, OFF by default) · the plan only moves reminders and card copy; it never changes the window or the seat.</div></div>
 
-  <div class="screen"><h3><em>4d</em> · Desktop: both plans side by side in a centred modal   <span class="uctag">PACE-L-14</span></h3>
+  <div class="screen"><h3><em>4d</em> · Desktop: both plans side by side in a centred modal <span class="uctag">PACE-L-14</span></h3>
   <p class="cap">The same two options and the same confirm step, laid out side by side.</p>
   <p class="src">Lives in: Learner dashboard on desktop (modal)</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/dashboard</span></div>
@@ -551,9 +586,9 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
 <section class="part">
   <h2>5 · Weekly parent note</h2>
   <p class="lead">Once a week, a short, warm note to the parent: what their child did and whether they're on pace, with one link. Email now, WhatsApp at launch.</p>
-  <div class="flow"><span><b>5a</b> email · on pace</span><span><b>5b</b> WhatsApp · at launch</span><span><b>5c</b> a quieter week (gentle)</span></div>
+  <div class="flow"><span><b>5a</b> email · on pace</span><span><b>5b</b> WhatsApp · at launch</span><span><b>5c</b> a quieter week (gentle)</span><span><b>5d</b> siblings, one inbox</span></div>
 
-  <div class="screen"><h3><em>5a</em> · Email (desktop mail client) · on pace   <span class="uctag">PACE-P-01 · PACE-SYS-07</span></h3>
+  <div class="screen"><h3><em>5a</em> · Email (desktop mail client) · on pace <span class="uctag">PACE-P-01 · PACE-SYS-07</span></h3>
   <p class="cap">One headline figure, the 21 dots, one button. No scores and no comparisons with other children.</p>
   <p class="src">Lives in: Parent's email inbox</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>mail.example.com/inbox</span></div>
@@ -567,9 +602,9 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
         <span class="btn sm">See Anika's dashboard</span><br><br>
         <span class="meta">Sent every Sunday at 10:00 am. <u>Change or stop these notes.</u></span>
       </div></div></div></div>
-  <div class="src"><b>Sources:</b> figures = the same window + completed_count as Part 1 · "this week" = count of submitted rows in the last 7 days (same per-day query as the streak) · send day and time are proposed config · email is primary for pilot and beta (memory: decision-email-primary-pilot-beta) · the parent's address = the guardian captured at Step 2 (onboarding/index.blade.php:255-294).</div></div></div>
+  <div class="src"><b>Sources:</b> figures = the same window + completed_count as Part 1 · "this week" = COMPLETED rows by submitted_at in the last 7 days (reviewed still counts) · send day and time are proposed config · email is primary for pilot and beta (memory: decision-email-primary-pilot-beta) · the parent's address = the guardian captured at Step 2 (onboarding/index.blade.php:255-294).</div></div></div>
 
-  <div class="screen"><h3><em>5b</em> · WhatsApp (marked "at launch") · <em>5c</em> · A quieter week: gentle, never alarming   <span class="uctag">PACE-P-02 · PACE-SYS-07 · PACE-P-03</span></h3>
+  <div class="screen"><h3><em>5b</em> · WhatsApp (marked "at launch") · <em>5c</em> · A quieter week: gentle, never alarming <span class="uctag">PACE-P-02 · PACE-SYS-07 · PACE-P-03</span></h3>
   <p class="cap">The same note on WhatsApp. In a slow week it offers the catch-up plan and never says "behind" in red.</p>
   <p class="src">Lives in: Parent's WhatsApp (at launch)</p>
   <div class="row">
@@ -583,10 +618,24 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
     </div></div></div>
   </div>
   <div class="src"><b>Sources:</b> official WhatsApp for parents at launch (memory: decision-messaging-option-b) · 5c figures = the 1d state (one source) · WhatsApp templates need vendor approval before launch (UNVERIFIED timing).</div></div>
+
+  <div class="screen"><h3><em>5d</em> · One family inbox, two children: one daily note, not two <span class="uctag">PACE-P-05 · PACE-P-06 · PACE-SYS-13</span></h3>
+  <p class="cap">Siblings share a parent's email, so reminders for all children go out as one short note a day, within the daily cap.</p>
+  <p class="src">Lives in: Parent's email inbox</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>mail.example.com/inbox</span></div>
+    <div class="mail"><div class="mh"><b>iRisePro</b> → you<br><b>Subject:</b> Today's 20 minutes a day: Anika and Aarav</div>
+      <div class="mb"><div class="brand">iRisePro</div><div class="body">Namaste,<br><br>
+        <b>Anika</b>: 1 challenge today keeps her on pace (usually about 20 min).<br>
+        <b>Aarav</b>: all 21 done 🎉. No more reminders for him.<br><br>
+        <span class="btn sm">Open the app</span><br><br>
+        <span class="meta">One note per inbox per day. <u>Pause reminders</u> · <u>Mute staff nudges</u> (programme messages continue).</span></div></div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="mail" style="padding-top:30px;height:100%"><div class="mh"><b>Subject:</b> Today's 20 minutes a day: Anika and Aarav</div>
+      <div style="padding:12px;font-size:12.5px;line-height:1.55"><b>Anika</b>: 1 challenge today (about 20 min).<br><b>Aarav</b>: all 21 done 🎉<br><br><span class="btn sm">Open the app</span><div class="meta" style="margin-top:10px">Pause reminders · Mute staff nudges</div></div></div></div></div></div>
+  <div class="src"><b>Sources:</b> one email per family, siblings share it (docs/ENROLMENT-MODEL.md:19,50) · deduped by address, counted once against the daily cap <span class="proposal">proposal</span> · parent-addressed notes (5a-5d, 8b) go only when the learner is a minor or the guardian is a different person, so an adult Acharya gets no "parent" mail (config/enrolment.php:199-200 serves students and Acharyas) <span class="proposal">proposal</span> · no open tracking on family mail.</div></div>
 </section>
 
 <!-- ═════════ ONE SOURCE BANNER ═════════ -->
-<div class="gap" style="margin-top:44px;border-left-color:var(--orange)"><b>Parts 6-10 use the same pacing source as the learner's card.</b> Every Day X / 25, done / 21, status chip and "behind by N" below comes from the one pacing read in Part 1: the unit window (LearnerWindow) plus <code>completed_count</code>. The Yashodarshi list, the admin table, the alerts, the nudge log and the YSP owner card compute nothing of their own. A guard test should compare each view with the learner card in both directions. <span class="proposal">proposal</span> The pacing answer is stored when a challenge is submitted, so every list is a plain read.</div>
+<div class="gap" style="margin-top:44px;border-left-color:var(--orange)"><b>Parts 6-10 use the same pacing source as the learner's card.</b> Every Day X / 25, done / 21, status chip and "behind by N" below comes from the one pacing read in Part 1: the unit window (LearnerWindow) plus <code>completed_count</code>. The Yashodarshi list, the admin table, the alerts, the nudge log and the YSP owner card compute nothing of their own. A guard test should compare each view with the learner card in both directions. <span class="proposal">proposal</span> Only the inputs are stored (start, deadline, done, attempted, last submitted); Day X, expected and status are worked out at read time, so an idle learner turns "behind" without any submission and an extension shows at once.</div>
 
 <!-- ═════════ PART 6 ═════════ -->
 <section class="part">
@@ -594,7 +643,7 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
   <p class="lead">Source: <b>Goutam 28-Nov</b> ("an admin and Yashodarshi view of this student pacing dashboard"). <b>Lives in:</b> the <b>Desk</b> (<code>yashodarshi.desk</code>, the YD's daily home): each learner row carries the pace chip, channel health and Send a nudge. The <b>evaluate / review header</b> shows the pace chip next to the learner strip. <b>Mentorship</b> (<code>yashodarshi.mentorship</code>) keeps the full pacing list with filters and the nudge log. Names, stream, institution and standard show everywhere in the YD panel (Goutam 25-Nov). Scope: only units assigned to this Yashodarshi (<code>units.yashodarshi_id</code>, YashodarshiAuthController.php:276-278).</p>
   <div class="flow"><span><b>6f</b> Desk rows</span>→<span><b>6d</b> send a nudge</span><span><b>6g</b> evaluate header</span><span><b>6a</b> Mentorship list</span><span><b>6b</b> all on pace</span><span><b>6c</b> mobile</span><span><b>6e</b> empty</span></div>
 
-  <div class="screen"><h3><em>6a</em> · Mentorship: the full pacing list with filters (desktop)  <span class="uctag">PACE-YD-01 · PACE-YD-02 · PACE-SYS-01</span></h3>
+  <div class="screen"><h3><em>6a</em> · Mentorship: the full pacing list with filters (desktop) <span class="uctag">PACE-YD-01 · PACE-YD-02 · PACE-SYS-01</span></h3>
   <p class="cap">Each row keeps its mentor star, call and scorecard buttons and gains a pace line. Filters and most-behind sort sit on top; channel problems show in red text.</p>
   <p class="src">Lives in: Yashodarshi › Mentorship (yashodarshi.mentorship)</p>
   <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/mentorship</span></div>
@@ -609,25 +658,25 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div class="yhead"><span>Student</span><span>Window</span><span>Status</span><span>Last activity</span><span>Reminders</span><span></span></div>
       <div class="yrow"><div><div class="nm">Rohan Das</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 7Q2LD</span></div>
         <div class="fig"><b>Day 14</b> / 25<br>7 / 21 done</div><div><span class="st beh">Behind by 4</span><div class="ycode" style="margin-top:3px">no catch-up plan</div></div><div class="fig">4 days ago</div>
-        <div class="chh"><span class="g">● push on</span><br><span class="g">● email ok</span></div><div><span class="ybtn">Send a nudge</span><br><span class="ybtn gh" style="margin-top:4px">Nudge log</span></div>
+        <div class="chh"><span class="g">● in-app ✓</span><br><span class="g">● email ok</span></div><div><span class="ybtn">Send a nudge</span><br><span class="ybtn gh" style="margin-top:4px">Nudge log</span></div>
         <div class="wide" style="grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap"><span class="ybtn gh">☆ Mark as mentor</span><span class="ybtn gh">▶ Join call</span><span class="ybtn gh off">▤ Scorecard pending</span></div></div>
       <div class="yrow"><div><div class="nm">Anika Rao</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div>
         <div class="fig"><b>Day 12</b> / 25<br>8 / 21 done</div><div><span class="st beh">Behind by 2</span><div class="ycode" style="margin-top:3px">plan: 2 this weekend</div></div><div class="fig">yesterday</div>
-        <div class="chh"><span class="g">● push on</span><br><span class="b">● email can't receive mail</span></div><div><span class="ybtn off">Nudged 2 h ago</span><br><span class="ybtn gh" style="margin-top:4px">Nudge log</span></div>
+        <div class="chh"><span class="g">● in-app ✓</span><br><span class="b">● email can't receive mail</span></div><div><span class="ybtn off">Nudged 2 h ago</span><br><span class="ybtn gh" style="margin-top:4px">Nudge log</span></div>
         <div class="wide" style="grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap"><span class="ybtn gh">★ Peer mentor</span><span class="ybtn gh">▶ Join call</span><span class="ybtn gh off">▤ Scorecard pending</span></div></div>
       <div class="yrow"><div><div class="nm">Meera Iyer</div><div class="chips"><span class="ychip">Class 10</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 3HX8P</span></div>
         <div class="fig"><b>Day 10</b> / 25<br>8 / 21 done</div><div><span class="st ok">On pace</span></div><div class="fig">today, 7:12 pm</div>
-        <div class="chh"><span class="m">○ push off</span><br><span class="g">● email ok</span></div><div><span class="ybtn gh">Nudge log</span></div></div>
+        <div class="chh"><span class="m">○ app not opened 3 d</span><br><span class="g">● email ok</span></div><div><span class="ybtn gh">Nudge log</span></div></div>
       <div class="yrow"><div><div class="nm">Kabir Shetty</div><div class="chips"><span class="ychip">Class 6</span><span class="ychip">MARKS BOOSTER</span></div><span class="ycode">Candidate 9TB2C</span></div>
         <div class="fig"><b>Day 8</b> / 25<br>9 / 21 done</div><div><span class="st up">Ahead by 3</span></div><div class="fig">today, 6:40 am</div>
-        <div class="chh"><span class="g">● push on</span><br><span class="g">● email ok</span></div><div><span class="ybtn gh">Nudge log</span></div></div>
+        <div class="chh"><span class="g">● in-app ✓</span><br><span class="g">● email ok</span></div><div><span class="ybtn gh">Nudge log</span></div></div>
       <div class="yrow"><div><div class="nm">Sana Sheikh</div><div class="chips"><span class="ychip">Class 11</span><span class="ychip">NEET</span></div><span class="ycode">Candidate 5RW1E</span></div>
         <div class="fig"><b>Day 24</b> / 25<br>21 / 21 done</div><div><span class="st done">Done</span></div><div class="fig">2 days ago</div>
         <div class="chh"><span class="m">reminders stopped</span></div><div><span class="ybtn gh">▤ Scorecard</span></div></div>
     </div></div>
   <div class="src"><b>Sources:</b> page frame = mentorship.blade.php:77-86 (nav Desk / Mentorship, h1) and its row actions :95-113 (mentor star, Join call, Scorecard states) · theme = yashodarshi/desk.blade.php:46-52 · name + standard · stream · institution chips and pseudonym code = partials/_learner_strip.blade.php:1-8 (Goutam 25-Nov). the page's current eyebrow and sub still describe evaluation as blind (mentorship.blade.php:83-85) and its header comment says "no pseudonyms" (:6); both predate the 25-Nov ruling and should be updated in this build · "Candidate XXXXX" = Student.php:241-250 · learners and standard labels are samples.</div></div></div>
 
-  <div class="screen"><h3><em>6b</em> · All on pace · <em>6e</em> · Empty unit  <span class="uctag">PACE-YD-04 · PACE-YD-05</span></h3>
+  <div class="screen"><h3><em>6b</em> · All on pace · <em>6e</em> · Empty unit <span class="uctag">PACE-YD-04 · PACE-YD-05</span></h3>
   <p class="cap">When nobody needs help, the pace line says so and no nudge button shows. With no units, the page keeps its existing empty note.</p>
   <p class="src">Lives in: Yashodarshi › Mentorship</p>
   <div class="row">
@@ -643,7 +692,7 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
   </div>
   <div class="src"><b>Sources:</b> empty copy is the page's own (mentorship.blade.php:117), unchanged.</div></div>
 
-  <div class="screen"><h3><em>6c</em> · Mobile Mentorship · <em>6d</em> · Send a nudge (one tap, logged, rate-limited)  <span class="uctag">PACE-YD-01 · PACE-YD-02 · PACE-YD-07 · PACE-L-18 · PACE-YD-03</span></h3>
+  <div class="screen"><h3><em>6c</em> · Mobile Mentorship · <em>6d</em> · Send a nudge (one tap, logged, rate-limited) <span class="uctag">PACE-YD-01 · PACE-YD-02 · PACE-YD-07 · PACE-L-18 · PACE-YD-03</span></h3>
   <p class="cap">On a phone each student is one card. The nudge uses the learner's own channels, so an email that can't receive mail is skipped.</p>
   <p class="src">Lives in: Yashodarshi › Mentorship</p>
   <div class="row">
@@ -651,43 +700,43 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div class="ynav"><a>Desk</a><a class="on">Mentorship <span class="bdg">2</span></a></div>
       <div class="eyebrow">Your students</div><h4 style="font-size:20px">Mentorship</h4>
       <div class="yrow"><div><div class="nm">Rohan Das</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 7Q2LD</span></div><span class="st beh">Behind by 4</span>
-        <div class="wide fig">Day 14 / 25 · 7 / 21 · last active 4 days ago · no plan</div><div class="wide chh"><span class="g">● push on · ● email ok</span></div><div class="wide"><span class="ybtn">Send a nudge</span> <span class="ybtn gh">▶ Join call</span></div></div>
+        <div class="wide fig">Day 14 / 25 · 7 / 21 · last active 4 days ago · no plan</div><div class="wide chh"><span class="g">● in-app ✓ · ● email ok</span></div><div class="wide"><span class="ybtn">Send a nudge</span> <span class="ybtn gh">▶ Join call</span></div></div>
       <div class="yrow"><div><div class="nm">Anika Rao</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div><span class="st beh">Behind by 2</span>
-        <div class="wide fig">Day 12 / 25 · 8 / 21 · plan: 2 this weekend</div><div class="wide chh"><span class="g">● push on</span> · <span class="b">● email can't receive mail</span></div><div class="wide"><span class="ybtn off">Nudged 2 h ago · next at 6 pm</span></div></div>
+        <div class="wide fig">Day 12 / 25 · 8 / 21 · plan: 2 this weekend</div><div class="wide chh"><span class="g">● in-app ✓</span> · <span class="b">● email can't receive mail</span></div><div class="wide"><span class="ybtn off">Nudged 2 h ago · next at 6 pm</span></div></div>
     </div></div></div>
     <div class="phone"><div class="scr" style="background:#F5EFE3"><div class="notch"></div><div class="yd ym" style="padding-top:34px">
       <h4 style="font-size:20px">Mentorship</h4><div class="yrow"><div class="nm">Rohan Das</div><span class="st beh">Behind by 4</span></div></div>
       <div class="dim"></div>
       <div class="sheet" style="background:#FCFAF3"><div class="grab"></div>
         <h6 style="font-family:'Iowan Old Style',Georgia,serif;font-size:19px">Nudge Rohan?</h6>
-        <p>Goes by <b>app notification</b> and <b>email</b>, his chosen channels. He sees:</p>
-        <div class="notif" style="background:#fff;border:1px solid #E6DDCB"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Kavya, your Yashodarshi, is cheering you on 🌟</b><br>10 minutes today gets you moving: "Life Without Video Games" is next.</div>
+        <p>Shown in his app and sent to the family email (one note per inbox). He sees:</p>
+        <div class="notif" style="background:#fff;border:1px solid #E6DDCB"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Kavya, your Yashodarshi, is cheering you on 🌟</b><br>20 minutes today gets you moving: "Life Without Video Games" is next.</div>
         <div class="ycode" style="margin:6px 0 10px;line-height:1.5">Logged to the shared nudge log (Part 9) · 1 per learner per 6 h across all roles <span class="proposal">proposal</span></div>
         <div class="ybtn" style="display:block;text-align:center;padding:10px">Send nudge</div>
       </div></div></div>
   </div>
   <div class="src"><b>Sources:</b> channels = the learner's Part 2 choice · the cool-down, who may nudge and the copy are config <span class="proposal">proposal</span> · every view and every nudge is audited (26-Nov privacy rulings) <span class="proposal">proposal</span> · the YD sees no email, phone or guardian, matching the _learner_strip projection (_learner_strip.blade.php:6-7).</div></div>
 
-  <div class="screen"><h3><em>6f</em> · Desk: the pace chip, channel health and Send a nudge on each learner row  <span class="uctag">PACE-YD-02 · PACE-YD-03 · PACE-YD-09</span></h3>
+  <div class="screen"><h3><em>6f</em> · Desk: the pace chip, channel health and Send a nudge on each learner row <span class="uctag">PACE-YD-02 · PACE-YD-03 · PACE-YD-09</span></h3>
   <p class="cap">Where the Yashodarshi works every day: each row shows the learner's pace and reminders, with a one-tap nudge under the shared cool-down.</p>
   <p class="src">Lives in: Yashodarshi › Desk (yashodarshi.desk), row from partials/_desk_row.blade.php</p>
   <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/desk</span></div>
     <div class="yd"><div class="mast"><span class="wm">YASHHO</span><div class="logo">Evaluation <em>Atelier</em></div></div>
       <div class="ynav"><a class="on">Desk</a><a>Mentorship <span class="bdg">2</span></a><a>My evaluations</a></div>
       <div class="eyebrow">Friday · 28 Nov · your desk</div><h4>4 to read today.</h4><div class="sub"><b>1</b> due within four hours · <b>2</b> finished today.</div>
-      <div class="yrow" style="grid-template-columns:minmax(160px,1.4fr) 1.2fr 1.3fr 1fr auto"><div><div class="nm">Rohan Das</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 7Q2LD</span></div><div style="font-family:'Iowan Old Style',Georgia,serif;font-size:14px;font-weight:600">Life Without Video Games<div class="ycode">due in 3 h</div></div><div><span class="st beh">Day 14/25 · 7/21 · behind by 4</span><div class="ycode" style="margin-top:3px">last active 4 days ago</div></div><div class="chh"><span class="g">● push on</span><br><span class="g">● email ok</span></div><div><span class="ybtn">Read</span><br><span class="ybtn gh" style="margin-top:4px">Send a nudge</span></div></div>
-      <div class="yrow" style="grid-template-columns:minmax(160px,1.4fr) 1.2fr 1.3fr 1fr auto"><div><div class="nm">Anika Rao</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div><div style="font-family:'Iowan Old Style',Georgia,serif;font-size:14px;font-weight:600">My Habit Transformation Challenge<div class="ycode">due in 9 h</div></div><div><span class="st beh">Day 12/25 · 8/21 · behind by 2</span><div class="ycode" style="margin-top:3px">last active yesterday</div></div><div class="chh"><span class="g">● push on</span><br><span class="b">● email can't receive mail</span></div><div><span class="ybtn">Read</span><br><span class="ybtn gh off" style="margin-top:4px">Nudged 2 h ago · 6 pm</span></div></div>
-      <div class="yrow" style="grid-template-columns:minmax(160px,1.4fr) 1.2fr 1.3fr 1fr auto"><div><div class="nm">Meera Iyer</div><div class="chips"><span class="ychip">Class 10</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate 3HX8P</span></div><div style="font-family:'Iowan Old Style',Georgia,serif;font-size:14px;font-weight:600">Escape from the Forest<div class="ycode">due tomorrow</div></div><div><span class="st ok">Day 10/25 · 8/21 · on pace</span><div class="ycode" style="margin-top:3px">last active today</div></div><div class="chh"><span class="m">○ push off</span><br><span class="g">● email ok</span></div><div><span class="ybtn">Read</span></div></div>
+      <div class="yrow" style="grid-template-columns:minmax(160px,1.4fr) 1.2fr 1.3fr 1fr auto"><div><div class="nm">Rohan Das</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span></div><span class="ycode">Candidate 7Q2LD</span></div><div style="font-family:'Iowan Old Style',Georgia,serif;font-size:14px;font-weight:600">Life Without Video Games<div class="ycode">due in 3 h</div></div><div><span class="st beh">Day 14/25 · 7/21 · behind by 4</span><div class="ycode" style="margin-top:3px">last active 4 days ago</div></div><div class="chh"><span class="g">● in-app ✓</span><br><span class="g">● email ok</span></div><div><span class="ybtn">Read</span><br><span class="ybtn gh" style="margin-top:4px">Send a nudge</span></div></div>
+      <div class="yrow" style="grid-template-columns:minmax(160px,1.4fr) 1.2fr 1.3fr 1fr auto"><div><div class="nm">Anika Rao</div><div class="chips"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div><div style="font-family:'Iowan Old Style',Georgia,serif;font-size:14px;font-weight:600">My Habit Transformation Challenge<div class="ycode">due in 9 h</div></div><div><span class="st beh">Day 12/25 · 8/21 · behind by 2</span><div class="ycode" style="margin-top:3px">last active yesterday</div></div><div class="chh"><span class="g">● in-app ✓</span><br><span class="b">● email can't receive mail</span></div><div><span class="ybtn">Read</span><br><span class="ybtn gh off" style="margin-top:4px">Nudged 2 h ago · 6 pm</span></div></div>
+      <div class="yrow" style="grid-template-columns:minmax(160px,1.4fr) 1.2fr 1.3fr 1fr auto"><div><div class="nm">Meera Iyer</div><div class="chips"><span class="ychip">Class 10</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate 3HX8P</span></div><div style="font-family:'Iowan Old Style',Georgia,serif;font-size:14px;font-weight:600">Escape from the Forest<div class="ycode">due tomorrow</div></div><div><span class="st ok">Day 10/25 · 8/21 · on pace</span><div class="ycode" style="margin-top:3px">last active today</div></div><div class="chh"><span class="m">○ app not opened 3 d</span><br><span class="g">● email ok</span></div><div><span class="ybtn">Read</span></div></div>
       </div></div>
   <div class="src"><b>Sources:</b> desk masthead, nav and "N to read today" heading = desk.blade.php:118-150 · learner strip on desk rows = partials/_learner_strip.blade.php:1-8 (Goutam 25-Nov) · pace chip from the one pacing source; the nudge is the same action as 6d under the shared cool-down <span class="proposal">proposal</span> · task titles are seed samples (prod-catalog-mapping.tsv).</div></div></div>
 
-  <div class="screen"><h3><em>6g</em> · Evaluate / review header: the pace chip beside the learner strip  <span class="uctag">PACE-YD-10</span></h3>
-  <p class="cap">While marking, the Yashodarshi sees where the learner stands. The chip is read-only; nudging stays on the Desk and Mentorship.</p>
+  <div class="screen"><h3><em>6g</em> · Review the set: the pace chip appears only after marking <span class="uctag">PACE-YD-10</span></h3>
+  <p class="cap">The evaluate screen shows no pace, so marking is not swayed. The review screen, after the marks are saved, shows the read-only chip.</p>
   <p class="src">Lives in: Yashodarshi › evaluate detail (yashodarshi/task/evaluate-detail.blade.php) and review (yashodarshi/review.blade.php)</p>
   <div class="row">
     <div class="browser" style="flex:1 1 560px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/task/…/evaluate</span></div>
       <div class="yd"><div class="mast"><span class="wm">YASHHO</span><div class="logo">Evaluation <em>Atelier</em></div></div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px"><span style="font-weight:700;font-size:18px">Rohan Das</span><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span><span class="ycode">Candidate 7Q2LD</span><span class="st beh" style="margin-left:auto">Day 14/25 · 7/21 · behind by 4 · last active 4 days ago</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px"><span style="font-weight:700;font-size:18px">Rohan Das</span><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span><span class="ychip">Greenfield School</span><span class="ycode">Candidate 7Q2LD</span><span class="ycode" style="margin-left:auto">no pace shown while marking</span></div>
         <div class="eyebrow">The Brief</div><div style="font-family:'Iowan Old Style',Georgia,serif;font-size:20px;font-weight:600;margin-top:4px">Life Without Video Games</div>
         <div class="tile" style="margin-top:10px;height:70px;color:var(--muted)">The Specimen · video</div></div></div>
     <div class="phone"><div class="scr" style="background:#F5EFE3"><div class="notch"></div><div class="yd" style="padding-top:34px">
@@ -695,16 +744,16 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div style="margin:8px 0"><span class="st beh">Day 14/25 · 7/21 · behind by 4</span></div>
       <h4 style="font-size:19px">Seven tasks, read. Confirm the set.</h4><div class="sub">The review header carries the same chip.</div></div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> both pages put the learner strip at the top (evaluate-detail.blade.php:149, review.blade.php:95); the review h1 is the page's own (review.blade.php:108) · the chip is read from the one pacing source <span class="proposal">proposal</span>.</div></div>
+  <div class="src"><b>Sources:</b> both pages put the learner strip at the top (evaluate-detail.blade.php:149, review.blade.php:95); the review h1 is the page's own (review.blade.php:108) · chip only on review, not evaluate (red-team M16; ask the scoring owner whether coaching touches a scored ability) <span class="proposal">proposal</span>.</div></div>
 </section>
 
 <!-- ═════════ PART 7 ═════════ -->
 <section class="part">
   <h2>7 · Admin view: a "Pacing" tab in Cohort Scoreboard, drill-down on the enrolment page</h2>
   <p class="lead"><b>Lives in:</b> the cross-batch list, counts and filters are a <b>Pacing</b> tab inside <b>Cohort Scoreboard</b> (<code>superadmin.reports.cohort-scoreboard</code>, sidebar item, layout.blade.php:350-359). The one-learner drill-down is a new card on the existing <b>Manage Enrollments › Enrollment Details</b> page (<code>superadmin/enrollments/show.blade.php</code>).</p>
-  <div class="flow"><span><b>7a</b> Pacing tab</span>→<span><b>7b</b> channel problems</span>→<span><b>7c</b> Enrollment Details</span><span><b>7d</b> mobile tab</span><span><b>7e</b> mobile Enrollment Details</span></div>
+  <div class="flow"><span><b>7a</b> Pacing tab</span>→<span><b>7b</b> channel problems</span>→<span><b>7c</b> Enrollment Details</span><span><b>7d</b> mobile tab</span><span><b>7e</b> mobile Enrollment Details</span><span><b>7f</b> challenge time</span><span><b>7g</b> mobile challenge time</span></div>
 
-  <div class="screen"><h3><em>7a</em> · Cohort Scoreboard › Pacing tab: counts, filters, most behind first  <span class="uctag">PACE-A-01 · PACE-A-02 · PACE-A-04 · PACE-A-06 · PACE-SYS-01</span></h3>
+  <div class="screen"><h3><em>7a</em> · Cohort Scoreboard › Pacing tab: counts, filters, most behind first <span class="uctag">PACE-A-01 · PACE-A-02 · PACE-A-04 · PACE-A-06 · PACE-SYS-01</span></h3>
   <p class="cap">The page keeps its Challenge, date range, Institution and Batch filters. The Pacing tab adds Yashodarshi, stream, status and channel filters, plus export.</p>
   <p class="src">Lives in: Super Admin › Cohort Scoreboard › Pacing tab</p>
   <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/reports/cohort-scoreboard?tab=pacing</span></div>
@@ -714,16 +763,16 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div class="filters"><span class="sel">Challenge: all ▾</span><span class="sel">From 01 Nov</span><span class="sel">To 28 Nov</span><span class="sel">Institution (optional) ▾</span><span class="sel">Batch / session: all ▾</span><span class="sel">Yashodarshi ▾</span><span class="sel">Stream ▾</span><span class="sel">Status ▾</span><span class="sel">Channel problem ▾</span><span class="sel on">Sort: most behind ▾</span><span class="sabtn">Apply</span><span style="margin-left:auto" class="sabtn gh">⤓ Export CSV</span></div>
       <div class="kpis"><div class="kpi"><div class="k">On pace / ahead</div><div class="v">142</div></div><div class="kpi"><div class="k">Behind</div><div class="v">37</div></div><div class="kpi"><div class="k">Closing soon</div><div class="v">9</div></div><div class="kpi"><div class="k">Channel problems</div><div class="v">6</div></div></div>
       <div class="sacard tw"><table><tr><th>Learner</th><th>Batch · YD</th><th>Window</th><th>Status</th><th>Last activity</th><th>Reminders</th><th>Plan</th><th></th></tr>
-        <tr><td><span class="nm">Arjun M.</span><small>Class 8 · BOARD BOOSTER · Candidate 2ZK7Q</small></td><td>Nov cohort A<small>Kavya N.</small></td><td>Day 21/25<small>11/21</small></td><td><span class="pill p-warm">Behind by 7</span></td><td>6 days ago</td><td>push off · <span class="chpb">email bounced</span></td><td>—</td><td><span class="sabtn">Nudge</span></td></tr>
-        <tr><td><span class="nm">Rohan Das</span><small>Class 9 · BOARD BOOSTER · Greenfield School</small></td><td>Greenfield · Nov<small>Kavya N.</small></td><td>Day 14/25<small>7/21</small></td><td><span class="pill p-warm">Behind by 4</span></td><td>4 days ago</td><td>push on · email ok</td><td>—</td><td><span class="sabtn">Nudge</span></td></tr>
-        <tr><td><span class="nm">Isha P.</span><small>Class 12 · JEE</small></td><td>Nov cohort B<small>Ravi S.</small></td><td>Day 23/25<small>16/21</small></td><td><span class="pill p-or">Closing soon</span></td><td>yesterday</td><td>push on · email ok</td><td>2 a day</td><td><span class="sabtn">Nudge</span></td></tr>
-        <tr><td><span class="nm">Anika Rao</span><small>Class 9 · BOARD BOOSTER</small></td><td>Nov cohort A<small>Kavya N.</small></td><td>Day 12/25<small>8/21</small></td><td><span class="pill p-warm">Behind by 2</span></td><td>yesterday</td><td>push on · <span class="chpb">no MX</span></td><td>weekend</td><td><span class="sabtn gh">2 h ago</span></td></tr>
-        <tr><td><span class="nm">Meera Iyer</span><small>Class 10 · BOARD BOOSTER · Greenfield School</small></td><td>Greenfield · Nov<small>Kavya N.</small></td><td>Day 10/25<small>8/21</small></td><td><span class="pill p-ok">On pace</span></td><td>today</td><td>push off · email ok</td><td>—</td><td></td></tr>
+        <tr><td><span class="nm">Arjun M.</span><small>Class 8 · BOARD BOOSTER · Candidate 2ZK7Q</small></td><td>Nov cohort A<small>Kavya N.</small></td><td>Day 21/25<small>11/21</small></td><td><span class="pill p-warm">Behind by 7</span></td><td>6 days ago</td><td>app not opened 6 d · <span class="chpb">email bounced</span></td><td>—</td><td><span class="sabtn">Nudge</span></td></tr>
+        <tr><td><span class="nm">Rohan Das</span><small>Class 9 · BOARD BOOSTER · Greenfield School</small></td><td>Greenfield · Nov<small>Kavya N.</small></td><td>Day 14/25<small>7/21</small></td><td><span class="pill p-warm">Behind by 4</span></td><td>4 days ago</td><td>in-app ✓ · email ok</td><td>—</td><td><span class="sabtn">Nudge</span></td></tr>
+        <tr><td><span class="nm">Isha P.</span><small>Class 12 · JEE</small></td><td>Nov cohort B<small>Ravi S.</small></td><td>Day 23/25<small>16/21</small></td><td><span class="pill p-or">Closing soon</span></td><td>yesterday</td><td>in-app ✓ · email ok</td><td>2 a day</td><td><span class="sabtn">Nudge</span></td></tr>
+        <tr><td><span class="nm">Anika Rao</span><small>Class 9 · BOARD BOOSTER</small></td><td>Nov cohort A<small>Kavya N.</small></td><td>Day 12/25<small>8/21</small></td><td><span class="pill p-warm">Behind by 2</span></td><td>yesterday</td><td>in-app ✓ · <span class="chpb">no MX</span></td><td>weekend</td><td><span class="sabtn gh">2 h ago</span></td></tr>
+        <tr><td><span class="nm">Meera Iyer</span><small>Class 10 · BOARD BOOSTER · Greenfield School</small></td><td>Greenfield · Nov<small>Kavya N.</small></td><td>Day 10/25<small>8/21</small></td><td><span class="pill p-ok">On pace</span></td><td>today</td><td>app not opened 3 d · email ok</td><td>—</td><td></td></tr>
       </table></div>
     </main></div></div>
   <div class="src"><b>Sources:</b> page title "Cohort AACE Scoreboard" and filters Challenge / From / To / Institution (optional) / Batch / session = reports/cohort-scoreboard.blade.php:4,92-126 · tab style copies its .sb-tab (:49-51); today those tabs switch tasks within one cohort, so a page-level Pacing tab is new <span class="proposal">proposal</span> · sidebar = superadmin/layout.blade.php (primary #FF8A3D :82, bg-secondary :61) · "email bounced" = SES permanent bounce (SesNotificationController.php:86-89,172-177) · counts and rows are illustrative · export is audited <span class="proposal">proposal</span>.</div></div></div>
 
-  <div class="screen"><h3><em>7b</em> · Pacing tab filtered to "Channel problems" · <em>7c</em> · Enrollment Details: a new Pacing card  <span class="uctag">PACE-A-03 · PACE-A-04 · PACE-A-05 · PACE-SYS-02 · PACE-SYS-08</span></h3>
+  <div class="screen"><h3><em>7b</em> · Pacing tab filtered to "Channel problems" · <em>7c</em> · Enrollment Details: a new Pacing card <span class="uctag">PACE-A-03 · PACE-A-04 · PACE-A-11 · PACE-A-05 · PACE-SYS-02 · PACE-SYS-08</span></h3>
   <p class="cap">Clicking the count filters the tab. A row opens the learner's Enrollment Details, where a Pacing card shows her own card and reminder history.</p>
   <p class="src">Lives in: Cohort Scoreboard › Pacing tab (7b) · Manage Enrollments › Enrollment Details (7c)</p>
   <div class="row">
@@ -733,9 +782,9 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
         <div class="kpis"><div class="kpi"><div class="k">On pace</div><div class="v">142</div></div><div class="kpi"><div class="k">Behind</div><div class="v">37</div></div><div class="kpi"><div class="k">Closing soon</div><div class="v">9</div></div><div class="kpi on"><div class="k">Channel problems</div><div class="v">6</div></div></div>
         <div class="filters"><span class="sel on">Channel problem: any ✕</span><span style="margin-left:auto" class="sabtn gh">⤓ Export</span></div>
         <div class="sacard tw"><table><tr><th>Learner</th><th>Problem</th><th>Since</th><th>Way to reach</th></tr>
-          <tr><td><span class="nm">Arjun M.</span><small>Nov cohort A · Kavya N.</small></td><td class="chpb">Email bounced (permanent) · push off</td><td>22 Nov</td><td>Ask the YD to call · fix email</td></tr>
+          <tr><td><span class="nm">Arjun M.</span><small>Nov cohort A · Kavya N.</small></td><td class="chpb">Email bounced (permanent) · app not opened 6 d</td><td>22 Nov</td><td>Ask the YD to call · fix email</td></tr>
           <tr><td><span class="nm">Anika Rao</span><small>Nov cohort A · Kavya N.</small></td><td class="chpb">Email domain can't receive mail</td><td>onboarding</td><td>Push on ✓</td></tr>
-          <tr><td><span class="nm">Dev K.</span><small>Nov cohort B · Ravi S.</small></td><td class="chpb">Push token expired</td><td>26 Nov</td><td>Email ok ✓</td></tr>
+          <tr><td><span class="nm">Dev K.</span><small>Nov cohort B · Ravi S.</small></td><td class="chpb">Email soft-bounced ×3</td><td>26 Nov</td><td>Email ok ✓</td></tr>
           <tr><td colspan="4" style="color:var(--g500)">+ 3 more</td></tr></table></div>
       </main></div></div>
     <div class="browser" style="flex:1 1 560px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/enrollments/…</span></div>
@@ -745,22 +794,22 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
         <div class="sacard" style="border:2px solid var(--primary-lt)"><b>Pacing</b> <span class="proposal">new card</span>
           <div style="display:grid;grid-template-columns:1fr 1.15fr;gap:10px;margin-top:6px">
             <div><div class="meta" style="margin-bottom:4px">What Anika sees right now</div>
-              <div class="card plan" style="padding:10px"><div class="kick">Your 10 minutes today</div><div class="big" style="font-size:14px">Day 12 of 25 · 8 of 21 done</div><div class="meta"><span class="pill p-warm">2 to catch up</span></div><div class="ch" style="margin:6px 0 0"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>timer 45 min</small></div></div></div>
-              <div style="font-size:11px">push ✓ · email <span class="chpb">can't receive mail</span> · 7:00 pm · plan: weekend</div></div>
+              <div class="card plan" style="padding:10px"><div class="kick">20 minutes a day · today</div><div class="big" style="font-size:14px">Day 12 of 25 · 8 of 21 done</div><div class="meta"><span class="pill p-warm">2 to catch up</span></div><div class="ch" style="margin:6px 0 0"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>usually about 20 min · set aside 25</small></div></div></div>
+              <div style="font-size:11px">in-app ✓ · email <span class="chpb">can't receive mail</span> · 7:00 pm · plan: weekend</div></div>
             <div class="tw"><table><tr><th>When</th><th>What</th><th>Ch.</th><th>Result</th></tr>
-              <tr><td>28 Nov 4:10 pm</td><td>Nudge · Kavya (YD)</td><td>push</td><td>delivered · opened</td></tr>
-              <tr><td>27 Nov 7:00 pm</td><td>Daily reminder</td><td>push</td><td>delivered</td></tr>
+              <tr><td>28 Nov 4:10 pm</td><td>Nudge · Kavya (YD)</td><td>in-app</td><td>delivered</td></tr>
+              <tr><td>27 Nov 7:00 pm</td><td>Daily reminder</td><td>in-app</td><td>delivered</td></tr>
               <tr><td>27 Nov 7:00 pm</td><td>Daily reminder</td><td>email</td><td class="chpb">skipped: no MX</td></tr>
               <tr><td>23 Nov 10:00 am</td><td>Parent note</td><td>email</td><td>sent</td></tr>
               <tr><td>22 Nov 9:00 am</td><td>Window nudge 50%</td><td>email</td><td class="chpb">skipped: no MX</td></tr></table></div>
           </div>
-          <div class="src" style="margin-top:6px">Opened by Ops · 28 Nov 4:32 pm · audited</div></div>
+          <div class="src" style="margin-top:6px">Viewed by Ops · 28 Nov 4:32 pm · audited · results are sent / delivered / bounced only (no open tracking)</div></div>
         <div class="sacard" style="padding:8px 12px;color:var(--g500)">▸ Change history</div>
       </main></div></div>
   </div>
   <div class="src"><b>Sources:</b> Enrollment Details page title and its section cards (Personal Information, Challenge &amp; Batch Information, Payment Status, Enrollment Details, Completion Extension, Actions, Change history) = superadmin/enrollments/show.blade.php:3-4,33-365 · the plan card is the learner's own Part 1 component · delivered/read receipts exist for CRM comms (Support/Comms/Receipts.php:3-6); whether learner reminder emails pass through it, and email "opened" tracking, are UNVERIFIED · window nudge 50% = config/tasks.php:93 · office reads audited (26-Nov ruling).</div></div>
 
-  <div class="screen"><h3><em>7d</em> · Mobile Pacing tab · <em>7e</em> · Mobile Enrollment Details › Pacing  <span class="uctag">PACE-A-01 · PACE-A-03 · PACE-A-05 · PACE-A-07</span></h3>
+  <div class="screen"><h3><em>7d</em> · Mobile Pacing tab · <em>7e</em> · Mobile Enrollment Details › Pacing <span class="uctag">PACE-A-01 · PACE-A-03 · PACE-A-05 · PACE-A-07</span></h3>
   <p class="cap">The sidebar folds away: counts become chips and rows become cards. The enrolment page stacks the Pacing card above the history.</p>
   <p class="src">Lives in: Cohort Scoreboard › Pacing tab (7d) · Manage Enrollments › Enrollment Details (7e)</p>
   <div class="row">
@@ -768,9 +817,9 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="mi" style="color:var(--primary)">menu</span><b style="font-size:14px">Cohort AACE Scoreboard</b></div>
       <div class="filters"><span class="sb-t">Scoreboard</span><span class="sb-t on">Pacing</span></div>
       <div class="filters"><span class="sel">On pace 142</span><span class="sel">Behind 37</span><span class="sel">Closing 9</span><span class="sel on">Channel 6</span></div>
-      <div class="sacard"><b>Arjun M.</b> <span class="pill p-warm">Behind by 7</span><div class="meta">Nov cohort A · Kavya N. · Day 21/25 · 11/21</div><div class="chpb" style="font-size:11px;margin-top:3px">email bounced · push off</div></div>
-      <div class="sacard"><b>Anika Rao</b> <span class="pill p-warm">Behind by 2</span><div class="meta">Nov cohort A · Kavya N. · Day 12/25 · 8/21</div><div class="chpb" style="font-size:11px;margin-top:3px">email can't receive mail · push ok</div></div>
-      <div class="sacard"><b>Dev K.</b> <span class="pill p-ok">On pace</span><div class="meta">Nov cohort B · Ravi S. · Day 9/25 · 7/21</div><div class="chpb" style="font-size:11px;margin-top:3px">push token expired · email ok</div></div>
+      <div class="sacard"><b>Arjun M.</b> <span class="pill p-warm">Behind by 7</span><div class="meta">Nov cohort A · Kavya N. · Day 21/25 · 11/21</div><div class="chpb" style="font-size:11px;margin-top:3px">email bounced · app not opened 6 d</div></div>
+      <div class="sacard"><b>Anika Rao</b> <span class="pill p-warm">Behind by 2</span><div class="meta">Nov cohort A · Kavya N. · Day 12/25 · 8/21</div><div class="chpb" style="font-size:11px;margin-top:3px">email can't receive mail · in-app ok</div></div>
+      <div class="sacard"><b>Dev K.</b> <span class="pill p-ok">On pace</span><div class="meta">Nov cohort B · Ravi S. · Day 9/25 · 7/21</div><div class="chpb" style="font-size:11px;margin-top:3px">email soft-bounced ×3 · in-app ok</div></div>
     </div></div></div>
     <div class="phone"><div class="scr" style="background:var(--secondary)"><div class="notch"></div><div style="padding:36px 12px 12px;font-size:12px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mi">arrow_back</span><b style="font-size:14px">Enrollment Details</b></div>
@@ -778,13 +827,42 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
       <div class="sacard" style="border:2px solid var(--primary-lt)"><b>Pacing · Anika Rao</b>
         <div class="card plan" style="padding:9px;margin-top:6px"><div class="big" style="font-size:13.5px">Day 12 of 25 · 8 of 21 done</div><div class="meta"><span class="pill p-warm">2 to catch up</span> · plan: weekend</div></div>
         <div class="cool">Nudged 2 h ago by Kavya (YD). Next nudge available at 6:00 pm.</div>
-        <div class="log"><div class="e"><span class="w">Kavya (YD)</span> · push · 4:10 pm<div class="r">delivered · opened</div></div>
-          <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered</div></div>
+        <div class="log"><div class="e"><span class="w">Kavya (YD)</span> · in-app · 4:10 pm<div class="r">delivered</div></div>
+          <div class="e sys"><span class="w">Reminder system</span> · in-app · yesterday 7:00 pm<div class="r">delivered</div></div>
           <div class="e par"><span class="w">Parent note</span> · email · Sun 10:00 am<div class="r">sent</div></div></div>
         <div class="sabtn gh" style="display:block;text-align:center;opacity:.5">Nudge · available 6:00 pm</div></div>
     </div></div></div>
   </div>
   <div class="src"><b>Sources:</b> as 7a-7c. The cool-down applies across all roles (Part 9).</div></div>
+
+  <div class="screen"><h3><em>7f</em> · Cohort Scoreboard › Pacing › Challenge time: designed vs measured · <em>7g</em> · Mobile <span class="uctag">PACE-A-09 · PACE-A-10</span></h3>
+  <p class="cap">Each challenge's designed time beside its measured median. Overruns are highlighted, and the cohort trend shows whether "prepare first, then open" is working.</p>
+  <p class="src">Lives in: Super Admin › Cohort Scoreboard › Pacing tab › "Challenge time" panel</p>
+  <div class="row">
+    <div class="browser" style="flex:1 1 640px"><div class="chrome"><i></i><i></i><i></i><span>…/cohort-scoreboard?tab=pacing&amp;panel=challenge-time</span></div>
+      <div class="sa"><main style="padding:14px"><h4>Cohort AACE Scoreboard</h4>
+        <div class="filters"><span class="sb-t">Scoreboard</span><span class="sb-t on">Pacing</span><span class="sel">Learners</span><span class="sel on">Challenge time</span></div>
+        <div class="kpis">
+          <div class="kpi"><div class="k">Designed, all 21</div><div class="v">5–6 h</div><div class="meta">15–20 min each (config)</div></div>
+          <div class="kpi"><div class="k">Measured median / challenge</div><div class="v">22.7 min</div><div class="meta">open → submit</div></div>
+          <div class="kpi"><div class="k">All-21 learners, median total</div><div class="v">9.2 h</div><div class="meta">11% within 6 h</div></div>
+          <div class="kpi on"><div class="k">Cohort avg this week</div><div class="v">21 min</div><div class="meta">last week 24 min ↓</div></div>
+        </div>
+        <div class="sacard tw"><table><tr><th>#</th><th>Challenge</th><th>Designed</th><th>Measured median</th><th>p75</th></tr><tr><td>1</td><td>CHALLENGE ZERO: KNOW ME BEFORE WE GROW</td><td>15–20 min</td><td><b>19 min</b></td><td>31 min</td></tr><tr><td>2</td><td>My Habit Transformation Challenge</td><td>15–20 min</td><td><b>17 min</b></td><td>26 min</td></tr><tr style="background:#fff4d6"><td>4</td><td>Dream Curriculum Challenge – Part 2</td><td>15–20 min</td><td><b>34 min</b> <span class="pill p-warm">over design</span></td><td>58 min</td></tr><tr style="background:#fff4d6"><td>5</td><td>Podcast Task – Wired Phones to Smartphones</td><td>15–20 min</td><td><b>29 min</b> <span class="pill p-warm">over design</span></td><td>47 min</td></tr><tr><td>10</td><td>Life Without Video Games</td><td>15–20 min</td><td><b>20 min</b></td><td>33 min</td></tr><tr style="background:#fff4d6"><td>12</td><td>Escape from the Forest</td><td>15–20 min</td><td><b>30 min</b> <span class="pill p-warm">over design</span></td><td>45 min</td></tr><tr style="background:#fff4d6"><td>21</td><td>21-Task iRisePro Journey: My Story</td><td>15–20 min</td><td><b>24 min</b> <span class="pill p-warm">over design</span></td><td>39 min</td></tr>
+          <tr><td colspan="5" style="color:var(--g500)">+ 14 more · sorted by challenge order · <u>sort by overrun</u></td></tr></table></div>
+      </main></div></div>
+    <div class="phone"><div class="scr" style="background:var(--secondary)"><div class="notch"></div><div style="padding:36px 12px 12px;font-size:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="mi" style="color:var(--primary)">menu</span><b style="font-size:14px">Cohort AACE Scoreboard</b></div>
+      <div class="filters"><span class="sb-t">Scoreboard</span><span class="sb-t on">Pacing</span></div>
+      <div class="filters"><span class="sel">Learners</span><span class="sel on">Challenge time</span></div>
+      <div class="sacard"><b>Cohort avg this week: 21 min</b><div class="meta">last week 24 · designed 15–20 · all-time median 22.7</div></div>
+      <div class="sacard" style="background:#fff4d6"><b>4 · Dream Curriculum – Part 2</b> <span class="pill p-warm">over</span><div class="meta">designed 15–20 · median 34 · p75 58 min</div></div>
+      <div class="sacard" style="background:#fff4d6"><b>12 · Escape from the Forest</b> <span class="pill p-warm">over</span><div class="meta">designed 15–20 · median 30 · p75 45 min</div></div>
+      <div class="sacard"><b>10 · Life Without Video Games</b><div class="meta">designed 15–20 · median 20 · p75 33 min</div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> designed time = Goutam 28-Nov ("21 challenges designed for 5–6 hours overall"), held as config <code>pacing.designed_minutes_per_challenge</code> (default 15–20, per-challenge override) <span class="proposal">proposal</span> · measured median 22.7 min/challenge, all-21 learners' median total 9.2 h, 11% within 6 h = prod 28-Nov, supplied by the coordinator, not re-run by me · per-challenge medians, p75s and weekly averages drawn are illustrative; they come from the same nightly per-challenge stat as the learner's estimate (one source) <span class="proposal">proposal</span> · titles = prod-catalog-mapping.tsv:22-42 · "over design" = median above the designed upper bound.</div></div>
+
 </section>
 
 <!-- ═════════ PART 8 ═════════ -->
@@ -795,18 +873,18 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
     <tr><td><b>Behind by ≥ 2</b>Part 1 rule</td><td>in-app card + their channel</td><td>weekly note (Part 5c)</td><td>YD badge + digest line</td><td>counter</td></tr>
     <tr><td><b>No activity 3 days</b>last submission</td><td>in-app + channel</td><td>their channel, once</td><td>badge + digest line</td><td>counter</td></tr>
     <tr><td><b>Seat closes in 3 days</b>window end</td><td>in-app + channel</td><td>their channel, once</td><td>badge + digest line</td><td>counter</td></tr>
-    <tr><td><b>Channel problem</b>no MX · bounce · push expired</td><td>in-app "fix your email"</td><td>—</td><td>digest line</td><td>counter + <b style="display:inline">#alerts-login</b></td></tr></table></div>
+    <tr><td><b>Channel problem</b>no MX · bounce</td><td>in-app "fix your email"</td><td>—</td><td>digest line</td><td>counter + <b style="display:inline">#alerts-login</b></td></tr></table></div>
   <div class="flow"><span><b>8a</b> learner</span><span><b>8b</b> parent</span><span><b>8c</b> Yashodarshi</span><span><b>8d</b> admin + Slack</span></div>
 
-  <div class="screen"><h3><em>8a</em> · Learner (no activity 3 days) · <em>8b</em> · Parent (seat closes in 3 days)   <span class="uctag">PACE-L-17 · PACE-SYS-04 · PACE-P-04</span></h3>
-  <p class="cap">The learner gets a warm in-app line plus her channel. The parent gets one calm message with a date, never a countdown.</p>
-  <p class="src">Lives in: Learner dashboard + push (8a) · parent's WhatsApp / email (8b)</p>
+  <div class="screen"><h3><em>8a</em> · Learner (no activity 3 days) · <em>8b</em> · Parent (seat closes in 3 days) <span class="uctag">PACE-L-17 · PACE-SYS-04 · PACE-P-04</span></h3>
+  <p class="cap">The learner gets a warm in-app line plus the family email. The parent gets one calm message with a date, never a countdown. Both respect quiet hours and the daily cap.</p>
+  <p class="src">Lives in: Learner dashboard + family email (8a) · parent's WhatsApp / email (8b)</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
       <div class="apphd"><div class="hi"><small>Good evening</small>Hi Rohan 👋</div><div class="av">R</div></div>
-      <div class="okbox" style="margin-bottom:10px;background:#fff8ec;border-color:#f4c77d;color:#6b4a10">👋 We missed you! 10 minutes today gets you moving again. Your 7 finished challenges are safe.</div>
-      <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 14 of 25 · 7 of 21 done</div><div class="meta"><span class="pill p-warm">4 to catch up</span></div><div class="btn" style="margin-top:8px">Make a catch-up plan</div></div>
-      <div class="notif" style="border:1px solid var(--line)"><div class="ap"><span>iRisePro · push</span><span>7:00 pm</span></div><b>Rohan, 10 minutes today? ⏱️</b><br>"Life Without Video Games" is ready when you are.</div>
+      <div class="okbox" style="margin-bottom:10px;background:#fff8ec;border-color:#f4c77d;color:#6b4a10">👋 We missed you! 20 minutes today gets you moving again. Your 7 finished challenges are safe.</div>
+      <div class="card plan"><div class="kick">20 minutes a day · today</div><div class="big">Day 14 of 25 · 7 of 21 done</div><div class="meta"><span class="pill p-warm">4 to catch up</span></div><div class="btn" style="margin-top:8px">Make a catch-up plan</div></div>
+      <div class="notif" style="border:1px solid var(--line)"><div class="ap"><span>Family email</span><span>7:00 pm</span></div><b>Rohan's 20 minutes a day</b><br>"Life Without Video Games" is ready, usually about 20 min.</div>
     </div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="wa">
       <div class="wh"><div class="av">iR</div>iRisePro <span class="pill p-gr" style="margin-left:auto">at launch</span></div>
@@ -816,7 +894,7 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
   </div>
   <div class="src"><b>Sources:</b> figures = Part 1 source · parent channel = email now, WhatsApp at launch (memory: decision-email-primary-pilot-beta, decision-messaging-option-b) · thresholds 2 / 3 / 3 are proposals · existing window nudges (50/80/95%) stay as they are (config/tasks.php:93).</div></div>
 
-  <div class="screen"><h3><em>8c</em> · Yashodarshi: panel badge + one line in the daily digest   <span class="uctag">PACE-YD-08 · PACE-SYS-04</span></h3>
+  <div class="screen"><h3><em>8c</em> · Yashodarshi: panel badge + one line in the daily digest <span class="proposal">new</span> <span class="uctag">PACE-YD-08 · PACE-SYS-04</span></h3>
   <p class="cap">The Mentorship pill carries a count and Desk rows show the chip. The morning digest adds one line per learner who crossed a line.</p>
   <p class="src">Lives in: Yashodarshi › Desk nav + the YD's email</p>
   <div class="row">
@@ -826,112 +904,154 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
     <div class="browser" style="flex:1 1 420px"><div class="chrome"><i></i><i></i><i></i><span>mail.example.com/inbox</span></div>
       <div class="mail"><div class="mh"><b>Subject:</b> Your morning digest · 4 to read, 3 learners to cheer on</div>
         <div class="mb"><div class="brand">YASHHO · Yashodarshi digest</div><div class="body" style="font-size:12.5px">
-          <b>Pacing</b><br>• Rohan Das: no activity for 4 days (behind by 4)<br>• Isha P.: seat closes 1 Dec, 5 left<br>• Arjun M.: can't be reached by email or push. Please call via the office.<br><br><span class="btn sm">Open Mentorship</span></div></div></div></div>
+          <b>Pacing</b><br>• Rohan Das: no activity for 4 days (behind by 4)<br>• Isha P.: seat closes 1 Dec, 5 left<br>• Arjun M.: can't be reached by email. Flagged to the office channel-problem queue.<br><br><span class="btn sm">Open Mentorship</span></div></div></div></div>
   </div>
   <div class="src"><b>Sources:</b> desk heading pattern = desk.blade.php ("{{ in_queue }} to read today.") · a YD daily digest email does not exist today as far as I checked (UNVERIFIED); the digest is a proposal.</div></div>
 
-  <div class="screen"><h3><em>8d</em> · Admin: counter on the pacing page + a Slack line for channel problems only   <span class="uctag">PACE-A-08 · PACE-SYS-04</span></h3>
+  <div class="screen"><h3><em>8d</em> · Admin: counter + a Slack line for channel problems only <span class="proposal">new channel</span> <span class="uctag">PACE-A-08 · PACE-SYS-04</span></h3>
   <p class="cap">Only "can't reach this learner" goes to Slack. Behind and closing soon stay as counters, so the channel stays quiet.</p>
   <p class="src">Lives in: Cohort Scoreboard › Pacing counters + Slack</p>
   <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.slack.com</span></div>
     <div class="slack"><aside><div style="font-weight:800;color:#fff;margin-bottom:8px">YASHHO</div><div>#alerts-high</div><div>#alerts-normal</div><div class="on">#alerts-login</div></aside>
       <main><div class="m"><div class="a">iR</div><div><b>iRisePro ops</b> <span style="color:var(--g500);font-size:11px">9:00 AM</span>
-        <div class="att"><b>Learner can't be reached</b>: Arjun M. (Nov cohort A · YD Kavya N.)<br>Email bounced (permanent) · push off · behind by 7, seat closes 2 Dec<br><span style="color:#1164a3">Open in Cohort Scoreboard › Pacing</span></div></div></div>
+        <div class="att"><b>Learner can't be reached</b>: Candidate 2ZK7Q (Nov cohort A · YD Kavya N.)<br>Email bounced (permanent) · app not opened 6 d · behind by 7, seat closes 2 Dec<br><span style="color:#1164a3">Open in Cohort Scoreboard › Pacing</span></div></div></div>
         <div class="m"><div class="a">iR</div><div><b>iRisePro ops</b> <span style="color:var(--g500);font-size:11px">9:00 AM</span>
-        <div class="att"><b>Learner email can't receive mail</b>: Anika Rao · push is on, so reminders still reach her. FYI only.</div></div></div></main></div></div>
-  <div class="src"><b>Sources:</b> today's Slack feeds are #alerts-critical / #alerts-high / #alerts-normal / #alerts-payments (OpsAlert.php:13-21). <b>#alerts-login was not found in the repo</b>; it would be a new channel mapping (UNVERIFIED that it exists in Slack) <span class="proposal">proposal</span> · the Slack message shows the learner's name, which would leave the tenancy. Showing only the pseudonym is an option for Goutam.</div></div></div>
+        <div class="att"><b>Learner email can't receive mail</b>: Candidate K4M9T · the app card still reaches her. FYI only.</div></div></div></main></div></div>
+  <div class="src"><b>Sources:</b> today's Slack feeds are #alerts-critical / #alerts-high / #alerts-normal / #alerts-payments (OpsAlert.php:13-21). <b>#alerts-login was not found in the repo</b>; it would be a new channel mapping (UNVERIFIED that it exists in Slack) <span class="proposal">proposal</span> · Slack lines carry the pseudonym only, so no child's name leaves our systems (Goutam 28-Nov; stack rule "children's data must never leave the tenancy"). A guard test fails if a pacing Slack payload carries a name field <span class="proposal">proposal</span> · one Slack line per learner per problem, then a daily count; channel problems are a work queue with an owner role and resolved state (config) <span class="proposal">proposal</span> · digest capped at the top 10 + "N more".</div></div></div>
 </section>
 
 <!-- ═════════ PART 9 ═════════ -->
 <section class="part">
   <h2>9 · One shared nudge log, one cool-down for every role</h2>
   <p class="lead">One log per learner, the same on the Desk, Mentorship, Enrollment Details and the CRM family page. It holds every nudge: reminder system, Yashodarshi, admin, the family's YSP owner (Part 10), parent note. A cool-down stops a second role from nudging minutes later. <span class="proposal">proposal</span></p>
-  <div class="flow"><span><b>9a</b> YD drill-down (desktop)</span><span><b>9b</b> cool-down on mobile</span></div>
+  <div class="flow"><span><b>9a</b> YD drill-down (desktop)</span><span><b>9b</b> cool-down on mobile</span><span><b>9c</b> quiet hours · caps</span><span><b>9d</b> pause · mute</span></div>
 
-  <div class="screen"><h3><em>9a</em> · Mentorship › a learner's nudge log: the shared log and the cool-down   <span class="uctag">PACE-YD-06 · PACE-YD-07 · PACE-SYS-05</span></h3>
-  <p class="cap">The YD sees who nudged, when, how, and whether it landed. The button stays off until the cool-down ends.</p>
+  <div class="screen"><h3><em>9a</em> · Mentorship › a learner's nudge log: the shared log and the cool-down <span class="uctag">PACE-YD-06 · PACE-YD-07 · PACE-SYS-05</span></h3>
+  <p class="cap">The YD sees who nudged, when, how, and whether it was delivered. The button stays off until the cool-down ends.</p>
   <p class="src">Lives in: Yashodarshi › Mentorship › "Nudge log" on a student row</p>
   <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/yashodarshi/mentorship#nudge-log</span></div>
     <div class="yd" style="display:grid;grid-template-columns:1fr 1.2fr;gap:16px">
       <div><div class="eyebrow">Learner</div>
         <div style="margin:6px 0 10px"><div class="nm" style="font-weight:700;font-size:17px">Anika Rao</div><div class="chips" style="display:flex;gap:5px;margin-top:4px"><span class="ychip">Class 9</span><span class="ychip">BOARD BOOSTER</span></div><span class="ycode">Candidate K4M9T</span></div>
         <div class="card plan" style="font-family:Montserrat"><div class="kick">What she sees</div><div class="big" style="font-size:15px">Day 12 of 25 · 8 of 21 done</div><div class="meta"><span class="pill p-warm">2 to catch up</span> · plan: 2 this weekend</div></div>
-        <div class="chh"><span class="g">● push on</span> · <span class="b">● email can't receive mail</span> · <span class="m">WhatsApp at launch</span></div></div>
+        <div class="chh"><span class="g">● in-app ✓</span> · <span class="b">● family email can't receive mail</span></div></div>
       <div><div class="eyebrow">Shared nudge log · all roles</div>
         <div class="cool" style="margin-top:8px">Nudged 2 h ago by <b>Ops · Deepa</b>. Next nudge available at <b>6:00 pm</b>.</div>
         <div class="log">
-          <div class="e"><span class="w">Ops · Deepa (admin)</span> · push · today 4:00 pm<div class="r">delivered · opened 4:06 pm</div></div>
-          <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered</div></div>
+          <div class="e"><span class="w">Ops · Deepa (admin)</span> · in-app · today 4:00 pm<div class="r">delivered</div></div>
+          <div class="e sys"><span class="w">Reminder system</span> · in-app · yesterday 7:00 pm<div class="r">delivered</div></div>
           <div class="e sys"><span class="w">Reminder system</span> · email · yesterday 7:00 pm<div class="r">skipped: email can't receive mail</div></div>
-          <div class="e"><span class="w">Kavya N. (Yashodarshi)</span> · push · Wed 5:30 pm<div class="r">delivered · not opened</div></div>
+          <div class="e"><span class="w">Kavya N. (Yashodarshi)</span> · in-app · Wed 5:30 pm<div class="r">delivered</div></div>
           <div class="e par"><span class="w">Weekly parent note</span> · email · Sun 10:00 am<div class="r">sent to parent</div></div></div>
         <span class="ybtn off">Send a nudge · 6:00 pm</span></div>
     </div></div>
-  <div class="src"><b>Sources:</b> the log reads one store written by every sender. The reminder rows are today's StudentNotification writes (SendWindowNudge.php:150) plus the new pacing reminders <span class="proposal">proposal</span> · cool-down 6 h across roles, and who may nudge (YD for own units, ops for all), are config <span class="proposal">proposal</span> · delivered/opened depends on receipts (see 7c, UNVERIFIED for email opens) · staff names are made up.</div></div></div>
+  <div class="src"><b>Sources:</b> the log reads one store written by every sender. The reminder rows are today's StudentNotification writes (SendWindowNudge.php:150) plus the new pacing reminders <span class="proposal">proposal</span> · cool-down 6 h across roles, and who may nudge (YD for own units, ops for all), are config <span class="proposal">proposal</span> · results show sent / delivered / bounced only; no open pixels on family mail · existing tracks (window nudges, completion reminders) move behind the same send gate, cap and log in this change; until then they send unchecked (SendWindowNudge.php:154-156) · cool-down applies to person nudges only; system reminders count toward the daily cap · the cool-down is claimed atomically (a raw CREATE TABLE with an inline UNIQUE KEY on (student, slot); `add unique` is refused at deploy) <span class="proposal">proposal</span> · staff names are made up.</div></div></div>
 
-  <div class="screen"><h3><em>9b</em> · Mobile Enrollment Details: an admin tries to nudge during the cool-down   <span class="uctag">PACE-A-07 · PACE-SYS-05</span></h3>
+  <div class="screen"><h3><em>9b</em> · Mobile Enrollment Details: an admin tries to nudge during the cool-down <span class="uctag">PACE-A-07 · PACE-SYS-05</span></h3>
   <p class="cap">The same rule on a phone: the button explains why it's off and when it comes back.</p>
   <p class="src">Lives in: Manage Enrollments › Enrollment Details › Pacing card</p>
   <div class="row"><div class="phone"><div class="scr" style="background:var(--secondary)"><div class="notch"></div><div style="padding:36px 12px 12px;font-size:12px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mi">arrow_back</span><b style="font-size:14px">Enrollment Details</b></div><div style="margin-bottom:6px"><b>Pacing · Rohan Das</b> <span class="pill p-warm">Behind by 4</span></div>
       <div class="cool">Nudged 2 h ago by <b>Kavya (Yashodarshi)</b>. Next nudge available at <b>6:00 pm</b>. Nudging again now would be the 2nd today.</div>
       <div class="sacard"><b>Nudge log</b><div class="log" style="margin-top:6px">
-        <div class="e"><span class="w">Kavya (YD)</span> · push + email · 4:00 pm<div class="r">push delivered · email sent</div></div>
-        <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered · not opened</div></div>
-        <div class="e sys"><span class="w">Reminder system</span> · push · Tue 7:00 pm<div class="r">delivered · not opened</div></div></div></div>
+        <div class="e"><span class="w">Kavya (YD)</span> · in-app + email · 4:00 pm<div class="r">shown in app · email sent</div></div>
+        <div class="e sys"><span class="w">Reminder system</span> · in-app · yesterday 7:00 pm<div class="r">delivered</div></div>
+        <div class="e sys"><span class="w">Reminder system</span> · in-app · Tue 7:00 pm<div class="r">delivered</div></div></div></div>
       <div class="sabtn gh" style="display:block;text-align:center;opacity:.5;padding:10px">Nudge · available 6:00 pm</div>
       <div class="meta" style="text-align:center;margin-top:8px">Ops can override with a reason. The override is logged. <span class="proposal">proposal</span></div>
   </div></div></div></div></div>
+
+  <div class="screen"><h3><em>9c</em> · Quiet hours and caps: a 9:40 pm nudge waits for 9 am; a capped day says so <span class="uctag">PACE-YD-11 · PACE-A-07 · PACE-A-12 · PACE-SYS-10 · PACE-SYS-11</span></h3>
+  <p class="cap">Person nudges after 9 pm queue to 9 am. When a learner has had today's messages, or a sender hits their cap, the button says why.</p>
+  <p class="src">Lives in: Yashodarshi › Desk (mobile) · Manage Enrollments › Enrollment Details › Pacing card (desktop)</p>
+  <div class="row">
+    <div class="phone"><div class="scr" style="background:#F5EFE3"><div class="notch"></div><div class="yd ym" style="padding-top:34px"><h4 style="font-size:20px">Desk</h4><div class="yrow"><div class="nm">Rohan Das</div><span class="st beh">Behind by 4</span></div></div>
+      <div class="dim"></div>
+      <div class="sheet" style="background:#FCFAF3"><div class="grab"></div>
+        <h6 style="font-family:'Iowan Old Style',Georgia,serif;font-size:19px">It's 9:40 pm: family quiet hours</h6>
+        <p>Your nudge to Rohan will be sent at <b>9:00 am</b> tomorrow. You can cancel it until then.</p>
+        <div class="ybtn" style="display:block;text-align:center;padding:10px">Queue for 9:00 am</div>
+        <div class="ybtn gh" style="display:block;text-align:center;padding:9px;margin-top:6px">Cancel</div>
+      </div></div></div>
+    <div class="browser" style="flex:1 1 520px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/enrollments/…</span></div>
+      <div class="sa"><main style="padding:14px"><h4>Enrollment Details › Pacing · Arjun M.</h4>
+        <div class="cool"><b>Today's messages reached (2 of 2).</b> Arjun already had the daily reminder and a window email today. Your nudge can go tomorrow from 9:00 am.</div>
+        <div class="sacard"><table><tr><th>Cap</th><th>Used</th><th>Limit</th></tr>
+          <tr><td>Messages to this learner today (all tracks)</td><td>2</td><td>2</td></tr>
+          <tr><td>Person nudges to this learner this week</td><td>1</td><td>3</td></tr>
+          <tr><td>Your nudges today (any learner)</td><td>14</td><td>40</td></tr>
+          <tr><td>Ops override today (with reason)</td><td>0</td><td>1</td></tr></table></div>
+        <span class="sabtn gh" style="opacity:.5">Nudge · tomorrow 9:00 am</span> <span class="sabtn gh">Override with reason (1 left)</span>
+      </main></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> family quiet hours 21:00–09:00 Asia/Kolkata = channel_routes/2026-11-18.1.yaml:14 (R67.3) · caps (2 messages a day per learner across all tracks, 3 person nudges a week, 40 per sender a day, 1 override a day) are config in Settings (Part 11) <span class="proposal">proposal</span> · the existing tracks (Kernel.php:65-66, config/enrolment.php:140-142, config/tasks.php:93) count toward the same daily cap · every pacing message is a channel_routes row sent through ChannelRouter::plan (ChannelRouter.php:36), which already carries opt-outs and quiet hours <span class="proposal">proposal</span>.</div></div>
+
+  <div class="screen"><h3><em>9d</em> · The family's controls: pause reminders, mute staff nudges <span class="uctag">PACE-L-22 · PACE-P-06</span></h3>
+  <p class="cap">A learner or parent can pause reminders (exam week) or mute staff nudges. Programme messages still arrive.</p>
+  <p class="src">Lives in: Learner profile (frontendapp/profile.blade.php) and the link in every family email</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Profile</small>Reminders</div><div class="av">A</div></div>
+      <div class="card"><div class="kick">Daily reminder</div><div class="big" style="font-size:15px">7:00 pm · in app + family email</div><div class="meta"><u>Change time</u></div></div>
+      <div class="card"><div class="kick">Pause reminders</div>
+        <div class="slots" style="grid-template-columns:1fr 1fr 1fr"><div class="slot">3 days</div><div class="slot on">1 week</div><div class="slot">Exam dates</div></div>
+        <div class="meta" style="margin-top:6px">Paused until 5 Dec. Your plan card stays on the dashboard.</div></div>
+      <div class="card"><div class="chan on" style="border:0;padding:0;margin:0"><div class="t">Mute staff nudges<small>Yashodarshi and office nudges stop. Programme messages (deadlines, results) continue.</small></div><span class="tog on"></span></div></div>
+    </div></div></div>
+    <div class="browser" style="flex:1 1 460px"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/profile#reminders</span></div>
+      <div class="desk" style="grid-template-columns:1fr 1fr">
+        <div class="card"><div class="kick">Pause reminders</div><div class="slots" style="grid-template-columns:1fr 1fr 1fr"><div class="slot">3 days</div><div class="slot on">1 week</div><div class="slot">Exam dates</div></div><div class="meta" style="margin-top:6px">Board-exam weeks set by the school pause everyone automatically.</div></div>
+        <div class="card"><div class="chan on" style="border:0;padding:0;margin:0"><div class="t">Mute staff nudges<small>Programme messages continue (26-Nov ruling)</small></div><span class="tog on"></span></div></div>
+      </div></div>
+  </div>
+  <div class="src"><b>Sources:</b> exam / holiday pause ranges = config in Settings (Part 11) <span class="proposal">proposal</span> · "paid families keep programme messages" = 26-Nov privacy ruling (memory: decision-crm-golive-privacy-rulings-26nov; opt-outs kept forever) · the family opt-out row F9 already exists in channel_routes (yaml, F9 row) · profile page exists (frontendapp/profile.blade.php); the Reminders section is new.</div></div>
 </section>
 
 
 <!-- ═════════ PART 10 ═════════ -->
 <section class="part">
-  <h2>10 · The family's owner sees the pace on the CRM family page</h2>
-  <p class="lead">Source: <b>Goutam 28-Nov: ownership-driven</b> ("a good addition especially as YSP already owns that relationship so it's not a privacy issue as long as it's ownership driven"). Only the family's <b>current owner</b> sees it. The read checks the active ownership row, so when ownership moves, visibility moves at the same instant.</p>
-  <div class="flow"><span><b>10a</b> owner sees it</span>→<span><b>10b</b> send a nudge (shared log)</span><span><b>10c</b> non-owner YSP: nothing</span><span><b>10d</b> ownership moved</span><span><b>10e</b> desktop</span></div>
+  <h2>10 · The family's owner sees family-level status on the CRM family page</h2>
+  <p class="lead">Source: <b>Goutam 28-Nov ruling</b> (supersedes the earlier part-10 ruling): the owning YSP sees <b>family-level status only</b> (on pace / behind / needs help), with no child activity detail. "Nudge" goes to the <b>parent</b> through an approved template. Ownership-driven: only the current owner sees it, and visibility moves with ownership at the same instant. Every view writes an audit row.</p>
+  <div class="flow"><span><b>10a</b> owner sees status</span>→<span><b>10b</b> nudge the parent (template)</span><span><b>10c</b> non-owner: nothing</span><span><b>10d</b> ownership moved</span><span><b>10e</b> desktop</span></div>
 
-  <div class="screen"><h3><em>10a</em> · The owner sees the pace · <em>10b</em> · Send a nudge through the shared log and cool-down   <span class="uctag">PACE-YSP-01 · PACE-L-18 · PACE-YSP-02</span></h3>
-  <p class="cap">A read-only card under the stage chips. "Send a nudge" uses the same log and cool-down as the Yashodarshi and admin (Part 9).</p>
-  <p class="src">Lives in: CRM › family page (crm/pwa/families/family-page.blade.php), owner only</p>
+  <div class="screen"><h3><em>10a</em> · The owner sees one status per child · <em>10b</em> · Nudge the parent with an approved template <span class="uctag">PACE-YSP-01 · PACE-YSP-02</span></h3>
+  <p class="cap">One word per child, no days, counts or activity. "Nudge the parent" sends a fixed, approved message to the family email under the shared log, cool-down and caps.</p>
+  <p class="src">Lives in: CRM › family page (crm/pwa/families/family-page.blade.php), current owner only</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
       <h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Paid · your family</div>
       <div class="ccard"><p class="mini">Stage</p><span class="cchip">New</span><span class="cchip">Talking</span><span class="cchip cur">Paid</span></div>
-      <div class="ccard"><p class="mini">Anika's pace · read-only</p>
-        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">Day 12 of 25 · 8 of 21</b><span class="pill p-warm">2 to catch up</span></div>
-        <div class="dots" style="margin:6px 0"><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
-        <div style="font-size:11.5px;color:#4a5b73;line-height:1.5">Last activity: yesterday<br>Reminders: push ✓ · <span style="color:#b42318;font-weight:700">email can't receive mail</span></div>
-        <div style="margin-top:8px;background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800;min-height:44px">Send a nudge</div></div>
+      <div class="ccard"><p class="mini">Children's programme · status only</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #d5dde7"><b>Anika</b><span class="pill p-warm">Could use a word</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0"><b>Aarav</b><span class="pill p-ok">Done</span></div>
+        <div style="margin-top:8px;background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800;min-height:44px">Nudge the parent</div></div>
       <div style="font-size:10.5px;color:#4a5b73">Visible to you as this family's owner · every view is logged</div>
     </div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="crm"><h1>Rao family</h1></div>
       <div class="dim"></div>
       <div class="sheet"><div class="grab"></div>
-        <h6>Nudge Anika?</h6>
-        <p>Goes by app notification, her chosen channel. Email is skipped because it can't receive mail.</p>
-        <div class="notif" style="background:#f3f6f9;border:1px solid #d5dde7"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Your YASHHO partner is cheering you on 🌟</b><br>10 minutes today: "Life Without Video Games" is next.</div>
-        <div style="font-size:11px;color:#4a5b73;margin:6px 0 10px">Last nudge: Kavya (Yashodarshi), yesterday 5:30 pm · the shared cool-down allows one now · logged for all roles</div>
-        <div style="background:#f5821f;color:#1a0e02;border-radius:10px;padding:11px;text-align:center;font-weight:800">Send nudge</div>
-        <div style="text-align:center;font-size:11.5px;margin-top:8px;color:#b4530a;font-weight:700">See nudge log</div>
+        <h6>Nudge the Rao family?</h6>
+        <p>An approved message goes to the family email. You cannot edit it.</p>
+        <div class="notif" style="background:#f3f6f9;border:1px solid #d5dde7"><div class="ap"><span>Family email · template P-NUDGE-1</span></div><b>A friendly word from your YASHHO partner</b><br>Anika has a little catching up to do this week. 20 minutes a day gets her there. Open the app to see today's plan.</div>
+        <div style="font-size:11px;color:#4a5b73;margin:6px 0 10px">Shared log and cool-down with the Yashodarshi and office · sends after 9 am · counts toward today's cap</div>
+        <div style="background:#f5821f;color:#1a0e02;border-radius:10px;padding:11px;text-align:center;font-weight:800">Send to parent</div>
       </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> CRM theme = crm/pwa/theme.blade.php:21-26 (brand #f5821f, on-brand #1a0e02, ink #0b1b33, mute #4a5b73, line #d5dde7) · family page + stage chips = crm/pwa/families/family-page.blade.php:31-66 · pace figures = the one Part 1 source · who may nudge is config, YSP on by default <span class="proposal">proposal</span> · the 44 px tap target follows crm-ui-standard · learner and staff names are made up.</div></div>
+  <div class="src"><b>Sources:</b> Goutam 28-Nov ruling (family-level status; parent nudge by template) · CRM theme = crm/pwa/theme.blade.php:21-26 · family page + stage chips = family-page.blade.php:31-66 · status words map from the one pace function: on pace/ahead → "On track", behind → "Could use a word", behind + idle or closing soon → "Needs help", done <span class="proposal">proposal</span> · the template is a channel_routes row with a UC source (yaml:1-3, R69) <span class="proposal">proposal</span> · one row per child (siblings, ENROLMENT-MODEL.md:50) · shown only while the enrolment is live and up to N days after the window ends; hidden on refund <span class="proposal">proposal</span> · names are made up.</div></div>
 
-  <div class="screen"><h3><em>10c</em> · A YSP who does not own the family sees nothing   <span class="uctag">PACE-YSP-03</span></h3>
-  <p class="cap">No card, no empty placeholder, no hint that a child's pace exists. The page looks exactly as it does today.</p>
+  <div class="screen"><h3><em>10c</em> · A YSP who does not own the family sees nothing <span class="uctag">PACE-YSP-03</span></h3>
+  <p class="cap">No card, no empty placeholder, no hint that a child's status exists.</p>
   <p class="src">Lives in: CRM › family page, non-owner</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
       <h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Owned by another partner</div>
       <div class="ccard"><p class="mini">Stage</p><span class="cchip">New</span><span class="cchip">Talking</span><span class="cchip cur">Paid</span></div>
-      <div class="ccard"><p class="mini">Notes</p><div style="font-size:12px;color:#4a5b73">Only the owner's notes are shown.</div></div>
     </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> what a non-owner sees of the family page today follows the CRM's existing access rules (not changed here; exact non-owner view UNVERIFIED) · the pace read must return nothing for a non-owner, with no "hidden" marker, enforced server-side <span class="proposal">proposal</span>.</div></div>
+  <div class="src"><b>Sources:</b> the read returns nothing for a non-owner, with no "hidden" marker, enforced server-side <span class="proposal">proposal</span> · what else a non-owner sees on this page follows the CRM's existing rules (unchanged; UNVERIFIED in detail).</div></div>
 
-  <div class="screen"><h3><em>10d</em> · Ownership moved: the new owner sees it, the previous owner loses it at once   <span class="uctag">PACE-YSP-04</span></h3>
-  <p class="cap">The GM moves the family. On their next load the old owner's card is gone and the new owner's card is there. The nudge log moves too.</p>
+  <div class="screen"><h3><em>10d</em> · Ownership moved: the new owner sees it, the previous owner loses it at once <span class="uctag">PACE-YSP-04</span></h3>
+  <p class="cap">The GM moves the family. On the next load the old owner's card is gone and the new owner's card is there.</p>
   <p class="src">Lives in: CRM › family page, old and new owner</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
@@ -942,51 +1062,150 @@ table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;co
     <div class="phone"><div class="scr"><div class="notch"></div><div class="crm">
       <div style="font-size:10px;font-weight:800;color:#4a5b73;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px">New owner · same moment</div>
       <h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Paid · your family since 28 Nov</div>
-      <div class="ccard"><p class="mini">Stage</p><span class="cchip cur">Paid</span></div>
-      <div class="ccard"><p class="mini">Anika's pace · read-only</p>
-        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">Day 12 of 25 · 8 of 21</b><span class="pill p-warm">2 to catch up</span></div>
-        <div style="font-size:11.5px;color:#4a5b73;margin-top:6px">Last activity: yesterday · push ✓</div>
-        <div style="font-size:11.5px;color:#4a5b73;margin-top:4px">Nudge history comes with the family: 3 earlier nudges</div>
-        <div style="margin-top:8px;background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800">Send a nudge</div></div>
+      <div class="ccard"><p class="mini">Children's programme · status only</p>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #d5dde7"><b>Anika</b><span class="pill p-warm">Could use a word</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0"><b>Aarav</b><span class="pill p-ok">Done</span></div>
+        <div style="margin-top:8px;background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800">Nudge the parent</div></div>
     </div></div></div>
   </div>
-  <div class="src"><b>Sources:</b> ownership rules OWN-1..10 (docs/sales-crm/01-roles-and-use-cases.md:37,60-65) · MoveFamily ends the active ownership row and opens the new one in one transaction, then emits OwnershipChanged (MoveFamily.php:18-25) · a paid direct customer gets an HQ-assigned care owner, who would see the card (D42, :61) · the pace read keys on that active row, so no copy or sync is needed <span class="proposal">proposal</span>.</div></div>
+  <div class="src"><b>Sources:</b> ownership rules OWN-1..10 (docs/sales-crm/01-roles-and-use-cases.md:37,60-65) · MoveFamily ends the active ownership row and opens the new one in one transaction (MoveFamily.php:18-25) · the read keys on the active row, so no copy or sync is needed <span class="proposal">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>10e</em> · Desktop: the same card in the family page's right column   <span class="uctag">PACE-YSP-01 · PACE-YSP-02</span></h3>
-  <p class="cap">Same rule and same card. The nudge log opens inline beside it.</p>
+  <div class="screen"><h3><em>10e</em> · Desktop: the same card in the family page's right column <span class="uctag">PACE-YSP-01 · PACE-YSP-02</span></h3>
+  <p class="cap">Same rule and same card. The YSP sees only their own nudges to this family, never the staff log.</p>
   <p class="src">Lives in: CRM › family page on desktop, owner only</p>
   <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>CRM · families · Rao family</span></div>
     <div class="crm" style="padding:16px;height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div><h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Paid · your family</div><div class="ccard"><p class="mini">Stage</p><span class="cchip">New</span><span class="cchip">Talking</span><span class="cchip cur">Paid</span></div>
-        <div class="ccard"><p class="mini">Anika's pace · read-only</p><div style="display:flex;justify-content:space-between"><b>Day 12 of 25 · 8 of 21</b><span class="pill p-warm">2 to catch up</span></div>
-        <div class="dots" style="grid-template-columns:repeat(21,1fr);margin:6px 0"><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
-        <div style="font-size:11.5px;color:#4a5b73">Last activity yesterday · push ✓ · <span style="color:#b42318;font-weight:700">email can't receive mail</span></div></div></div>
-      <div class="ccard"><p class="mini">Shared nudge log</p>
-        <div class="log"><div class="e"><span class="w">Kavya (Yashodarshi)</span> · push · yesterday 5:30 pm<div class="r">delivered · opened</div></div>
-          <div class="e sys"><span class="w">Reminder system</span> · push · yesterday 7:00 pm<div class="r">delivered</div></div>
-          <div class="e par"><span class="w">Weekly parent note</span> · email · Sun 10:00 am<div class="r">sent</div></div></div>
-        <div style="background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800;margin-top:6px">Send a nudge</div></div>
+      <div><h1>Rao family</h1><div style="font-size:11px;color:#4a5b73;margin-bottom:8px">Paid · your family</div><div class="ccard"><p class="mini">Stage</p><span class="cchip">New</span><span class="cchip">Talking</span><span class="cchip cur">Paid</span></div></div>
+      <div class="ccard"><p class="mini">Children's programme · status only</p>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #d5dde7"><b>Anika</b><span class="pill p-warm">Could use a word</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0"><b>Aarav</b><span class="pill p-ok">Done</span></div>
+        <div style="font-size:11.5px;color:#4a5b73;margin:6px 0">Your last nudge to this family: 21 Nov</div>
+        <div style="background:#f5821f;color:#1a0e02;border-radius:10px;padding:10px;text-align:center;font-weight:800">Nudge the parent</div></div>
     </div></div>
   <div class="src"><b>Sources:</b> as 10a-10d.</div></div></div>
 
-  <div class="gap" style="border-left-color:#b42318"><b>Every view is audited (26-Nov privacy rulings).</b> Note: the CRM's view audit today <b>exempts field roles reading their own families</b> (<code>audit_exempt</code>, AuditViews.php:4-6). To keep the "every view audited" line true, the pace read must write its own audit row for the owner too, outside that exemption. <span class="proposal">proposal</span> The 26-Nov ruling also needs a partner attestation for child fields (memory: decision-crm-golive-privacy-rulings-26nov), so whether this card also needs an attestation on file is a question for Goutam.</div>
+  <div class="gap" style="border-left-color:#b42318"><b>Every view is audited (26-Nov privacy rulings).</b> The CRM's view audit today <b>skips field roles reading their own families</b> (<code>audit_exempt</code>, AuditViews.php:4-6), so this card must write its own audit row for the owner. <span class="proposal">proposal</span> Who may see and nudge is a <b>governed setting</b> (GM proposes, CEO approves, safe default off for any new role); Goutam's 28-Nov ruling turns on the family-level card for owning YSPs. Open for counsel: DPDP s.9(3) reach for a commercial partner, and the parental notice at onboarding Step 2 naming "your partner can see your child's status" (notice version logged on the enrolment).</div>
+</section>
+
+<!-- ═════════ PART 11 ═════════ -->
+<section class="part">
+  <h2>11 · Settings › Pacing coach: every number lives here, changeable without a deploy</h2>
+  <p class="lead">Source: <b>Goutam 28-Nov</b> ("make it a config in app settings — something we can change later"). <b>Lives in:</b> the existing superadmin <b>Settings</b> page (sidebar "Settings", superadmin/settings/index.blade.php, today "Administrator Settings" with Change Password and Security Guidelines). Every learner, parent and nudge text renders "{N} minutes a day" from the daily-habit value, never a literal.</p>
+  <div class="flow"><span><b>11a</b> Settings › Pacing coach (desktop)</span>→<span><b>11b</b> change a value (mobile)</span></div>
+
+  <div class="screen"><h3><em>11a</em> · Settings › Pacing coach: value, default, last change, applies from <span class="uctag">PACE-A-13</span></h3>
+  <p class="cap">One section under the existing cards. Each row shows the current value, the default, who changed it last and when it applies.</p>
+  <p class="src">Lives in: Super Admin › Settings › "Pacing coach" section</p>
+  <div class="row"><div class="browser" style="max-width:none;flex-basis:100%"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/superadmin/settings#pacing</span></div>
+    <div class="sa"><nav><b>Super Admin</b><div>Dashboard</div><div>Manage Enrollments</div><div>Reports</div><div>Cohort Scoreboard</div><div class="on">Settings</div></nav>
+    <main><h4>Administrator Settings</h4>
+      <div class="sacard" style="padding:8px 12px;color:var(--g500)">▸ Change Password · ▸ Security Guidelines</div>
+      <div class="sacard"><div style="display:flex;justify-content:space-between;align-items:center"><b>Pacing coach</b><span class="sabtn gh">Change history</span></div>
+        <div class="tw"><table style="margin-top:6px"><tr><th>Setting</th><th>Current</th><th>Default</th><th>Last changed</th><th>Applies from</th></tr>
+          <tr><td>Daily habit minutes<small>renders "{N} minutes a day" everywhere</small></td><td><b>20</b></td><td>20</td><td>Goutam · 28 Nov</td><td>next refresh</td></tr>
+          <tr><td>Designed minutes per challenge<small><u>per-challenge overrides (3)</u></small></td><td><b>15–20</b></td><td>15–20</td><td>Goutam · 28 Nov</td><td>tonight's stat run</td></tr>
+          <tr><td>Family quiet hours</td><td><b>21:00–09:00</b></td><td>21:00–09:00</td><td>— (channel_routes)</td><td>—</td></tr>
+          <tr><td>Reminder slots allowed</td><td><b>09:00–21:00</b></td><td>09:00–21:00</td><td>—</td><td>next refresh</td></tr>
+          <tr><td>Exam / holiday pause ranges</td><td><b>2 ranges</b> <u>edit</u></td><td>none</td><td>Ops · 27 Nov</td><td>next refresh</td></tr>
+          <tr><td>Messages per learner per day (all tracks)</td><td><b>2</b></td><td>2</td><td>—</td><td>next refresh</td></tr>
+          <tr><td>Person nudges per learner per week</td><td><b>3</b></td><td>3</td><td>—</td><td>next refresh</td></tr>
+          <tr><td>Nudges per sender per day</td><td><b>40</b></td><td>40</td><td>—</td><td>next refresh</td></tr>
+          <tr><td>Nudge cool-down (person nudges)</td><td><b>6 h</b></td><td>6 h</td><td>—</td><td>next refresh</td></tr>
+          <tr><td>Behind by · idle days · closing soon</td><td><b>2 · 3 · 3</b></td><td>2 · 3 · 3</td><td>—</td><td>next refresh</td></tr>
+          <tr><td>Who may nudge<small>governed: GM proposes, CEO approves</small></td><td><b>YD (own) · Ops (all) · YSP owner → parent</b></td><td>YD · Ops</td><td>Goutam · 28 Nov</td><td>after approval</td></tr>
+        </table></div>
+        <div class="meta" style="margin-top:6px">Changes apply on the next refresh, with no deploy. Every change writes an audit row and appears in Change history.</div></div>
+    </main></div></div>
+  <div class="src"><b>Sources:</b> Settings page today = superadmin/settings/index.blade.php:3-9,31-35,91-96 (title "Settings", heading "Administrator Settings", cards Change Password and Security Guidelines) · sidebar item "Settings" = superadmin/layout.blade.php:337 · no app-settings store for these values was found by grep, so it is new; the CRM's governed config (app/Domain/SalesCrm/Config/ConfigSchemas/SettingsSchema.php) is the nearest pattern <span class="proposal">proposal</span> · quiet hours are read from channel_routes yaml:14, shown here read-only so there is one source · all values are the proposals named in Parts 1-10.</div></div></div>
+
+  <div class="screen"><h3><em>11b</em> · Mobile: change the daily habit minutes and see the copy re-render <span class="uctag">PACE-A-13 · PACE-SYS-12</span></h3>
+  <p class="cap">The admin changes 20 to 25. The preview shows the learner card text with the new value before saving.</p>
+  <p class="src">Lives in: Super Admin › Settings › Pacing coach (mobile)</p>
+  <div class="row">
+    <div class="phone"><div class="scr" style="background:var(--secondary)"><div class="notch"></div><div style="padding:36px 12px 12px;font-size:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mi" style="color:var(--primary)">menu</span><b style="font-size:15px">Settings › Pacing coach</b></div>
+      <div class="sacard"><b>Daily habit minutes</b><div class="meta">Default 20 · last changed by Goutam, 28 Nov</div>
+        <div style="display:flex;gap:6px;align-items:center;margin-top:8px"><span class="sel">20</span>→<span class="sel on" style="font-size:14px">25</span></div>
+        <div class="card plan" style="margin-top:8px;padding:9px"><div class="kick">Preview · learner card</div><div class="big" style="font-size:13.5px">25 minutes a day · today</div></div>
+        <div class="meta">Applies from the next refresh. No deploy.</div>
+        <div class="sabtn" style="display:block;text-align:center;margin-top:8px;padding:9px">Save change</div></div>
+      <div class="sacard"><b>Change history</b><div class="log" style="margin-top:6px">
+        <div class="e"><span class="w">Goutam</span> · 28 Nov 6:10 pm<div class="r">daily habit minutes 15 → 20</div></div>
+        <div class="e"><span class="w">Goutam</span> · 28 Nov 4:30 pm<div class="r">daily habit minutes 10 → 15</div></div>
+        <div class="e sys"><span class="w">Ops · Deepa</span> · 27 Nov<div class="r">pause range added: 1–5 Dec (board pre-exams)</div></div></div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> history rows mirror the 28-Nov wording rulings (10 → 15 → 20) · who may change: admin <span class="proposal">proposal: whether a second approver is needed (the CRM governs prices and commission with GM-proposes / CEO-approves)</span> · every rendered text reads the value through one function, so a change needs no copy edit <span class="proposal">proposal</span>.</div></div>
+</section>
+
+<!-- ═════════ RED-TEAM FIXES ═════════ -->
+<section class="part" id="redteam">
+  <h2>Red-team fixes (28-Nov, 35 findings)</h2>
+  <p class="lead">Approved by Goutam and Sutirtha 28-Nov subject to every finding being addressed. Each finding, what changed and where, and its status. Fixes are design changes on this page and in the register; they are built in the implementation that follows.</p>
+  <div class="sacard tw" style="margin-top:10px"><table class="matrix"><tr><th>ID</th><th>Finding</th><th>What changed (where)</th><th>Status</th></tr>
+    <tr><td><b>H1</b></td><td>Stored status goes stale</td><td>Only inputs are stored; Day X, expected and status are computed at read time (banner, PACE-SYS-01). Guard: an idle learner turns "behind" with no submission.</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>H2</b></td><td>Denominator undefined</td><td>One <code>LearnerPace::for()</code>: N = completionDeadline() − start, incl. extensions; rapid_8 shows its own N; new frame 1h.</td><td><span class="pill p-warm">fixed + needs Goutam: show 8 or the longer unit window for rapid_8 (drawn as 8)</span></td></tr>
+    <tr><td><b>H3</b></td><td>Expired never counts</td><td>done vs actionable left; reminders stop at 0 left or window close; "20 done · 1 missed" in 1h; PACE-L-24.</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>H4</b></td><td>Child name in Slack</td><td>Pseudonym only (8d) + a guard that fails on a name field.</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>H5</b></td><td>YSP sees child detail, messages child</td><td>Goutam 28-Nov: family-level status only; nudge to the parent by approved template (Part 10 redrawn); own audit row; governed setting.</td><td><span class="pill p-warm">fixed per Goutam 28-Nov + needs Goutam: counsel sign-off on DPDP s.9(3) for a commercial partner</span></td></tr>
+    <tr><td><b>H6</b></td><td>Second message registry</td><td>Every pacing message is a channel_routes row sent through ChannelRouter::plan (9c sources, footer, register rules column).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>H7</b></td><td>No quiet hours / exam pause</td><td>Slots 09:00–21:00 (2a, 2f); person nudges queue to 09:00 (9c); exam/holiday pause ranges + learner pause (9d, Part 11).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>H8</b></td><td>No volume caps</td><td>2 messages per learner per day across all tracks, 3 nudges a week, 40 per sender a day, override 1/day (9c, Part 11); mute staff nudges keeps programme messages (9d).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M1</b></td><td>Reviewed shrinks streak</td><td>Streak and weekly counts use COMPLETED by submitted_at (3a, 5a sources).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M2</b></td><td>Two done counts</td><td>Dashboard, SendWindowNudge and RemindIncompleteEnrolments move onto LearnerPace (Part 1 lead).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M3</b></td><td>7c showed behaviour the code lacks</td><td>Existing tracks move behind the same send gate in this change; until then they send unchecked (9a sources).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M4</b></td><td>No stored channel state</td><td>New student_channel_state written at Step 5, from SES bounces; every view reads it (2e sources).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M5</b></td><td>Push not built</td><td>v1 = in-app + family email; push marked "later" (2b-2d, 2f); staff frames show in-app / email.</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M6</b></td><td>Learner email is the guardian's</td><td>Email is a family channel; one note per inbox for all children (2b, 5d, PACE-P-05).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M7</b></td><td>Lock screen shows child + pace</td><td>Generic lock-screen text, no name or pace (2d).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M8</b></td><td>Open tracking on child mail</td><td>Removed "opened" everywhere; sent / delivered / bounced only.</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M9</b></td><td>No retention / erasure</td><td>New tables join StudentDataErasureService; retention window end + 90 d (footer).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M10</b></td><td>YSP card after programme</td><td>Shown only while live and N days after; hidden on refund (10a sources).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M11</b></td><td>Notice doesn't name new purpose</td><td>Step 2 notice lists who sees status and who may nudge; version logged (Part 10 note).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M12</b></td><td>Parent mail to adult learners</td><td>Parent notes only for minors or a distinct guardian (5d sources, register).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M13</b></td><td>Cool-down ambiguous</td><td>Cool-down = person nudges only; reminders count to the daily cap (PACE-SYS-05).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M14</b></td><td>Check-then-send race</td><td>Atomic claim via inline UNIQUE KEY on (student, slot) (9a sources).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M15</b></td><td>Rest punished; streak lures opening</td><td>Rest day keeps the streak; streak shows the real estimate (1c, 3a).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M16</b></td><td>Pace chip while marking</td><td>No chip on evaluate; read-only chip on review after marks are saved (6g); ask the scoring owner.</td><td><span class="pill p-warm">fixed + needs Goutam/Sutirtha: does coaching touch a scored AACE ability (ask the scoring owner)</span></td></tr>
+    <tr><td><b>M17</b></td><td>WhatsApp to a child</td><td>Removed from learner channels; parents only (2b).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M18</b></td><td>Channel problems unowned</td><td>Work queue with owner role and resolved state; Slack once per problem; digest top 10 (8c, 8d).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M19</b></td><td>Edge states not gated</td><td>LearnerPace::isActive() gates every send and view (live, onboarded, window open, actionable left &gt; 0) (1h).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>M20</b></td><td>YSP visibility default on</td><td>Governed setting, safe default off for new roles; YSP card on by Goutam's ruling via approval (Part 10, 11a).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>L1</b></td><td>Day boundary</td><td>Day 1 = start date; expected uses ceil (Part 1 lead).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>L2</b></td><td>Time zone</td><td>Times labelled IST (2a).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>L3</b></td><td>Old mail says "task"</td><td>Existing window-nudge copy re-worded to "challenge" with translation keys in the same change (footer).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>L4</b></td><td>Kannada / language</td><td>Language read from the same preference as the CRM (channel_routes language_rule); kn gated on native review (footer).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>L5</b></td><td>Dots need text</td><td>aria-label "8 of 21 done" on the strip; status always in words (footer).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>L6</b></td><td>Siblings on YSP card</td><td>One row per child (10a, 10d, 10e).</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>L7</b></td><td>Unbuilt things drawn as real</td><td>8c / 8d headings marked "new"; 2c / 2d marked "later".</td><td><span class="pill p-ok">fixed</span></td></tr>
+  <tr><td><b>O1</b></td><td>Other hole: Mentorship copy still says "blind" and "no pseudonyms"</td><td>Copy update listed with this build (6a sources)</td><td><span class="pill p-ok">fixed</span></td></tr>
+    <tr><td><b>O2</b></td><td>Other hole: who may change Settings has no second approver</td><td>Part 11 shows admin-only with a second approver as an open choice</td><td><span class="pill p-warm">needs Goutam: second approver yes/no</span></td></tr>
+    <tr><td><b>O3</b></td><td>Other hole: a pacing message without a channel_routes row could still be sent</td><td>The R69 guard is extended so a pacing mail or nudge without a row fails (footer)</td><td><span class="pill p-ok">fixed</span></td></tr>
+  </table></div>
+  <p class="src">Counts: High 8 (8 fixed; 2 with a Goutam sub-decision: H2, H5) · Medium 20 (20 fixed; 1 with a Goutam/Sutirtha sub-decision: M16) · Low 7 (7 fixed) · other holes 3 (2 fixed, 1 needs Goutam: O2).</p>
 </section>
 
 <!-- ═════════ FOOTER ═════════ -->
 <div class="foot">
   <h3>Everything is configurable, nothing hard-coded</h3>
   <ul>
-    <li><b>One source for every figure:</b> Day X / 25 / days left come from the unit window written by <code>LearnerWindow</code>; done / 21 from the dashboard's existing <code>$progress</code>. The card, the strip, the catch-up plan, push, email and the parent note all read these. None keeps its own copy.</li>
-    <li><b>Proposed config keys</b> (values drawn here are proposals): <code>pacing.enabled</code> · <code>pacing.time_slots</code> (6:30 / 16:30 / 19:00 / 20:30) · <code>pacing.on_pace_rule</code> (floor(total × day ÷ duration)) · <code>pacing.closing_soon_days</code> (3) · <code>pacing.catchup_max_per_day</code> (≤ daily cap when on) · <code>pacing.channels</code> (push, email; whatsapp at launch) · <code>pacing.parent_note.day_time</code> (Sun 10:00) · <code>pacing.streak.enabled</code>.</li>
-    <li><b>All copy in en + kn</b> as translation keys, including the prep line, the five card states, the streak lines, both catch-up plans and the parent note. Kannada is not drawn here; it needs native review before build.</li>
+    <li><b>One source for every figure:</b> Day X / 25 / days left come from the unit window written by <code>LearnerWindow</code>; done / 21 from the dashboard's existing <code>$progress</code>. The card, the strip, the catch-up plan, the family email and the parent note all read these. None keeps its own copy.</li>
+    <li><b>All values live in Settings › Pacing coach (Part 11)</b>, changeable without a deploy: daily habit minutes (20), designed minutes per challenge (15–20), reminder slots 09:00–21:00, pause ranges, caps (2 a day all tracks, 3 nudges a week, 40 per sender), cool-down 6 h, thresholds 2 / 3 / 3, who may nudge (governed). <span class="proposal">proposal</span></li>
+    <li><b>One message catalogue:</b> every pacing message (daily reminder, idle / behind / closing heads-ups, parent weekly note, sibling digest, person nudges, parent nudge template) is a row in config/sales-crm/channel_routes (yaml:1-3, R69) and sends through ChannelRouter::plan, which carries opt-outs (F9), quiet hours (yaml:14) and language (yaml:13); the R69 guard is extended so a pacing message without a row fails. v1 channels: in-app + family email; push later; WhatsApp for parents at launch. <span class="proposal">proposal</span></li>
+    <li><b>Child data:</b> nudge log, channel state, streak and catch-up plan join StudentDataErasureService and keep a retention window (window end + 90 d). No open tracking on family mail. <span class="proposal">proposal</span></li>
+    <li><b>Copy:</b> existing window-nudge mail is re-worded from "task" to "challenge" (SendWindowNudge.php:148-149) with translation keys; the 21-dot strip carries aria-label "8 of 21 done". <span class="proposal">proposal</span></li>
+
+    <li><b>All copy in en + kn</b>, language from the same preference as the CRM (channel_routes language_rule), as translation keys, including the prep line, the five card states, the streak lines, both catch-up plans and the parent note. Kannada is not drawn here; it needs native review before build.</li>
     <li><b>Parts 6-10 proposals, all config:</b> <code>pacing.nudge.cooldown_hours</code> (6, shared across every role) · <code>pacing.nudge.allowed_roles</code> (Yashodarshi for own units, ops for all, YSP owner on by default) · <code>pacing.nudge.ops_override</code> (with reason) · <code>pacing.alerts.behind_by</code> (2) · <code>pacing.alerts.idle_days</code> (3) · <code>pacing.alerts.closing_days</code> (3) · <code>pacing.alerts.recipients</code> per trigger (Part 8 table) · <code>pacing.alerts.slack_channel</code> (channel problems only).</li>
     <li><b>Every view is audited:</b> the YD list, the admin table + export + drill-down, and the YSP owner card each write an audit row (26-Nov privacy rulings). Every nudge is written to the one shared log.</li>
+    <li><b>Time estimates, one source:</b> each challenge's "usually about N min" comes from a precomputed per-challenge stat (median + p75 of measured open→submit times), refreshed nightly; every card, sheet and reminder reads it. A p75 of about 35 min or more adds "best on a day with more time". <span class="proposal">proposal</span></li>
+    <li><b>Designed time:</b> <code>pacing.designed_minutes_per_challenge</code> = 15–20 min (all 21 ≈ 5–6 h, Goutam 28-Nov), per-challenge override; the admin "Challenge time" panel compares it with the measured median. <span class="proposal">proposal</span></li>
     <li><b>Existing emails stay</b> (onboarding 1/3/5, completion 7/18/23/24, window 50/80/95%). Pacing reminders join them under the same <code>MailGate</code> brake (SendWindowNudge.php:43).</li>
     <li><b>Voice:</b> YASHHO no-fear. No red, no ticking countdown, always one next step. Learners see "challenge", never "task".</li>
   </ul>
   <h3 style="margin-top:12px">Open facts (UNVERIFIED)</h3>
   <ul>
-    <li>Timer minutes are from the seed snapshot (prod-catalog-mapping.tsv: 30-120 min for this programme). Prod values were not read. The timer is the submission window, not how long the work takes, so "10 minutes" is the daily habit, not a challenge's length.</li>
+    
     <li>Whether any learner push is sent today (Firebase SW + device_token exist; no sender was checked).</li>
     <li>The "F8112" no-MX case comes from the brief and is not in the repo.</li>
     <li>#alerts-login is not in OpsAlert.php (existing: critical / high / normal / payments).</li>
