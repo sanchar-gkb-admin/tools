@@ -26,9 +26,9 @@ body{margin:0;background:var(--page);font:400 var(--fs-body)/1.55 var(--font);co
 .src b{font-family:var(--font)}
 .row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}.row>*{min-width:0}
 .phone{width:300px;flex:0 0 300px;background:#141414;border-radius:36px;padding:9px;box-shadow:0 12px 30px rgba(11,27,51,.18)}
-.phone .scr{border-radius:28px;overflow:hidden;height:620px;position:relative;background:var(--bg)}
+.phone .scr{border-radius:28px;overflow:hidden;min-height:620px;position:relative;background:var(--bg)}
 .notch{width:92px;height:22px;background:#141414;border-radius:0 0 13px 13px;position:absolute;left:0;right:0;top:0;margin:auto;z-index:5}
-.pv{padding:36px 14px 14px;height:100%;overflow:hidden}
+.pv{padding:36px 14px 14px;min-height:620px}
 .browser{background:#fff;border-radius:12px;box-shadow:0 12px 30px rgba(11,27,51,.14);overflow-x:auto;flex:1 1 640px;max-width:none}
 .chrome{background:#dfe5ec;padding:9px 12px;display:flex;gap:6px;align-items:center;position:sticky;left:0}
 .chrome i{width:10px;height:10px;border-radius:50%;background:#b9c3cf}.chrome span{margin-left:10px;background:#fff;border-radius:10px;font-size:11px;padding:3px 12px;color:var(--mute);flex:1}
@@ -45,7 +45,7 @@ h4{font-size:var(--fs-h1);font-weight:800;margin:4px 0 4px;line-height:1.25}
 .stat.hl{background:var(--brand-soft)}
 .ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
 .sel{border:1.5px solid var(--line-strong);border-radius:var(--radius);padding:8px 12px;font-size:var(--fs-body);font-weight:600;min-height:44px;display:inline-flex;align-items:center;gap:8px;background:#fff}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;background:var(--brand);color:var(--on-brand);font-weight:800;border-radius:var(--radius-btn);font-size:var(--fs-body);border:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;background:var(--brand);color:var(--on-brand);font-weight:800;border-radius:var(--radius-btn);font-size:var(--fs-body);border:0;text-align:center;line-height:1.25;padding-top:8px;padding-bottom:8px}
 .btn.ghost{background:var(--bg);border:1.5px solid var(--line-strong);color:var(--ink)}
 .btn.off{background:#e6eaef;color:var(--mute);font-weight:700}
 .btn.full{display:flex;width:100%}
@@ -65,7 +65,7 @@ code{font-size:12px;background:var(--sub);border-radius:4px;padding:1px 5px}
 .g .who b{display:block;font-size:var(--fs-sm)}.g .who small{color:var(--mute);font-size:var(--fs-label)}
 .stmt{grid-template-columns:minmax(150px,1.4fr) repeat(5,minmax(90px,1fr)) minmax(110px,1fr)}
 .run{grid-template-columns:minmax(150px,1.3fr) repeat(5,minmax(84px,1fr)) 190px}
-.mob .g{grid-template-columns:1fr auto;padding:9px 12px}
+.mob .g{grid-template-columns:1fr auto;padding:9px 12px}.mob .g .n{white-space:normal}
 .sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:22px 22px 0 0;padding:10px 16px 18px;z-index:4;box-shadow:0 -6px 20px rgba(0,0,0,.15)}
 .sheet .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 10px}
 .dim{position:absolute;inset:0;background:rgba(11,27,51,.5);z-index:3}
@@ -111,7 +111,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   <p class="lead">GET /crm/billing/commission-statements?month=YYYY-MM (routes/crm.php:652-659). Finance reads every post; an RSM or YSP reads only their own post (CommissionStatementController.php: field posts pass their own post id). Closed months only; once closed the figures never move (CommissionStatementView.php:10-25).</p>
   <div class="flow"><span><b>1a</b> Finance · all posts</span><span><b>1b</b> YSP · own post</span><span><b>1c</b> month not closed</span><span><b>1d</b> empty month</span><span><b>1e</b> my payouts · length check</span><span><b>1f</b> bank change via HR · held until re-attested</span></div>
 
-  <div class="screen"><h3><em>1a</em> · Finance: the closed month, every post, one grid       <span class="uctag">BILL-F-01</span></h3>
+  <div class="screen"><h3><em>1a</em> · Finance: the closed month, every post, one grid         <span class="uctag">BILL-F-01</span></h3>
   <p class="cap">Pick a closed month. Five totals on top, then one row per post with the same columns as the totals.</p>
   <p class="src">Lives in: CRM › office › Commission statements (new screen under the billing desk)</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Commission statements</span></div>
@@ -137,7 +137,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
     </div></div></div>
   <div class="src"><b>Sources:</b> a returned transfer is two ledger rows with the new reason <code>payout_returned</code> (transfer and TDS), in no existing column but in net (PartnerLedger.php:557, :569-572), so the new <b>Payout returned</b> column and a test that every grid foots are <span class="tag">proposal</span> (red team 3, NEW-1) · columns accrued / reversed / adjustments / held count + held net / net payable and the totals row = CommissionStatementView.php:46-61 · held = sales still on hold at month end, informational and not payable (:17-18) · closed-only (:37-39) · Finance reads all posts, field posts their own (CommissionStatementController.php, show) · post codes from PostDirectory (:43); the code format drawn is a sample · <b>every office read is audited</b> (26-Nov ruling): the billing GET routes do not carry <code>crm.audit-views</code> yet (routes/crm.php:655, :663); the release agent is adding <code>crm.audit-views:commission_statement</code> and <code>:payout_run</code> with a test; this backend lands with the build <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>1b</em> · YSP: their own post only · <em>1c</em> · Month not closed yet · <em>1d</em> · Closed month with nothing earned       <span class="uctag">BILL-YSP-01 · BILL-YSP-05 · BILL-SYS-01 · BILL-SYS-02</span></h3>
+  <div class="screen"><h3><em>1b</em> · YSP: their own post only · <em>1c</em> · Month not closed yet · <em>1d</em> · Closed month with nothing earned         <span class="uctag">BILL-YSP-01 · BILL-YSP-05 · BILL-SYS-01 · BILL-SYS-02</span></h3>
   <p class="cap">A YSP sees one card for their own post, and can question any line: it opens an in-context team comment that Finance answers (messaging option B). An open month is refused with a plain reason; an empty closed month says so.</p>
   <p class="src">Lives in: CRM › Earnings (field) for 1b; same screen for 1c and 1d</p>
   <div class="row">
@@ -174,7 +174,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> 1b scope = own post (CommissionStatementController.php: <code>$v->hasAttribute('field') ? [postId] : null</code>) · 1c = refusal <code>period_open</code> (CommissionStatementView.php:37-39) · a bad month string is <code>bad_period_month</code> (:34-36) · 1d = the view returns zero totals when no ledger or hold rows exist (:46-61) · "before GST" = memory decision-one-price-all-channels · Question this line (N13) is a team comment on the statement line, no new channel; Finance cannot edit a closed month, so a correction is an adjustment in the open month <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>1e</em> · YSP: "My payouts" under the statement, and the paid notice       <span class="uctag">BILL-YSP-02 · BILL-YSP-03</span></h3>
+  <div class="screen"><h3><em>1e</em> · YSP: "My payouts" under the statement, and the paid notice         <span class="uctag">BILL-YSP-02 · BILL-YSP-03</span></h3>
   <p class="cap">The partner sees each month: paid with date and reference, carried, or held until their PAN and bank details are confirmed. A notice arrives when a line is paid.</p>
   <p class="src">Lives in: CRM › Earnings (field), under My commission · notice in the CRM inbox <span class="tag">proposal</span></p>
   <div class="row">
@@ -206,7 +206,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
     </div></div></div>
   </div>
   <div class="src"><b>Sources:</b> payout lines carry paid_on, bank_reference, transfer, tds, carry_out (migration 2026_12_32_000008:48-69); a partner read of their own lines and the paid notice are new <span class="tag">proposal</span> · bank and PAN changes are not edited in the app: see 1f (Goutam 28-Nov, N7) · Kannada: the CRM's kn strings are still English placeholders (resources/lang/kn/crm_pwa.php:88-93 "TODO-KN"), so the second phone checks 40% longer labels instead of drawing unreviewed Kannada.</div></div>
-  <div class="screen"><h3><em>1f</em> · Bank or PAN change goes through HR: payouts held until re-attested       <span class="uctag">BILL-YSP-04</span></h3>
+  <div class="screen"><h3><em>1f</em> · Bank or PAN change goes through HR: payouts held until re-attested         <span class="uctag">BILL-YSP-04</span></h3>
   <p class="cap">A partner cannot edit bank or PAN details in the app. A change goes to HR offline and HR re-attests the last-4 and IFSC. Until then every payout to that partner is held, with the reason shown.</p>
   <p class="src">Lives in: CRM › Earnings (field) · CRM › office › Payout run (Finance) <span class="tag">proposal</span></p>
   <div class="row">
@@ -222,7 +222,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
         <p class="mini" style="margin-top:8px">No Mark paid and no Clear to transfer for a held line.</p></div></div>
   </div>
   <div class="src"><b>Sources:</b> Goutam 28-Nov (N7): partners cannot edit bank details in the app; HR changes them offline and re-attests last-4 + IFSC · today an in-app bank edit clears bank_verified_at (Igp.php:325-335); closing the in-app edit and the held reason bank_change_pending_reattestation are new <span class="tag">proposal</span> · names and amounts are samples.</div></div>
-  <div class="screen"><h3><em>1g</em> · HR re-attests a partner's bank or PAN details after an offline change       <span class="uctag">BILL-YSP-04 · BILL-HR-01 · BILL-A-05</span></h3>
+  <div class="screen"><h3><em>1g</em> · HR re-attests a partner's bank or PAN details after an offline change         <span class="uctag">BILL-YSP-04 · BILL-HR-01 · BILL-A-05</span></h3>
   <p class="cap">HR types the new last-4 and IFSC from the partner's documents. A second signer co-signs; until then the partner's payouts stay held. The partner is told when it clears.</p>
   <p class="src">Lives in: CRM › office › HR › Re-attest partner details <span class="tag">proposal</span></p>
   <div class="row">
@@ -255,19 +255,19 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   <p class="lead">GET and POST /crm/billing/payout-runs, POST …/paid (routes/crm.php:660-672), ability payout.manage. Finance proposes from the closed month's statement; the GM or CEO approves on the approvals queue (routes/crm.php:825-833); Finance records each line paid with bank reference and date.</p>
   <div class="flow"><span><b>2a</b> refused: TDS rules unset</span>→<span><b>2b</b> ready to propose</span>→<span><b>2c</b> approval pending</span>→<span><b>2d</b> GM/CEO approves</span>→<span><b>2e</b> approved · mark paid</span>→<span><b>2f</b> paid sheet</span>→<span><b>2g</b> paid · partly paid · CA export</span><span><b>2h</b> run changed</span><span><b>2i</b> rejected · expired</span><span><b>2j</b> transfer failed · propose reversal</span>→<span><b>2k</b> GM/CEO approves</span>→<span><b>2l</b> reversed · or rejected</span><span><b>2m</b> cleared to transfer · exception</span><span><b>2n</b> unpaid lines hold Propose</span><span><b>2o</b> debt list</span><span><b>2r</b> resolve unpaid line</span><span><b>2s</b> reversal expired · concurrent pay</span><span><b>2p</b> reconcile with bank · blocks next Propose</span><span><b>2q</b> exited partner · final settlement</span><span><b>2t</b> write off a debt</span></div>
 
-  <div class="screen"><h3><em>2a</em> · Refused: the CA has not set the TDS rules       <span class="uctag">BILL-SYS-03</span></h3>
+  <div class="screen"><h3><em>2a</em> · Refused: the CA has not set the TDS rules         <span class="uctag">BILL-SYS-03</span></h3>
   <p class="cap">Until every governed payout key is set, Propose is off and the screen names exactly which keys are missing.</p>
   <p class="src">Lives in: CRM › office › Payout run</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run</span></div>
     <div class="office">
       <div class="tabs"><a>Collections</a><a>Aging</a><a>Commission</a><a class="on">Payout run</a><a>Approvals</a></div>
       <h4>Payout run</h4><div class="ctl"><span class="sel">Month: October 2026 ▾</span><span class="pill p-ok">Month closed</span></div>
-      <div class="banner bad"><b>The payout run waits for its governed rules</b>The CA decides the TDS rules. These must be set in a governed settings version before a run can be proposed: <code>payout_tds_rate_bp</code>, <code>payout_tds_threshold_paise</code>, <code>payout_tds_timing</code>.</div>
+      <div class="banner bad"><b>The payout run waits for its governed rules</b>The CA decides the TDS rules. These must be set in a governed settings version before a run can be proposed: the TDS rate, the TDS threshold and when TDS is withheld.</div>
       <div class="ctl"><span class="btn off" aria-disabled="true">Propose October run</span><span class="mini">Minimum payout ₹500 net is set. TDS: none of the four keys has a default.</span></div>
     </div></div></div>
   <div class="src"><b>Sources:</b> refusal <code>tds_rules_unset</code> listing the missing keys = PayoutRules.php:20-35 · every payout_* key except cadence must be set, none has a code default (:12-14, :24-25) · ₹500 net minimum and monthly cadence = ruled values shipped in settings 2026-12-09.1 (:12) · keys and allowed values = SettingsSchema.php:324-329 (timing payout | accrual) · <b>PAN and bank first, then pay — Goutam 28-Nov; credit-time TDS question with the CA.</b> Partners without attested PAN and bank details are left out of the run, so the no-PAN rate (payout_tds_no_pan_rate_bp, applied today at PayoutRunBuilder.php:52) is retired <span class="tag">proposal</span>; threshold catch-up (:53) and rounding (floored to the paisa, :53) also wait for the CA.</div></div>
 
-  <div class="screen"><h3><em>2b</em> · Ready to propose · <em>2c</em> · Waiting for the GM or CEO       <span class="uctag">BILL-F-02</span></h3>
+  <div class="screen"><h3><em>2b</em> · Ready to propose · <em>2c</em> · Waiting for the GM or CEO         <span class="uctag">BILL-F-02</span></h3>
   <p class="cap">With the rules set, Finance proposes. The run is built from the closed month and shown read-only while it waits for approval.</p>
   <p class="src">Lives in: CRM › office › Payout run</p>
   <div class="row">
@@ -284,7 +284,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> POST returns 202 with request, status, lines, payable, tds (PayoutRunController.php, store) · proposable only when the month is closed, has no run, and follows the last run in order (ProposePayoutRun.php:45-60: <code>period_open</code>, <code>payout_run_exists</code>, <code>payout_run_out_of_order</code>) · a second proposal while one waits is <code>payout_run_pending</code> (:34) · approval kind partner_payout_run, GM or CEO, with expiry (:12-15; ApprovalAppliers.php:28) · totals come from the sample data set at the top (statement net ₹1,74,950 as in 1a, plus ₹8,980 carried in from September, less ₹10,030 not payable = payable ₹1,73,900); the TDS rate is the CA's.</div></div>
 
-  <div class="screen"><h3><em>2d</em> · The GM or CEO approves on the approvals queue       <span class="uctag">BILL-A-01</span></h3>
+  <div class="screen"><h3><em>2d</em> · The GM or CEO approves on the approvals queue         <span class="uctag">BILL-A-01</span></h3>
   <p class="cap">The approver sees the totals and every line read-only, then approves or rejects. If anything changed since the proposal, approval is refused (2h).</p>
   <p class="src">Lives in: CRM › office › Approvals (routes/crm.php:825-833)</p>
   <div class="row">
@@ -299,7 +299,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> shared approvals queue: GET /crm/approvals, GET /crm/approvals/{id}, POST …/decide (routes/crm.php:825-833) · ApplyPayoutRun rebuilds the lines at approval (ApplyPayoutRun.php:32) from live PAN status and FY base (PayoutRunBuilder.php:38-39, 52), so it must compare with the proposed totals (2h) · the GM holds neither payout.manage nor commission_statement.view, so the lines are shown inside the approval detail <span class="tag">proposal</span> · the decide form fields drawn are a sample of the existing queue (office/approvals.blade.php).</div></div>
 
-  <div class="screen"><h3><em>2e</em> · Approved: lines to pay, including a carried minimum and a clawback       <span class="uctag">BILL-F-03</span></h3>
+  <div class="screen"><h3><em>2e</em> · Approved: lines to pay, including a carried minimum and a clawback         <span class="uctag">BILL-F-03</span></h3>
   <p class="cap">One grid: statement net, carry in, due, payable, TDS, transfer. Below ₹500 or negative carries to next month; each payable line has Mark paid.</p>
   <p class="src">Lives in: CRM › office › Payout run</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run · October 2026</span></div>
@@ -313,12 +313,12 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       </div>
       <div class="mini" style="margin:14px 0 6px;font-weight:700">Held — PAN or bank not attested (lines in this run with payable ₹0; the due carries)</div>
       <div class="grid"><div class="g h" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr"><span>Earner · post</span><span class="n">Due</span><span class="n">Payable</span><span class="n">Carry out</span><span>Reason</span></div>
-      <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr"><span class="who"><b>Deepak T.</b><small>YSP-TMK-009</small></span><span class="n">₹6,450</span><span class="n">₹0</span><span class="n">₹6,450</span><span><span class="pill p-warn">bank_change_pending_reattestation</span></span></div>
-      <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr"><span class="who"><b>Lata G.</b><small>YSP-MYS-031</small></span><span class="n">₹2,900</span><span class="n">₹0</span><span class="n">₹2,900</span><span><span class="pill p-warn">bank_not_attested</span></span></div>
-      <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr"><span class="who"><b>Mohan D.</b><small>YSP-HSN-011</small></span><span class="n">₹1,800</span><span class="n">₹0</span><span class="n">₹1,800</span><span><span class="pill p-warn">identity_not_attested</span></span></div></div></div></div></div>
+      <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr"><span class="who"><b>Deepak T.</b><small>YSP-TMK-009</small></span><span class="n">₹6,450</span><span class="n">₹0</span><span class="n">₹6,450</span><span><span class="pill p-warn">Bank change awaiting HR</span></span></div>
+      <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr"><span class="who"><b>Lata G.</b><small>YSP-MYS-031</small></span><span class="n">₹2,900</span><span class="n">₹0</span><span class="n">₹2,900</span><span><span class="pill p-warn">Bank not confirmed</span></span></div>
+      <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr"><span class="who"><b>Mohan D.</b><small>YSP-HSN-011</small></span><span class="n">₹1,800</span><span class="n">₹0</span><span class="n">₹1,800</span><span><span class="pill p-warn">Identity not confirmed</span></span></div></div></div></div></div>
   <div class="src"><b>Sources:</b> line columns = partner_payout_lines (migration 2026_12_32_000008:48-69: statement_net, carry_in, due, payable, tds, transfer, carry_out, bank_reference, paid_on) · due = net + carry in; payable = due when due ≥ the minimum, else 0, and carry out = due (PayoutRunBuilder.php:14-19, 49) · transfer = payable − TDS, enforced by a CHECK (migration :68) · TDS amounts are samples · a negative carry with a vacated or terminated post is flagged "debt outstanding" and listed for Finance <span class="tag">proposal</span> · <b>no payout without attested PAN and bank (Goutam 28-Nov)</b>: both are verified offline at partner onboarding (Google Sheet); the app holds an attestation with masked PAN last-4, account last-4 and IFSC, read through one call, PartnerCompliance::payable($post), which reads the existing Igp::isVerified() / verificationState() (one source; Igp.php:222-227) and only splits the reason into <code>pan_not_attested</code>, <code>bank_not_attested</code> or <code>identity_not_attested</code> (isVerified also needs identity_verified_at, Igp.php:222-227), plus the new <code>bank_change_pending_reattestation</code> while an HR change awaits both signers (1f, 1g). Partners failing it stay in the run as lines with payable 0 and carry out = due, so nothing is lost, listed with the reason <code>pan_not_attested</code>, <code>bank_not_attested</code> or <code>identity_not_attested</code>; today the builder still includes them at the no-PAN rate (PayoutRunBuilder.php:38, 52), so this is a backend change <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>2f</em> · Mark paid: bank reference and date · refused when the partner is not verified       <span class="uctag">BILL-F-04 · BILL-SYS-04 · BILL-SYS-15 · BILL-SYS-18</span></h3>
+  <div class="screen"><h3><em>2f</em> · Mark paid: bank reference and date · refused when the partner is not verified         <span class="uctag">BILL-F-04 · BILL-SYS-04 · BILL-SYS-15 · BILL-SYS-18</span></h3>
   <p class="cap">Finance enters the bank reference, the paid date and the beneficiary account last-4. The payer types the last-4; the system compares it with the attested one and never prints the attested value (a mismatch is refused, and after N wrong entries on one line Mark paid locks and the GM and HR are alerted). The last-4 check is a typo guard, not a fraud control: Finance reads the attested value from the Sheet; the control is the per-line reconciliation against the bank statement (2p). Only then does the ledger move; a partner whose PAN or bank is not attested is refused and nothing is recorded.</p>
   <p class="src">Lives in: CRM › office › Payout run › Mark paid</p>
   <div class="row">
@@ -340,7 +340,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <div class="dim"></div>
       <div class="sheet"><div class="grab"></div>
         <b style="font-size:var(--fs-title)">Mark paid · Asha M.</b><div class="mini" style="margin-bottom:10px">Transfer ₹20,770</div>
-        <div class="banner bad" style="margin-top:0"><b>Not paid: pan_not_attested</b>No payout without attested PAN and bank details (Goutam 28-Nov); bank_not_attested, identity_not_attested and bank_change_pending_reattestation are refused the same way. Nothing is recorded.</div>
+        <div class="banner bad" style="margin-top:0"><b>Not paid</b>Asha's PAN has not been confirmed yet, so no payout can be recorded. HR completes this offline, then Finance marks it paid. Nothing is recorded.</div>
         <label class="fld"><span>Bank reference (max 64)</span><i>UTR 4471 0938 2211</i></label>
         <span class="btn off full" aria-disabled="true">Record paid</span></div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="pv"><h4 style="font-size:var(--fs-h2)">Payout run · Oct</h4>
@@ -349,7 +349,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> RecordPayoutPaid.php:15-20 (ledger moves only when paid: a payout debit for the transfer, a tds debit for the withholding) · today the unverified case is <code>partner_not_verified</code> (PAN, identity or bank); distinct <code>pan_not_attested</code> / <code>bank_not_attested</code> codes from PartnerCompliance::payable are new <span class="tag">proposal</span> · refusals <code>reference_required</code> (:32), <code>bad_date</code> not in the future (:36), <code>payout_line_already_paid</code> (:45), <code>payout_line_not_payable</code> (:48), <code>partner_not_verified</code> (:61), <code>insufficient_balance</code> (:63) · audit PAYOUT_LINE_PAID keeps only the reference's last 4 (:67-68) · beneficiary last-4 typed by the payer and compared server-side with the attested last-4 at Record paid, attested value never printed to the payer (Finance reads it from the Sheet): Goutam 28-Nov (N5), red team 3 NEW-3 <span class="tag">proposal</span> · today the reference is checked only for length (:31); refusing a reference already used on another line and a paid date before the approval date is new <span class="tag">proposal</span> · sheet: labelled fields, focus starts on Bank reference, then Paid on, then Record paid; errors announced with role="alert" · lockout: after <code>payout_last4_max_attempts</code> wrong last-4 entries on one line (config, default 3; 10,000 values make an unlimited guess pointless) Mark paid locks, the refusals are recorded and the GM and HR are alerted; only the GM unlocks it <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>2g</em> · All payable lines paid       <span class="uctag">BILL-F-04 · BILL-SYS-04 · BILL-F-09 · BILL-SYS-05</span></h3>
+  <div class="screen"><h3><em>2g</em> · All payable lines paid         <span class="uctag">BILL-F-04 · BILL-SYS-04 · BILL-F-09 · BILL-SYS-05</span></h3>
   <p class="cap">Paid lines show reference (last 4) and date; a blocked line says why. Export gives the CA each line's partner ID (to join their offline sheet for the full PAN), masked last-4s, IFSC, TDS, paid date and reference.</p>
   <p class="src">Lives in: CRM › office › Payout run</p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run · October 2026</span></div>
@@ -364,7 +364,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       </div></div></div></div>
   <div class="src"><b>Sources:</b> a paid line is written once (trigger partner_payout_lines_payment_once, migration :73) and lines and runs cannot be deleted (:71-72, :83) · Asha's line is drawn paid after verification; the 2f refusal was the earlier attempt · "ledger balance too low" = insufficient_balance (RecordPayoutPaid.php:63) · the CA export (stable partner ID that the CA joins to the offline sheet for the full PAN, masked PAN and account last-4, IFSC, TDS, paid_on, reference; TDS section and challan fields per the CA) is new <span class="tag">proposal</span> · retention (N16): paid lines and TDS rows are kept as tax records for the statutory period and are not erased with a partner (<span class="tag">CA question</span>: the length of the period) · amounts add up in paise (see the paise rule at the top).</div></div>
 
-  <div class="screen"><h3><em>2h</em> · Approval refused: the run changed since it was proposed       <span class="uctag">BILL-SYS-10</span></h3>
+  <div class="screen"><h3><em>2h</em> · Approval refused: the run changed since it was proposed         <span class="uctag">BILL-SYS-10</span></h3>
   <p class="cap">The approval is refused only when a partner LOST attestation or an amount changed. A partner who gained attestation after the proposal does not change the run; she joins the next one.</p>
   <p class="src">Lives in: CRM › office › Approvals (the approver) and Payout run (Finance) <span class="tag">proposal</span></p>
   <div class="row">
@@ -372,17 +372,17 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <h4 style="font-size:var(--fs-h2)">Approvals</h4>
       <div class="banner bad"><b>Not approved: the run changed</b>Since Finance proposed October, one line's amount changed (Deepak T.: ₹6,450 → ₹6,100). Nothing was written. Finance must propose again.</div>
       <div class="banner ok"><b>Not a refusal: a partner gained attestation</b>Lata G. was attested after the proposal. The run stays as approved; she is paid in the next run.</div>
-      <div class="banner bad"><b>Not approved: pan_not_attested / bank_not_attested / identity_not_attested / bank_change_pending_reattestation</b>A partner on this run lost her attestation (pan_not_attested / bank_not_attested / identity_not_attested / bank_change_pending_reattestation). No payout without both; Finance proposes again.</div>
+      <div class="banner bad"><b>Not approved</b>Meena K.'s bank details are no longer confirmed, because she changed them after the proposal. HR completes this offline, then Finance proposes the run again.</div>
       <span class="btn ghost full">Back to approvals</span>
     </div></div></div>
     <div class="browser" style="flex:1 1 520px"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run</span></div>
       <div class="office"><h4>Payout run · October 2026</h4>
-        <div class="banner bad"><b>Approval refused: payout_run_changed</b>The rebuilt run differs from your proposal (one amount changed). Propose again so the approver sees the current figures.</div>
+        <div class="banner bad"><b>Approval refused: the run changed</b>The rebuilt run differs from your proposal (one amount changed). Propose again so the approver sees the current figures.</div>
         <span class="btn">Propose October run again</span></div></div>
   </div>
   <div class="src"><b>Sources:</b> ApplyPayoutRun rebuilds the lines at approval (ApplyPayoutRun.php:32) while the proposal stored only totals in <code>changes</code> (ProposePayoutRun.php:37-38); storing a hash of every line (earner, post, payable, TDS) in <code>changes</code> and refusing <code>payout_run_changed</code> only when an existing line's hash differs or a line loses attestation (a partner who gains attestation waits for the next run, red team 3 NEW-6), so equal totals with swapped lines are caught, is a backend change to build <span class="tag">proposal</span> · figures are samples.</div></div>
 
-  <div class="screen"><h3><em>2i</em> · Run not approved: rejected, or expired       <span class="uctag">BILL-F-08</span></h3>
+  <div class="screen"><h3><em>2i</em> · Run not approved: rejected, or expired         <span class="uctag">BILL-F-08</span></h3>
   <p class="cap">A rejected run shows the reason; an expired one says it ran out of time. Either way Finance can propose the month again.</p>
   <p class="src">Lives in: CRM › office › Payout run</p>
   <div class="row">
@@ -391,13 +391,13 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
         <div class="banner bad"><b>Rejected by the GM · 4 Nov</b>"Two lines look duplicated; check YSP-MYS-022." Nothing was written.</div><span class="btn">Propose again</span></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
       <h4 style="font-size:var(--fs-h2)">Payout run · Oct</h4>
-      <div class="banner warn"><b>Approval expired</b>No decision before the approval expired (D4), so nothing was written.</div>
+      <div class="banner warn"><b>Approval expired</b>No decision before the approval expired, so nothing was written.</div>
       <span class="btn full">Propose again</span>
     </div></div></div>
   </div>
   <div class="src"><b>Sources:</b> partner_payout_run requests expire under D4 (ProposePayoutRun.php:12-15) and are decided on the approvals queue (routes/crm.php:825-833); a run row exists only after approval (ApplyPayoutRun), so after a rejection or expiry the month is proposable again (ProposePayoutRun.php:45-60) · reason text is a sample.</div></div>
 
-  <div class="screen"><h3><em>2j</em> · Transfer failed: Finance proposes "Reverse paid line" with a reason       <span class="uctag">BILL-F-06</span></h3>
+  <div class="screen"><h3><em>2j</em> · Transfer failed: Finance proposes "Reverse paid line" with a reason         <span class="uctag">BILL-F-06</span></h3>
   <p class="cap">The bank returned Ravi's transfer. Finance proposes a reversal with a reason; it waits for the GM or CEO, and the line shows that.</p>
   <p class="src">Lives in: CRM › office › Payout run › line menu <span class="tag">proposal</span></p>
   <div class="row">
@@ -415,7 +415,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> return reference is a required field <code>bank_return_ref</code>, matched to the bank statement at 2p (red team 3 NEW-4) · Goutam 28-Nov ruling: governed reversal (Finance proposes with a reason, GM or CEO approves in-app) · today a paid line is written once (RecordPayoutPaid.php:44; trigger at migration :73) and no action reverses it, so a <code>payout_line_reversed</code> approval kind and an append-only reversal row are new backend work <span class="tag">proposal</span> · reason text is a sample.</div></div>
 
-  <div class="screen"><h3><em>2k</em> · The GM or CEO approves the reversal       <span class="uctag">BILL-A-03</span></h3>
+  <div class="screen"><h3><em>2k</em> · The GM or CEO approves the reversal         <span class="uctag">BILL-A-03</span></h3>
   <p class="cap">The approver sees the line, the bank's return and the reason, then approves or rejects.</p>
   <p class="src">Lives in: CRM › office › Approvals</p>
   <div class="row">
@@ -429,7 +429,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> shared approvals queue (routes/crm.php:825-833); the reversal kind and its GM-or-CEO policy are new <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>2l</em> · Reversed: the amount returns once, through the ledger, into next month's net · or rejected       <span class="uctag">BILL-SYS-11</span></h3>
+  <div class="screen"><h3><em>2l</em> · Reversed: the amount returns once, through the ledger, into next month's net · or rejected         <span class="uctag">BILL-SYS-11</span></h3>
   <p class="cap">Approved: the line reads "Transfer failed · reversed" and two ledger credits (reason payout_returned) return ₹39,000, the transfer ₹35,100 and the TDS ₹3,900; they land in November's statement net, in the Payout returned column, with no extra carry. Rejected: the line stays paid.</p>
   <p class="src">Lives in: CRM › office › Payout run (October and November)</p>
   <div class="row">
@@ -437,8 +437,8 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <div class="office"><h4>Payout run · October 2026</h4>
         <div class="grid"><div class="g h run"><span>Earner · post</span><span class="n">Statement net</span><span class="n">Carry in</span><span class="n">Due</span><span class="n">Payable</span><span class="n">TDS</span><span>Transfer · status</span></div>
         <div class="g run"><span class="who"><b>Ravi K.</b><small>RSM-BLR-01</small></span><span class="n">₹39,000</span><span class="n">₹0</span><span class="n">₹39,000</span><span class="n">₹39,000</span><span class="n">₹3,900</span><span><s>₹35,100</s><br><span class="pill p-bad">Transfer failed · reversed 9 Nov</span></span></div></div>
-        <p class="mini" style="margin-top:8px">Ledger: two payout_returned credits on 9 Nov, in November's accounting month: +₹35,100 (transfer) and +₹3,900 (TDS credited back). ₹35,100 + ₹3,900 = ₹39,000.</p>
-        <p class="mini" style="margin-top:6px"><b>When is Ravi repaid?</b> In the November run (paid in early December): the default. An off-cycle one-line payout exists only when config <code>payout_offcycle_enabled</code> is on (default off); then Finance proposes it and the GM or CEO approves it on the same path as 2b to 2e. Ravi's My payouts says "Returned by the bank · ₹39,000 pays in the November run".</p>
+        <p class="mini" style="margin-top:8px">Ledger: two returned-payout credits on 9 Nov, in November's accounting month: +₹35,100 (transfer) and +₹3,900 (TDS credited back). ₹35,100 + ₹3,900 = ₹39,000.</p>
+        <p class="mini" style="margin-top:6px"><b>When is Ravi repaid?</b> In the November run (paid in early December): the default. An off-cycle one-line payout exists only when the off-cycle setting is on (default off); then Finance proposes it and the GM or CEO approves it on the same path as 2b to 2e. Ravi's My payouts says "Returned by the bank · ₹39,000 pays in the November run".</p>
         <div class="grid" style="margin-top:10px"><div class="g h" style="grid-template-columns:1.4fr 1fr 1fr 1fr"><span>November run · Ravi K.</span><span class="n">Statement net</span><span class="n">Carry in</span><span class="n">Due</span></div>
         <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr"><span>RSM-BLR-01<br><small class="mini">net = ₹31,000 accrued + ₹39,000 payout returned</small></span><span class="n">₹70,000</span><span class="n">₹0</span><span class="n"><b>₹70,000</b></span></div></div>
         <div class="mini" style="margin:12px 0 6px;font-weight:700">Carries into the November run (per source line)</div>
@@ -446,8 +446,8 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
         <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Kiran S. · YSP-MYS-022</span><span class="n">₹380</span><span>under ₹500</span></div>
         <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Neha P. · YSP-MYS-007</span><span class="n neg">−₹1,500</span><span>clawback</span></div>
         <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Deepak T. · YSP-TMK-009</span><span class="n">₹6,450</span><span>held: bank change pending re-attestation</span></div>
-        <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Lata G. · YSP-MYS-031</span><span class="n">₹2,900</span><span>held: bank_not_attested</span></div>
-        <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Mohan D. · YSP-HSN-011</span><span class="n">₹1,800</span><span>held: identity_not_attested</span></div>
+        <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Lata G. · YSP-MYS-031</span><span class="n">₹2,900</span><span>held: bank not confirmed</span></div>
+        <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Mohan D. · YSP-HSN-011</span><span class="n">₹1,800</span><span>held: identity not confirmed</span></div>
         <div class="g" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Oct · Vinay R. · YSP-HSN-003</span><span class="n">₹8,200</span><span>resolved 13 Nov: no transfer made (2r)</span></div>
         <div class="g t" style="grid-template-columns:1.4fr 1fr 1.2fr"><span>Total carried into November</span><span class="n">₹18,230</span><span></span></div></div></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
@@ -458,7 +458,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> Goutam 28-Nov ruling (reversal returns the amount by a new ledger entry and it reaches the next run; drawn as two credits, each reversing its one original row, counted in net and never also carried) · each credit uses PartnerLedger::reverse on one original (reverses_id, ReversalExceedsOriginal) with the new reason payout_returned, which monthNetByEarner already counts (:569-572) and the statement shows in its Payout returned column (1a), so it is NOT also carried; a test asserts November's due is exactly ₹70,000 <span class="tag">proposal</span> · other carries are append-only rows per source line (partner_payout_carries: source line, amount, carried_into_run_id), so nothing is lost or counted twice <span class="tag">proposal</span> · Propose refuses while a reversal for an earlier month is waiting (2n) · TDS handling on a reversed line (return the withheld TDS or keep it deposited) and the base double-count are a <span class="tag">CA question</span> · figures are the sample data set at the top · this backend lands with the build <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>2m</em> · "Cleared to transfer" before the bank transfer · and the exception if Mark paid then refuses       <span class="uctag">BILL-F-10 · BILL-SYS-13</span></h3>
+  <div class="screen"><h3><em>2m</em> · "Cleared to transfer" before the bank transfer · and the exception if Mark paid then refuses         <span class="uctag">BILL-F-10 · BILL-SYS-13</span></h3>
   <p class="cap">Just before transferring, Finance clears the line: the gate re-runs and passes or refuses; the attested account is NOT shown (Finance reads it from the HR Sheet and types the last-4 at Mark paid, 2f). If Mark paid still refuses after money left, an exception opens.</p>
   <p class="src">Lives in: CRM › office › Payout run › line <span class="tag">proposal</span></p>
   <div class="row">
@@ -469,13 +469,13 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
         <span class="btn" style="margin-top:10px">I've transferred · Mark paid</span></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
       <h4 style="font-size:var(--fs-h2)">Payout run · Oct</h4>
-      <div class="banner bad"><b>Exception: transfer_unmatched</b>Money left for Sunil P. (₹5,600), but Mark paid was refused (bank_not_attested: a bank change was opened after the clearance). Finance proposes a resolution and the GM approves it (2r): record paid or mark returned, never carry, because money has left. The line cannot be paid again meanwhile.</div>
+      <div class="banner bad"><b>Exception: money left, line not recorded</b>Money left for Sunil P. (₹5,600), but Mark paid was refused because his bank change was opened after the clearance. Finance proposes a resolution and the GM approves it (2r): record paid or mark returned, never carry, because money has left. The line cannot be paid again meanwhile.</div>
       <span class="btn ghost full">Resolve (2r)</span>
     </div></div></div>
   </div>
   <div class="src"><b>Sources:</b> RecordPayoutPaid can refuse after a transfer (partner_not_verified / insufficient_balance, :60-63), and in-app bank edits clear bank_verified_at (Igp.php:325-335) · the clearance step and the transfer_unmatched exception are new <span class="tag">proposal</span> · beneficiary last-4 matching at Mark paid (2f) and bank-statement reconciliation (2p) are Goutam 28-Nov (N5) · the GM-approved resolution of the exception is frame 2r (red team 3 NEW-7) · names and figures are samples.</div></div>
 
-  <div class="screen"><h3><em>2n</em> · Propose is held while earlier runs have unpaid lines or a reversal waits       <span class="uctag">BILL-SYS-14</span></h3>
+  <div class="screen"><h3><em>2n</em> · Propose is held while earlier runs have unpaid lines or a reversal waits         <span class="uctag">BILL-SYS-14</span></h3>
   <p class="cap">Lines from earlier runs that were never paid are listed. ANY unpaid line, a waiting reversal or an expired one blocks the next run (config, default on); each row has a way out, resolved in 2r or 2s.</p>
   <p class="src">Lives in: CRM › office › Payout run (November) <span class="tag">proposal</span></p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run · November 2026</span></div>
@@ -487,11 +487,11 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1.4fr 1.2fr"><span class="who"><b>Sunil P.</b><small>YSP-BLR-018</small></span><span class="n">Oct</span><span class="n">₹5,600</span><span><span class="pill p-bad">transfer made, Mark paid refused · 5 days</span></span><span><span class="btn ghost sm">Resolve unpaid line (2r)</span></span></div>
       <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1.4fr 1.2fr"><span class="who"><b>Ravi K.</b><small>RSM-BLR-01</small></span><span class="n">Oct</span><span class="n">₹39,000</span><span><span class="pill p-warn">reversal waiting for GM / CEO</span></span><span><span class="pill p-mute">GM / CEO decides</span></span></div>
       <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1.4fr 1.2fr"><span class="who"><b>Meena K.</b><small>YSP-KLR-005</small></span><span class="n">Oct</span><span class="n">₹12,500</span><span><span class="pill p-bad">reversal expired</span></span><span><span class="btn ghost sm">Propose reversal again (2s)</span></span></div></div>
-      <div class="ctl" style="margin-top:10px"><span class="btn off" aria-disabled="true">Propose November run</span><span class="mini">Any unpaid line from an earlier run blocks Propose (config <code>payout_unpaid_blocks_propose</code>, default on; decided).</span></div>
+      <div class="ctl" style="margin-top:10px"><span class="btn off" aria-disabled="true">Propose November run</span><span class="mini">Any unpaid line from an earlier run blocks Propose (setting on by default; decided).</span></div>
     </div></div></div>
   <div class="src"><b>Sources:</b> an unpaid payable line has carry_out 0 (PayoutRunBuilder.php:49), so no later run picks it up; listing them and gating Propose on ANY unpaid line is new <span class="tag">proposal</span>; the way out is a governed resolution (2r) or re-proposing an expired reversal (2s), so one stuck line cannot freeze every payout for ever (red team 3 NEW-2) · a second concurrent proposal is refused by UNIQUE(month) at apply (migration, partner_payout_runs_month).</div></div>
 
-  <div class="screen"><h3><em>2o</em> · Finance's debt list: clawbacks still carried       <span class="uctag">BILL-F-11</span></h3>
+  <div class="screen"><h3><em>2o</em> · Finance's debt list: clawbacks still carried         <span class="uctag">BILL-F-11</span></h3>
   <p class="cap">Every negative carry with its age and the post's status. An exited partner's debt nets off in the final settlement (2q).</p>
   <p class="src">Lives in: CRM › office › Payout run › Debts <span class="tag">proposal</span></p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Debts outstanding</span></div>
@@ -503,7 +503,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <p class="mini" style="margin-top:8px">Write-off of a debt on a vacated post: rule <span class="tag">Finance recovers outside the CRM (outcome recorded); write-off needs a reason + GM or CEO approval in-app (maker ≠ checker; config threshold may require CEO); written-off debts stay on record — Goutam 28-Nov; drawn in 2t</span></p>
     </div></div></div>
   <div class="src"><b>Sources:</b> negative carries net into later runs (PayoutRunBuilder.php:14-19) · a partner who has left is settled once, in the run after the month-end close, with clawbacks netted first: see 2q (Goutam 28-Nov, N12) · names and amounts are samples.</div></div>
-  <div class="screen"><h3><em>2p</em> · Reconcile the run's paid lines with the bank statement · carried and reversed lines are excluded · the next Propose is blocked until then       <span class="uctag">BILL-F-12 · BILL-SYS-19</span></h3>
+  <div class="screen"><h3><em>2p</em> · Reconcile the run's paid lines with the bank statement · carried and reversed lines are excluded · the next Propose is blocked until then         <span class="uctag">BILL-F-12 · BILL-SYS-19</span></h3>
   <p class="cap">Reconciliation opens when no line of the run is unresolved. It covers the lines actually paid; a carried or reversed line is not paid, so it is listed as excluded with its reason and never blocks the sign-off. The GM or the CEO (never the person who paid) signs off per line. Until then the next month's Propose stays off.</p>
   <p class="src">Lives in: CRM › office › Payout run › Reconcile <span class="tag">proposal</span></p>
   <div class="row">
@@ -534,7 +534,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> Goutam 28-Nov (N5): reconciliation signed off by the GM or the CEO, never the payer, per line (UTR, amount, beneficiary last-4) rather than on the total, nets returns and reversed lines, and reopens when a return arrives after sign-off (red team 3 NEW-3, NEW-4); red team 4 R4-2: it opens when no line is unresolved and reconciles the lines actually paid, carried and reversed lines are listed as excluded with the reason; R4-3: a last-4 mismatch opens a misdirected-payment exception, pages the GM and CEO, switches sign-off off and is closed only by a GM-approved resolution (2r) · statement last-4 per line may not appear on every bank's statement (R4-8): the fallback is beneficiary name + UTR + amount, to be confirmed with the bank <span class="tag">proposal</span> · the next run's Propose is blocked until reconciled · new step on the approvals-style sign-off <span class="tag">proposal</span> · figures are the sample data set at the top.</div></div>
 
-  <div class="screen"><h3><em>2q</em> · A partner who has left: final settlement in the run after the month-end close       <span class="uctag">BILL-F-13</span></h3>
+  <div class="screen"><h3><em>2q</em> · A partner who has left: final settlement in the run after the month-end close         <span class="uctag">BILL-F-13</span></h3>
   <p class="cap">Finance sees the exited partner settled once, within 45 days of leaving (a config value). Any later clawback nets off before it is paid.</p>
   <p class="src">Lives in: CRM › office › Payout run › Final settlements <span class="tag">proposal</span></p>
   <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run · December 2026</span></div>
@@ -544,7 +544,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <div class="g" style="grid-template-columns:1.4fr 1fr 1fr 1fr 1fr 1.2fr"><span class="who"><b>Arun B.</b><small>YSP-MDY-002 · exited</small></span><span class="n">14 Nov</span><span class="n">₹9,600</span><span class="n neg">−₹4,200</span><span class="n"><b>₹5,400</b></span><span>29 Dec (45 days)</span></div></div>
       <p class="mini" style="margin-top:8px">A clawback that arrives later nets off before this payment, and a debt larger than the earnings stays on the debt list (2o).</p></div></div></div>
   <div class="src"><b>Sources:</b> Goutam 28-Nov (N12): final settlement within 45 days of leaving (config), paid in the run after the month-end close; later clawbacks net off before it · figures are samples <span class="tag">proposal</span>.</div></div>
-  <div class="screen"><h3><em>2r</em> · Resolve an unpaid line: the outcomes offered depend on the cause · Finance proposes, the GM approves, Propose unblocks       <span class="uctag">BILL-SYS-13 · BILL-F-14 · BILL-A-04</span></h3>
+  <div class="screen"><h3><em>2r</em> · Resolve an unpaid line: the outcomes offered depend on the cause · Finance proposes, the GM approves, Propose unblocks         <span class="uctag">BILL-SYS-13 · BILL-F-14 · BILL-A-04</span></h3>
   <p class="cap">One stuck line, or a transfer_unmatched or misdirected-payment exception, must not freeze every payout. The outcomes offered depend on the cause, so a line can never be carried after money has left. Finance proposes with a reason; the GM approves in-app. A line already marked paid has no Resolve at all.</p>
   <p class="src">Lives in: CRM › office › Payout run › line menu; CRM › office › Approvals <span class="tag">proposal</span></p>
   <div class="row">
@@ -552,7 +552,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <div class="office"><h4>Allowed outcomes by cause</h4>
         <div class="grid"><div class="g h" style="grid-template-columns:1.6fr .8fr 1.8fr 1.4fr"><span>Cause</span><span>Money left?</span><span>Outcomes offered</span><span>Never offered</span></div>
         <div class="g" style="grid-template-columns:1.6fr .8fr 1.8fr 1.4fr"><span>Blocked before any transfer (ledger balance too low, held, not attested). Example: Vinay R.</span><span>no · Finance attests "no transfer made"</span><span>Carry to the next run · Fix and record paid (UTR, 2f)</span><span>Mark returned (nothing to return)</span></div>
-        <div class="g" style="grid-template-columns:1.6fr .8fr 1.8fr 1.4fr"><span>Transfer made, Mark paid refused (transfer_unmatched). Example: Sunil P.</span><span>yes</span><span>Fix and record paid (UTR, verified at 2p) · Mark returned (bank return ref, then the 2j path)</span><span>Carry (it would pay twice)</span></div>
+        <div class="g" style="grid-template-columns:1.6fr .8fr 1.8fr 1.4fr"><span>Transfer made, Mark paid refused. Example: Sunil P.</span><span>yes</span><span>Fix and record paid (UTR, verified at 2p) · Mark returned (bank return ref, then the 2j path)</span><span>Carry (it would pay twice)</span></div>
         <div class="g" style="grid-template-columns:1.6fr .8fr 1.8fr 1.4fr"><span>Line already marked paid</span><span>yes</span><span>No Resolve. Only Reverse paid line (2j to 2l) after a bank return</span><span>Carry, Record paid</span></div>
         <div class="g" style="grid-template-columns:1.6fr .8fr 1.8fr 1.4fr"><span>Reversal expired (2s)</span><span>yes, line stays paid</span><span>Propose reversal again</span><span>Carry</span></div>
         <div class="g" style="grid-template-columns:1.6fr .8fr 1.8fr 1.4fr"><span>Paid line, last-4 differs at reconciliation (misdirected payment, 2p). Example: Prakash N.</span><span>yes, maybe wrongly</span><span>Bank recall confirmed → Mark returned (bank return ref) · Beneficiary confirmed correct → HR re-attests (1g), line re-matched · Not recoverable → debt on the partner (2o)</span><span>Carry · sign-off while open</span></div></div>
@@ -589,23 +589,23 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> red team 3 NEW-2 and NEW-7: a governed <code>payout_line_resolution</code> approval kind, Finance proposes with a reason, the GM approves; red team 4 R4-1: the outcome menu is chosen by the cause, so Carry exists only for a line with no transfer (Finance attests; 2p catches a statement entry later) and a line already marked paid can never be carried; outcomes are fix and record paid, carry via partner_payout_carries, or mark returned; the same path resolves a transfer_unmatched exception (2m) and a misdirected payment (2p) · only an approved resolution lifts the Propose block (2n) · no resolution, no write · names and figures are the sample data set at the top <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>2s</em> · An expired reversal, and a second Mark paid refused while one is in progress       <span class="uctag">BILL-SYS-16 · BILL-SYS-17</span></h3>
+  <div class="screen"><h3><em>2s</em> · An expired reversal, and a second Mark paid refused while one is in progress         <span class="uctag">BILL-SYS-16 · BILL-SYS-17</span></h3>
   <p class="cap">A reversal nobody decided in time expires: the line stays paid and Finance can propose it again. If two people record the same line at once, the second is refused.</p>
   <p class="src">Lives in: CRM › office › Payout run <span class="tag">proposal</span></p>
   <div class="row">
     <div class="browser" style="flex:1 1 460px"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payout run · October 2026</span></div>
       <div class="office"><h4>Payout run · October 2026</h4>
-        <div class="banner warn"><b>Reversal expired · Meena K.</b>No decision before the approval expired (D4), so nothing was reversed and the line stays paid. Until it is proposed again or resolved, November cannot be proposed.</div>
+        <div class="banner warn"><b>Reversal expired · Meena K.</b>No decision before the approval expired, so nothing was reversed and the line stays paid. Until it is proposed again or resolved, November cannot be proposed.</div>
         <span class="btn">Propose reversal again</span></div></div>
     <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
       <h4 style="font-size:var(--fs-h2)">Payout run · Oct</h4>
-      <div class="banner bad"><b>Not recorded: payout_in_progress</b>Anita R. is recording this line now (started 10:04). Refresh to see the result. Nothing was written twice.</div>
+      <div class="banner bad"><b>Not recorded: another payer is on this line</b>Anita R. is recording this line now (started 10:04). Refresh to see the result. Nothing was written twice.</div>
       <span class="btn ghost full">Refresh</span>
     </div></div></div>
   </div>
   <div class="src"><b>Sources:</b> D4 expiry as 2i; the expired reversal state and its row in 2n are new (red team 3 NEW-8, M4, N17) · a line is written once (payment_once trigger, migration :73); refusing a concurrent second attempt with <code>payout_in_progress</code> (row lock) is new (N14) · the expired-reversal state and its backend land with the build · names and times are samples <span class="tag">proposal</span>.</div></div>
 
-  <div class="screen"><h3><em>2t</em> · Write off a debt on a vacated post: reason, GM or CEO approval, and it stays on record       <span class="uctag">BILL-F-15 · BILL-A-06</span></h3>
+  <div class="screen"><h3><em>2t</em> · Write off a debt on a vacated post: reason, GM or CEO approval, and it stays on record         <span class="uctag">BILL-F-15 · BILL-A-06</span></h3>
   <p class="cap">Finance first recovers outside the CRM and records the outcome. Only then can it propose a write-off with a reason; the GM or CEO approves in-app (maker is not checker; above the config threshold the CEO). A written-off debt is marked, never deleted.</p>
   <p class="src">Lives in: CRM › office › Payout run › Debts; CRM › office › Approvals <span class="tag">proposal</span></p>
   <div class="row">
@@ -619,7 +619,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
     <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
       <h4 style="font-size:var(--fs-h2)">Approvals</h4>
       <div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>Write off a debt</b><span class="pill p-warn">waiting</span></div>
-        <div class="grid mob" style="margin-top:8px"><div class="g"><span>Partner</span><span class="n">Sandeep V. · YSP-MDY-006</span></div><div class="g"><span>Amount</span><span class="n">−₹2,300</span></div><div class="g"><span>Proposed by</span><span class="n">Finance · 19 Nov</span></div><div class="g"><span>Approver</span><span class="n">GM (CEO above ₹5,000, config)</span></div></div>
+        <div class="grid mob" style="margin-top:8px"><div class="g"><span>Partner</span><span class="n">Sandeep V. · YSP-MDY-006</span></div><div class="g"><span>Amount</span><span class="n">−₹2,300</span></div><div class="g"><span>Proposed by</span><span class="n">Finance · 19 Nov</span></div><div class="g"><span>Approver</span><span class="n">GM (CEO above ₹5,000)</span></div></div>
         <p class="mini" style="margin:8px 0 0">"Called 3 times; partner unreachable; no earnings left to net."</p>
         <span class="btn full" style="margin-top:10px">Approve write-off</span><span class="btn ghost full" style="margin-top:8px">Reject with reason</span></div>
     </div></div></div>
@@ -638,7 +638,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   <p class="lead">POST /crm/billing/refund-overrides (routes/crm.php:674-678), ability refund_override.propose (Finance or GM). The Annual no-refund rule covers the Institution Annual product only (NoRefundAfterStart.php:28): no refund or credit note once a learner's first task is submitted. The one exception: a reason, the CEO alone approves, audited.</p>
   <div class="flow"><span><b>3a</b> propose (reason required)</span>→<span><b>3b</b> CEO approves</span>→<span><b>3c</b> credit note or Razorpay refund</span><span><b>3d</b> pending · rejected · expired · breach</span></div>
 
-  <div class="screen"><h3><em>3a</em> · Finance or the GM proposes the override for a school's Annual invoice       <span class="uctag">BILL-F-05</span></h3>
+  <div class="screen"><h3><em>3a</em> · Finance or the GM proposes the override for a school's Annual invoice         <span class="uctag">BILL-F-05</span></h3>
   <p class="cap">A credit note on Greenfield School's Annual invoice is blocked because learners have submitted their first task. Proposing needs a reason.</p>
   <p class="src">Lives in: CRM › office › the institution invoice (billing/invoice) › credit note</p>
   <div class="row">
@@ -656,14 +656,14 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> rule = NoRefundAfterStart.php:8-20 ("no refund on the Annual package once the learner's first task exists", products = ['institution_annual'], :28); subjects = a payment or an institution invoice (ProposeAnnualRefundOverride.php:43-63) · refusals <code>override_reason_required</code> (:28), <code>override_pending</code> (:33), <code>override_not_needed</code> (:51, :58), <code>bad_override_subject</code> (:63) · the credit-note route (routes/crm.php:616) refuses while the rule blocks (IssueCreditNote.php:94) · school, invoice and reason are samples.</div></div>
 
-  <div class="screen"><h3><em>3b</em> · The CEO approves on the approvals queue       <span class="uctag">BILL-A-02</span></h3>
+  <div class="screen"><h3><em>3b</em> · The CEO approves on the approvals queue         <span class="uctag">BILL-A-02</span></h3>
   <p class="cap">The CEO reads the reason and approves or rejects. If the CEO does not decide before it expires, Finance or the GM proposes again.</p>
   <p class="src">Lives in: CRM › office › Approvals (routes/crm.php:825-833)</p>
   <div class="row">
     <div class="phone"><div class="scr"><div class="notch"></div><div class="pv">
       <h4 style="font-size:var(--fs-h2)">Approvals</h4>
       <div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>Annual refund override</b><span class="pill p-warn">CEO only</span></div>
-        <div class="grid mob" style="margin-top:8px"><div class="g"><span>Invoice</span><span class="n">INV-2026-0142</span></div><div class="g"><span>School</span><span class="n">Greenfield</span></div><div class="g"><span>Proposed by</span><span class="n">Finance · 14 Nov</span></div><div class="g"><span>Expires</span><span class="n">D4 rule</span></div></div>
+        <div class="grid mob" style="margin-top:8px"><div class="g"><span>Invoice</span><span class="n">INV-2026-0142</span></div><div class="g"><span>School</span><span class="n">Greenfield</span></div><div class="g"><span>Proposed by</span><span class="n">Finance · 14 Nov</span></div><div class="g"><span>Expires</span><span class="n">after the deadline</span></div></div>
         <p class="mini" style="margin:8px 0 0">"School cut 10 seats before term; 0 tasks on those seats."</p>
         <span class="btn full" style="margin-top:10px">Approve override</span><span class="btn ghost full" style="margin-top:8px">Reject with reason</span></div>
     </div></div></div>
@@ -675,7 +675,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> policy annual_refund_override, CEO alone, D4 expiry (NoRefundAfterStart.php:15-17; ApprovalAppliers.php:27) · Goutam 28-Nov (M10): no CEO delegate; a CEO-only request shows "Waiting for the CEO" and expiry + re-proposal is the path.</div></div>
 
-  <div class="screen"><h3><em>3c</em> · Override in force: issue the credit note, or refund in Razorpay       <span class="uctag">BILL-SYS-06</span></h3>
+  <div class="screen"><h3><em>3c</em> · Override in force: issue the credit note, or refund in Razorpay         <span class="uctag">BILL-SYS-06</span></h3>
   <p class="cap">For an invoice, the credit note can now be issued in the CRM. For a link payment, the refund is made in Razorpay and the CRM records it when the webhook arrives.</p>
   <p class="src">Lives in: CRM › office › invoice credit note (left) · the payment record (right)</p>
   <div class="row">
@@ -690,7 +690,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
   </div>
   <div class="src"><b>Sources:</b> refunds are issued in the Razorpay dashboard; there is no CRM refund route (NoRefundAfterStart.php:20) · RecordRefund writes one crm_order_refunds row per Razorpay refund from the webhook, in the refund's own month, as an adjustment when the sale's month is closed (RecordRefund.php:12-21) · credit note = routes/crm.php:616 · amounts and ids are samples.</div></div>
 
-  <div class="screen"><h3><em>3d</em> · Pending, rejected, expired, and a refund made without an override       <span class="uctag">BILL-SYS-12</span></h3>
+  <div class="screen"><h3><em>3d</em> · Pending, rejected, expired, and a refund made without an override         <span class="uctag">BILL-SYS-12</span></h3>
   <p class="cap">One request per subject at a time. Rejected and expired requests can be proposed again. A Razorpay refund without an override is recorded and paged as a breach.</p>
   <p class="src">Lives in: CRM › office › invoice / payment record</p>
   <div class="row">
@@ -698,7 +698,7 @@ table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;colo
       <h4 style="font-size:var(--fs-h2)">Credit note · Greenfield</h4>
       <div class="banner warn"><b>Waiting for the CEO</b>Proposed 14 Nov. A second request for this invoice is refused until this one is decided.</div>
       <div class="banner bad"><b>Rejected by the CEO · 15 Nov</b>"Seats were used in Term 1." Propose again only with new facts.</div>
-      <div class="banner warn"><b>Expired</b>No decision in time (D4). Propose again if still needed.</div>
+      <div class="banner warn"><b>Expired</b>No decision in time. Propose again if still needed.</div>
     </div></div></div>
     <div class="browser" style="flex:1 1 460px"><div class="chrome"><i></i><i></i><i></i><span>crm.yashho.com/office · Payment PAY-4H7C</span></div>
       <div class="office"><h4>Payment · Annual</h4>
