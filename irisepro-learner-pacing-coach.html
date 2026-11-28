@@ -1,0 +1,526 @@
+<title>Learner Pacing Coach</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
+<style>
+:root{
+  /* Learner app (frontendapp) LIGHT theme — values read from the repo, see the theme note at the top */
+  --orange:#F58321; --orange-dk:#E57311; --primary:#FF8A3D; --primary-dk:#E67E35; --primary-lt:#FFB380;
+  --secondary:#FFF1E6; --cream:#FFF6EE; --card-soft:#FFF9F5; --coral:#FF6B57; --ink:#2a2622; --line:#F1E6D9;
+  --accent:#FFC107; --success:#4CAF50; --ok-bg:#F1FAF1; --ok-line:#7BC47F; --ok-ink:#1F6F38;
+  --g400:#9ca3af; --g500:#6b7280; --g700:#374151; --wa:#25D366; --page:#efe6da;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);font-family:"Montserrat",system-ui,sans-serif;color:var(--ink);padding:24px 16px 60px}
+.wrap{max-width:1200px;margin:0 auto}
+header.top h1{font-size:30px;font-weight:900;margin:0 0 6px;letter-spacing:-.01em}
+header.top p{margin:0 0 4px;color:var(--g500);font-size:14px;line-height:1.5;max-width:860px}
+.theme{font-size:11.5px;color:var(--g500);background:#fff;border-radius:8px;padding:8px 12px;margin-top:10px;max-width:860px;line-height:1.5}
+.part{margin-top:44px;padding-top:16px;border-top:3px solid var(--orange)}
+.part h2{font-size:21px;margin:0 0 4px;font-weight:800}
+.part .lead{font-size:13px;color:var(--g500);margin:0}
+.flow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;align-items:center}
+.flow span{background:#fff;border-radius:999px;padding:3px 10px;border:1px solid var(--line)}.flow b{color:var(--orange)}
+.screen{margin-top:26px}.screen h3{font-size:15px;margin:0 0 3px;font-weight:800}.screen h3 em{font-style:normal;color:var(--orange)}
+.cap{font-size:13px;color:var(--g500);margin:0 0 12px}
+.row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}.row>*{min-width:0}
+.src{font-size:10.5px;color:var(--g500);margin-top:8px;max-width:560px;line-height:1.45;font-family:ui-monospace,Menlo,monospace}
+.src b{font-family:"Montserrat",sans-serif}
+/* frames */
+.phone{width:288px;flex:0 0 288px;background:#141414;border-radius:36px;padding:9px;box-shadow:0 12px 30px rgba(60,30,0,.18)}
+.phone .scr{border-radius:28px;overflow:hidden;height:590px;position:relative;background:linear-gradient(160deg,var(--secondary),#fff 60%)}
+.notch{width:92px;height:22px;background:#141414;border-radius:0 0 13px 13px;position:absolute;left:0;right:0;top:0;margin:auto;z-index:5}
+.sb{height:30px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 20px 3px;font-size:10.5px;font-weight:700;color:var(--ink)}
+.pv{height:560px;overflow:hidden;padding:6px 14px 14px}
+.browser{background:#fff;border-radius:12px;box-shadow:0 12px 30px rgba(60,30,0,.14);overflow:hidden;flex:1 1 620px;max-width:820px}
+.chrome{background:#ece4d8;padding:9px 12px;display:flex;gap:6px;align-items:center}
+.chrome i{width:10px;height:10px;border-radius:50%;background:#d5c9b7}.chrome span{margin-left:10px;background:#fff;border-radius:10px;font-size:11px;padding:3px 12px;color:var(--g500);flex:1}
+.desk{background:linear-gradient(160deg,var(--secondary),#fff 70%);padding:18px 22px;min-height:400px;display:grid;grid-template-columns:1.35fr 1fr;gap:16px;align-items:start}
+@media (max-width:760px){.desk{grid-template-columns:1fr}}
+/* app atoms */
+.apphd{display:flex;align-items:center;justify-content:space-between;margin:2px 0 10px}
+.apphd .hi{font-size:16px;font-weight:800}.apphd .hi small{display:block;font-size:11px;color:var(--g500);font-weight:600}
+.av{width:32px;height:32px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.mi{font-family:"Material Icons Round";font-size:18px;line-height:1;vertical-align:middle;font-style:normal}
+.card{background:#fff;border-radius:16px;padding:13px 14px;box-shadow:0 2px 8px rgba(245,131,33,.10);margin-bottom:10px;border:1px solid var(--line)}
+.plan{background:linear-gradient(135deg,#fff 0%,var(--card-soft) 100%);border:2px solid var(--primary-lt)}
+.kick{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--primary-dk)}
+.big{font-size:17px;font-weight:800;line-height:1.25;margin:3px 0 4px}
+.meta{font-size:11.5px;color:var(--g500);font-weight:600}
+.ch{display:flex;gap:10px;align-items:center;background:var(--secondary);border-radius:12px;padding:9px 10px;margin:10px 0 8px}
+.ch .ic{width:34px;height:34px;border-radius:10px;background:var(--orange);color:#fff;display:grid;place-items:center;flex:0 0 34px}
+.ch .t{font-size:12.5px;font-weight:800;line-height:1.25}.ch .t small{display:block;font-size:10.5px;color:var(--g500);font-weight:600;margin-top:2px}
+.btn{display:block;text-align:center;background:linear-gradient(90deg,var(--primary),var(--coral));color:#fff;border-radius:12px;padding:11px;font-weight:800;font-size:13.5px;box-shadow:0 4px 12px rgba(255,107,87,.28)}
+.btn.ghost{background:#fff;color:var(--primary-dk);border:2px solid var(--primary-lt);box-shadow:none}
+.btn.wa{background:var(--wa);box-shadow:none}.btn.sm{display:inline-block;padding:7px 12px;font-size:11.5px}
+.prep{display:flex;gap:6px;align-items:flex-start;font-size:11px;color:var(--g700);margin-top:8px;line-height:1.4}
+.prep .mi{font-size:15px;color:var(--primary-dk)}
+.pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:10.5px;font-weight:700}
+.p-ok{background:#dcfce7;color:#166534}.p-up{background:#e0f2fe;color:#075985}.p-warm{background:#fff3d6;color:#8a5a00}.p-or{background:var(--secondary);color:var(--primary-dk)}.p-gr{background:#f3efe9;color:var(--g500)}
+/* dots */
+.dots{display:grid;grid-template-columns:repeat(11,1fr);gap:5px;margin:8px 0 4px}
+.dot{aspect-ratio:1;border-radius:50%;background:#fff;border:2px solid #ecd9c6}
+.dot.d{background:var(--orange);border-color:var(--orange)}
+.dot.n{border-color:var(--orange);box-shadow:0 0 0 3px rgba(245,131,33,.18)}
+.dot.p{background:var(--secondary);border:2px dashed var(--primary-lt)}
+.streak{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;margin-top:6px}
+.flame{width:28px;height:28px;border-radius:50%;background:#fff3d6;display:grid;place-items:center;font-size:15px}
+.wk{display:flex;gap:4px;margin-top:6px}.wk span{flex:1;text-align:center;font-size:9.5px;color:var(--g500);font-weight:700}
+.wk span i{display:block;height:6px;border-radius:4px;background:#ecd9c6;margin-bottom:3px}.wk span i.on{background:var(--orange)}
+.bar{height:7px;background:#fff;border-radius:6px;overflow:hidden;border:1px solid var(--line)}.bar i{display:block;height:100%;background:var(--orange);border-radius:6px}
+/* onboarding */
+.ob{background:var(--cream);height:100%;padding:34px 16px 16px;display:flex;flex-direction:column;font-size:13px}
+.ob .prog{height:5px;background:#eadac8;border-radius:5px;margin-bottom:14px}.ob .prog i{display:block;height:5px;background:var(--primary);border-radius:5px}
+.step{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary-dk)}
+.ob h5{font-size:21px;margin:4px 0 6px;font-weight:800;line-height:1.2}.ob p.s{margin:0 0 12px;color:var(--g500);font-size:12px;line-height:1.45;font-weight:500}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.slot{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px;font-weight:800;font-size:13px}.slot small{display:block;font-size:10.5px;color:var(--g500);font-weight:600}
+.slot.on{border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,138,61,.15)}
+.chan{display:flex;gap:10px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px;margin-bottom:8px}
+.chan.on{border-color:var(--primary)}.chan.off{opacity:.55}
+.chan .ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;color:#fff;flex:0 0 32px}
+.chan .t{flex:1;font-size:12.5px;font-weight:800;line-height:1.25}.chan .t small{display:block;font-size:10.5px;color:var(--g500);font-weight:600}
+.tog{width:34px;height:20px;border-radius:20px;background:#e5d6c6;position:relative;flex:0 0 34px}.tog::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;top:2px;left:2px}
+.tog.on{background:var(--primary)}.tog.on::after{left:16px}
+.warnbox{background:#fff8ec;border:1.5px solid #f4c77d;border-radius:12px;padding:9px 10px;font-size:11.5px;line-height:1.45;margin-bottom:10px;color:#6b4a10}
+.okbox{background:var(--ok-bg);border:1.5px solid var(--ok-line);border-radius:12px;padding:9px 10px;font-size:11.5px;line-height:1.45;color:var(--ok-ink)}
+/* overlays */
+.dim{position:absolute;inset:0;background:rgba(42,38,34,.55);z-index:3}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:22px 22px 0 0;padding:10px 16px 18px;z-index:4}
+.sheet .grab{width:40px;height:4px;border-radius:4px;background:#e5d6c6;margin:0 auto 10px}
+.sheet h6{font-size:16px;font-weight:800;margin:0 0 4px}.sheet p{font-size:12px;color:var(--g500);margin:0 0 10px;line-height:1.45}
+.opt{border:2px solid var(--line);border-radius:14px;padding:10px;margin-bottom:8px;font-size:12px}
+.opt.on{border-color:var(--primary);background:var(--card-soft)}
+.opt b{display:block;font-size:13px;margin-bottom:2px}
+.mini{display:flex;gap:3px;margin-top:6px}.mini span{flex:1;text-align:center;font-size:9px;font-weight:700;color:var(--g500)}
+.mini span i{display:block;height:16px;border-radius:5px;background:#f3ebe1;margin-bottom:2px;font-style:normal;font-size:10px;line-height:16px;color:#fff}
+.mini span i.one{background:var(--primary-lt)}.mini span i.two{background:var(--orange)}
+/* lock screen */
+.lock{background:linear-gradient(170deg,#3a2a1e,#8a4b1c 60%,#f0a35e);height:100%;padding:60px 12px 12px;color:#fff;text-align:center}
+.lock .tm{font-size:54px;font-weight:300;letter-spacing:-.02em}.lock .dt{font-size:13px;opacity:.85;margin-bottom:26px}
+.notif{background:rgba(255,255,255,.88);color:var(--ink);border-radius:16px;padding:10px 12px;text-align:left;font-size:12px;margin-bottom:8px}
+.notif .ap{display:flex;justify-content:space-between;font-size:10.5px;color:var(--g500);font-weight:700;margin-bottom:3px}
+/* mail + wa */
+.mail{background:#fff;font-size:13px}.mail .mh{padding:12px 18px;border-bottom:1px solid #eee;font-size:12px;color:var(--g500);line-height:1.6}
+.mail .mh b{color:var(--ink)}.mail .mb{padding:18px 22px;max-width:560px}
+.mail .brand{background:var(--orange);color:#fff;font-weight:900;padding:10px 14px;border-radius:10px 10px 0 0;font-size:14px;letter-spacing:.04em}
+.mail .body{border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px;padding:16px;line-height:1.55}
+.wa{background:#efe7dd;height:100%;display:flex;flex-direction:column}
+.wa .wh{background:#075e54;color:#fff;padding:36px 12px 10px;font-size:13px;font-weight:700;display:flex;gap:8px;align-items:center}
+.wa .wh .av{background:var(--orange);width:28px;height:28px;font-size:11px}
+.wa .msgs{padding:12px 10px;flex:1}
+.bub{background:#fff;border-radius:0 10px 10px 10px;padding:9px 10px;font-size:12px;line-height:1.5;max-width:92%;box-shadow:0 1px 1px rgba(0,0,0,.08);margin-bottom:8px}
+.bub .tm{font-size:9.5px;color:var(--g400);text-align:right}
+.bub .lnk{display:block;margin-top:6px;border-top:1px solid #eee;padding-top:6px;color:#0a7cff;font-weight:700;text-align:center}
+.tagline{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#fff3d6;color:#8a5a00;border-radius:6px;padding:2px 7px;margin-bottom:6px}
+/* baseline strip */
+.base{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.bcard{background:#fff;border-radius:12px;padding:12px 14px;border:1px solid var(--line);font-size:12px;line-height:1.5}
+.bcard h4{margin:0 0 4px;font-size:13px;font-weight:800}.bcard .when{font-size:20px;font-weight:900;color:var(--orange);margin:2px 0}
+.bcard .ch2{font-size:10.5px;font-weight:800;color:var(--g500);text-transform:uppercase;letter-spacing:.06em}
+.gap{background:#fff;border-left:4px solid var(--coral);border-radius:8px;padding:10px 14px;font-size:12.5px;margin-top:12px;line-height:1.5}
+.foot{background:#fff;border-radius:12px;padding:16px 18px;margin-top:40px;font-size:12.5px;line-height:1.6}
+.foot h3{margin:0 0 6px;font-size:15px}.foot code{font-size:11px;background:#f6efe6;border-radius:4px;padding:1px 5px}
+.foot ul{margin:6px 0;padding-left:18px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:11.5px}th{text-align:left;color:var(--g500);font-weight:700;padding:6px;border-bottom:1px solid var(--line);font-size:10.5px;text-transform:uppercase}td{padding:6px;border-bottom:1px solid #f4ede4;vertical-align:top}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>"10 minutes today" · learner pacing coach</h1>
+  <p>Source: <b>Goutam 28-Nov pacing coach</b> (approved feature). Five parts, every state, mobile and desktop. Sample learner <b>Anika Rao</b> and her parent are made up.</p>
+  <p>Example plan: the ₹4,999 21-challenge programme on the <b>25-Day Steady</b> pace (<code>relaxed_25</code>, config/enrolment.php:202-204).</p>
+  <div class="theme"><b>Theme read from the repo:</b> Montserrat (dashboard.blade.php:10, onboarding/index.blade.php:14) · primary #FF8A3D, primary-dark #E67E35, primary-light #FFB380, secondary #FFF1E6 (onboarding/index.blade.php:21-24; partials/app.blade.php:25,28) · dashboard orange #F58321 (most-used colour in dashboard.blade.php) · onboarding page #FFF6EE (onboarding/index.blade.php:56) · page = secondary→white gradient (partials/app.blade.php:412) · CTA gradient primary→#FF6B57 (onboarding/index.blade.php, "Lock in &amp; finish").</div>
+</header>
+
+<!-- ═════════ BASELINE ═════════ -->
+<section class="part">
+  <h2>What exists today: email only, on fixed dates</h2>
+  <p class="lead">Every reminder a learner gets today is an email on a fixed day or % mark. None lets the learner pick a time, and none says "do one today".</p>
+  <div class="base">
+    <div class="bcard"><span class="ch2">Email · before setup</span><h4>Onboarding reminders</h4><div class="when">Day 1 · 3 · 5</div>after payment, until onboarding is finished.<div class="src">config/enrolment.php:140 · OnboardingReminders.php:110,157 · Kernel.php:66 (9:00 + 18:00)</div></div>
+    <div class="bcard"><span class="ch2">Email · 25-day pace</span><h4>Completion reminders</h4><div class="when">Day 7 · 18 · 23 · 24</div>after onboarding, for <code>relaxed_25</code>.<div class="src">config/enrolment.php:141-142 · RemindIncompleteEnrolments.php:93,135 · Kernel.php:369 (9:00 + 18:00)</div></div>
+    <div class="bcard"><span class="ch2">Email · window</span><h4>Window nudges</h4><div class="when">50% · 80% · 95%</div>of the window gone, one each, checked twice a day.<div class="src">config/tasks.php:93 · SendWindowNudge.php:50,154-156 · Kernel.php:65 (9:00 + 18:00)</div></div>
+    <div class="bcard"><span class="ch2">Push · groundwork only</span><h4>Firebase on the login page</h4><div class="when">—</div>The service worker is registered at login; students have a <code>device_token</code> column.<div class="src">frontendapp/login.blade.php:252-256 · Student.php:67 · UNVERIFIED: whether any learner push is sent</div></div>
+  </div>
+  <div class="gap"><b>The gap this fills:</b> the dashboard has no daily plan. Its "Days Left" card is commented out with a hard-coded <b>25</b> (dashboard.blade.php:925-937). Part 1 replaces it.</div>
+</section>
+
+<!-- ═════════ PART 1 ═════════ -->
+<section class="part">
+  <h2>1 · Daily plan card: the top of the dashboard</h2>
+  <p class="lead">One card, one challenge, one button. Every figure comes from <b>one source</b>: the learner's window (unit start/end, written only by <code>App\Support\LearnerWindow</code>, LearnerWindow.php:52-78) plus the done count the dashboard already shows (<code>$progress['completed_count']/['total_count']</code>, dashboard.blade.php:956).</p>
+  <div class="flow"><span><b>1a</b> on pace</span>→<span><b>1b</b> tap Start</span><span><b>1c</b> ahead</span><span><b>1d</b> behind</span><span><b>1e</b> seat closing soon</span><span><b>1f</b> all done</span><span><b>1g</b> desktop</span></div>
+
+  <div class="screen"><h3><em>1a</em> · On pace (Day 10, 8 of 21 done)</h3>
+  <p class="cap">The plan sits above everything else. One challenge today keeps her on pace. The prep line explains the timer up front.</p>
+  <div class="row"><div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●● 4G</span></div><div class="pv">
+    <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
+    <div class="card plan">
+      <div class="kick">Your 10 minutes today</div>
+      <div class="big">Day 10 of 25 · 8 of 21 done</div>
+      <div class="meta"><span class="pill p-ok">On pace</span>&nbsp; 1 challenge today keeps you on pace</div>
+      <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · timer 45 min once opened</small></div></div>
+      <div class="btn">Start today's challenge</div>
+      <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
+    </div>
+    <div class="card"><div class="meta">8 of 21 completed</div><div class="bar" style="margin-top:6px"><i style="width:38%"></i></div></div>
+  </div></div></div>
+  <div class="src"><b>Sources:</b> "25" = mode duration_days, config/enrolment.php:203 (not hard-coded) · "21" = $progress total_count, dashboard.blade.php:956 · Day X = today − unit.start_date (LearnerWindow.php:52-78) · challenge 10 title + 45-min timer = seed snapshot database/seeders/data/prod-catalog-mapping.tsv:31 (prod value UNVERIFIED) · timer = Task::sprintTimerMinutes(), Task.php:185 · timer starts on open: TaskDetailsController.php:885-938 · on-pace rule (proposed): expected = floor(21 × day ÷ 25); Day 11 expects 9.</div></div></div>
+
+  <div class="screen"><h3><em>1b</em> · Tap Start: a heads-up before the clock runs</h3>
+  <p class="cap">Opening the challenge starts its timer, so a sheet asks first. "Not yet" keeps the clock off.</p>
+  <div class="row"><div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:42</span><span>●●● 4G</span></div><div class="pv">
+    <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
+    <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 10 of 25 · 8 of 21 done</div></div>
+  </div>
+  <div class="dim"></div>
+  <div class="sheet"><div class="grab"></div>
+    <h6>Ready for "Life Without Video Games"?</h6>
+    <p>The 45-minute timer starts the moment you open it. Have your video recorded and your phone charged.</p>
+    <div class="okbox" style="margin-bottom:10px">✔ Video recorded &nbsp;·&nbsp; ✔ Quiet place &nbsp;·&nbsp; ✔ Good network</div>
+    <div class="btn">Open challenge · start timer</div>
+    <div class="btn ghost" style="margin-top:8px">Not yet, remind me at 7:00 pm</div>
+  </div></div></div>
+  <div class="src"><b>Sources:</b> write-once timer on first open, never reset on re-open: TaskDetailsController.php:885-887, 927-938 · "7:00 pm" = the time she picked in Part 2 (2a).</div></div></div>
+
+  <div class="screen"><h3><em>1c</em> · Ahead · <em>1d</em> · Behind · <em>1e</em> · Seat closing soon · <em>1f</em> · All done</h3>
+  <p class="cap">Same card, four more states. The tone stays calm: no red, no countdown clock, always one next step.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good morning</small>Hi Anika 👋</div><div class="av">A</div></div>
+      <div class="card plan"><div class="kick">Your 10 minutes today</div>
+        <div class="big">Day 10 of 25 · 11 of 21 done</div>
+        <div class="meta"><span class="pill p-up">Ahead by 3</span>&nbsp; You've earned a lighter day</div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Escape from the Forest<small>Challenge 12 · timer 90 min once opened</small></div></div>
+        <div class="btn">Keep going</div>
+        <div class="btn ghost" style="margin-top:8px">Rest today, I'm ahead</div>
+        <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
+      </div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
+      <div class="card plan"><div class="kick">Your 10 minutes today</div>
+        <div class="big">Day 12 of 25 · 8 of 21 done</div>
+        <div class="meta"><span class="pill p-warm">2 to catch up</span>&nbsp; Easy to fix, and you have 13 days</div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · timer 45 min once opened</small></div></div>
+        <div class="btn">Start today's challenge</div>
+        <div class="btn ghost" style="margin-top:8px">Make a catch-up plan →</div>
+        <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
+      </div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good morning</small>Hi Anika 👋</div><div class="av">A</div></div>
+      <div class="card plan"><div class="kick">Last stretch</div>
+        <div class="big">Day 23 of 25 · 17 of 21 done</div>
+        <div class="meta"><span class="pill p-or">Seat open 3 more days</span>&nbsp; 2 a day finishes it</div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">My Future: Their Dream, My Dream<small>Challenge 17 · timer 90 min once opened</small></div></div>
+        <div class="btn">Start today's challenge</div>
+        <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
+        <div class="prep"><i class="mi">event</i><span>Your seat stays open until 1 Dec, 11:59 pm.</span></div>
+      </div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
+      <div class="card plan" style="text-align:center">
+        <div style="font-size:34px;margin:6px 0">🎉</div>
+        <div class="kick">All 21 done</div>
+        <div class="big">You finished on Day 22 of 25</div>
+        <div class="meta">You built a real habit: 10 minutes, day after day.</div>
+        <div class="dots" style="margin-top:12px">
+          <i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i></div>
+        <div class="btn" style="margin-top:10px">See my achievements</div>
+        <div class="meta" style="margin-top:8px">Daily reminders stop now.</div>
+      </div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> challenge 12 + 17 titles and 90-min timers: prod-catalog-mapping.tsv:33,38 (seed snapshot) · 1d: expected by Day 12 = floor(21×12÷25) = 10, done 8 → 2 behind; days left = 25 − 12 = 13 · 1e: window end = unit end_date (LearnerWindow); "closing soon" threshold (proposed, config) = 3 days; end date shown is illustrative · 1f: "See my achievements" links the existing achievements page (frontendapp/achievements.blade.php) · daily cap is OFF by default (config/tasks.php:24, DailySubmissionLimit.php:22-24), so "2 a day" is allowed.</div></div>
+
+  <div class="screen"><h3><em>1g</em> · Desktop: the plan card leads the dashboard; progress sits beside it</h3>
+  <p class="cap">Same card and the same numbers. On wide screens, the 21-dot strip (Part 3) moves to the right column.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/dashboard</span></div>
+    <div class="desk">
+      <div>
+        <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
+        <div class="card plan">
+          <div class="kick">Your 10 minutes today</div>
+          <div class="big">Day 10 of 25 · 8 of 21 done</div>
+          <div class="meta"><span class="pill p-ok">On pace</span>&nbsp; 1 challenge today keeps you on pace</div>
+          <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Life Without Video Games<small>Challenge 10 · timer 45 min once opened</small></div></div>
+          <div style="display:flex;gap:10px;align-items:center"><div class="btn" style="flex:0 0 240px">Start today's challenge</div>
+          <div class="prep" style="margin:0"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:42px">
+        <div class="kick">Your 21</div>
+        <div class="dots">
+          <i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot n"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <div class="streak"><span class="flame">🔥</span>4 days in a row</div>
+        <div class="meta" style="margin-top:6px">Reminder: every day at 7:00 pm · <u>change</u></div>
+      </div>
+    </div></div>
+  <div class="src"><b>Sources:</b> route path from the existing learner dashboard (frontendapp/dashboard.blade.php extends partials/app) · all figures as 1a (one source).</div></div></div>
+</section>
+
+<!-- ═════════ PART 2 ═════════ -->
+<section class="part">
+  <h2>2 · Pick your 10 minutes: a new onboarding step</h2>
+  <p class="lead">Onboarding today: Step 1 You → Step 2 Permissions → Step 3 Guide → Step 4 Your pace → done (onboarding/index.blade.php:183, 256/354, 387, 489, 525). This adds <b>Step 5 · Your 10 minutes</b> after the pace is picked.</p>
+  <div class="flow"><span><b>2a</b> pick a time</span>→<span><b>2b</b> how to remind you</span>→<span><b>2c</b> install the app (push)</span>→<span><b>2d</b> reminder arrives</span><span><b>2e</b> email can't receive mail</span><span><b>2f</b> desktop</span></div>
+
+  <div class="screen"><h3><em>2a</em> · Pick a time · <em>2b</em> · How to remind you · <em>2c</em> · Install for reminders</h3>
+  <p class="cap">She taps a time slot, then picks channels. Push needs the app installed, so the install prompt comes next.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
+      <div class="prog"><i style="width:88%"></i></div>
+      <div class="step">Step 5 · Your 10 minutes</div>
+      <h5>When suits you every day?</h5>
+      <p class="s">Pick a time you're usually free. We'll remind you, and you can change it anytime.</p>
+      <div class="slots">
+        <div class="slot">6:30 am<small>Before school</small></div>
+        <div class="slot">4:30 pm<small>After school</small></div>
+        <div class="slot on">7:00 pm<small>After homework</small></div>
+        <div class="slot">8:30 pm<small>Before bed</small></div>
+      </div>
+      <div class="chan" style="margin-top:8px"><div class="ic" style="background:var(--primary-lt)"><i class="mi">schedule</i></div><div class="t">Another time<small>Choose any time</small></div></div>
+      <div class="btn" style="margin-top:auto">Next</div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
+      <div class="prog"><i style="width:92%"></i></div>
+      <div class="step">Step 5 · Your 10 minutes</div>
+      <h5>How should we remind you at 7:00 pm?</h5>
+      <p class="s">Pick one or more.</p>
+      <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">notifications_active</i></div><div class="t">App notification<small>Needs the app on your home screen</small></div><span class="tog on"></span></div>
+      <div class="chan off"><div class="ic" style="background:var(--wa)"><i class="mi">chat</i></div><div class="t">WhatsApp <span class="pill p-gr">at launch</span><small>Coming soon</small></div><span class="tog"></span></div>
+      <div class="chan on"><div class="ic" style="background:#8a7a5f"><i class="mi">mail</i></div><div class="t">Email<small>anika.r@example.com</small></div><span class="tog on"></span></div>
+      <div class="btn" style="margin-top:auto">Lock in &amp; finish →</div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
+      <div class="prog"><i style="width:92%"></i></div>
+      <div class="step">Step 5 · Your 10 minutes</div>
+      <h5>Get your reminder</h5>
+    </div>
+    <div class="dim"></div>
+    <div class="sheet"><div class="grab"></div>
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><div class="av" style="width:42px;height:42px;border-radius:12px">iR</div><div><b style="font-size:14px">Add iRisePro to your home screen</b><div class="meta">app.irisepro.in</div></div></div>
+      <p>Then allow notifications, and your 7:00 pm reminder will reach you even when the app is closed.</p>
+      <div class="btn">Add to home screen</div>
+      <div class="btn ghost" style="margin-top:8px">Allow notifications</div>
+      <div class="meta" style="text-align:center;margin-top:8px">Not now: email will remind you instead</div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> step layout copies Step 4 (onboarding/index.blade.php:488-521: kicker, h1, cards, "Lock in &amp; finish" gradient CTA) · WhatsApp for parents at launch (decision, Messaging option B; email primary for pilot and beta) · no learner web-app manifest in public/ today (only crm-manifest.webmanifest), so the install prompt is new work · Firebase SW already registered at login (login.blade.php:252-256).</div></div>
+
+  <div class="screen"><h3><em>2d</em> · 7:00 pm: the reminder arrives · <em>2e</em> · The email address can't receive mail</h3>
+  <p class="cap">Push on the lock screen names today's challenge. If the email domain has no mail server, we say so kindly and offer push instead.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="lock">
+      <div class="tm">7:00</div><div class="dt">Friday, 28 November</div>
+      <div class="notif"><div class="ap"><span>iRisePro</span><span>now</span></div><b>Your 10 minutes, Anika ⏱️</b><br>Day 10 · 1 challenge keeps you on pace: "Life Without Video Games".</div>
+      <div class="notif"><div class="ap"><span>Mail</span><span>now</span></div><b>iRisePro · Your 10 minutes today</b><br>Day 10 of 25 · 8 of 21 done…</div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="ob">
+      <div class="prog"><i style="width:92%"></i></div>
+      <div class="step">Step 5 · Your 10 minutes</div>
+      <h5>How should we remind you at 7:00 pm?</h5>
+      <div class="warnbox"><b>We can't send email to anika@gmial.con</b><br>That address has no mail server, so reminders would never arrive. Use an app notification instead, or fix the email.</div>
+      <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">notifications_active</i></div><div class="t">App notification <span class="pill p-ok">recommended</span><small>Works without email</small></div><span class="tog on"></span></div>
+      <div class="chan off"><div class="ic" style="background:var(--wa)"><i class="mi">chat</i></div><div class="t">WhatsApp <span class="pill p-gr">at launch</span><small>We'll switch it on when ready</small></div><span class="tog"></span></div>
+      <div class="chan off"><div class="ic" style="background:#8a7a5f"><i class="mi">unsubscribe</i></div><div class="t">Email · can't deliver<small><u>Fix my email</u></small></div><span class="tog"></span></div>
+      <div class="btn" style="margin-top:auto">Lock in &amp; finish →</div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> no-MX check already exists with a DNS canary so a DNS outage never blocks anyone: app/Rules/DeliverableEmail.php:8-34 (commit e1611c782) · the "28-Nov F8112 case" is from the brief; not found in the repo (UNVERIFIED) · the sample address is made up.</div></div>
+
+  <div class="screen"><h3><em>2f</em> · Desktop: the same step, centred card</h3>
+  <p class="cap">Time and channel on one wide card. On desktop, browser notifications stand in for the home-screen install.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/onboarding</span></div>
+    <div style="background:var(--cream);padding:24px;display:flex;justify-content:center">
+      <div class="card" style="max-width:560px;width:100%;padding:20px">
+        <div class="ob" style="padding:0;background:none">
+          <div class="prog"><i style="width:92%"></i></div>
+          <div class="step">Step 5 · Your 10 minutes</div>
+          <h5>When suits you every day, and how should we remind you?</h5>
+          <div class="slots" style="grid-template-columns:repeat(4,1fr)"><div class="slot">6:30 am<small>Before school</small></div><div class="slot">4:30 pm<small>After school</small></div><div class="slot on">7:00 pm<small>After homework</small></div><div class="slot">8:30 pm<small>Before bed</small></div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
+            <div class="chan on"><div class="ic" style="background:var(--orange)"><i class="mi">notifications</i></div><div class="t">Browser<small>Allow</small></div></div>
+            <div class="chan off"><div class="ic" style="background:var(--wa)"><i class="mi">chat</i></div><div class="t">WhatsApp<small>at launch</small></div></div>
+            <div class="chan on"><div class="ic" style="background:#8a7a5f"><i class="mi">mail</i></div><div class="t">Email<small>on</small></div></div>
+          </div>
+          <div class="btn" style="margin-top:14px">Lock in &amp; finish →</div>
+        </div>
+      </div>
+    </div></div>
+  <div class="src"><b>Sources:</b> as 2a-2b. Time slots and their labels are proposed config, not existing values.</div></div></div>
+</section>
+
+<!-- ═════════ PART 3 ═════════ -->
+<section class="part">
+  <h2>3 · 21-dot strip and streak</h2>
+  <p class="lead">A filled dot for every finished challenge, a ring on today's. The streak counts days in a row with at least one submission. It praises effort and never counts down.</p>
+  <div class="flow"><span><b>3a</b> streak running</span><span><b>3b</b> streak paused</span><span><b>3c</b> desktop week view</span></div>
+
+  <div class="screen"><h3><em>3a</em> · 4 days in a row · <em>3b</em> · The streak paused: a fresh start, no blame</h3>
+  <p class="cap">Missing a day resets the streak but never touches the dots. The copy points to today and never to what was missed.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good evening</small>Hi Anika 👋</div><div class="av">A</div></div>
+      <div class="card">
+        <div class="kick">Your 21</div>
+        <div class="dots">
+          <i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot n"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <div class="meta">8 done · 13 to go</div>
+        <div class="streak"><span class="flame">🔥</span>4 days in a row. Keep it glowing!</div>
+        <div class="wk"><span><i class="on"></i>M</span><span><i></i>T</span><span><i class="on"></i>W</span><span><i class="on"></i>T</span><span><i class="on"></i>F</span><span><i class="on"></i>S</span><span><i></i>S</span></div>
+      </div>
+      <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 10 of 25 · 8 of 21 done</div><div class="btn" style="margin-top:8px">Start today's challenge</div></div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Good morning</small>Hi Anika 👋</div><div class="av">A</div></div>
+      <div class="card">
+        <div class="kick">Your 21</div>
+        <div class="dots">
+          <i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot n"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <div class="meta">8 done · 13 to go · all your work is saved</div>
+        <div class="streak"><span class="flame">🌱</span>Fresh start today. One challenge starts a new streak.</div>
+        <div class="meta" style="margin-top:4px">Your best so far: 4 days in a row</div>
+      </div>
+      <div class="card plan"><div class="kick">Your 10 minutes today</div><div class="big">Day 12 of 25 · 8 of 21 done</div><div class="btn" style="margin-top:8px">Start today's challenge</div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> filled dots = completed_count (dashboard.blade.php:956, same source as Part 1) · a streak day = a day with ≥1 row where status = 'submitted', the same per-day query the daily cap already uses (TaskDetailsController.php:686-695, submissionsToday) · "best so far" is a new stored figure, written on submit and read for free (no per-view recount).</div></div>
+
+  <div class="screen"><h3><em>3c</em> · Desktop: the strip with a week-by-week view</h3>
+  <p class="cap">Wide screens add one row per week of the window: a calm calendar, not a timer.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/dashboard</span></div>
+    <div class="desk" style="grid-template-columns:1fr">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center"><div class="kick">Your 21 · 8 done</div><div class="streak" style="margin:0"><span class="flame">🔥</span>4 days in a row</div></div>
+        <div class="dots" style="grid-template-columns:repeat(21,1fr);max-width:640px">
+          <i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot n"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        <div class="tw"><table style="margin-top:8px;max-width:640px"><tr><th>Week</th><th>Days</th><th>Done</th><th></th></tr>
+          <tr><td>1</td><td>Day 1-7</td><td>5</td><td><span class="pill p-ok">steady</span></td></tr>
+          <tr><td>2</td><td>Day 8-14</td><td>3 so far</td><td><span class="pill p-or">this week</span></td></tr>
+          <tr><td>3</td><td>Day 15-21</td><td>—</td><td></td></tr>
+          <tr><td>4</td><td>Day 22-25</td><td>—</td><td></td></tr></table></div>
+      </div>
+    </div></div>
+  <div class="src"><b>Sources:</b> weeks are cut from the same window (start_date + 25 days, LearnerWindow.php:76-77). Per-week counts are illustrative.</div></div></div>
+</section>
+
+<!-- ═════════ PART 4 ═════════ -->
+<section class="part">
+  <h2>4 · Catch-up plan when behind</h2>
+  <p class="lead">"You're 2 behind." Two plans to choose from, a confirm step, and then the daily card follows the chosen plan.</p>
+  <div class="flow"><span><b>4a</b> choose a plan</span>→<span><b>4b</b> confirm</span>→<span><b>4c</b> card follows the plan</span><span><b>4d</b> desktop</span></div>
+
+  <div class="screen"><h3><em>4a</em> · Choose · <em>4b</em> · Confirm · <em>4c</em> · The card now follows the plan</h3>
+  <p class="cap">She opens "Make a catch-up plan" from 1d and picks one. Reminders then say "2 today" on the extra days.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="card plan"><div class="big">Day 12 of 25 · 8 of 21 done</div></div></div>
+      <div class="dim"></div>
+      <div class="sheet"><div class="grab"></div>
+        <h6>You're 2 behind. Easy to fix.</h6>
+        <p>Pick the plan that fits your week.</p>
+        <div class="opt on"><b>Do 2 this weekend</b>One extra on Saturday and one on Sunday.
+          <div class="mini"><span><i class="one">1</i>Fri</span><span><i class="two">2</i>Sat</span><span><i class="two">2</i>Sun</span><span><i class="one">1</i>Mon</span></div></div>
+        <div class="opt"><b>1 extra on two days</b>Tuesday and Thursday next week.
+          <div class="mini"><span><i class="one">1</i>Mon</span><span><i class="two">2</i>Tue</span><span><i class="one">1</i>Wed</span><span><i class="two">2</i>Thu</span></div></div>
+        <div class="btn">Use this plan</div>
+      </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:42</span><span>●●●</span></div><div class="pv" style="display:flex;flex-direction:column;justify-content:center;text-align:center">
+      <div style="font-size:40px">🗓️</div>
+      <div class="big">Plan set: 2 this weekend</div>
+      <div class="meta" style="margin-bottom:12px">Sat 29 Nov · 2 challenges<br>Sun 30 Nov · 2 challenges<br>Then back to 1 a day. You'll be on pace by Monday.</div>
+      <div class="okbox" style="text-align:left;margin-bottom:12px">Your 7:00 pm reminder will say "2 today" on Saturday and Sunday.</div>
+      <div class="btn">Got it</div>
+      <div class="btn ghost" style="margin-top:8px">Change plan</div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="sb"><span>9:41</span><span>●●●</span></div><div class="pv">
+      <div class="apphd"><div class="hi"><small>Saturday</small>Hi Anika 👋</div><div class="av">A</div></div>
+      <div class="card plan"><div class="kick">Catch-up day 1 of 2</div>
+        <div class="big">Day 13 of 25 · 9 of 21 done</div>
+        <div class="meta"><span class="pill p-warm">2 today</span>&nbsp; Then you're back on pace</div>
+        <div class="ch"><div class="ic"><i class="mi">videocam</i></div><div class="t">Escape from the Forest<small>Challenge 12 · timer 90 min once opened</small></div></div>
+        <div class="ch" style="margin-top:0;opacity:.75"><div class="ic" style="background:var(--primary-lt)"><i class="mi">videocam</i></div><div class="t">News Flash: Your Rule!<small>Challenge 13 · next, timer 90 min</small></div></div>
+        <div class="btn">Start challenge 1 of 2</div>
+        <div class="prep"><i class="mi">tips_and_updates</i><span>Record your video first. The timer starts when you open it.</span></div>
+      </div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> "2 behind" = the 1d figure (one source) · titles + timers: prod-catalog-mapping.tsv:33-34 (seed snapshot) · plans never exceed the daily cap when it is on (config/tasks.php:24-30, default cap 3, OFF by default) · the plan only moves reminders and card copy; it never changes the window or the seat.</div></div>
+
+  <div class="screen"><h3><em>4d</em> · Desktop: both plans side by side in a centred modal</h3>
+  <p class="cap">The same two options and the same confirm step, laid out side by side.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>app.irisepro.in/mobile/dashboard</span></div>
+    <div style="position:relative;background:linear-gradient(160deg,var(--secondary),#fff 70%);min-height:360px;padding:20px">
+      <div class="card plan" style="max-width:420px;opacity:.5"><div class="big">Day 12 of 25 · 8 of 21 done</div></div>
+      <div class="dim" style="background:rgba(42,38,34,.45)"></div>
+      <div class="card" style="position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,92%);padding:18px">
+        <div class="big">You're 2 behind. Easy to fix.</div><div class="meta" style="margin-bottom:10px">Pick the plan that fits your week.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="opt on"><b>Do 2 this weekend</b>Sat + Sun, one extra each.<div class="mini"><span><i class="two">2</i>Sat</span><span><i class="two">2</i>Sun</span></div></div>
+          <div class="opt"><b>1 extra on two days</b>Tue + Thu next week.<div class="mini"><span><i class="two">2</i>Tue</span><span><i class="two">2</i>Thu</span></div></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:6px"><div class="btn" style="flex:1">Use this plan</div><div class="btn ghost" style="flex:0 0 120px">Later</div></div>
+      </div>
+    </div></div>
+  <div class="src"><b>Sources:</b> as 4a.</div></div></div>
+</section>
+
+<!-- ═════════ PART 5 ═════════ -->
+<section class="part">
+  <h2>5 · Weekly parent note</h2>
+  <p class="lead">Once a week, a short, warm note to the parent: what their child did and whether they're on pace, with one link. Email now, WhatsApp at launch.</p>
+  <div class="flow"><span><b>5a</b> email · on pace</span><span><b>5b</b> WhatsApp · at launch</span><span><b>5c</b> a quieter week (gentle)</span></div>
+
+  <div class="screen"><h3><em>5a</em> · Email (desktop mail client) · on pace</h3>
+  <p class="cap">One headline figure, the 21 dots, one button. No scores and no comparisons with other children.</p>
+  <div class="row"><div class="browser"><div class="chrome"><i></i><i></i><i></i><span>mail.example.com/inbox</span></div>
+    <div class="mail"><div class="mh"><b>iRisePro</b> &lt;hello@…&gt; → you<br><b>Subject:</b> Anika did 3 challenges this week and is on pace 🌟</div>
+      <div class="mb"><div class="brand">iRisePro</div><div class="body">
+        Namaste,<br><br>
+        <b>Anika did 3 challenges this week and is on pace.</b> She is on Day 12 of 25, with 9 of 21 done.
+        <div class="dots" style="max-width:380px"><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot d"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+        🔥 Her best run this week: 4 days in a row.<br>
+        <b>One way to help:</b> ask her about "Escape from the Forest", next on her list.<br><br>
+        <span class="btn sm">See Anika's dashboard</span><br><br>
+        <span class="meta">Sent every Sunday at 10:00 am. <u>Change or stop these notes.</u></span>
+      </div></div></div></div>
+  <div class="src"><b>Sources:</b> figures = the same window + completed_count as Part 1 · "this week" = count of submitted rows in the last 7 days (same per-day query as the streak) · send day and time are proposed config · email is primary for pilot and beta (memory: decision-email-primary-pilot-beta) · the parent's address = the guardian captured at Step 2 (onboarding/index.blade.php:255-294).</div></div></div>
+
+  <div class="screen"><h3><em>5b</em> · WhatsApp (marked "at launch") · <em>5c</em> · A quieter week: gentle, never alarming</h3>
+  <p class="cap">The same note on WhatsApp. In a slow week it offers the catch-up plan and never says "behind" in red.</p>
+  <div class="row">
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="wa">
+      <div class="wh"><div class="av">iR</div>iRisePro <span class="pill p-gr" style="margin-left:auto">at launch</span></div>
+      <div class="msgs"><div class="bub"><span class="tagline">Weekly note</span><br>Namaste! 🌟 <b>Anika did 3 challenges this week and is on pace</b>: Day 12 of 25, 9 of 21 done. 🔥 4 days in a row.<span class="lnk">See Anika's dashboard</span><div class="tm">Sun 10:00</div></div></div>
+    </div></div></div>
+    <div class="phone"><div class="scr"><div class="notch"></div><div class="wa">
+      <div class="wh"><div class="av">iR</div>iRisePro <span class="pill p-gr" style="margin-left:auto">at launch</span></div>
+      <div class="msgs"><div class="bub"><span class="tagline">Weekly note</span><br>Namaste! Anika did <b>1 challenge</b> this week: Day 12 of 25, 8 of 21 done. She has 13 days left, plenty of time. 🌱<br><br>A 2-day catch-up plan is ready in her app. A quick "how's it going?" from you helps a lot.<span class="lnk">See Anika's dashboard</span><div class="tm">Sun 10:00</div></div></div>
+    </div></div></div>
+  </div>
+  <div class="src"><b>Sources:</b> official WhatsApp for parents at launch (memory: decision-messaging-option-b) · 5c figures = the 1d state (one source) · WhatsApp templates need vendor approval before launch (UNVERIFIED timing).</div></div></div>
+</section>
+
+<!-- ═════════ FOOTER ═════════ -->
+<div class="foot">
+  <h3>Everything is configurable, nothing hard-coded</h3>
+  <ul>
+    <li><b>One source for every figure:</b> Day X / 25 / days left come from the unit window written by <code>LearnerWindow</code>; done / 21 from the dashboard's existing <code>$progress</code>. The card, the strip, the catch-up plan, push, email and the parent note all read these. None keeps its own copy.</li>
+    <li><b>Proposed config keys</b> (values drawn here are proposals): <code>pacing.enabled</code> · <code>pacing.time_slots</code> (6:30 / 16:30 / 19:00 / 20:30) · <code>pacing.on_pace_rule</code> (floor(total × day ÷ duration)) · <code>pacing.closing_soon_days</code> (3) · <code>pacing.catchup_max_per_day</code> (≤ daily cap when on) · <code>pacing.channels</code> (push, email; whatsapp at launch) · <code>pacing.parent_note.day_time</code> (Sun 10:00) · <code>pacing.streak.enabled</code>.</li>
+    <li><b>All copy in en + kn</b> as translation keys, including the prep line, the five card states, the streak lines, both catch-up plans and the parent note. Kannada is not drawn here; it needs native review before build.</li>
+    <li><b>Existing emails stay</b> (onboarding 1/3/5, completion 7/18/23/24, window 50/80/95%). Pacing reminders join them under the same <code>MailGate</code> brake (SendWindowNudge.php:43).</li>
+    <li><b>Voice:</b> YASHHO no-fear. No red, no ticking countdown, always one next step. Learners see "challenge", never "task".</li>
+  </ul>
+  <h3 style="margin-top:12px">Open facts (UNVERIFIED)</h3>
+  <ul>
+    <li>Timer minutes are from the seed snapshot (prod-catalog-mapping.tsv: 30-120 min for this programme). Prod values were not read. The timer is the submission window, not how long the work takes, so "10 minutes" is the daily habit, not a challenge's length.</li>
+    <li>Whether any learner push is sent today (Firebase SW + device_token exist; no sender was checked).</li>
+    <li>The "F8112" no-MX case comes from the brief and is not in the repo.</li>
+  </ul>
+</div>
+</div>
